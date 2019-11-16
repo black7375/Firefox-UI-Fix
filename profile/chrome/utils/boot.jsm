@@ -213,6 +213,8 @@ let _uc = {
     
     createFileURI: (fileName) => ( _uc.createFileURI(fileName) ),
     
+    get chromeDir(){ return {get files(){return _uc.chromeDirEntries},uri:_uc.BASE_FILEURI} },
+    
     getFSEntry: (fileName) => ( _uc.getDirEntry(fileName) ),
     
     getScriptData: () => {
