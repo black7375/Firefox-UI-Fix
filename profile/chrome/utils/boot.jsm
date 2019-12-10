@@ -36,51 +36,62 @@ const yPref = {
   },
   addListener:(a,b)=>{ let o = (q,w,e)=>(b(yPref.get(e),e)); Services.prefs.addObserver(a,o);return{pref:a,observer:o}},
   removeListener:(a)=>( Services.prefs.removeObserver(a.pref,a.observer) )
+};
+
+const CUSTOM_EXT = {};
+const SHARED_GLOBAL = {};
+const RUNTIME = {
+  startup:[]
+};
+
+function resolveChromeURL(str){
+  const registry = Cc["@mozilla.org/chrome/chrome-registry;1"].getService(Ci.nsIChromeRegistry);
+  try{
+    return registry.convertChromeURL(Services.io.newURI(str.replace(/\\/g,"/"))).spec
+  }catch(e){
+    console.error(e);
+    return ""
+  }
+}
+// relative to "chrome" folder
+function resolveChromePath(str){
+  let parts = resolveChromeURL(str).split("/");
+  return parts.slice(parts.indexOf("chrome") + 1,parts.length - 1).join("/");
 }
 
 let _uc = {
   BROWSERCHROME: 'chrome://browser/content/browser.xhtml',
   PREF_ENABLED: 'userChromeJS.enabled',
   PREF_SCRIPTSDISABLED: 'userChromeJS.scriptsDisabled',
-  SCRIPT_DIR: 'JS',
-  RESOURCE_DIR: 'resources',
-  BASE_FILEURI: null, // set later
 
+  SCRIPT_DIR: resolveChromePath('chrome://userScripts/content/'),
+  RESOURCE_DIR: resolveChromePath('chrome://userChrome/content/'),
+  BASE_FILEURI: Services.io.getProtocolHandler('file').QueryInterface(Ci.nsIFileProtocolHandler).getURLSpecFromDir(Services.dirsvc.get('UChrm',Ci.nsIFile)),
+  
   get chromeDir() {return Services.dirsvc.get('UChrm',Ci.nsIFile)},
-  
-  get chromeDirEntries() {return _uc.chromeDir.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator)},
-  
-  getDirectoryEntries: function(nsDirEnum,name,matchDirectory = false){
-    while(nsDirEnum.hasMoreElements()){
-      let entry = nsDirEnum.getNext().QueryInterface(Ci.nsIFile);
-      if(name === entry.leafName){
-        if(matchDirectory){
-          if(entry.isDirectory()){
-            return entry.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
-          }
-        }else{
-          if(entry.isFile()){
-            return entry
-          }
-        }
-      }
-    }
-    return null
-  },
 
   getDirEntry: function(filename,isLoader = false){
     filename = filename.replace("\\","/");
     let pathParts = ((isLoader ? _uc.SCRIPT_DIR : _uc.RESOURCE_DIR) + "/" + filename).split("/").filter((a)=>(!!a));
-    let leafName = pathParts.pop();
-    let isFile = leafName.indexOf(".") != -1;
-    let currentDir = _uc.chromeDirEntries;
+    let entry = _uc.chromeDir;
+    
     for(let part of pathParts){
-      currentDir = _uc.getDirectoryEntries(currentDir,part,true)
+      entry.append(part)
     }
-    return currentDir ? _uc.getDirectoryEntries(currentDir,leafName,!isFile) : null
+    if(!entry.exists()){
+      return null
+    }
+    if(entry.isDirectory()){
+      return entry.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
+    }else if(entry.isFile()){
+      return entry
+    }else{
+      return null
+    }
   },
-
-  createFileURI: (fileName,isLoader = false) => (`${_uc.BASE_FILEURI}${isLoader?_uc.SCRIPT_DIR:_uc.RESOURCE_DIR}/${fileName.replace("\\","/")}`),
+  
+  createChromeURI: (fileName) => (
+  `chrome://userScripts/content/${fileName}`),
 
   getScripts: function () {
     this.scripts = {};
@@ -88,7 +99,6 @@ let _uc = {
       console.log("Scripts are disabled or the given script directory name is invalid");
       return
     }
-
     let files = _uc.getDirEntry('',true);
     while(files.hasMoreElements()){
       let file = files.getNext().QueryInterface(Ci.nsIFile);
@@ -129,7 +139,7 @@ let _uc = {
       downloadURL: (header.match(/\/\/ @downloadURL\s+(.+)\s*$/im) || def)[1],
       updateURL: (header.match(/\/\/ @updateURL\s+(.+)\s*$/im) || def)[1],
       optionsURL: (header.match(/\/\/ @optionsURL\s+(.+)\s*$/im) || def)[1],
-      //startup: (header.match(/\/\/ @startup\s+(.+)\s*$/im) || def)[1],
+      startup: (header.match(/\/\/ @startup\s+(.+)\s*$/im) || def)[1],
       //shutdown: (header.match(/\/\/ @shutdown\s+(.+)\s*$/im) || def)[1],
       onlyonce: /\/\/ @onlyonce\b/.test(header),
       isRunning: false,
@@ -139,29 +149,36 @@ let _uc = {
     }
   },
 
-  everLoaded: [],
+  //everLoaded: [],
+  
+  maybeRunStartUp: (script,win) => {
+    if( script.startup
+        && (/^\w*$/).test(script.startup)
+        && SHARED_GLOBAL[script.startup]
+        && typeof SHARED_GLOBAL[script.startup]._startup === "function")
+        {
+          SHARED_GLOBAL[script.startup]._startup(win)
+        }
+    },
   
   loadScript: function (script, win) {
     if (!script.regex.test(win.location.href) || !script.isEnabled) {
       return
     }
     if (script.onlyonce && script.isRunning) {
-      if (script.startup) {
-      //  eval(script.startup);
-      }
+      _uc.maybeRunStartUp(script,win)
       return
     }
 
     try {
-      Services.scriptloader.loadSubScript(_uc.createFileURI(script.filename,true), win);
+      Services.scriptloader.loadSubScript(_uc.createChromeURI(script.filename), win);
       
       script.isRunning = true;
-      if (script.startup) {
-      //  eval(script.startup);
-      }
-      if (!script.shutdown) {
+      _uc.maybeRunStartUp(script,win);
+      
+      /*if (!script.shutdown) {
         this.everLoaded.push(script.id);
-      }
+      }*/
     } catch (ex) {
       this.error(script.filename, ex);
     }
@@ -180,8 +197,10 @@ let _uc = {
   // things to be exported for use by userscripts
   utils:{
     
-    createElement: function(doc,tag,props){
-      let el = doc.createXULElement(tag);
+    get sharedGlobal(){ return SHARED_GLOBAL },
+    
+    createElement: function(doc,tag,props,isHTML = false){
+      let el = isHTML ? doc.createElement(tag) : doc.createXULElement(tag);
       for(let prop in props){
         el.setAttribute(prop,props[prop])
       }
@@ -211,9 +230,13 @@ let _uc = {
       return content.replace(/\r\n?/g, '\n');
     },
     
-    createFileURI: (fileName) => ( _uc.createFileURI(fileName) ),
+    createFileURI: (fileName = "") => {
+      fileName = String(fileName);
+      let u = resolveChromeURL(`chrome://userChrome/content/${fileName}`);
+      return fileName ? u : u.substr(0,u.lastIndexOf("/") + 1); 
+    },
     
-    get chromeDir(){ return {get files(){return _uc.chromeDirEntries},uri:_uc.BASE_FILEURI} },
+    get chromeDir(){ return {get files(){return _uc.chromeDir.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator)},uri:_uc.BASE_FILEURI} },
     
     getFSEntry: (fileName) => ( _uc.getDirEntry(fileName) ),
     
@@ -232,15 +255,24 @@ let _uc = {
       return scripts
     },
     
-    getWindows: function (onlyBrowsers = true) {
-      let windows = Services.wm.getEnumerator(onlyBrowsers ? 'navigator:browser' : null);
-      let wins = [];
-      while (windows.hasMoreElements()) {
-        let win = windows.getNext();
-        win._ucUtils && wins.push(win);
+    get windows(){
+      return {
+        get: function (onlyBrowsers = true) {
+          let windows = Services.wm.getEnumerator(onlyBrowsers ? 'navigator:browser' : null);
+          let wins = [];
+          while (windows.hasMoreElements()) {
+            let win = windows.getNext();
+            win._ucUtils && wins.push(win);
+          }
+          return wins
+        },
+        forEach: function(fun,onlyBrowsers = true){
+          let wins = this.get(onlyBrowsers);
+          wins.every((w)=>(fun(w.document,w)))
+        }
       }
-      return wins
     },
+    
     toggleScript: function(el){
       let isElement = !!el.tagName;
       if(!isElement && typeof el != "string"){
@@ -258,6 +290,7 @@ let _uc = {
       }
       Services.appinfo.invalidateCachesOnRestart();
     },
+    
     updateMenuStatus: function(menu){
       if(!menu){
         return
@@ -275,12 +308,11 @@ let _uc = {
 
     restart: function (clearCache){
       clearCache && Services.appinfo.invalidateCachesOnRestart();
-      _uc.utils.getWindows()[0].BrowserUtils.restartApplication();
+      _uc.utils.windows.get()[0].BrowserUtils.restartApplication();
     }
   }
 };
 
-_uc.BASE_FILEURI = Services.io.getProtocolHandler('file').QueryInterface(Ci.nsIFileProtocolHandler).getURLSpecFromDir(_uc.chromeDir);
 Object.freeze(_uc.utils);
 
 if (yPref.get(_uc.PREF_ENABLED) === undefined) {
@@ -311,7 +343,7 @@ UserChrome_js.prototype = {
         window.gBrowser = window._gBrowser;
       }
       let isWindow = window.isChromeWindow;
-      const ENABLED = yPref.get(_uc.PREF_ENABLED); 
+
         /* Add a way to toggle scripts in tools menu */
       let menu, popup, item;
       let ce = _uc.utils.createElement;
@@ -320,7 +352,7 @@ UserChrome_js.prototype = {
         if(menu){
           try{
             popup = ce(document,"menupopup",{id:"menuUserScriptsPopup",onpopupshown:`_ucUtils.updateMenuStatus(this)`});
-            item =  ce(document,"menu",{id:"userScriptsMenu",label:"userScripts"});
+            item = ce(document,"menu",{id:"userScriptsMenu",label:"userScripts"});
           }catch(e){
             isWindow = false;
           }
@@ -328,7 +360,7 @@ UserChrome_js.prototype = {
           isWindow = false;
         }
       }
-      if(ENABLED){
+      if(yPref.get(_uc.PREF_ENABLED)){
         Object.values(_uc.scripts).forEach(script => {
           _uc.loadScript(script, window);
           if(isWindow){
@@ -347,7 +379,3 @@ UserChrome_js.prototype = {
 };
 
 !Services.appinfo.inSafeMode && new UserChrome_js();
-
-try{
-  yPref.set("toolkit.legacyUserProfileCustomizations.stylesheets",true);
-}catch(e){}
