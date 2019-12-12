@@ -38,11 +38,7 @@ const yPref = {
   removeListener:(a)=>( Services.prefs.removeObserver(a.pref,a.observer) )
 };
 
-const CUSTOM_EXT = {};
 const SHARED_GLOBAL = {};
-const RUNTIME = {
-  startup:[]
-};
 
 function resolveChromeURL(str){
   const registry = Cc["@mozilla.org/chrome/chrome-registry;1"].getService(Ci.nsIChromeRegistry);
@@ -64,8 +60,8 @@ let _uc = {
   PREF_ENABLED: 'userChromeJS.enabled',
   PREF_SCRIPTSDISABLED: 'userChromeJS.scriptsDisabled',
 
-  SCRIPT_DIR: resolveChromePath('chrome://userScripts/content/'),
-  RESOURCE_DIR: resolveChromePath('chrome://userChrome/content/'),
+  SCRIPT_DIR: resolveChromePath('chrome://userscripts/content/'),
+  RESOURCE_DIR: resolveChromePath('chrome://userchrome/content/'),
   BASE_FILEURI: Services.io.getProtocolHandler('file').QueryInterface(Ci.nsIFileProtocolHandler).getURLSpecFromDir(Services.dirsvc.get('UChrm',Ci.nsIFile)),
   
   get chromeDir() {return Services.dirsvc.get('UChrm',Ci.nsIFile)},
@@ -89,9 +85,6 @@ let _uc = {
       return null
     }
   },
-  
-  createChromeURI: (fileName) => (
-  `chrome://userScripts/content/${fileName}`),
 
   getScripts: function () {
     this.scripts = {};
@@ -171,7 +164,7 @@ let _uc = {
     }
 
     try {
-      Services.scriptloader.loadSubScript(_uc.createChromeURI(script.filename), win);
+      Services.scriptloader.loadSubScript(`chrome://userscripts/content/${fileName}`, win);
       
       script.isRunning = true;
       _uc.maybeRunStartUp(script,win);
@@ -232,7 +225,7 @@ let _uc = {
     
     createFileURI: (fileName = "") => {
       fileName = String(fileName);
-      let u = resolveChromeURL(`chrome://userChrome/content/${fileName}`);
+      let u = resolveChromeURL(`chrome://userchrome/content/${fileName}`);
       return fileName ? u : u.substr(0,u.lastIndexOf("/") + 1); 
     },
     
