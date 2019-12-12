@@ -261,7 +261,7 @@ let _uc = {
         },
         forEach: function(fun,onlyBrowsers = true){
           let wins = this.get(onlyBrowsers);
-          wins.every((w)=>(fun(w.document,w)))
+          wins.forEach((w)=>(fun(w.document,w)))
         }
       }
     },
