@@ -164,7 +164,7 @@ let _uc = {
     }
 
     try {
-      Services.scriptloader.loadSubScript(`chrome://userscripts/content/${fileName}`, win);
+      Services.scriptloader.loadSubScript(`chrome://userscripts/content/${script.filename}`, win);
       
       script.isRunning = true;
       _uc.maybeRunStartUp(script,win);
