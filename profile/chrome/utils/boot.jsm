@@ -254,8 +254,7 @@ let _uc = {
           let windows = Services.wm.getEnumerator(onlyBrowsers ? 'navigator:browser' : null);
           let wins = [];
           while (windows.hasMoreElements()) {
-            let win = windows.getNext();
-            win._ucUtils && wins.push(win);
+            wins.push(windows.getNext());
           }
           return wins
         },
