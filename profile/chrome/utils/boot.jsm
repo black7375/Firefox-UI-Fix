@@ -158,12 +158,12 @@ let _uc = {
     if (!script.regex.test(win.location.href) || !script.isEnabled) {
       return
     }
-    if (script.onlyonce && script.isRunning) {
-      _uc.maybeRunStartUp(script,win)
-      return
-    }
-
     try {
+      if (script.onlyonce && script.isRunning) {
+        _uc.maybeRunStartUp(script,win)
+        return
+      }
+
       Services.scriptloader.loadSubScript(`chrome://userscripts/content/${script.filename}`, win);
       
       script.isRunning = true;
