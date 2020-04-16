@@ -298,6 +298,40 @@ let _uc = {
       });
     },
     
+    registerHotkey: function(desc,func){
+      const validMods = ["accel","alt","ctrl","meta","shift"]; 
+      const NOK = (a) => (typeof a != "string");
+      const eToO = (e) => ({"metaKey":e.metaKey,"ctrlKey":e.ctrlKey,"altKey":e.altKey,"shiftKey":e.shiftKey,"key":e.srcElement.getAttribute("key"),"id":e.srcElement.getAttribute("id")});
+      
+      if(NOK(desc.id) || NOK(desc.key) || NOK(desc.modifiers)){
+        return false
+      }
+      
+      try{
+        let mods = desc.modifiers.toLowerCase().split(" ").filter((a)=>(validMods.includes(a)));
+        if(mods.length === 0){
+          return false
+        }
+        _uc.utils.windows.forEach((doc,win) => {
+          let e = _uc.utils.createElement(doc,"key",
+            {
+            "id":desc.id,
+            "modifiers":mods.join(" ").replace("ctrl","accel"),
+            "key":desc.key[0].toUpperCase(),
+            "oncommand":"//"
+            }
+          );
+          e.addEventListener("command",(e) => {func(e.target.ownerGlobal,eToO(e))});
+          let keyset = doc.getElementById("ucKeys") || doc.body.appendChild(_uc.utils.createElement(doc,"keyset",{id:"ucKeys"}));
+          keyset.appendChild(e);
+        });
+      }catch(e){
+        console.error(e);
+        return false
+      }
+      return true
+    },
+    
     get prefs(){ return yPref },
 
     restart: function (clearCache){
