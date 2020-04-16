@@ -287,6 +287,17 @@ let _uc = {
         }
       }
     },
+    
+    startupFinished: function(){
+      return new Promise(resolve => {
+        let observer = (subject, topic, data) => {
+          Services.obs.removeObserver(observer, "browser-delayed-startup-finished");
+          resolve({ subject, data });
+        };
+        Services.obs.addObserver(observer, "browser-delayed-startup-finished");
+      });
+    },
+    
     get prefs(){ return yPref },
 
     restart: function (clearCache){
