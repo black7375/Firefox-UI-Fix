@@ -299,7 +299,8 @@ let _uc = {
     },
     
     registerHotkey: function(desc,func){
-      const validMods = ["accel","alt","ctrl","meta","shift"]; 
+      const validMods = ["accel","alt","ctrl","meta","shift"];
+      const validKey = (k)=>((/^[\w-]$/).test(k) ? 1 : (/^F(?:1[0,2]|[1-9])$/).test(k) ? 2 : 0);
       const NOK = (a) => (typeof a != "string");
       const eToO = (e) => ({"metaKey":e.metaKey,"ctrlKey":e.ctrlKey,"altKey":e.altKey,"shiftKey":e.shiftKey,"key":e.srcElement.getAttribute("key"),"id":e.srcElement.getAttribute("id")});
       
@@ -309,21 +310,25 @@ let _uc = {
       
       try{
         let mods = desc.modifiers.toLowerCase().split(" ").filter((a)=>(validMods.includes(a)));
-        if(mods.length === 0){
+        let key = validKey(desc.key);
+        if(!key || (mods.length === 0 && key === 1)){
           return false
         }
+        
         _uc.utils.windows.forEach((doc,win) => {
-          let e = _uc.utils.createElement(doc,"key",
-            {
-            "id":desc.id,
-            "modifiers":mods.join(" ").replace("ctrl","accel"),
-            "key":desc.key[0].toUpperCase(),
-            "oncommand":"//"
-            }
-          );
-          e.addEventListener("command",(e) => {func(e.target.ownerGlobal,eToO(e))});
+          
+          let details = { "id": desc.id, "modifiers": mods.join(",").replace("ctrl","accel"), "oncommand": "//" };
+          if(key === 1){
+            details.key = desc.key.toUpperCase();
+          }else{
+            details.keycode = `VK_${desc.key}`;
+          }
+
+          let el = _uc.utils.createElement(doc,"key",details);
+          
+          el.addEventListener("command",(ev) => {func(ev.target.ownerGlobal,eToO(ev))});
           let keyset = doc.getElementById("ucKeys") || doc.body.appendChild(_uc.utils.createElement(doc,"keyset",{id:"ucKeys"}));
-          keyset.appendChild(e);
+          keyset.appendChild(el);
         });
       }catch(e){
         console.error(e);
