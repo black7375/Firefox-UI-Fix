@@ -327,7 +327,7 @@ let _uc = {
           let el = _uc.utils.createElement(doc,"key",details);
           
           el.addEventListener("command",(ev) => {func(ev.target.ownerGlobal,eToO(ev))});
-          let keyset = doc.getElementById("ucKeys") || doc.body.appendChild(_uc.utils.createElement(doc,"keyset",{id:"ucKeys"}));
+          let keyset = doc.getElementById("ucKeys") || doc.body.insertBefore(_uc.utils.createElement(doc,"keyset",{id:"ucKeys"}),doc.body.querySelector("keyset"));
           keyset.appendChild(el);
         });
       }catch(e){
