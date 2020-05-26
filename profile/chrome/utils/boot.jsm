@@ -316,7 +316,9 @@ let _uc = {
         }
         
         _uc.utils.windows.forEach((doc,win) => {
-          
+          if(doc.getElementById(desc.id)){
+            return
+          }
           let details = { "id": desc.id, "modifiers": mods.join(",").replace("ctrl","accel"), "oncommand": "//" };
           if(key === 1){
             details.key = desc.key.toUpperCase();
@@ -327,8 +329,8 @@ let _uc = {
           let el = _uc.utils.createElement(doc,"key",details);
           
           el.addEventListener("command",(ev) => {func(ev.target.ownerGlobal,eToO(ev))});
-          let keyset = doc.getElementById("ucKeys") || doc.body.insertBefore(_uc.utils.createElement(doc,"keyset",{id:"ucKeys"}),doc.body.querySelector("keyset"));
-          keyset.appendChild(el);
+          let keyset = doc.getElementById("mainKeyset") || doc.body.appendChild(_uc.utils.createElement(doc,"keyset",{id:"ucKeys"}));
+          keyset.insertBefore(el,keyset.firstChild);
         });
       }catch(e){
         console.error(e);
