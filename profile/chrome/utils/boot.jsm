@@ -64,6 +64,8 @@ let _uc = {
   RESOURCE_DIR: resolveChromePath('chrome://userchrome/content/'),
   BASE_FILEURI: Services.io.getProtocolHandler('file').QueryInterface(Ci.nsIFileProtocolHandler).getURLSpecFromDir(Services.dirsvc.get('UChrm',Ci.nsIFile)),
   
+  SESSION_RESTORED: false,
+  
   get chromeDir() {return Services.dirsvc.get('UChrm',Ci.nsIFile)},
 
   getDirEntry: function(filename,isLoader = false){
@@ -290,12 +292,34 @@ let _uc = {
     
     startupFinished: function(){
       return new Promise(resolve => {
+        if(_uc.SESSION_RESTORED){
+          resolve();
+        }
         let observer = (subject, topic, data) => {
-          Services.obs.removeObserver(observer, "browser-delayed-startup-finished");
-          resolve({ subject, data });
+          Services.obs.removeObserver(observer, "sessionstore-windows-restored");
+          resolve();
         };
-        Services.obs.addObserver(observer, "browser-delayed-startup-finished");
+        Services.obs.addObserver(observer, "sessionstore-windows-restored");
       });
+    },
+    
+    windowIsReady: function(win){
+      if(win && win.isChromeWindow){
+        return new Promise(resolve => {
+          if(win.gBrowserInit.delayedStartupFinished){
+            resolve()
+          }
+          let observer = (subject, topic, data) => {
+            if(subject === win){
+              Services.obs.removeObserver(observer, "browser-delayed-startup-finished");
+              resolve();
+            }
+          };
+          Services.obs.addObserver(observer, "browser-delayed-startup-finished");
+        });
+      }else{
+        return Promise.reject(new Error("reference is not a window"))
+      }
     },
     
     registerHotkey: function(desc,func){
@@ -349,6 +373,8 @@ let _uc = {
 };
 
 Object.freeze(_uc.utils);
+_uc.utils.startupFinished()
+.then(()=>{_uc.SESSION_RESTORED = true});
 
 if (yPref.get(_uc.PREF_ENABLED) === undefined) {
   yPref.set(_uc.PREF_ENABLED, true);
