@@ -397,10 +397,12 @@ UserChrome_js.prototype = {
   handleEvent: function (aEvent) {
     let document = aEvent.originalTarget;
     let window = document.defaultView;
-    if (/^chrome:(?!\/\/global\/content\/(commonDialog|alerts\/alert)\.xul)|about:(?!blank)/i.test(window.location.href)) {
+    let regex = /^chrome:(?!\/\/global\/content\/(commonDialog|alerts\/alert)\.xhtml)|about:(?!blank)/i;
+    // Don't inject scripts to modal prompt windows or notifications
+    if(regex.test(window.location.href)) {
       window._ucUtils = _uc.utils;
       document.allowUnsafeHTML = false; // https://bugzilla.mozilla.org/show_bug.cgi?id=1432966
-      if (window._gBrowser){ // bug 1443849
+      if(window._gBrowser){ // bug 1443849
         window.gBrowser = window._gBrowser;
       }
       let isWindow = window.isChromeWindow;
