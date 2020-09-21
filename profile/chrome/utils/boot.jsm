@@ -362,7 +362,31 @@ let _uc = {
       }
       return true
     },
-    
+    loadURI: function(win,desc){
+      if(    !win
+          || !desc 
+          || !desc.url 
+          || typeof desc.url !== "string"
+          || !(["tab","tabshifted","window","current"]).includes(desc.where)
+        ){
+        return false
+      }
+      const isJsURI = desc.url.slice(0,11) === "javascript:";
+      try{
+        win.openTrustedLinkIn(
+          desc.url,
+          desc.where,
+          { "allowPopups":isJsURI,
+            "inBackground":desc.where==="tabshifted", // This doesn't work for some reason
+            "allowInheritPrincipal":false,
+            "private":!!desc.private,
+            "userContextId":desc.url.startsWith("http")?desc.userContextId:null});
+      }catch(e){
+        console.error(e);
+        return false
+      }
+      return true
+    },
     get prefs(){ return yPref },
 
     restart: function (clearCache){
