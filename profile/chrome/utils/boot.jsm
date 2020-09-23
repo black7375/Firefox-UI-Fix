@@ -193,6 +193,57 @@ let _uc = {
       return el
     },
     
+    createWidget(desc){
+      if(!desc || !desc.id ){
+        console.error("custom widget description is missing 'id' property");
+        return null
+      }
+      if(!(['toolbaritem','toolbarbutton']).includes(desc.type)){
+        console.error("custom widget has unsupported type: "+desc.type);
+        return null
+      }
+      const CUI = Services.wm.getMostRecentBrowserWindow().CustomizableUI;
+      let newWidget = CUI.getWidget(desc.id);
+
+      if(newWidget && newWidget.hasOwnProperty("source")){
+        // very likely means that the widget with this id already exists
+        // There isn't a very reliable way to 'really' check if it exists or not
+        return newWidget
+      }
+      // This is pretty ugly but makes onBuild much cleaner.
+      let itemStyle = "";
+      if(desc.image){
+        if(desc.type==="toolbarbutton"){
+          itemStyle += "list-style-image:";
+        }else{
+          itemStyle += "background: transparent center no-repeat ";
+        }
+        itemStyle += `url(chrome://userChrome/content/${desc.image});`;
+        itemStyle += desc.style || "";
+      }
+      SHARED_GLOBAL.widgetCallbacks.set(desc.id,desc.callback);
+
+      return CUI.createWidget({
+        id: desc.id,
+        type: 'custom',
+        onBuild: function(aDocument) {
+          let toolbaritem = aDocument.createXULElement(desc.type);
+          let props = {
+            id: desc.id,
+            class: `toolbarbutton-1 chromeclass-toolbar-additional ${desc.class?desc.class:""}`,
+            label: desc.label || desc.id,
+            tooltiptext: desc.tooltip || desc.id,
+            style: itemStyle,
+            onclick: `${desc.allEvents?"":"event.button===0 && "}_ucUtils.sharedGlobal.widgetCallbacks.get(this.id)(event,window)`
+          };
+          for (let p in props){
+            toolbaritem.setAttribute(p, props[p]);
+          }
+          return toolbaritem;
+        }
+      });
+    },
+    
     readFile: function (aFile, metaOnly = false) {
       let stream = Cc['@mozilla.org/network/file-input-stream;1'].createInstance(Ci.nsIFileInputStream);
       let cvstream = Cc['@mozilla.org/intl/converter-input-stream;1'].createInstance(Ci.nsIConverterInputStream);
