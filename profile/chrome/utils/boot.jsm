@@ -99,7 +99,7 @@ let _uc = {
       let file = files.getNext().QueryInterface(Ci.nsIFile);
       if (/\.uc\.js$/i.test(file.leafName)) {
         let script = _uc.getScriptData(file);
-        if(script.inbackground){
+        if(script.inbackground && script.isEnabled){
           try{
             Cu.import(`chrome://userscripts/content/${script.filename}`)
           }catch(e){
