@@ -98,7 +98,14 @@ let _uc = {
     while(files.hasMoreElements()){
       let file = files.getNext().QueryInterface(Ci.nsIFile);
       if (/\.uc\.js$/i.test(file.leafName)) {
-        _uc.getScriptData(file);
+        let script = _uc.getScriptData(file);
+        if(script.inbackground){
+          try{
+            Cu.import(`chrome://userscripts/content/${script.filename}`)
+          }catch(e){
+            console.error(e);
+        }
+      }
       }
     }
   },
@@ -137,6 +144,7 @@ let _uc = {
       startup: (header.match(/\/\/ @startup\s+(.+)\s*$/im) || def)[1],
       //shutdown: (header.match(/\/\/ @shutdown\s+(.+)\s*$/im) || def)[1],
       onlyonce: /\/\/ @onlyonce\b/.test(header),
+      inbackground: /\/\/ @backgroundmodule\b/.test(header),
       isRunning: false,
       get isEnabled() {
         return (yPref.get(_uc.PREF_SCRIPTSDISABLED) || '').split(',').indexOf(this.filename) === -1;
@@ -157,7 +165,7 @@ let _uc = {
     },
   
   loadScript: function (script, win) {
-    if (!script.regex.test(win.location.href) || !script.isEnabled) {
+    if (script.inbackground || !script.regex.test(win.location.href) || !script.isEnabled) {
       return
     }
     try {
