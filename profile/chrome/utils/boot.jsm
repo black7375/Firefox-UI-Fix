@@ -451,7 +451,13 @@ let _uc = {
 
     restart: function (clearCache){
       clearCache && Services.appinfo.invalidateCachesOnRestart();
-      _uc.utils.windows.get()[0].BrowserUtils.restartApplication();
+      let cancelQuit = Cc["@mozilla.org/supports-PRBool;1"].createInstance(Ci.nsISupportsPRBool);
+      Services.obs.notifyObservers(
+        cancelQuit,
+        "quit-application-requested",
+        "restart"
+      );
+      Services.startup.quit( Services.startup.eAttemptQuit | Services.startup.eRestart )
     }
   }
 };
