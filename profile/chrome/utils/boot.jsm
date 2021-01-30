@@ -39,6 +39,7 @@ const yPref = {
 };
 
 const SHARED_GLOBAL = {};
+Object.defineProperty(SHARED_GLOBAL,"widgetCallbacks",{value:new Map()});
 
 function resolveChromeURL(str){
   const registry = Cc["@mozilla.org/chrome/chrome-registry;1"].getService(Ci.nsIChromeRegistry);
