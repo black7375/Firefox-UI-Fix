@@ -1,0 +1,31 @@
+#TabsToolbar {
+    --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 16px) / 2);
+}
+ 
+.tab-background {
+	border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
+	margin-bottom: 0px !important;
+}
+
+.tab-background[selected="true"] {  
+  background: var(--toolbar-bgcolor) !important;
+}
+
+.tab-content {
+	margin-top: var(--proton-tab-block-margin);
+}
+
+.tab-stack {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.tabbrowser-tab {
+    margin: 0px !important;
+    margin-inline: 0px !important;
+    padding-inline: 1px !important;
+}
+
+menupopup > menuitem, menupopup > menu {
+    padding-block: 0.15em !important;
+}
