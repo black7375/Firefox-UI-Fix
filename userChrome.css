@@ -4,6 +4,12 @@
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
   }
 
+  /* Tab - Max Size */
+  .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"])
+  {
+    max-width: 240px !important;
+  }
+
   /* Tab - Connect to window */
   .tab-background {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
@@ -19,8 +25,14 @@
     margin-bottom: 0px !important;
   }
 
+  /* neighbouring tabs should "pinch" together */
   .tabbrowser-tab {
     padding-inline: 1px !important;
+  }
+
+  .tabbrowser-tab:not([last-visible-tab])
+  {
+    margin-inline-end: -.5px !important;
   }
 
   /* Selected Tab - Color like toolbar */
