@@ -1,9 +1,11 @@
 @-moz-document url("about:home"), url("about:newtab") {
+  /* Activity Stream - Search Focus Border: like URL */
   .fake-focus .search-handoff-button {
     --focus-outline-color: #00DDFF;
     border: 2px solid color-mix(in srgb, var(--focus-outline-color) 50%, transparent) !important;
   }
 
+  /* Activity Stream - Web Site Icon: full size */
   .top-site-outer .tile .icon-wrapper {
     width: 100% !important;
     height: 100% !important;

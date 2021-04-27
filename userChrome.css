@@ -3,22 +3,10 @@
   --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
 }
 
+/* Tab */
 .tab-background {
   border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
   margin-bottom: 0px !important;
-}
-
-.tab-background[selected="true"] {
-  background: var(--toolbar-bgcolor) !important;
-}
-
-
-#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
-  background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
-}
-
-#TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
-  box-shadow: 0 0 1px var(--toolbar-color) !important;
 }
 
 .tab-content {
@@ -36,6 +24,20 @@
   padding-inline: 1px !important;
 }
 
+/* Selected Tab */
+.tab-background[selected="true"] {
+  background: var(--toolbar-bgcolor) !important;
+}
+
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
+  background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+}
+
+#TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
+  box-shadow: 0 0 1px var(--toolbar-color) !important;
+}
+
+/* Menu */
 menupopup > menuitem, menupopup > menu {
   padding-block: 0.15em !important;
 }
