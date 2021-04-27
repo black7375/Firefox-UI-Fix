@@ -72,7 +72,8 @@
   tab[visuallyselected] .tab-background::before {
     border-bottom-right-radius: var(--tab-corner-rounding) !important;
     transform: translateX(calc(-1 * var(--tab-corner-rounding))) !important;
-    box-shadow: 4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+    box-shadow: 0 1px 1px -1px var(--toolbar-color), /* <- Selected Box Shadow */
+                4px 4px 0px 4px var(--toolbar-bgcolor) !important;
     transition: var(--animation-speed) !important;
   }
 
@@ -80,7 +81,8 @@
     border-bottom-left-radius: var(--tab-corner-rounding) !important;
     right: 0px !important;
     transform: translateX(calc(var(--tab-corner-rounding) + 1px)) !important;
-    box-shadow: -4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+    box-shadow: -1px 0 0 -1px var(--toolbar-color), /* <- Selected Box Shadow */
+                -4px 4px 0px 4px var(--toolbar-bgcolor) !important;
     transition: var(--animation-speed) !important;
   }
 
