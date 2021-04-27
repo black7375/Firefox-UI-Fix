@@ -1,9 +1,14 @@
+/* Darkmode */
+:root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"] {
+  --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
+}
+
 .tab-background {
   border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
   margin-bottom: 0px !important;
 }
 
-.tab-background[selected="true"] {  
+.tab-background[selected="true"] {
   background: var(--toolbar-bgcolor) !important;
 }
 
