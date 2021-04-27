@@ -1,40 +1,40 @@
 @media (-moz-proton) {
-    /* Darkmode - Color lighter */
-    :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"] {
-        --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
-    }
+  /* Darkmode - Color lighter */
+  :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"] {
+    --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
+  }
 
-    /* Tab - Connect to window */
-    .tab-background {
-        border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
-        margin-bottom: 0px !important;
-    }
+  /* Tab - Connect to window */
+  .tab-background {
+    border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
+    margin-bottom: 0px !important;
+  }
 
-    .tab-content {
-        margin-top: var(--proton-tab-block-margin);
-    }
+  .tab-content {
+    margin-top: var(--proton-tab-block-margin);
+  }
 
-    .tab-stack {
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-    }
+  .tab-stack {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
 
-    /* Selected Tab - Color like toolbar */
-    .tab-background[selected="true"] {
-        background: var(--toolbar-bgcolor) !important;
-    }
+  /* Selected Tab - Color like toolbar */
+  .tab-background[selected="true"] {
+    background: var(--toolbar-bgcolor) !important;
+  }
 
-    #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
-        background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
-    }
+  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
+    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+  }
 
-    /* Selected Tab - Box Shadow */
-    #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
-        box-shadow: 0 0 1px var(--toolbar-color) !important;
-    }
+  /* Selected Tab - Box Shadow */
+  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
+    box-shadow: 0 0 1px var(--toolbar-color) !important;
+  }
 
-    /* Menu - Padding narrower */
-    menupopup > menuitem, menupopup > menu {
-        padding-block: 0.15em !important;
-    }
+  /* Menu - Padding narrower */
+  menupopup > menuitem, menupopup > menu {
+    padding-block: 0.15em !important;
+  }
 }
