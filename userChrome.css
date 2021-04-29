@@ -49,43 +49,6 @@
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
-  /* Selected Tab - Bottom Rounded Corner */
-  tab {
-    --tab-corner-rounding: 8px;
-    --animation-speed: 0.15s;
-  }
-
-  /* Bottom corner rounding for tabs, Remove this section if your tab bottom corners look bad */
-  tab[visuallyselected] .tab-background::before,
-  tab[visuallyselected] .tab-background::after {
-    content: "" !important;
-    display: inline !important;
-    position: absolute !important;
-    width: var(--tab-corner-rounding) !important;
-    height: var(--tab-corner-rounding) !important;
-    bottom: -1px !important;
-    pointer-events: none !important;
-    background-color: transparent !important;
-    transition: var(--animation-speed) !important;
-  }
-
-  tab[visuallyselected] .tab-background::before {
-    border-bottom-right-radius: var(--tab-corner-rounding) !important;
-    transform: translateX(calc(-1 * var(--tab-corner-rounding))) !important;
-    box-shadow: 0 1px 1px -1px var(--toolbar-color), /* <- Selected Box Shadow */
-                4px 4px 0px 4px var(--toolbar-bgcolor) !important;
-    transition: var(--animation-speed) !important;
-  }
-
-  tab[visuallyselected] .tab-background::after {
-    border-bottom-left-radius: var(--tab-corner-rounding) !important;
-    right: 0px !important;
-    transform: translateX(calc(var(--tab-corner-rounding) + 1px)) !important;
-    box-shadow: -1px 0 0 -1px var(--toolbar-color), /* <- Selected Box Shadow */
-                -4px 4px 0px 4px var(--toolbar-bgcolor) !important;
-    transition: var(--animation-speed) !important;
-  }
-
   /* Unselected Tab - Divide line */
   .tab-content::before,
   .tab-content::after {
