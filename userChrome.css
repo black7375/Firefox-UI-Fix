@@ -4,6 +4,21 @@
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
   }
 
+  /* Tab Bar - Reduce Width, Show more tabs */
+  .titlebar-spacer[type="post-tabs"] {
+    width: 20px; /* Original: 40px */
+  }
+
+  #tabbrowser-arrowscrollbox::part(scrollbutton-up), #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+    /* Original: 4px */
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+  #new-tab-button, #alltabs-button {
+    --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
+  }
+
   /* Tab - Max Size */
   .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"])
   {
