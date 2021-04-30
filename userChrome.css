@@ -22,6 +22,15 @@
     --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
   }
 
+  /* Tab Bar - Reduce Height, Show more contents */
+  #TabsToolbar {
+    --toolbarbutton-inner-padding: 9px; /* calc((var(--tab-min-height) - 16px) / 2) = 10 */
+  }
+
+  .toolbar-items, .tabbrowser-tab {
+    max-height: 38px; /* 40px */
+  }
+
   /* Tab - Max Size */
   .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"])
   {
