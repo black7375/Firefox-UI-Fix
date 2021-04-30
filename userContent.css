@@ -1,9 +1,11 @@
 @media (-moz-proton) {
   @-moz-document url("about:home"), url("about:newtab") {
-    /* Activity Stream - Search Focus Border: like URL */
-    .fake-focus .search-handoff-button {
-      --focus-outline-color: #00DDFF;
-      border: 2px solid color-mix(in srgb, var(--focus-outline-color) 50%, transparent) !important;
+    /* Activity Stream - Focus Border: like URL */
+    /* At DarkMode, Color */
+    body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"] {
+      --newtab-focus-outline: rgba(0, 221, 255, 0.5);
+      --newtab-focus-border: color-mix(in srgb, var(--newtab-background-color) 50%, transparent);
+      --newtab-focus-border-selected: color-mix(in srgb, var(--newtab-background-color) 50%, transparent);
     }
 
     /* Activity Stream - Web Site Icon: full size */
