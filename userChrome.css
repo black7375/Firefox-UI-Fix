@@ -35,11 +35,11 @@
 
   /* Tab Bar - Reduce Height, Show more contents */
   #TabsToolbar {
-    --toolbarbutton-inner-padding: 9px; /* calc((var(--tab-min-height) - 16px) / 2) = 10 */
+    --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
   .toolbar-items, .tabbrowser-tab {
-    max-height: 38px; /* 40px */
+    max-height: 38px; /* Original: 40px */
   }
 
   /* Tab - Max Size */
@@ -161,8 +161,8 @@
 
   /* URL Bar - Reduce Padding */
   #urlbar-container, #search-container {
-    padding-block: 2px; /* 4px */
-    margin-inline: 5px; /* 5px */
+    padding-block: 2px; /* Original: 4px */
+    margin-inline: 5px; /* Original: 5px */
   }
 
 }
