@@ -4,6 +4,12 @@
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
   }
 
+  :root{
+    /* Tab Bar */
+    --proton-tab-block-margin: 2px !important; /* Original: 4px */
+    --inline-tab-padding:      6px !important; /* Original: 8px */
+  }
+
   /* Tab Bar - Reduce Width, Show more tabs */
   .titlebar-spacer[type="pre-tabs"] {
     width: 35px; /* Original: 40px */
