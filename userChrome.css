@@ -165,4 +165,21 @@
     margin-inline: 5px; /* Original: 5px */
   }
 
+  /* Menu - Reduce Padding */
+  menupopup > menuitem, menupopup > menu {
+    padding-block:     0.35em !important; /* Original: 0.5em */
+    padding-inline-start: 1em !important; /* Original: 1em */
+  }
+  .menu-text, .menu-iconic-text {
+    padding-inline-end: 0 !important; /* Original: 2px */
+  }
+  .menupopup-arrowscrollbox {
+    padding-block: 1px !important; /* Original: 4px*/
+  }
+  #context-navigation:not([hidden]) {
+    padding: 0 0 1px; /* Original: 0 0 4px*/
+  }
+  .menu-right {
+    margin-right: 6px !important; /* Original: 12px */
+  }
 }
