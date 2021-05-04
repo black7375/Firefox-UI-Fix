@@ -4,7 +4,8 @@
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
   }
 
-  :root{
+  /* Root - Reduce Padding */
+  :root {
     /* Tab Bar */
     --proton-tab-block-margin: 2px !important; /* Original: 4px */
     --inline-tab-padding:      6px !important; /* Original: 8px */
@@ -13,6 +14,23 @@
     --arrowpanel-menuitem-margin: 0 8px !important; /* Original: 0 8px */
     --arrowpanel-menuitem-padding: 4px  !important; /* Original: 8px */
     --arrowpanel-padding:         0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
+  }
+
+  :root[uidensity=compact] {
+    /* Tool Bar */
+    --toolbarbutton-outter-padding: 2px !important; /* Original: 3px, General is 2px */
+
+    /* Panel */
+    --arrowpanel-menuitem-padding: 2px  !important; /* Original: 8px */
+  }
+
+  :root[uidensity=touch] {
+    /* Tab Bar - Like Original */
+    --proton-tab-block-margin: 4px !important; /* Original: 4px */
+    --inline-tab-padding:      8px !important; /* Original: 8px */
+
+    /* Panel - Like Original */
+    --arrowpanel-menuitem-padding: 8px  !important; /* Original: 8px */
   }
 
   /* Tab Bar - Reduce Width, Show more tabs */
