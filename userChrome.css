@@ -41,28 +41,31 @@
     width: 20px; /* Original: 40px */
   }
 
-  #tabbrowser-arrowscrollbox::part(scrollbutton-up), #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up),
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
     /* Original: 4px */
     padding-left: 1px;
     padding-right: 1px;
   }
 
-  #new-tab-button, #alltabs-button {
+  :root:not([uidensity=touch]) #new-tab-button, #alltabs-button {
     --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
   }
 
   /* Tab Bar - Reduce Height, Show more contents */
-  #TabsToolbar {
+  :root:not([uidensity=touch]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
-  .toolbar-items, .tabbrowser-tab {
-    max-height: 38px; /* Original: 40px */
+  :root .toolbar-items, .tabbrowser-tab {
+    max-height: 38px;
+  }
+  :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
+    max-height: unset;
   }
 
   /* Tab - Max Size */
-  .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"])
-  {
+  :root:not([uidensity=touch]) .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
     max-width: 240px !important;
   }
 
@@ -174,26 +177,26 @@
   }
 
   /* URL Bar - Reduce Padding */
-  #urlbar-container, #search-container {
+  :root:not([uidensity=touch]) #urlbar-container, #search-container {
     padding-block: 2px; /* Original: 4px */
     margin-inline: 5px; /* Original: 5px */
   }
 
   /* Menu - Reduce Padding */
-  menupopup > menuitem, menupopup > menu {
+  :root:not([uidensity=touch]) menupopup > menuitem, menupopup > menu {
     padding-block:     0.35em !important; /* Original: 0.5em */
     padding-inline-start: 1em !important; /* Original: 1em */
   }
-  .menu-text, .menu-iconic-text {
+  :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
     padding-inline-end: 0 !important; /* Original: 2px */
   }
-  .menupopup-arrowscrollbox {
+  :root:not([uidensity=touch]) .menupopup-arrowscrollbox {
     padding-block: 1px !important; /* Original: 4px*/
   }
-  #context-navigation:not([hidden]) {
+  :root:not([uidensity=touch]) #context-navigation:not([hidden]) {
     padding: 0 0 1px; /* Original: 0 0 4px*/
   }
-  .menu-right {
+  :root:not([uidensity=touch]) .menu-right {
     margin-right: 6px !important; /* Original: 12px */
   }
 }
