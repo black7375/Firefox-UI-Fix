@@ -1,10 +1,10 @@
 @media (-moz-proton) {
-  /* Darkmode - Color lighter */
+  /** Darkmode - Color lighter ************************************************/
   :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"] {
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
   }
 
-  /* Root - Reduce Padding */
+  /** Root - Reduce Padding ***************************************************/
   :root {
     /* Tab Bar */
     --proton-tab-block-margin: 2px !important; /* Original: 4px */
@@ -33,7 +33,7 @@
     --arrowpanel-menuitem-padding: 8px  !important; /* Original: 8px */
   }
 
-  /* Tab Bar - Reduce Width, Show more tabs */
+  /** Tab Bar - Reduce Width, Show more tabs **********************************/
   .titlebar-spacer[type="pre-tabs"] {
     width: 35px; /* Original: 40px */
   }
@@ -56,7 +56,7 @@
     --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
   }
 
-  /* Tab Bar - Reduce Height, Show more contents */
+  /** Tab Bar - Reduce Height, Show more contents *****************************/
   :root:not([uidensity=touch]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
@@ -98,17 +98,17 @@
     margin-inline-end: -.5px !important;
   }
 
-  /* Selected Tab - Color like toolbar */
+  /** Selected Tab - Color like toolbar ***************************************/
   #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
   }
 
-  /* Selected Tab - Box Shadow */
+  /** Selected Tab - Box Shadow ***********************************************/
   #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
-  /* Unselected Tab - Divide line */
+  /** Unselected Tab - Divide line ********************************************/
   .tab-content::before,
   .tab-content::after {
     content: "" !important;
@@ -139,7 +139,7 @@
     opacity: var(--tab-separator-opacity) !important;
   }
 
-  /* Clipped tabs - Letters cleary */
+  /** Clipped tabs - Letters cleary *******************************************/
   #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned])
   {
     padding-inline-start: 8px !important;
@@ -162,7 +162,7 @@
     mask-image: linear-gradient(to left, black 70%, transparent) !important;
   }
 
-  /* Sound Tab - Show with Favicons */
+  /** Sound Tab - Show with Favicons ******************************************/
   /* Makes the favicons always visible (also on hover) */
   #tabbrowser-tabs[secondarytext-unsupported] .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay), #toolbar-menubar:not(:hover) + #TabsToolbar:not(:hover) #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-icon-image[src] ~ .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]), :is(#toolbar-menubar:hover + #TabsToolbar, #TabsToolbar:hover) .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay) {
     opacity: 1 !important;
@@ -180,13 +180,13 @@
     margin-right: 10px !important;
   }
 
-  /* URL Bar - Reduce Padding */
+  /** URL Bar - Reduce Padding ************************************************/
   :root:not([uidensity=touch]) #urlbar-container, #search-container {
     padding-block: 2px; /* Original: 4px */
     margin-inline: 5px; /* Original: 5px */
   }
 
-  /* Menu - Reduce Padding */
+  /** Menu - Reduce Padding ***************************************************/
   :root:not([uidensity=touch]) menupopup > menuitem, menupopup > menu {
     padding-block:     0.35em !important; /* Original: 0.5em */
     padding-inline-start: 1em !important; /* Original: 1em */
