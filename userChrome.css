@@ -186,6 +186,14 @@
     margin-inline: 5px; /* Original: 5px */
   }
 
+  /* spread menu */
+  :root[uidensity=compact] .urlbarView-row:not([type=tip], [type=dynamic]) {
+    padding-block: 1px; /* [Compact, General]: 2px, Touch: 11px */
+  }
+  :root[uidensity=compact] #urlbar .search-one-offs:not([hidden]) {
+    padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
+  }
+
   /** Menu - Reduce Padding ***************************************************/
   :root:not([uidensity=touch]) menupopup > menuitem, menupopup > menu {
     padding-block:     0.35em !important; /* Original: 0.5em */
