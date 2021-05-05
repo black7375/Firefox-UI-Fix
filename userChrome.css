@@ -41,6 +41,10 @@
     width: 20px; /* Original: 40px */
   }
 
+  :root[uidensity=compact] #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 0 !important;
+  }
+
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up),
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
     /* Original: 4px */
