@@ -214,4 +214,70 @@
   :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
     padding-block:     0.25em !important; /* Original: 0.5em */
   }
+
+  /** Panel - Icons ***********************************************************/
+  #appMenu-multiView .subviewbutton::before {
+    display: inline-block;
+  }
+
+  #appMenu-proton-update-banner::before {
+    display: inline-block;
+    content: url(chrome://browser/skin/whatsnew.svg);
+  }
+  #appMenu-fxa-status2::before {
+    content: url(chrome://browser/skin/fxa/avatar-empty.svg);
+  }
+
+  #appMenu-new-tab-button2::before {
+    content: url(chrome://browser/skin/new-tab.svg);
+  }
+  #appMenu-new-window-button2::before {
+    content: url(chrome://browser/skin/window.svg);
+  }
+  #appMenu-new-private-window-button2::before {
+    content: url(chrome://browser/skin/privateBrowsing.svg);
+  }
+
+  #appMenu-bookmarks-button::before{
+    content: url(chrome://browser/skin/bookmark.svg);
+  }
+  #appMenu-history-button::before {
+    content: url(chrome://browser/skin/history.svg);
+  }
+  #appMenu-downloads-button::before {
+    content: url(chrome://browser/skin/downloads/downloads.svg);
+  }
+  #appMenu-passwords-button::before {
+    content: url(chrome://browser/skin/login.svg);
+  }
+  #appMenu-extensions-themes-button::before {
+    content: url(chrome://mozapps/skin/extensions/extension.svg);
+  }
+
+  #appMenu-print-button2::before {
+    content: url(chrome://global/skin/icons/print.svg);
+  }
+  #appMenu-save-file-button2::before {
+    content: url(chrome://browser/skin/save.svg);
+  }
+  #appMenu-find-button2::before {
+    content: url(chrome://global/skin/icons/search-glass.svg);
+  }
+  #appMenu-zoom-controls2::before {
+    content: url(./screenshot.svg);
+  }
+
+  #appMenu-settings-button::before {
+    content: url(chrome://global/skin/icons/settings.svg);
+  }
+  #appMenu-more-button2::before {
+    content: url(chrome://browser/skin/ion.svg);
+  }
+  #appMenu-help-button2::before {
+    content: url(chrome://global/skin/icons/help.svg);
+  }
+
+  #appMenu-quit-button2::before {
+    content: url(chrome://browser/skin/quit.svg);
+  }
 }
