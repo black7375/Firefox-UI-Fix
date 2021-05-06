@@ -220,6 +220,11 @@
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before {
     display: inline-block;
+
+    /* Fill Color */
+    -moz-context-properties: fill;
+    fill: var(--toolbarbutton-icon-fill);
+    fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
 
   #appMenu-multiView .subviewbutton::before {
