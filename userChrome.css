@@ -217,8 +217,12 @@
   }
 
   /** Panel - Icons ***********************************************************/
-  #appMenu-multiView .subviewbutton::before {
+  #appMenu-multiView .subviewbutton::before,
+  #appMenu-proton-update-banner::before {
     display: inline-block;
+  }
+
+  #appMenu-multiView .subviewbutton::before {
     margin-right: var(--arrowpanel-menuicon-padding);
     margin-top: 2px;
   }
@@ -227,7 +231,6 @@
     margin-bottom: 2px;
   }
   #appMenu-proton-update-banner::before {
-    display: inline-block;
     margin-left: var(--arrowpanel-menuitem-padding);
     content: url(chrome://browser/skin/whatsnew.svg);
   }
