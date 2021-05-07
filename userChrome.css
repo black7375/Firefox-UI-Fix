@@ -217,82 +217,84 @@
   }
 
   /** Panel - Icons ***********************************************************/
-  #appMenu-multiView .subviewbutton::before,
-  #appMenu-proton-update-banner::before {
+  /* Padding */
+  .subviewbutton > .toolbarbutton-text,
+  #appMenu-proton-update-banner .toolbarbutton-text {
+    padding-inline-start: var(--arrowpanel-menuicon-padding);
+  }
+  #appMenu-multiView .subviewbutton::before {
     display: inline-block;
+    margin-right: var(--arrowpanel-menuicon-padding);
+    margin-top: 2px; /* Height Align */
+  }
 
-    /* Fill Color */
+  /* Icons Color */
+  #appMenu-multiView .subviewbutton::before,
+  .subviewbutton > image {
     -moz-context-properties: fill;
     fill: var(--toolbarbutton-icon-fill);
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
 
-  #appMenu-multiView .subviewbutton::before {
-    margin-right: var(--arrowpanel-menuicon-padding);
-    margin-top: 2px;
-  }
-
+  /* Panel */
   #appMenu-proton-update-banner {
     margin-bottom: 2px;
+    list-style-image: url(chrome://browser/skin/whatsnew.svg);
   }
-  #appMenu-proton-update-banner::before {
-    margin-left: var(--arrowpanel-menuitem-padding);
-    content: url(chrome://browser/skin/whatsnew.svg);
-  }
-  #appMenu-fxa-status2::before {
+  #appMenu-fxa-status2::before { /* Don't exist img tag */
     content: url(chrome://browser/skin/fxa/avatar-empty.svg);
   }
 
-  #appMenu-new-tab-button2::before {
-    content: url(chrome://browser/skin/new-tab.svg);
+  #appMenu-new-tab-button2 {
+    list-style-image: url(chrome://browser/skin/new-tab.svg);
   }
-  #appMenu-new-window-button2::before {
-    content: url(chrome://browser/skin/window.svg);
+  #appMenu-new-window-button2 {
+    list-style-image: url(chrome://browser/skin/window.svg);
   }
-  #appMenu-new-private-window-button2::before {
-    content: url(chrome://browser/skin/privateBrowsing.svg);
-  }
-
-  #appMenu-bookmarks-button::before{
-    content: url(chrome://browser/skin/bookmark.svg);
-  }
-  #appMenu-history-button::before {
-    content: url(chrome://browser/skin/history.svg);
-  }
-  #appMenu-downloads-button::before {
-    content: url(chrome://browser/skin/downloads/downloads.svg);
-  }
-  #appMenu-passwords-button::before {
-    content: url(chrome://browser/skin/login.svg);
-  }
-  #appMenu-extensions-themes-button::before {
-    content: url(chrome://mozapps/skin/extensions/extension.svg);
+  #appMenu-new-private-window-button2 {
+    list-style-image: url(chrome://browser/skin/privateBrowsing.svg);
   }
 
-  #appMenu-print-button2::before {
-    content: url(chrome://global/skin/icons/print.svg);
+  #appMenu-bookmarks-button{
+    list-style-image: url(chrome://browser/skin/bookmark.svg);
   }
-  #appMenu-save-file-button2::before {
-    content: url(chrome://browser/skin/save.svg);
+  #appMenu-history-button {
+    list-style-image: url(chrome://browser/skin/history.svg);
   }
-  #appMenu-find-button2::before {
-    content: url(chrome://global/skin/icons/search-glass.svg);
+  #appMenu-downloads-button {
+    list-style-image: url(chrome://browser/skin/downloads/downloads.svg);
   }
-  #appMenu-zoom-controls2::before {
-    content: url(./icons/screenshot.svg);
+  #appMenu-passwords-button {
+    list-style-image: url(chrome://browser/skin/login.svg);
   }
-
-  #appMenu-settings-button::before {
-    content: url(chrome://global/skin/icons/settings.svg);
-  }
-  #appMenu-more-button2::before {
-    content: url(chrome://browser/skin/ion.svg);
-  }
-  #appMenu-help-button2::before {
-    content: url(chrome://global/skin/icons/help.svg);
+  #appMenu-extensions-themes-button {
+    list-style-image: url(chrome://mozapps/skin/extensions/extension.svg);
   }
 
-  #appMenu-quit-button2::before {
-    content: url(chrome://browser/skin/quit.svg);
+  #appMenu-print-button2 {
+    list-style-image: url(chrome://global/skin/icons/print.svg);
+  }
+  #appMenu-save-file-button2 {
+    list-style-image: url(chrome://browser/skin/save.svg);
+  }
+  #appMenu-find-button2 {
+    list-style-image: url(chrome://global/skin/icons/search-glass.svg);
+  }
+  #appMenu-zoom-controls2 {
+    list-style-image: url(./icons/screenshot.svg);
+  }
+
+  #appMenu-settings-button {
+    list-style-image: url(chrome://global/skin/icons/settings.svg);
+  }
+  #appMenu-more-button2 {
+    list-style-image: url(chrome://browser/skin/ion.svg);
+  }
+  #appMenu-help-button2 {
+    list-style-image: url(chrome://global/skin/icons/help.svg);
+  }
+
+  #appMenu-quit-button2 {
+    list-style-image: url(chrome://browser/skin/quit.svg);
   }
 }
