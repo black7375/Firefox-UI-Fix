@@ -16,6 +16,7 @@
     --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
     --arrowpanel-menuitem-padding: 4px  !important; /* Original: 8px */
     --arrowpanel-padding:         0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
+    --arowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px);
   }
 
   :root[uidensity=compact] {
@@ -224,9 +225,10 @@
     padding-inline-start: var(--arrowpanel-menuicon-padding);
   }
   #appMenu-multiView .subviewbutton::before {
-    display: inline-block;
+    display: -moz-inline-box;
     margin-right: var(--arrowpanel-menuicon-padding);
-    margin-top: 2px; /* Height Align */
+    width:  16px;
+    height: 16px;
   }
 
   /* Icons Color */
@@ -282,7 +284,11 @@
     list-style-image: url(chrome://global/skin/icons/search-glass.svg);
   }
   #appMenu-zoom-controls2 {
-    list-style-image: url(./icons/screenshot.svg);
+    padding-top: var(--arowpanel-menuitemblank-padding) !important;
+    padding-bottom: var(--arowpanel-menuitemblank-padding) !important;
+  }
+  #appMenu-zoom-controls2::before {
+    content: url(./icons/screenshot.svg);
   }
 
   #appMenu-settings-button {
