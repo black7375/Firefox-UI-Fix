@@ -28,7 +28,7 @@ If applicable, add screenshots to help explain your problem.
    - [ ] Alpenglow(System: Light)
    - [ ] Alpenglow(System: Dark)
    - [ ] System Default
-     - GTK Theme Name(Only Linux User): ex) Adwaita, Adwaita-Dark, Breath, Breath-Dark
+     - GTK Theme Name(Only Linux User): [sample] Adwaita, Adwaita-Dark, Breath, Breath-Dark
 
 **Additional context**
 Add any other context about the problem here.
