@@ -71,6 +71,13 @@
     max-height: unset;
   }
 
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up),
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+    /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
+    padding-top:    3px !important;
+    padding-bottom: 3px !important;
+  }
+
   /* Tab - Max Size */
   :root:not([uidensity=touch]) .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
     max-width: 240px !important;
