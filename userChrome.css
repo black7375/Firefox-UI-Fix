@@ -204,6 +204,11 @@
     padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
   }
 
+  /** BookMark Bar - Reduce Height ********************************************/
+  :root[uidensity=compact] #PersonalToolbar toolbarbutton {
+      margin-top: 0px; /* Original: 2px */
+  }
+
   /** Menu - Reduce Padding ***************************************************/
   :root:not([uidensity=touch]) menupopup > menuitem, menupopup > menu {
     padding-block:     0.35em !important; /* Original: 0.5em */
