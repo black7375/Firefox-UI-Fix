@@ -230,6 +230,11 @@
     width:  16px;
     height: 16px;
   }
+  #appMenu-fxa-status2,
+  #appMenu-zoom-controls2 {
+    padding-top:    var(--arowpanel-menuitemblank-padding) !important;
+    padding-bottom: var(--arowpanel-menuitemblank-padding) !important;
+  }
 
   /* Icons Color */
   #appMenu-multiView .subviewbutton::before,
@@ -282,10 +287,6 @@
   }
   #appMenu-find-button2 {
     list-style-image: url(chrome://global/skin/icons/search-glass.svg);
-  }
-  #appMenu-zoom-controls2 {
-    padding-top: var(--arowpanel-menuitemblank-padding) !important;
-    padding-bottom: var(--arowpanel-menuitemblank-padding) !important;
   }
   #appMenu-zoom-controls2::before {
     content: url(./icons/screenshot.svg);
