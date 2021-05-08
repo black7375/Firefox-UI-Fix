@@ -61,8 +61,11 @@
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
-  :root .toolbar-items, .tabbrowser-tab {
+  .toolbar-items, .tabbrowser-tab {
     max-height: 38px;
+  }
+  :root[uidensity=compact] .toolbar-items, .tabbrowser-tab {
+    max-height: 36px;
   }
   :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
     max-height: unset;
