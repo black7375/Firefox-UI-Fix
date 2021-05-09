@@ -1,9 +1,10 @@
 @media (-moz-proton) {
-  /* Darkmode - Color lighter */
+  /** Darkmode - Color lighter ************************************************/
   :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"] {
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
   }
 
+  /** Root - Reduce Padding ***************************************************/
   :root {
     /* Tab Bar */
     --proton-tab-block-margin: 2px !important; /* Original: 4px */
@@ -15,7 +16,24 @@
     --arrowpanel-padding:         0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
   }
 
-  /* Tab Bar - Reduce Width, Show more tabs */
+  :root[uidensity=compact] {
+    /* Tool Bar */
+    --toolbarbutton-outter-padding: 2px !important; /* Original: 3px, General is 2px */
+
+    /* Panel */
+    --arrowpanel-menuitem-padding: 2px  !important; /* Original: 8px */
+  }
+
+  :root[uidensity=touch] {
+    /* Tab Bar - Like Original */
+    --proton-tab-block-margin: 4px !important; /* Original: 4px */
+    --inline-tab-padding:      8px !important; /* Original: 8px */
+
+    /* Panel - Like Original */
+    --arrowpanel-menuitem-padding: 8px  !important; /* Original: 8px */
+  }
+
+  /** Tab Bar - Reduce Width, Show more tabs **********************************/
   .titlebar-spacer[type="pre-tabs"] {
     width: 35px; /* Original: 40px */
   }
@@ -23,28 +41,45 @@
     width: 20px; /* Original: 40px */
   }
 
-  #tabbrowser-arrowscrollbox::part(scrollbutton-up  ),
-  #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+  :root[uidensity=compact] #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 0 !important;
+  }
+
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up  ),
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
     /* Original: 4px */
     padding-left:  1px;
     padding-right: 1px;
   }
 
-  #new-tab-button, #alltabs-button {
+  :root:not([uidensity=touch]) #new-tab-button, #alltabs-button {
     --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
   }
 
-  /* Tab Bar - Reduce Height, Show more contents */
-  #TabsToolbar {
+  /** Tab Bar - Reduce Height, Show more contents *****************************/
+  :root:not([uidensity=touch]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
   .toolbar-items, .tabbrowser-tab {
-    max-height: 38px; /* Original: 40px */
+    max-height: 38px;
+  }
+  :root[uidensity=compact] .toolbar-items, .tabbrowser-tab {
+    max-height: 36px;
+  }
+  :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
+    max-height: unset;
+  }
+
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up),
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+    /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
+    padding-top:    3px !important;
+    padding-bottom: 3px !important;
   }
 
   /* Tab - Max Size */
-  .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
+  :root:not([uidensity=touch]) .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
     max-width: 240px !important;
   }
 
@@ -72,11 +107,7 @@
     margin-inline-end: -.5px !important;
   }
 
-  /* Selected Tab - Color like toolbar */
-  .tab-background[selected="true"] {
-    background: var(--toolbar-bgcolor) !important;
-  }
-
+  /** Selected Tab - Color like toolbar ***************************************/
   #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
   }
@@ -87,13 +118,13 @@
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
-  /* Unselected Tab - Divide line */
+  /** Unselected Tab - Divide line ********************************************/
   .tab-content::before,
   .tab-content::after {
     content: "" !important;
     display: block !important;
     position: absolute !important;
-    background-color: var(--lwt-selected-tab-background-color) !important;
+    background-color: var(--toolbarseparator-color) !important;
     width: 1px !important;
     height: 20px !important;
     transform: translateY(-10px) !important;
@@ -117,8 +148,9 @@
     opacity: var(--tab-separator-opacity) !important;
   }
 
-  /* Clipped tabs - Letters cleary */
-  #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned]) {
+  /** Clipped tabs - Letters cleary *******************************************/
+  #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned])
+  {
     padding-inline-start: 8px !important;
   }
 
@@ -138,7 +170,7 @@
     mask-image: linear-gradient(to left, black 70%, transparent) !important;
   }
 
-  /* Sound Tab - Show with Favicons */
+  /** Sound Tab - Show with Favicons ******************************************/
   /* Makes the favicons always visible (also on hover) */
   #tabbrowser-tabs[secondarytext-unsupported] .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay), #toolbar-menubar:not(:hover) + #TabsToolbar:not(:hover) #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-icon-image[src] ~ .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]),
   :is(#toolbar-menubar:hover + #TabsToolbar, #TabsToolbar:hover) .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay)
@@ -158,27 +190,43 @@
     margin-right: 10px !important;
   }
 
-  /* URL Bar - Reduce Padding */
-  #urlbar-container, #search-container {
+  /** URL Bar - Reduce Padding ************************************************/
+  :root:not([uidensity=touch]) #urlbar-container, #search-container {
     padding-block: 2px; /* Original: 4px */
     margin-inline: 5px; /* Original: 5px */
   }
 
-  /* Menu - Reduce Padding */
-  menupopup > menuitem, menupopup > menu {
-    padding-block:     0.35em !important; /* Original: 0.5em */
-    padding-inline-start: 1em !important; /* Original: 1em */
+  /* spread menu */
+  :root[uidensity=compact] .urlbarView-row:not([type=tip], [type=dynamic]) {
+    padding-block: 1px; /* [Compact, General]: 2px, Touch: 11px */
   }
-  .menu-text, .menu-iconic-text {
+  :root[uidensity=compact] #urlbar .search-one-offs:not([hidden]) {
+    padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
+  }
+
+  /** BookMark Bar - Reduce Height ********************************************/
+  :root[uidensity=compact] #PersonalToolbar toolbarbutton {
+      margin-top: 0px; /* Original: 2px */
+  }
+
+  /** Menu - Reduce Padding ***************************************************/
+  :root:not([uidensity=touch]) menupopup > menuitem, menupopup > menu {
+    padding-block:     0.35em !important; /* Original: 0.5em */
+  }
+  :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
     padding-inline-end: 0 !important; /* Original: 2px */
   }
-  .menupopup-arrowscrollbox {
+  :root:not([uidensity=touch]) .menupopup-arrowscrollbox {
     padding-block: 1px !important; /* Original: 4px*/
   }
-  #context-navigation:not([hidden]) {
+  :root:not([uidensity=touch]) #context-navigation:not([hidden]) {
     padding: 0 0 1px; /* Original: 0 0 4px*/
   }
-  .menu-right {
+  :root:not([uidensity=touch]) .menu-right {
     margin-right: 6px !important; /* Original: 12px */
+  }
+
+  :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
+    padding-block:     0.25em !important; /* Original: 0.5em */
   }
 }
