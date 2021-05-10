@@ -346,6 +346,9 @@
   #panelMenuBookmarkThisPage {
     list-style-image: url(chrome://browser/skin/bookmark-hollow.svg);
   }
+  panelMenuBookmarkThisPage[starred] {
+    list-style-image: url(chrome://browser/skin/bookmark.svg);
+  }
 
   #panelMenu_searchBookmarks {
     list-style-image: url(chrome://global/skin/icons/search-glass.svg);
