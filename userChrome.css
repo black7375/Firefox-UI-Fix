@@ -250,15 +250,21 @@
 
   /** Panel - Icons ***********************************************************/
   /* Padding */
-  .subviewbutton > .toolbarbutton-text,
-  #appMenu-proton-update-banner .toolbarbutton-text {
+  .subviewbutton > .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-menuicon-padding);
   }
-  #appMenu-multiView .subviewbutton::before {
+  #appMenu-proton-update-banner .toolbarbutton-text {
+    margin-inline-start: 0;
+  }
+  #appMenu-multiView .subviewbutton::before,
+  #appMenu-proton-update-banner::before {
     display: -moz-inline-box;
     margin-right: var(--arrowpanel-menuicon-padding);
     width:  16px;
     height: 16px;
+  }
+  #appMenu-proton-update-banner {
+    margin-bottom: 2px;
   }
   #appMenu-fxa-status2,
   #appMenu-zoom-controls2 {
@@ -268,6 +274,7 @@
 
   /* Icons Color */
   #appMenu-multiView .subviewbutton::before,
+  #appMenu-proton-update-banner::before,
   .subviewbutton > image {
     -moz-context-properties: fill;
     fill: var(--toolbarbutton-icon-fill);
@@ -275,9 +282,8 @@
   }
 
   /* Panel */
-  #appMenu-proton-update-banner {
-    margin-bottom: 2px;
-    list-style-image: url(chrome://browser/skin/whatsnew.svg);
+  #appMenu-proton-update-banner::before {
+    content: url(chrome://browser/skin/whatsnew.svg);
   }
   #appMenu-fxa-status2::before { /* Don't exist img tag */
     content: url(chrome://browser/skin/fxa/avatar-empty.svg);
