@@ -281,7 +281,7 @@
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
 
-  /* Panel */
+  /* Panel - Main */
   #appMenu-proton-update-banner::before {
     content: url(chrome://browser/skin/whatsnew.svg);
   }
@@ -340,5 +340,21 @@
 
   #appMenu-quit-button2 {
     list-style-image: url(chrome://browser/skin/quit.svg);
+  }
+
+  /* Panel - Bookmark */
+  #panelMenuBookmarkThisPage {
+    list-style-image: url(chrome://browser/skin/bookmark-hollow.svg);
+  }
+
+  #panelMenu_searchBookmarks {
+    list-style-image: url(chrome://global/skin/icons/search-glass.svg);
+  }
+  #panelMenu_viewBookmarksToolbar {
+    list-style-image: url(chrome://browser/skin/bookmarks-toolbar.svg);
+  }
+
+  #panelMenu_showAllBookmarks {
+    list-style-image: url(chrome://browser/skin/bookmark-star-on-tray.svg);
   }
 }
