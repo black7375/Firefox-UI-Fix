@@ -21,7 +21,7 @@
 
   :root[uidensity=compact] {
     /* Tool Bar */
-    --toolbarbutton-outter-padding: 2px !important; /* Original: 3px, General is 2px */
+    --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
 
     /* Panel */
     --arrowpanel-menuitem-padding: 3px  !important; /* Original: 8px */
@@ -38,20 +38,35 @@
 
   /** Tab Bar - Reduce Width, Show more tabs **********************************/
   .titlebar-spacer[type="pre-tabs"] {
-    width: 35px; /* Original: 40px */
+    width: 30px; /* Original: 40px */
   }
   .titlebar-spacer[type="post-tabs"] {
-    width: 20px; /* Original: 40px */
+    width: 25px; /* Original: 40px */
+  }
+
+  :root {
+    --newtab-button-minus-width-padding: 2px;
+    --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
+  }
+  #tabs-newtab-button > .toolbarbutton-icon,
+  #new-tab-button     > .toolbarbutton-icon,
+  #alltabs-button     > .toolbarbutton-badge-stack {
+    /* Original: calc(2 * var(--toolbarbutton-inner-padding) + 16px) */
+    width: calc(2 * var(--newtab-button-width-padding) + 16px);
+
+    /* Original: --toolbarbutton-inner-padding */
+    padding-left:  var(--newtab-button-width-padding);
+    padding-right: var(--newtab-button-width-padding);
   }
 
   :root[uidensity=compact] #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
     margin-inline-start: 0 !important;
   }
 
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up),
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up  ),
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
     /* Original: 4px */
-    padding-left: 1px;
+    padding-left:  1px;
     padding-right: 1px;
   }
 
@@ -64,11 +79,21 @@
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
-  :root .toolbar-items, .tabbrowser-tab {
+  .toolbar-items, .tabbrowser-tab {
     max-height: 38px;
+  }
+  :root[uidensity=compact] .toolbar-items, .tabbrowser-tab {
+    max-height: 36px;
   }
   :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
     max-height: unset;
+  }
+
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up),
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+    /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
+    padding-top:    3px !important;
+    padding-bottom: 3px !important;
   }
 
   /* Tab - Max Size */
@@ -87,7 +112,7 @@
   }
 
   .tab-stack {
-    margin-top: 0px !important;
+    margin-top:    0px !important;
     margin-bottom: 0px !important;
   }
 
@@ -96,8 +121,7 @@
     padding-inline: 1px !important;
   }
 
-  .tabbrowser-tab:not([last-visible-tab])
-  {
+  .tabbrowser-tab:not([last-visible-tab]) {
     margin-inline-end: -.5px !important;
   }
 
@@ -106,8 +130,9 @@
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
   }
 
-  /** Selected Tab - Box Shadow ***********************************************/
-  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
+  /* Selected Tab - Box Shadow */
+  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"],
+  [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
@@ -128,7 +153,6 @@
   .tab-content::before {
     left: 0 !important;
   }
-
   .tab-content::after {
     right: 0 !important;
   }
@@ -148,8 +172,7 @@
     padding-inline-start: 8px !important;
   }
 
-  #tabbrowser-tabs[closebuttons=activetab] .tabbrowser-tab:not([visuallyselected]) .tab-close-button
-  {
+  #tabbrowser-tabs[closebuttons=activetab] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
     visibility: collapse !important;
   }
 
@@ -167,7 +190,9 @@
 
   /** Sound Tab - Show with Favicons ******************************************/
   /* Makes the favicons always visible (also on hover) */
-  #tabbrowser-tabs[secondarytext-unsupported] .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay), #toolbar-menubar:not(:hover) + #TabsToolbar:not(:hover) #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-icon-image[src] ~ .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]), :is(#toolbar-menubar:hover + #TabsToolbar, #TabsToolbar:hover) .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay) {
+  #tabbrowser-tabs[secondarytext-unsupported] .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay), #toolbar-menubar:not(:hover) + #TabsToolbar:not(:hover) #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-icon-image[src] ~ .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]),
+  :is(#toolbar-menubar:hover + #TabsToolbar, #TabsToolbar:hover) .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) > :not(.tab-icon-overlay)
+  {
     opacity: 1 !important;
   }
 
@@ -195,6 +220,11 @@
   }
   :root[uidensity=compact] #urlbar .search-one-offs:not([hidden]) {
     padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
+  }
+
+  /** BookMark Bar - Reduce Height ********************************************/
+  :root[uidensity=compact] #PersonalToolbar toolbarbutton {
+      margin-top: 0px; /* Original: 2px */
   }
 
   /** Menu - Reduce Padding ***************************************************/

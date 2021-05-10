@@ -2,7 +2,8 @@
   @-moz-document url("about:home"), url("about:newtab") {
     /** Activity Stream - Search Focus Border: like URL ***********************/
     /* At DarkMode, Color */
-    body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"] {
+    body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
+    body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"] {
       /* inner */
       --newtab-focus-border: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
       --newtab-focus-border-selected: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF */
