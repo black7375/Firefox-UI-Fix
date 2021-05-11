@@ -293,6 +293,14 @@
   #appMenu-fxa-status2::before { /* Don't exist img tag */
     content: url(chrome://browser/skin/fxa/avatar-empty.svg);
   }
+  #appMenu-fxa-status2[fxastatus=signedin]::before { /* Don't exist img tag */
+    display: none;
+  }
+  #appMenu-fxa-label2::before {
+    /* url("https://profile.accounts.firefox.com/v1/avatar/a") */
+    content: '';
+    background-image: var(--avatar-image-url) !important;
+  }
 
   #appMenu-new-tab-button2 {
     list-style-image: url(chrome://browser/skin/new-tab.svg);
