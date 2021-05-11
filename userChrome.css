@@ -253,9 +253,14 @@
   .subviewbutton > .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-menuicon-padding);
   }
+  #panelMenu_bookmarksMenu .subviewbutton[disabled=true] .toolbarbutton-text,
+  #appMenu_historyMenu     .subviewbutton[disabled=true] .toolbarbutton-text {
+    padding-inline-start: var(--arrowpanel-menublank-padding) !important;
+  }
   #appMenu-proton-update-banner .toolbarbutton-text {
     margin-inline-start: 0;
   }
+
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before {
     display: -moz-inline-box;
