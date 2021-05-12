@@ -16,7 +16,7 @@
     --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
     --arrowpanel-menuitem-padding: 5px  !important; /* Original: 8px */
     --arrowpanel-padding:         0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
-    --arowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px);
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px);
   }
 
   :root[uidensity=compact] {
@@ -272,11 +272,11 @@
   }
   #appMenu-fxa-status2,
   #appMenu-zoom-controls2 {
-    padding-top:    var(--arowpanel-menuitemblank-padding) !important;
-    padding-bottom: var(--arowpanel-menuitemblank-padding) !important;
+    padding-top:    var(--arrowpanel-menuimageblank-padding) !important;
+    padding-bottom: var(--arrowpanel-menuimageblank-padding) !important;
   }
   #appMenu-fxa-status2::before {
-    margin-top: var(--arowpanel-menuitemblank-padding);
+    margin-top: var(--arrowpanel-menuimageblank-padding);
   }
 
   /* Icons Color */
