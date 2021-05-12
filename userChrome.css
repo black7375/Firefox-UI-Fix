@@ -263,12 +263,15 @@
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before {
     display: -moz-inline-box;
-    margin-right: var(--arrowpanel-menuicon-padding);
+    margin-inline-end: var(--arrowpanel-menuicon-padding);
     width:  16px;
     height: 16px;
   }
   #appMenu-proton-update-banner {
     margin-bottom: 2px;
+  }
+  #appMenu-proton-update-banner::before {
+    margin-inline-start: var(--arrowpanel-menuitem-padding);
   }
   #appMenu-fxa-status2,
   #appMenu-zoom-controls2 {
