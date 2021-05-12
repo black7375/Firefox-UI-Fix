@@ -275,6 +275,9 @@
     padding-top:    var(--arowpanel-menuitemblank-padding) !important;
     padding-bottom: var(--arowpanel-menuitemblank-padding) !important;
   }
+  #appMenu-fxa-status2::before {
+    margin-top: var(--arowpanel-menuitemblank-padding);
+  }
 
   /* Icons Color */
   #appMenu-multiView .subviewbutton::before,
@@ -295,7 +298,7 @@
   #appMenu-fxa-status2[fxastatus=signedin]::before { /* Don't exist img tag */
     display: none;
   }
-  #appMenu-fxa-label2::before {
+  #appMenu-fxa-status2[fxastatus=signedin] #appMenu-fxa-label2::before {
     /* url("https://profile.accounts.firefox.com/v1/avatar/a") */
     content: '';
     background-image: var(--avatar-image-url) !important;
@@ -400,7 +403,7 @@
     list-style-image: url(chrome://browser/skin/developer.svg);
   }
   #appmenu-developer-tools-view  .subviewbutton:nth-child(2) { /* Task Manager */
-    list-style-image: url(chrome://global/skin/icons/performance.svg);
+    list-style-image: url(./icons/performance.svg);
   }
   #appmenu-developer-tools-view  .subviewbutton:nth-child(3) { /* Remote Debugging - Edge bug.svg */
     list-style-image: url(./icons/bug.svg);
@@ -409,13 +412,13 @@
     list-style-image: url(./icons/webdeveloper.svg);
   }
   #appmenu-developer-tools-view  .subviewbutton:nth-child(5) { /* Browser Content Toolbaox -  */
-    list-style-image: url(chrome://devtools/skin/images/command-frames.svg);
+    list-style-image: url(./icons/command-frames.svg);
   }
   #appmenu-developer-tools-view  .subviewbutton:nth-child(6) { /* Browser Console */
     list-style-image: url(chrome://devtools/skin/images/command-console.svg);
   }
   #appmenu-developer-tools-view  .subviewbutton:nth-child(7) { /* Responsive Design Mode */
-    list-style-image: url(chrome://devtools/skin/images/command-responsivemode.svg);
+    list-style-image: url(./icons/command-responsivemode.svg);
   }
   #appmenu-developer-tools-view  .subviewbutton:nth-child(8) { /* Eyedropper */
     list-style-image: url(chrome://devtools/skin/images/command-eyedropper.svg);
