@@ -358,6 +358,69 @@
     list-style-image: url(chrome://browser/skin/quit.svg);
   }
 
+  /* Panel - Sync */
+  #PanelUI-fxa-menu-connect-device-button  .toolbarbutton-icon,
+  #PanelUI-fxa-menu-account-signout-button .toolbarbutton-icon {
+    width:  16px !important;
+    height: 16px !important;
+  }
+
+  /* Default */
+  #fxa-menu-avatar {
+    display: -moz-inline-box !important;
+    margin-inline-end: var(--arrowpanel-menuitem-padding);
+  }
+  /* Image to Right
+  #fxa-menu-avatar {
+    display: -moz-inline-box !important;
+    margin-inline-end: var(--arrowpanel-menuitem-padding);
+    -moz-box-ordinal-group: 1 !important;
+  }
+   */
+  /* Text to Right
+  #fxa-menu-avatar {
+    display: -moz-inline-box !important;
+    margin-inline-end: var(--arrowpanel-menuitem-padding);
+  }
+  #fxa-menu-header-title, #fxa-menu-header-description {
+    text-align: right;
+  }
+   */
+
+  .syncNowBtn {
+    visibility: visible !important;
+    -moz-box-ordinal-group: 1 !important;
+    margin-inline-end: var(--arrowpanel-menuitem-padding);
+  }
+  #PanelUI-fxa-menu-setup-sync-button {
+    list-style-image: url(chrome://browser/skin/sync.svg);
+  }
+
+  #PanelUI-fxa-menu-connect-device-button {
+    list-style-image: url(chrome://browser/skin/fxa/add-device.svg);
+  }
+  #PanelUI-fxa-menu-sendtab-button {
+    list-style-image: url(chrome://browser/skin/send-to-device.svg);
+  }
+  #PanelUI-fxa-menu-sync-prefs-button {
+    list-style-image: url(chrome://global/skin/icons/settings.svg);
+  }
+  #PanelUI-fxa-menu-account-signout-button {
+    list-style-image: url(chrome://browser/skin/sign-out.svg);
+  }
+
+  .PanelUI-remotetabs-notabsforclient-label {
+    margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding));
+    padding-inline-start: var(--arrowpanel-menublank-padding);
+  }
+
+  .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
+    list-style-image: url(chrome://browser/skin/send-to-device.svg);
+  }
+  .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]) {
+    list-style-image: url(chrome://global/skin/icons/settings.svg);
+  }
+
   /* Panel - Bookmark */
   #panelMenuBookmarkThisPage {
     list-style-image: url(chrome://browser/skin/bookmark-hollow.svg);
