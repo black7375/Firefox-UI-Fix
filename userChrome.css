@@ -402,7 +402,8 @@
   #PanelUI-fxa-menu-sendtab-button {
     list-style-image: url(chrome://browser/skin/send-to-device.svg);
   }
-  #PanelUI-fxa-menu-sync-prefs-button {
+  #PanelUI-fxa-menu-sync-prefs-button,
+  #PanelUI-remotetabs-view-managedevices {
     list-style-image: url(chrome://global/skin/icons/settings.svg);
   }
   #PanelUI-fxa-menu-account-signout-button {
@@ -410,8 +411,8 @@
   }
 
   .PanelUI-remotetabs-notabsforclient-label {
-    margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding));
-    padding-inline-start: var(--arrowpanel-menublank-padding);
+    margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
+    padding-inline-start: var(--arrowpanel-menublank-padding) !important;
   }
 
   .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
