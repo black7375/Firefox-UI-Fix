@@ -415,6 +415,13 @@
     padding-inline-start: var(--arrowpanel-menublank-padding) !important;
   }
 
+  /* Move Separator */
+  #fxa-manage-account-button {
+    -moz-box-ordinal-group: 0;
+  }
+  #PanelUI-sign-out-separator {
+    -moz-box-ordinal-group: 0;
+  }
   .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
     list-style-image: url(chrome://browser/skin/send-to-device.svg);
   }
