@@ -374,13 +374,23 @@
   #fxa-menu-avatar {
     display: -moz-inline-box !important;
     margin-inline-end: var(--arrowpanel-menuitem-padding);
-    -moz-box-ordinal-group: 1 !important;
+    -moz-box-ordinal-group: 2 !important;
   }
    */
   /* Text to Right
   #fxa-menu-avatar {
     display: -moz-inline-box !important;
     margin-inline-end: var(--arrowpanel-menuitem-padding);
+  }
+  #fxa-menu-header-title, #fxa-menu-header-description {
+    text-align: right;
+  }
+   */
+  /* Image, Text to Right
+  #fxa-menu-avatar {
+    display: -moz-inline-box !important;
+    margin-inline-end: var(--arrowpanel-menuitem-padding);
+    -moz-box-ordinal-group: 2 !important;
   }
   #fxa-menu-header-title, #fxa-menu-header-description {
     text-align: right;
