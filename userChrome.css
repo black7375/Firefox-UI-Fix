@@ -416,11 +416,18 @@
   }
 
   /* Move Separator */
-  #fxa-manage-account-button {
+  #PanelUI-fxa-menu::before{
+    content: "";
+    display: -moz-box;
+    border-bottom: 1px solid var(--panel-separator-color);
+    margin: var(--panel-separator-margin);
+    padding: 0;
+  }
+  #PanelUI-fxa-menu > :first-child{
     -moz-box-ordinal-group: 0;
   }
   #PanelUI-sign-out-separator {
-    -moz-box-ordinal-group: 0;
+    display: none;
   }
   .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
     list-style-image: url(chrome://browser/skin/send-to-device.svg);
