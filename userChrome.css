@@ -91,6 +91,10 @@
     padding-top:    3px !important;
     padding-bottom: 3px !important;
   }
+  
+  :root[tabsintitlebar]:not([uidensity=compact]) #toolbar-menubar[autohide="true"] {
+    height: calc(var(--tab-min-height) - var(--tabs-navbar-shadow-size) - 2px); /* Compact: 28px, Normal: 33px, Touch: 38px */
+  }
 
   /* Tab - Max Size */
   :root:not([uidensity=touch]) .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
