@@ -17,6 +17,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Environment (please complete the following information):**
+ - Firefox Version: [write from `about:support` - `version`]
  - OS:
    - [ ] Linux
    - [ ] Windows
