@@ -358,7 +358,7 @@
     list-style-image: url(chrome://browser/skin/quit.svg);
   }
 
-  /* Panel - Sync */
+  /* Panel - Account */
   #PanelUI-fxa-menu-connect-device-button  .toolbarbutton-icon,
   #PanelUI-fxa-menu-account-signout-button .toolbarbutton-icon {
     width:  16px !important;
@@ -370,32 +370,6 @@
     display: -moz-inline-box !important;
     margin-inline-end: var(--arrowpanel-menuitem-padding);
   }
-  /* Image to Right
-  #fxa-menu-avatar {
-    display: -moz-inline-box !important;
-    margin-inline-end: var(--arrowpanel-menuitem-padding);
-    -moz-box-ordinal-group: 2 !important;
-  }
-   */
-  /* Text to Right
-  #fxa-menu-avatar {
-    display: -moz-inline-box !important;
-    margin-inline-end: var(--arrowpanel-menuitem-padding);
-  }
-  #fxa-menu-header-title, #fxa-menu-header-description {
-    text-align: right;
-  }
-   */
-  /* Image, Text to Right
-  #fxa-menu-avatar {
-    display: -moz-inline-box !important;
-    margin-inline-end: var(--arrowpanel-menuitem-padding);
-    -moz-box-ordinal-group: 2 !important;
-  }
-  #fxa-menu-header-title, #fxa-menu-header-description {
-    text-align: right;
-  }
-   */
 
   .syncNowBtn {
     visibility: visible !important;
@@ -425,7 +399,7 @@
     padding-inline-start: var(--arrowpanel-menublank-padding) !important;
   }
 
-  /* Move Separator */
+  /* Change Separator */
   #PanelUI-fxa-menu::before{
     content: "";
     display: -moz-box;
