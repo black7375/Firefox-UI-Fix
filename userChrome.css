@@ -236,6 +236,18 @@
     background-color: var(--tab-icon-overlay-stroke, black) !important;
   }
 
+  /** Container Tab - Color line at icon's bottom *****************************/
+  .tab-context-line {
+    display: none;
+  }
+
+  .tab-icon-image {
+    box-sizing: content-box;
+    padding: 3px 0;
+
+    border-bottom: 2px solid var(--identity-icon-color);
+  }
+
   /** URL Bar - Reduce Padding ************************************************/
   :root:not([uidensity=touch]) #urlbar-container, #search-container {
     padding-block: 2px; /* Original: 4px */
