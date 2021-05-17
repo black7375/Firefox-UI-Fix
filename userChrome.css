@@ -73,6 +73,20 @@
     --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
   }
 
+  /* Tab - Max Size */
+  :root:not([uidensity=touch]) .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
+    max-width: 240px !important;
+  }
+
+  /* neighbouring tabs should "pinch" together */
+  .tabbrowser-tab {
+    padding-inline: 1px !important;
+  }
+
+  .tabbrowser-tab:not([last-visible-tab]) {
+    margin-inline-end: -.5px !important;
+  }
+
   /** Tab Bar - Reduce Height, Show more contents *****************************/
   :root:not([uidensity=touch]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
@@ -94,17 +108,12 @@
     padding-top:    3px !important;
     padding-bottom: 3px !important;
   }
-  
+
   :root[tabsintitlebar]:not([uidensity=compact]) #toolbar-menubar[autohide="true"] {
     height: calc(var(--tab-min-height) - var(--tabs-navbar-shadow-size) - 2px); /* Compact: 28px, Normal: 33px, Touch: 38px */
   }
 
-  /* Tab - Max Size */
-  :root:not([uidensity=touch]) .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
-    max-width: 240px !important;
-  }
-
-  /* Tab - Connect to window */
+  /** Tab Bar - Connect to window *********************************************/
   .tab-background {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
     margin-bottom: 0px !important;
@@ -119,21 +128,12 @@
     margin-bottom: 0px !important;
   }
 
-  /* neighbouring tabs should "pinch" together */
-  .tabbrowser-tab {
-    padding-inline: 1px !important;
-  }
-
-  .tabbrowser-tab:not([last-visible-tab]) {
-    margin-inline-end: -.5px !important;
-  }
-
   /** Selected Tab - Color like toolbar ***************************************/
   #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
   }
 
-  /* Selected Tab - Box Shadow */
+  /** Selected Tab - Box Shadow ***********************************************/
   #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"],
   [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
     box-shadow: 0 0 1px var(--toolbar-color) !important;
