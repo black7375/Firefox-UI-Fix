@@ -193,40 +193,40 @@
   /* Makes the speaker icon to always appear if the tab is playing (not only on hover) */
   .tab-icon-overlay:not([crashed]) {
     /* Position */
-    top: -4.5px !important;
+    top: -4px !important;
     inset-inline-end: -9px !important;
     z-index: 1 !important;
 
     /* Shape */
     padding: 1.5px !important;
     border-radius: 10px !important;
+    width:  17px !important;
+    height: 17px !important;
 
     /* Color */
-    stroke: var(--tab-icon-overlay-stroke, white) !important;
-    color:  var(--tab-icon-overlay-fill,   black) !important;
-    fill-opacity: 0.7 !important;
+    color:  var(--lwt-tab-text, var(--toolbar-color)) !important;
+    stroke: transparent !important;
     background: transparent !important;
-  }
-  #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed]) {
-    stroke: var(--tab-icon-overlay-stroke, black) !important;
-    color:  var(--tab-icon-overlay-fill,   white) !important;
+    fill-opacity: 0.75 !important;
   }
   .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
-    margin-right: 10px !important;
+    margin-right: 9.5px !important;
   }
 
   /* Hover */
   .tab-icon-overlay:not([crashed])[soundplaying]:hover,
   .tab-icon-overlay:not([crashed])[muted]:hover,
   .tab-icon-overlay:not([crashed])[activemedia-blocked]:hover {
-    background-color: var(--tab-icon-overlay-stroke, white) !important;
+    color:  var(--toolbar-bgcolor, white) !important;
+    stroke: var(--lwt-tab-text, var(--toolbar-color)) !important;
+    background-color: var(--lwt-tab-text, var(--toolbar-color)) !important;
     fill-opacity: 0.95 !important;
   }
 
   #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[soundplaying]:hover,
   #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[muted]:hover,
   #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[activemedia-blocked]:hover {
-    background-color: var(--tab-icon-overlay-stroke, black) !important;
+    color: var(--toolbar-bgcolor, black) !important;
   }
 
   /** Container Tab - Color line at icon's bottom *****************************/
