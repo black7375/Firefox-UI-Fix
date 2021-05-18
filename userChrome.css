@@ -161,12 +161,8 @@
     background-color: var(--toolbarseparator-color) !important;
   }
 
-  tab.tabbrowser-tab[visuallyselected] + tab.tabbrowser-tab .tab-background::before,
-  tab.tabbrowser-tab[multiselected] + tab.tabbrowser-tab .tab-background::before,
-  tab.tabbrowser-tab:hover + tab.tabbrowser-tab .tab-background::before {
-    opacity: 0 !important;
-  }
-
+  tab.tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + tab.tabbrowser-tab .tab-background::before,
+  tab.tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
   }
