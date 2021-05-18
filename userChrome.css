@@ -12,11 +12,9 @@
 
     /* Panel */
     --arrowpanel-menuicon-padding: 8px;
-    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px);
     --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
-    --arrowpanel-menuitem-padding: 5px  !important; /* Original: 8px */
-    --arrowpanel-padding:         0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
-    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px);
+    --arrowpanel-menuitem-padding: 5px !important; /* Original: 8px */
+    --arrowpanel-padding:        0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
   }
 
   :root[uidensity=compact] {
@@ -102,7 +100,7 @@
     max-height: unset;
   }
 
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up),
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up  ),
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
     /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
     padding-top:    3px !important;
@@ -143,15 +141,15 @@
   #tabbrowser-arrowscrollbox:not([overflowing]) tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
   tab.tabbrowser-tab:not(:hover):not([visuallyselected]):not([multiselected]):not(:first-child) .tab-background::before {
     /* Box Model */
-    content: "";
-    display: block;
+    content:  "";
+    display:  block;
     position: absolute;
     left: -2px;
-    top: 50%;
+    top:   50%;
 
     /* Bar shape */
-    width: 1px;
-    height: 20px;
+    width:     1px;
+    height:   20px;
     overflow: hidden;
 
     /* Bar Color */
@@ -168,8 +166,7 @@
   }
 
   /** Clipped tabs - Letters cleary *******************************************/
-  #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned])
-  {
+  #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned]) {
     padding-inline-start: 8px !important;
   }
 
@@ -178,14 +175,12 @@
   }
 
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
-  #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(ltr):not([pinned])
-  {
+  #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(ltr):not([pinned]) {
     mask-image: linear-gradient(to right, black 70%, transparent) !important;
   }
 
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow][labeldirection="rtl"]:not([pinned]),
-  #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(rtl):not([pinned])
-  {
+  #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(rtl):not([pinned]) {
     mask-image: linear-gradient(to left, black 70%, transparent) !important;
   }
 
@@ -267,27 +262,32 @@
 
   /** Menu - Reduce Padding ***************************************************/
   :root:not([uidensity=touch]) menupopup > menuitem, menupopup > menu {
-    padding-block:     0.35em !important; /* Original: 0.5em */
+    padding-block: 0.35em !important; /* Original: 0.5em */
   }
   :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
     padding-inline-end: 0 !important; /* Original: 2px */
   }
   :root:not([uidensity=touch]) .menupopup-arrowscrollbox {
-    padding-block: 1px !important; /* Original: 4px*/
+    padding-block: 1px !important;    /* Original: 4px*/
   }
   :root:not([uidensity=touch]) #context-navigation:not([hidden]) {
-    padding: 0 0 1px; /* Original: 0 0 4px*/
+    padding: 0 0 1px !important;      /* Original: 0 0 4px*/
   }
   :root:not([uidensity=touch]) .menu-right {
-    margin-right: 6px !important; /* Original: 12px */
+    margin-right: 6px !important;     /* Original: 12px */
   }
 
   :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
-    padding-block:     0.25em !important; /* Original: 0.5em */
+    padding-block: 0.25em !important; /* Original: 0.5em */
   }
 
   /** Panel - Icons ***********************************************************/
   /* Padding */
+  :root {
+    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px);
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px);
+  }
+
   .subviewbutton > .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-menuicon-padding);
   }
@@ -323,9 +323,9 @@
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before,
   .subviewbutton > image {
-    -moz-context-properties: fill;
     fill: currentColor;
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+    -moz-context-properties: fill;
   }
 
   /* Panel - Main */
@@ -508,31 +508,31 @@
     list-style-image: url(chrome://browser/skin/customize.svg);
   }
 
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(1) { /* Web Developer Tools */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(1) {  /* Web Developer Tools */
     list-style-image: url(chrome://browser/skin/developer.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(2) { /* Task Manager */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(2) {  /* Task Manager */
     list-style-image: url(./icons/performance.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(3) { /* Remote Debugging - Edge bug.svg */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(3) {  /* Remote Debugging - Edge bug.svg */
     list-style-image: url(./icons/bug.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(4) { /* Browser Toolbox - Edge webdeveloper.svg */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(4) {  /* Browser Toolbox - Edge webdeveloper.svg */
     list-style-image: url(./icons/webdeveloper.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(5) { /* Browser Content Toolbaox -  */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(5) {  /* Browser Content Toolbaox -  */
     list-style-image: url(./icons/command-frames.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(6) { /* Browser Console */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(6) {  /* Browser Console */
     list-style-image: url(chrome://devtools/skin/images/command-console.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(7) { /* Responsive Design Mode */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(7) {  /* Responsive Design Mode */
     list-style-image: url(./icons/command-responsivemode.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(8) { /* Eyedropper */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(8) {  /* Eyedropper */
     list-style-image: url(chrome://devtools/skin/images/command-eyedropper.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(9) { /* Page Source - Edge file-search.svg */
+  #appmenu-developer-tools-view  .subviewbutton:nth-child(9) {  /* Page Source - Edge file-search.svg */
     list-style-image: url(./icons/search-file.svg);
   }
   #appmenu-developer-tools-view  .subviewbutton:nth-child(10) { /* Extensions for Devel */
