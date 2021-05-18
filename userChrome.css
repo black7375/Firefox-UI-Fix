@@ -210,7 +210,15 @@
     fill-opacity: 0.75 !important;
   }
   .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
-    margin-right: 9.5px !important;
+    margin-inline-end: 9.5px !important;
+  }
+
+  /* None exist favicon */
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([crashed]) {
+    top: 0 !important;
+    inset-inline-end: 0 !important;
+    margin-inline-end: 5.5px !important;
+    padding: 0 !important;
   }
 
   /* Hover */
