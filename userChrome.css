@@ -140,33 +140,35 @@
   }
 
   /** Unselected Tab - Divide line ********************************************/
-  .tab-content::before,
-  .tab-content::after {
-    content: "" !important;
-    display: block !important;
-    position: absolute !important;
-    background-color: var(--toolbarseparator-color) !important;
-    width: 1px !important;
-    height: 20px !important;
-    transform: translateY(-10px) !important;
-    opacity: 0 !important;
+  #tabbrowser-arrowscrollbox:not([overflowing]) tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
+  tab.tabbrowser-tab:not(:hover):not([visuallyselected]):not([multiselected]):not(:first-child) .tab-background::before {
+    /* Box Model */
+    content: "";
+    display: block;
+    position: absolute;
+    left: -2px;
+    top: 50%;
+
+    /* Bar shape */
+    width: 1px;
+    height: 20px;
+    overflow: hidden;
+
+    /* Bar Color */
+    opacity: var(--tab-separator-opacity);
+    transform: translateX(-0.5px) translateY(calc(-50% + 1px));
     transition: opacity .2s var(--ease-basic) !important;
+    background-color: var(--toolbarseparator-color) !important;
   }
 
-  .tab-content::before {
-    left: 0 !important;
-  }
-  .tab-content::after {
-    right: 0 !important;
+  tab.tabbrowser-tab[visuallyselected] + tab.tabbrowser-tab .tab-background::before,
+  tab.tabbrowser-tab[multiselected] + tab.tabbrowser-tab .tab-background::before,
+  tab.tabbrowser-tab:hover + tab.tabbrowser-tab .tab-background::before {
+    opacity: 0 !important;
   }
 
-  .tabbrowser-tab[visuallyselected][style*=transform] + .tabbrowser-tab[style*=transform] .tab-content::after,
-  .tabbrowser-tab[style*=transform]:not([visuallyselected]) .tab-content::before,
-  .tabbrowser-tab[style*=transform] + .tabbrowser-tab:not([visuallyselected]) .tab-content::before,
-  .tabbrowser-tab:not([visuallyselected]):not(:hover):not([multiselected]) + .tabbrowser-tab:not([visuallyselected]):not(:hover):not([multiselected]) .tab-content::before,
-  #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow]) .tabbrowser-tab[last-visible-tab]:not([visuallyselected]):not(:hover):not([multiselected]) .tab-content::after
-  {
-    opacity: var(--tab-separator-opacity) !important;
+  #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
+    opacity: 0 !important;
   }
 
   /** Clipped tabs - Letters cleary *******************************************/
