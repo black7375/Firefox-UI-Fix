@@ -214,7 +214,7 @@
   }
 
   /* None exist favicon */
-  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([crashed]) {
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing],[crashed]) {
     top: 0 !important;
     inset-inline-end: 0 !important;
     margin-inline-end: 5.5px !important;
