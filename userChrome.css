@@ -249,6 +249,21 @@
     border-bottom: 2px solid var(--identity-icon-color);
   }
 
+  /* None exist favicon */
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
+    box-sizing: content-box;
+    padding: 3px 0;
+
+    border-radius: 0 !important;
+    border-bottom: 2px solid var(--identity-icon-color);
+  }
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]):hover {
+    padding: 0;
+
+    border-radius: 10px !important;
+    border-bottom: none;
+  }
+
   /** URL Bar - Reduce Padding ************************************************/
   :root:not([uidensity=touch]) #urlbar-container, #search-container {
     padding-block: 2px; /* Original: 4px */
