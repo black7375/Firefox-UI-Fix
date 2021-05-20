@@ -137,6 +137,38 @@
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
+  /* Selected Tab - Bottom Rounded Corner */
+  tab {
+    --tab-corner-rounding: 9px;
+  }
+
+  tab[visuallyselected] .tab-background::before,
+  tab[visuallyselected] .tab-background::after {
+    content: "" !important;
+    display: inline !important;
+    position: absolute !important;
+    bottom: -1px !important;
+    width: 9px !important;
+    height: 7px !important;
+    pointer-events: none !important;
+    background-color: transparent !important;
+    transition: 0.15s !important;
+  }
+
+  tab[visuallyselected] .tab-background::before {
+    border-bottom-right-radius: var(--tab-corner-rounding) !important;
+    left: 0px !important;;
+    transform: translateX(calc(-1 * var(--tab-corner-rounding))) !important;
+    box-shadow: 4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+  }
+
+  tab[visuallyselected] .tab-background::after {
+    border-bottom-left-radius: var(--tab-corner-rounding) !important;
+    right: 0px !important;
+    transform: translateX(var(--tab-corner-rounding)) !important;
+    box-shadow: -4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+  }
+
   /** Unselected Tab - Divide line ********************************************/
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
