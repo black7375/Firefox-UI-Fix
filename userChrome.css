@@ -257,7 +257,7 @@
     top: 0 !important;
     inset-inline-end: 0 !important;
     margin-inline-end: 5.5px !important;
-    padding: 0 !important;
+    padding: 2px 0 !important;
   }
 
   /* Hover */
@@ -274,6 +274,10 @@
   #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[muted]:hover,
   #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[activemedia-blocked]:hover {
     color: var(--toolbar-bgcolor, black) !important;
+  }
+
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing],[crashed]):hover {
+    padding: 0 !important;
   }
 
   /** Container Tab - Color line at icon's bottom *****************************/
