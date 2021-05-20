@@ -137,7 +137,7 @@
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
-  /* Selected Tab - Bottom Rounded Corner */
+  /** Selected Tab - Bottom Rounded Corner ************************************/
   tab {
     --tab-corner-rounding: 9px;
   }
@@ -152,12 +152,12 @@
     height: 7px !important;
     pointer-events: none !important;
     background-color: transparent !important;
-    transition: 0.15s !important;
+    transition: .2s var(--ease-basic) !important;
   }
 
   tab[visuallyselected] .tab-background::before {
     border-bottom-right-radius: var(--tab-corner-rounding) !important;
-    left: 0px !important;;
+    left: 0px !important;
     transform: translateX(calc(-1 * var(--tab-corner-rounding))) !important;
     box-shadow: 4px 4px 0px 4px var(--toolbar-bgcolor) !important;
   }
@@ -198,7 +198,7 @@
     transform: translateX(2.5px) translateY(calc(-50% + 1px));
   }
 
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + tab.tabbrowser-tab .tab-background::before,
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
