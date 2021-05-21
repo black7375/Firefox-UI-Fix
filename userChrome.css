@@ -261,6 +261,20 @@
   }
 
   /* None exist favicon */
+  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-content::before {
+    /* Box Model */
+    content: '';
+    display: block;
+    position: absolute !important;
+    transition: 0.2s !important;
+    transform: translateY(10px) !important;
+
+    /* Shape */
+    border-bottom: 2px solid var(--identity-icon-color);
+    width: 16px;
+  }
+
+  /* None exist favicon - With Sound */
   .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     box-sizing: content-box;
     padding: 3px 0;
