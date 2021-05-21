@@ -159,11 +159,11 @@
   }
 
   .tab-background::before {
-    transform: translateX(-2.5px) translateY(calc(-50% + 1px));
+    transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
   }
   .tabbrowser-tab[last-visible-tab] .tab-background::after {
     right: 0;
-    transform: translateX(2.5px) translateY(calc(-50% + 1px));
+    transform: translateX(2.5px) translateY(calc(-50% + 1px)) !important;
   }
 
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
