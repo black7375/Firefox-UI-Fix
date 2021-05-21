@@ -137,6 +137,38 @@
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
+  /** Selected Tab - Bottom Rounded Corner ************************************/
+  tab {
+    --tab-corner-rounding: 9px;
+  }
+
+  tab[visuallyselected] .tab-background::before,
+  tab[visuallyselected] .tab-background::after {
+    content: "" !important;
+    display: inline !important;
+    position: absolute !important;
+    bottom: -1px !important;
+    width: 9px !important;
+    height: 7px !important;
+    pointer-events: none !important;
+    background-color: transparent !important;
+    transition: .2s var(--ease-basic) !important;
+  }
+
+  tab[visuallyselected] .tab-background::before {
+    border-bottom-right-radius: var(--tab-corner-rounding) !important;
+    left: 0px !important;
+    transform: translateX(calc(-1 * var(--tab-corner-rounding))) !important;
+    box-shadow: 4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+  }
+
+  tab[visuallyselected] .tab-background::after {
+    border-bottom-left-radius: var(--tab-corner-rounding) !important;
+    right: 0px !important;
+    transform: translateX(var(--tab-corner-rounding)) !important;
+    box-shadow: -4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+  }
+
   /** Unselected Tab - Divide line ********************************************/
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
@@ -166,7 +198,7 @@
     transform: translateX(2.5px) translateY(calc(-50% + 1px));
   }
 
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + tab.tabbrowser-tab .tab-background::before,
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
@@ -200,7 +232,7 @@
   /* Makes the speaker icon to always appear if the tab is playing (not only on hover) */
   .tab-icon-overlay:not([crashed]) {
     /* Position */
-    top: -4px !important;
+    top: -3.5px !important;
     inset-inline-end: -9px !important;
     z-index: 1 !important;
 
@@ -211,7 +243,7 @@
     height: 17px !important;
 
     /* Color */
-    color:  var(--lwt-tab-text, var(--toolbar-color)) !important;
+    color:  currentColor !important;
     stroke: transparent !important;
     background: transparent !important;
     fill-opacity: 0.75 !important;
@@ -225,7 +257,7 @@
     top: 0 !important;
     inset-inline-end: 0 !important;
     margin-inline-end: 5.5px !important;
-    padding: 0 !important;
+    padding: 2px 0 !important;
   }
 
   /* Hover */
@@ -242,6 +274,10 @@
   #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[muted]:hover,
   #TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[activemedia-blocked]:hover {
     color: var(--toolbar-bgcolor, black) !important;
+  }
+
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing],[crashed]):hover {
+    padding: 0 !important;
   }
 
   /** Container Tab - Color line at icon's bottom *****************************/
