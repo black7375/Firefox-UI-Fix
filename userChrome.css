@@ -142,8 +142,8 @@
     --tab-corner-rounding: 9px;
   }
 
-  tab[visuallyselected] .tab-background::before,
-  tab[visuallyselected] .tab-background::after {
+  :root[lwtheme="true"] tab[visuallyselected] .tab-background::before,
+  :root[lwtheme="true"] tab[visuallyselected] .tab-background::after {
     content: "" !important;
     display: inline !important;
     position: absolute !important;
