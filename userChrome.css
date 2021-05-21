@@ -256,6 +256,11 @@
     mask-image: linear-gradient(to left, black 70%, transparent) !important;
   }
 
+  /** Sound Tab - Hide Label **************************************************/
+  .tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]){
+    display: none !important;
+  }
+
   /** Sound Tab - Show with Favicons ******************************************/
   /* Makes the favicons always visible (also on hover) */
   .tab-icon-image:not([pinned]){
