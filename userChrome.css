@@ -138,35 +138,42 @@
   }
 
   /** Selected Tab - Bottom Rounded Corner ************************************/
-  tab {
-    --tab-corner-rounding: 9px;
+  #tabbrowser-tabs {
+    --tab-corner-rounding: 5px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
+    --tab-corner-padding:  1px;
   }
 
-  :root[lwtheme="true"] tab[visuallyselected] .tab-background::before,
-  :root[lwtheme="true"] tab[visuallyselected] .tab-background::after {
+  :root[lwtheme="true"] tab[visuallyselected] > stack::before,
+  :root[lwtheme="true"] tab[visuallyselected] > stack::after {
+    /* Box */
     content: "" !important;
-    display: inline !important;
+    display: block !important;
     position: absolute !important;
-    bottom: -1px !important;
-    width: 9px !important;
-    height: 7px !important;
-    pointer-events: none !important;
-    background-color: transparent !important;
-    transition: .2s var(--ease-basic) !important;
+    z-index: 1 !important;
+
+    /* Shape */
+    width:  var(--tab-corner-rounding) !important;
+    height: 100% !important;
+
+    /* Color */
+    fill:   var(--toolbar-bgcolor) !important;
+    stroke: var(--tabs-border-color, transparent) !important;
+    -moz-context-properties: fill, stroke !important;
+
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgc3Ryb2tlLXdpZHRoPSIxLjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgdmlld0JveD0iMCAwIDE3IDE2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8cGF0aCBkPSJNMCAxNyBMMCAxNiBBMTYgMTYgMCAwIDAgMTYgMCBMIDE4IDAgTCAxOCAxNyBaIiBmaWxsPSJjb250ZXh0LWZpbGwiPjwvcGF0aD4NCiAgPHBhdGggZD0iTTAgMTYgQTE2IDE2IDAgMCAwIDE2IDAiIHN0cm9rZT0iY29udGV4dC1zdHJva2UiIGZpbGw9InRyYW5zcGFyZW50Ij48L3BhdGg+DQo8L3N2Zz4");
+    background-size:   var(--tab-corner-rounding);
+    background-repeat: no-repeat;
+    background-position-y: bottom;
   }
 
-  tab[visuallyselected] .tab-background::before {
-    border-bottom-right-radius: var(--tab-corner-rounding) !important;
-    left: 0px !important;
-    transform: translateX(calc(-1 * var(--tab-corner-rounding))) !important;
-    box-shadow: 4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+  :root[lwtheme="true"] tab[visuallyselected] > stack::before {
+    left: calc(var(--tab-corner-padding) - var(--tab-corner-rounding)) !important;
+    transform: scaleY(var(--uc-tab-vertical-transform)) !important;
   }
-
-  tab[visuallyselected] .tab-background::after {
-    border-bottom-left-radius: var(--tab-corner-rounding) !important;
-    right: 0px !important;
-    transform: translateX(var(--tab-corner-rounding)) !important;
-    box-shadow: -4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+  :root[lwtheme="true"] tab[visuallyselected] > stack::after {
+    left:  auto;
+    right: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+    transform: scaleX(-1) !important;
   }
 
   /** Unselected Tab - Divide line ********************************************/
