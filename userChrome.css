@@ -172,6 +172,11 @@
     opacity: 0 !important;
   }
 
+  /* Latest Tab & New tab margin */
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
+    margin-inline-end: 8px !important;
+  }
+
   /** Clipped tabs - Letters cleary *******************************************/
   #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned]) {
     padding-inline-start: 8px !important;
