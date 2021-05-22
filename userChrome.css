@@ -271,7 +271,7 @@
 
   /** Pinned Tab - Replace Favicon to Close Button at Selected ****************/
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
-    display: -moz-box;
+    display: -moz-box !important;
     -moz-box-ordinal-group: 0 !important;
     transform: translateX(-1px);
 
@@ -289,11 +289,11 @@
   }
 
   .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
-    display: none;
+    display: none !important;
   }
 
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
-    width: 8.5px;
+    width: 8.5px !important;
   }
 
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-content {
@@ -302,11 +302,11 @@
 
   /* Sound Tab - Don't move overlay */
   .tabbrowser-tab[pinned][busy] .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
-    transform: translateX(.5px) translateY(-2px);
+    transform: translateX(.5px) translateY(-2px) !important;
   }
 
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-overlay {
-    transform: translateX(-9px) translateY(-2px);
+    transform: translateX(-9px) translateY(-2px) !important;
     left: 0 !important;
   }
 
