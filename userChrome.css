@@ -233,6 +233,22 @@
     padding: 2px 0 !important;
   }
 
+  /* Busy - Show */
+  .tab-throbber[busy], .tab-icon-pending[busy] {
+    opacity: 1 !important;
+  }
+
+  /* Busy - Overlay Position */
+  .tabbrowser-tab:not([pinned])[busy] .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
+    transform: translateX(-.5px) translateY(-2.5px);
+  }
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing],[crashed])[busy] {
+    top: -3.5px !important;
+    inset-inline-end: -9px !important;
+    margin-inline-end: 9.5px !important;
+    padding: 1.5px !important;
+  }
+
   /* Hover */
   .tab-icon-overlay:not([crashed])[soundplaying]:hover,
   .tab-icon-overlay:not([crashed])[muted]:hover,
