@@ -111,6 +111,18 @@
     height: calc(var(--tab-min-height) - var(--tabs-navbar-shadow-size) - 2px); /* Compact: 28px, Normal: 33px, Touch: 38px */
   }
 
+  /* Pinned Tab - Titlechanged Indicator position fix */
+  :root:not([uidensity=touch]) .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  :root:not([uidensity=touch]) .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
+    background-position: center bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
+  }
+  :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  :root[uidensity=compact] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
+    background-position: center bottom calc(.5px + var(--tabs-navbar-shadow-size)) !important;
+  }
+
   /** Tab Bar - Connect to window *********************************************/
   .tab-background {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
