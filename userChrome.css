@@ -160,7 +160,7 @@
     stroke: var(--tabs-border-color, transparent) !important;
     -moz-context-properties: fill, stroke !important;
 
-    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgc3Ryb2tlLXdpZHRoPSIxLjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgdmlld0JveD0iMCAwIDE3IDE2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8cGF0aCBkPSJNMCAxNyBMMCAxNiBBMTYgMTYgMCAwIDAgMTYgMCBMIDE4IDAgTCAxOCAxNyBaIiBmaWxsPSJjb250ZXh0LWZpbGwiPjwvcGF0aD4NCiAgPHBhdGggZD0iTTAgMTYgQTE2IDE2IDAgMCAwIDE2IDAiIHN0cm9rZT0iY29udGV4dC1zdHJva2UiIGZpbGw9InRyYW5zcGFyZW50Ij48L3BhdGg+DQo8L3N2Zz4");
+    background-image: url(./icons/tab-bottom-corner.svg);
     background-size:   var(--tab-corner-rounding);
     background-repeat: no-repeat;
     background-position-y: bottom;
@@ -168,7 +168,6 @@
 
   :root[lwtheme="true"] tab[visuallyselected] > stack::before {
     left: calc(var(--tab-corner-padding) - var(--tab-corner-rounding)) !important;
-    transform: scaleY(var(--uc-tab-vertical-transform)) !important;
   }
   :root[lwtheme="true"] tab[visuallyselected] > stack::after {
     left:  auto;
