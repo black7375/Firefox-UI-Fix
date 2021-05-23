@@ -60,11 +60,17 @@
     margin-inline-start: 0 !important;
   }
 
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up  ),
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
-    /* Original: 4px */
-    padding-left:  1px !important;
-    padding-right: 1px !important;
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
+    --scrollbtn-inner-padding: 1px;
+    --scrollbtn-outer-padding: 3px;
+  }
+  #scrollbutton-up {
+    padding-left:  var(--scrollbtn-inner-padding, 4px) !important; /* Original: 4px */
+    padding-right: var(--scrollbtn-outer-padding, 4px) !important;
+  }
+  #scrollbutton-down {
+    padding-left:  var(--scrollbtn-outer-padding, 4px) !important; /* Original: 4px */
+    padding-right: var(--scrollbtn-inner-padding, 4px) !important;
   }
 
   :root:not([uidensity=touch]) #new-tab-button, #alltabs-button {
@@ -100,11 +106,15 @@
     max-height: unset;
   }
 
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-up  ),
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
+    --scrollbtn-vertical-padding: 3px;
+  }
+  #scrollbutton-up,
+  #scrollbutton-down {
     /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
-    padding-top:    3px !important;
-    padding-bottom: 3px !important;
+    /* https://github.com/mozilla/gecko-dev/blob/71b1259afd1cdaf41871ae675c2dadb967ea5b34/browser/themes/shared/toolbarbuttons.inc.css#L142 */
+    padding-top:    var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
+    padding-bottom: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
   }
 
   :root[tabsintitlebar]:not([uidensity=compact]) #toolbar-menubar[autohide="true"] {
