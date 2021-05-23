@@ -147,6 +147,44 @@
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
+  /** Selected Tab - Bottom Rounded Corner ************************************/
+  #tabbrowser-tabs {
+    --tab-corner-rounding: 5px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
+    --tab-corner-padding:  1px;
+  }
+
+  :root[lwtheme="true"] tab[visuallyselected] > stack::before,
+  :root[lwtheme="true"] tab[visuallyselected] > stack::after {
+    /* Box */
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    z-index: 1 !important;
+
+    /* Shape */
+    width:  var(--tab-corner-rounding) !important;
+    height: 100% !important;
+
+    /* Color */
+    fill:   var(--toolbar-bgcolor) !important;
+    stroke: var(--tabs-border-color, transparent) !important;
+    -moz-context-properties: fill, stroke !important;
+
+    background-image: url(./icons/tab-bottom-corner.svg);
+    background-size:   var(--tab-corner-rounding);
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+  }
+
+  :root[lwtheme="true"] tab[visuallyselected] > stack::before {
+    left: calc(var(--tab-corner-padding) - var(--tab-corner-rounding)) !important;
+  }
+  :root[lwtheme="true"] tab[visuallyselected] > stack::after {
+    left:  auto;
+    right: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+    transform: scaleX(-1) !important;
+  }
+
   /** Unselected Tab - Divide line ********************************************/
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
