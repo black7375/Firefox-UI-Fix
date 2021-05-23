@@ -374,6 +374,12 @@
     border-bottom: none;
   }
 
+  /* Pinned Tab - Titlechanged Indicator override */
+  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]) .tab-icon-image,
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) .tab-icon-image {
+    border-bottom: 4px dotted var(--identity-icon-color) !important;
+  }
+
   /** URL Bar - Reduce Padding ************************************************/
   :root:not([uidensity=touch]) #urlbar-container, #search-container {
     padding-block: 2px; /* Original: 4px */
