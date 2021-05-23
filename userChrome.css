@@ -280,24 +280,28 @@
     height: 24px !important;
     padding: 7px !important;
   }
-
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-content {
-    padding-inline: 7.5px !important; /* Original: 10px */
-  }
-  .tabbrowser-tab[pinned][visuallyselected][busy] .tab-content {
-    padding-inline-end: 9.5px !important;
-  }
-
   .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
     display: none !important;
   }
 
+  /* Left Padding - Assume the icon size is 17px */
+  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-content {
+    padding-inline: 7.5px !important; /* Original: 10px */
+  }
+
+  /* Right Padding - Assume the icon size is 17px */
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
     width: 8.5px !important;
   }
-
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-content {
     padding-inline-end: 0px !important;
+  }
+
+  .tabbrowser-tab[pinned][visuallyselected][busy] .tab-content {
+    padding-inline-end: 9.5px !important;
+  }
+  .tabbrowser-tab[pinned][busy] .tab-content {
+    padding-inline: 10.5px !important;
   }
 
   /* Sound Tab - Don't move overlay */
@@ -308,10 +312,6 @@
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-overlay {
     transform: translateX(-9px) translateY(-2px) !important;
     left: 0 !important;
-  }
-
-  .tabbrowser-tab[pinned][busy] .tab-content {
-    padding-inline: 10.5px !important; /* Assume the icon size is 17px */
   }
 
   /** Container Tab - Color line at icon's bottom *****************************/
