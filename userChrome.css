@@ -215,7 +215,7 @@
     /* Bar Color */
     opacity: var(--tab-separator-opacity);
     transition: opacity .2s var(--ease-basic) !important;
-    background-color: var(--toolbarseparator-color) !important;
+    background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
   }
 
   .tab-background::before {
