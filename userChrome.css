@@ -472,6 +472,23 @@
     background-image: var(--dotted-identity-image), var(--dotted-identity-image), var(--dotted-identity-image) !important;
     background-position-x: 32%, 50%, 70% !important;
   }
+  :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  :root[uidensity=compact] .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
+    var(--dotted-identity-image) !important;
+    background-position-x: 30%, 50%, 70% !important;
+  }
+
+  /* Pinned Tab - Titlechanged & soundplaying */
+  .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    background-position-x: calc(32% - 1px), calc(50% - 1px), calc(70% - 1px) !important;
+  }
+  :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  :root[uidensity=compact] .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    var(--dotted-identity-image) !important;
+    background-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px) !important;
+  }
 
   /** Crashed Tab - Don't show Favicons ***************************************/
   .tab-icon-image[crashed] {
