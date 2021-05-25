@@ -159,6 +159,11 @@
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
 
+  /* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
+  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
+    z-index: 0 !important;
+  }
+
   /** Selected Tab - Bottom Rounded Corner ************************************/
   #tabbrowser-tabs {
     --tab-corner-rounding: 5px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
