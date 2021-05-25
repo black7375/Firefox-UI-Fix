@@ -465,6 +465,12 @@
     border-bottom: 4px dotted var(--identity-icon-color) !important;
   }
 
+  .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
+    background-image: radial-gradient(circle, var(--identity-icon-color), var(--identity-icon-color) 2px, transparent 2px);
+  }
+
   /** Crashed Tab - Don't show Favicons ***************************************/
   .tab-icon-image[crashed] {
     display: none !important;
