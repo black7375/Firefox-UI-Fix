@@ -125,12 +125,12 @@
   :root:not([uidensity=touch]) .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
   :root:not([uidensity=touch]) .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-    background-position: center bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
+    background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
   }
   :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
   :root[uidensity=compact] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-    background-position: center bottom calc(.5px + var(--tabs-navbar-shadow-size)) !important;
+    background-position-y: bottom calc(.5px + var(--tabs-navbar-shadow-size)) !important;
   }
 
   /** Tab Bar - Connect to window *********************************************/
@@ -462,13 +462,15 @@
   /* Pinned Tab - Titlechanged Indicator override */
   .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]) .tab-icon-image,
   .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) .tab-icon-image {
-    border-bottom: 4px dotted var(--identity-icon-color) !important;
+    border-bottom: 2px solid transparent !important;
   }
 
   .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
   .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
-    background-image: radial-gradient(circle, var(--identity-icon-color), var(--identity-icon-color) 2px, transparent 2px);
+    --dotted-identity-image: radial-gradient(circle, var(--identity-icon-color), var(--identity-icon-color) 2px, transparent 2px);
+    background-image: var(--dotted-identity-image), var(--dotted-identity-image), var(--dotted-identity-image) !important;
+    background-position-x: 32%, 50%, 70% !important;
   }
 
   /** Crashed Tab - Don't show Favicons ***************************************/
