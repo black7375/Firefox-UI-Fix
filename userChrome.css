@@ -157,11 +157,11 @@
 
 
   /* Multi Selected Color */
-  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst {
+  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst.proton:not([bursting]) {
     background: color-mix(in srgb, currentColor 65%, transparent);
     opacity: .3;
   }
-  #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst {
+  #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst.proton:not([bursting]) {
     opacity: .15;
   }
 
