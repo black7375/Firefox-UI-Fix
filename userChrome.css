@@ -1,7 +1,7 @@
 @media (-moz-proton) {
   /** Darkmode - Color lighter ************************************************/
   :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"] {
-    --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
+    --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
   }
 
   /** Root - Reduce Padding ***************************************************/
@@ -150,7 +150,19 @@
 
   /** Selected Tab - Color like toolbar ***************************************/
   #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
+    /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
+ */
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+  }
+
+
+  /* Multi Selected Color */
+  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst {
+    background: color-mix(in srgb, currentColor 65%, transparent);
+    opacity: .3;
+  }
+  #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst {
+    opacity: .15;
   }
 
   /** Selected Tab - Box Shadow ***********************************************/
