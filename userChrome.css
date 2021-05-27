@@ -559,12 +559,12 @@
   /** Panel - Icons ***********************************************************/
   /* Padding */
   :root {
-    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px);
-    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px);
+    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
   }
 
   .subviewbutton > .toolbarbutton-text {
-    padding-inline-start: var(--arrowpanel-menuicon-padding);
+    padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
   }
   #panelMenu_bookmarksMenu .subviewbutton[disabled=true] .toolbarbutton-text,
   #appMenu_historyMenu     .subviewbutton[disabled=true] .toolbarbutton-text {
@@ -576,13 +576,13 @@
 
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before {
-    display: -moz-inline-box;
+    display: -moz-inline-box !important;
     margin-inline-end: var(--arrowpanel-menuicon-padding);
-    width:  16px;
-    height: 16px;
+    width:  16px !important;
+    height: 16px !important;
   }
   #appMenu-proton-update-banner {
-    margin-bottom: 2px;
+    margin-bottom: 2px !important;
   }
   #appMenu-proton-update-banner::before {
     margin-inline-start: var(--arrowpanel-menuitem-padding) !important;
@@ -598,9 +598,9 @@
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before,
   .subviewbutton > image {
-    fill: currentColor;
-    fill-opacity: var(--toolbarbutton-icon-fill-opacity);
-    -moz-context-properties: fill;
+    fill: currentColor !important;
+    fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
+    -moz-context-properties: fill !important;
   }
 
   /* Panel - Main */
@@ -814,7 +814,7 @@
     list-style-image: url(chrome://devtools/skin/images/debugging-addons.svg);
   }
   #appmenu-developer-tools-view .subviewbutton:last-child {
-    margin-bottom: 6px;
+    margin-bottom: 6px !important;
   }
 
   /* Panel - Help */
