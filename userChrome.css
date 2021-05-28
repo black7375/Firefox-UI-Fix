@@ -96,17 +96,30 @@
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
-  .toolbar-items, .tabbrowser-tab {
-    max-height: 38px;
+  /* Toolbar Height */
+  #TabsToolbar * {
+    max-height: 34px !important;
   }
-  :root[uidensity=compact] .toolbar-items, .tabbrowser-tab {
-    max-height: 36px;
+  :root[uidensity=compact] #TabsToolbar * {
+    max-height: 30px !important;
   }
-  :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
-    max-height: unset;
+  :root[uidensity=touch] #TabsToolbar * {
+    max-height: 42px !important;
   }
 
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
+  /* Top Margin */
+  .tab-background, .tab-content {
+    margin-top: 0 !important;
+  }
+
+  /* New Tab Icon - Size Fix */
+  root:not([uidensity=rootuidensitytouch]) #tabs-newtab-button > .toolbarbutton-icon  {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  /* Scroll Button - Size Fix */
+  :root #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
   }
   #scrollbutton-up,
