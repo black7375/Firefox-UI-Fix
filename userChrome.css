@@ -561,7 +561,10 @@
   :root {
     --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
     --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
-    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 2px) !important;
+
+    /* Blank Menu Left Padding */
+    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px) !important;
+    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px) !important;
   }
 
   .subviewbutton > .toolbarbutton-text {
@@ -628,10 +631,14 @@
   #appMenu-extensions-themes-button,
   #appMenu-save-file-button2,         /* Seperate */
   #appMenu-find-button2,
-  #appMenu-zoom-controls2,
   #appMenu-more-button2,              /* Seperate */
   #appMenu-help-button2,
   #appMenu-quit-button2               /* Seperate */ {
+    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+    padding-top: var(--arrowpanel-menuitemblank-padding) !important;
+    padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+  }
+  #appMenu-zoom-controls2 {
     padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
   }
 
