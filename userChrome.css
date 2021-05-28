@@ -178,6 +178,36 @@
     opacity: .15;
   }
 
+  /** Selected Tab - Color like toolbar ***************************************/
+  .tab-context-line {
+    display: -moz-inline-box !important;
+    height: 2px !important;
+    border-radius: var(--tab-border-radius, 4px) var(--tab-border-radius, 4px) 0 0 !important;
+  }
+
+  .tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
+    background-color: rgb(10, 132, 255) !important; /* Photon like color
+                                                     Default: var(--tab-line-color, rgb(10, 132, 255))
+                                                     Automatic: color-mix(in srgb, var(--button-primary-bgcolor) 80%, transparent) */
+  }
+
+  .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
+    background-color: rgba(0,0,0,.2) !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #TabsToolbar[brighttext] .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
+    background-color: rgba(255,255,255,.2) !important;
+  }
+
+  .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
+  }
+  .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
+    transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
+  }
+
   /** Selected Tab - Box Shadow ***********************************************/
   #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"] > .tab-stack > .tab-background:-moz-lwtheme {
     /* Origina: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
@@ -446,10 +476,6 @@
   }
 
   /** Container Tab - Color line at icon's bottom *****************************/
-  .tab-context-line {
-    display: none;
-  }
-
   .tab-icon-image {
     box-sizing: content-box;
     padding: 3px 0;
