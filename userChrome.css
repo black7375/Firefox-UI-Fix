@@ -262,43 +262,30 @@
   }
 
   /** Unselected Tab - Divide line ********************************************/
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab] .tab-background::after {
-    /* Box Model */
-    content:  "";
-    display:  block;
-    position: absolute;
-    top:   50%;
-
-    /* Bar shape */
-    width:     1px;
-    height:   20px;
-    overflow: hidden;
-
-    /* Bar Color */
-    opacity: var(--tab-separator-opacity);
-    transition: opacity .2s var(--ease-basic) !important;
-    background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
+  .tabbrowser-tab::after, #tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[visuallyselected]::before {
+    content: "";
+    display: block;
+  }
+  .tabbrowser-tab::after, .tabbrowser-tab::before {
+    border-left: 1px solid var(--lwt-background-tab-separator-color, currentColor) !important;
+    margin-block: 5px 4px !important;
+    opacity: 0.3 !important;
+  }
+  .tabbrowser-tab::before {
+    margin-inline-start: -1px !important;
   }
 
-  .tab-background::before {
-    transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
-  }
-  .tabbrowser-tab[last-visible-tab] .tab-background::after {
-    right: 0;
-    transform: translateX(2.5px) translateY(calc(-50% + 1px)) !important;
+  :root[tabsintitlebar]:not([extradragspace]) #toolbar-menubar[autohide="true"] + #TabsToolbar .tabbrowser-tab::after, .tabbrowser-tab:hover::after, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[beforehovered]::after, .tabbrowser-tab[multiselected]::after, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[before-multiselected]::after {
+    margin-top: var(--tabs-top-border-width) !important;
+    margin-bottom: 0 !important;
   }
 
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
-  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
-  #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
-    opacity: 0 !important;
-  }
-
-  /* Latest Tab & New tab margin */
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
-    margin-inline-end: 8px !important;
+  /* Selected - Hide */
+  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[beforeselected-visible]::after, #tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[visuallyselected]::before, .tabbrowser-tab[visuallyselected]::after {
+    border-color: var(--tabs-border-color) !important;
+    margin-top: 0 !important;
+    margin-bottom: var(--tabs-navbar-shadow-size) !important;
+    opacity: 1 !imporant;
   }
 
   /** Clipped tabs - Letters cleary *******************************************/
