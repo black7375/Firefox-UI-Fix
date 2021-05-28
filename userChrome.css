@@ -113,21 +113,21 @@
   }
 
   /* New Tab Icon - Size Fix */
-  root:not([uidensity=rootuidensitytouch]) #tabs-newtab-button > .toolbarbutton-icon  {
+  :root:not([uidensity=rootuidensitytouch]) #tabs-newtab-button > .toolbarbutton-icon  {
     padding-top: 8px !important;
     padding-bottom: 8px !important;
   }
 
   /* Scroll Button - Size Fix */
-  :root #tabbrowser-arrowscrollbox {
+  #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
   }
   #scrollbutton-up,
   #scrollbutton-down {
     /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
     /* https://github.com/mozilla/gecko-dev/blob/71b1259afd1cdaf41871ae675c2dadb967ea5b34/browser/themes/shared/toolbarbuttons.inc.css#L142 */
-    padding-top:    var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
-    padding-bottom: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
+    padding-top:    var(--scrollbtn-vertical-padding) !important;
+    padding-bottom: var(--scrollbtn-vertical-padding) !important;
   }
 
   :root[tabsintitlebar]:not([uidensity=compact]) #toolbar-menubar[autohide="true"] {
