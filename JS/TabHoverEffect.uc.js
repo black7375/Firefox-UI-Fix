@@ -6,6 +6,15 @@
 // It's very experimental
 // Side effects such as performance may occur, and even if a problem occurs, we do not support it.
 
+// Todo:
+// - Slim: Remove leaving only the required code
+// - Load Optimize: Lazy initialization, asynchronous application
+// - Avoid redefinition: _handleNewTab
+
+// Done:
+// - Refactoring: Modulize, Reduce offset
+// - Single Element: Add a function that applies only to one element
+
 // -- Reveal Effect Library ----------------------------------------------------
 /*
   Reveal Effect
@@ -29,82 +38,192 @@
   SOFTWARE.
 */
 
+// TS Version
+// https://gist.github.com/black7375/381950352a76f0336f2abe9eb6b1fff1
+
+// ** Postion ******************************************************************
 function getOffset(element) {
-  return {
-    top: element.el.getBoundingClientRect().top,
-    left: element.el.getBoundingClientRect().left
-  };
+  const bounding = element.getBoundingClientRect();
+
+  return ({
+    top: bounding.top,
+    left: bounding.left
+  });
 }
 
-function drawEffect(
-  element,
-  x,
-  y,
-  lightColor,
-  gradientSize,
-  cssLightEffect = null
-) {
-  let lightBg;
+// with Mouse
+function getXY(element, e) {
+  const offset = getOffset(element);
+  const x = e.pageX - offset.left - window.scrollX;
+  const y = e.pageY - offset.top  - window.scrollY;
 
-  if (cssLightEffect === null) {
-    lightBg = `radial-gradient(circle ${gradientSize}px at ${x}px ${y}px, ${lightColor}, rgba(255,255,255,0))`;
-  } else {
-    lightBg = cssLightEffect;
+  return [x, y];
+}
+
+// for Container
+function intersectRect(r1, r2) {
+  return !(
+    r2.left   > r1.right  ||
+    r2.right  < r1.left   ||
+    r2.top    > r1.bottom ||
+    r2.bottom < r1.top
+  );
+}
+function isIntersected(element, cursor_x, cursor_y, gradientSize) {
+  const cursor_area = {
+    left:   cursor_x - gradientSize,
+    right:  cursor_x + gradientSize,
+    top:    cursor_y - gradientSize,
+    bottom: cursor_y + gradientSize
+  };
+
+  const bounding = element.getBoundingClientRect();
+  const el_area = {
+    left:   bounding.left,
+    right:  bounding.right,
+    top:    bounding.top,
+    bottom: bounding.bottom
+  };
+
+  const result = intersectRect(cursor_area, el_area);
+  return result;
+}
+
+// ** CSS Effect ***************************************************************
+function lightHoverEffect(gradientSize, x, y, lightColor) {
+  return `radial-gradient(circle ${gradientSize}px at ${x}px ${y}px, ${lightColor}, rgba(255,255,255,0))`;
+}
+
+function lightClickEffect(gradientSize, x, y, lightColor) {
+  return `${lightHoverEffect(gradientSize, x, y, lightColor)}, radial-gradient(circle ${70}px at ${x}px ${y}px, rgba(255,255,255,0), ${lightColor}, rgba(255,255,255,0), rgba(255,255,255,0))`;
+}
+
+// ** Basic Draw Effect ********************************************************
+function drawEffect(element, x, y, lightColor, gradientSize, cssLightEffect = null) {
+  const lightBg = cssLightEffect === null
+        ? lightHoverEffect(gradientSize, x, y, lightColor)
+        : cssLightEffect;
+  element.style.backgroundImage = lightBg;
+}
+
+// with Mouse
+function drawHoverEffect(element, lightColor, gradientSize, e) {
+  const [x, y] = getXY(element, e);
+  drawEffect(element, x, y, lightColor, gradientSize);
+}
+
+function drawClickEffect(element, lightColor, gradientSize, e) {
+  const [x, y] = getXY(element, e);
+
+  const cssLightEffect = lightClickEffect(gradientSize, x, y, lightColor);
+  drawEffect(element, x, y, lightColor, gradientSize, cssLightEffect);
+}
+
+// ** SideEffect Draw Effect ***************************************************
+function clearEffect(resource, is_pressed) {
+  is_pressed[0] = false;
+  resource.el.style.backgroundImage = resource.oriBg;
+}
+
+function drawContainerHoverEffect(resource, lightColor, gradientSize, is_pressed, e) {
+  const element = resource.el;
+
+  if (isIntersected(element, e.clientX, e.clientY, gradientSize)) {
+    drawHoverEffect(element, lightColor, gradientSize, e);
   }
+  else {
+    clearEffect(resource, is_pressed);
+  }
+}
 
-  element.el.style.backgroundImage = lightBg;
+// Wrapper
+function enableBackgroundEffects(resource, lightColor, gradientSize, clickEffect, is_pressed) {
+  const element = resource.el;
+  element.addEventListener("mousemove", (e) => {
+    if (clickEffect && is_pressed[0]) {
+      drawClickEffect(element, lightColor, gradientSize, e);
+    }
+    else {
+      drawHoverEffect(element, lightColor, gradientSize, e);
+    }
+  });
+
+  element.addEventListener("mouseleave", (e) => {
+    clearEffect(resource, is_pressed);
+  });
+}
+
+function enableBorderEffects(resource, childrenBorders, options, is_pressed) {
+  const element = resource.el;
+  const childrenBorderL = childrenBorders.length;
+
+  element.addEventListener("mousemove", (e) => {
+    for (let i = 0; i < childrenBorderL; i++) {
+      drawContainerHoverEffect(childrenBorders[i], options.lightColor, options.gradientSize, is_pressed, e);
+    }
+  });
+
+  element.addEventListener("mouseleave", (e) => {
+    for (let i = 0; i < childrenBorderL; i++) {
+      clearEffect(childrenBorders[i], is_pressed);
+    }
+  });
+}
+
+function enableClickEffects(resource, lightColor, gradientSize, is_pressed) {
+  const element = resource.el;
+  element.addEventListener("mousedown", (e) => {
+    is_pressed[0] = true;
+    drawClickEffect(element, lightColor, gradientSize, e);
+  });
+
+  element.addEventListener("mouseup", (e) => {
+    is_pressed[0] = false;
+    drawHoverEffect(element, lightColor, gradientSize, e);
+  });
+}
+
+// Interface
+function enableNormalBackgroundEffetcs(resource, options, is_pressed) {
+  enableBackgroundEffects(resource, options.lightColor, options.gradientSize, options.clickEffect, is_pressed);
+}
+function enableChildrenBackgroundEffetcs(resource, options, is_pressed) {
+  enableBackgroundEffects(resource, options.children.lightColor, options.children.gradientSize, options.clickEffect, is_pressed);
+}
+function enableNormalClickEffects(resource, options, is_pressed) {
+  enableClickEffects(resource, options.lightColor, options.gradientSize, is_pressed);
+}
+function enableChildrenClickEffects(resource, options, is_pressed) {
+  enableClickEffects(resource, options.children.lightColor, options.children.gradientSize, is_pressed);
+}
+
+// ** Element Processing *******************************************************
+function preProcessElement(element) {
+  return ({
+    oriBg: getComputedStyle(element).backgroundImage,
+    el: element
+  });
 }
 
 function preProcessElements(elements) {
-  const res = [];
+  const ressources = [];
+  const elementsL = elements.length;
+  for (let i = 0; i < elementsL; i++) {
+    const element = elements[i];
+    ressources.push(preProcessElement(element));
+  }
 
-  elements.forEach(el => {
-    res.push({
-      oriBg: getComputedStyle(el)["background-image"],
-      el: el
-    });
-  });
-
-  return res;
+  return ressources;
 }
 
-function isIntersected(element, cursor_x, cursor_y, gradientSize) {
-  const cursor_area = {
-    left: cursor_x - gradientSize,
-    right: cursor_x + gradientSize,
-    top: cursor_y - gradientSize,
-    bottom: cursor_y + gradientSize
-  }
-
-  const el_area = {
-    left: element.el.getBoundingClientRect().left,
-    right: element.el.getBoundingClientRect().right,
-    top: element.el.getBoundingClientRect().top,
-    bottom: element.el.getBoundingClientRect().bottom
-  }
-
-  function intersectRect(r1, r2) {
-    return !(
-      r2.left > r1.right ||
-	r2.right < r1.left ||
-	r2.top > r1.bottom ||
-	r2.bottom < r1.top
-    )
-  }
-
-
-  const result = intersectRect(cursor_area, el_area)
-
-  return result
+function preProcessSelector(selector) {
+  return preProcessElements(document.querySelectorAll(selector));
 }
 
-
-
-function applyEffect(selector, options = {}) {
-
-  let is_pressed = false
-
-  let _options = {
+// ** ApplyEffect **************************************************************
+// Option
+function applyEffectOption(userOptions) {
+  const defaultOptions = {
     lightColor: "rgba(255,255,255,0.25)",
     gradientSize: 150,
     clickEffect: false,
@@ -115,156 +234,94 @@ function applyEffect(selector, options = {}) {
       lightColor: "rgba(255,255,255,0.25)",
       gradientSize: 150
     }
+  };
+
+  return Object.assign(defaultOptions, userOptions);
+}
+
+// Children Effect
+function applySingleChildrenEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
+  enableBackgroundEffectsFunc(resource, options, is_pressed);
+  if (options.clickEffect) {
+    enableClickEffectsFunc(resource, options, is_pressed);
   }
-
-  // update options
-  _options = Object.assign(_options, options)
-  const els =  preProcessElements(document.querySelectorAll(selector))
-
-
-
-
-  function clearEffect(element) {
-    is_pressed = false
-    element.el.style.backgroundImage = element.oriBg
+}
+function applyChildrenEffect(resources, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
+  const resourceL = resources.length;
+  for (let i = 0; i < resourceL; i++) {
+    const resource = resources[i];
+    applySingleChildrenEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
   }
+}
 
+// Container Effect
+function applySingleContainerEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
+  // Container
+  const childrenBorders = preProcessSelector(options.children.borderSelector);
+  enableBorderEffects(resource, childrenBorders, options, is_pressed);
 
-  function enableBackgroundEffects(element, lightColor, gradientSize) {
+  // Children
+  const childrens = preProcessSelector(options.children.elementSelector);
+  applyChildrenEffect(childrens, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
+}
+function applyContainerEffect(resources, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
+  const resourceL = resources.length;
 
-    //element background effect --------------------
-    element.el.addEventListener("mousemove", (e) => {
-      let x = e.pageX - getOffset(element).left - window.scrollX
-      let y = e.pageY - getOffset(element).top - window.scrollY
-
-      if (_options.clickEffect && is_pressed) {
-
-	let cssLightEffect = `radial-gradient(circle ${gradientSize}px at ${x}px ${y}px, ${lightColor}, rgba(255,255,255,0)), radial-gradient(circle ${70}px at ${x}px ${y}px, rgba(255,255,255,0), ${lightColor}, rgba(255,255,255,0), rgba(255,255,255,0))`
-
-	drawEffect(element, x, y, lightColor, gradientSize, cssLightEffect)
-      }
-      else {
-	drawEffect(element, x, y, lightColor, gradientSize)
-      }
-    })
-
-
-    element.el.addEventListener("mouseleave", (e) => {
-      clearEffect(element)
-    })
+  for (let i = 0; i < resourceL; i++) {
+    const resource = resources[i];
+    applySingleContainerEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
   }
+}
 
+// Apply Effect
+function applySingleEffect(element, userOptions = {}) {
+  const is_pressed = [false];
+  const options = applyEffectOption(userOptions);
+  const resource = preProcessElement(element);
 
-
-  function enableClickEffects(element, lightColor, gradientSize) {
-    element.el.addEventListener("mousedown", (e) => {
-      is_pressed = true
-      const x = e.pageX - getOffset(element).left - window.scrollX
-      const y = e.pageY - getOffset(element).top - window.scrollY
-
-      const cssLightEffect = `radial-gradient(circle ${gradientSize}px at ${x}px ${y}px, ${lightColor}, rgba(255,255,255,0)), radial-gradient(circle ${70}px at ${x}px ${y}px, rgba(255,255,255,0), ${lightColor}, rgba(255,255,255,0), rgba(255,255,255,0))`
-
-      drawEffect(element, x, y, lightColor, gradientSize, cssLightEffect)
-    })
-
-    element.el.addEventListener("mouseup", (e) => {
-      is_pressed = false
-      const x = e.pageX - getOffset(element).left - window.scrollX
-      const y = e.pageY - getOffset(element).top - window.scrollY
-
-      drawEffect(element, x, y, lightColor, gradientSize)
-    })
+  if (!options.isContainer) {
+    const enableBackgroundEffectsFunc = enableNormalBackgroundEffetcs;
+    const enableClickEffectsFunc      = enableNormalClickEffects;
+    applySingleChildrenEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
   }
-
-
-
-
-  //Children *********************************************
-  if (!_options.isContainer) {
-
-    //element background effect
-    els.forEach(element => {
-      enableBackgroundEffects(element, _options.lightColor, _options.gradientSize)
-
-      //element click effect
-      if (_options.clickEffect) {
-	enableClickEffects(element, _options.lightColor, _options.gradientSize)
-      }
-    })
-
-  }
-  //Container *********************************************
   else {
+    const enableBackgroundEffectsFunc = enableChildrenBackgroundEffetcs;
+    const enableClickEffectsFunc      = enableChildrenClickEffects;
+    applySingleContainerEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
+  }
+}
+function applyEffect(selector, userOptions = {}) {
+  const is_pressed = [false];
+  const options = applyEffectOption(userOptions);
+  const resoures = preProcessSelector(selector);
 
-    els.forEach(element => {
-
-      // get border items list
-      const childrenBorder = _options.isContainer ? preProcessElements(document.querySelectorAll(_options.children.borderSelector)) : []
-
-
-      //Container *********************************************
-      //add border effect
-      element.el.addEventListener("mousemove", (e) => {
-	for (let i = 0; i < childrenBorder.length; i++) {
-	  const x = e.pageX - getOffset(childrenBorder[i]).left - window.scrollX
-	  const y = e.pageY - getOffset(childrenBorder[i]).top - window.scrollY
-
-	  if (isIntersected(childrenBorder[i], e.clientX, e.clientY, _options.gradientSize)) {
-	    drawEffect(childrenBorder[i], x, y, _options.lightColor, _options.gradientSize)
-	  }
-	  else {
-	    clearEffect(childrenBorder[i])
-	  }
-
-	}
-
-      })
-
-      //clear border light effect
-      element.el.addEventListener("mouseleave", (e) => {
-	for (let i = 0; i < childrenBorder.length; i++) {
-	  clearEffect(childrenBorder[i])
-	}
-      })
-
-
-      //Children *********************************************
-      const children =  preProcessElements(element.el.querySelectorAll(_options.children.elementSelector))
-      // console.log(children)
-
-      for (let i = 0; i < children.length; i++) {
-
-	//element background effect
-	enableBackgroundEffects(children[i], _options.children.lightColor, _options.children.gradientSize)
-
-	//element click effect
-	if (_options.clickEffect) {
-	  enableClickEffects(children[i], _options.children.lightColor, _options.children.gradientSize)
-	}
-      }
-
-    })
-
+  if (!options.isContainer) {
+    const enableBackgroundEffectsFunc = enableNormalBackgroundEffetcs;
+    const enableClickEffectsFunc      = enableNormalClickEffects;
+    applyChildrenEffect(resoures, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
+  }
+  else {
+    const enableBackgroundEffectsFunc = enableChildrenBackgroundEffetcs;
+    const enableClickEffectsFunc      = enableChildrenClickEffects;
+    applyContainerEffect(resoures, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
   }
 }
 
 
-// -- Apply Effect -------------------------------------------------------------
-// https://github.com/mozilla/gecko-dev/blob/1465ef37f27584b00b70587d18a3c2f96c9dae78/browser/themes/shared/tabs.inc.css#L841
-applyEffect(".tabbrowser-tab", {
+// -- Hover Effect -------------------------------------------------------------
+const hoverEffectOption = {
   clickEffect: true,
   lightColor: "color-mix(in srgb, currentColor 11%, transparent)",
   gradientSize: 150
-});
+}
+
+// https://github.com/mozilla/gecko-dev/blob/1465ef37f27584b00b70587d18a3c2f96c9dae78/browser/themes/shared/tabs.inc.css#L841
+applyEffect(".tabbrowser-tab", hoverEffectOption);
 
 // Redefine Handler
 // https://github.com/mozilla/gecko-dev/blob/6b099d836c882bc155d2ef285e0ad0ab9f5038f6/browser/base/content/tabbrowser-tabs.js#L1945
 document.querySelector("#tabbrowser-tabs")._handleNewTab = (tab) => {
-  applyEffect(".tabbrowser-tab", {
-    clickEffect: true,
-    lightColor: "color-mix(in srgb, currentColor 11%, transparent)",
-    gradientSize: 150
-  });
+  applySingleEffect(tab, hoverEffectOption);
 
   if (tab.container != this) {
     return;
