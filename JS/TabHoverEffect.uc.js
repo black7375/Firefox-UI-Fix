@@ -14,6 +14,7 @@
 // Done:
 // - Refactoring: Modulize, Reduce offset
 // - Single Element: Add a function that applies only to one element
+// - Using Browser API at Newtab: Avoid Redefine
 
 // -- Reveal Effect Library ----------------------------------------------------
 /*
@@ -315,44 +316,11 @@ const hoverEffectOption = {
   gradientSize: 150
 }
 
+// Init Tab
 // https://github.com/mozilla/gecko-dev/blob/1465ef37f27584b00b70587d18a3c2f96c9dae78/browser/themes/shared/tabs.inc.css#L841
 applyEffect(".tabbrowser-tab", hoverEffectOption);
 
-// Redefine Handler
-// https://github.com/mozilla/gecko-dev/blob/6b099d836c882bc155d2ef285e0ad0ab9f5038f6/browser/base/content/tabbrowser-tabs.js#L1945
-document.querySelector("#tabbrowser-tabs")._handleNewTab = (tab) => {
-  applySingleEffect(tab, hoverEffectOption);
-
-  if (tab.container != this) {
-    return;
-  }
-  console.log("newtab");
-  tab._fullyOpen = true;
-  gBrowser.tabAnimationsInProgress--;
-
-  this._updateCloseButtons();
-
-  if (tab.getAttribute("selected") == "true") {
-    this._handleTabSelect();
-  } else if (!tab.hasAttribute("skipbackgroundnotify")) {
-    this._notifyBackgroundTab(tab);
-  }
-
-  // XXXmano: this is a temporary workaround for bug 345399
-  // We need to manually update the scroll buttons disabled state
-  // if a tab was inserted to the overflow area or removed from it
-  // without any scrolling and when the tabbar has already
-  // overflowed.
-  this.arrowScrollbox._updateScrollButtonsDisabledState();
-
-  // If this browser isn't lazy (indicating it's probably created by
-  // session restore), preload the next about:newtab if we don't
-  // already have a preloaded browser.
-  if (tab.linkedPanel) {
-    NewTabPagePreloading.maybeCreatePreloadedBrowser(window);
-  }
-
-  if (UserInteraction.running("browser.tabs.opening", window)) {
-    UserInteraction.finish("browser.tabs.opening", window);
-  };
-}
+// New Tab
+gBrowser.tabContainer.addEventListener("TabOpen", (e) => {
+  applySingleEffect(e.target, hoverEffectOption);
+});
