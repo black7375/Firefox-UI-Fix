@@ -209,6 +209,11 @@
     transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
   }
 
+  /* Container Tab */
+  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+    margin: unset !important;
+  }
+
   /** Selected Tab - Box Shadow ***********************************************/
   #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"] > .tab-stack > .tab-background:-moz-lwtheme {
     /* Origina: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
