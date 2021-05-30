@@ -157,13 +157,6 @@ function applyEffectOption(userOptions) {
     lightColor: "rgba(255,255,255,0.25)",
     gradientSize: 150,
     clickEffect: false,
-    isContainer: false,
-    children: {
-      borderSelector: ".eff-reveal-border",
-      elementSelector: ".eff-reveal",
-      lightColor: "rgba(255,255,255,0.25)",
-      gradientSize: 150
-    }
   };
 
   return Object.assign(defaultOptions, userOptions);
@@ -184,17 +177,22 @@ function applyChildrenEffect(resources, options, is_pressed) {
   }
 }
 
-// Apply Effect
-function applySingleEffect(element, userOptions = {}) {
+function applyEffectInit(userOptions) {
   const is_pressed = [false];
   const options = applyEffectOption(userOptions);
+
+  return [is_pressed, options];
+}
+
+// Apply Effect
+function applySingleEffect(element, userOptions = {}) {
+  const [is_pressed, options] = applyEffectInit(userOptions);
   const resource = preProcessElement(element);
 
   applySingleChildrenEffect(resource, options, is_pressed);
 }
 function applyEffect(selector, userOptions = {}) {
-  const is_pressed = [false];
-  const options = applyEffectOption(userOptions);
+  const [is_pressed, options] = applyEffectInit(userOptions);
   const resources = preProcessSelector(selector);
 
   applyChildrenEffect(resources, options, is_pressed);
