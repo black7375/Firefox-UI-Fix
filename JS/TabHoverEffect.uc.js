@@ -159,21 +159,6 @@ function applyEffectOption(userOptions) {
   return Object.assign(defaultOptions, userOptions);
 }
 
-// Children Effect
-function applySingleChildrenEffect(resource, options, is_pressed) {
-  enableBackgroundEffects(resource, options.lightColor, options.gradientSize, options.clearEffect, is_pressed);
-  if (options.clickEffect) {
-    enableClickEffects(resource, options.lightColor, options.gradientSize, is_pressed);
-  }
-}
-function applyChildrenEffect(resources, options, is_pressed) {
-  const resourceL = resources.length;
-  for (let i = 0; i < resourceL; i++) {
-    const resource = resources[i];
-    applySingleChildrenEffect(resource, options, is_pressed);
-  }
-}
-
 function applyEffectInit(userOptions) {
   const is_pressed = [false];
   const options = applyEffectOption(userOptions);
@@ -181,18 +166,33 @@ function applyEffectInit(userOptions) {
   return [is_pressed, options];
 }
 
+// Apply Effect Core
+function applyElementEffect(resource, options, is_pressed) {
+  enableBackgroundEffects(resource, options.lightColor, options.gradientSize, options.clearEffect, is_pressed);
+  if (options.clickEffect) {
+    enableClickEffects(resource, options.lightColor, options.gradientSize, is_pressed);
+  }
+}
+function applyElementsEffect(resources, options, is_pressed) {
+  const resourceL = resources.length;
+  for (let i = 0; i < resourceL; i++) {
+    const resource = resources[i];
+    applyElementEffect(resource, options, is_pressed);
+  }
+}
+
 // Apply Effect
 function applySingleEffect(element, userOptions = {}) {
   const [is_pressed, options] = applyEffectInit(userOptions);
   const resource = preProcessElement(element);
 
-  applySingleChildrenEffect(resource, options, is_pressed);
+  applyElementEffect(resource, options, is_pressed);
 }
-function applyElementsEffect(elements, userOptions = {}) {
+function applyEffect(elements, userOptions = {}) {
   const [is_pressed, options] = applyEffectInit(userOptions);
   const resources = preProcessElements(elements);
 
-  applyChildrenEffect(resources, options, is_pressed);
+    applyElementsEffect(resources, options, is_pressed);
 }
 
 
@@ -207,7 +207,7 @@ function tabHoverEffect() {
   return new Promise(() => {
     // Init Tab
     // https://github.com/mozilla/gecko-dev/blob/1465ef37f27584b00b70587d18a3c2f96c9dae78/browser/themes/shared/tabs.inc.css#L841
-    applyElementsEffect(gBrowser.tabs, hoverEffectOption);
+    applyEffect(gBrowser.tabs, hoverEffectOption);
 
     // New Tab
     gBrowser.tabContainer.addEventListener("TabOpen", (e) => {
