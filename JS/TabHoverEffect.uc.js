@@ -7,12 +7,12 @@
 // Side effects such as performance may occur, and even if a problem occurs, we do not support it.
 
 // Todo:
-// - Slim: Remove leaving only the required code
 // - Load Optimize: Lazy initialization, asynchronous application
 // - Avoid redefinition: _handleNewTab
 
 // Done:
 // - Refactoring: Modulize, Reduce offset
+// - Slim: Remove leaving only the required code
 // - Single Element: Add a function that applies only to one element
 // - Using Browser API at Newtab: Avoid Redefine
 
@@ -61,35 +61,6 @@ function getXY(element, e) {
   return [x, y];
 }
 
-// for Container
-function intersectRect(r1, r2) {
-  return !(
-    r2.left   > r1.right  ||
-    r2.right  < r1.left   ||
-    r2.top    > r1.bottom ||
-    r2.bottom < r1.top
-  );
-}
-function isIntersected(element, cursor_x, cursor_y, gradientSize) {
-  const cursor_area = {
-    left:   cursor_x - gradientSize,
-    right:  cursor_x + gradientSize,
-    top:    cursor_y - gradientSize,
-    bottom: cursor_y + gradientSize
-  };
-
-  const bounding = element.getBoundingClientRect();
-  const el_area = {
-    left:   bounding.left,
-    right:  bounding.right,
-    top:    bounding.top,
-    bottom: bounding.bottom
-  };
-
-  const result = intersectRect(cursor_area, el_area);
-  return result;
-}
-
 // ** CSS Effect ***************************************************************
 function lightHoverEffect(gradientSize, x, y, lightColor) {
   return `radial-gradient(circle ${gradientSize}px at ${x}px ${y}px, ${lightColor}, rgba(255,255,255,0))`;
@@ -126,17 +97,6 @@ function clearEffect(resource, is_pressed) {
   resource.el.style.backgroundImage = resource.oriBg;
 }
 
-function drawContainerHoverEffect(resource, lightColor, gradientSize, is_pressed, e) {
-  const element = resource.el;
-
-  if (isIntersected(element, e.clientX, e.clientY, gradientSize)) {
-    drawHoverEffect(element, lightColor, gradientSize, e);
-  }
-  else {
-    clearEffect(resource, is_pressed);
-  }
-}
-
 // Wrapper
 function enableBackgroundEffects(resource, lightColor, gradientSize, clickEffect, is_pressed) {
   const element = resource.el;
@@ -154,23 +114,6 @@ function enableBackgroundEffects(resource, lightColor, gradientSize, clickEffect
   });
 }
 
-function enableBorderEffects(resource, childrenBorders, options, is_pressed) {
-  const element = resource.el;
-  const childrenBorderL = childrenBorders.length;
-
-  element.addEventListener("mousemove", (e) => {
-    for (let i = 0; i < childrenBorderL; i++) {
-      drawContainerHoverEffect(childrenBorders[i], options.lightColor, options.gradientSize, is_pressed, e);
-    }
-  });
-
-  element.addEventListener("mouseleave", (e) => {
-    for (let i = 0; i < childrenBorderL; i++) {
-      clearEffect(childrenBorders[i], is_pressed);
-    }
-  });
-}
-
 function enableClickEffects(resource, lightColor, gradientSize, is_pressed) {
   const element = resource.el;
   element.addEventListener("mousedown", (e) => {
@@ -182,20 +125,6 @@ function enableClickEffects(resource, lightColor, gradientSize, is_pressed) {
     is_pressed[0] = false;
     drawHoverEffect(element, lightColor, gradientSize, e);
   });
-}
-
-// Interface
-function enableNormalBackgroundEffetcs(resource, options, is_pressed) {
-  enableBackgroundEffects(resource, options.lightColor, options.gradientSize, options.clickEffect, is_pressed);
-}
-function enableChildrenBackgroundEffetcs(resource, options, is_pressed) {
-  enableBackgroundEffects(resource, options.children.lightColor, options.children.gradientSize, options.clickEffect, is_pressed);
-}
-function enableNormalClickEffects(resource, options, is_pressed) {
-  enableClickEffects(resource, options.lightColor, options.gradientSize, is_pressed);
-}
-function enableChildrenClickEffects(resource, options, is_pressed) {
-  enableClickEffects(resource, options.children.lightColor, options.children.gradientSize, is_pressed);
 }
 
 // ** Element Processing *******************************************************
@@ -241,36 +170,17 @@ function applyEffectOption(userOptions) {
 }
 
 // Children Effect
-function applySingleChildrenEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
-  enableBackgroundEffectsFunc(resource, options, is_pressed);
+function applySingleChildrenEffect(resource, options, is_pressed) {
+  enableBackgroundEffects(resource, options.lightColor, options.gradientSize, options.clearEffect, is_pressed);
   if (options.clickEffect) {
-    enableClickEffectsFunc(resource, options, is_pressed);
+    enableClickEffects(resource, options.lightColor, options.gradientSize, is_pressed);
   }
 }
-function applyChildrenEffect(resources, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
+function applyChildrenEffect(resources, options, is_pressed) {
   const resourceL = resources.length;
   for (let i = 0; i < resourceL; i++) {
     const resource = resources[i];
-    applySingleChildrenEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
-  }
-}
-
-// Container Effect
-function applySingleContainerEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
-  // Container
-  const childrenBorders = preProcessSelector(options.children.borderSelector);
-  enableBorderEffects(resource, childrenBorders, options, is_pressed);
-
-  // Children
-  const childrens = preProcessSelector(options.children.elementSelector);
-  applyChildrenEffect(childrens, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
-}
-function applyContainerEffect(resources, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc) {
-  const resourceL = resources.length;
-
-  for (let i = 0; i < resourceL; i++) {
-    const resource = resources[i];
-    applySingleContainerEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
+    applySingleChildrenEffect(resource, options, is_pressed);
   }
 }
 
@@ -280,32 +190,14 @@ function applySingleEffect(element, userOptions = {}) {
   const options = applyEffectOption(userOptions);
   const resource = preProcessElement(element);
 
-  if (!options.isContainer) {
-    const enableBackgroundEffectsFunc = enableNormalBackgroundEffetcs;
-    const enableClickEffectsFunc      = enableNormalClickEffects;
-    applySingleChildrenEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
-  }
-  else {
-    const enableBackgroundEffectsFunc = enableChildrenBackgroundEffetcs;
-    const enableClickEffectsFunc      = enableChildrenClickEffects;
-    applySingleContainerEffect(resource, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
-  }
+  applySingleChildrenEffect(resource, options, is_pressed);
 }
 function applyEffect(selector, userOptions = {}) {
   const is_pressed = [false];
   const options = applyEffectOption(userOptions);
-  const resoures = preProcessSelector(selector);
+  const resources = preProcessSelector(selector);
 
-  if (!options.isContainer) {
-    const enableBackgroundEffectsFunc = enableNormalBackgroundEffetcs;
-    const enableClickEffectsFunc      = enableNormalClickEffects;
-    applyChildrenEffect(resoures, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
-  }
-  else {
-    const enableBackgroundEffectsFunc = enableChildrenBackgroundEffetcs;
-    const enableClickEffectsFunc      = enableChildrenClickEffects;
-    applyContainerEffect(resoures, options, is_pressed, enableBackgroundEffectsFunc, enableClickEffectsFunc);
-  }
+  applyChildrenEffect(resources, options, is_pressed);
 }
 
 
