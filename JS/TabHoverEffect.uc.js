@@ -3,18 +3,19 @@
 // == / UserScript ==
 
 // -- WARNNING!!!!! ------------------------------------------------------------
-// It's very experimental
-// Side effects such as performance may occur, and even if a problem occurs, we do not support it.
+// It's experimental
+// If a problem occurs, we do not support it.
+// However, we do receive a contribution. Create an issue and then PR.
 
 // Todo:
-// - Load Optimize: Lazy initialization, asynchronous application
-// - Avoid redefinition: _handleNewTab
+// - Name Space
 
 // Done:
 // - Refactoring: Modulize, Reduce offset
 // - Slim: Remove leaving only the required code
 // - Single Element: Add a function that applies only to one element
-// - Using Browser API at Newtab: Avoid Redefine
+// - Using Browser API at Newtab: Avoid Redefine (_handleNewTab)
+// - Load Optimize: Lazy initialization, asynchronous application
 
 // -- Reveal Effect Library ----------------------------------------------------
 /*
@@ -146,10 +147,6 @@ function preProcessElements(elements) {
   return ressources;
 }
 
-function preProcessSelector(selector) {
-  return preProcessElements(document.querySelectorAll(selector));
-}
-
 // ** ApplyEffect **************************************************************
 // Option
 function applyEffectOption(userOptions) {
@@ -191,9 +188,9 @@ function applySingleEffect(element, userOptions = {}) {
 
   applySingleChildrenEffect(resource, options, is_pressed);
 }
-function applyEffect(selector, userOptions = {}) {
+function applyElementsEffect(elements, userOptions = {}) {
   const [is_pressed, options] = applyEffectInit(userOptions);
-  const resources = preProcessSelector(selector);
+  const resources = preProcessElements(elements);
 
   applyChildrenEffect(resources, options, is_pressed);
 }
@@ -206,11 +203,35 @@ const hoverEffectOption = {
   gradientSize: 150
 }
 
-// Init Tab
-// https://github.com/mozilla/gecko-dev/blob/1465ef37f27584b00b70587d18a3c2f96c9dae78/browser/themes/shared/tabs.inc.css#L841
-applyEffect(".tabbrowser-tab", hoverEffectOption);
+function tabHoverEffect() {
+  return new Promise(() => {
+    // Init Tab
+    // https://github.com/mozilla/gecko-dev/blob/1465ef37f27584b00b70587d18a3c2f96c9dae78/browser/themes/shared/tabs.inc.css#L841
+    applyElementsEffect(gBrowser.tabs, hoverEffectOption);
 
-// New Tab
-gBrowser.tabContainer.addEventListener("TabOpen", (e) => {
-  applySingleEffect(e.target, hoverEffectOption);
-});
+    // New Tab
+    gBrowser.tabContainer.addEventListener("TabOpen", (e) => {
+      applySingleEffect(e.target, hoverEffectOption);
+    });
+  });
+}
+
+function tabHoverEffectInit() {
+  // wait for the chrome window to finish starting up. we apply the effect to tabs by modifying class methods of objects like gTabsPanel.allTabsPanel and gBrowser.tabContainer. those modules must load before we can modify them. when startup finishes it sets delayedStartupFinished to true. so if it's already finished by the time this script executes we can just init() immediately.
+  if (gBrowserInit.delayedStartupFinished) {
+     tabHoverEffect();
+  }
+  else {
+      // otherwise, we need to hook up an observer so we can wait and be informed when startup finishes.
+      let delayedListener = (subject, topic) => {
+      // make sure we're not responding to notifications about other windows, since a different instance of this script executes separately inside each chrome window.
+      if (topic == "browser-delayed-startup-finished" && subject == window) {
+        Services.obs.removeObserver(delayedListener, topic); // remove the observer once we're done
+        tabHoverEffect(); // start everything
+      }
+    };
+
+    Services.obs.addObserver(delayedListener, "browser-delayed-startup-finished"); // when the main chrome modules are initialized, the "browser-delayed-startup-finished" notification is sent to observers. so by adding an observer we'll know when this happens and can respond to it.
+  }
+}
+tabHoverEffectInit();
