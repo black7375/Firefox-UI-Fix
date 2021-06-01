@@ -56,8 +56,8 @@
     padding-right: var(--newtab-button-width-padding) !important;
   }
 
-  :root[uidensity=compact] #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
-    margin-inline-start: 0 !important;
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 1px !important;
   }
 
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
