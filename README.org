@@ -1,14 +1,33 @@
-* Lepton(old name: Proton Fix)
-  [[https://wiki.mozilla.org/Firefox/Proton][proton]] is firefox's new design. \\
-  I want to fix some flaws.
+* Lepton (old name: Proton Fix)
+  :PROPERTIES:
+  :TOC:      :include all
+  :END:
 
-  /Disclaimer:/ It works *firefox 89* above!!
-  | *Wiki* | | |
+*Table of Contents*
+:CONTENTS:
+- [[#lepton-old-name-proton-fix][Lepton (old name: Proton Fix)]]
+  - [[#introduce][Introduce]]
+  - [[#how-to-install][How to Install?]]
+  - [[#why-proton][WHY Proton?]]
+  - [[#why-not-proton][WHY Not Proton?]]
+  - [[#padding-comparisons][Padding Comparisons]]
+:END:
+
+
+** Introduce
+  [[https://wiki.mozilla.org/Firefox/Proton][Proton]] is Firefox's new design. \\
+  And [[https://design.firefox.com/photon/][Photon]] is old design(88 or earlier)
+
+  Proton's [[#why-proton][overall feel is good]], but there were a few things I [[#why-not-proton][didn't like]] and wanted to improve. \\
+  That's why this project was born, and Lepton to denote light theme layer.
+
+  /Disclaimer:/ It works *Firefox 89* above!!
+  | *Wiki*      |                               |      |
   | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Screenshots][Screenshots]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution][Compatibility Issues Solution]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Tips][Tips]] |
 
   [[https://user-images.githubusercontent.com/25581533/119774062-20942280-beb1-11eb-80aa-c18dd52f18d7.png]]
 
-  (Fixed proton design)
+  (Lepton's design)
 
   - *Icons*
     - Panel
@@ -57,14 +76,14 @@
   4. Restart
      - =Clear startup cache...= at =about:support=
 
-  If you prefer [[https://design.firefox.com/photon/][Photon]](88 or earlier), see [[https://github.com/black7375/Firefox-UI-Fix/tree/photon-style][photon-style]].
+  If you prefer Photon, see [[https://github.com/black7375/Firefox-UI-Fix/tree/photon-style][Lepton's photon-style]].
 
 ** WHY Proton?
    I think a lot has improved.
 
    [[https://user-images.githubusercontent.com/25581533/119773764-a6639e00-beb0-11eb-8023-498b6293c4b2.png]]
 
-   (pure proton design)
+   (Proton's design)
 
    - Neatly organized menu
    - Icon beautiful enough to remind you of Edge
@@ -77,7 +96,7 @@
 
    [[https://user-images.githubusercontent.com/25581533/119773812-b5e2e700-beb0-11eb-923c-55ae1a8ca249.png]]
 
-   (proton before design)
+   (Photon's design)
 
    - Is it a tab or a button?
    - Where are the menu icons?
@@ -86,8 +105,8 @@
    - :warning: Address bar 3-point menu, screenshot moves to toolbar (can't fix)
 
 ** Padding Comparisons
-  [[https://user-images.githubusercontent.com/25581533/116781608-75d84200-aa73-11eb-9c75-27d8a82d6382.png]]
-  [[https://user-images.githubusercontent.com/25581533/116781611-7a9cf600-aa73-11eb-88d8-dc202474e743.png]]
+[[https://user-images.githubusercontent.com/25581533/120252679-c0b4c780-c274-11eb-83f4-805cb243ff7d.png]]
+[[https://user-images.githubusercontent.com/25581533/120253257-6ae11f00-c276-11eb-93cf-393f9845f30b.png]]
   [[https://user-images.githubusercontent.com/25581533/118402352-1e33fc00-b659-11eb-89fc-3cb38207fe39.png]]
   [[https://user-images.githubusercontent.com/25581533/116781623-930d1080-aa73-11eb-8fc7-14c238b73bfe.png]]
 
