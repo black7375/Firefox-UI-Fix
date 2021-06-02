@@ -563,6 +563,7 @@
     --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
   }
 
+  #downloadsHistory .button-text,
   .subviewbutton > .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
   }
@@ -600,6 +601,7 @@
   /* Icons Color */
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before,
+  #downloadsHistory .button-icon,
   .subviewbutton > image {
     fill: currentColor !important;
     fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
@@ -859,6 +861,11 @@
     list-style-image: url(chrome://browser/skin/history.svg);
   }
   #appMenu-library-downloads-button{
+    list-style-image: url(chrome://browser/skin/downloads/downloads.svg);
+  }
+
+  /* Panel - Downloads */
+  #downloadsHistory {
     list-style-image: url(chrome://browser/skin/downloads/downloads.svg);
   }
 
