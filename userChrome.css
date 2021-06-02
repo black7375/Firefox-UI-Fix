@@ -93,18 +93,25 @@
   }
 
   /** Tab Bar - Reduce Height, Show more contents *****************************/
-  :root:not([uidensity=touch]) #TabsToolbar {
-    --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
+  #TabsToolbar {
+    --toolbarbutton-inner-padding: 8px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
   /* Toolbar Height */
-  #TabsToolbar * {
+  #TabsToolbar
+  .toolbar-items, .tabbrowser-tab,
+  .titlebar-buttonbox-container {
     max-height: 34px !important;
   }
-  :root[uidensity=compact] #TabsToolbar * {
+
+  :root[uidensity=compact] #TabsToolbar,
+  :root[uidensity=compact] .toolbar-items, .tabbrowser-tab
+  :root[uidensity=compact] .titlebar-buttonbox-container {
     max-height: 30px !important;
   }
-  :root[uidensity=touch] #TabsToolbar * {
+  :root[uidensity=touch] #TabsToolbar,
+  :root[uidensity=touch] .toolbar-items, .tabbrowser-tab
+  :root[uidensity=touch] .titlebar-buttonbox-container {
     max-height: 42px !important;
   }
 
@@ -114,7 +121,7 @@
   }
 
   /* New Tab Icon - Size Fix */
-  :root:not([uidensity=rootuidensitytouch]) #tabs-newtab-button > .toolbarbutton-icon  {
+  :root:not([uidensity=touch]) #tabs-newtab-button > .toolbarbutton-icon  {
     padding-top: 8px !important;
     padding-bottom: 8px !important;
   }
