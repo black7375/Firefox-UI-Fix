@@ -38,7 +38,7 @@ if [[ -d "$HOME/.mozilla/firefox/${profiledir}/chrome" ]]; then
   printf "The directory chrome/ exists. Do you want to make a backup of it?(Y/n): "
   read -r
   if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
-    printf"Overwriting...\n"
+    printf "Overwriting...\n"
     rm -rf ~/.mozilla/firefox/"${profiledir}"/chrome
     mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
     cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
