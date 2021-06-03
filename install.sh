@@ -22,8 +22,7 @@ if [ "y" == "$REPLY" ] || [ "Y" == "$REPLY" ]; then
 else
   printf "\nSkipiing.\n"
 fi
-if [[ -f ~/.mozilla/Firefox/${profiledir}/user.js ]]
-then
+if [[ -f ~/.mozilla/Firefox/${profiledir}/user.js ]]; then
     printf "user.js exists. Do you want to make a backup of it?(Y/n): "
     read -r
     if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
@@ -32,16 +31,14 @@ then
       cp user.js ~/.mozilla/Firefox/"${profiledir}"
     else
       printf "Making a backup...\n"
-      if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/backup" ]]
-      then
+      if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/backup" ]]; then
         rm -rf ~/.mozilla/Firefox/"${profiledir}"/backup
       fi
     fi
     else
       cp user.js ~/.mozilla/Firefox/"${profiledir}"
 fi
-if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/chrome" ]]
-then
+if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/chrome" ]]; then
   printf "The directory chrome/ exists. Do you want to make a backup of it?(Y/n): "
   read -r
   if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
@@ -53,8 +50,7 @@ then
     cp -r icon ~/.mozilla/Firefox/"${profiledir}"/chrome
   else
     printf "Making a backup...\n"
-    if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/backup/chrome" ]]
-    then
+    if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/backup/chrome" ]]; then
       rm -rf ~/.mozilla/Firefox/"${profiledir}"/backup/chrome
     fi
     mkdir ~/.mozilla/Firefox/"${profiledir}"/backup/chrome
