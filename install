@@ -15,48 +15,48 @@ else
   echo "Unspecified."
   exit
 fi
-if [[ -f ~/.mozilla/Firefox/${profiledir}/user.js ]]; then
+if [[ -f ~/.mozilla/firefox/${profiledir}/user.js ]]; then
     printf "user.js exists. Do you want to make a backup of it?(Y/n): "
     read -r
     if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
       printf"Overwriting...\n"
-      rm -rf ~/.mozilla/Firefox/"${profiledir}"/user.js
-      cp user.js ~/.mozilla/Firefox/"${profiledir}"/user.js
+      rm -rf ~/.mozilla/firefox/"${profiledir}"/user.js
+      cp user.js ~/.mozilla/firefox/"${profiledir}"/user.js
     else
       printf "Making a backup...\n"
-      if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/backup" ]]; then
-        rm -rf ~/.mozilla/Firefox/"${profiledir}"/backup
+      if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup" ]]; then
+        rm -rf ~/.mozilla/firefox/"${profiledir}"/backup
       fi
     fi
     else
-      cp user.js ~/.mozilla/Firefox/"${profiledir}"/user.js
+      cp user.js ~/.mozilla/firefox/"${profiledir}"/user.js
 fi
-if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/chrome" ]]; then
+if [[ -d "$HOME/.mozilla/firefox/${profiledir}/chrome" ]]; then
   printf "The directory chrome/ exists. Do you want to make a backup of it?(Y/n): "
   read -r
   if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
     printf"Overwriting...\n"
-    rm -rf ~/.mozilla/Firefox/"${profiledir}"/chrome
-    mkdir ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp userChrome.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userChrome.css
-    cp userContent.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userContent.css
-    cp -r icon ~/.mozilla/Firefox/"${profiledir}"/chrome
+    rm -rf ~/.mozilla/firefox/"${profiledir}"/chrome
+    mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
+    cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
+    cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
+    cp -r icon ~/.mozilla/firefox/"${profiledir}"/chrome/
   else
     printf "Making a backup...\n"
-    if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/backup/chrome" ]]; then
-      rm -rf ~/.mozilla/Firefox/"${profiledir}"/backup/chrome
+    if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup/chrome" ]]; then
+      rm -rf ~/.mozilla/firefox/"${profiledir}"/backup/chrome
     fi
-    mkdir ~/.mozilla/Firefox/"${profiledir}"/backup/chrome
-    mv ~/.mozilla/Firefox/"${profiledir}"/chrome ~/.mozilla/Firefox/"${profiledir}"/backup
-    cp userChrome.css ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp userContent.css ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp -r icon ~/.mozilla/Firefox/"${profiledir}"/chrome
+    mkdir ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+    mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+    cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
+    cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
+    cp -r icon ~/.mozilla/firefox/"${profiledir}"/chrome/
   fi
   else
-    mkdir ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp userChrome.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userChrome.css
-    cp userContent.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userContent.css
-    cp -r icon ~/.mozilla/Firefox/"${profiledir}"/chrome/
+    mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
+    cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
+    cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
+    cp -r icon ~/.mozilla/firefox/"${profiledir}"/chrome/
     printf "\nInstallation finished."
 fi
 
