@@ -15,13 +15,6 @@ else
   echo "Unspecified."
   exit
 fi
-printf "Do you want to disable everything being selected when you click at the URL bar?(N/y): "
-read -r
-if [ "y" == "$REPLY" ] || [ "Y" == "$REPLY" ]; then
-  curl -s -L https://raw.githubusercontent.com/7k5x/firefox-selection-fix/master/fixfx-selection.sh | bash
-else
-  printf "\nSkipiing.\n"
-fi
 if [[ -f ~/.mozilla/Firefox/${profiledir}/user.js ]]; then
     printf "user.js exists. Do you want to make a backup of it?(Y/n): "
     read -r
