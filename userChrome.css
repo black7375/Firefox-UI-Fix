@@ -112,7 +112,7 @@
   :root[uidensity=touch] #TabsToolbar,
   :root[uidensity=touch] .toolbar-items, .tabbrowser-tab
   :root[uidensity=touch] .titlebar-buttonbox-container {
-    max-height: 42px !important;
+    max-height: unset !important;
   }
 
   /* Top Margin */
@@ -231,10 +231,11 @@
     box-shadow: 0 0 1px color-mix(in srgb, var(--toolbar-color) 80%, transparent)  !important;
   }
 
-  /* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
-  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
+  /* Overflow Tab - white bottom line fix */
+  #tabbrowser-arrowscrollbox > .tabbrowser-tab {
     z-index: 0 !important;
   }
+
 
   /** Selected Tab - Bottom Rounded Corner ************************************/
   #tabbrowser-tabs {
