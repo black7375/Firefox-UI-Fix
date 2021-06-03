@@ -27,6 +27,8 @@ if [[ -f ~/.mozilla/firefox/${profiledir}/user.js ]]; then
       if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup" ]]; then
         rm -rf ~/.mozilla/firefox/"${profiledir}"/backup
       fi
+      mv ~/.mozilla/firefox/"${profiledir}"/user.js ~/.mozilla/firefox/"${profiledir}"/backup/user.js
+      cp user.js ~/.mozilla/firefox/"${profiledir}"/user.js
     fi
     else
       cp user.js ~/.mozilla/firefox/"${profiledir}"/user.js
@@ -46,7 +48,7 @@ if [[ -d "$HOME/.mozilla/firefox/${profiledir}/chrome" ]]; then
     if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup/chrome" ]]; then
       rm -rf ~/.mozilla/firefox/"${profiledir}"/backup/chrome
     fi
-    mkdir ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+    mkdir ~/.mozilla/firefox/"${profiledir}"/backup
     mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
     cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
     cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
