@@ -19,7 +19,7 @@ if [[ -f ~/.mozilla/firefox/${profiledir}/user.js ]]; then
     printf "user.js exists. Do you want to make a backup of it?(Y/n): "
     read -r
     if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
-      printf"Overwriting...\n"
+      printf "Overwriting...\n"
       rm -rf ~/.mozilla/firefox/"${profiledir}"/user.js
       cp user.js ~/.mozilla/firefox/"${profiledir}"/user.js
     else
@@ -52,12 +52,14 @@ if [[ -d "$HOME/.mozilla/firefox/${profiledir}/chrome" ]]; then
     if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup" ]]; then
       mkdir ~/.mozilla/firefox/"${profiledir}"/backup/chrome
       mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+      mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
       cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
       cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
       cp -r icons ~/.mozilla/firefox/"${profiledir}"/chrome/
     else
       mkdir ~/.mozilla/firefox/"${profiledir}"/backup
       mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+      mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
       cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
       cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
       cp -r icons ~/.mozilla/firefox/"${profiledir}"/chrome/
