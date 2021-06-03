@@ -148,6 +148,22 @@
     margin-bottom: 0px !important;
   }
 
+  /** Tab Bar - Use acccent color *********************************************/
+  @media (-moz-windows-accent-color-in-titlebar) {
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
+      color: -moz-accent-color-foreground;
+      background-color: -moz-accent-color;
+    }
+
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
+      --toolbarbutton-icon-fill: -moz-accent-color-foreground;
+      --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
+      --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+    }
+  }
+
   /** Selected Tab - Color like toolbar ***************************************/
   #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
