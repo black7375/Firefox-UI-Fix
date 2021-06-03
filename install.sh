@@ -5,11 +5,11 @@
 #I think it's better to do a redirection(>>) after backup to merge the contents of the file.
 printf "Are you using ESR, Default, or Dev?(ESR/Default/Dev): "
 read -r
-if [ "ESR" == "$REPLY" ] || [ "$REPLY" == "esr" ]; then
+if [ "$REPLY" == "ESR" ] || [ "$REPLY" == "esr" ]; then
   profiledir="$(grep '.default-esr' ~/.mozilla/firefox/profiles.ini | grep 'Default=' | cut -f 2 -d'=')"
-elif [ "Default" == "$REPLY" ] || [ "default" == "$REPLY" ]; then
+elif [ "$REPLY" == "Default" ] || [ "$REPLY" == "default" ]; then
   profiledir="$(grep '.default-release' ~/.mozilla/firefox/profiles.ini | grep 'Default=' | cut -f 2 -d'=')"
-elif [ "Dev" == "$REPLY" ] || [ "dev" == "$REPLY" ]; then
+elif [ "$REPLY" == "Dev" ] || [ "$REPLY" == "dev" ]; then
   profiledir="$(grep '.dev-edition-default' ~/.mozilla/firefox/profiles.ini | grep 'Default=' | cut -f 2 -d'=')"
 else
   echo "Unspecified."
