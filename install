@@ -49,11 +49,20 @@ if [[ -d "$HOME/.mozilla/firefox/${profiledir}/chrome" ]]; then
     if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup/chrome" ]]; then
       rm -rf ~/.mozilla/firefox/"${profiledir}"/backup/chrome
     fi
-    mkdir ~/.mozilla/firefox/"${profiledir}"/backup
-    mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
-    cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
-    cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
-    cp -r icons ~/.mozilla/firefox/"${profiledir}"/chrome/
+    if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup" ]]; then
+      mkdir ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+      mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+      cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
+      cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
+      cp -r icons ~/.mozilla/firefox/"${profiledir}"/chrome/
+    else
+      mkdir ~/.mozilla/firefox/"${profiledir}"/backup
+      mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+      cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
+      cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
+      cp -r icons ~/.mozilla/firefox/"${profiledir}"/chrome/
+    fi
+    
   fi
   else
     mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
