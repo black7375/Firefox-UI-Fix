@@ -27,6 +27,7 @@ if [[ -f ~/.mozilla/firefox/${profiledir}/user.js ]]; then
       if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup" ]]; then
         rm -rf ~/.mozilla/firefox/"${profiledir}"/backup
       fi
+      mkdir ~/.mozilla/firefox/"${profiledir}"/backup/
       mv ~/.mozilla/firefox/"${profiledir}"/user.js ~/.mozilla/firefox/"${profiledir}"/backup/user.js
       cp user.js ~/.mozilla/firefox/"${profiledir}"/user.js
     fi
