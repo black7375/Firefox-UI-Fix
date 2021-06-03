@@ -52,7 +52,7 @@ if [[ -d "$HOME/.mozilla/firefox/${profiledir}/chrome" ]]; then
     fi
     if [[ -d "$HOME/.mozilla/firefox/${profiledir}/backup" ]]; then
       mkdir ~/.mozilla/firefox/"${profiledir}"/backup/chrome
-      mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+      mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/
       mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
       cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
       cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
@@ -60,7 +60,7 @@ if [[ -d "$HOME/.mozilla/firefox/${profiledir}/chrome" ]]; then
       printf "Installation finished."
     else
       mkdir ~/.mozilla/firefox/"${profiledir}"/backup
-      mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/chrome
+      mv ~/.mozilla/firefox/"${profiledir}"/chrome ~/.mozilla/firefox/"${profiledir}"/backup/
       mkdir ~/.mozilla/firefox/"${profiledir}"/chrome
       cp userChrome.css ~/.mozilla/firefox/"${profiledir}"/chrome/userChrome.css
       cp userContent.css ~/.mozilla/firefox/"${profiledir}"/chrome/userContent.css
