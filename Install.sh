@@ -14,5 +14,54 @@ elif [ "Default" == "$REPLY" ] || [ "default" == "$REPLY" ]; then
 elif [ "Dev" == "$REPLY" ] || [ "dev" == "$REPLY" ]; then
   profiledir="$(grep '.dev-edition-default' ~/.mozilla/firefox/profiles.ini | grep 'Default=' | cut -f 2 -d'=')"
 else
-  echo "What did you say?"
-  break
+  echo "Unspecified."
+  exit
+printf "Do you want to disable everything being selected when you click at the URL bar?(N/y): "
+read
+if [ "y" == "$REPLY" ] || [ "Y" == "$REPLY" ]; then
+  curl -s -L https://raw.githubusercontent.com/7k5x/firefox-selection-fix/master/fixfx-selection.sh | bash
+else
+  printf "\nSkipiing.\n"
+if [[ -f ~/.mozilla/Firefox/${profiledir}/user.js ]]
+then
+    printf "user.js exists. Do you want to make a backup of it?(Y/n): "
+    read
+    if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
+      printf"Overwriting...\n"
+      rm -rf ~/.mozilla/Firefox/${profiledir}/user.js
+      cp user.js ~/.mozilla/Firefox/${profiledir}
+    else
+      printf "Making a backup...\n"
+      if [[ -d "~/.mozilla/Firefox/${profiledir}/backup" ]]
+      then
+        rm -rf ~/.mozilla/Firefox/${profiledir}/backup
+      fi
+      mkdir ~/.mozilla/Firefox/${profiledir}/backup
+      mv ~/.mozilla/Firefox/${profiledir}/user.js ~/.mozilla/Firefox/${profiledir}/backup
+      cp user.js ~/.mozilla/Firefox/${profiledir}
+      
+fi
+cp user.js ~/.mozilla/Firefox/${profiledir}
+if [[ -d "~/.mozilla/Firefox/${profiledir}/chrome" ]]
+then
+  printf "user.js exists. Do you want to make a backup of it?(Y/n): "
+    read
+    if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
+      printf"Overwriting...\n"
+      rm -rf ~/.mozilla/Firefox/${profiledir}/user.js
+      cp user.js ~/.mozilla/Firefox/${profiledir}
+    else
+      printf "Making a backup...\n"
+      if [[ -d "~/.mozilla/Firefox/${profiledir}/backup" ]]
+      then
+        rm -rf ~/.mozilla/Firefox/${profiledir}/backup
+      fi
+      mkdir ~/.mozilla/Firefox/${profiledir}/backup
+      mv ~/.mozilla/Firefox/${profiledir}/user.js ~/.mozilla/Firefox/${profiledir}/backup
+      cp user.js ~/.mozilla/Firefox/${profiledir}
+      
+fi
+mkdir ~/.mozilla/Firefox/${profiledir}/chrome
+cp userChrome.css ~/.mozilla/Firefox/${profiledir}/chrome
+cp userContent.css ~/.mozilla/Firefox/${profiledir}/chrome
+cp -r icon ~/.mozilla/Firefox/${profiledir}/chrome
