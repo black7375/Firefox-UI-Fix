@@ -21,7 +21,7 @@ if [[ -f ~/.mozilla/Firefox/${profiledir}/user.js ]]; then
     if [ "N" == "$REPLY" ] || [ "n" == "$REPLY" ]; then
       printf"Overwriting...\n"
       rm -rf ~/.mozilla/Firefox/"${profiledir}"/user.js
-      cp user.js ~/.mozilla/Firefox/"${profiledir}"
+      cp user.js ~/.mozilla/Firefox/"${profiledir}"/user.js
     else
       printf "Making a backup...\n"
       if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/backup" ]]; then
@@ -29,7 +29,7 @@ if [[ -f ~/.mozilla/Firefox/${profiledir}/user.js ]]; then
       fi
     fi
     else
-      cp user.js ~/.mozilla/Firefox/"${profiledir}"
+      cp user.js ~/.mozilla/Firefox/"${profiledir}"/user.js
 fi
 if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/chrome" ]]; then
   printf "The directory chrome/ exists. Do you want to make a backup of it?(Y/n): "
@@ -38,8 +38,8 @@ if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/chrome" ]]; then
     printf"Overwriting...\n"
     rm -rf ~/.mozilla/Firefox/"${profiledir}"/chrome
     mkdir ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp userChrome.css ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp userContent.css ~/.mozilla/Firefox/"${profiledir}"/chrome
+    cp userChrome.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userChrome.css
+    cp userContent.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userContent.css
     cp -r icon ~/.mozilla/Firefox/"${profiledir}"/chrome
   else
     printf "Making a backup...\n"
@@ -54,8 +54,9 @@ if [[ -d "$HOME/.mozilla/Firefox/${profiledir}/chrome" ]]; then
   fi
   else
     mkdir ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp userChrome.css ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp userContent.css ~/.mozilla/Firefox/"${profiledir}"/chrome
-    cp -r icon ~/.mozilla/Firefox/"${profiledir}"/chrome
+    cp userChrome.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userChrome.css
+    cp userContent.css ~/.mozilla/Firefox/"${profiledir}"/chrome/userContent.css
+    cp -r icon ~/.mozilla/Firefox/"${profiledir}"/chrome/
+    printf "\nInstallation finished."
 fi
-printf "\nInstallation finished."
+
