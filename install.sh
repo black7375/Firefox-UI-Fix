@@ -6,15 +6,17 @@ copychrome(){
   \cp -f -r icons ~/.mozilla/firefox/"$1"/chrome/
 }
 backupchrome(){
-  if [[ -f ~/.mozilla/firefox/$1/userChrome.css ]];then
+  if [[ -f ~/.mozilla/firefox/$1/chrome/userChrome.css ]];then
     \mv -f ~/.mozilla/firefox/"$1"/chrome/userChrome.css ~/.mozilla/firefox/"$1"/chrome/userChrome.css.bak
     \mv -f ~/.mozilla/firefox/"$1"/chrome/userContent.css ~/.mozilla/firefox/"$1"/chrome/userContent.css.bak
   fi
   cd ~/.mozilla/firefox/"$1"/chrome/icons || exit
-  for file in *
-  do
-    \mv -f "$file" "${file/.svg/.svg.bak}"
-  done
+  if [[ -f ~/.mozilla/firefox/$1/chrome/icons/bug.svg ]];then
+    for file in *
+    do
+      \mv -f "$file" "${file/.svg/.svg.bak}"
+    done
+  fi
   cd "$wherewasi" || exit
 }
 backupjs(){
