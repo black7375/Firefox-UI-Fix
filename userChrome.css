@@ -35,6 +35,14 @@
     --arrowpanel-menuitem-padding: 8px  !important; /* Original: 8px */
   }
 
+  /* Fix Tab bar button radious */
+  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon,
+  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-text,
+  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  .tab-close-button {
+    --tab-border-radius: 4px !important;
+  }
+
   /** Tab Bar - Reduce Width, Show more tabs **********************************/
   .titlebar-spacer[type="pre-tabs"] {
     width: 30px !important; /* Original: 40px */
