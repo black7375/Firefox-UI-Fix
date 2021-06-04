@@ -97,37 +97,20 @@
   }
 
   /** Tab Bar - Reduce Height, Show more contents *****************************/
-  #TabsToolbar {
-    --toolbarbutton-inner-padding: 8px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
-  }
-
   /* Toolbar Height */
-  #TabsToolbar
-  .toolbar-items, .tabbrowser-tab,
-  .titlebar-buttonbox-container {
-    max-height: 34px !important;
+  #TabsToolbar {
+    --tab-min-height: 33px !important;
   }
-
-  :root[uidensity=compact] #TabsToolbar,
-  :root[uidensity=compact] .toolbar-items, .tabbrowser-tab
-  :root[uidensity=compact] .titlebar-buttonbox-container {
-    max-height: 30px !important;
+  :root[uidensity=compact] #TabsToolbar {
+    --tab-min-height: 29px !important;
   }
-  :root[uidensity=touch] #TabsToolbar,
-  :root[uidensity=touch] .toolbar-items, .tabbrowser-tab
-  :root[uidensity=touch] .titlebar-buttonbox-container {
-    max-height: unset !important;
+  :root[uidensity=touch] #TabsToolbar {
+    --tab-min-height: 41px !important;
   }
 
   /* Top Margin */
   .tab-background, .tab-content {
     margin-top: 0 !important;
-  }
-
-  /* New Tab Icon - Size Fix */
-  :root:not([uidensity=touch]) #tabs-newtab-button > .toolbarbutton-icon  {
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
   }
 
   /* Scroll Button - Size Fix */
