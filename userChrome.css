@@ -115,7 +115,8 @@
 
   /* Scroll Button - Size Fix */
   #tabbrowser-arrowscrollbox {
-    --scrollbtn-vertical-padding: 3px;
+    --scrollbtn-vertical-padding: 4px;
+    --scrollbtn-vertical-border:  none;
   }
   #scrollbutton-up,
   #scrollbutton-down {
@@ -123,6 +124,9 @@
     /* https://github.com/mozilla/gecko-dev/blob/71b1259afd1cdaf41871ae675c2dadb967ea5b34/browser/themes/shared/toolbarbuttons.inc.css#L142 */
     padding-top:    var(--scrollbtn-vertical-padding) !important;
     padding-bottom: var(--scrollbtn-vertical-padding) !important;
+
+    border-top:    var(--scrollbtn-vertical-border) !important;
+    border-bottom: var(--scrollbtn-vertical-border) !important;
   }
 
   :root[tabsintitlebar]:not([uidensity=compact]) #toolbar-menubar[autohide="true"] {
