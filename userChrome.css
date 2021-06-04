@@ -57,8 +57,8 @@
     padding-right: var(--newtab-button-width-padding) !important;
   }
 
-  :root[uidensity=compact] #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
-    margin-inline-start: 0 !important;
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 1px !important;
   }
 
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
@@ -595,6 +595,11 @@
   :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
     padding-block: 0.25em !important; /* Original: 0.5em */
   }
+  
+  /** Panel - View ************************************************************/
+  :root #appMenu-popup panelview {
+    width: 25em !important; /* can modify panel width, Original: 22.5em */
+  }
 
   /** Panel - Icons ***********************************************************/
   /* Padding */
@@ -607,6 +612,7 @@
     --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px) !important;
   }
 
+  #downloadsHistory .button-text,
   .subviewbutton > .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
   }
@@ -644,6 +650,7 @@
   /* Icons Color */
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before,
+  #downloadsHistory .button-icon,
   .subviewbutton > image {
     fill: currentColor !important;
     fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
@@ -651,6 +658,12 @@
   }
 
   /* Panel - Main */
+  #appMenu-proton-addon-banners > .addon-banner-item > .toolbarbutton-icon {
+    display: -moz-inline-box !important;
+    margin-inline-start: var(--arrowpanel-menuicon-padding);
+    -moz-box-ordinal-group: 0 !important;
+  }
+
   #appMenu-proton-update-banner::before {
     content: url(chrome://browser/skin/whatsnew.svg);
   }
@@ -835,19 +848,19 @@
   #appmenu-developer-tools-view  .subviewbutton:nth-child(5) {  /* Browser Content Toolbaox -  */
     list-style-image: url(./icons/command-frames.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(6) {  /* Browser Console */
+  #appmenu-developer-tools-view  .subviewbutton:nth-last-child(5) {  /* Browser Console */
     list-style-image: url(chrome://devtools/skin/images/command-console.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(7) {  /* Responsive Design Mode */
+  #appmenu-developer-tools-view  .subviewbutton:nth-last-child(4) {  /* Responsive Design Mode */
     list-style-image: url(./icons/command-responsivemode.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(8) {  /* Eyedropper */
+  #appmenu-developer-tools-view  .subviewbutton:nth-last-child(3) {  /* Eyedropper */
     list-style-image: url(chrome://devtools/skin/images/command-eyedropper.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(9) {  /* Page Source - Edge file-search.svg */
+  #appmenu-developer-tools-view  .subviewbutton:nth-last-child(2) {  /* Page Source - Edge file-search.svg */
     list-style-image: url(./icons/search-file.svg);
   }
-  #appmenu-developer-tools-view  .subviewbutton:nth-child(10) { /* Extensions for Devel */
+  #appmenu-developer-tools-view  .subviewbutton:nth-last-child(1) { /* Extensions for Devel */
     list-style-image: url(chrome://devtools/skin/images/debugging-addons.svg);
   }
   #appmenu-developer-tools-view .subviewbutton:last-child {
@@ -885,6 +898,11 @@
     list-style-image: url(chrome://browser/skin/history.svg);
   }
   #appMenu-library-downloads-button{
+    list-style-image: url(chrome://browser/skin/downloads/downloads.svg);
+  }
+
+  /* Panel - Downloads */
+  #downloadsHistory {
     list-style-image: url(chrome://browser/skin/downloads/downloads.svg);
   }
 
