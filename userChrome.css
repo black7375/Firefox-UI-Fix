@@ -57,7 +57,7 @@
     padding-right: var(--newtab-button-width-padding) !important;
   }
 
-  :root[uidensity=compact] #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
     margin-inline-start: 0 !important;
   }
 
@@ -86,10 +86,6 @@
   /* neighbouring tabs should "pinch" together */
   .tabbrowser-tab {
     padding-inline: 0 !important;
-  }
-
-  .tabbrowser-tab:not([last-visible-tab]) {
-    margin-inline-end: -.5px !important;
   }
 
   /** Tab Bar - Reduce Height, Show more contents *****************************/
