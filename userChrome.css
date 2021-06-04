@@ -58,7 +58,7 @@
   }
 
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
-    margin-inline-start: 1px !important;
+    margin-inline-start: 0 !important;
   }
 
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
@@ -86,10 +86,6 @@
   /* neighbouring tabs should "pinch" together */
   .tabbrowser-tab {
     padding-inline: 0 !important;
-  }
-
-  .tabbrowser-tab:not([last-visible-tab]) {
-    margin-inline-end: -.5px !important;
   }
 
   /** Tab Bar - Reduce Height, Show more contents *****************************/
