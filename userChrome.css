@@ -586,7 +586,7 @@
   :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
     padding-block: 0.25em !important; /* Original: 0.5em */
   }
-  
+
   /** Panel - View ************************************************************/
   :root #appMenu-popup panelview {
     width: 25em !important; /* can modify panel width, Original: 22.5em */
@@ -599,8 +599,14 @@
     --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
 
     /* Blank Menu Left Padding */
-    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px) !important;
-    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px) !important;
+    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
+    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
+  }
+  :root[uidensity=compact] {
+    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 5px);
+  }
+  :root[uidensity=touch] {
+    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding));
   }
 
   #downloadsHistory .button-text,
