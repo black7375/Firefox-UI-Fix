@@ -577,6 +577,18 @@
   :root[uidensity=touch] {
     --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding));
   }
+  :root {
+    /* Global */
+    --arrowpanel-menuicon-paddingx2: calc(var(--arrowpanel-menuicon-padding) * 2);
+
+    /* General Panel */
+    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-paddingx2) + 8px) !important;
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
+
+    /* Blank Menu Left Padding */
+    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding));
+    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
+  }
 
   .subviewbutton > .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
