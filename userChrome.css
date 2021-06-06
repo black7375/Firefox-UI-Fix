@@ -4,6 +4,34 @@
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
   }
 
+  /** Windows System Default Theme - Use acccent color ************************/
+  @media (-moz-windows-accent-color-in-titlebar) {
+    /* Tab Bar */
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
+      color: -moz-accent-color-foreground;
+      background-color: -moz-accent-color;
+    }
+
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
+      --toolbarbutton-icon-fill: -moz-accent-color-foreground;
+      --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
+      --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+    }
+
+    /* URL Bar */
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
+      --focus-outline-color: -moz-accent-color !important;
+    }
+
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
+      border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important; /* Like: --toolbar-field-focus-border-color */
+    }
+  }
+
   /** Root - Reduce Padding ***************************************************/
   :root {
     /* Tab Bar */
@@ -585,11 +613,6 @@
 
   :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
     padding-block: 0.25em !important; /* Original: 0.5em */
-  }
-
-  /** Panel - View ************************************************************/
-  :root #appMenu-popup panelview {
-    width: 25em !important; /* can modify panel width, Original: 22.5em */
   }
 
   /** Panel - Icons ***********************************************************/
