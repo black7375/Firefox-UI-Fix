@@ -251,7 +251,7 @@
   }
 
   /* Overflow Tab - white bottom line fix */
-  #tabbrowser-arrowscrollbox > .tabbrowser-tab {
+  #tabbrowser-tabs:not([movingtab]) #tabbrowser-arrowscrollbox > .tabbrowser-tab {
     z-index: 0 !important;
   }
 
