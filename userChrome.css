@@ -178,19 +178,22 @@
   }
 
   /** Selected Tab - Color like toolbar ***************************************/
-  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
  */
+    background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+  }
+
+  /* Multi Selected Color */
+  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected]:not([selected]):-moz-lwtheme {
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
   }
 
-
-  /* Multi Selected Color */
-  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst.proton:not([bursting]) {
+  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
     background: color-mix(in srgb, currentColor 65%, transparent);
     opacity: .3;
   }
-  #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst.proton:not([bursting]) {
+  #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
     opacity: .15;
   }
 
