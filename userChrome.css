@@ -246,11 +246,12 @@
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
      */
     background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+    opacity: .7;
   }
 
   .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
     background: color-mix(in srgb, currentColor 65%, transparent);
-    opacity: .3;
+    opacity: .2;
   }
   #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
     opacity: .15;
