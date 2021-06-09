@@ -15,7 +15,8 @@ jobs:
             branch: "photon-style"
     steps:
       - uses: actions/checkout@v2
-        ref: ${{ matrix.branch }}
+        with:
+          ref: ${{ matrix.branch }}
 
       - name: Release Structure
         run: |
