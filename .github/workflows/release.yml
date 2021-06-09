@@ -21,9 +21,11 @@ jobs:
       - name: Release Structure
         run: |
           mkdir -v chrome
-          mv -v * chrome/
-          mv -v chrome/user.js .
-          zip chrome user.js --out ${{ matrix.name }}.zip
+
+          shopt -s extglob
+          mv -v !(chrome|user.js) chrome/
+
+          zip -rv ${{ matrix.name }}.zip chrome user.js
 
       - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
         if: startsWith(github.ref, 'refs/tags/')
