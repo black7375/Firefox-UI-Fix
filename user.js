@@ -11,6 +11,8 @@ user_pref("layout.css.backdrop-filter.enabled", true);
 // Restore Compact Mode - 89 Above
 user_pref("browser.compactmode.show", true);
 
+// about:home Search Bar
+// user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
