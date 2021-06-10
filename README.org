@@ -11,6 +11,7 @@
   - [[#why-proton][WHY Proton?]]
   - [[#why-not-proton][WHY Not Proton?]]
   - [[#padding-comparisons][Padding Comparisons]]
+  - [[#fa][F&A]]
 :END:
 
 
@@ -56,8 +57,6 @@
     - Sound:
       - Remove Second Label
       - Show Favicon: Always show favicon
-    - Pinned:
-      - Combinded Close Button: Replace favicon to close button at selected
     - Container Tab:
       - Highlight line position: Displayed under favicon.
   - *Activity Stream Design*
@@ -69,7 +68,7 @@
 ** Installation Guide
 
   1. Download files
-     - Click the green ":arrow_down: Code"-button above 
+     - Click the green ":arrow_down: Code"-button above
      - Select ":package: Download Zip"
   2. Find your profile directory
      - Open =about:support= in a new tab
@@ -119,3 +118,11 @@
   - Photon (Quantum)
   - Proton
   - Lepton
+
+** F&A
+
+  - *Black pixels around the selected tab bottom corners*
+    [[https://user-images.githubusercontent.com/5571586/120401980-edf58a00-c2f5-11eb-9e64-ce50c5b189b2.png]]
+
+  Please follow [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]]. \\
+  Or =about:config='s =svg.context-properties.content.enabled= to =true=
