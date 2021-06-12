@@ -11,7 +11,7 @@
   - [[#why-proton][WHY Proton?]]
   - [[#why-not-proton][WHY Not Proton?]]
   - [[#padding-comparisons][Padding Comparisons]]
-  - [[#fa][F&A]]
+  - [[#faq][FAQ]]
 :END:
 
 
@@ -22,7 +22,7 @@
   Proton's [[#why-proton][overall feel is good]], but there were a few things I [[#why-not-proton][didn't like]] and wanted to improve. \\
   That's why this project was born, and Lepton to denote light theme layer.
 
-  /Disclaimer:/ It works *Firefox 89* and above!!
+  /Disclaimer:/ It works on *Firefox 89* and above!!
   | *Wiki*      |                               |      | |
   | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Screenshots][Screenshots]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution][Compatibility Issues Solution]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Tips][Tips]] |
 
@@ -60,7 +60,7 @@
     - Search Bar:
       - Focused Shadow: Same as the accent color
     - Icons:
-      - Size: Fill it up
+      - Size: Fill(Changes dynamically to your size)
 
 ** Installation Guide
 
@@ -116,16 +116,16 @@
   - Proton
   - Lepton
 
-** F&A
+** FAQ
 
   - *Black pixels around the selected tab bottom corners* \\
     [[https://user-images.githubusercontent.com/5571586/120401980-edf58a00-c2f5-11eb-9e64-ce50c5b189b2.png]]
 
-  Please follow [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]]. \\
-  Or =about:config='s =svg.context-properties.content.enabled= to =true=
+  Please follow the [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]], \\
+  or set =about:config='s =svg.context-properties.content.enabled= to =true= .
 
   - *Some panel menu items doesn't show* \\
     [[https://user-images.githubusercontent.com/25581533/120487528-93b40200-c3a5-11eb-98ad-3498beb9f38e.png]]
 
-  Please follow [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]]. \\
-  Or =icons= directory copy.
+  Please follow the [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]], \\
+  or copy the =icons= directory to =chrome= .
