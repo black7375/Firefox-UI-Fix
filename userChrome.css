@@ -595,10 +595,10 @@
   #appMenu-fxa-status2::before { /* Don't exist img tag */
     content: url(chrome://browser/skin/fxa/avatar-empty.svg);
   }
-  #appMenu-fxa-status2[fxastatus=signedin]::before { /* Don't exist img tag */
+  #appMenu-fxa-status2:is([fxastatus=signedin], [fxastatus=unverified], [fxastatus=login-failed])::before {
     display: none;
   }
-  #appMenu-fxa-status2[fxastatus=signedin] #appMenu-fxa-label2::before {
+  #appMenu-fxa-status2:is([fxastatus=signedin], [fxastatus=unverified], [fxastatus=login-failed]) #appMenu-fxa-label2::before {
     /* url("https://profile.accounts.firefox.com/v1/avatar/a") */
     content: '';
     border-radius: 50% !important;
