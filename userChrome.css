@@ -206,7 +206,7 @@
   }
 
   /** Selected Tab - Box Shadow ***********************************************/
-  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"] > .tab-stack > .tab-background:-moz-lwtheme {
+  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"]:not(:focus) > .tab-stack > .tab-background:-moz-lwtheme {
     /* Origina: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
        Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
     box-shadow: 0 0 1px var(--toolbar-color) !important;
