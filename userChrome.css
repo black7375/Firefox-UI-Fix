@@ -1,7 +1,50 @@
 @media (-moz-proton) {
   /** Darkmode - Color lighter ************************************************/
-  :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"] {
+  :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"],
+  :root[style*="--lwt-accent-color:rgb(28, 27, 34); --lwt-text-color:rgba(251, 251, 254);"] {
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
+  }
+
+  /* Theme - Compatibility ****************************************************/
+  /* Header Image */
+  :root[lwtheme-image] {
+      background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
+      background-repeat: no-repeat !important;
+      background-position: right top !important;
+  }
+  :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+      background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
+      background-repeat:   var(--lwt-background-tiling) !important;
+      background-position: var(--lwt-background-alignment) !important;
+      background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
+  }
+
+  /** Windows System Default Theme - Use acccent color ************************/
+  @media (-moz-windows-accent-color-in-titlebar) {
+    /* Tab Bar */
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
+      color: -moz-accent-color-foreground;
+      background-color: -moz-accent-color;
+    }
+
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
+      --toolbarbutton-icon-fill: -moz-accent-color-foreground;
+      --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
+      --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+    }
+
+    /* URL Bar */
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
+      --focus-outline-color: -moz-accent-color !important;
+    }
+
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
+      border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important; /* Like: --toolbar-field-focus-border-color */
+    }
   }
 
   /** Root - Reduce Padding ***************************************************/
@@ -148,41 +191,36 @@
     margin-bottom: 0px !important;
   }
 
-  /** Tab Bar - Use acccent color *********************************************/
-  @media (-moz-windows-accent-color-in-titlebar) {
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
-    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
-      color: -moz-accent-color-foreground;
-      background-color: -moz-accent-color;
-    }
-
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
-    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
-      --toolbarbutton-icon-fill: -moz-accent-color-foreground;
-      --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
-      --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
-    }
-  }
-
   /** Selected Tab - Color like toolbar ***************************************/
-  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
+  :root:not(:-moz-lwtheme) {
+    /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
+    --tab-selected-bgcolor: unset !important; /* Original: rgb(255,255,255); */
+  }
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
  */
-    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+    background-image: linear-gradient(transparent, transparent),
+                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
+                      var(--lwt-header-image, none) !important;
   }
 
-
   /* Multi Selected Color */
-  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst.proton:not([bursting]) {
+  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected]:not([selected]):-moz-lwtheme {
+    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)),
+                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
+                      var(--lwt-header-image, none) !important;
+  }
+
+  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
     background: color-mix(in srgb, currentColor 65%, transparent);
     opacity: .3;
   }
-  #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst.proton:not([bursting]) {
+  #TabsToolbar[brighttext] .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
     opacity: .15;
   }
 
   /** Selected Tab - Box Shadow ***********************************************/
-  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"] > .tab-stack > .tab-background:-moz-lwtheme {
+  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"]:not(:focus) > .tab-stack > .tab-background:-moz-lwtheme {
     /* Origina: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
        Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
     box-shadow: 0 0 1px var(--toolbar-color) !important;
@@ -403,51 +441,6 @@
     margin-left: 0px !important;
   }
 
-  /** Pinned Tab - Replace Favicon to Close Button at Selected ****************/
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
-    display: -moz-box !important;
-    -moz-box-ordinal-group: 0 !important;
-    transform: translateX(-1px);
-
-    /* Looks like hover */
-    width: 24px !important;
-    height: 24px !important;
-    padding: 7px !important;
-  }
-  .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
-    display: none !important;
-  }
-
-  /* Left Padding - Assume the icon size is 17px */
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-content {
-    padding-inline: 7.5px !important; /* Original: 10px */
-  }
-
-  /* Right Padding - Assume the icon size is 17px */
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
-    width: 8.5px !important;
-  }
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-content {
-    padding-inline-end: 0px !important;
-  }
-
-  .tabbrowser-tab[pinned][visuallyselected][busy] .tab-content {
-    padding-inline-end: 9.5px !important;
-  }
-  .tabbrowser-tab[pinned][busy] .tab-content {
-    padding-inline: 10.5px !important;
-  }
-
-  /* Sound Tab - Don't move overlay */
-  .tabbrowser-tab[pinned][busy] .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
-    transform: translateX(.5px) translateY(-2px) !important;
-  }
-
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-overlay {
-    transform: translateX(-9px) translateY(-2px) !important;
-    left: 0 !important;
-  }
-
   /** Container Tab - Color line at icon's bottom *****************************/
   .tab-context-line {
     display: none;
@@ -458,27 +451,6 @@
     padding: 3px 0;
 
     border-bottom: 2px solid var(--identity-icon-color);
-  }
-
-  /* None exist favicon & Pinned to select */
-  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-content::before,
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]):not(:hover) .tab-content::before {
-    /* Box Model */
-    content: '';
-    display: block;
-    position: absolute !important;
-    transition: 0.2s !important;
-    transform: translateY(10px) !important;
-
-    /* Shape */
-    border-bottom: 2px solid var(--identity-icon-color);
-    width: 16px;
-  }
-  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-content::before {
-    transform: translateY(10px) !important; /* None exist favicon */
-  }
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]):not(:hover) .tab-content::before {
-    transform: translateX(2.5px) translateY(10px) !important; /* Pinned to select */
   }
 
   /* None exist favicon - With Sound */
@@ -571,11 +543,6 @@
   :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
     padding-block: 0.25em !important; /* Original: 0.5em */
   }
-  
-  /** Panel - View ************************************************************/
-  :root #appMenu-popup panelview {
-    width: 25em !important; /* can modify panel width, Original: 22.5em */
-  }
 
   /** Panel - Icons ***********************************************************/
   /* Padding */
@@ -642,10 +609,10 @@
   #appMenu-fxa-status2::before { /* Don't exist img tag */
     content: url(chrome://browser/skin/fxa/avatar-empty.svg);
   }
-  #appMenu-fxa-status2[fxastatus=signedin]::before { /* Don't exist img tag */
+  #appMenu-fxa-status2:is([fxastatus=signedin], [fxastatus=unverified], [fxastatus=login-failed])::before {
     display: none;
   }
-  #appMenu-fxa-status2[fxastatus=signedin] #appMenu-fxa-label2::before {
+  #appMenu-fxa-status2:is([fxastatus=signedin], [fxastatus=unverified], [fxastatus=login-failed]) #appMenu-fxa-label2::before {
     /* url("https://profile.accounts.firefox.com/v1/avatar/a") */
     content: '';
     border-radius: 50% !important;

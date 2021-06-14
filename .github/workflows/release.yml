@@ -1,0 +1,36 @@
+on:
+  push:
+    tags:
+      - "v*" # push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  upload-files:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: "Lepton"
+            branch: "master"
+          - name: "Lepton-Phton-Style"
+            branch: "photon-style"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+
+      - name: Release Structure
+        run: |
+          mkdir -v chrome
+
+          shopt -s extglob
+          mv -v !(chrome|user.js) chrome/
+
+          zip -rv ${{ matrix.name }}.zip chrome user.js
+
+      - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            ${{ matrix.name }}.zip
