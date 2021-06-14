@@ -901,10 +901,11 @@
   }
   #context_pinTab,
   #context_pinSelectedTabs {
-    background-image: url(chrome://browser/skin/pin-12.svg);
+    background-image: url(./icons/pin-tab.svg);
   }
   #context_unpinTab,
   #context_unpinSelectedTabs {
+    background-image: url(./icons/unpin-tab.svg);
   }
   #context_duplicateTab,
   #context_duplicateTabs {
@@ -932,5 +933,29 @@
   }
   #context_undoCloseTab {
     background-image: url(chrome://global/skin/icons/undo.svg);
+  }
+
+  /*= new-tab-button-popup ===================================================*/
+  #new-tab-button-popup > menuitem[command="Browser:OpenAboutContainers"] {
+    background-image: url(chrome://global/skin/icons/settings.svg);
+  }
+
+  /*= blockedPopupOptions ====================================================*/
+  #blockedPopupAllowSite {
+    background-image: url("chrome://global/skin/icons/check.svg");
+  }
+  #blockedPopupOptions > menuitem[oncommand="gPopupBlockerObserver.editPopupSettings();"] {
+    background-image: url("chrome://global/skin/icons/edit.svg");
+  }
+  #blockedPopupDontShowMessage { /* checkbox */
+    background-image: url("chrome://global/skin/icons/blocked.svg");
+  }
+
+  /*= autohide-context =======================================================*/
+  #autohide-context > menuitem[data-l10n-id="full-screen-autohide"] {  /* checkbox */
+  }
+
+  #autohide-context > menuitem[data-l10n-id="full-screen-exit"] {
+    background-image: url(chrome://browser/skin/fullscreen-exit.svg);
   }
 }
