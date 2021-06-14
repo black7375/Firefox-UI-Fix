@@ -6,12 +6,12 @@ function copychrome(){
   \cp -f -r icons ~/.mozilla/firefox/"$1"/chrome/
 }
 function backupchrome(){
-  if [ -f ~/.mozilla/firefox/$1/chrome/userChrome.css ];then
+  if [ -f ~/.mozilla/firefox/"$1"/chrome/userChrome.css ];then
     \mv -f ~/.mozilla/firefox/"$1"/chrome/userChrome.css ~/.mozilla/firefox/"$1"/chrome/userChrome.css.bak
     \mv -f ~/.mozilla/firefox/"$1"/chrome/userContent.css ~/.mozilla/firefox/"$1"/chrome/userContent.css.bak
   fi
   cd ~/.mozilla/firefox/"$1"/chrome/icons || exit
-  if [ -f ~/.mozilla/firefox/$1/chrome/icons/bug.svg ];then
+  if [ -f ~/.mozilla/firefox/"$1"/chrome/icons/bug.svg ];then
     for file in *
     do
       \mv -f "$file" "${file/.svg/.svg.bak}"
@@ -30,7 +30,7 @@ function doneinstall()
   echo "Installation finished."
 }
 function install_lepton(){
-if [ -f ~/.mozilla/firefox/$1/user.js ]; then
+if [ -f ~/.mozilla/firefox/"$1"/user.js ]; then
     printf "user.js exists. Do you want to make a backup of it?(Y/n): "
     read -r
     case $REPLY in
