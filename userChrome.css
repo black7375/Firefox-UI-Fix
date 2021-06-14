@@ -19,6 +19,21 @@
       background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
   }
 
+  /** Windows 7 - Compatibility ***********************************************/
+  @media (-moz-os-version: windows-win7) {
+    /* Header Color */
+    :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
+      background-color: var(--lwt-accent-color) !important;
+    }
+    #TabsToolbar:-moz-lwtheme {
+      color: var(--lwt-text-color) !important;
+
+      /* Remove Aero */
+      /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
+      background-image: unset !important;
+    }
+  }
+
   /** Windows System Default Theme - Use acccent color ************************/
   @media (-moz-windows-accent-color-in-titlebar) {
     /* Tab Bar */
