@@ -73,25 +73,7 @@ function install_option(){
   fi
   rm -rf ~/.mozilla/firefox/.folders
 }
-wherewasi="$(pwd)"
-cd ~/.mozilla/firefox/ || exit
-find -maxdepth 1 | cut -f 2 -d"/" | sed -n '1!p' > .folders
-cd "$wherewasi" || exit
-if [ "$(grep -c "Default=" ~/.mozilla/firefox/installs.ini)" == "1" ]; then
-  #I have no idea how to sort this out. You fix it please.
-  if [ "$(grep -c ".dev-edition-default" ~/.mozilla/firefox/.folders)" == "1" ] && [ "$(grep -c ".dev-edition-default" ~/.mozilla/firefox/.folders)" -gt "1" ]; then
-    install_option .dev-edition-default
-  elif [ "$(grep -c ".default-release" ~/.mozilla/firefox/.folders)" == "1" ] && [ "$(grep -c ".default-release" ~/.mozilla/firefox/.folders)" -gt "1" ]; then
-    install_option .default-release
-  elif [ "$(grep -c ".default-nightly" ~/.mozilla/firefox/.folders)" == "1" ] && [ "$(grep -c ".default-nightly" ~/.mozilla/firefox/.folders)" -gt "1" ]; then
-    install_option .default-nightly
-  elif [ "$(grep -c ".default-esr" ~/.mozilla/firefox/.folders)" == "1" ] && [ "$(grep -c ".default-esr" ~/.mozilla/firefox/.folders)" == "1" ]; then
-    install_option .default-esr
-  else
-    echo "No Firefox profile found."
-    exit
-  fi
-else
+function askinstall(){
   printf "Will you install for ESR, Default, Dev, Nightly?(ESR/Default/Dev/Nightly): "
   read -r
   case $REPLY in
@@ -101,4 +83,25 @@ else
     [Nn][Ii][Gg][Hh][Tt][Ll][Yy]) install_option .default-nightly;;
     *) echo "Unspecified.";exit;;
   esac
+}
+wherewasi="$(pwd)"
+cd ~/.mozilla/firefox/ || exit
+find -maxdepth 1 | cut -f 2 -d"/" | sed -n '1!p' > .folders
+cd "$wherewasi" || exit
+if [ "$(grep -c "Default=" ~/.mozilla/firefox/installs.ini)" == "1" ]; then
+  #I have no idea how to sort this out. You fix it please.
+  if [ "$(grep -c ".dev-edition-default" ~/.mozilla/firefox/.folders)" == "1" ] || [ "$(grep -c ".dev-edition-default" ~/.mozilla/firefox/.folders)" -gt "1" ]; then
+    install_option .dev-edition-default
+  elif [ "$(grep -c ".default-release" ~/.mozilla/firefox/.folders)" == "1" ] || [ "$(grep -c ".default-release" ~/.mozilla/firefox/.folders)" -gt "1" ]; then
+    install_option .default-release
+  elif [ "$(grep -c ".default-nightly" ~/.mozilla/firefox/.folders)" == "1" ] || [ "$(grep -c ".default-nightly" ~/.mozilla/firefox/.folders)" -gt "1" ]; then
+    install_option .default-nightly
+  elif [ "$(grep -c ".default-esr" ~/.mozilla/firefox/.folders)" == "1" ] || [ "$(grep -c ".default-esr" ~/.mozilla/firefox/.folders)" == "1" ]; then
+    install_option .default-esr
+  else
+    echo "No Firefox profile found. Maybe you have never started FireFox. Please run at least 1 time to create a profile."
+    exit
+  fi
+else
+  askinstall
 fi
