@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2185
-copychrome(){
+function copychrome(){
   \cp -f userChrome.css ~/.mozilla/firefox/"$1"/chrome/userChrome.css
   \cp -f userContent.css ~/.mozilla/firefox/"$1"/chrome/userContent.css
   \cp -f -r icons ~/.mozilla/firefox/"$1"/chrome/
 }
-backupchrome(){
+function backupchrome(){
   if [ -f ~/.mozilla/firefox/$1/chrome/userChrome.css ];then
     \mv -f ~/.mozilla/firefox/"$1"/chrome/userChrome.css ~/.mozilla/firefox/"$1"/chrome/userChrome.css.bak
     \mv -f ~/.mozilla/firefox/"$1"/chrome/userContent.css ~/.mozilla/firefox/"$1"/chrome/userContent.css.bak
@@ -19,17 +19,17 @@ backupchrome(){
   fi
   cd "$wherewasi" || exit
 }
-backupjs(){
+function backupjs(){
   \mv -f ~/.mozilla/firefox/"$1"/user.js ~/.mozilla/firefox/"$1"/user.js.bak
 }
-copyjs(){
+function copyjs(){
   \cp -f user.js ~/.mozilla/firefox/"$1"/user.js
 }
-doneinstall()
+function doneinstall()
 {
   echo "Installation finished."
 }
-install_lepton(){
+function install_lepton(){
 if [ -f ~/.mozilla/firefox/$1/user.js ]; then
     printf "user.js exists. Do you want to make a backup of it?(Y/n): "
     read -r
@@ -54,7 +54,7 @@ else
 fi
 }
 
-multipleinstall(){
+function multipleinstall(){
   echo "You have more than 1 profile for your install. What will you use? Pick a number."
   grep "$1" ~/.mozilla/firefox/profiles.ini | grep 'Default=' | cut -f 2 -d'=' > .installs
   cat --number .installs
@@ -64,7 +64,7 @@ multipleinstall(){
   rm -rf .installs
 }
 
-install_option(){
+function install_option(){
   if [ "$(grep -c "$1" ~/.mozilla/firefox/.folders)" == "1" ]; then
     profiledir="$(grep "$1" ~/.mozilla/firefox/profiles.ini | grep 'Default=' | cut -f 2 -d'=')"
     install_lepton "$profiledir"
