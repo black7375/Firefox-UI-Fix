@@ -5,6 +5,20 @@
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
   }
 
+  /* Theme - Compatibility ****************************************************/
+  /* Header Image */
+  :root[lwtheme-image] {
+      background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
+      background-repeat: no-repeat !important;
+      background-position: right top !important;
+  }
+  :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+      background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
+      background-repeat:   var(--lwt-background-tiling) !important;
+      background-position: var(--lwt-background-alignment) !important;
+      background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
+  }
+
   /** Windows System Default Theme - Use acccent color ************************/
   @media (-moz-windows-accent-color-in-titlebar) {
     /* Tab Bar */
