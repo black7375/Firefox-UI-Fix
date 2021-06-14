@@ -880,4 +880,57 @@
   #allTabsMenu-containerTabsView .subviewbutton:last-child {
     list-style-image: url(chrome://global/skin/icons/settings.svg);
   }
+
+  /** Context Menu - Icons ****************************************************/
+  /*= tabContextMenu =========================================================*/
+  #context_openANewTab {
+    background-image: url(chrome://browser/skin/new-tab.svg) !important;
+  }
+
+  #context_reloadTab,
+  #context_reloadSelectedTabs {
+    background-image: url(chrome://browser/skin/reload.svg);
+  }
+  #context_toggleMuteTab,
+  #context_toggleMuteSelectedTabs {
+    background-image: url(chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg);
+  }
+  #context_toggleMuteTab[muted],
+  #context_toggleMuteSelectedTabs[muted] {
+    background-image: url(chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg);
+  }
+  #context_pinTab,
+  #context_pinSelectedTabs {
+    background-image: url(chrome://browser/skin/pin-12.svg);
+  }
+  #context_unpinTab,
+  #context_unpinSelectedTabs {
+  }
+  #context_duplicateTab,
+  #context_duplicateTabs {
+  }
+
+  #context_bookmarkTab,
+  #context_bookmarkSelectedTabs {
+    background-image: url(chrome://browser/skin/bookmark.svg);
+  }
+  #context_moveTabOptions {
+  }
+  #context_sendTabToDevice {
+    background-image: url(chrome://browser/skin/send-to-device.svg);
+  }
+  #context_reopenInContainer {
+    background-image: url(./icons/container-openin-16.svg);
+  }
+  #context_selectAllTabs {
+  }
+
+  #context_closeTab {
+    background-image: url(chrome://global/skin/icons/close.svg);
+  }
+  #context_closeTabOptions {
+  }
+  #context_undoCloseTab {
+    background-image: url(chrome://global/skin/icons/undo.svg);
+  }
 }
