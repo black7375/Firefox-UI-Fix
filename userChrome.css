@@ -326,6 +326,14 @@
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
     margin-inline-end: 4px !important;
   }
+  
+  /* New tab button changed ***************************************************/
+  #TabsToolbar #tabbrowser-arrowscrollbox #tabs-newtab-button.toolbarbutton-1 {
+    margin: calc(var(--tab-block-margin) / 2) 0 calc(-1 * var(--tab-block-margin) / 2) !important; /* Original: 0 0 var(--tabs-navbar-shadow-size) !important */
+  }
+  #TabsToolbar #tabs-newtab-button.toolbarbutton-1 > image.toolbarbutton-icon {
+    border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
+  }
 
   /** Clipped tabs - Letters cleary *******************************************/
   #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned]) {
