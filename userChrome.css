@@ -166,6 +166,8 @@
 
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
+    --scrollbtn-vertical-border:  2px;
+    --scrollbtn-border-radius:    7px;
   }
   #scrollbutton-up,
   #scrollbutton-down {
@@ -173,6 +175,12 @@
     /* https://github.com/mozilla/gecko-dev/blob/71b1259afd1cdaf41871ae675c2dadb967ea5b34/browser/themes/shared/toolbarbuttons.inc.css#L142 */
     padding-top:    var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
     padding-bottom: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
+
+    /* Original: 4px */
+    border-top-width:    var(--scrollbtn-vertical-border, 4px) !important;
+    border-bottom-width: var(--scrollbtn-vertical-border, 4px) !important;
+    /* Original: calc(var(--tab-border-radius) + 4px) = 8px */
+    border-radius: var(--scrollbtn-border-radius, calc(var(--tab-border-radius) + 4px)) !important;
   }
 
   :root[tabsintitlebar]:not([uidensity=compact]) #toolbar-menubar[autohide="true"] {
