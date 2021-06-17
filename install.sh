@@ -369,8 +369,9 @@ install_network() {
     automv chrome chrome.bak
   fi
 
+  git clone -b "${leptonBranch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
+
   local isProfile=""
-  git clone -b "${}" https://github.com/black7375/Firefox-UI-Fix.git chrome
   for profilePath in "${firefoxProfilePaths}"; do
     autocopy chrome/user.js "${profilePath}/user.js"
     autocopy chrome         "${profilePath}/chrome"
