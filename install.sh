@@ -252,13 +252,13 @@ select_profile() {
   if [ "${profileName}" != "" ]; then
     local targetPath=""
     for profilePath in "${firefoxProfilePaths[@]}"; do
-      if [ profilePath == *"${profileName}"* ]; then
+      if [[ "${profilePath}" == *"${profileName}" ]]; then
         targetPath="${profilePath}"
         break
       fi
     done
 
-    if [ "${targetPath}" == "" ]; then
+    if [ "${targetPath}" != "" ]; then
       lepton_ok_message "Profile, \"${profileName}\" found"
       firefoxProfilePaths=("${targetPath}")
     else
@@ -386,7 +386,6 @@ install_network() {
   lepton_ok_message "End clean files"
 }
 
-firefoxProfilePaths=()
 install_profile() {
   lepton_ok_message "Started install"
 
