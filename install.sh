@@ -280,7 +280,12 @@ select_profile() {
       done
 
       firefoxProfilePaths=("${targetPaths[@]}")
-      lepton_ok_message "Multi selected profiles"
+      foundCount="${#firefoxProfilePaths[@]}"
+      if [ "${foundCount}" -eq 0 ]; then
+        lepton_error_message "Please select profiles"
+      else
+        lepton_ok_message "Multi selected profiles"
+      fi
     fi
   fi
 }
