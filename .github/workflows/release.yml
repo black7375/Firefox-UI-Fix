@@ -23,9 +23,9 @@ jobs:
           mkdir -v chrome
 
           shopt -s extglob
-          mv -v !(chrome|user.js) chrome/
+          mv -v !(chrome|user.js|install.sh) chrome/
 
-          zip -rv ${{ matrix.name }}.zip chrome user.js
+          zip -rv ${{ matrix.name }}.zip chrome user.js install.sh
 
       - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
         if: startsWith(github.ref, 'refs/tags/')
