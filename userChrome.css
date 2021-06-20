@@ -250,6 +250,10 @@
   }
 
   /** Selected Tab - Photon like contextline **********************************/
+  :root[lwtheme-mozlightdark] #tabbrowser-tabs {
+    --tab-line-color: rgb(10, 132, 255) !important;
+  }
+
   .tab-context-line {
     display: -moz-inline-box !important;
     height: 2px !important;
@@ -257,9 +261,10 @@
   }
 
   .tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
-    background-color: rgb(10, 132, 255) !important; /* Photon like color
-                                                     Default: var(--tab-line-color, rgb(10, 132, 255))
-                                                     Automatic: color-mix(in srgb, var(--button-primary-bgcolor) 80%, transparent) */
+    /* Photon like color
+       Default: var(--tab-line-color, rgb(10, 132, 255))
+       Automatic: color-mix(in srgb, var(--button-primary-bgcolor) 80%, transparent) */
+    background-color: var(--tab-line-color, rgb(10, 132, 255)) !important;
   }
 
   .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
