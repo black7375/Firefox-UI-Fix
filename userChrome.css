@@ -1,8 +1,36 @@
 @media (-moz-proton) {
   /** Darkmode - Color lighter ************************************************/
-  :root[style*="--lwt-accent-color:rgb(12, 12, 13); --lwt-text-color:rgba(249, 249, 250);"],
-  :root[style*="--lwt-accent-color:rgb(28, 27, 34); --lwt-text-color:rgba(251, 251, 254);"] {
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"] {
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
+  }
+
+  /* Theme - Compatibility ****************************************************/
+  /* Header Image */
+  :root[lwtheme-image] {
+      background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
+      background-repeat: no-repeat !important;
+      background-position: right top !important;
+  }
+  :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+      background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
+      background-repeat:   var(--lwt-background-tiling) !important;
+      background-position: var(--lwt-background-alignment) !important;
+      background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
+  }
+
+  /** Windows 7 - Compatibility ***********************************************/
+  @media (-moz-os-version: windows-win7) {
+    /* Header Color */
+    :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
+      background-color: var(--lwt-accent-color) !important;
+    }
+    #TabsToolbar:-moz-lwtheme {
+      color: var(--lwt-text-color) !important;
+
+      /* Remove Aero */
+      /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
+      background-image: unset !important;
+    }
   }
 
   /** Windows System Default Theme - Use acccent color ************************/
@@ -144,18 +172,22 @@
 
   /* Scroll Button - Size Fix */
   #tabbrowser-arrowscrollbox {
-    --scrollbtn-vertical-padding: 4px;
-    --scrollbtn-vertical-border:  none;
+    --scrollbtn-vertical-padding: 3px;
+    --scrollbtn-vertical-border:  2px;
+    --scrollbtn-border-radius:    7px;
   }
   #scrollbutton-up,
   #scrollbutton-down {
     /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
     /* https://github.com/mozilla/gecko-dev/blob/71b1259afd1cdaf41871ae675c2dadb967ea5b34/browser/themes/shared/toolbarbuttons.inc.css#L142 */
-    padding-top:    var(--scrollbtn-vertical-padding) !important;
-    padding-bottom: var(--scrollbtn-vertical-padding) !important;
+    padding-top:    var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
+    padding-bottom: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
 
-    border-top:    var(--scrollbtn-vertical-border) !important;
-    border-bottom: var(--scrollbtn-vertical-border) !important;
+    /* Original: 4px */
+    border-top-width:    var(--scrollbtn-vertical-border, 4px) !important;
+    border-bottom-width: var(--scrollbtn-vertical-border, 4px) !important;
+    /* Original: calc(var(--tab-border-radius) + 4px) = 8px */
+    border-radius: var(--scrollbtn-border-radius, calc(var(--tab-border-radius) + 4px)) !important;
   }
 
   :root[tabsintitlebar]:not([uidensity=compact]) #toolbar-menubar[autohide="true"] {
@@ -190,15 +222,23 @@
   }
 
   /** Selected Tab - Color like toolbar ***************************************/
+  :root:not(:-moz-lwtheme) {
+    /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
+    --tab-selected-bgcolor: unset !important; /* Original: rgb(255,255,255); */
+  }
 #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
  */
-    background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+    background-image: linear-gradient(transparent, transparent),
+                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
+                      var(--lwt-header-image, none) !important;
   }
 
   /* Multi Selected Color */
   #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected]:not([selected]):-moz-lwtheme {
-    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)),
+                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
+                      var(--lwt-header-image, none) !important;
   }
 
   .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
@@ -245,7 +285,7 @@
   }
 
   /** Selected Tab - Box Shadow ***********************************************/
-  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"] > .tab-stack > .tab-background:-moz-lwtheme {
+  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected="true"]:not(:focus) > .tab-stack > .tab-background:-moz-lwtheme {
     /* Origina: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
        Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
     box-shadow: 0 0 1px var(--toolbar-color) !important;
@@ -549,6 +589,9 @@
   }
 
   /** Panel - Icons ***********************************************************/
+
+  .subviewbutton[disabled=true] > image { opacity: 0.4; } /* Ghost icons when disabled */
+
   /* Padding */
   :root {
     --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
@@ -635,10 +678,10 @@
   #appMenu-fxa-status2::before { /* Don't exist img tag */
     content: url(chrome://browser/skin/fxa/avatar-empty.svg);
   }
-  #appMenu-fxa-status2[fxastatus=signedin]::before { /* Don't exist img tag */
+  #appMenu-fxa-status2:is([fxastatus=signedin], [fxastatus=unverified], [fxastatus=login-failed])::before {
     display: none;
   }
-  #appMenu-fxa-status2[fxastatus=signedin] #appMenu-fxa-label2::before {
+  #appMenu-fxa-status2:is([fxastatus=signedin], [fxastatus=unverified], [fxastatus=login-failed]) #appMenu-fxa-label2::before {
     /* url("https://profile.accounts.firefox.com/v1/avatar/a") */
     content: '';
     border-radius: 50% !important;
@@ -697,7 +740,7 @@
   /* Default */
   #fxa-menu-avatar {
     display: -moz-inline-box !important;
-    margin-inline-end: var(--arrowpanel-menuitem-padding);
+    margin-inline-end: var(--arrowpanel-menuicon-padding);
   }
 
   .syncNowBtn {
