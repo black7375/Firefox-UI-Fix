@@ -568,6 +568,9 @@
   }
 
   /** Panel - Icons ***********************************************************/
+
+  .subviewbutton[disabled=true] > image { opacity: 0.4; } /* Ghost icons when disabled */
+
   /* Padding */
   :root {
     --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
@@ -706,7 +709,7 @@
   /* Default */
   #fxa-menu-avatar {
     display: -moz-inline-box !important;
-    margin-inline-end: var(--arrowpanel-menuitem-padding);
+    margin-inline-end: var(--arrowpanel-menuicon-padding);
   }
 
   .syncNowBtn {
