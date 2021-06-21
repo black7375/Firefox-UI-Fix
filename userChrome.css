@@ -567,9 +567,6 @@
   }
 
   /** Panel - Icons ***********************************************************/
-
-  .subviewbutton[disabled=true] > image { opacity: 0.4; } /* Ghost icons when disabled */
-
   /* Padding */
   :root {
     --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
@@ -619,6 +616,11 @@
     fill: currentColor !important;
     fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
     -moz-context-properties: fill !important;
+  }
+
+  .subviewbutton[disabled=true] > image {
+    /* Ghost icons when disabled */
+    opacity: 0.4;
   }
 
   /* Panel - Main */
