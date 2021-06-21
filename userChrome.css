@@ -524,9 +524,17 @@
   }
 
   /** Menu - Reduce Padding ***************************************************/
-  :root:not([uidensity=touch]) menupopup > menuitem, menupopup > menu {
-    padding-block: 0.35em !important; /* Original: 0.5em */
+  :root:not([uidensity=touch]) {
+    --menu-padding: 0.35em;
   }
+  :root[uidensity=compact] {
+    --menu-padding: 0.25em;
+  }
+  menupopup > menuitem, menupopup > menu {
+    /* Original: 0.5em */
+    padding-block: var(--menu-padding, 0.5em) !important;
+  }
+
   :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
     padding-inline-end: 0 !important; /* Original: 2px */
   }
@@ -538,10 +546,6 @@
   }
   :root:not([uidensity=touch]) .menu-right {
     margin-right: 6px !important;     /* Original: 12px */
-  }
-
-  :root[uidensity=compact] menupopup > menuitem, menupopup > menu {
-    padding-block: 0.25em !important; /* Original: 0.5em */
   }
 
   /** Panel - Icons ***********************************************************/
