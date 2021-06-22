@@ -1368,4 +1368,12 @@
   #placesContext_showAllBookmarks {
     background-image: url(chrome://browser/skin/bookmark-star-on-tray.svg);
   }
+
+  /*= pageActionContextMenu ==================================================*/
+  .pageActionContextMenuItem.extensionPinned.extensionUnpinned.manageExtensionItem {
+    background-image: url(chrome://global/skin/icons/settings.svg);
+  }
+  .pageActionContextMenuItem.extensionPinned.extensionUnpinned.removeExtensionItem {
+    background-image: url(chrome://global/skin/icons/delete.svg);
+  }
 }
