@@ -1003,6 +1003,7 @@
     background-image: url(chrome://browser/skin/pin-12.svg);
   }
   .toolbar-context-autohide-downloads-button {
+    background-image: url(./icons/password-hide.svg);
   }
   .customize-context-removeFromToolbar {
     background-image: url(chrome://global/skin/icons/delete.svg);
@@ -1026,7 +1027,14 @@
     background-image: url(chrome://global/skin/icons/undo.svg);
   }
 
-  #viewCustomizeToolbar {
+  #toggle_toolbar-menubar {
+    background-image: url(./icons/calendar-agenda.svg);
+  }
+  #toggle_PersonalToolbar {
+    background-image: url(chrome://browser/skin/bookmarks-toolbar.svg);
+  }
+
+  menuitem.viewCustomizeToolbar {
     background-image: url(chrome://browser/skin/customize.svg);
   }
 
