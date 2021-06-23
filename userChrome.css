@@ -902,13 +902,13 @@
     background-repeat: no-repeat !important;
   }
 
-  /* Layout */
+  /* Padding */
   :root {
     --context-menu-background-padding-default: 5px;
     --context-menu-background-padding: var(--context-menu-background-padding-default);
   }
-  :not(menu, #ContentSelectDropdown) > menupopup > menuitem,
-  :not(menu, #ContentSelectDropdown) > menupopup > menu,
+  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem,
+  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu,
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -920,8 +920,8 @@
     :root {
       --context-menu-background-padding: 1em;
     }
-    :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
-    :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
     #blockedPopupDontShowMessage {
       padding-inline-start: calc(var(--context-menu-background-padding) + var(--menu-padding) + var(--context-menu-background-padding-default) + 16px) !important;
     }
