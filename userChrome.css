@@ -1435,4 +1435,60 @@
   #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
     background-image: url(./icons/broom.svg);
   }
+
+  /*= SyncedTabsSidebarContext ===============================================*/
+  #syncedTabsOpenSelected {
+    background-image: url(./icons/link-square.svg);
+  }
+  #syncedTabsOpenSelectedInTab {
+    background-image: url(chrome://browser/skin/new-tab.svg);
+  }
+  #syncedTabsOpenSelectedInWindow {
+    background-image: url(chrome://browser/skin/window.svg);
+  }
+  #syncedTabsOpenSelectedInPrivateWindow {
+    background-image: url(chrome://browser/skin/privateBrowsing.svg);
+  }
+
+  #syncedTabsBookmarkSelected {
+    background-image: url(chrome://browser/skin/bookmark.svg);
+  }
+  #syncedTabsCopySelected {
+    background-image: url(chrome://browser/skin/link.svg);
+  }
+
+  #syncedTabsOpenAllInTabs {
+    background-image: url(./icons/movetowindow-16.svg);
+  }
+  #syncedTabsManageDevices {
+    background-image: url(chrome://global/skin/icons/settings.svg);
+  }
+  #syncedTabsRefresh {
+    background-image: url(chrome://browser/skin/sync.svg);
+  }
+
+  /*= SyncedTabsSidebarTabsFilterContext =====================================*/
+  #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_undo"] {
+    background-image: url(chrome://global/skin/icons/undo.svg);
+  }
+  #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
+    background-image: url(chrome://browser/skin/edit-cut.svg);
+  }
+  #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_copy"]{
+    background-image: url(chrome://browser/skin/edit-copy.svg);
+  }
+  #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_paste"]{
+    background-image: url(chrome://browser/skin/edit-paste.svg);
+  }
+  #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_delete"]{
+    background-image: url(chrome://global/skin/icons/delete.svg);
+  }
+
+  #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_selectAll"]{
+    background-image: url(./icons/select-all-on.svg);
+  }
+
+  #syncedTabsRefreshFilter {
+    background-image: url(chrome://browser/skin/sync.svg);
+  }
 }
