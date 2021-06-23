@@ -1397,4 +1397,42 @@
   #customizationPanelContextMenu > menuitem[command="cmd_CustomizeToolbars"] {
     background-image: url(chrome://browser/skin/customize.svg);
   }
+
+  /*= downloads-button-autohide-panel ========================================*/
+  #downloads-button-autohide-checkbox { /* checkbox */
+  }
+
+  /*= downloadsContextMenu ===================================================*/
+  .downloadPauseMenuItem {
+    background-image: url(chrome://global/skin/media/pause-fill.svg);
+  }
+  .downloadResumeMenuItem {
+    background-image: url(chrome://global/skin/media/play-fill.svg);
+  }
+  .downloadUnblockMenuItem {
+    background-image: url(./icons/checkmark-circle.svg);
+  }
+  .downloadUseSystemDefaultMenuItem {
+    background-image: url(chrome://browser/skin/open.svg);
+  }
+  .downloadAlwaysUseSystemDefaultMenuItem { /* checkbox */
+  }
+  .downloadShowMenuItem {
+    background-image: url(chrome://global/skin/icons/folder.svg);
+  }
+
+  #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
+    background-image: url(./icons/link-square.svg);
+  }
+  #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
+    background-image: url(chrome://browser/skin/link.svg);
+  }
+
+  .downloadRemoveFromHistoryMenuItem {
+    background-image: url(chrome://global/skin/icons/delete.svg);
+  }
+  #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
+  #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
+    background-image: url(./icons/broom.svg);
+  }
 }
