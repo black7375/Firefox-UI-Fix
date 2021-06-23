@@ -917,11 +917,11 @@
   @media (-moz-os-version: windows-win7 ),
          (-moz-os-version: windows-win8 ),
          (-moz-os-version: windows-win10) {
-    :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
-    :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
     :root {
       --context-menu-background-padding: 1em;
     }
+    :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
     #blockedPopupDontShowMessage {
       padding-inline-start: calc(var(--context-menu-background-padding) + var(--menu-padding) + var(--context-menu-background-padding-default) + 16px) !important;
     }
