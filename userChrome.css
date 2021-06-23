@@ -1376,4 +1376,25 @@
   .pageActionContextMenuItem.extensionPinned.extensionUnpinned.removeExtensionItem {
     background-image: url(chrome://global/skin/icons/delete.svg);
   }
+
+  /*= customizationPanelItemContextMenu ======================================*/
+  #customizationPanelItemContextMenuUnpin {
+    background-image: url(./icons/unpin-tab.svg);
+  }
+  .customize-context-removeFromPanel {
+    background-image: url(chrome://global/skin/icons/delete.svg);
+  }
+
+  /*= customizationPaletteItemContextMenu ====================================*/
+  .customize-context-addToToolbar {
+    background-image: url(chrome://devtools/skin/images/dock-bottom.svg);
+  }
+  .customize-context-addToPanel {
+    background-image: url(chrome://browser/skin/menu.svg);
+  }
+
+  /*= customizationPanelContextMenu ==========================================*/
+  #customizationPanelContextMenu > menuitem[command="cmd_CustomizeToolbars"] {
+    background-image: url(chrome://browser/skin/customize.svg);
+  }
 }
