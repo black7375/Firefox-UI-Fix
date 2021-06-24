@@ -1328,6 +1328,25 @@
   #context-media-eme-learnmore { /* iconic */
   }
 
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    #context-back {
+      --menuitem-image: url(chrome://browser/skin/back.svg);
+    }
+    #context-forward {
+      --menuitem-image: url(chrome://browser/skin/forward.svg);
+    }
+    #context-reload {
+      --menuitem-image: url(chrome://browser/skin/reload.svg);
+    }
+    #context-stop {
+      --menuitem-image: url(chrome://global/skin/icons/close.svg);
+    }
+
+    #context-bookmarkpage {
+      --menuitem-image: url(chrome://browser/skin/bookmark.svg);
+    }
+  }
+
   /*= pictureInPictureToggleContextMenu ======================================*/
   #pictureInPictureToggleContextMenu > menuitem[oncommand="PictureInPicture.hideToggle();"] {
     --menuitem-image: url(./icons/eye-hide.svg);
