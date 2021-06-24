@@ -203,6 +203,7 @@ multiselect() {
 firefoxProfileDirPaths=(
   ~/.mozilla/firefox
   ~/.var/app/org.mozilla.firefox/.mozilla/firefox
+  ~/Library/Application\ Support/Firefox/Profiles
 )
 
 check_profile_dir() {
