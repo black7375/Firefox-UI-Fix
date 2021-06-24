@@ -914,6 +914,7 @@
     padding-inline-start: var(--context-menu-background-padding) !important;
   }
 
+  /* Padding - Windows */
   @media (-moz-os-version: windows-win7 ),
          (-moz-os-version: windows-win8 ),
          (-moz-os-version: windows-win10) {
@@ -924,6 +925,27 @@
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
     #blockedPopupDontShowMessage {
       padding-inline-start: calc(var(--context-menu-background-padding) + var(--menu-padding) + var(--context-menu-background-padding-default) + 16px) !important;
+    }
+  }
+
+  /* Padding Mac */
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    :root {
+      --context-menu-background-padding-default: 10px;
+      --context-menu-mac-padding: 21px;
+    }
+
+    /* context menu width */
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
+    #blockedPopupDontShowMessage {
+      padding-inline-end: var(--context-menu-background-padding) !important;
+    }
+
+    /* text position */
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem > .menu-text,
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu > menu-text {
+      padding-inline-start: var(--context-menu-mac-padding) !important;
     }
   }
 
