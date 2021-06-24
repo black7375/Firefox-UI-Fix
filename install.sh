@@ -405,6 +405,28 @@ install_profile() {
   lepton_ok_message "End install"
 }
 
+#** Lepton Info File ***********************************************************
+#== Info File format & update policy ===========================================
+## `LEPTON` file
+# If this file exist in same directory as the `userChrome.css` file,
+# it is recognized as the "Lepton" installation directory.
+
+## `lepton.ini` file Format
+# [Profile PATH]
+# Type=Local | Release | Git
+# Ver=unknown | <git tag> | <git hash>
+# Branch=master | photon-style
+
+## Release's `INFO` file Format
+# Ver=<git tag>
+# Branch=master | photon-style
+
+## Update Policy
+# Type
+# - Local(unknown): force latest commit update
+# - Release(<git tag>): force latest tag update
+# - Git<git hash>: latest commit update
+
 #** Main ***********************************************************************
 install_lepton() {
   local profileDir=""
