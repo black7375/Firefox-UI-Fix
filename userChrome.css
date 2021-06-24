@@ -889,8 +889,8 @@
 
   /** Context Menu - Icons ****************************************************/
   /*= Layout =================================================================*/
-  menupopup menuitem,
-  menupopup menu {
+  menupopup menuitem:not([type="checkbox"]),
+  menupopup menu:not([type="checkbox"]) {
     -moz-appearance: none !important;  /* Linux: menulist */
   }
 
@@ -960,6 +960,12 @@
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem > .menu-text,
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu > menu-text {
       padding-inline-start: var(--context-menu-mac-padding) !important;
+    }
+
+    /* Checkbox menuitem, None iconic menu */
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"],
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic) {
+      padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
     }
   }
 
