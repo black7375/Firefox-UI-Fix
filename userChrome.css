@@ -535,17 +535,19 @@
     padding-block: var(--menu-padding, 0.5em) !important;
   }
 
-  :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
-    padding-inline-end: 0 !important; /* Original: 2px */
-  }
-  :root:not([uidensity=touch]) .menupopup-arrowscrollbox {
-    padding-block: 1px !important;    /* Original: 4px*/
-  }
-  :root:not([uidensity=touch]) #context-navigation:not([hidden]) {
-    padding: 0 0 1px !important;      /* Original: 0 0 4px*/
-  }
-  :root:not([uidensity=touch]) .menu-right {
-    margin-right: 6px !important;     /* Original: 12px */
+  @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
+      padding-inline-end: 0 !important; /* Original: 2px */
+    }
+    :root:not([uidensity=touch]) .menupopup-arrowscrollbox {
+      padding-block: 1px !important;    /* Original: 4px*/
+    }
+    :root:not([uidensity=touch]) #context-navigation:not([hidden]) {
+      padding: 0 0 1px !important;      /* Original: 0 0 4px*/
+    }
+    :root:not([uidensity=touch]) .menu-right {
+      margin-right: 6px !important;     /* Original: 12px */
+    }
   }
 
   /** Panel - Icons ***********************************************************/
