@@ -320,7 +320,7 @@
   }
   .tabbrowser-tab[last-visible-tab] .tab-background::after {
     right: 0;
-    transform: translateX(.5px) translateY(calc(-50% + 1px)) !important;
+    transform: translateX(1.5px) translateY(calc(-50% + 1px)) !important;
   }
 
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
