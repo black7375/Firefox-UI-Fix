@@ -546,15 +546,18 @@
   }
 
   /** Menu - Reduce Padding ***************************************************/
-  :root:not([uidensity=touch]) {
+  :root {
     --menu-padding: 0.35em;
   }
   :root[uidensity=compact] {
     --menu-padding: 0.25em;
   }
+  :root[uidensity=touch] {
+    --menu-padding: 0.5em;
+  }
   menupopup > menuitem, menupopup > menu {
     /* Original: 0.5em */
-    padding-block: var(--menu-padding, 0.5em) !important;
+    padding-block: var(--menu-padding) !important;
   }
 
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -961,11 +964,18 @@
          (-moz-os-version: windows-win10) {
     :root {
       --context-menu-background-padding: 1em;
+      --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
     }
+
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
     #blockedPopupDontShowMessage {
-      padding-inline-start: calc(var(--context-menu-background-padding) + var(--menu-padding) + var(--context-menu-background-padding-default) + 16px) !important;
+      padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding)) !important;
+    }
+
+    /* Checkbox */
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"][checked="false"] > .menu-iconic-left {
+        padding-inline-start: var(--context-menu-text-padding);
     }
   }
 
