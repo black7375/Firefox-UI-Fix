@@ -19,6 +19,15 @@ lepton_ok_message() {
   echo "${message}${FILLED:${#message}}"
 }
 
+lepton_spinner() {
+  local chars="/-\|"
+
+  for (( i=0; i<${#chars}; i++ )); do
+    sleep 0.5
+    echo -en "${chars:$i:1}" "\r"
+  done
+}
+
 #== Required Tools =============================================================
 PACAPT_PATH="/usr/local/bin/pacapt"
 PACAPT_INSTALLED=true
@@ -46,15 +55,13 @@ mac_command_line_developer_tools() {
    if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
      xcode-select --install
    else
-     echo "You have cancelled the installation, please rerun the installer."
-     # you have forgotten to exit here
-     exit
+     lepton_error_message "You have cancelled the installation, please rerun the installer."
    fi
 
    until [ "$(xcode-select -p 1>/dev/null 2>&1; echo $?)" -eq 0 ]; do
-     echo -n "."
-     sleep 1
+     lepton_spinner
    done
+   echo ""
    lepton_ok_message "Installed Command Line Developer Tools"
 }
 
