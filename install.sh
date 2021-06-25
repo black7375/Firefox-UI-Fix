@@ -40,30 +40,40 @@ pacapt_uninstall() {
   fi
 }
 
+mac_command_line_developer_tools() {
+   # https://unix.stackexchange.com/questions/408280/until-statement-waiting-for-process-to-finish-being-ignored
+   XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
+   if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
+     xcode-select --install
+   else
+     echo "You have cancelled the installation, please rerun the installer."
+     # you have forgotten to exit here
+     exit
+   fi
+
+   until [ "$(xcode-select -p 1>/dev/null 2>&1; echo $?)" -eq 0 ]; do
+     echo -n "."
+     sleep 1
+   done
+   lepton_ok_message "Installed Command Line Developer Tools"
+}
+
 git_check() {
   if ! [ -x "$(command -v git)" ]; then
     if [ "${OSTYPE}" == "linux-gnu" ] || [ "${OSTYPE}" == "FreeBSD" ]; then
       pacapt_install
       sudo pacapt -S git
       pacapt_uninstall
-    elif [ "${OSTYPE}" == "darwin" ]; then
-      # https://unix.stackexchange.com/questions/408280/until-statement-waiting-for-process-to-finish-being-ignored
-      XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
-      if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
-        xcode-select --install
-      else
-        echo "You have cancelled the installation, please rerun the installer."
-        # you have forgotten to exit here
-        exit
-      fi
-
-      until [ "$(xcode-select -p 1>/dev/null 2>&1; echo $?)" -eq 0 ]; do
-        echo -n "."
-        sleep 1
-      done
-      lepton_ok_message "Installed Command Line Developer Tools"
+    elif [[ "${OSTYPE}" == "darwin"* ]]; then
+      mac_command_line_developer_tools
     else
       lepton_error_message "OS NOT DETECTED, couldn't install required packages"
+    fi
+  fi
+
+  if [[ "${OSTYPE}" == "darwin"* ]]; then
+    if ! [ "$(git --help 1>/dev/null 2>&1; echo $?)" -eq 0 ]; then
+      mac_command_line_developer_tools
     fi
   fi
   lepton_ok_message "Required - git"
