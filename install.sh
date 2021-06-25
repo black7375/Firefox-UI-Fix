@@ -9,7 +9,7 @@ paths_filter() {
   local option="$2"
 
   # Set array
-  eval "local pathList=(\${${pathListName}[@]})"
+  eval "local pathList=(\"\${${pathListName}[@]}\")"
 
   # Set default option
   if [ -z "$option" ]; then
@@ -25,7 +25,7 @@ paths_filter() {
   done
 
   # Replace
-  eval "${pathListName}=(\${foundedTargets[@]})"
+  eval "${pathListName}=(\"\${foundedTargets[@]}\")"
 }
 
 autocopy() {
@@ -90,7 +90,7 @@ lepton_error_message() {
 lepton_ok_message() {
   local SIZE=50
   local FILLED=""
-  for ((i=0; i<=$(("${SIZE}" - 2)); i++)); do
+  for ((i=0; i<=$((SIZE - 2)); i++)); do
     FILLED+="."
   done
   FILLED+="OK"
@@ -99,7 +99,7 @@ lepton_ok_message() {
   echo "${message}${FILLED:${#message}}"
 }
 
-#== Multiselct =================================================================
+#== Multiselect ================================================================
 # https://stackoverflow.com/questions/45382472/bash-select-multiple-answers-at-once/54261882
 multiselect() {
   echo 'Select with <space>, Done with <enter>!!!'
@@ -201,9 +201,9 @@ multiselect() {
 #** Profile ********************************************************************
 #== Profile Dir ================================================================
 firefoxProfileDirPaths=(
-  ~/.mozilla/firefox
-  ~/.var/app/org.mozilla.firefox/.mozilla/firefox
-  ~/Library/Application\ Support/Firefox/Profiles
+  "${HOME}/.mozilla/firefox"
+  "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
+  "${HOME}/Library/Application Support/Firefox"
 )
 
 check_profile_dir() {
@@ -225,8 +225,6 @@ check_profile_dir() {
 #== Profile Info ===============================================================
 PROFILEINFOFILE="profiles.ini"
 check_profile_ini() {
-  local infoFile="profiles.ini"
-
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     if [ ! -f "${profileDir}/${PROFILEINFOFILE}" ]; then
       lepton_error_message "Unable to find ${PROFILEINFOFILE} at ${profileDir}"
@@ -241,6 +239,7 @@ firefoxProfilePaths=()
 select_profile() {
   local profileName="$1"
 
+  local IFS=$'\n'
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     local escapeDir=$(echo "${profileDir}" | sed "s|\/|\\\/|g")
     firefoxProfilePaths+=($(
@@ -270,9 +269,13 @@ select_profile() {
     if [ "${foundCount}" -eq 1 ]; then
       lepton_ok_message "Auto detected profile"
     else
-      local targetPaths=()
-      local multiPaths=$(echo "${firefoxProfilePaths[@]}" | sed 's/ /;/g')
+      local multiPaths=""
+      for profilePath in "${firefoxProfilePaths[@]}"; do
+        multiPaths+="${profilePath};"
+      done
       multiselect profileSelected "${multiPaths}"
+
+      local targetPaths=()
       for ((i=0; i<"${#profileSelected[@]}"; i++)); do
         local result="${profileSelected[${i}]}"
         if [ "$result" == "true" ]; then
