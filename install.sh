@@ -425,6 +425,9 @@ install_network() {
 
   git_check
   git clone -b "${leptonBranch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
+  if ! [ -d "chrome" ]; then
+    lepton_error_message "Unable to find downloaded files"
+  fi
 
   local isProfile=""
   for profilePath in "${firefoxProfilePaths}"; do
