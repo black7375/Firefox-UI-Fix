@@ -1,6 +1,60 @@
 #!/usr/bin/env bash
 
 #** Helper Utils ***************************************************************
+#== Message ====================================================================
+lepton_error_message() {
+  >&2 echo "FAILED: ${@}"
+  exit 1
+}
+
+lepton_ok_message() {
+  local SIZE=50
+  local FILLED=""
+  for ((i=0; i<=$((SIZE - 2)); i++)); do
+    FILLED+="."
+  done
+  FILLED+="OK"
+
+  local message="${@}"
+  echo "${message}${FILLED:${#message}}"
+}
+
+#== Required Tools =============================================================
+PACAPT_PATH="/usr/local/bin/pacapt"
+PACAPT_INSTALLED=true
+pacapt_install() {
+  if ! [ -x "$(command -v pacapt)" ]; then
+    echo "Universal Package Manager(icy/pacapt) Download && Install(need sudo permission)"
+    echo "It is installed temporarily and will be removed when installation is complete."
+    sudo curl https://github.com/icy/pacapt/raw/ng/pacapt -Lo "${PACAPT_PATH}"
+    sudo chmod 755 "${PACAPT_PATH}"
+    sudo ln -sv "${PACAPT_PATH}" /usr/local/bin/pacman || true
+    PACAPT_INSTALLED=false
+  fi
+  sudo pacapt -Sy
+}
+
+pacapt_uninstall() {
+  if [[ "${PACAPT_INSTALLED}" == false ]]; then
+    sudo rm -rf "${PACAPT}"
+  fi
+}
+
+git_check() {
+  if ! [ -x "$(command -v git)" ]; then
+    if [ "${OSTYPE}" == "linux-gnu" ] || [ "${OSTYPE}" == "FreeBSD" ]; then
+      pacapt_install
+      sudo pacapt -S git
+      pacapt_uninstall
+    elif [ "${OSTYPE}" == "darwin" ]; then
+      xcode-select --install
+    else
+      lepton_error_message "OS NOT DETECTED, couldn't install required packages"
+    fi
+  fi
+  lepton_ok_message "Required - git"
+}
+
 #== PATH / File ================================================================
 currentDir=$( cd "$(dirname $0)" ; pwd )
 
@@ -79,24 +133,6 @@ autorestore() {
   if [ -e "${lookupTarget}" ]; then
     autorestore "${target}"
   fi
-}
-
-#== Message ====================================================================
-lepton_error_message() {
-  >&2 echo "FAILED: ${@}"
-  exit 1
-}
-
-lepton_ok_message() {
-  local SIZE=50
-  local FILLED=""
-  for ((i=0; i<=$((SIZE - 2)); i++)); do
-    FILLED+="."
-  done
-  FILLED+="OK"
-
-  local message="${@}"
-  echo "${message}${FILLED:${#message}}"
 }
 
 #== Multiselect ================================================================
@@ -373,6 +409,7 @@ install_network() {
     automv chrome chrome.bak
   fi
 
+  git_check
   git clone -b "${leptonBranch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
 
   local isProfile=""
