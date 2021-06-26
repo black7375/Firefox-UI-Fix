@@ -166,6 +166,12 @@ autorestore() {
   fi
 }
 
+write_file() {
+  local filePath="$1"
+  local fileContent="$2"
+  echo -e "${fileContent}" | tee "${filePath}" > /dev/null
+}
+
 #== INI File ================================================================
 get_ini_section() {
   local filePath="$1"
@@ -176,8 +182,10 @@ get_ini_value() {
   local key="$2"
   local section="$3"
 
+  local output=""
   if [ "${section}" == "" ]; then
-    echo $(grep -E "^${key}" "${filePath}" | cut -f 2 -d"=")
+    output=$(grep -E "^${key}" "${filePath}" | cut -f 2 -d"=")
+    echo "${output}"
   else
     local sectionStart=""
     for line in $(cat "${filePath}"); do
@@ -190,7 +198,7 @@ get_ini_value() {
       fi
 
       if [ "${sectionStart}" == "true" ]; then
-        local output=$(echo "${line}" | grep -E "^${key}" | cut -f 2 -d"=" )
+        output=$(echo "${line}" | grep -E "^${key}" | cut -f 2 -d"=" )
         if [ "${output}" != "" ]; then
           echo "${output}"
         fi
@@ -356,14 +364,13 @@ update_profile_paths() {
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     local escapeDir=$(echo "${profileDir}" | sed "s|\/|\\\/|g")
     firefoxProfilePaths+=($(
-      grep -E "^Path" "${profileDir}/${PROFILEINFOFILE}" |
-      cut -f 2 -d"="                                     |
+      get_ini_value "${profileDir}/${PROFILEINFOFILE}" "Path" |
       sed "s/^/${escapeDir}\//"
     ))
   done
 
   local foundCount="${#firefoxProfilePaths[@]}"
-  if [ "${foundCount}" -eq 0 ]; then
+  if ! [ "${foundCount}" -eq 0 ]; then
     lepton_ok_message "Profile paths updated"
   else
     lepton_error_message "Doesn't exist profiles"
@@ -561,59 +568,65 @@ install_profile() {
 # Updates happen infrequently, so the creation overhead  is less significant.
 
 LEPTONINFOFILE="lepton.ini"
-RELEASEINFOFILE="INFO"
+CHROMEINFOFILE="LEPTON"
 write_lepton_info() {
   # Init info
   local output=""
   local prevDir=$(dirname "${firefoxProfilePaths[0]}")
   for profilePath in "${firefoxProfilePaths[@]}"; do
-    local LEPTONINFOPATH="${profilePath}/chrome/${RELEASEINFOFILE}"
+    local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
     local LEPTONGITPATH="{profilePath}/chrome/.git"
 
     # Profile info
-    local updateType=""
-    local installedVer=""
-    local installedBranch=""
+    local Type=""
+    local Ver=""
+    local Branch=""
     if [ -f "${LEPTONINFOPATH}" ]; then
-      updateType="Release"
-      installedVer=$(grep -E "^Ver" "${LEPTONINFOPATH}" |
-                     cut -f 2 -d"=")
-      installedBranch=$(grep -E "^Branch" "${LEPTONINFOPATH}" |
-                        cut -f 2 -d"=")
-    elif [ -d "${LEPTONGITPATH}" ]; then
-      updateType="Git"
-      installedVer=$(git --git-dir  "${profilePath}/chrome/.git"
-                     rev-parse HEAD)
-      installedBranch=$(git --git-dir  "${profilePath}/chrome/.git"
-                        rev-parse --abbrev-ref HEAD)
-    else
-      updateType="Local"
-      installedVer="unknown"
+      if [ -d "${LEPTONGITPATH}" ]; then
+        Type="Git"
+        Ver=$(   git --git-dir "${LEPTONGITPATH}" rev-parse HEAD)
+        Branch=$(git --git-dir "${LEPTONGITPATH}" rev-parse --abbrev-ref HEAD)
+      else
+        Type=$(  get_ini_value "${LEPTONINFOPATH}" "TYPE"  )
+        Ver=$(   get_ini_value "${LEPTONINFOPATH}" "Ver"   )
+        Branch=$(get_ini_value "${LEPTONINFOPATH}" "Branch")
+
+        if [ "${Type}" == "" ]; then
+          Type="Local"
+        fi
+      fi
     fi
 
     # Flushing
     local profileDir=$(dirname "${profilePath}")
     local profileName=$(basename "${profilePath}")
     if [ "${prevDir}" != "${profileDir}" ]; then
-      echo -e "${output}" | tee "${prevDir}/${LEPTONINFOFILE}" > /dev/null
+      write_file "${prevDir}/${LEPTONINFOFILE}" "${output}"
       output=""
     fi
-    prevDir="${profileDir}"
 
     # Make output contents
-    if [ "${updateType}" == "Local" ]; then
-      output="${output}[${profileName}]\nType=${updateType}\nVer=${installedVer}\n\n"
-    else
-      output="${output}[${profileName}]\nType=${updateType}\nVer=${installedVer}\nBranch=${installedBranch}\n\n"
+    if [ -f "${LEPTONINFOPATH}" ]; then
+      output="${output}$(set_ini_section ${profileName})"
+      for key in "Type" "Branch" "Ver"; do
+        eval "local value=\${${key}}"
+        output="${output}$(set_ini_value ${key} ${value})"
+      done
     fi
 
     # Latest element flushing
     if [ "${profilePath}" == "${latestPath}" ]; then
-      echo -e "${output}" | tee "${profileDir}/${LEPTONINFOFILE}" > /dev/null
+      write_file "${profileDir}/${LEPTONINFOFILE}" "${output}"
     fi
     prevDir="${profileDir}"
   done
 
+  # Verify
+  for profileDir in "${firefoxProfileDirPaths[@]}"; do
+    if ! [ -f "${profileDir}/${LEPTONINFOFILE}" ]; then
+      lepton_error_message "Lepton info file create"
+    fi
+  done
   lepton_ok_message "Lepton info file created"
 }
 
