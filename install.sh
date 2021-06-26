@@ -166,6 +166,54 @@ autorestore() {
   fi
 }
 
+#== INI File ================================================================
+get_ini_section() {
+  local filePath="$1"
+  echo $(grep -E "^\[" "${filePath}" |sed -e "s/^\[//g" -e "s/\]$//g")
+}
+get_ini_value() {
+  local filePath="$1"
+  local key="$2"
+  local section="$3"
+
+  if [ "${section}" == "" ]; then
+    echo $(grep -E "^${key}" "${filePath}" | cut -f 2 -d"=")
+  else
+    local sectionStart=""
+    for line in $(cat "${filePath}"); do
+      if [[ "${sectionStart}" == "true" && "${line}" == "["* ]]; then
+        return 0
+      fi
+
+      if [ "${line}" == "[${section}]" ]; then
+        sectionStart="true"
+      fi
+
+      if [ "${sectionStart}" == "true" ]; then
+        local output=$(echo "${line}" | grep -E "^${key}" | cut -f 2 -d"=" )
+        if [ "${output}" != "" ]; then
+          echo "${output}"
+        fi
+      fi
+    done
+  fi
+}
+
+set_ini_section() {
+  local section="$1"
+  echo "[${section}]\n"
+}
+set_ini_value() {
+  local key="$1"
+  local value="$2"
+
+  if [ "${value}" == "" ]; then
+    echo ""
+  else
+    echo "${key}=${value}\n"
+  fi
+}
+
 #== Multiselect ================================================================
 # https://stackoverflow.com/questions/45382472/bash-select-multiple-answers-at-once/54261882
 multiselect() {
