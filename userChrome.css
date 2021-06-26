@@ -149,6 +149,7 @@
   }
 
   /** Tab Bar - Reduce Height, Show more contents *****************************/
+  /* Toolbar Height */
   :root:not([uidensity=touch]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
@@ -163,6 +164,7 @@
     max-height: unset;
   }
 
+  /* Scroll Button - Size Fix */
   :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
     --scrollbtn-vertical-border:  2px;
