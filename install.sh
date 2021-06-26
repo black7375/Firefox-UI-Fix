@@ -510,6 +510,69 @@ install_profile() {
 # - Release(<git tag>): force latest tag update
 # - Git<git hash>: latest commit update
 
+#== Create info file ===========================================================
+# We should always create a new one, as it also takes into account the possibility of setting it manually.
+# Updates happen infrequently, so the creation overhead  is less significant.
+
+LEPTONINFOFILE="lepton.ini"
+RELEASEINFOFILE="INFO"
+write_lepton_info() {
+  # Init info
+  local output=""
+  local prevDir=$(dirname "${firefoxProfilePaths[0]}")
+  for profilePath in "${firefoxProfilePaths[@]}"; do
+    local LEPTONINFOPATH="${profilePath}/chrome/${RELEASEINFOFILE}"
+    local LEPTONGITPATH="{profilePath}/chrome/.git"
+
+    # Profile info
+    local updateType=""
+    local installedVer=""
+    local installedBranch=""
+    if [ -f "${LEPTONINFOPATH}" ]; then
+      updateType="Release"
+      installedVer=$(grep -E "^Ver" "${LEPTONINFOPATH}" |
+                     cut -f 2 -d"=")
+      installedBranch=$(grep -E "^Branch" "${LEPTONINFOPATH}" |
+                        cut -f 2 -d"=")
+    elif [ -d "${LEPTONGITPATH}" ]; then
+      updateType="Git"
+      installedVer=$(git --git-dir  "${profilePath}/chrome/.git"
+                     rev-parse HEAD)
+      installedBranch=$(git --git-dir  "${profilePath}/chrome/.git"
+                        rev-parse --abbrev-ref HEAD)
+    else
+      updateType="Local"
+      installedVer="unknown"
+    fi
+
+    # Flushing
+    local profileDir=$(dirname "${profilePath}")
+    local profileName=$(basename "${profilePath}")
+    if [ "${prevDir}" != "${profileDir}" ]; then
+      echo -e "${output}" | tee "${prevDir}/${LEPTONINFOFILE}" > /dev/null
+      output=""
+    fi
+    prevDir="${profileDir}"
+
+    # Make output contents
+    if [ "${updateType}" == "Local" ]; then
+      output="${output}[${profileName}]\nType=${updateType}\nVer=${installedVer}\n\n"
+    else
+      output="${output}[${profileName}]\nType=${updateType}\nVer=${installedVer}\nBranch=${installedBranch}\n\n"
+    fi
+
+    # Latest element flushing
+    if [ "${profilePath}" == "${latestPath}" ]; then
+      echo -e "${output}" | tee "${profileDir}/${LEPTONINFOFILE}" > /dev/null
+    fi
+    prevDir="${profileDir}"
+  done
+
+  lepton_ok_message "Lepton info file created"
+}
+
+#== Read info file ===========================================================
+
 #** Main ***********************************************************************
 install_lepton() {
   local profileDir=""
