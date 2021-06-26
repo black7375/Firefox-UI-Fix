@@ -175,7 +175,9 @@ write_file() {
 #== INI File ================================================================
 get_ini_section() {
   local filePath="$1"
-  echo $(grep -E "^\[" "${filePath}" |sed -e "s/^\[//g" -e "s/\]$//g")
+
+  local ouput=$(grep -E "^\[" "${filePath}" |sed -e "s/^\[//g" -e "s/\]$//g")
+  echo "${ouput}"
 }
 get_ini_value() {
   local filePath="$1"
@@ -418,9 +420,9 @@ select_profile() {
       foundCount="${#firefoxProfilePaths[@]}"
       if [ "${foundCount}" -eq 0 ]; then
         lepton_error_message "Please select profiles"
-      else
-        lepton_ok_message "Multi selected profiles"
       fi
+
+      lepton_ok_message "Multi selected profiles"
     fi
   fi
 }
@@ -563,11 +565,22 @@ install_profile() {
 # - Release(<git tag>): force latest tag update
 # - Git<git hash>: latest commit update
 
+#== Lepton Info ================================================================
+LEPTONINFOFILE="lepton.ini"
+check_lepton_ini() {
+  for profileDir in "${firefoxProfileDirPaths[@]}"; do
+    if [ ! -f "${profileDir}/${LEPTONINFOFILE}" ]; then
+      lepton_error_message "Unable to find ${LEPTONINFOFILE} at ${profileDir}"
+    fi
+  done
+
+  lepton_ok_message "Lepton info file found"
+}
+
 #== Create info file ===========================================================
 # We should always create a new one, as it also takes into account the possibility of setting it manually.
 # Updates happen infrequently, so the creation overhead  is less significant.
 
-LEPTONINFOFILE="lepton.ini"
 CHROMEINFOFILE="LEPTON"
 write_lepton_info() {
   # Init info
@@ -575,7 +588,7 @@ write_lepton_info() {
   local prevDir=$(dirname "${firefoxProfilePaths[0]}")
   for profilePath in "${firefoxProfilePaths[@]}"; do
     local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
-    local LEPTONGITPATH="{profilePath}/chrome/.git"
+    local LEPTONGITPATH="${profilePath}/chrome/.git"
 
     # Profile info
     local Type=""
@@ -608,7 +621,8 @@ write_lepton_info() {
     # Make output contents
     if [ -f "${LEPTONINFOPATH}" ]; then
       output="${output}$(set_ini_section ${profileName})"
-      for key in "Type" "Branch" "Ver"; do
+      local Path="${profilePath}"
+      for key in "Type" "Branch" "Ver" "Path"; do
         eval "local value=\${${key}}"
         output="${output}$(set_ini_value ${key} ${value})"
       done
@@ -622,15 +636,9 @@ write_lepton_info() {
   done
 
   # Verify
-  for profileDir in "${firefoxProfileDirPaths[@]}"; do
-    if ! [ -f "${profileDir}/${LEPTONINFOFILE}" ]; then
-      lepton_error_message "Lepton info file create"
-    fi
-  done
+  check_lepton_ini
   lepton_ok_message "Lepton info file created"
 }
-
-#== Read info file ===========================================================
 
 #** Main ***********************************************************************
 install_lepton() {
@@ -638,13 +646,13 @@ install_lepton() {
   local profileName=""
 
   # Get options.
-  while getopts 'f:p:g:t:h' flag; do
+  while getopts 'f:p:h' flag; do
     case "${flag}" in
       f) profileDir="${OPTARG}"  ;;
       p) profileName="${OPTARG}" ;;
       h)
         echo "Lepton Theme Install Script:"
-        echo "  -f <firefox_folder_path>. Set custom Firefox folder path."
+        echo "  -f <firefox_profile_folder_path>. Set custom Firefox profile folder path."
         echo "  -p <profile_name>. Set custom profile name."
         echo "  -h to show this message."
         exit 0
@@ -660,6 +668,7 @@ install_lepton() {
   select_profile "${profileName}"
 
   install_profile
+  write_lepton_info
 }
 
 install_lepton "$@"
