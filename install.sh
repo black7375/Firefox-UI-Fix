@@ -490,19 +490,17 @@ install_profile() {
 
 #** Lepton Info File ***********************************************************
 #== Info File format & update policy ===========================================
-## `LEPTON` file
+## `LEPTON` file format
 # If this file exist in same directory as the `userChrome.css` file,
 # it is recognized as the "Lepton" installation directory.
+# Branch=master | photon-style
+# Ver=<git tag> | <git hash> | [NULL]
 
 ## `lepton.ini` file Format
 # [Profile PATH]
 # Type=Local | Release | Git
-# Ver=unknown | <git tag> | <git hash>
 # Branch=master | photon-style
-
-## Release's `INFO` file Format
-# Ver=<git tag>
-# Branch=master | photon-style
+# Ver=<git tag> | <git hash> | [NULL]
 
 ## Update Policy
 # Type
