@@ -303,9 +303,7 @@ check_profile_ini() {
 
 #== Profile PATH ===============================================================
 firefoxProfilePaths=()
-select_profile() {
-  local profileName="$1"
-
+update_profile_paths() {
   local IFS=$'\n'
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     local escapeDir=$(echo "${profileDir}" | sed "s|\/|\\\/|g")
@@ -315,6 +313,17 @@ select_profile() {
       sed "s/^/${escapeDir}\//"
     ))
   done
+
+  local foundCount="${#firefoxProfilePaths[@]}"
+  if [ "${foundCount}" -eq 0 ]; then
+    lepton_ok_message "Profile paths updated"
+  else
+    lepton_error_message "Doesn't exist profiles"
+  fi
+}
+
+select_profile() {
+  local profileName="$1"
 
   if [ "${profileName}" != "" ]; then
     local targetPath=""
@@ -525,6 +534,7 @@ install_lepton() {
 
   check_profile_dir "${profileDir}"
   check_profile_ini
+  update_profile_paths
   select_profile "${profileName}"
 
   install_profile
