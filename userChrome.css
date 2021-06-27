@@ -898,6 +898,9 @@
   #downloadsHistory {
     list-style-image: url(chrome://browser/skin/downloads/downloads.svg);
   }
+  #downloadsHistory .box-inherit.button-box {
+    display: -moz-inline-box !important;
+  }
 
   /*= Toolbar - Overflow Menu ================================================*/
   #overflowMenu-customize-button {
