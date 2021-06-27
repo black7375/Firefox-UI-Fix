@@ -129,7 +129,7 @@ autocopy() {
     echo ""
   fi
 
-  cp -rv "${file}" "${target}"
+  cp -rf "${file}" "${target}"
 }
 
 automv() {
@@ -148,7 +148,7 @@ automv() {
     echo ""
   fi
 
-  mv -v "${file}" "${target}"
+  mv -f "${file}" "${target}"
 }
 
 autorestore() {
@@ -156,9 +156,9 @@ autorestore() {
   local target="${file}.bak"
 
   if [ -e "${file}" ]; then
-    rm -rv "${file}"
+    rm -rf "${file}"
   fi
-  mv -v  "${target}" "${file}"
+  mv -f  "${target}" "${file}"
 
   local lookupTarget="${target}.bak"
   if [ -e "${lookupTarget}" ]; then
@@ -509,7 +509,7 @@ check_chrome_restore() {
 
 clean_lepton() {
   if [ ! "${chromeDuplicate}" == "true" ]; then
-    rm -rv chrome
+    rm -rf chrome
   fi
   lepton_ok_message "End clean files"
 }
