@@ -65,7 +65,7 @@ mac_command_line_developer_tools() {
    lepton_ok_message "Installed Command Line Developer Tools"
 }
 
-git_check() {
+check_git() {
   if ! [ -x "$(command -v git)" ]; then
     if [ "${OSTYPE}" == "linux-gnu" ] || [ "${OSTYPE}" == "FreeBSD" ]; then
       pacapt_install
@@ -490,55 +490,78 @@ check_install_types() {
   fi
 }
 
-#== Each Install ===============================================================
-install_local() {
-  for profilePath in "${firefoxProfilePaths}"; do
-    autocopy user.js         "${profilePath}/user.js"
-    autocopy "${currentDir}" "${profilePath}/chrome"
-  done
-  lepton_ok_message "End profile copy"
-}
-
-install_release() {
-  for profilePath in "${firefoxProfilePaths}"; do
-    autocopy user.js "${profilePath}/user.js"
-    autocopy chrome  "${profilePath}/chrome"
-  done
-  lepton_ok_message "End profile copy"
-}
-
-install_network() {
-  local duplicate=""
-  if [ -e "chrome" ]; then
-    duplicate="true"
+#== Install Helpers ============================================================
+chromeDuplicate=""
+check_chrome_exist() {
+  if [ -e "chrome" ] && [ ! -f "chrome/${LEPTONINFOFILE}" ]; then
+    chromeDuplicate="true"
     automv chrome chrome.bak
+    lepton_ok_message "Backup files"
+  fi
+}
+check_chrome_restore() {
+  if [ "${chromeDuplicate}" == "true" ]; then
+    autorestore chrome
+    lepton_ok_message "End restore files"
+  fi
+  lepton_ok_message "End check restore files"
+}
+
+clean_lepton() {
+  if [ ! "${chromeDuplicate}" == "true" ]; then
+    rm -rv chrome
+  fi
+  lepton_ok_message "End clean files"
+}
+clone_lepton() {
+  local branch="$1"
+
+  if [ -z "${branch}" ]; then
+    branch="${leptonBranch}"
   fi
 
-  git_check
-  git clone -b "${leptonBranch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
+  git clone -b "${branch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
   if ! [ -d "chrome" ]; then
     lepton_error_message "Unable to find downloaded files"
   fi
+}
 
-  local isProfile=""
-  for profilePath in "${firefoxProfilePaths}"; do
-    autocopy chrome/user.js "${profilePath}/user.js"
-    autocopy chrome         "${profilePath}/chrome"
+copy_lepton() {
+  local chromeDir="$1"
+  local userJSPath="$2"
 
-    if [ "${currentDir}" == "${profilePath}" ]; then
-      isProfile="true"
-    fi
+  if [ -z "${chromeDir}" ]; then
+    chromeDir="chrome"
+  fi
+  if [ -z "${userJSPath}" ]; then
+    userJSPath="${chromeDir}/user.js"
+  fi
+
+  for profilePath in "${firefoxProfilePaths[@]}"; do
+    autocopy "${userJSPath}" "${profilePath}/user.js"
+    autocopy "${chromeDir}" "${profilePath}/chrome"
   done
   lepton_ok_message "End profile copy"
+}
 
-  cd "${currentDir}"
-  if [ ! "${duplicate}" == "true" ]; then
-    rm -rv chrome
-  fi
-  if [ "${duplicate}" == "true" ]; then
-    autorestore chrome
-  fi
-  lepton_ok_message "End clean files"
+#== Each Install ===============================================================
+install_local() {
+  copy_lepton "${currentDir}" "user.js"
+}
+
+install_release() {
+  copy_lepton "chrome" "user.js"
+}
+
+install_network() {
+  check_chrome_exist
+  check_git
+
+  clone_lepton
+  copy_lepton
+
+  clean_lepton
+  check_chrome_restore
 }
 
 install_profile() {
@@ -652,18 +675,65 @@ write_lepton_info() {
   lepton_ok_message "Lepton info file created"
 }
 
+#** Update *********************************************************************
+update_profile() {
+  check_git
+  for profileDir in "${firefoxProfileDirPaths[@]}"; do
+    local LEPTONINFOPATH="${profileDir}/${LEPTONINFOFILE}"
+    local sections=$(get_ini_section "${LEPTONINFOPATH}")
+    if [ ! -z "${sections}" ]; then
+      for section in "${sections[@]}"; do
+        local Type=$(  get_ini_value "${LEPTONINFOPATH}" "Type"   "${section}")
+        local Branch=$(get_ini_value "${LEPTONINFOPATH}" "Branch" "${section}")
+        local Path=$(  get_ini_value "${LEPTONINFOPATH}" "Path"   "${section}")
+
+        local LEPTONGITPATH="${Path}/chrome/.git"
+        if [ "${Type}" == "Git" ]; then
+          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+          git --git-dir "${LEPTONGITPATH}" pull --no-edit
+        elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
+          check_chrome_exist
+          if [ ! -d "chrome" ]; then
+            clone_lepton
+          fi
+
+          firefoxProfilePaths=("${Path}")
+          copy_lepton
+
+          if [ -z "${Branch}" ]; then
+            Branch="${leptonBranch}"
+          fi
+          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+
+          if [ "${Type}" == "Release" ]; then
+            local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
+            git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
+          fi
+        else
+          lepton_error_message "Unable to find update type, ${Type}"
+        fi
+      done
+    fi
+  done
+  clean_lepton
+  check_chrome_restore
+}
+
 #** Main ***********************************************************************
 install_lepton() {
+  local updateMode=""
   local profileDir=""
   local profileName=""
 
   # Get options.
-  while getopts 'f:p:h' flag; do
+  while getopts 'u:f:p:h' flag; do
     case "${flag}" in
+      u) updateMode="true"       ;;
       f) profileDir="${OPTARG}"  ;;
       p) profileName="${OPTARG}" ;;
       h)
         echo "Lepton Theme Install Script:"
+        echo "  -u run to update mode"
         echo "  -f <firefox_profile_folder_path>. Set custom Firefox profile folder path."
         echo "  -p <profile_name>. Set custom profile name."
         echo "  -h to show this message."
@@ -677,10 +747,20 @@ install_lepton() {
   check_profile_dir "${profileDir}"
   check_profile_ini
   update_profile_paths
-  select_profile "${profileName}"
 
-  install_profile
+  # Install Mode
+  if [ ! "${updateMode}" == true ]; then
+    select_profile "${profileName}"
+    install_profile
+  fi
+
   write_lepton_info
+
+  # Update Mode
+  if [ ! "${updateMode}" == true ]; then
+    update_profile
+    write_lepton_info
+  fi
 }
 
 install_lepton "$@"
