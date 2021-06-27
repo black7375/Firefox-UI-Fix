@@ -169,7 +169,15 @@ autorestore() {
 write_file() {
   local filePath="$1"
   local fileContent="$2"
-  echo -e "${fileContent}" | tee "${filePath}" > /dev/null
+
+  if [ -z "${fileContent}" ]; then
+    if [ -e "${filePath}" ]; then
+      rm -rf "${filePath}"
+    fi
+    touch "${filePath}"
+  else
+    echo -e "${fileContent}" | tee "${filePath}" > /dev/null
+  fi
 }
 
 #== INI File ================================================================
@@ -554,10 +562,11 @@ install_profile() {
 # Ver=<git tag> | <git hash> | [NULL]
 
 ## `lepton.ini` file Format
-# [Profile PATH]
+# [Profile Name]
 # Type=Local | Release | Git
 # Branch=master | photon-style
 # Ver=<git tag> | <git hash> | [NULL]
+# Path=<Full PATH>
 
 ## Update Policy
 # Type
@@ -586,6 +595,7 @@ write_lepton_info() {
   # Init info
   local output=""
   local prevDir=$(dirname "${firefoxProfilePaths[0]}")
+  local latestPath="${firefoxProfilePaths[${#firefoxProfilePaths[@]} - 1]}"
   for profilePath in "${firefoxProfilePaths[@]}"; do
     local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
     local LEPTONGITPATH="${profilePath}/chrome/.git"
@@ -594,6 +604,7 @@ write_lepton_info() {
     local Type=""
     local Ver=""
     local Branch=""
+    local Path=""
     if [ -f "${LEPTONINFOPATH}" ]; then
       if [ -d "${LEPTONGITPATH}" ]; then
         Type="Git"
@@ -608,6 +619,8 @@ write_lepton_info() {
           Type="Local"
         fi
       fi
+
+      Path="${profilePath}"
     fi
 
     # Flushing
@@ -621,12 +634,11 @@ write_lepton_info() {
     # Make output contents
     if [ -f "${LEPTONINFOPATH}" ]; then
       output="${output}$(set_ini_section ${profileName})"
-      local Path="${profilePath}"
-      for key in "Type" "Branch" "Ver" "Path"; do
-        eval "local value=\${${key}}"
-        output="${output}$(set_ini_value ${key} ${value})"
-      done
     fi
+    for key in "Type" "Branch" "Ver" "Path"; do
+      eval "local value=\${${key}}"
+      output="${output}$(set_ini_value ${key} ${value})"
+    done
 
     # Latest element flushing
     if [ "${profilePath}" == "${latestPath}" ]; then
