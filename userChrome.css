@@ -274,7 +274,7 @@
     stroke: var(--tabs-border-color, transparent) !important;
     -moz-context-properties: fill, stroke !important;
 
-    background-image: url(./icons/tab-bottom-corner.svg);
+    /* Image */
     background-size:   var(--tab-corner-rounding);
     background-repeat: no-repeat;
     background-position-y: bottom;
@@ -282,11 +282,12 @@
 
   :root[lwtheme="true"] tab[visuallyselected] > stack::before {
     left: calc(var(--tab-corner-padding) - var(--tab-corner-rounding)) !important;
+    background-image: url(./icons/tab-bottom-corner-left.svg);
   }
   :root[lwtheme="true"] tab[visuallyselected] > stack::after {
     left:  auto;
     right: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
-    transform: scaleX(-1) !important;
+    background-image: url(./icons/tab-bottom-corner-right.svg);
   }
 
   /** Unselected Tab - Divide line ********************************************/
@@ -336,6 +337,26 @@
 
   #tabs-newtab-button > .toolbarbutton-icon {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
+  }
+
+  /* Coner Rounding */
+  #tabs-newtab-button:hover {
+    /* Color */
+    fill: color-mix(in srgb, currentColor 17%, transparent) !important; /* Hardcoded compatibility var(--toolbarbutton-hover-background) */
+    -moz-context-properties: fill !important;
+
+    /* Corner Image */
+    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
+    background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
+    background-repeat: no-repeat;
+    background-position: left var(--newtab-position) bottom,  right var(--newtab-position)  bottom;
+    background-size: var(--tab-corner-rounding);
+  }
+
+  #tabs-newtab-button .toolbarbutton-icon {
+    -moz-context-properties: fill, fill-opacity;
+    fill: var(--toolbarbutton-icon-fill);
+    fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
 
   /** Clipped tabs - Letters cleary *******************************************/
