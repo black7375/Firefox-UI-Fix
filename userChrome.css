@@ -358,6 +358,7 @@
   }
 
   #tabs-newtab-button .toolbarbutton-icon {
+    padding: calc(var(--toolbarbutton-inner-padding) - (var(--tab-block-margin) / 4)) var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) + (var(--tab-block-margin) / 4)) !important;
     -moz-context-properties: fill, fill-opacity;
     fill: var(--toolbarbutton-icon-fill);
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
