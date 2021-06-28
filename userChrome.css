@@ -66,6 +66,7 @@
   :root {
     /* Tab Bar */
     --proton-tab-block-margin: 2px !important; /* Original: 4px */
+    --tab-block-margin:        2px !important; /* New version of --proton-tab-block-margin */
     --inline-tab-padding:      6px !important; /* Original: 8px */
 
     /* Panel */
@@ -86,6 +87,7 @@
   :root[uidensity=touch] {
     /* Tab Bar - Like Original */
     --proton-tab-block-margin: 4px !important; /* Original: 4px */
+    --tab-block-margin:        4px !important; /* New version of --proton-tab-block-margin */
     --inline-tab-padding:      8px !important; /* Original: 8px */
 
     /* Panel - Like Original */
@@ -329,9 +331,9 @@
 
   /* New tab button - Looks like tab ******************************************/
   #tabs-newtab-button {
-    margin: calc(var(--tab-block-margin) / 2) 0 calc(-1 * var(--tab-block-margin) / 2) !important; /* Original: 0 0 var(--tabs-navbar-shadow-size) !important */
-    padding: 2px var(--toolbarbutton-outer-padding) 0; /* Original: 0 var(--toolbarbutton-outer-padding) */
+    margin: var(--tab-block-margin) 0px 0px !important; /* Original: 0 0 var(--tabs-navbar-shadow-size) !important */
   }
+
   #tabs-newtab-button > .toolbarbutton-icon {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
   }
