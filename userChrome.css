@@ -200,7 +200,7 @@
   }
 
   .tab-content {
-    margin-top: var(--proton-tab-block-margin);
+    margin-top: var(--tab-block-margin);
   }
 
   .tab-stack {
@@ -332,7 +332,11 @@
 
   /* New tab button - Looks like tab ******************************************/
   #tabs-newtab-button {
-    margin: var(--tab-block-margin) 0px 0px !important; /* Original: 0 0 var(--tabs-navbar-shadow-size) !important */
+    /* Original:
+    margin: 0 0 var(--tabs-navbar-shadow-size) !important
+    => Can't ovrride style. Therefore, we should approach it by bypass.
+    */
+    transform: translateY(var(--tab-block-margin));
   }
 
   #tabs-newtab-button > .toolbarbutton-icon {
@@ -349,7 +353,7 @@
     --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
     background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
     background-repeat: no-repeat;
-    background-position: left var(--newtab-position) bottom,  right var(--newtab-position)  bottom;
+    background-position: left var(--newtab-position) bottom var(--tabs-navbar-shadow-size),  right var(--newtab-position)  bottom var(--tabs-navbar-shadow-size);
     background-size: var(--tab-corner-rounding);
   }
 
