@@ -253,7 +253,7 @@
 
   /** Selected Tab - Bottom Rounded Corner ************************************/
   #tabbrowser-tabs {
-    --tab-corner-rounding: 5px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
+    --tab-corner-rounding: 4px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
     --tab-corner-padding:  1px;
   }
 
@@ -350,11 +350,12 @@
     -moz-context-properties: fill !important;
 
     /* Corner Image */
-    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
+    --newtab-corner-rounding: calc(var(--tab-corner-rounding) + 2px);
+    --newtab-position: calc((var(--newtab-corner-rounding) / 2) * -1);
     background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
     background-repeat: no-repeat;
     background-position: left var(--newtab-position) bottom var(--tabs-navbar-shadow-size),  right var(--newtab-position)  bottom var(--tabs-navbar-shadow-size);
-    background-size: var(--tab-corner-rounding);
+    background-size: var(--newtab-corner-rounding);
   }
 
   #tabs-newtab-button .toolbarbutton-icon {
