@@ -18,6 +18,11 @@
       background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
   }
 
+  /* Navbar Border */
+  #navigator-toolbox:-moz-lwtheme {
+    --tabs-border-color: rgba(0,0,0,.3);
+  }
+
   /** Windows 7 - Compatibility ***********************************************/
   @media (-moz-os-version: windows-win7) {
     /* Header Color */
