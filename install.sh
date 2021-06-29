@@ -113,7 +113,7 @@ paths_filter() {
   eval "${pathListName}=(\"\${foundedTargets[@]}\")"
 }
 
-autocopy() {
+autocp() {
   local file="${1}"
   local target="${2}"
 
@@ -125,7 +125,7 @@ autocopy() {
   if [ -e "${target}" ]; then
     echo "${target} alreay exist."
     echo "Now Backup.."
-    autocopy "${target}" "${target}.bak"
+    autocp "${target}" "${target}.bak"
     echo ""
   fi
 
@@ -538,8 +538,8 @@ copy_lepton() {
   fi
 
   for profilePath in "${firefoxProfilePaths[@]}"; do
-    autocopy "${userJSPath}" "${profilePath}/user.js"
-    autocopy "${chromeDir}" "${profilePath}/chrome"
+    autocp "${userJSPath}" "${profilePath}/user.js"
+    autocp "${chromeDir}" "${profilePath}/chrome"
   done
   lepton_ok_message "End profile copy"
 }
