@@ -291,14 +291,20 @@
   }
 
   /** Unselected Tab - Divide line ********************************************/
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
+  #tabbrowser-arrowscrollbox {
+    position: absolute;
+  }
+
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab] .tab-background::after {
+  #tabs-newtab-button:not(:hover)::before {
     /* Box Model */
     content:  "";
-    display:  block;
+    display: block;
     position: absolute;
-    top:   50%;
+
+    /* Position */
+    top:       50%;
+    transform: translateX(-2.5px) translateY(calc(-50% + 1px));
 
     /* Bar shape */
     width:     1px;
@@ -307,19 +313,12 @@
 
     /* Bar Color */
     opacity: var(--tab-separator-opacity);
-    transition: opacity .2s var(--ease-basic) !important;
-    background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
-  }
-
-  .tab-background::before {
-    transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
-  }
-  .tabbrowser-tab[last-visible-tab] .tab-background::after {
-    right: 0;
-    transform: translateX(.5px) translateY(calc(-50% + 1px)) !important;
+    transition: opacity .2s var(--ease-basic);
+    background-color: color-mix(in srgb, currentColor 20%, transparent); /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
   }
 
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + #tabs-newtab-button::before,
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
