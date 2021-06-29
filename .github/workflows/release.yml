@@ -18,14 +18,24 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
 
+      - name: Info file Creation
+        run: |
+          rm -f LEPTON
+
+          # or BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          BRANCH=${{ matrix.branch }}
+          TAGVER=$(git describe --tags --abbrev=0)
+
+          echo -e "Ver=${TAGVER}\nBranch=${BRANCH}" > LEPTON
+
       - name: Release Structure
         run: |
           mkdir -v chrome
 
           shopt -s extglob
-          mv -v !(chrome|user.js) chrome/
+          mv -v !(chrome|user.js|install.sh) chrome/
 
-          zip -rv ${{ matrix.name }}.zip chrome user.js
+          zip -rv ${{ matrix.name }}.zip chrome user.js install.sh
 
       - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
         if: startsWith(github.ref, 'refs/tags/')
