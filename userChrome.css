@@ -335,7 +335,8 @@
     margin: 0 0 var(--tabs-navbar-shadow-size) !important
     => Can't ovrride style. Therefore, we should approach it by bypass.
     */
-    transform: translateY(var(--tab-block-margin));
+    --tabs-navbar-shadow-size: -1px; /* Original: 1px */
+    --tabs-navbar-original-shadow-size: 1px;
   }
 
   #tabs-newtab-button > .toolbarbutton-icon {
@@ -345,7 +346,7 @@
   /* Coner Rounding */
   #tabs-newtab-button:hover {
     /* Color */
-    fill: color-mix(in srgb, currentColor 17%, transparent) !important; /* Hardcoded compatibility var(--toolbarbutton-hover-background) */
+    fill: color-mix(in srgb, currentColor 17%, transparent) !important; /* Replace var(--toolbarbutton-hover-background) - Hard coded for compatibility */
     -moz-context-properties: fill !important;
 
     /* Corner Image */
@@ -353,7 +354,7 @@
     --newtab-position: calc((var(--newtab-corner-rounding) / 2) * -1);
     background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
     background-repeat: no-repeat;
-    background-position: left var(--newtab-position) bottom var(--tabs-navbar-shadow-size),  right var(--newtab-position)  bottom var(--tabs-navbar-shadow-size);
+    background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),  right var(--newtab-position)  bottom var(--tabs-navbar-original-shadow-size);
     background-size: var(--newtab-corner-rounding);
   }
 
