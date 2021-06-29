@@ -328,6 +328,11 @@
   }
 
   /** Unselected Tab - Divide line ********************************************/
+  .titlebar-spacer[type="pre-tabs"] {
+    border-inline-end: 1px solid var(--lwt-background-tab-separator-color, currentColor);
+    opacity: 0.3;
+  }
+
   .tabbrowser-tab::after, #tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[visuallyselected]::before {
     content: "";
     display: block;
