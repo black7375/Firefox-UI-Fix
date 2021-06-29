@@ -350,12 +350,11 @@
     -moz-context-properties: fill !important;
 
     /* Corner Image */
-    --newtab-corner-rounding: calc(var(--tab-corner-rounding) + 2px);
-    --newtab-position: calc((var(--newtab-corner-rounding) / 2) * -1);
+    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
     background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
     background-repeat: no-repeat;
     background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),  right var(--newtab-position)  bottom var(--tabs-navbar-original-shadow-size);
-    background-size: var(--newtab-corner-rounding);
+    background-size: var(--tab-corner-rounding);
   }
 
   #tabs-newtab-button .toolbarbutton-icon {
