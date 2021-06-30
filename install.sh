@@ -1,6 +1,91 @@
 #!/usr/bin/env bash
 
 #** Helper Utils ***************************************************************
+#== Message ====================================================================
+lepton_error_message() {
+  >&2 echo "FAILED: ${@}"
+  exit 1
+}
+
+lepton_ok_message() {
+  local SIZE=50
+  local FILLED=""
+  for ((i=0; i<=$((SIZE - 2)); i++)); do
+    FILLED+="."
+  done
+  FILLED+="OK"
+
+  local message="${@}"
+  echo "${message}${FILLED:${#message}}"
+}
+
+lepton_spinner() {
+  local chars="/-\|"
+
+  for (( i=0; i<${#chars}; i++ )); do
+    sleep 0.5
+    echo -en "${chars:$i:1}" "\r"
+  done
+}
+
+#== Required Tools =============================================================
+PACAPT_PATH="/usr/local/bin/pacapt"
+PACAPT_INSTALLED=true
+pacapt_install() {
+  if ! [ -x "$(command -v pacapt)" ]; then
+    echo "Universal Package Manager(icy/pacapt) Download && Install(need sudo permission)"
+    echo "It is installed temporarily and will be removed when installation is complete."
+    sudo curl https://github.com/icy/pacapt/raw/ng/pacapt -Lo "${PACAPT_PATH}"
+    sudo chmod 755 "${PACAPT_PATH}"
+    sudo ln -sv "${PACAPT_PATH}" /usr/local/bin/pacman || true
+    PACAPT_INSTALLED=false
+  fi
+  sudo pacapt -Sy
+}
+
+pacapt_uninstall() {
+  if [[ "${PACAPT_INSTALLED}" == false ]]; then
+    sudo rm -rf "${PACAPT}"
+  fi
+}
+
+mac_command_line_developer_tools() {
+   # https://unix.stackexchange.com/questions/408280/until-statement-waiting-for-process-to-finish-being-ignored
+   XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
+   if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
+     xcode-select --install
+   else
+     lepton_error_message "You have cancelled the installation, please rerun the installer."
+   fi
+
+   until [ "$(xcode-select -p 1>/dev/null 2>&1; echo $?)" -eq 0 ]; do
+     lepton_spinner
+   done
+   echo ""
+   lepton_ok_message "Installed Command Line Developer Tools"
+}
+
+check_git() {
+  if ! [ -x "$(command -v git)" ]; then
+    if [ "${OSTYPE}" == "linux-gnu" ] || [ "${OSTYPE}" == "FreeBSD" ]; then
+      pacapt_install
+      sudo pacapt -S git
+      pacapt_uninstall
+    elif [[ "${OSTYPE}" == "darwin"* ]]; then
+      mac_command_line_developer_tools
+    else
+      lepton_error_message "OS NOT DETECTED, couldn't install required packages"
+    fi
+  fi
+
+  if [[ "${OSTYPE}" == "darwin"* ]]; then
+    if ! [ "$(git --help 1>/dev/null 2>&1; echo $?)" -eq 0 ]; then
+      mac_command_line_developer_tools
+    fi
+  fi
+  lepton_ok_message "Required - git"
+}
+
 #== PATH / File ================================================================
 currentDir=$( cd "$(dirname $0)" ; pwd )
 
@@ -9,7 +94,7 @@ paths_filter() {
   local option="$2"
 
   # Set array
-  eval "local pathList=(\${${pathListName}[@]})"
+  eval "local pathList=(\"\${${pathListName}[@]}\")"
 
   # Set default option
   if [ -z "$option" ]; then
@@ -25,10 +110,10 @@ paths_filter() {
   done
 
   # Replace
-  eval "${pathListName}=(\${foundedTargets[@]})"
+  eval "${pathListName}=(\"\${foundedTargets[@]}\")"
 }
 
-autocopy() {
+autocp() {
   local file="${1}"
   local target="${2}"
 
@@ -40,11 +125,11 @@ autocopy() {
   if [ -e "${target}" ]; then
     echo "${target} alreay exist."
     echo "Now Backup.."
-    autocopy "${target}" "${target}.bak"
+    autocp "${target}" "${target}.bak"
     echo ""
   fi
 
-  cp -rv "${file}" "${target}"
+  cp -rf "${file}" "${target}"
 }
 
 automv() {
@@ -63,7 +148,7 @@ automv() {
     echo ""
   fi
 
-  mv -v "${file}" "${target}"
+  mv -f "${file}" "${target}"
 }
 
 autorestore() {
@@ -71,9 +156,9 @@ autorestore() {
   local target="${file}.bak"
 
   if [ -e "${file}" ]; then
-    rm -rv "${file}"
+    rm -rf "${file}"
   fi
-  mv -v  "${target}" "${file}"
+  mv -f  "${target}" "${file}"
 
   local lookupTarget="${target}.bak"
   if [ -e "${lookupTarget}" ]; then
@@ -81,25 +166,73 @@ autorestore() {
   fi
 }
 
-#== Message ====================================================================
-lepton_error_message() {
-  >&2 echo "FAILED: ${@}"
-  exit 1
+write_file() {
+  local filePath="$1"
+  local fileContent="$2"
+
+  if [ -z "${fileContent}" ]; then
+    if [ -e "${filePath}" ]; then
+      rm -rf "${filePath}"
+    fi
+    touch "${filePath}"
+  else
+    echo -e "${fileContent}" | tee "${filePath}" > /dev/null
+  fi
 }
 
-lepton_ok_message() {
-  local SIZE=50
-  local FILLED=""
-  for ((i=0; i<=$(("${SIZE}" - 2)); i++)); do
-    FILLED+="."
-  done
-  FILLED+="OK"
+#== INI File ================================================================
+get_ini_section() {
+  local filePath="$1"
 
-  local message="${@}"
-  echo "${message}${FILLED:${#message}}"
+  local ouput=$(grep -E "^\[" "${filePath}" |sed -e "s/^\[//g" -e "s/\]$//g")
+  echo "${ouput}"
+}
+get_ini_value() {
+  local filePath="$1"
+  local key="$2"
+  local section="$3"
+
+  local output=""
+  if [ "${section}" == "" ]; then
+    output=$(grep -E "^${key}" "${filePath}" | cut -f 2 -d"=")
+    echo "${output}"
+  else
+    local sectionStart=""
+    for line in $(cat "${filePath}"); do
+      if [[ "${sectionStart}" == "true" && "${line}" == "["* ]]; then
+        return 0
+      fi
+
+      if [ "${line}" == "[${section}]" ]; then
+        sectionStart="true"
+      fi
+
+      if [ "${sectionStart}" == "true" ]; then
+        output=$(echo "${line}" | grep -E "^${key}" | cut -f 2 -d"=" )
+        if [ "${output}" != "" ]; then
+          echo "${output}"
+        fi
+      fi
+    done
+  fi
 }
 
-#== Multiselct =================================================================
+set_ini_section() {
+  local section="$1"
+  echo "[${section}]\n"
+}
+set_ini_value() {
+  local key="$1"
+  local value="$2"
+
+  if [ "${value}" == "" ]; then
+    echo ""
+  else
+    echo "${key}=${value}\n"
+  fi
+}
+
+#== Multiselect ================================================================
 # https://stackoverflow.com/questions/45382472/bash-select-multiple-answers-at-once/54261882
 multiselect() {
   echo 'Select with <space>, Done with <enter>!!!'
@@ -201,8 +334,9 @@ multiselect() {
 #** Profile ********************************************************************
 #== Profile Dir ================================================================
 firefoxProfileDirPaths=(
-  ~/.mozilla/firefox
-  ~/.var/app/org.mozilla.firefox/.mozilla/firefox
+  "${HOME}/.mozilla/firefox"
+  "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
+  "${HOME}/Library/Application Support/Firefox"
 )
 
 check_profile_dir() {
@@ -224,8 +358,6 @@ check_profile_dir() {
 #== Profile Info ===============================================================
 PROFILEINFOFILE="profiles.ini"
 check_profile_ini() {
-  local infoFile="profiles.ini"
-
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     if [ ! -f "${profileDir}/${PROFILEINFOFILE}" ]; then
       lepton_error_message "Unable to find ${PROFILEINFOFILE} at ${profileDir}"
@@ -237,17 +369,26 @@ check_profile_ini() {
 
 #== Profile PATH ===============================================================
 firefoxProfilePaths=()
-select_profile() {
-  local profileName="$1"
-
+update_profile_paths() {
+  local IFS=$'\n'
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     local escapeDir=$(echo "${profileDir}" | sed "s|\/|\\\/|g")
     firefoxProfilePaths+=($(
-      grep -E "^Path" "${profileDir}/${PROFILEINFOFILE}" |
-      cut -f 2 -d"="                                     |
+      get_ini_value "${profileDir}/${PROFILEINFOFILE}" "Path" |
       sed "s/^/${escapeDir}\//"
     ))
   done
+
+  local foundCount="${#firefoxProfilePaths[@]}"
+  if ! [ "${foundCount}" -eq 0 ]; then
+    lepton_ok_message "Profile paths updated"
+  else
+    lepton_error_message "Doesn't exist profiles"
+  fi
+}
+
+select_profile() {
+  local profileName="$1"
 
   if [ "${profileName}" != "" ]; then
     local targetPath=""
@@ -269,9 +410,13 @@ select_profile() {
     if [ "${foundCount}" -eq 1 ]; then
       lepton_ok_message "Auto detected profile"
     else
-      local targetPaths=()
-      local multiPaths=$(echo "${firefoxProfilePaths[@]}" | sed 's/ /;/g')
+      local multiPaths=""
+      for profilePath in "${firefoxProfilePaths[@]}"; do
+        multiPaths+="${profilePath};"
+      done
       multiselect profileSelected "${multiPaths}"
+
+      local targetPaths=()
       for ((i=0; i<"${#profileSelected[@]}"; i++)); do
         local result="${profileSelected[${i}]}"
         if [ "$result" == "true" ]; then
@@ -283,9 +428,9 @@ select_profile() {
       foundCount="${#firefoxProfilePaths[@]}"
       if [ "${foundCount}" -eq 0 ]; then
         lepton_error_message "Please select profiles"
-      else
-        lepton_ok_message "Multi selected profiles"
       fi
+
+      lepton_ok_message "Multi selected profiles"
     fi
   fi
 }
@@ -345,51 +490,78 @@ check_install_types() {
   fi
 }
 
-#== Each Install ===============================================================
-install_local() {
-  for profilePath in "${firefoxProfilePaths}"; do
-    autocopy user.js         "${profilePath}/user.js"
-    autocopy "${currentDir}" "${profilePath}/chrome"
+#== Install Helpers ============================================================
+chromeDuplicate=""
+check_chrome_exist() {
+  if [ -e "chrome" ] && [ ! -f "chrome/${LEPTONINFOFILE}" ]; then
+    chromeDuplicate="true"
+    automv chrome chrome.bak
+    lepton_ok_message "Backup files"
+  fi
+}
+check_chrome_restore() {
+  if [ "${chromeDuplicate}" == "true" ]; then
+    autorestore chrome
+    lepton_ok_message "End restore files"
+  fi
+  lepton_ok_message "End check restore files"
+}
+
+clean_lepton() {
+  if [ ! "${chromeDuplicate}" == "true" ]; then
+    rm -rf chrome
+  fi
+  lepton_ok_message "End clean files"
+}
+clone_lepton() {
+  local branch="$1"
+
+  if [ -z "${branch}" ]; then
+    branch="${leptonBranch}"
+  fi
+
+  git clone -b "${branch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
+  if ! [ -d "chrome" ]; then
+    lepton_error_message "Unable to find downloaded files"
+  fi
+}
+
+copy_lepton() {
+  local chromeDir="$1"
+  local userJSPath="$2"
+
+  if [ -z "${chromeDir}" ]; then
+    chromeDir="chrome"
+  fi
+  if [ -z "${userJSPath}" ]; then
+    userJSPath="${chromeDir}/user.js"
+  fi
+
+  for profilePath in "${firefoxProfilePaths[@]}"; do
+    autocp "${userJSPath}" "${profilePath}/user.js"
+    autocp "${chromeDir}" "${profilePath}/chrome"
   done
   lepton_ok_message "End profile copy"
+}
+
+#== Each Install ===============================================================
+install_local() {
+  copy_lepton "${currentDir}" "user.js"
 }
 
 install_release() {
-  for profilePath in "${firefoxProfilePaths}"; do
-    autocopy user.js "${profilePath}/user.js"
-    autocopy chrome  "${profilePath}/chrome"
-  done
-  lepton_ok_message "End profile copy"
+  copy_lepton "chrome" "user.js"
 }
 
 install_network() {
-  local duplicate=""
-  if [ -e "chrome" ]; then
-    duplicate="true"
-    automv chrome chrome.bak
-  fi
+  check_chrome_exist
+  check_git
 
-  git clone -b "${leptonBranch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
+  clone_lepton
+  copy_lepton
 
-  local isProfile=""
-  for profilePath in "${firefoxProfilePaths}"; do
-    autocopy chrome/user.js "${profilePath}/user.js"
-    autocopy chrome         "${profilePath}/chrome"
-
-    if [ "${currentDir}" == "${profilePath}" ]; then
-      isProfile="true"
-    fi
-  done
-  lepton_ok_message "End profile copy"
-
-  cd "${currentDir}"
-  if [ ! "${duplicate}" == "true" ]; then
-    rm -rv chrome
-  fi
-  if [ "${duplicate}" == "true" ]; then
-    autorestore chrome
-  fi
-  lepton_ok_message "End clean files"
+  clean_lepton
+  check_chrome_restore
 }
 
 install_profile() {
@@ -404,19 +576,165 @@ install_profile() {
   lepton_ok_message "End install"
 }
 
+#** Lepton Info File ***********************************************************
+#== Info File format & update policy ===========================================
+## `LEPTON` file format
+# If this file exist in same directory as the `userChrome.css` file,
+# it is recognized as the "Lepton" installation directory.
+# Branch=master | photon-style
+# Ver=<git tag> | <git hash> | [NULL]
+
+## `lepton.ini` file Format
+# [Profile Name]
+# Type=Local | Release | Git
+# Branch=master | photon-style
+# Ver=<git tag> | <git hash> | [NULL]
+# Path=<Full PATH>
+
+## Update Policy
+# Type
+# - Local(unknown): force latest commit update
+# - Release(<git tag>): force latest tag update
+# - Git<git hash>: latest commit update
+
+#== Lepton Info ================================================================
+LEPTONINFOFILE="lepton.ini"
+check_lepton_ini() {
+  for profileDir in "${firefoxProfileDirPaths[@]}"; do
+    if [ ! -f "${profileDir}/${LEPTONINFOFILE}" ]; then
+      lepton_error_message "Unable to find ${LEPTONINFOFILE} at ${profileDir}"
+    fi
+  done
+
+  lepton_ok_message "Lepton info file found"
+}
+
+#== Create info file ===========================================================
+# We should always create a new one, as it also takes into account the possibility of setting it manually.
+# Updates happen infrequently, so the creation overhead  is less significant.
+
+CHROMEINFOFILE="LEPTON"
+write_lepton_info() {
+  # Init info
+  local output=""
+  local prevDir=$(dirname "${firefoxProfilePaths[0]}")
+  local latestPath="${firefoxProfilePaths[${#firefoxProfilePaths[@]} - 1]}"
+  for profilePath in "${firefoxProfilePaths[@]}"; do
+    local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
+    local LEPTONGITPATH="${profilePath}/chrome/.git"
+
+    # Profile info
+    local Type=""
+    local Ver=""
+    local Branch=""
+    local Path=""
+    if [ -f "${LEPTONINFOPATH}" ]; then
+      if [ -d "${LEPTONGITPATH}" ]; then
+        Type="Git"
+        Ver=$(   git --git-dir "${LEPTONGITPATH}" rev-parse HEAD)
+        Branch=$(git --git-dir "${LEPTONGITPATH}" rev-parse --abbrev-ref HEAD)
+      else
+        Type=$(  get_ini_value "${LEPTONINFOPATH}" "TYPE"  )
+        Ver=$(   get_ini_value "${LEPTONINFOPATH}" "Ver"   )
+        Branch=$(get_ini_value "${LEPTONINFOPATH}" "Branch")
+
+        if [ "${Type}" == "" ]; then
+          Type="Local"
+        fi
+      fi
+
+      Path="${profilePath}"
+    fi
+
+    # Flushing
+    local profileDir=$(dirname "${profilePath}")
+    local profileName=$(basename "${profilePath}")
+    if [ "${prevDir}" != "${profileDir}" ]; then
+      write_file "${prevDir}/${LEPTONINFOFILE}" "${output}"
+      output=""
+    fi
+
+    # Make output contents
+    if [ -f "${LEPTONINFOPATH}" ]; then
+      output="${output}$(set_ini_section ${profileName})"
+    fi
+    for key in "Type" "Branch" "Ver" "Path"; do
+      eval "local value=\${${key}}"
+      output="${output}$(set_ini_value ${key} ${value})"
+    done
+
+    # Latest element flushing
+    if [ "${profilePath}" == "${latestPath}" ]; then
+      write_file "${profileDir}/${LEPTONINFOFILE}" "${output}"
+    fi
+    prevDir="${profileDir}"
+  done
+
+  # Verify
+  check_lepton_ini
+  lepton_ok_message "Lepton info file created"
+}
+
+#** Update *********************************************************************
+update_profile() {
+  check_git
+  for profileDir in "${firefoxProfileDirPaths[@]}"; do
+    local LEPTONINFOPATH="${profileDir}/${LEPTONINFOFILE}"
+    local sections=$(get_ini_section "${LEPTONINFOPATH}")
+    if [ ! -z "${sections}" ]; then
+      for section in "${sections[@]}"; do
+        local Type=$(  get_ini_value "${LEPTONINFOPATH}" "Type"   "${section}")
+        local Branch=$(get_ini_value "${LEPTONINFOPATH}" "Branch" "${section}")
+        local Path=$(  get_ini_value "${LEPTONINFOPATH}" "Path"   "${section}")
+
+        local LEPTONGITPATH="${Path}/chrome/.git"
+        if [ "${Type}" == "Git" ]; then
+          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+          git --git-dir "${LEPTONGITPATH}" pull --no-edit
+        elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
+          check_chrome_exist
+          if [ ! -d "chrome" ]; then
+            clone_lepton
+          fi
+
+          firefoxProfilePaths=("${Path}")
+          copy_lepton
+
+          if [ -z "${Branch}" ]; then
+            Branch="${leptonBranch}"
+          fi
+          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+
+          if [ "${Type}" == "Release" ]; then
+            local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
+            git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
+          fi
+        else
+          lepton_error_message "Unable to find update type, ${Type}"
+        fi
+      done
+    fi
+  done
+  clean_lepton
+  check_chrome_restore
+}
+
 #** Main ***********************************************************************
 install_lepton() {
+  local updateMode=""
   local profileDir=""
   local profileName=""
 
   # Get options.
-  while getopts 'f:p:g:t:h' flag; do
+  while getopts 'u:f:p:h' flag; do
     case "${flag}" in
+      u) updateMode="true"       ;;
       f) profileDir="${OPTARG}"  ;;
       p) profileName="${OPTARG}" ;;
       h)
         echo "Lepton Theme Install Script:"
-        echo "  -f <firefox_folder_path>. Set custom Firefox folder path."
+        echo "  -u run to update mode"
+        echo "  -f <firefox_profile_folder_path>. Set custom Firefox profile folder path."
         echo "  -p <profile_name>. Set custom profile name."
         echo "  -h to show this message."
         exit 0
@@ -428,9 +746,21 @@ install_lepton() {
 
   check_profile_dir "${profileDir}"
   check_profile_ini
-  select_profile "${profileName}"
+  update_profile_paths
 
-  install_profile
+  # Install Mode
+  if [ ! "${updateMode}" == true ]; then
+    select_profile "${profileName}"
+    install_profile
+  fi
+
+  write_lepton_info
+
+  # Update Mode
+  if [ ! "${updateMode}" == true ]; then
+    update_profile
+    write_lepton_info
+  fi
 }
 
 install_lepton "$@"
