@@ -754,13 +754,13 @@ install_lepton() {
     install_profile
   fi
 
-  write_lepton_info
+  # write_lepton_info
 
-  # Update Mode
-  if [ ! "${updateMode}" == true ]; then
-    update_profile
-    write_lepton_info
-  fi
+  ## Update Mode
+  # if [ ! "${updateMode}" == true ]; then
+  #  update_profile
+  #  write_lepton_info
+  # fi
 }
 
 install_lepton "$@"
