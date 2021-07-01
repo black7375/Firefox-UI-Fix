@@ -23,8 +23,9 @@ jobs:
           rm -f LEPTON
 
           # or BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          # or TAGVER=$(git describe --tags --abbrev=0)
           BRANCH=${{ matrix.branch }}
-          TAGVER=$(git describe --tags --abbrev=0)
+          TAGVER=${GITHUB_REF#refs/*/}
 
           echo -e "Ver=${TAGVER}\nBranch=${BRANCH}" > LEPTON
 
