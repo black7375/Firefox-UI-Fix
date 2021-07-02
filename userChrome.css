@@ -159,14 +159,11 @@
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }
 
-  .toolbar-items, .tabbrowser-tab {
-    max-height: 38px;
+  :root:not([uidensity]) #TabsToolbar {
+    --tab-min-height: 38px !important;
   }
-  :root[uidensity=compact] .toolbar-items, .tabbrowser-tab {
-    max-height: 36px;
-  }
-  :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
-    max-height: unset;
+  :root[uidensity=compact] #TabsToolbar {
+    --tab-min-height: 36px !important;
   }
 
   /* Scroll Button - Size Fix */
@@ -205,8 +202,7 @@
     background-position-y: bottom calc(.5px + var(--tabs-navbar-shadow-size)) !important;
   }
 
-  /** Selected Tab - Color like toolbar ***************************************/
-  /* Multi Selected Color */
+  /** Multi Selected Color - More Contrast ************************************/
   #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected]:not([selected]):-moz-lwtheme {
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)),
                       linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
@@ -222,20 +218,14 @@
   }
 
   /** Unselected Tab - Divide line ********************************************/
-  #tabbrowser-arrowscrollbox {
-    position: absolute;
-  }
-
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
-  #tabs-newtab-button:not(:hover)::before {
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab] .tab-background::after {
     /* Box Model */
     content:  "";
-    display: block;
+    display:  block;
     position: absolute;
-
-    /* Position */
-    top:       50%;
-    transform: translateX(-2.5px) translateY(calc(-50% + 1px));
+    top:   50%;
 
     /* Bar shape */
     width:     1px;
@@ -244,12 +234,19 @@
 
     /* Bar Color */
     opacity: var(--tab-separator-opacity);
-    transition: opacity .2s var(--ease-basic);
-    background-color: color-mix(in srgb, currentColor 20%, transparent); /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
+    transition: opacity .2s var(--ease-basic) !important;
+    background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
+  }
+
+  .tab-background::before {
+    transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
+  }
+  .tabbrowser-tab[last-visible-tab] .tab-background::after {
+    right: 0;
+    transform: translateX(1.5px) translateY(calc(-50% + 1px)) !important;
   }
 
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + #tabs-newtab-button::before,
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
@@ -260,7 +257,17 @@
     margin-inline-end: 1px !important;
   }
 
-  /* New tab button - Looks like tab ******************************************/
+  /* New tab button - Smaller button ******************************************/
+  :root:not([uidensity=touch]) #tabs-newtab-button > .toolbarbutton-icon {
+    --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 16px) / 2 - 1px);
+  }
+
+  :root:not([uidensity=compact]) #tabs-newtab-button > .toolbarbutton-icon {
+    margin-left: 2px;
+  }
+  :root[uidensity=compact] #tabs-newtab-button > .toolbarbutton-icon {
+    margin-left: 1px;
+  }
 
   /** Clipped tabs - Letters cleary *******************************************/
   #tabbrowser-tabs[closebuttons=activetab] .tab-content:not([pinned]) {
