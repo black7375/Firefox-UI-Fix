@@ -1,4 +1,9 @@
 @media (-moz-proton) {
+  /** Lightmode - Color darker ************************************************/
+  :root[lwtheme-mozlightdark][lwthemetextcolor="dark"] {
+    --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
+  }
+
   /** Darkmode - Color lighter ************************************************/
   :root[lwtheme-mozlightdark][lwthemetextcolor="bright"] {
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
