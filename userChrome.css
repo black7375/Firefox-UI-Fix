@@ -1644,4 +1644,29 @@
   #syncedTabsRefreshFilter {
     --menuitem-image: url(chrome://browser/skin/sync.svg);
   }
+
+  /*= urlbar-input-container =================================================*/
+  #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_undo"]  {
+    --menuitem-image: url(chrome://global/skin/icons/undo.svg);
+  }
+  #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"]  {
+  }
+
+  #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_cut"]  {
+    --menuitem-image: url(chrome://browser/skin/edit-cut.svg);
+  }
+  #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_copy"]  {
+    --menuitem-image: url(chrome://browser/skin/edit-copy.svg);
+  }
+  #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_paste"]  {
+    --menuitem-image: url(chrome://browser/skin/edit-paste.svg);
+  }
+  #paste-and-go {
+  }
+  #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_delete"]  {
+    --menuitem-image:  url(chrome://global/skin/icons/delete.svg);
+  }
+  #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_selectAll"]  {
+    --menuitem-image: url(./icons/select-all-on.svg);
+  }
 }
