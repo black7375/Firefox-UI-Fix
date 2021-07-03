@@ -258,6 +258,22 @@
   }
 
   /** Poup Panel - Reduce padding**********************************************/
+  #protections-popup-main-header-label {
+    height: unset !important; /* Original: 37.6px */
+  }
+
+  #identity-popup,
+  #permission-popup,
+  #protections-popup {
+    --vertical-section-padding: 0.8em; /* Original: 0.9em */
+  }
+
+  .protections-popup-footer-button,
+  .protections-popup-category {
+    min-height: 24px; /* Original: 32px */
+    height: unset !important;
+  }
+
   /** Popup panel - Compact mode  */
   /* Footer Button Height */
   :root[uidensity=compact] .panel-footer.panel-footer-menulike > button {
