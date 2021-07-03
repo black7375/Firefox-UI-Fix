@@ -257,7 +257,7 @@
     }
   }
 
-  /** Poup Panel - Reduce padding**********************************************/
+  /*= Poup Panel - Reduce padding ============================================*/
   #protections-popup-main-header-label {
     height: unset !important; /* Original: 37.6px */
   }
@@ -491,14 +491,6 @@
     padding-inline-start: 8px !important;
   }
 
-  #tabbrowser-tabs[closebuttons="activetab"] > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([pinned]) > .tab-stack > .tab-content > .tab-close-button:not([selected="true"]) {
-    display: -moz-inline-box !important;
-  }
-
-  #tabbrowser-tabs[closebuttons=activetab] .tabbrowser-tab:not([visuallyselected], :hover) .tab-close-button {
-    visibility: collapse !important;
-  }
-
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(ltr):not([pinned]) {
     mask-image: linear-gradient(to right, black 70%, transparent) !important;
@@ -507,6 +499,15 @@
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow][labeldirection="rtl"]:not([pinned]),
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(rtl):not([pinned]) {
     mask-image: linear-gradient(to left, black 70%, transparent) !important;
+  }
+
+  /** Clipped tabs - Show close button at hover *******************************/
+  #tabbrowser-tabs[closebuttons="activetab"] > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([pinned]) > .tab-stack > .tab-content > .tab-close-button:not([selected="true"]) {
+    display: -moz-inline-box !important;
+  }
+
+  #tabbrowser-tabs[closebuttons=activetab] .tabbrowser-tab:not([visuallyselected], :hover) .tab-close-button {
+    visibility: collapse !important;
   }
 
   /** Sound Tab - Hide Label **************************************************/
