@@ -155,6 +155,42 @@
     margin-inline-end: -.5px !important;
   }
 
+  /** Popup panel - Compact mode  */
+  /* Footer Button Height */
+  :root[uidensity=compact] .panel-footer.panel-footer-menulike > button {
+    padding: 3px 8px !important;
+  }
+  /* Footer Button Height */
+  :root[uidensity=compact] #protections-popup-trackersView-settings-button {
+    margin: 4px 8px 0 !important;
+  }
+  /* not cut off for Protection popup Footer on windows */
+  :root[uidensity=compact] #protections-popup-multiView #protections-popup-footer {
+    padding: 3px 0 20px !important;
+  }
+  /* Button and disabed category in Protection popup */
+  :root[uidensity=compact] #protections-popup-multiView .protections-popup-footer-button,
+  :root[uidensity=compact] #protections-popup-multiView .protections-popup-category {
+    height: 20px !important;
+    min-height: 20px !important;
+  }
+  /* Footer Button in Tracking Content Panel */
+  :root[uidensity=compact] #protections-popup-multiView .panel-footer.panel-footer-menulike {
+    margin: 0 0 3px !important;
+  }
+  /* Identity popup header padding */
+  :root[uidensity=compact] #identity-popup-multiView #identity-popup-mainView-panel-header {
+    padding: 2px 5px !important;
+  }
+  /* Text When There is no trackers */
+  :root[uidensity=compact] #protections-popup-no-trackers-found-description {
+    margin: 2em 4em !important;
+  }
+  /* Download Item margin */
+  :root[uidensity=compact] #downloadsListBox {
+    margin: 0 !important;
+  }
+  
   /** Tab Bar - Reduce Height, Show more contents *****************************/
   /* Toolbar Height */
   :root:not([uidensity=touch]) #TabsToolbar {
