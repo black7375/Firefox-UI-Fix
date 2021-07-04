@@ -71,6 +71,57 @@
     }
   }
 
+  /* Fully Theme Mode *********************************************************/
+  /*= Notification ===========================================================*/
+  @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
+    #alertBox {
+      color: var(--menu-color) !important;
+      background-color: var(--menu-background-color) !important;
+      border-color: var(--menu-border-color) !important;
+      border-radius: 6px !important;
+      -moz-window-shadow: cliprounded !important;
+    }
+
+    #alertSettings {
+      fill: currentColor !important;
+      color: inherit !important;
+      border-radius: 0 !important;
+      margin-inline: 0 !important;
+      margin-bottom: -4px !important;
+    }
+    #alertSettings > .button-box,
+    .close-icon > .toolbarbutton-icon{
+      border-radius: 4px !important;
+      padding: 2px !important;
+      margin: 2px 2px -2px 0 !important;
+    }
+    #alertSettings > .button-box {
+      margin: -4px 4px 3px 0 !important;
+    }
+    #alertSettings > .button-box > .box-inherit > .button-icon {
+      padding: 1px;
+    }
+
+    /* Color */
+    #alertSettings,
+    .close-icon {
+      background: transparent !important
+    }
+    .close-icon:hover > .toolbarbutton-icon,
+    #alertSettings:is(:hover,[open]) > .button-box {
+      background-color: var(--menuitem-hover-background-color) !important;
+    }
+
+    @media (-moz-toolbar-prefers-color-scheme:dark) {
+      :root {
+        --menu-border-color: rgba(107,107,107,.3) !important;
+      }
+      #alertSourceLabel {
+        color: rgb(5,209,241) !important;
+      }
+    }
+  }
+
   /** Root - Reduce Padding ***************************************************/
   :root {
     /* Tab Bar */
