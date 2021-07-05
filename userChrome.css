@@ -74,14 +74,16 @@
   /* Fully Theme Mode *********************************************************/
   /*= Notification ===========================================================*/
   @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
+    /* line below removes background from the notification "window" on linux */
+    #alertNotification{ background: transparent !important; }
+
     #alertBox {
-      color: var(--menu-color) !important;
-      background-color: var(--menu-background-color) !important;
-      border-color: var(--menu-border-color) !important;
+      color: var(--menu-color, #15141a) !important;
+      background-color: var(--menu-background-color, #f9f9fb) !important;
+      border-color: var(--menu-border-color, #cfcfd8) !important;
       border-radius: 6px !important;
       -moz-window-shadow: cliprounded !important;
     }
-
     #alertSettings {
       fill: currentColor !important;
       color: inherit !important;
@@ -89,13 +91,15 @@
       margin-inline: 0 !important;
       margin-bottom: -4px !important;
     }
-    #alertSettings > .button-box,
-    .close-icon > .toolbarbutton-icon{
+
+    /* Shape */
+    .close-icon > .toolbarbutton-icon,
+    #alertSettings > .button-box > .box-inherit {
       border-radius: 4px !important;
       padding: 2px !important;
       margin: 2px 2px -2px 0 !important;
     }
-    #alertSettings > .button-box {
+    #alertSettings > .button-box > .box-inherit {
       margin: -4px 4px 3px 0 !important;
     }
     #alertSettings > .button-box > .box-inherit > .button-icon {
@@ -103,19 +107,29 @@
     }
 
     /* Color */
-    #alertSettings,
-    .close-icon {
+    .close-icon,
+    #alertSettings {
       background: transparent !important
     }
     .close-icon:hover > .toolbarbutton-icon,
-    #alertSettings:is(:hover,[open]) > .button-box {
-      background-color: var(--menuitem-hover-background-color) !important;
+    #alertSettings:is(:hover,[open]) > .button-box > .box-inherit {
+      background-color: var(--menuitem-hover-background-color, #e0e0e6) !important;
     }
 
     @media (-moz-toolbar-prefers-color-scheme:dark) {
       :root {
         --menu-border-color: rgba(107,107,107,.3) !important;
       }
+
+      #alertBox {
+        color: var(--menu-color, #fbfbfe) !important;
+        background-color: var(--menu-background-color, #2b2a33) !important;
+      }
+      .close-icon:hover > .toolbarbutton-icon,
+      #alertSettings:is(:hover, [open]) > .button-box > .box-inherit {
+        background-color: var(--menuitem-hover-background-color, #52525e) !important;
+      }
+
       #alertSourceLabel {
         color: rgb(5,209,241) !important;
       }
