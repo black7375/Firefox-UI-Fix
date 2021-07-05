@@ -420,7 +420,7 @@
   }
 
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
-  #tabs-newtab-button:not(:hover)::before {
+  #tabs-newtab-button:not(:hover, [open])::before {
     /* Box Model */
     content:  "";
     display: block;
@@ -442,7 +442,7 @@
   }
 
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + #tabs-newtab-button::before,
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
