@@ -72,6 +72,25 @@
   }
 
   /* Fully Theme Mode *********************************************************/
+  /* Default Themes
+     https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json
+     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/light/manifest.json
+     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
+  */
+
+   /*== Menu color ===========================================================*/
+  :root {
+    /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
+    --menu-color: var(--toolbar-color) !important;
+    --menu-background-color: var(--toolbar-bgcolor) !important;
+
+    --menu-border-color: var(--toolbarbutton-active-background, var(--button-active-bgcolor)) !important;
+    --menuitem-hover-background-color: var(--toolbarbutton-hover-background, var(--button-hover-bgcolor)) !important;
+
+    --menu-disabled-color: color-mix(in srgb, var(--toolbar-color) 40%, transparent) !important;
+    --menuitem-disabled-hover-background-color: color-mix(in srgb, var(--menuitem-hover-background-color) 40%, transparent) !important;
+  }
+
   /*= Notification ===========================================================*/
   @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
     /* line below removes background from the notification "window" on linux */
