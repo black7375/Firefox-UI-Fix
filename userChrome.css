@@ -28,6 +28,12 @@
     --tabs-border-color: rgba(0,0,0,.3);
   }
 
+  /* Hidden Tab Panel Padding */
+  #allTabsMenu-hiddenTabsView .all-tabs-item {
+    margin-inline: 8px;
+    border-radius: 4px;
+  }
+
   /** Windows 7 - Compatibility ***********************************************/
   @media (-moz-os-version: windows-win7) {
     /* Header Color */
@@ -155,7 +161,8 @@
     }
   }
 
-  /** Root - Reduce Padding ***************************************************/
+  /** Reduce Padding **********************************************************/
+  /*= Root - Reduce Padding ==================================================*/
   :root {
     /* Tab Bar */
     --proton-tab-block-margin: 2px !important; /* Original: 4px */
@@ -187,7 +194,7 @@
     --arrowpanel-menuitem-padding: 8px  !important; /* Original: 8px */
   }
 
-  /** Tab Bar - Reduce Width, Show more tabs **********************************/
+  /*= Tab Bar - Reduce Width, Show more tabs =================================*/
   .titlebar-spacer[type="pre-tabs"] {
     width: 30px !important; /* Original: 40px */
   }
@@ -244,7 +251,7 @@
     margin-inline-end: -.5px !important;
   }
 
-  /** Tab Bar - Reduce Height, Show more contents *****************************/
+  /*= Tab Bar - Reduce Height, Show more contents ============================*/
   /* Toolbar Height */
   :root:not([uidensity=touch]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
@@ -295,6 +302,109 @@
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
     background-position-y: bottom calc(.5px + var(--tabs-navbar-shadow-size)) !important;
   }
+
+  /*= URL Bar - Reduce Padding ===============================================*/
+  :root:not([uidensity=touch]) #urlbar-container, #search-container {
+    padding-block: 2px; /* Original: 4px */
+    margin-inline: 5px; /* Original: 5px */
+  }
+
+  /* spread menu */
+  :root[uidensity=compact] .urlbarView-row:not([type=tip], [type=dynamic]) {
+    padding-block: 1px; /* [Compact, General]: 2px, Touch: 11px */
+  }
+  :root[uidensity=compact] #urlbar .search-one-offs:not([hidden]) {
+    padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
+  }
+
+  /*= BookMark Bar - Reduce Height ===========================================*/
+  :root[uidensity=compact] #PersonalToolbar toolbarbutton {
+      margin-top: 0px; /* Original: 2px */
+  }
+
+  /*= Menu - Reduce Padding ==================================================*/
+  :root {
+    --menu-padding: 0.35em;
+  }
+  :root[uidensity=compact] {
+    --menu-padding: 0.25em;
+  }
+  :root[uidensity=touch] {
+    --menu-padding: 0.5em;
+  }
+  menupopup > menuitem, menupopup > menu {
+    /* Original: 0.5em */
+    padding-block: var(--menu-padding) !important;
+  }
+
+  @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
+      padding-inline-end: 0 !important; /* Original: 2px */
+    }
+    :root:not([uidensity=touch]) .menupopup-arrowscrollbox {
+      padding-block: 1px !important;    /* Original: 4px*/
+    }
+    :root:not([uidensity=touch]) #context-navigation:not([hidden]) {
+      padding: 0 0 1px !important;      /* Original: 0 0 4px*/
+    }
+    :root:not([uidensity=touch]) .menu-right {
+      margin-right: 6px !important;     /* Original: 12px */
+    }
+  }
+
+  /*= Poup Panel - Reduce padding ============================================*/
+  #protections-popup-main-header-label {
+    height: unset !important; /* Original: 37.6px */
+  }
+
+  #identity-popup,
+  #permission-popup,
+  #protections-popup {
+    --vertical-section-padding: 0.8em; /* Original: 0.9em */
+  }
+
+  .protections-popup-footer-button,
+  .protections-popup-category {
+    min-height: 24px; /* Original: 32px */
+    height: unset !important;
+  }
+
+  /** Popup panel - Compact mode  */
+  /* Footer Button Height */
+  :root[uidensity=compact] .panel-footer.panel-footer-menulike > button {
+    padding: 3px 8px !important;
+  }
+  /* Footer Button Height */
+  :root[uidensity=compact] #protections-popup-trackersView-settings-button {
+    margin: 4px 8px 0 !important;
+  }
+  /* not cut off for Protection popup Footer on windows */
+  :root[uidensity=compact] #protections-popup-multiView #protections-popup-footer {
+    padding: 3px 0 20px !important;
+  }
+  /* Button and disabed category in Protection popup */
+  :root[uidensity=compact] #protections-popup-multiView .protections-popup-footer-button,
+  :root[uidensity=compact] #protections-popup-multiView .protections-popup-category {
+    height: 20px !important;
+    min-height: 20px !important;
+  }
+  /* Footer Button in Tracking Content Panel */
+  :root[uidensity=compact] #protections-popup-multiView .panel-footer.panel-footer-menulike {
+    margin: 0 0 3px !important;
+  }
+  /* Identity popup header padding */
+  :root[uidensity=compact] #identity-popup-multiView #identity-popup-mainView-panel-header {
+    padding: 2px 5px !important;
+  }
+  /* Text When There is no trackers */
+  :root[uidensity=compact] #protections-popup-no-trackers-found-description {
+    margin: 2em 4em !important;
+  }
+  /* Download Item margin */
+  :root[uidensity=compact] #downloadsListBox {
+    margin: 0 !important;
+  }
+
 
   /** Tab Bar - Connect to window *********************************************/
   .tab-background {
@@ -399,7 +509,7 @@
   }
 
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
-  #tabs-newtab-button:not(:hover)::before {
+  #tabs-newtab-button:not(:hover, [open])::before {
     /* Box Model */
     content:  "";
     display: block;
@@ -421,7 +531,7 @@
   }
 
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab:not([visuallyselected]) .tab-background::before,
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + #tabs-newtab-button::before,
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
@@ -476,14 +586,6 @@
     padding-inline-start: 8px !important;
   }
 
-  #tabbrowser-tabs[closebuttons="activetab"] > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([pinned]) > .tab-stack > .tab-content > .tab-close-button:not([selected="true"]) {
-    display: -moz-inline-box !important;
-  }
-
-  #tabbrowser-tabs[closebuttons=activetab] .tabbrowser-tab:not([visuallyselected], :hover) .tab-close-button {
-    visibility: collapse !important;
-  }
-
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(ltr):not([pinned]) {
     mask-image: linear-gradient(to right, black 70%, transparent) !important;
@@ -492,6 +594,15 @@
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow][labeldirection="rtl"]:not([pinned]),
   #tabbrowser-tabs[closebuttons=activetab] .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(rtl):not([pinned]) {
     mask-image: linear-gradient(to left, black 70%, transparent) !important;
+  }
+
+  /** Clipped tabs - Show close button at hover *******************************/
+  #tabbrowser-tabs[closebuttons="activetab"] > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([pinned]) > .tab-stack > .tab-content > .tab-close-button:not([selected="true"]) {
+    display: -moz-inline-box !important;
+  }
+
+  #tabbrowser-tabs[closebuttons=activetab] .tabbrowser-tab:not([visuallyselected], :hover) .tab-close-button {
+    visibility: collapse !important;
   }
 
   /** Sound Tab - Hide Label **************************************************/
@@ -667,55 +778,6 @@
     display: none !important;
   }
 
-  /** URL Bar - Reduce Padding ************************************************/
-  :root:not([uidensity=touch]) #urlbar-container, #search-container {
-    padding-block: 2px; /* Original: 4px */
-    margin-inline: 5px; /* Original: 5px */
-  }
-
-  /* spread menu */
-  :root[uidensity=compact] .urlbarView-row:not([type=tip], [type=dynamic]) {
-    padding-block: 1px; /* [Compact, General]: 2px, Touch: 11px */
-  }
-  :root[uidensity=compact] #urlbar .search-one-offs:not([hidden]) {
-    padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
-  }
-
-  /** BookMark Bar - Reduce Height ********************************************/
-  :root[uidensity=compact] #PersonalToolbar toolbarbutton {
-      margin-top: 0px; /* Original: 2px */
-  }
-
-  /** Menu - Reduce Padding ***************************************************/
-  :root {
-    --menu-padding: 0.35em;
-  }
-  :root[uidensity=compact] {
-    --menu-padding: 0.25em;
-  }
-  :root[uidensity=touch] {
-    --menu-padding: 0.5em;
-  }
-  menupopup > menuitem, menupopup > menu {
-    /* Original: 0.5em */
-    padding-block: var(--menu-padding) !important;
-  }
-
-  @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
-      padding-inline-end: 0 !important; /* Original: 2px */
-    }
-    :root:not([uidensity=touch]) .menupopup-arrowscrollbox {
-      padding-block: 1px !important;    /* Original: 4px*/
-    }
-    :root:not([uidensity=touch]) #context-navigation:not([hidden]) {
-      padding: 0 0 1px !important;      /* Original: 0 0 4px*/
-    }
-    :root:not([uidensity=touch]) .menu-right {
-      margin-right: 6px !important;     /* Original: 12px */
-    }
-  }
-
   /** Panel - Icons ***********************************************************/
   /*= Padding ================================================================*/
   :root {
@@ -726,6 +788,9 @@
   #downloadsHistory .button-text,
   .subviewbutton > .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
+  }
+  .toolbaritem-combined-buttons > .subviewbutton:not(.subviewbutton-iconic) > .toolbarbutton-text {
+    padding-inline-start: 0 !important;
   }
   #panelMenu_bookmarksMenu .subviewbutton[disabled=true] .toolbarbutton-text,
   #appMenu_historyMenu     .subviewbutton[disabled=true] .toolbarbutton-text {
@@ -766,6 +831,14 @@
     fill: currentColor !important;
     fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
     -moz-context-properties: fill !important;
+  }
+  #appMenu-zoomReduce-button2 > .toolbarbutton-icon,
+  #appMenu-zoomEnlarge-button2 > .toolbarbutton-icon {
+    stroke: var(--zoom-controls-bgcolor, var(--button-bgcolor, ButtonFace)) !important;
+    -moz-context-properties: fill, stroke !important;
+  }
+  #appMenu-zoomReduce-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon, #appMenu-zoomEnlarge-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon {
+    stroke: var(--button-hover-bgcolor) !important;
   }
 
   .subviewbutton[disabled=true] > image {
@@ -1189,6 +1262,9 @@
   }
   #context_sendTabToDevice {
     --menuitem-image: url(chrome://browser/skin/send-to-device.svg);
+  }
+  #context_shareTabURL { /* At windows */
+    --menuitem-image: url(./icons/share.svg);
   }
   #context_reopenInContainer {
     --menuitem-image: url(./icons/container-openin-16.svg);
