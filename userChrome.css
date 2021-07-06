@@ -175,11 +175,11 @@
     max-height: 36px;
   }
   :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
-    max-height: unset;
+    max-height: 45px;
   }
 
   /* Scroll Button - Size Fix */
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
+  :root #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
     --scrollbtn-vertical-border:  2px;
     --scrollbtn-border-radius:    7px;
