@@ -433,14 +433,18 @@
     /* Bar shape */
     width:     1px;
     height:   20px;
-    overflow: hidden;
 
     /* Bar Color */
     opacity: var(--tab-separator-opacity);
     transition: opacity .2s var(--ease-basic);
     background-color: color-mix(in srgb, currentColor 20%, transparent); /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
   }
+  #tabs-newtab-button:is(:hover, [open])::before {
+    content: "";
+    position: absolute;
+  }
 
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab .tab-background::before,
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ .tabbrowser-tab[afterhovered] .tab-background::before,
   .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
