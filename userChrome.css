@@ -332,6 +332,14 @@
     margin-bottom: 0px !important;
   }
 
+  /* Remove line at Toolbar's top */
+  #tabbrowser-tabs {
+      z-index: 1 !important;
+  }
+  #tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected]) {
+      overflow: hidden;
+  }
+
   /** Selected Tab - Color like toolbar ***************************************/
   :root:not(:-moz-lwtheme) {
     /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
