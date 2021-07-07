@@ -185,7 +185,7 @@
   }
 
   /* Scroll Button - Size Fix */
-  :root:not([uidensity=touch]) #tabbrowser-arrowscrollbox {
+  :root #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
     --scrollbtn-vertical-border:  2px;
     --scrollbtn-border-radius:    7px;
@@ -336,6 +336,14 @@
   .tab-stack {
     margin-top:    0px !important;
     margin-bottom: 0px !important;
+  }
+
+  /* Remove line at Toolbar's top */
+  #tabbrowser-tabs {
+    z-index: 1 !important;
+  }
+  #tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected]) {
+    overflow: hidden;
   }
 
   /** Selected Tab - Color like toolbar ***************************************/
