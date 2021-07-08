@@ -334,10 +334,10 @@
 
   /* Remove line at Toolbar's top */
   #tabbrowser-tabs {
-      z-index: 1 !important;
+    z-index: 1 !important;
   }
   #tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected]) {
-      overflow: hidden;
+    overflow: hidden;
   }
 
   /** Selected Tab - Color like toolbar ***************************************/
@@ -1608,6 +1608,10 @@
   }
   #placesContext_showAllBookmarks {
     --menuitem-image: url(chrome://browser/skin/bookmark-star-on-tray.svg);
+  }
+
+  menupopup[context="placesContext"]  > .openintabs-menuitem {
+    --menuitem-image: url(./icons/movetowindow-16.svg);
   }
 
   /*= pageActionContextMenu ==================================================*/
