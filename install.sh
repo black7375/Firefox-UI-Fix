@@ -439,15 +439,17 @@ select_profile() {
 #== Install Types ==============================================================
 leptonBranch="master"
 select_distribution() {
+  local selectedDistribution=""
   select distribution in "Original(default)" "Photon-Style" "Proton Style"; do
+    selectedDistribution="${distribution}"
     case "${distribution}" in
-      "Original")     leptonBranch="master"       ;;
-      "Photon-Style") leptonBranch="photon-style" ;;
-      "Proton-Style") leptonBranch="proton-style" ;;
+      "Original")     leptonBranch="master";       break;;
+      "Photon-Style") leptonBranch="photon-style"; break;;
+      "Proton-Style") leptonBranch="proton-style"; break;;
+      *)              echo "Invalid option, reselect please.";;
     esac
-    lepton_ok_message "Selected ${distribution}"
-    break
   done
+  lepton_ok_message "Selected ${selectedDistribution}"
 }
 
 leptonInstallType="Network" # Other types: Local, Release
@@ -710,6 +712,7 @@ update_profile() {
             local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
             git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
           fi
+          check_chrome_restore
         else
           lepton_error_message "Unable to find update type, ${Type}"
         fi
