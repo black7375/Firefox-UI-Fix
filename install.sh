@@ -439,10 +439,11 @@ select_profile() {
 #== Install Types ==============================================================
 leptonBranch="master"
 select_distribution() {
-  select distribution in "Original(default)" "Photon-Style"; do
+  select distribution in "Original(default)" "Photon-Style" "Proton Style"; do
     case "${distribution}" in
       "Original")     leptonBranch="master"       ;;
       "Photon-Style") leptonBranch="photon-style" ;;
+      "Proton-Style") leptonBranch="proton-style" ;;
     esac
     lepton_ok_message "Selected ${distribution}"
     break
@@ -581,13 +582,13 @@ install_profile() {
 ## `LEPTON` file format
 # If this file exist in same directory as the `userChrome.css` file,
 # it is recognized as the "Lepton" installation directory.
-# Branch=master | photon-style
+# Branch=master | photon-style | proton-style
 # Ver=<git tag> | <git hash> | [NULL]
 
 ## `lepton.ini` file Format
 # [Profile Name]
 # Type=Local | Release | Git
-# Branch=master | photon-style
+# Branch=master | photon-style | proton-style
 # Ver=<git tag> | <git hash> | [NULL]
 # Path=<Full PATH>
 
