@@ -311,11 +311,18 @@
   }
 
   /* spread menu */
-  :root[uidensity=compact] .urlbarView-row:not([type=tip], [type=dynamic]) {
-    padding-block: 1px; /* [Compact, General]: 2px, Touch: 11px */
+  :root:not([uidensity]) .urlbarView-row {
+    padding-block: 1px; /* Original: 2px */
+  }
+  :root[uidensity=compact] .urlbarView-row {
+    padding-block: 0px;
+  }
+
+  :root:not([uidensity]) #urlbar .search-one-offs:not([hidden]) {
+    padding-block: 8px; /* Original: 10px */
   }
   :root[uidensity=compact] #urlbar .search-one-offs:not([hidden]) {
-    padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
+    padding-block: 2px;
   }
 
   /*= BookMark Bar - Reduce Height ===========================================*/
