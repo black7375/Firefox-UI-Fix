@@ -288,15 +288,32 @@
       .Page-content h2,
       .SearchResult-link,
       .Home-SubjectShelf-link:link,
-      .Home-SubjectShelf-link:visited{
+      .Home-SubjectShelf-link:visited,
+      .DropdownMenuItem-link a,
+      .Select,
+      .Button--neutral {
         color: var(--in-content-text-color)!important
       }
       .SecondaryHero-module,
       .Card-header,
       .Card-contents,
       .CardList ul > li,
-      .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:focus, .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:hover{
+      .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:is(:focus, :hover),
+      .LandingPage-header,
+      .DropdownMenu-items,
+      .DropdownMenu-items::after,
+      .MetadataCard,
+      .AddonsCard-list,
+      .Card-footer {
         background: var(--in-content-table-background) !important;
+      }
+
+      .DropdownMenu-items {
+        box-shadow:  0 0 2px var(--in-content-border-color) !important;
+      }
+      .Select,
+      .Button--neutral, .Button--neutral:link {
+        background-color: var(--in-content-button-background) !important;
       }
 
       .SecondaryHero-module-icon {
@@ -307,16 +324,65 @@
       .SecondaryHero-message-link,
       .SecondaryHero-module-link,
       .Card-footer-link a,
-      .SearchResult-link:focus,
-      .SearchResult-link:hover,
+      .SearchResult-link:is(:active, :focus, :hover),
       .SearchResult:hover .SearchResult-link,
-      .Home-SubjectShelf-link:active,
-      .Home-SubjectShelf-link:focus,
-      .Home-SubjectShelf-link:hover {
+      .Home-SubjectShelf-link:is(:active, :focus, :hover),
+      .DropdownMenuItem-link a:is(:active, :focus, :hover),
+      .AddonMeta .MetadataCard-title a:is(:active, :hover),
+      .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:is(:active, :hover),
+      .AddonMeta .MetadataCard-content a:is(:active, :hover),
+      .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link:is(:active, :hover),
+      .RatingsByStar-count a:hover,
+      .RatingsByStar-star a:hover,
+      .AddonTitle-author a,
+      .PermissionsCard-learn-more,
+      .DefinitionList a,
+      .ShowMoreCard-contents a,
+      .AddonDescription-contents a {
         color: var(--in-content-link-color) !important;
       }
-      .SearchResult--meta-section  {
+      .SearchResult--meta-section,
+      .MetadataCard-title,
+      .MetadataCard-title a,
+      .MetadataCard-content a,
+      .CollectionSort-label,
+      .SearchResult-summary,
+      .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link,
+      .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link,
+      .PermissionsCard-subhead--optional,
+      .PermissionsCard-subhead--required,
+      .Definition-dt,
+      .RatingsByStar-count a,
+      .RatingsByStar-star a {
         color: var(--in-content-deemphasized-text) !important;
+      }
+      .PromotedBadge-label--recommended {
+        color: color-mix(in srgb, #712b00 15%,  #ff9400) !important;
+      }
+
+      .Button--action {
+        color: var(--in-content-primary-button-text-color) !important;
+        background: var(--in-content-primary-button-background) !important;
+      }
+      .Button--action.Button--micro:not(.Button--disabled):hover,
+      .Button--action:not(.Button--disabled):hover {
+        background: var(--in-content-primary-button-background-hover) !important;
+      }
+      .Button--neutral {
+      }
+      .Button--neutral.Button--micro:not(.Button--disabled):hover,
+      .Button--neutral:not(.Button--disabled):hover {
+        background: var(--in-content-button-background-hover) !important;
+      }
+
+      .ShowMoreCard-contents::after {
+        background: linear-gradient(hsla(0,0%,100%,0), var(--in-content-table-background)) !important;
+      }
+      .Icon-heart {
+        filter:  brightness(0) !important;;
+      }
+      .Permission .Icon {
+        filter:  grayscale(100%) brightness(30) !important;;
       }
     }
   }
