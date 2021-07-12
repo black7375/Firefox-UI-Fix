@@ -276,6 +276,29 @@
       scrollbar-color: rgba(249,249,250,.4) rgba(20,20,25,.3);
     }
 
+  /*= Fully Dark Mode - about:plugins ========================================*/
+    @-moz-document url-prefix("about:plugins") {
+      :root,
+      body {
+        background-color: var(--in-content-page-background) !important;
+        color: var(--in-content-page-color) !important;
+      }
+
+      body {
+        font-size: 15px !important;
+        font-weight: normal !important;
+        margin: 0 !important;
+      }
+
+      .notice {
+        background: var(--in-content-box-background) !important;
+        border: 1px solid var(--in-content-border-color) !important;
+      }
+      .notice a {
+        color: var(--in-content-link-color) !important;
+      }
+    }
+
   /*= Fully Dark Mode - Addons.org ===========================================*/
     @-moz-document url-prefix("https://addons.mozilla.org") {
       /* Basic */
