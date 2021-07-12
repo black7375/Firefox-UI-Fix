@@ -276,8 +276,9 @@
       scrollbar-color: rgba(249,249,250,.4) rgba(20,20,25,.3);
     }
 
-  /*= Fully Dark Mode - about:plugins ========================================*/
-    @-moz-document url-prefix("about:plugins") {
+  /*= Fully Dark Mode - abouts' common =======================================*/
+    @-moz-document url-prefix("about:plugins"),
+                   url-prefix("about:cache") {
       :root,
       body {
         background-color: var(--in-content-page-background) !important;
@@ -290,12 +291,47 @@
         margin: 0 !important;
       }
 
+      h1 {
+        line-height: 1.2 !important;
+      }
+      h2 {
+        line-height: 1.4em !important;
+      }
+
+      a {
+        color: var(--in-content-link-color) !important;
+      }
+
+      table {
+        width: 100% !important;
+        border: 1px solid var(--in-content-border-color) !important;
+        border-radius: 0 !important;
+      }
+    }
+
+  /*= Fully Dark Mode - about:plugins ========================================*/
+    @-moz-document url-prefix("about:plugins") {
       .notice {
         background: var(--in-content-box-background) !important;
         border: 1px solid var(--in-content-border-color) !important;
       }
-      .notice a {
-        color: var(--in-content-link-color) !important;
+    }
+
+  /*= Fully Dark Mode - about:cache ==========================================*/
+    @-moz-document url-prefix("about:cache") {
+      table {
+        padding: 0 !important;
+      }
+
+      th, td {
+        border: 1px solid var(--in-content-border-color);
+        padding: 4px;
+        text-align: match-parent;
+      }
+
+      th {
+        background-color: var(--in-content-table-header-background) !important;
+        color: var(--in-content-table-header-color) !important;
       }
     }
 
