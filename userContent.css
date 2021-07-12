@@ -278,12 +278,14 @@
 
   /*= Fully Dark Mode - Addons.org ===========================================*/
     @-moz-document url-prefix("https://addons.mozilla.org") {
+      /* Basic */
       .Page-content,
       .SecondaryHero {
         color: var(--in-content-page-color) !important;
         background: var(--in-content-page-background) !important;
       }
 
+      /* Text */
       .Page-content h1,
       .Page-content h2,
       .SearchResult-link,
@@ -294,33 +296,6 @@
       .Button--neutral {
         color: var(--in-content-text-color)!important
       }
-      .SecondaryHero-module,
-      .Card-header,
-      .Card-contents,
-      .CardList ul > li,
-      .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:is(:focus, :hover),
-      .LandingPage-header,
-      .DropdownMenu-items,
-      .DropdownMenu-items::after,
-      .MetadataCard,
-      .AddonsCard-list,
-      .Card-footer {
-        background: var(--in-content-table-background) !important;
-      }
-
-      .DropdownMenu-items {
-        box-shadow:  0 0 2px var(--in-content-border-color) !important;
-      }
-      .Select,
-      .Button--neutral, .Button--neutral:link {
-        background-color: var(--in-content-button-background) !important;
-      }
-
-      .SecondaryHero-module-icon {
-        -moz-context-properties: fill, fill-opacity !important;
-        fill: currentColor !important;
-      }
-
       .SecondaryHero-message-link,
       .SecondaryHero-module-link,
       .Card-footer-link a,
@@ -360,29 +335,55 @@
         color: color-mix(in srgb, #712b00 15%,  #ff9400) !important;
       }
 
+      /* Background */
       .Button--action {
         color: var(--in-content-primary-button-text-color) !important;
         background: var(--in-content-primary-button-background) !important;
       }
-      .Button--action.Button--micro:not(.Button--disabled):hover,
-      .Button--action:not(.Button--disabled):hover {
-        background: var(--in-content-primary-button-background-hover) !important;
-      }
-      .Button--neutral {
+      .Select,
+      .Button--neutral, .Button--neutral:link {
+        background-color: var(--in-content-button-background) !important;
       }
       .Button--neutral.Button--micro:not(.Button--disabled):hover,
       .Button--neutral:not(.Button--disabled):hover {
         background: var(--in-content-button-background-hover) !important;
       }
-
+      .Button--action.Button--micro:not(.Button--disabled):hover,
+      .Button--action:not(.Button--disabled):hover {
+        background: var(--in-content-primary-button-background-hover) !important;
+      }
       .ShowMoreCard-contents::after {
         background: linear-gradient(hsla(0,0%,100%,0), var(--in-content-table-background)) !important;
+      }
+      .SecondaryHero-module,
+      .Card-header,
+      .Card-contents,
+      .CardList ul > li,
+      .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:is(:focus, :hover),
+      .LandingPage-header,
+      .DropdownMenu-items,
+      .DropdownMenu-items::after,
+      .MetadataCard,
+      .AddonsCard-list,
+      .Card-footer {
+        background: var(--in-content-table-background) !important;
+      }
+
+      /* Fill */
+      .SecondaryHero-module-icon {
+        -moz-context-properties: fill, fill-opacity !important;
+        fill: currentColor !important;
       }
       .Icon-heart {
         filter:  brightness(0) !important;;
       }
       .Permission .Icon {
         filter:  grayscale(100%) brightness(30) !important;;
+      }
+
+      /* Others */
+      .DropdownMenu-items {
+        box-shadow:  0 0 2px var(--in-content-border-color) !important;
       }
     }
   }
