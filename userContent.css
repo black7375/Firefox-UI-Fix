@@ -356,48 +356,47 @@
       --checkbox-checked-active-bgcolor: -moz-Field;
 
     }
+  }
+  @-moz-document url-prefix("https://addons.mozilla.org") {
+    .Page-content,
+    .SecondaryHero {
+      color: var(--in-content-page-color) !important;
+      background: var(--in-content-page-background) !important;
+    }
 
-    @-moz-document url-prefix("https://addons.mozilla.org") {
-      .Page-content,
-      .SecondaryHero {
-        color: var(--in-content-page-color) !important;
-        background: var(--in-content-page-background) !important;
-      }
+    .Page-content h1,
+    .Page-content h2,
+    .SearchResult-link,
+    .Home-SubjectShelf-link:link,
+    .Home-SubjectShelf-link:visited{
+      color: var(--in-content-text-color)!important
+    }
+    .SecondaryHero-module,
+    .Card-header,
+    .Card-contents,
+    .CardList ul > li,
+    .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:focus, .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:hover{
+      background: var(--in-content-table-background) !important;
+    }
 
-      .Page-content h1,
-      .Page-content h2,
-      .SearchResult-link,
-      .Home-SubjectShelf-link:link,
-      .Home-SubjectShelf-link:visited{
-        color: var(--in-content-text-color)!important
-      }
-      .SecondaryHero-module,
-      .Card-header,
-      .Card-contents,
-      .CardList ul > li,
-      .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:focus, .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:hover{
-        background: var(--in-content-table-background) !important;
-      }
+    .SecondaryHero-module-icon {
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+    }
 
-      .SecondaryHero-module-icon {
-        -moz-context-properties: fill, fill-opacity !important;
-        fill: currentColor !important;
-      }
-
-      .SecondaryHero-message-link,
-      .SecondaryHero-module-link,
-      .Card-footer-link a,
-      .SearchResult-link:focus,
-      .SearchResult-link:hover,
-      .SearchResult:hover .SearchResult-link,
-      .Home-SubjectShelf-link:active,
-      .Home-SubjectShelf-link:focus,
-      .Home-SubjectShelf-link:hover {
-        color: var(--in-content-link-color) !important;
-      }
-      .SearchResult--meta-section  {
-        color: var(--in-content-deemphasized-text) !important;
-      }
+    .SecondaryHero-message-link,
+    .SecondaryHero-module-link,
+    .Card-footer-link a,
+    .SearchResult-link:focus,
+    .SearchResult-link:hover,
+    .SearchResult:hover .SearchResult-link,
+    .Home-SubjectShelf-link:active,
+    .Home-SubjectShelf-link:focus,
+    .Home-SubjectShelf-link:hover {
+      color: var(--in-content-link-color) !important;
+    }
+    .SearchResult--meta-section  {
+      color: var(--in-content-deemphasized-text) !important;
     }
   }
 }
