@@ -61,6 +61,14 @@ param(
 # Constants
 $PSMinSupportedVersion = 5
 
+function Check-Help {
+    # Cheap and dirty way of getting the same output as '-?' for '-h' and '-Help'
+    if ($Help) {
+        Get-Help "$PSCommandPath"
+        exit 0
+    }
+}
+
 function Verify-PowerShellVersion {
     $PSVersion = [int](Select-Object -Property Major -First 1 -ExpandProperty Major -InputObject $PSVersionTable.PSVersion)
 
@@ -113,14 +121,6 @@ function Install-Lepton {
 
     # TODO: install if in install mode
     Install-LeptonToProfiles $AbsoluteProfilePaths
-}
-
-function Check-Help {
-    # Cheap and dirty way of getting the same output as '-?' for '-h' and '-Help'
-    if ($Help) {
-        Get-Help "$PSCommandPath"
-        exit 0
-    }
 }
 
 Check-Help
