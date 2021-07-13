@@ -283,15 +283,12 @@
                    url-prefix("about:checkerboard"),
                    url-prefix("about:sync-log"),
                    url-prefix("about:memory"),
-                   url-prefix("resource://"),
                    url-prefix("file://") {
       /* Base */
-      :root {
+      html,
+      body {
         font: message-box !important;
         appearance: none !important;
-      }
-      :root,
-      body {
         background-color: var(--in-content-page-background) !important;
         color: var(--in-content-page-color) !important;
       }
@@ -514,7 +511,6 @@
 
   /*= Fully Dark Mode - Directory View =======================================*/
     @-moz-document url-prefix("about:sync-log"),
-                   url-prefix("resource://"),
                    url-prefix("file://") {
       body {
         background-color: var(--in-content-box-background) !important;
