@@ -108,7 +108,7 @@ function Install-Lepton {
     Verify-PowerShellVersion  # Check installed version meets minimum
 
     # TODO: select style distribution (Photon or Proton)
-    Select-LeptonDistribution
+    $SelectedDistribution = Select-LeptonDistribution
 
     # TODO: check profile director{y,ies} (including custom)
     $InstallationDirectories = Check-FirefoxProfileDirectories $ProfilePath
