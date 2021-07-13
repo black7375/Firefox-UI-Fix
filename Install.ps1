@@ -65,7 +65,7 @@ function Verify-PowerShellVersion {
 
     Write-Host "[$PSVersion]"
     if ($PSVersion -lt $PSMinSupportedVersion) {
-        Write-Error -Category NotInstalled "You need a minimum PowerShell version of [$PSMinSupportedVersion] to use this installer. Exiting."
+        Write-Error -Category NotInstalled "You need a minimum PowerShell version of [$PSMinSupportedVersion] to use this installer"
         exit -1
     }
 }
