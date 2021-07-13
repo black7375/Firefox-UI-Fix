@@ -59,7 +59,7 @@ param(
 )
 
 # Constants
-$PSMinSupportedVersion = 5
+$PSMinSupportedVersion = 2
 
 function Check-Help {
     # Cheap and dirty way of getting the same output as '-?' for '-h' and '-Help'
