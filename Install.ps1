@@ -70,9 +70,48 @@ function Verify-PowerShellVersion {
     }
 }
 
+function Select-LeptonDistribution {
+    param ([string]$CustomProfileDir)
+    # TODO: stub
+}
+
+function Check-FirefoxProfileDirectories {
+    param ([string]$CustomProfilePath)
+    # TODO: stub
+}
+
+function Check-FirefoxProfileConfigurations {
+    param ([string[]]$InstallDirectories)
+    # TODO: stub
+}
+
+function Get-FirefoxProfilePaths {
+    # TODO: stub
+}
+
+function Install-LeptonToProfiles {
+    param ([string[]]$PathsToInstall)
+    # TODO: stub
+}
+
 function Install-Lepton {
     Write-Host -NoNewline "Checking PowerShell version... "
     Verify-PowerShellVersion  # Check installed version meets minimum
+
+    # TODO: select style distribution (Photon or Proton)
+    Select-LeptonDistribution
+
+    # TODO: check profile director{y,ies} (including custom)
+    $InstallationDirectories = Check-FirefoxProfileDirectories $ProfilePath
+
+    # TODO: check profile ini files exists
+    Check-FirefoxProfileConfigurations $InstallationDirectories
+
+    # TODO: read profile paths in from profiles.ini files
+    $AsboluteProfilePaths = Get-FirefoxProfilePaths
+
+    # TODO: install if in install mode
+    Install-LeptonToProfiles $AbsoluteProfilePaths
 }
 
 function Check-Help {
