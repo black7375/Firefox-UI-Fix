@@ -58,6 +58,7 @@ param(
     [Switch]$Help=$false
 )
 
+# Constants
 $PSMinSupportedVersion = 5
 
 function Verify-PowerShellVersion {
