@@ -281,7 +281,8 @@
     @-moz-document url-prefix("about:plugins"),
                    url-prefix("about:cache"),
                    url-prefix("about:checkerboard"),
-                   url-prefix("about:sync-log") {
+                   url-prefix("about:sync-log"),
+                   url-prefix("about:memory") {
       /* Base */
       :root {
         font: message-box !important;
@@ -545,6 +546,18 @@
       }
       thead a {
         color: var(--in-content-page-color) !important;
+      }
+    }
+
+  /*= Fully Dark Mode - about:memory =========================================*/
+    @-moz-document url-prefix("about:memory") {
+      .opsRow,
+      .section {
+        background-color: var(--in-content-box-background) !important;
+        color: var(--in-content-page-color) !important;
+      }
+      .opsRowLabel input {
+        vertical-align: bottom !important;
       }
     }
 
