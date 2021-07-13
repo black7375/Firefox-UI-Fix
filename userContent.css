@@ -280,7 +280,8 @@
   /*= Fully Dark Mode - abouts' common =======================================*/
     @-moz-document url-prefix("about:plugins"),
                    url-prefix("about:cache"),
-                   url-prefix("about:checkerboard") {
+                   url-prefix("about:checkerboard"),
+                   url-prefix("about:sync-log") {
       /* Base */
       :root {
         font: message-box !important;
@@ -486,11 +487,17 @@
       /* Table */
       table {
         width: 100% !important;
+      }
+    }
+
+    @-moz-document url-prefix("about:plugins"),
+                   url-prefix("about:cache"),
+                   url-prefix("about:checkerboard") {
+      table {
         border: 1px solid var(--in-content-border-color) !important;
         border-radius: 0 !important;
       }
     }
-
     @-moz-document url-prefix("about:cache"),
                    url-prefix("about:checkerboard") {
       th, td {
@@ -521,12 +528,23 @@
       }
     }
 
+  /*= Fully Dark Mode - about:checkerboard ===================================*/
     @-moz-document url-prefix("about:checkerboard") {
       #canvas {
         border: 1px solid var(--in-content-border-color) !important;
       }
       #excludePageFromZoom {
         vertical-align: bottom !important;
+      }
+    }
+
+  /*= Fully Dark Mode - about:sync-log =======================================*/
+    @-moz-document url-prefix("about:sync-log") {
+      body {
+        background-color: var(--in-content-box-background) !important;
+      }
+      thead a {
+        color: var(--in-content-page-color) !important;
       }
     }
 
