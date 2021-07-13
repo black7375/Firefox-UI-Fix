@@ -282,7 +282,9 @@
                    url-prefix("about:cache"),
                    url-prefix("about:checkerboard"),
                    url-prefix("about:sync-log"),
-                   url-prefix("about:memory") {
+                   url-prefix("about:memory"),
+                   url-prefix("resource://"),
+                   url-prefix("file://") {
       /* Base */
       :root {
         font: message-box !important;
@@ -509,6 +511,22 @@
         color: var(--in-content-table-header-color) !important;
       }
     }
+
+  /*= Fully Dark Mode - Directory View =======================================*/
+    @-moz-document url-prefix("about:sync-log"),
+                   url-prefix("resource://"),
+                   url-prefix("file://") {
+      body {
+        background-color: var(--in-content-box-background) !important;
+      }
+      thead a {
+        color: var(--in-content-page-color) !important;
+      }
+      td ::before {
+        vertical-align: top !important;
+      }
+    }
+
   /*= Fully Dark Mode - about:plugins ========================================*/
     @-moz-document url-prefix("about:plugins") {
       .notice {
@@ -536,16 +554,6 @@
       }
       #excludePageFromZoom {
         vertical-align: bottom !important;
-      }
-    }
-
-  /*= Fully Dark Mode - about:sync-log =======================================*/
-    @-moz-document url-prefix("about:sync-log") {
-      body {
-        background-color: var(--in-content-box-background) !important;
-      }
-      thead a {
-        color: var(--in-content-page-color) !important;
       }
     }
 
