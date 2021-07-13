@@ -452,11 +452,11 @@
     position: absolute;
   }
 
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab .tab-background::before,
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ .tabbrowser-tab[afterhovered] .tab-background::before,
-  .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
-  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
-  #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab .tab-background::before,
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ .tabbrowser-tab[afterhovered] .tab-background::before,
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
+  #navigator-toolbox:not([movingtab]) #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
   }
 
