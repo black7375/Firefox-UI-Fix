@@ -58,8 +58,21 @@ param(
     [Switch]$Help=$false
 )
 
+$PSMinSupportedVersion = 10
+
+function Verify-PowerShellVersion {
+    $PSVersion = [int](Select-Object -Property Major -First 1 -ExpandProperty Major -InputObject $PSVersionTable.PSVersion | echo)
+
+    Write-Host "[$PSVersion]"
+    if ($PSVersion -lt $PSMinSupportedVersion) {
+        Write-Error -Category NotInstalled "You need a minimum PowerShell version of [$PSMinSupportedVersion] to use this installer. Exiting."
+        exit -1
+    }
+}
+
 function Install-Lepton {
-    # TODO: implement
+    Write-Host -NoNewline "Checking PowerShell version... "
+    Verify-PowerShellVersion  # Check installed version meets minimum
 }
 
 function Check-Help {
