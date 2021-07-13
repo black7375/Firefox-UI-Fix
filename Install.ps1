@@ -79,9 +79,88 @@ function Verify-PowerShellVersion {
     }
 }
 
+function Check-LeptonInstallFiles {
+    param ([string[]]$Files)
+
+    foreach ($item in $Files) {
+	if (-not (Test-Path $item)) {
+	    return $false
+	}
+    }
+
+    return $true
+}
+
+$InstallType = @{
+    Local   = 0;
+    Release = 1;
+    Network = 2;
+}
+
+function Get-LeptonInstallType {
+    $LocalFiles   = "userChrome.css", "userContent.css", "icons"
+    $ReleaseFiles = "user.js", "chrome/userChrome.css", "chrome/userContent.css", "chrome/icons"
+
+    $IsTypeLocal   = Check-LeptonInstallFiles $LocalFiles
+    $IsTypeRelease = Check-LeptonInstallFiles $ReleaseFiles
+
+    if ($IsTypeLocal) {
+	return $InstallType.Local
+    } elseif ($IsTypeRelease) {
+	return $InstallType.Release
+    }
+
+    return $InstallType.Network
+}
+
+function Select-LeptonDistributionPrompt {
+    # TODO: make it act like the bash installer with arrow keys + space
+    Write-Host "Select a distrubution:"
+    Write-Host "  (1) Original"
+    Write-Host "  (2) Photon-Style"
+    Write-Host "  (3) Photon-Style"
+    Write-Host ""
+
+    $SelectedBranch = ""
+    while ($SelectedBranch -eq "") {
+	$SelectedInput = Read-Host "Enter a distribution number (1, 2, 3)"
+	
+	switch ($SelectedInput) {
+	    "1" { $SelectedBranch = "master"; break }
+	    "2" { $SelectedBranch = "photon-style"; break }
+	    "3" { $SelectedBranch = "proton-style"; break }
+	    default { Write-Host "Invalid option, reselect please." }
+	}
+    }
+
+    Write-Host ""
+    Write-Host "Selected '$SelectedBranch'!"
+
+    return $SelectedBranch
+}
+
 function Select-LeptonDistribution {
-    param ([string]$CustomProfileDir)
-    # TODO: stub
+    Write-Host ""
+
+    $FoundInstallType = Get-LeptonInstallType
+    switch ($FoundInstallType) {
+	$InstallType.Release { break }
+	$InstallType.Network { $SelectedDistribution = Select-LeptonDistributionPrompt; break }
+	$InstallType.Local {
+	    $SelectedDistribution = Select-LeptonDistributionPrompt
+	    $GitInstalled=$((Get-Command -ErrorAction SilentlyContinue "git").Length -eq 0)
+	    if ($GitInstalled && Test-Path ".git" && $PSCmdlet.ShouldProcess(".git")) {
+		git checkout $LeptonBranchName
+	    }
+	    break
+	}
+	default { throw }
+    }
+
+    return @{
+	Type = $InstallType.Network;
+	Dist = $SelectedDistribution;
+    }
 }
 
 function Check-FirefoxProfileDirectories {
@@ -111,16 +190,16 @@ function Install-Lepton {
     $SelectedDistribution = Select-LeptonDistribution
 
     # TODO: check profile director{y,ies} (including custom)
-    $InstallationDirectories = Check-FirefoxProfileDirectories $ProfilePath
+    #$InstallationDirectories = Check-FirefoxProfileDirectories $ProfilePath
 
     # TODO: check profile ini files exists
-    Check-FirefoxProfileConfigurations $InstallationDirectories
+    #Check-FirefoxProfileConfigurations $InstallationDirectories
 
     # TODO: read profile paths in from profiles.ini files
-    $AsboluteProfilePaths = Get-FirefoxProfilePaths
+    #$AsboluteProfilePaths = Get-FirefoxProfilePaths
 
     # TODO: install if in install mode
-    Install-LeptonToProfiles $AbsoluteProfilePaths
+    #Install-LeptonToProfiles $AbsoluteProfilePaths
 }
 
 Check-Help
