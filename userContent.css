@@ -633,7 +633,10 @@
       .Home-heroHeader-subtitle,
       .blog-entry-date,
       .blogpost-breadcrumb *,
-      .AddonTitle-author {
+      .AddonTitle-author,
+      .ExpandableCard-ToggleLink,
+      .SearchFilters-label,
+      .PromotedBadge-label--line {
         color: var(--in-content-deemphasized-text) !important;
       }
       .PromotedBadge-label--recommended {
@@ -714,6 +717,13 @@
       }
       .AutoSearchInput-query:is(:hover, :focus) {
         border-color: var(--in-content-primary-button-background) !important;
+      }
+
+      .PromotedBadge-link--line {
+        border-color: var(--in-content-deemphasized-text) !important;
+      }
+      .PromotedBadge-link--line:hover {
+        border-color: var(--in-content-button-background-hover) !important;
       }
 
       .blog-entry-read-more-link {
