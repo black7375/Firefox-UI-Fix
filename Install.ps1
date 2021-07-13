@@ -58,7 +58,7 @@ param(
     [Switch]$Help=$false
 )
 
-$PSMinSupportedVersion = 10
+$PSMinSupportedVersion = 5
 
 function Verify-PowerShellVersion {
     $PSVersion = [int](Select-Object -Property Major -First 1 -ExpandProperty Major -InputObject $PSVersionTable.PSVersion | echo)
