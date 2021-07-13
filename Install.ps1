@@ -61,7 +61,7 @@ param(
 $PSMinSupportedVersion = 5
 
 function Verify-PowerShellVersion {
-    $PSVersion = [int](Select-Object -Property Major -First 1 -ExpandProperty Major -InputObject $PSVersionTable.PSVersion | echo)
+    $PSVersion = [int](Select-Object -Property Major -First 1 -ExpandProperty Major -InputObject $PSVersionTable.PSVersion)
 
     Write-Host "[$PSVersion]"
     if ($PSVersion -lt $PSMinSupportedVersion) {
