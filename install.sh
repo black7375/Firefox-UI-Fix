@@ -439,14 +439,17 @@ select_profile() {
 #== Install Types ==============================================================
 leptonBranch="master"
 select_distribution() {
-  select distribution in "Original(default)" "Photon-Style"; do
+  local selectedDistribution=""
+  select distribution in "Original(default)" "Photon-Style" "Proton Style"; do
+    selectedDistribution="${distribution}"
     case "${distribution}" in
-      "Original")     leptonBranch="master"       ;;
-      "Photon-Style") leptonBranch="photon-style" ;;
+      "Original")     leptonBranch="master";       break;;
+      "Photon-Style") leptonBranch="photon-style"; break;;
+      "Proton-Style") leptonBranch="proton-style"; break;;
+      *)              echo "Invalid option, reselect please.";;
     esac
-    lepton_ok_message "Selected ${distribution}"
-    break
   done
+  lepton_ok_message "Selected ${selectedDistribution}"
 }
 
 leptonInstallType="Network" # Other types: Local, Release
@@ -581,13 +584,13 @@ install_profile() {
 ## `LEPTON` file format
 # If this file exist in same directory as the `userChrome.css` file,
 # it is recognized as the "Lepton" installation directory.
-# Branch=master | photon-style
+# Branch=master | photon-style | proton-style
 # Ver=<git tag> | <git hash> | [NULL]
 
 ## `lepton.ini` file Format
 # [Profile Name]
 # Type=Local | Release | Git
-# Branch=master | photon-style
+# Branch=master | photon-style | proton-style
 # Ver=<git tag> | <git hash> | [NULL]
 # Path=<Full PATH>
 
@@ -709,6 +712,7 @@ update_profile() {
             local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
             git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
           fi
+          check_chrome_restore
         else
           lepton_error_message "Unable to find update type, ${Type}"
         fi

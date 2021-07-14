@@ -1,10 +1,17 @@
 @media (-moz-proton) {
-  /** Darkmode - Color lighter ************************************************/
+  /** Default Thme - Contrast *************************************************/
+  /*= Lightmode - Color darker ===============================================*/
+  :root[lwtheme-mozlightdark][lwthemetextcolor="dark"] {
+    --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
+  }
+
+  /*= Darkmode - Color lighter ===============================================*/
   :root[lwtheme-mozlightdark][lwthemetextcolor="bright"] {
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
   }
 
-  /* Theme - Compatibility ****************************************************/
+  /** Theme - Compatibility ***************************************************/
+  /*= Light Weidght Theme ====================================================*/
   /* Header Image */
   :root[lwtheme-image] {
       background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
@@ -29,7 +36,7 @@
     border-radius: 4px;
   }
 
-  /** Windows 7 - Compatibility ***********************************************/
+  /*= Windows 7 ==============================================================*/
   @media (-moz-os-version: windows-win7) {
     /* Header Color */
     :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
@@ -44,7 +51,23 @@
     }
   }
 
-  /** Windows System Default Theme - Use acccent color ************************/
+  /** System Default Theme ****************************************************/
+  /*= Common - URL Bar focus color ===========================================*/
+  @media (-moz-windows-accent-color-in-titlebar),
+         (-moz-gtk-csd-available) {
+    /* URL Bar */
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
+      --focus-outline-color: -moz-accent-color !important;
+    }
+
+    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
+      border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important; /* Like: --toolbar-field-focus-border-color */
+    }
+  }
+
+  /*= Windows10 - Titlebar accent color ======================================*/
   @media (-moz-windows-accent-color-in-titlebar) {
     /* Tab Bar */
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
@@ -59,16 +82,104 @@
       --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
       --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
     }
+  }
 
-    /* URL Bar */
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
-    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
-      --focus-outline-color: -moz-accent-color !important;
+  /* Fully Theme Mode *********************************************************/
+  /* Default Themes
+     https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json
+     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/light/manifest.json
+     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
+  */
+
+   /*== Menu color ===========================================================*/
+  :root,
+  menupopup {
+    /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
+    --menu-color: var(--toolbar-color) !important;
+    --menu-background-color: var(--toolbar-bgcolor) !important;
+
+    --menu-border-color: var(--toolbarbutton-active-background, var(--button-active-bgcolor)) !important;
+    --menuitem-hover-background-color: var(--toolbarbutton-hover-background, var(--button-hover-bgcolor)) !important;
+
+    --menu-disabled-color: color-mix(in srgb, var(--toolbar-color) 40%, transparent) !important;
+    --menuitem-disabled-hover-background-color: color-mix(in srgb, var(--menuitem-hover-background-color) 40%, transparent) !important;
+  }
+
+  /* Fallback background */
+  menupopup {
+    background-color: var(--lwt-accent-color) !important;
+  }
+
+  /* Fully Dark Mode **********************************************************/
+  /*= Remove White Flash =====================================================*/
+  #tabbrowser-tabbox,
+  #tabbrowser-tabpanels,
+  browser[type=content-primary],
+  browser[type=content] > html {
+    background: var(--lwt-accent-color) !important;
+  }
+
+  /*= Notification ===========================================================*/
+  @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
+    /* line below removes background from the notification "window" on linux */
+    #alertNotification{ background: transparent !important; }
+
+    #alertBox {
+      color: var(--menu-color, #15141a) !important;
+      background-color: var(--menu-background-color, #f9f9fb) !important;
+      border-color: var(--menu-border-color, #cfcfd8) !important;
+      border-radius: 6px !important;
+      -moz-window-shadow: cliprounded !important;
+    }
+    #alertSettings {
+      fill: currentColor !important;
+      color: inherit !important;
+      border-radius: 0 !important;
+      margin-inline: 0 !important;
+      margin-bottom: -4px !important;
     }
 
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
-    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
-      border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important; /* Like: --toolbar-field-focus-border-color */
+    /* Shape */
+    .close-icon > .toolbarbutton-icon,
+    #alertSettings > .button-box > .box-inherit {
+      border-radius: 4px !important;
+      padding: 2px !important;
+      margin: 2px 2px -2px 0 !important;
+    }
+    #alertSettings > .button-box > .box-inherit {
+      margin: -4px 4px 3px 0 !important;
+    }
+    #alertSettings > .button-box > .box-inherit > .button-icon {
+      padding: 1px;
+    }
+
+    /* Color */
+    .close-icon,
+    #alertSettings {
+      background: transparent !important
+    }
+    .close-icon:hover > .toolbarbutton-icon,
+    #alertSettings:is(:hover,[open]) > .button-box > .box-inherit {
+      background-color: var(--menuitem-hover-background-color, #e0e0e6) !important;
+    }
+
+    @media (-moz-toolbar-prefers-color-scheme:dark) {
+      :root {
+        --menu-border-color: rgba(107,107,107,.3) !important;
+      }
+
+      #alertBox {
+        color: var(--menu-color, #fbfbfe) !important;
+        background-color: var(--menu-background-color, #2b2a33) !important;
+      }
+      .close-icon:hover > .toolbarbutton-icon,
+      #alertSettings:is(:hover, [open]) > .button-box > .box-inherit {
+        background-color: var(--menuitem-hover-background-color, #52525e) !important;
+      }
+
+      #alertSourceLabel {
+        color: rgb(5,209,241) !important;
+      }
     }
   }
 
@@ -227,16 +338,69 @@
   }
 
   /* spread menu */
-  :root[uidensity=compact] .urlbarView-row:not([type=tip], [type=dynamic]) {
-    padding-block: 1px; /* [Compact, General]: 2px, Touch: 11px */
+  :root:not([uidensity]) .urlbarView-row {
+    padding-block: 1px; /* Original: 2px */
+  }
+  :root[uidensity=compact] .urlbarView-row {
+    padding-block: 0px;
+  }
+
+  :root:not([uidensity]) #urlbar .search-one-offs:not([hidden]) {
+    padding-block: 8px; /* Original: 10px */
   }
   :root[uidensity=compact] #urlbar .search-one-offs:not([hidden]) {
-    padding-block: 2px; /* [Compact, General]: 4px, Touch 11px */
+    padding-block: 2px;
   }
 
   /*= BookMark Bar - Reduce Height ===========================================*/
   :root[uidensity=compact] #PersonalToolbar toolbarbutton {
       margin-top: 0px; /* Original: 2px */
+  }
+
+  /*= Info Bar - Reduce Padding ==============================================*/
+  :root:not([uidensity]) #tab-notification-deck {
+    --infobar-message-margin: 0 4px 3px;
+  }
+  :root[uidensity=compact] #tab-notification-deck {
+    --infobar-message-margin: 0 4px 2px;
+  }
+  #tab-notification-deck notification-message[message-bar-type="infobar"] {
+    margin: var(--infobar-message-margin, 0 4px 4px) !important;
+  }
+
+  :root:not([uidensity]) notification-message[message-bar-type="infobar"] {
+    --infobar-vertical-margin: 7px;
+    --infobar-button-vertical-margin: 3px;
+  }
+  :root[uidensity=compact] notification-message[message-bar-type="infobar"] {
+    --infobar-vertical-margin: 6px;
+    --infobar-button-vertical-margin: 2px;
+  }
+  .infobar > .icon {
+    margin-block:  var(--infobar-vertical-margin, 8px) !important; /* Original: 8px */
+  }
+  .notification-message {
+    padding-block: var(--infobar-vertical-margin, 8px) !important; /* Original: 8px */
+  }
+  .notification-button-container > .notification-button {
+    margin-block: var(--infobar-button-vertical-margin, 4px) !important; /* Original: 4px */
+  }
+  .notification-close {
+    margin: var(--infobar-button-vertical-margin, 4px) 8px !important; /* Original: 4px 8px */
+  }
+
+  /* Hard coded for compatibility - Disappearing phenomenon */
+  .container.infobar::before {
+    content: "";
+    display: block;
+    width: 2px;
+    position: absolute;
+    background-image: linear-gradient(0, #9059ff 0%, #ff4aa2 52.08%, #ffbd4f 100%);
+    top: 0;
+    inset-inline-start: 0;
+    height: 100%;
+    border-start-start-radius: 4px;
+    border-end-start-radius: 4px;
   }
 
   /*= Menu - Reduce Padding ==================================================*/
