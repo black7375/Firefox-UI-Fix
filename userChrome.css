@@ -11,7 +11,14 @@
   }
 
   /** Theme - Compatibility ***************************************************/
-  /*= Light Weidght Theme ====================================================*/
+  /*= Hotfix #98 =============================================================*/
+  /* Hidden Tab Panel Padding */
+  #allTabsMenu-hiddenTabsView .all-tabs-item {
+    margin-inline: 8px;
+    border-radius: 4px;
+  }
+
+  /*= Light Weight Theme =====================================================*/
   /* Header Image */
   :root[lwtheme-image] {
       background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
@@ -28,12 +35,6 @@
   /* Navbar Border */
   #navigator-toolbox:-moz-lwtheme {
     --tabs-border-color: rgba(0,0,0,.3);
-  }
-
-  /* Hidden Tab Panel Padding */
-  #allTabsMenu-hiddenTabsView .all-tabs-item {
-    margin-inline: 8px;
-    border-radius: 4px;
   }
 
   /*= Windows 7 ==============================================================*/
