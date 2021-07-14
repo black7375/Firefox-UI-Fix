@@ -84,6 +84,13 @@
     }
   }
 
+  /*= GTK - URL View url accent color ========================================*/
+  @media (-moz-gtk-csd-available) {
+    :root:not(:-moz-lwtheme) .urlbarView-url {
+      --urlbar-popup-url-color: -moz-accent-color;
+    }
+  }
+
   /* Fully Theme Mode *********************************************************/
   /* Default Themes
      https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json
