@@ -104,6 +104,14 @@
   }
 
   /* Fully Dark Mode **********************************************************/
+  /*= Remove White Flash =====================================================*/
+  #tabbrowser-tabbox,
+  #tabbrowser-tabpanels,
+  browser[type=content-primary],
+  browser[type=content] > html {
+    background: var(--lwt-accent-color) !important;
+  }
+
   /*= Notification ===========================================================*/
   @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
     /* line below removes background from the notification "window" on linux */
