@@ -585,10 +585,14 @@
       .Home-SubjectShelf-link:visited,
       .DropdownMenuItem-link a,
       .Select,
+      .Badge,
+      .Paginate .Button.Paginate-item:first-child,
+      .Paginate .Button.Paginate-item:last-child,
+      .Paginate .Button.Paginate-item--current-page,
       .Button--neutral,
       .blog-entry-title,
       .blogpost-nav * {
-        color: var(--in-content-text-color)!important;
+        color: var(--in-content-text-color) !important;
       }
       .AutoSearchInput-suggestions-item:is(:active, :focus, :hover),
       .SecondaryHero-message-link,
@@ -604,6 +608,7 @@
       .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link:is(:active, :hover),
       .RatingsByStar-count a:hover,
       .RatingsByStar-star a:hover,
+      .Paginate .Button.Paginate-item:not(:first-child, :last-child, .Paginate-item--current-page),
       .AddonTitle-author a,
       .PermissionsCard-learn-more,
       .DefinitionList a,
@@ -632,6 +637,7 @@
       .Definition-dt,
       .RatingsByStar-count a,
       .RatingsByStar-star a,
+      .Paginate-page-number,
       .AddonSummaryCard-addonAverage,
       .AddonReviewCard-authorByLine,
       .Home-heroHeader-subtitle,
@@ -674,6 +680,7 @@
       .Card-contents,
       .CardList ul > li,
       .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-wrapper:is(:focus, :hover),
+      .Paginate,
       .LandingPage-header,
       .DropdownMenu-items,
       .DropdownMenu-items::after,
@@ -684,13 +691,16 @@
       .blogpost-nav * {
         background: var(--in-content-table-background) !important;
       }
+      .Paginate .Button.Paginate-item:is(:active, :hover) {
+        background: var(--in-content-button-background-hover) !important;
+      }
 
       .LanguageTools-header-row {
         color: var(--in-content-table-header-color) !important;
         background: var(--in-content-table-header-background) !important;
       }
       .LanguageTools-table.responsiveTable tbody tr:nth-child(2n) {
-        background-color: var(--in-content-box-background-odd) !important;;
+        background-color: var(--in-content-box-background-odd) !important;
       }
 
       /* Fill */
@@ -705,10 +715,10 @@
         filter: invert(65%) !important;
       }
       .Icon-heart {
-        filter:  brightness(0) !important;;
+        filter:  brightness(0) !important;
       }
       .Permission .Icon {
-        filter:  grayscale(100%) brightness(30) !important;;
+        filter:  grayscale(100%) brightness(30) !important;
       }
 
       /* Others */
