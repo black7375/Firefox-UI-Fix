@@ -83,9 +83,9 @@ function Check-LeptonInstallFiles {
     param ([string[]]$Files)
 
     foreach ($item in $Files) {
-	if (-not (Test-Path $item)) {
-	    return $false
-	}
+        if (-not (Test-Path $item)) {
+            return $false
+        }
     }
 
     return $true
@@ -105,9 +105,9 @@ function Get-LeptonInstallType {
     $IsTypeRelease = Check-LeptonInstallFiles $ReleaseFiles
 
     if ($IsTypeLocal) {
-	return $InstallType.Local
+        return $InstallType.Local
     } elseif ($IsTypeRelease) {
-	return $InstallType.Release
+        return $InstallType.Release
     }
 
     return $InstallType.Network
@@ -123,14 +123,14 @@ function Select-LeptonDistributionPrompt {
 
     $SelectedBranch = ""
     while ($SelectedBranch -eq "") {
-	$SelectedInput = Read-Host "Enter a distribution number (1, 2, 3)"
-	
-	switch ($SelectedInput) {
-	    "1" { $SelectedBranch = "master"; break }
-	    "2" { $SelectedBranch = "photon-style"; break }
-	    "3" { $SelectedBranch = "proton-style"; break }
-	    default { Write-Host "Invalid option, reselect please." }
-	}
+        $SelectedInput = Read-Host "Enter a distribution number (1, 2, 3)"
+        
+        switch ($SelectedInput) {
+            "1" { $SelectedBranch = "master"; break }
+            "2" { $SelectedBranch = "photon-style"; break }
+            "3" { $SelectedBranch = "proton-style"; break }
+            default { Write-Host "Invalid option, reselect please." }
+        }
     }
 
     Write-Host ""
@@ -144,22 +144,22 @@ function Select-LeptonDistribution {
 
     $FoundInstallType = Get-LeptonInstallType
     switch ($FoundInstallType) {
-	$InstallType.Release { break }
-	$InstallType.Network { $SelectedDistribution = Select-LeptonDistributionPrompt; break }
-	$InstallType.Local {
-	    $SelectedDistribution = Select-LeptonDistributionPrompt
-	    $GitInstalled=$((Get-Command -ErrorAction SilentlyContinue "git").Length -eq 0)
-	    if ($GitInstalled && Test-Path ".git" && $PSCmdlet.ShouldProcess(".git")) {
-		git checkout $LeptonBranchName
-	    }
-	    break
-	}
-	default { throw }
+        $InstallType.Release { break }
+        $InstallType.Network { $SelectedDistribution = Select-LeptonDistributionPrompt; break }
+        $InstallType.Local {
+            $SelectedDistribution = Select-LeptonDistributionPrompt
+            $GitInstalled=$((Get-Command -ErrorAction SilentlyContinue "git").Length -eq 0)
+            if ($GitInstalled && Test-Path ".git" && $PSCmdlet.ShouldProcess(".git")) {
+                git checkout $LeptonBranchName
+            }
+            break
+        }
+        default { throw }
     }
 
     return @{
-	Type = $InstallType.Network;
-	Dist = $SelectedDistribution;
+        Type = $InstallType.Network;
+        Dist = $SelectedDistribution;
     }
 }
 
