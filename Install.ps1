@@ -61,6 +61,7 @@ param(
 # Constants
 $PSMinSupportedVersion = 2
 $DefaultFirefoxProfilePaths = @("~/AppData/Roaming/Mozilla/Firefox/")
+$ProfileInfoFile = "profiles.ini"
 
 function Check-Help {
     # Cheap and dirty way of getting the same output as '-?' for '-h' and '-Help'
@@ -196,9 +197,18 @@ function Check-FirefoxProfileDirectories {
     return $FirefoxInstalls
 }
 
-function Check-FirefoxProfileDirectories {
-    param ([string]$CustomProfilePath)
-    # TODO: stub
+function Check-FirefoxProfileConfigurations {
+    param ([string[]]$InstallDirectories)
+    Write-Host -Nonewline "Checking profile info files... "
+
+    foreach ($Install in $InstallDirectories) {
+        if (-not ($Test-Path -Path (-Join $Install, "\", $ProfileInfoFile))) {
+            Write-Error "Unable to find $ProfileInfoFile for install $Install"
+            exit -1
+        }
+    }
+
+    Write-Host "[found]"
 }
 
 function Check-FirefoxProfileConfigurations {
@@ -226,7 +236,7 @@ function Install-Lepton {
     $InstallationDirectories = Check-FirefoxProfileDirectories $ProfilePath
 
     # TODO: check profile ini files exists
-    #Check-FirefoxProfileConfigurations $InstallationDirectories
+    Check-FirefoxProfileConfigurations $InstallationDirectories
 
     # TODO: read profile paths in from profiles.ini files
     #$AsboluteProfilePaths = Get-FirefoxProfilePaths
