@@ -211,13 +211,23 @@ function Check-FirefoxProfileConfigurations {
     Write-Host "[found]"
 }
 
-function Check-FirefoxProfileConfigurations {
-    param ([string[]]$InstallDirectories)
-    # TODO: stub
-}
-
 function Get-FirefoxProfilePaths {
-    # TODO: stub
+    param ([string[]]$InstallDirectories)
+
+    Write-Host -Nonewline "Checking path information for profiles... "
+
+    $AbsoluteProfiles = @()
+
+    foreach ($Directory in $InstallDirectories) {
+        $InfoFileContents = (Get-Content -Path (-Join $Directory, "\", $ProfileInfoFile)) -Split "\n"
+        $PathNames = $InfoFileContents
+            .Where({$_ -Match "Path=.+"})
+            .ForEach({$_ -Replace "Path=",""})
+            .ForEach({$AbsoluteProfiles += (-Join $Directory, "\", $_)})
+    }
+    
+    # TODO: error handling
+    return $AbsoluteProfiles
 }
 
 function Install-LeptonToProfiles {
@@ -239,7 +249,7 @@ function Install-Lepton {
     Check-FirefoxProfileConfigurations $InstallationDirectories
 
     # TODO: read profile paths in from profiles.ini files
-    #$AsboluteProfilePaths = Get-FirefoxProfilePaths
+    $AsboluteProfilePaths = Get-FirefoxProfilePaths
 
     # TODO: install if in install mode
     #Install-LeptonToProfiles $AbsoluteProfilePaths
