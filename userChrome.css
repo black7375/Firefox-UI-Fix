@@ -349,6 +349,53 @@
     }
   }
 
+  /*= Downloads ==============================================================*/
+  @-moz-document url("chrome://mozapps/content/downloads/unknownContentType.xhtml") {
+    :root {
+      --in-content-page-background: #42414d;
+    }
+    #unknownContentType {
+      color: var(--in-content-page-color) !important;
+      background-color: var(--in-content-page-background) !important;
+    }
+
+    button {
+      -moz-appearance: none !important;
+      color: var(--in-content-button-text-color) !important;
+      background-color: var(--in-content-button-background) !important;
+      font: inherit;
+      font-size: 1em !important;
+      font-weight: 600 !important;
+      min-height: 32px !important;
+      border: 1px solid transparent !important; /* shows up in high-contrast mode */
+      border-radius: var(--in-content-button-border-radius) !important;
+      padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
+
+      min-height: 32px !important;
+      /* Use the same margin of other elements for the alignment */
+      margin-inline: 4px !important;
+      min-width: 6.3em !important;
+    }
+    button:-moz-focusring {
+      box-shadow: none !important;
+      outline: 2px solid var(--in-content-focus-outline-color) !important;
+      outline-offset: 2px !important;
+    }
+    button:not([disabled="true"]):hover {
+      background-color: var(--in-content-button-background-hover) !important;
+      color: var(--in-content-button-text-color-hover) !important;
+      border-color: transparent !important;
+    }
+    button[open],
+    button[open]:hover {
+      background-color: var(--in-content-button-background-active);
+    }
+    button[disabled="true"],
+    menulist[disabled="true"] {
+      opacity: 0.4;
+    }
+  }
+
   /** Reduce Padding **********************************************************/
   /*= Root - Reduce Padding ==================================================*/
   :root {
