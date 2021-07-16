@@ -21,15 +21,15 @@
   /*= Light Weight Theme =====================================================*/
   /* Header Image */
   :root[lwtheme-image] {
-      background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
-      background-repeat: no-repeat !important;
-      background-position: right top !important;
+    background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
+    background-repeat: no-repeat !important;
+    background-position: right top !important;
   }
   :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
-      background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
-      background-repeat:   var(--lwt-background-tiling) !important;
-      background-position: var(--lwt-background-alignment) !important;
-      background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
+    background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
+    background-repeat:   var(--lwt-background-tiling) !important;
+    background-position: var(--lwt-background-alignment) !important;
+    background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
   }
 
   /* Navbar Border */
@@ -356,7 +356,7 @@
 
   /*= BookMark Bar - Reduce Height ===========================================*/
   :root[uidensity=compact] #PersonalToolbar toolbarbutton {
-      margin-top: 0px; /* Original: 2px */
+    margin-top: 0px; /* Original: 2px */
   }
 
   /*= Info Bar - Reduce Padding ==============================================*/
@@ -624,11 +624,11 @@
     position: absolute;
   }
 
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab .tab-background::before,
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ .tabbrowser-tab[afterhovered] .tab-background::before,
-  .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
-  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
-  #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab .tab-background::before,
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ .tabbrowser-tab[afterhovered] .tab-background::before,
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
+  #navigator-toolbox:not([movingtab]) .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
+  #navigator-toolbox:not([movingtab]) #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
   }
 
@@ -853,7 +853,6 @@
   :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
   :root[uidensity=compact] .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
-    var(--dotted-identity-image) !important;
     background-position-x: 30%, 50%, 70% !important;
   }
 
@@ -864,7 +863,6 @@
   }
   :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
   :root[uidensity=compact] .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-    var(--dotted-identity-image) !important;
     background-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px) !important;
   }
 
@@ -1287,7 +1285,7 @@
 
     /* Checkbox */
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"][checked="false"] > .menu-iconic-left {
-        padding-inline-start: var(--context-menu-text-padding);
+      padding-inline-start: var(--context-menu-text-padding);
     }
   }
 
