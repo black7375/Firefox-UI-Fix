@@ -650,7 +650,8 @@
     border-bottom: 2px solid var(--identity-icon-color);
   }
 
-  /* None exist favicon */
+  /* Busy, None exist favicon */
+  .tabbrowser-tab[busy] .tab-content::before,
   .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-content::before,
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]):not(:hover) .tab-content::before {
     /* Box Model */
@@ -664,6 +665,7 @@
     border-bottom: 2px solid var(--identity-icon-color);
     width: 16px;
   }
+  .tabbrowser-tab[busy] .tab-content::before,
   .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-content::before {
     transform: translateY(10px) !important; /* None exist favicon */
   }
