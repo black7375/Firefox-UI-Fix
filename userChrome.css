@@ -7,15 +7,15 @@
   /* Theme - Compatibility ****************************************************/
   /* Header Image */
   :root[lwtheme-image] {
-      background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
-      background-repeat: no-repeat !important;
-      background-position: right top !important;
+    background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
+    background-repeat: no-repeat !important;
+    background-position: right top !important;
   }
   :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
-      background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
-      background-repeat:   var(--lwt-background-tiling) !important;
-      background-position: var(--lwt-background-alignment) !important;
-      background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
+    background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
+    background-repeat:   var(--lwt-background-tiling) !important;
+    background-position: var(--lwt-background-alignment) !important;
+    background-color:    unset !important; /* Original:  var(--lwt-accent-color) */
   }
 
   /* Navbar Border */
@@ -236,7 +236,7 @@
 
   /*= BookMark Bar - Reduce Height ===========================================*/
   :root[uidensity=compact] #PersonalToolbar toolbarbutton {
-      margin-top: 0px; /* Original: 2px */
+    margin-top: 0px; /* Original: 2px */
   }
 
   /*= Menu - Reduce Padding ==================================================*/
@@ -651,6 +651,26 @@
     border-bottom: 2px solid var(--identity-icon-color);
   }
 
+  /* Busy, None exist favicon */
+  .tabbrowser-tab[busy] .tab-content::before,
+  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-content::before,
+  .tabbrowser-tab[pinned][visuallyselected]:not([busy]):not(:hover) .tab-content::before {
+    /* Box Model */
+    content: '';
+    display: block;
+    position: absolute !important;
+    transition: 0.2s !important;
+    transform: translateY(10px) !important;
+
+    /* Shape */
+    border-bottom: 2px solid var(--identity-icon-color);
+    width: 16px;
+  }
+  .tabbrowser-tab[busy] .tab-content::before,
+  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-content::before {
+    transform: translateY(10px) !important; /* None exist favicon */
+  }
+
   /* None exist favicon - With Sound */
   .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     box-sizing: content-box;
@@ -682,7 +702,6 @@
   :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
   :root[uidensity=compact] .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
-    var(--dotted-identity-image) !important;
     background-position-x: 30%, 50%, 70% !important;
   }
 
@@ -693,7 +712,6 @@
   }
   :root[uidensity=compact] .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
   :root[uidensity=compact] .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked]) > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-    var(--dotted-identity-image) !important;
     background-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px) !important;
   }
 
@@ -1126,7 +1144,7 @@
 
     /* Checkbox */
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"][checked="false"] > .menu-iconic-left {
-        padding-inline-start: var(--context-menu-text-padding);
+      padding-inline-start: var(--context-menu-text-padding);
     }
   }
 
