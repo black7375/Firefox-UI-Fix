@@ -687,7 +687,7 @@ update_profile() {
   check_git
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     local LEPTONINFOPATH="${profileDir}/${LEPTONINFOFILE}"
-    local sections=$(get_ini_section "${LEPTONINFOPATH}")
+    local sections=($(get_ini_section "${LEPTONINFOPATH}"))
     if [ ! -z "${sections}" ]; then
       for section in "${sections[@]}"; do
         local Type=$(  get_ini_value "${LEPTONINFOPATH}" "Type"   "${section}")
@@ -715,7 +715,7 @@ update_profile() {
             git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
           fi
         else
-          lepton_error_message "Unable to find update type, ${Type}"
+          lepton_error_message "Unable to find update type, ${Type} at ${section}"
         fi
       done
     fi
