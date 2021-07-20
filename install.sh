@@ -437,6 +437,7 @@ select_profile() {
 
 #** Install ********************************************************************
 #== Install Types ==============================================================
+updateMode=""
 leptonBranch="master"
 select_distribution() {
   local selectedDistribution=""
@@ -446,6 +447,7 @@ select_distribution() {
       "Original")     leptonBranch="master";       break;;
       "Photon-Style") leptonBranch="photon-style"; break;;
       "Proton-Style") leptonBranch="proton-style"; break;;
+      "Update")       updateMode="true";           break;;
       *)              echo "Invalid option, reselect please.";;
     esac
   done
@@ -696,9 +698,7 @@ update_profile() {
           git --git-dir "${LEPTONGITPATH}" pull --no-edit
         elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
           check_chrome_exist
-          if [ ! -d "chrome" ]; then
-            clone_lepton
-          fi
+          clone_lepton
 
           firefoxProfilePaths=("${Path}")
           copy_lepton
@@ -712,7 +712,6 @@ update_profile() {
             local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
             git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
           fi
-          check_chrome_restore
         else
           lepton_error_message "Unable to find update type, ${Type}"
         fi
@@ -725,7 +724,6 @@ update_profile() {
 
 #** Main ***********************************************************************
 install_lepton() {
-  local updateMode=""
   local profileDir=""
   local profileName=""
 
@@ -751,20 +749,17 @@ install_lepton() {
   check_profile_dir "${profileDir}"
   check_profile_ini
   update_profile_paths
+  write_lepton_info
 
   # Install Mode
-  if [ ! "${updateMode}" == true ]; then
+  if [ "${updateMode}" == true ]; then
+    update_profile
+  else # Install Mode
     select_profile "${profileName}"
     install_profile
   fi
 
-  # write_lepton_info
-
-  ## Update Mode
-  # if [ ! "${updateMode}" == true ]; then
-  #  update_profile
-  #  write_lepton_info
-  # fi
+  write_lepton_info
 }
 
 install_lepton "$@"
