@@ -540,7 +540,7 @@ updateMode=""
 leptonBranch="master"
 select_distribution() {
   local selectedDistribution=""
-  select distribution in "Original(default)" "Photon-Style" "Proton Style"; do
+  select distribution in "Original(default)" "Photon-Style" "Proton-Style" "Update"; do
     selectedDistribution="${distribution}"
     case "${distribution}" in
       "Original")     leptonBranch="master";       break;;
