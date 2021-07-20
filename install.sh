@@ -435,6 +435,105 @@ select_profile() {
   fi
 }
 
+#** Lepton Info File ***********************************************************
+#== Info File format & update policy ===========================================
+## `LEPTON` file format
+# If this file exist in same directory as the `userChrome.css` file,
+# it is recognized as the "Lepton" installation directory.
+# Branch=master | photon-style | proton-style
+# Ver=<git tag> | <git hash> | [NULL]
+
+## `lepton.ini` file Format
+# [Profile Name]
+# Type=Local | Release | Git
+# Branch=master | photon-style | proton-style
+# Ver=<git tag> | <git hash> | [NULL]
+# Path=<Full PATH>
+
+## Update Policy
+# Type
+# - Local(unknown): force latest commit update
+# - Release(<git tag>): force latest tag update
+# - Git<git hash>: latest commit update
+
+#== Lepton Info ================================================================
+LEPTONINFOFILE="lepton.ini"
+check_lepton_ini() {
+  for profileDir in "${firefoxProfileDirPaths[@]}"; do
+    if [ ! -f "${profileDir}/${LEPTONINFOFILE}" ]; then
+      lepton_error_message "Unable to find ${LEPTONINFOFILE} at ${profileDir}"
+    fi
+  done
+
+  lepton_ok_message "Lepton info file found"
+}
+
+#== Create info file ===========================================================
+# We should always create a new one, as it also takes into account the possibility of setting it manually.
+# Updates happen infrequently, so the creation overhead  is less significant.
+
+CHROMEINFOFILE="LEPTON"
+write_lepton_info() {
+  # Init info
+  local output=""
+  local prevDir=$(dirname "${firefoxProfilePaths[0]}")
+  local latestPath="${firefoxProfilePaths[${#firefoxProfilePaths[@]} - 1]}"
+  for profilePath in "${firefoxProfilePaths[@]}"; do
+    local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
+    local LEPTONGITPATH="${profilePath}/chrome/.git"
+
+    # Profile info
+    local Type=""
+    local Ver=""
+    local Branch=""
+    local Path=""
+    if [ -f "${LEPTONINFOPATH}" ]; then
+      if [ -d "${LEPTONGITPATH}" ]; then
+        Type="Git"
+        Ver=$(   git --git-dir "${LEPTONGITPATH}" rev-parse HEAD)
+        Branch=$(git --git-dir "${LEPTONGITPATH}" rev-parse --abbrev-ref HEAD)
+      else
+        Type=$(  get_ini_value "${LEPTONINFOPATH}" "TYPE"  )
+        Ver=$(   get_ini_value "${LEPTONINFOPATH}" "Ver"   )
+        Branch=$(get_ini_value "${LEPTONINFOPATH}" "Branch")
+
+        if [ "${Type}" == "" ]; then
+          Type="Local"
+        fi
+      fi
+
+      Path="${profilePath}"
+    fi
+
+    # Flushing
+    local profileDir=$(dirname "${profilePath}")
+    local profileName=$(basename "${profilePath}")
+    if [ "${prevDir}" != "${profileDir}" ]; then
+      write_file "${prevDir}/${LEPTONINFOFILE}" "${output}"
+      output=""
+    fi
+
+    # Make output contents
+    if [ -f "${LEPTONINFOPATH}" ]; then
+      output="${output}$(set_ini_section ${profileName})"
+    fi
+    for key in "Type" "Branch" "Ver" "Path"; do
+      eval "local value=\${${key}}"
+      output="${output}$(set_ini_value ${key} ${value})"
+    done
+
+    # Latest element flushing
+    if [ "${profilePath}" == "${latestPath}" ]; then
+      write_file "${profileDir}/${LEPTONINFOFILE}" "${output}"
+    fi
+    prevDir="${profileDir}"
+  done
+
+  # Verify
+  check_lepton_ini
+  lepton_ok_message "Lepton info file created"
+}
+
 #** Install ********************************************************************
 #== Install Types ==============================================================
 updateMode=""
@@ -579,105 +678,6 @@ install_profile() {
   esac
 
   lepton_ok_message "End install"
-}
-
-#** Lepton Info File ***********************************************************
-#== Info File format & update policy ===========================================
-## `LEPTON` file format
-# If this file exist in same directory as the `userChrome.css` file,
-# it is recognized as the "Lepton" installation directory.
-# Branch=master | photon-style | proton-style
-# Ver=<git tag> | <git hash> | [NULL]
-
-## `lepton.ini` file Format
-# [Profile Name]
-# Type=Local | Release | Git
-# Branch=master | photon-style | proton-style
-# Ver=<git tag> | <git hash> | [NULL]
-# Path=<Full PATH>
-
-## Update Policy
-# Type
-# - Local(unknown): force latest commit update
-# - Release(<git tag>): force latest tag update
-# - Git<git hash>: latest commit update
-
-#== Lepton Info ================================================================
-LEPTONINFOFILE="lepton.ini"
-check_lepton_ini() {
-  for profileDir in "${firefoxProfileDirPaths[@]}"; do
-    if [ ! -f "${profileDir}/${LEPTONINFOFILE}" ]; then
-      lepton_error_message "Unable to find ${LEPTONINFOFILE} at ${profileDir}"
-    fi
-  done
-
-  lepton_ok_message "Lepton info file found"
-}
-
-#== Create info file ===========================================================
-# We should always create a new one, as it also takes into account the possibility of setting it manually.
-# Updates happen infrequently, so the creation overhead  is less significant.
-
-CHROMEINFOFILE="LEPTON"
-write_lepton_info() {
-  # Init info
-  local output=""
-  local prevDir=$(dirname "${firefoxProfilePaths[0]}")
-  local latestPath="${firefoxProfilePaths[${#firefoxProfilePaths[@]} - 1]}"
-  for profilePath in "${firefoxProfilePaths[@]}"; do
-    local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
-    local LEPTONGITPATH="${profilePath}/chrome/.git"
-
-    # Profile info
-    local Type=""
-    local Ver=""
-    local Branch=""
-    local Path=""
-    if [ -f "${LEPTONINFOPATH}" ]; then
-      if [ -d "${LEPTONGITPATH}" ]; then
-        Type="Git"
-        Ver=$(   git --git-dir "${LEPTONGITPATH}" rev-parse HEAD)
-        Branch=$(git --git-dir "${LEPTONGITPATH}" rev-parse --abbrev-ref HEAD)
-      else
-        Type=$(  get_ini_value "${LEPTONINFOPATH}" "TYPE"  )
-        Ver=$(   get_ini_value "${LEPTONINFOPATH}" "Ver"   )
-        Branch=$(get_ini_value "${LEPTONINFOPATH}" "Branch")
-
-        if [ "${Type}" == "" ]; then
-          Type="Local"
-        fi
-      fi
-
-      Path="${profilePath}"
-    fi
-
-    # Flushing
-    local profileDir=$(dirname "${profilePath}")
-    local profileName=$(basename "${profilePath}")
-    if [ "${prevDir}" != "${profileDir}" ]; then
-      write_file "${prevDir}/${LEPTONINFOFILE}" "${output}"
-      output=""
-    fi
-
-    # Make output contents
-    if [ -f "${LEPTONINFOPATH}" ]; then
-      output="${output}$(set_ini_section ${profileName})"
-    fi
-    for key in "Type" "Branch" "Ver" "Path"; do
-      eval "local value=\${${key}}"
-      output="${output}$(set_ini_value ${key} ${value})"
-    done
-
-    # Latest element flushing
-    if [ "${profilePath}" == "${latestPath}" ]; then
-      write_file "${profileDir}/${LEPTONINFOFILE}" "${output}"
-    fi
-    prevDir="${profileDir}"
-  done
-
-  # Verify
-  check_lepton_ini
-  lepton_ok_message "Lepton info file created"
 }
 
 #** Update *********************************************************************
