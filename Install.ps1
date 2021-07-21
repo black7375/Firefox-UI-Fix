@@ -42,6 +42,39 @@ https://github.com/black7375/Firefox-UI-Fix#readme
 
 #>
 
+#** Helper Utils ***************************************************************
+#== Message ====================================================================
+function Lepton-ErrorMessage() {
+  Write-Error "FAILED: ${args}"
+  exit -1
+}
+
+function Lepton-OKMessage() {
+  $local:SIZE = 50
+  $local:FILLED = ""
+  for ($i = 0; $i -le ($SIZE - 2); $i++) {
+    $FILLED += "."
+  }
+  $FILLED += "OK"
+
+  $local:message = "${args}"
+  Write-Host ${message}(${FILLED}.Substring(${message}.Length))
+}
+
+#== Required Tools =============================================================
+function Install-Choco() {
+  # https://chocolatey.org/install
+  Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+
+function Check-Git() {
+  if( -Not (Get-Command git) ) {
+    Install-Choco
+  }
+
+  Lepton-OKMessage "Required - git"
+}
+
 #** Main ***********************************************************************
 [CmdletBinding(
   SupportsShouldProcess = $true,
