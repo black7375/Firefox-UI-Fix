@@ -42,20 +42,21 @@ https://github.com/black7375/Firefox-UI-Fix#readme
 
 #>
 
+#** Main ***********************************************************************
 [CmdletBinding(
-    SupportsShouldProcess = $true,
-    PositionalBinding = $false
+  SupportsShouldProcess = $true,
+  PositionalBinding = $false
 )]
 
 param(
-    [Alias("u")]
-    [Switch]$Update=$false,
-    [Alias("f")]
-    [string]$ProfilePath,
-    [Alias("p")]
-    [string]$ProfileName,
-    [Alias("h")]
-    [Switch]$Help=$false
+  [Alias("u")]
+  [Switch]$Update=$false,
+  [Alias("f")]
+  [string]$ProfilePath,
+  [Alias("p")]
+  [string]$ProfileName,
+  [Alias("h")]
+  [Switch]$Help=$false
 )
 
 # Constants
@@ -64,197 +65,196 @@ $DefaultFirefoxProfilePaths = @("~/AppData/Roaming/Mozilla/Firefox/")
 $ProfileInfoFile = "profiles.ini"
 
 function Check-Help {
-    # Cheap and dirty way of getting the same output as '-?' for '-h' and '-Help'
-    if ($Help) {
-        Get-Help "$PSCommandPath"
-        exit 0
-    }
+  # Cheap and dirty way of getting the same output as '-?' for '-h' and '-Help'
+  if ($Help) {
+    Get-Help "$PSCommandPath"
+    exit 0
+  }
 }
 
 function Verify-PowerShellVersion {
-    $PSVersion = [int](Select-Object -Property Major -First 1 -ExpandProperty Major -InputObject $PSVersionTable.PSVersion)
+  $PSVersion = [int](Select-Object -Property Major -First 1 -ExpandProperty Major -InputObject $PSVersionTable.PSVersion)
 
-    Write-Host "[$PSVersion]"
-    if ($PSVersion -lt $PSMinSupportedVersion) {
-        Write-Error -Category NotInstalled "You need a minimum PowerShell version of [$PSMinSupportedVersion] to use this installer"
-        exit -1
-    }
+  Write-Host "[$PSVersion]"
+  if ($PSVersion -lt $PSMinSupportedVersion) {
+      Write-Error -Category NotInstalled "You need a minimum PowerShell version of [$PSMinSupportedVersion] to use this installer"
+      exit -1
+  }
 }
 
 function Check-LeptonInstallFiles {
-    param ([string[]]$Files)
+  param ([string[]]$Files)
 
-    foreach ($item in $Files) {
-        if (-not (Test-Path $item)) {
-            return $false
-        }
+  foreach ($item in $Files) {
+    if (-not (Test-Path $item)) {
+      return $false
     }
+  }
 
-    return $true
+  return $true
 }
 
 $InstallType = @{
-    Local   = 0;
-    Release = 1;
-    Network = 2;
+  Local   = 0;
+  Release = 1;
+  Network = 2;
 }
 
 function Get-LeptonInstallType {
-    $LocalFiles   = "userChrome.css", "userContent.css", "icons"
-    $ReleaseFiles = "user.js", "chrome/userChrome.css", "chrome/userContent.css", "chrome/icons"
+  $LocalFiles   = "userChrome.css", "userContent.css", "icons"
+  $ReleaseFiles = "user.js", "chrome/userChrome.css", "chrome/userContent.css", "chrome/icons"
 
-    $IsTypeLocal   = Check-LeptonInstallFiles $LocalFiles
-    $IsTypeRelease = Check-LeptonInstallFiles $ReleaseFiles
+  $IsTypeLocal   = Check-LeptonInstallFiles $LocalFiles
+  $IsTypeRelease = Check-LeptonInstallFiles $ReleaseFiles
 
-    if ($IsTypeLocal) {
-        return $InstallType.Local
-    } elseif ($IsTypeRelease) {
-        return $InstallType.Release
-    }
+  if ($IsTypeLocal) {
+    return $InstallType.Local
+  } elseif ($IsTypeRelease) {
+    return $InstallType.Release
+  }
 
-    return $InstallType.Network
+  return $InstallType.Network
 }
 
 function Select-LeptonDistributionPrompt {
-    # TODO: make it act like the bash installer with arrow keys + space
-    Write-Host "Select a distrubution:"
-    Write-Host "  (1) Original"
-    Write-Host "  (2) Photon-Style"
-    Write-Host "  (3) Photon-Style"
-    Write-Host ""
+  # TODO: make it act like the bash installer with arrow keys + space
+  Write-Host "Select a distrubution:"
+  Write-Host "  (1) Original"
+  Write-Host "  (2) Photon-Style"
+  Write-Host "  (3) Photon-Style"
+  Write-Host ""
 
-    $SelectedBranch = ""
-    while ($SelectedBranch -eq "") {
-        $SelectedInput = Read-Host "Enter a distribution number (1, 2, 3)"
-        
-        switch ($SelectedInput) {
-            "1" { $SelectedBranch = "master"; break }
-            "2" { $SelectedBranch = "photon-style"; break }
-            "3" { $SelectedBranch = "proton-style"; break }
-            default { Write-Host "Invalid option, reselect please." }
-        }
+  $SelectedBranch = ""
+  while ($SelectedBranch -eq "") {
+    $SelectedInput = Read-Host "Enter a distribution number (1, 2, 3)"
+
+    switch ($SelectedInput) {
+      "1" { $SelectedBranch = "master"; break }
+      "2" { $SelectedBranch = "photon-style"; break }
+      "3" { $SelectedBranch = "proton-style"; break }
+      default { Write-Host "Invalid option, reselect please." }
     }
+  }
 
-    Write-Host ""
-    Write-Host "Selected '$SelectedBranch'!"
+  Write-Host ""
+  Write-Host "Selected '$SelectedBranch'!"
 
-    return $SelectedBranch
+  return $SelectedBranch
 }
 
 function Select-LeptonDistribution {
-    Write-Host ""
+  Write-Host ""
 
-    $FoundInstallType = Get-LeptonInstallType
-    switch ($FoundInstallType) {
-        $InstallType.Release { break }
-        $InstallType.Network { $SelectedDistribution = Select-LeptonDistributionPrompt; break }
-        $InstallType.Local {
-            $SelectedDistribution = Select-LeptonDistributionPrompt
-            $GitInstalled=$((Get-Command -ErrorAction SilentlyContinue "git").Length -eq 0)
-            if ($GitInstalled && Test-Path ".git" && $PSCmdlet.ShouldProcess(".git")) {
-                git checkout $LeptonBranchName
-            }
-            break
-        }
-        default { throw }
+  $FoundInstallType = Get-LeptonInstallType
+  switch ($FoundInstallType) {
+    $InstallType.Release { break }
+    $InstallType.Network { $SelectedDistribution = Select-LeptonDistributionPrompt; break }
+    $InstallType.Local {
+      $SelectedDistribution = Select-LeptonDistributionPrompt
+      $GitInstalled=$((Get-Command -ErrorAction SilentlyContinue "git").Length -eq 0)
+      if ($GitInstalled && Test-Path ".git" && $PSCmdlet.ShouldProcess(".git")) {
+        git checkout $LeptonBranchName
+      }
+      break
     }
+    default { throw }
+  }
 
-    return @{
-        Type = $InstallType.Network;
-        Dist = $SelectedDistribution;
-    }
+  return @{
+    Type = $InstallType.Network;
+    Dist = $SelectedDistribution;
+  }
 }
 
 function Get-TestedPaths {
-    param ([string[]]$Paths)
+  param ([string[]]$Paths)
 
-    $FoundPaths = @()
-    foreach ($pathItem in $Paths) {
-        if ($Test-Path -Path $pathItem) {
-            $FoundPaths += $pathItem
-        }
+  $FoundPaths = @()
+  foreach ($pathItem in $Paths) {
+    if ($Test-Path -Path $pathItem) {
+      $FoundPaths += $pathItem
     }
+  }
 
-    return $FoundPaths
+  return $FoundPaths
 }
 
 function Check-FirefoxProfileDirectories {
-    param ([string]$CustomProfilePath)
+  param ([string]$CustomProfilePath)
 
-    Write-Host -Nonewline "Checking Firefox profile directories... "
+  Write-Host -Nonewline "Checking Firefox profile directories... "
 
-    $FirefoxProfilePaths = $DefaultFirefoxProfilePaths
-    $FirefoxProfilePaths += $CustomProfilePath
+  $FirefoxProfilePaths = $DefaultFirefoxProfilePaths
+  $FirefoxProfilePaths += $CustomProfilePath
 
-    $FirefoxInstalls = Get-TestedPaths -Paths $FirefoxProfilePaths
-    if ($FirefoxInstalls.Length -eq 0) {
-        Write-Host "[not found]"
-        Write-Error "Unable to find Firefox installations"
-        exit -1
-    }
+  $FirefoxInstalls = Get-TestedPaths -Paths $FirefoxProfilePaths
+  if ($FirefoxInstalls.Length -eq 0) {
+    Write-Host "[not found]"
+    Write-Error "Unable to find Firefox installations"
+    exit -1
+  }
 
-    Write-Host "[found]"
-    return $FirefoxInstalls
+  Write-Host "[found]"
+  return $FirefoxInstalls
 }
 
 function Check-FirefoxProfileConfigurations {
-    param ([string[]]$InstallDirectories)
-    Write-Host -Nonewline "Checking profile info files... "
+  param ([string[]]$InstallDirectories)
+  Write-Host -Nonewline "Checking profile info files... "
 
-    foreach ($Install in $InstallDirectories) {
-        if (-not ($Test-Path -Path (-Join $Install, "\", $ProfileInfoFile))) {
-            Write-Error "Unable to find $ProfileInfoFile for install $Install"
-            exit -1
-        }
+  foreach ($Install in $InstallDirectories) {
+    if (-not ($Test-Path -Path (-Join $Install, "\", $ProfileInfoFile))) {
+      Write-Error "Unable to find $ProfileInfoFile for install $Install"
+      exit -1
     }
+  }
 
-    Write-Host "[found]"
+  Write-Host "[found]"
 }
 
 function Get-FirefoxProfilePaths {
-    param ([string[]]$InstallDirectories)
+  param ([string[]]$InstallDirectories)
 
-    Write-Host -Nonewline "Checking path information for profiles... "
+  Write-Host -Nonewline "Checking path information for profiles... "
 
-    $AbsoluteProfiles = @()
+  $AbsoluteProfiles = @()
 
-    foreach ($Directory in $InstallDirectories) {
-        $InfoFileContents = (Get-Content -Path (-Join $Directory, "\", $ProfileInfoFile)) -Split "\n"
-        $PathNames = $InfoFileContents
-            .Where({$_ -Match "Path=.+"})
-            .ForEach({$_ -Replace "Path=",""})
-            .ForEach({$AbsoluteProfiles += (-Join $Directory, "\", $_)})
-    }
-    
-    # TODO: error handling
-    return $AbsoluteProfiles
+  foreach ($Directory in $InstallDirectories) {
+    $InfoFileContents = (Get-Content -Path (-Join $Directory, "\", $ProfileInfoFile)) -Split "\n"
+    $PathNames = $InfoFileContents
+      .Where({$_ -Match "Path=.+"})
+      .ForEach({$_ -Replace "Path=",""})
+      .ForEach({$AbsoluteProfiles += (-Join $Directory, "\", $_)})
+  }
+
+  # TODO: error handling
+  return $AbsoluteProfiles
 }
 
 function Install-LeptonToProfiles {
-    param ([string[]]$PathsToInstall)
-    # TODO: stub
+  param ([string[]]$PathsToInstall)
+  # TODO: stub
 }
 
 function Install-Lepton {
-    Write-Host -NoNewline "Checking PowerShell version... "
-    Verify-PowerShellVersion  # Check installed version meets minimum
+  Write-Host -NoNewline "Checking PowerShell version... "
+  Verify-PowerShellVersion  # Check installed version meets minimum
 
-    # TODO: select style distribution (Photon or Proton)
-    $SelectedDistribution = Select-LeptonDistribution
+  # TODO: select style distribution (Photon or Proton)
+  $SelectedDistribution = Select-LeptonDistribution
 
-    # TODO: check profile director{y,ies} (including custom)
-    $InstallationDirectories = Check-FirefoxProfileDirectories $ProfilePath
+  # TODO: check profile director{y,ies} (including custom)
+  $InstallationDirectories = Check-FirefoxProfileDirectories $ProfilePath
 
-    # TODO: check profile ini files exists
-    Check-FirefoxProfileConfigurations $InstallationDirectories
+  # TODO: check profile ini files exists
+  Check-FirefoxProfileConfigurations $InstallationDirectories
 
-    # TODO: read profile paths in from profiles.ini files
-    $AsboluteProfilePaths = Get-FirefoxProfilePaths
+  # TODO: read profile paths in from profiles.ini files
+  $AsboluteProfilePaths = Get-FirefoxProfilePaths
 
-    # TODO: install if in install mode
-    #Install-LeptonToProfiles $AbsoluteProfilePaths
+  # TODO: install if in install mode
+  #Install-LeptonToProfiles $AbsoluteProfilePaths
 }
 
 Check-Help
 Install-Lepton
-
