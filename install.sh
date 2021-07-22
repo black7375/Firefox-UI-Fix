@@ -442,6 +442,7 @@ select_profile() {
 ## `LEPTON` file format
 # If this file exist in same directory as the `userChrome.css` file,
 # it is recognized as the "Lepton" installation directory.
+# [Info]
 # Branch=master | photon-style | proton-style
 # Ver=<git tag> | <git hash> | [NULL]
 

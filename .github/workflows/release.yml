@@ -27,7 +27,7 @@ jobs:
           BRANCH=${{ matrix.branch }}
           TAGVER=${GITHUB_REF#refs/*/}
 
-          echo -e "Ver=${TAGVER}\nBranch=${BRANCH}" > LEPTON
+          echo -e "\[Info\]\nVer=${TAGVER}\nBranch=${BRANCH}" > LEPTON
 
       - name: Release Structure
         run: |
