@@ -75,6 +75,166 @@ function Check-Git() {
   Lepton-OKMessage "Required - git"
 }
 
+#== PATH / File ================================================================
+$currentDir = (Get-Location).path
+
+function Filter-Path() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string[]] $pathList,
+    [Parameter(Position=1)]
+    [string]   $option = "Any"
+  )
+
+  return $pathList.Where({ Test-Path -Path "$_" -PathType "${option}" })
+}
+
+function Copy-Auto() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $file,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $target
+  )
+
+  if ( "${file}" -eq "${target}" ) {
+    Write-Host "'${file}' and ${target} are same file"
+    return 0
+  }
+
+  if ( Test-Path -Path "${target}" ) {
+    Write-Host "${target} alreay exist."
+    Write-Host "Now Backup.."
+    Copy-Auto "${target}" "${target}.bak"
+    Write-Host ""
+  }
+
+  Copy-Item -Path "${file}" -Destination "${target}" -Force
+}
+
+function Move-Auto() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $file,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $target
+  )
+
+  if ( "${file}" -eq "${target}" ) {
+    Write-Host "'${file}' and ${target} are same file"
+    return 0
+  }
+
+  if ( Test-Path -Path "${target}" ) {
+    Write-Host "${target} alreay exist."
+    Write-Host "Now Backup.."
+    Move-Auto "${target}" "${target}.bak"
+    Write-Host ""
+  }
+
+  Move-Item -Path "${file}" -Destination "${target}" -Force
+}
+
+function Restore-Auto() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $file
+  )
+  $local:target = "${file}.bak"
+
+  if ( Test-Path -Path "${file}" ) {
+    Remove-Item "${file}" -Recurse -Force
+  }
+  Move-Item -Path "${target}" -Destination "${file}" -Force
+
+  $local:loopupTarget = "${target}.bak"
+  if ( Test-Path -Path "${lookupTarget}" ) {
+    Restore-Auto "${target}"
+  }
+}
+
+function Write-File() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $filePath,
+    [Parameter(Position=1)]
+    [string] $fileContent = ""
+  )
+
+  if ( "${fileContent}" -eq "" ) {
+    New-Item -Path "${filePath}" -Force
+  }
+  else {
+    Out-File -FilePath "${filePath}" -InputObject "${fileContent}" -Force
+  }
+}
+
+#== INI File ================================================================
+# https://devblogs.microsoft.com/scripting/use-powershell-to-work-with-any-ini-file/
+function Get-IniContent () {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $filePath
+  )
+
+  $ini = @{}
+  switch -regex -file $filePath {
+    “^\[(.+)\]” {
+      # Section
+      $section = $matches[1]
+      $ini[$section] = @{}
+      $CommentCount = 0
+    }
+    “^(;.*)$” {
+      # Comment
+      $value = $matches[1]
+      $CommentCount = $CommentCount + 1
+      $name = “Comment” + $CommentCount
+      $ini[$section][$name] = $value
+    }
+    “(.+?)\s*=(.*)” {
+      # Key
+      $name,$value = $matches[1..2]
+      $ini[$section][$name] = $value
+    }
+  }
+  return $ini
+}
+
+function Out-IniFile() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $filePath,
+    [Parameter(Position=1)]
+    [hashtable] $iniObject = @{}
+  )
+
+  # Create new file
+  New-Item -Path "${filePath}" -Force
+  $local:outFile = New-Item -ItemType file -Path "${filepath}"
+
+  foreach ($i in $iniObject.keys) {
+    if (!($($iniObject[$i].GetType().Name) -eq “Hashtable”)) {
+      #No Sections
+      Add-Content -Path $outFile -Value “$i=$($iniObject[$i])”
+    }
+    else {
+      #Sections
+      Add-Content -Path $outFile -Value “[$i]”
+      Foreach ($j in ($iniObject[$i].keys | Sort-Object)) {
+        if ($j -match “^Comment[\d]+”) {
+          Add-Content -Path $outFile -Value “$($iniObject[$i][$j])”
+        }
+        else {
+          Add-Content -Path $outFile -Value “$j=$($iniObject[$i][$j])”
+        }
+
+      }
+      Add-Content -Path $outFile -Value “”
+    }
+  }
+}
+
 #** Main ***********************************************************************
 [CmdletBinding(
   SupportsShouldProcess = $true,
