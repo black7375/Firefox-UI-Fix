@@ -351,8 +351,10 @@
 
   /*= Downloads ==============================================================*/
   @-moz-document url("chrome://mozapps/content/downloads/unknownContentType.xhtml") {
-    :root {
-      --in-content-page-background: #42414d;
+    @media (-moz-toolbar-prefers-color-scheme:dark) {
+      :root {
+        --in-content-page-background: #42414d;
+      }
     }
     #unknownContentType {
       color: var(--in-content-page-color) !important;
