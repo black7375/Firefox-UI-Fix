@@ -336,6 +336,183 @@ function Menu {
   }
 }
 
+#** Profile ********************************************************************
+#== Profile Dir ================================================================
+# $HOME = (get-psprovider 'FileSystem').Home
+$firefoxProfileDirPaths = @(
+  "${HOME}\AppData\Roaming\Mozilla\Firefox",
+  "${HOME}\AppData\Roaming\LibreWolf"
+)
+
+function Check-ProfileDir() {
+  Param (
+    [Parameter(Position=0)]
+    [string] $profileDir = ""
+  )
+
+  if ( "${profileDir}" -ne "" ) {
+    $firefoxProfileDirPaths = @("${profileDir}")
+  }
+
+
+  $firefoxProfileDirPaths = Filter-Path $firefoxProfileDirPaths "Container"
+
+  if ( $firefoxProfileDirPaths.Length -eq 0 ) {
+    Lepton-ErrorMessage "Unable to find firefox profile dir."
+  }
+
+  Lepton-OKMessage "Profiles dir found"
+}
+
+#== Profile Info ===============================================================
+$PROFILEINFOFILE="profiles.ini"
+function Check-ProfileIni() {
+  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+    if ( -Not (Test-Path -Path "${profileDir}/${PROFILEINFOFILE}" -PathType "Leaf") ) {
+      Lepton-ErrorMessage "Unable to find ${PROFILEINFOFILE} at ${profileDir}"
+    }
+  }
+
+  Lepton-OKMessage "Profiles info file found"
+}
+
+#== Profile PATH ===============================================================
+$firefoxProfilePaths = @()
+function Update-ProfilePaths() {
+  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+    $local:iniContent = Get-IniContent "${profiledir}/${PROFILEINFOFILE}"
+    $firefoxProfilePaths += $iniContent.Values.Path
+  }
+
+  if ( $firefoxProfilePaths.Length -ne 0 ) {
+    Lepton-OkMessage "Profile paths updated"
+  }
+  else {
+    Lepton-ErrorMessage "Doesn't exist profiles"
+  }
+}
+
+# TODO: Multi select support
+function Select-Profile() {
+  Param (
+    [Parameter(Position=0)]
+    [string] $profileName = ""
+  )
+
+  if ( "${profileName}" -ne "" ) {
+    $local:targetPath = ""
+    foreach ( $profilePath in $firefoxProfilePaths ) {
+      if ( "${profilePath}" -like "*${profileName}" ) {
+        $targetPath = "${profilePath}"
+        break
+      }
+    }
+
+    if ( "${targetPath}" -ne "" ) {
+      Lepton-OkMessage "Profile, `"${profileName}`" found"
+      $firefoxProfilePaths = @("${targetPath}")
+    }
+    else {
+      Lepton-ErrorMessage "Unable to find ${profileName}"
+    }
+  else
+    if ( $firefoxProfilePaths.Length -eq 1 ) {
+      Lepton-OkMessage "Auto detected profile"
+    }
+    else {
+      $firefoxProfilePaths = Menu $firefoxProfilePaths
+
+      if ( $firefoxProfilePaths.Length -eq 0 ) {
+        Lepton-ErrorMessage "Please select profiles"
+      }
+
+      Lepton-OkMessage "Selected profile"
+    }
+  }
+}
+
+#** Lepton Info File ***********************************************************
+# If you interst RFC, see install.sh
+
+#== Lepton Info ================================================================
+$LEPTONINFOFILE ="lepton.ini"
+function Check-LeptonIni() {
+  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+    if ( -Not (Test-Path -Path "${profileDir}/${LEPTONINFOFILE}") ) {
+      Lepton-ErrorMessage "Unable to find ${LEPTONINFOFILE} at ${profileDir}"
+    }
+  }
+
+  Lepton-OkMessage "Lepton info file found"
+}
+
+#== Create info file ===========================================================
+# We should always create a new one, as it also takes into account the possibility of setting it manually.
+# Updates happen infrequently, so the creation overhead  is less significant.
+
+$CHROMEINFOFILE="LEPTON"
+function Write-LeptonInfo() {
+  # Init info
+  $local:output     = @{}
+  $local:prevDir    = Split-Path $firefoxProfilePaths[0] -Parent
+  $local:latestPath = ( $firefoxProfilePaths | Select-Object -Last 1 )
+  foreach ( $profilePath in $firefoxProfilePaths ) {
+    $local:LEPTONINFOPATH = "${profilePath}/chrome/${CHROMEINFOFILE}"
+    $local:LEPTONGITPATH  = "${profilePath}/chrome/.git"
+
+    # Profile info
+    $local:Type   = ""
+    $local:Ver    = ""
+    $local:Branch = ""
+    $local:Path   = ""
+    if ( Test-Path -Path "${LEPTONINFOPATH}" ) {
+      if ( Test-Path -Path "${LEPTONGITPATH}" -PathType "Container" ) {
+        $Type   = "Git"
+        $Ver    = $(git --git-dir "${LEPTONGITPATH}" rev-parse HEAD)
+        $Branch = $(git --git-dir "${LEPTONGITPATH}" rev-parse --abbrev-ref HEAD)
+      }
+      else {
+        $local:iniContent = Get-IniContent "${LEPTONINFOPATH}"
+        $Type   = $iniContent["Info"]["Type"]
+        $Ver    = $iniContent["Info"]["Ver"]
+        $Branch = $iniContent["Info"]["Branch"]
+
+        if ( "${Type}" -eq "" ) {
+          $Type = "Local"
+        }
+      }
+
+      $Path = "${profilePath}"
+    }
+
+    # Flushing
+    $local:profileDir  = Split-Path "${profilePath}" -Parent
+    $local:profileName = Split-Path "${profilePath}" -Leaf
+    if ( "${prevDir}" -ne "${profileDir}" ) {
+      Out-IniFile "${prevDir}/${LEPTONINFOFILE}" $output
+      $output = @{}
+    }
+
+    # Make output contents
+    foreach ( $key in @("Type", "Branch", "Ver", "Path") ) {
+      $local:value = Get-Variable -Name "${key}"
+      if ( "$value" -ne $null ) {
+        $output["${profileName}"] += @{"${key}" = "${value}"}
+      }
+    }
+
+    # Latest element flushing
+    if ( "${profilePath}" -eq "${latestPath}" ) {
+      Out-IniFile "${profileDir}/${LEPTONINFOFILE}" $output
+    }
+    $prevDir = "${profileDir}"
+  }
+
+  # Verify
+  Check-LeptonIni
+  Lepton-OkMessage "Lepton info file created"
+}
+
 #** Main ***********************************************************************
 [CmdletBinding(
   SupportsShouldProcess = $true,
