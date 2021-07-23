@@ -193,21 +193,21 @@ function Get-IniContent () {
   )
 
   $ini = @{}
-  switch -regex -file $filePath {
-    “^\[(.+)\]” {
+  switch ( -regex -file $filePath ) {
+    "^\[(.+)\]" {
       # Section
       $section = $matches[1]
       $ini[$section] = @{}
       $CommentCount = 0
     }
-    “^(;.*)$” {
+    "^(;.*)$" {
       # Comment
       $value = $matches[1]
       $CommentCount = $CommentCount + 1
       $name = “Comment” + $CommentCount
       $ini[$section][$name] = $value
     }
-    “(.+?)\s*=(.*)” {
+    "(.+?)\s*=(.*)" {
       # Key
       $name,$value = $matches[1..2]
       $ini[$section][$name] = $value
@@ -229,23 +229,23 @@ function Out-IniFile() {
   $local:outFile = New-Item -ItemType file -Path "${filepath}"
 
   foreach ($i in $iniObject.keys) {
-    if (!($($iniObject[$i].GetType().Name) -eq “Hashtable”)) {
+    if (!($($iniObject[$i].GetType().Name) -eq "Hashtable")) {
       #No Sections
-      Add-Content -Path $outFile -Value “$i=$($iniObject[$i])”
+      Add-Content -Path $outFile -Value "$i=$($iniObject[$i])"
     }
     else {
       #Sections
-      Add-Content -Path $outFile -Value “[$i]”
+      Add-Content -Path $outFile -Value "[$i]"
       Foreach ($j in ($iniObject[$i].keys | Sort-Object)) {
-        if ($j -match “^Comment[\d]+”) {
-          Add-Content -Path $outFile -Value “$($iniObject[$i][$j])”
+        if ($j -match "^Comment[\d]+") {
+          Add-Content -Path $outFile -Value "$($iniObject[$i][$j])"
         }
         else {
-          Add-Content -Path $outFile -Value “$j=$($iniObject[$i][$j])”
+          Add-Content -Path $outFile -Value "$j=$($iniObject[$i][$j])"
         }
 
       }
-      Add-Content -Path $outFile -Value “”
+      Add-Content -Path $outFile -Value ""
     }
   }
 }
@@ -637,7 +637,7 @@ function Copy-Lepton() {
   Param (
     [Parameter(Position=0)]
     [string] $chromeDir = "chrome",
-    [Parameter(Position=0)],
+    [Parameter(Position=0)]
     [string] $userJSPath = "${chromeDir}\user.js"
   )
 
