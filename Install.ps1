@@ -514,6 +514,206 @@ function Write-LeptonInfo() {
   Lepton-OkMessage "Lepton info file created"
 }
 
+#** Install ********************************************************************
+#== Install Types ==============================================================
+$updateMode   = $false
+$leptonBranch = "master"
+function Select-Distribution() {
+  while ( $true ) {
+    $local:selected = $false
+    $local:selectedDistribution = Menu @("Original(default)", "Photon-Style", "Proton-Style", "Update")
+    switch ( $selectedDistribution ) {
+      "Original(default)" { $leptonBranch = "master"      ; $selected = $true }
+      "Photon-Style"      { $leptonBranch = "photon-style"; $selected = $true }
+      "Proton-Style"      { $leptonBranch = "proton-style"; $selected = $true }
+      "Update"            { $updateMode   = $true         ; $selected = $true }
+      default             { Write-Host "Invalid option, reselect please." }
+    }
+
+    if ( $selected -eq $true ) {
+      break
+    }
+  }
+  Lepton-OkMessage "Selected ${selectedDistribution}"
+}
+
+$leptonInstallType = "Network" # Other types: Local, Release
+function Check-InstallType() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string[]] $targetList,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $installType
+  )
+
+  $local:targetCount = $targetList.Length
+  $local:foundCount  = (Filter-Path $targetList ).Length
+
+  if ( "${targetCount}" -eq "${foundCount}" ) {
+    $leptonInstallType="${installType}"
+  }
+}
+
+$checkLocalFiles = @(
+  "userChrome.css",
+  "userContent.css",
+  "icons"
+)
+$checkReleaseFiles = @(
+  "user.js"
+  "chrome\userChrome.css"
+  "chrome\userContent.css"
+  "chrome\icons"
+)
+function Check-InstallTypes() {
+  Check-InstallType $checkLocalFiles   "Local"
+  Check-InstallType $checkReleaseFiles "Release"
+
+  Lepton-OkMessage "Checked install type: ${leptonInstallType}"
+  if ( "${leptonInstallType}" -eq "Network" ) {
+    Select-Distribution
+  }
+  if ( "${leptonInstallType}" -eq "Local" ) {
+    if ( Test-Path -Path ".git" -PathType "Container" ) {
+      Select-Distribution
+      git checkout "${leptonBranch}"
+    }
+  }
+}
+
+#== Install Helpers ============================================================
+$chromeDuplicate = $false
+function Check-ChromeExist() {
+  if ( Test-Path -Path "chrome" -and -Not (Test-Path -Path "chrome\${LEPTONINFOFILE}") ) {
+    $chromeDuplicate = $true
+    Move-Auto "chrome" "chrome.bak"
+    Lepton-OkMessage "Backup files"
+  }
+}
+function Check-ChromeRestore() {
+  if ( "${chromeDuplicate}" -eq $true ) {
+    Restore-Auto "chrome"
+    Lepton-OkMessage "End restore files"
+  }
+  Lepton-OkMessage "End check restore files"
+}
+
+function Clean-Lepton() {
+  if ( $chromeDuplicate -ne $true ) {
+    Remove-Item "chrome" -Recurse -Force
+  }
+  Lepton-OkMessage "End clean files"
+}
+function Clone-Lepton() {
+  Param (
+    [Parameter(Position=0)]
+    [string] $branch = ""
+  )
+  local branch="$1"
+
+  if ( "${branch}" -eq "" ) {
+    $branch = "${leptonBranch}"
+  }
+
+  git clone -b "${branch}" https://github.com/black7375/Firefox-UI-Fix.git chrome
+  if ( -Not (Test-Path -Path "chrome" -PathType "Container") ) {
+    Lepton-ErrorMessage "Unable to find downloaded files"
+  }
+}
+
+function Copy-Lepton() {
+  Param (
+    [Parameter(Position=0)]
+    [string] $chromeDir = "chrome",
+    [Parameter(Position=0)],
+    [string] $userJSPath = "${chromeDir}\user.js"
+  )
+
+  foreach ( $profilePath in $firefoxProfilePaths ) {
+    Copy-Auto "${userJSPath}" "${profilePath}\user.js"
+    Copy-Auto "${chromeDir}"  "${profilePath}\chrome"
+  }
+
+  Lepton-OkMessage "End profile copy"
+}
+
+#== Each Install ===============================================================
+function Install-Local() {
+  Copy-Lepton "${currentDir}" "user.js"
+}
+
+function Install-Release() {
+  Copy-Lepton "chrome" "user.js"
+}
+
+function Install-Network() {
+  Check-ChromeExist
+  Check-Git
+
+  Clone-Lepton
+  Copy-Lepton
+
+  Clean-Lepton
+  Check-ChromeRestore
+}
+
+function Install-Profile() {
+  Lepton-OkMessage "Started install"
+
+  switch ( "${leptonInstallType}" ) {
+    "Local"   { Install-Local }
+    "Release" { Install-Release }
+    "Network" { Install-Network }
+  }
+
+  Lepton-OkMessage "End install"
+}
+
+#** Update *********************************************************************
+function Update-Profile() {
+  Check-Git
+  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+    $local:LEPTONINFOPATH = "${profileDir}\${LEPTONINFOFILE}"
+    $local:LEPTONINFO     = Get-IniContent "${LEPTONINFOPATH}"
+    $local:sections       = $LEPTONINFO.Keys
+    if ( $sections.Length -ne 0 ) {
+      foreach ( $section in $sections ) {
+        $local:Type   = $LEPTONINFO["${section}"]["Type"]
+        $local:Branch = $LEPTONINFO["${section}"]["Branch"]
+        $local:Path   = $LEPTONINFO["${section}"]["Path"]
+
+        $local:LEPTONGITPATH="${Path}\chrome\.git"
+        if ( "${Type}" -eq "Git" ){
+          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+          git --git-dir "${LEPTONGITPATH}" pull --no-edit
+        }
+        elseif ( "${Type}" -eq "Local" -or "${Type}" -eq "Release" ) {
+          Check-ChromeExist
+          Clone-Lepton
+
+          $firefoxProfilePaths = @("${Path}")
+          Copy-Lepton
+
+          if ( "${Branch}" -eq $null ) {
+            $Branch = "${leptonBranch}"
+          }
+          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+
+          if ( "${Type}" -eq "Release" ) {
+            $local:Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
+            git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
+          }
+        }
+        else {
+          Lepton-ErrorMessage "Unable to find update type, ${Type} at ${section}"
+        }
+      }
+    }
+  }
+  Clean-Lepton
+  Check-ChromeRestore
+}
+
 #** Main ***********************************************************************
 [CmdletBinding(
   SupportsShouldProcess = $true,
