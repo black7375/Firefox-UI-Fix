@@ -72,6 +72,7 @@ function Install-Choco() {
 function Check-Git() {
   if( -Not (Get-Command git) ) {
     Install-Choco
+    choco install git -y
   }
 
   Lepton-OKMessage "Required - git"
@@ -368,7 +369,7 @@ function Check-ProfileDir() {
 $PROFILEINFOFILE="profiles.ini"
 function Check-ProfileIni() {
   foreach ( $profileDir in $firefoxProfileDirPaths ) {
-    if ( -Not (Test-Path -Path "${profileDir}/${PROFILEINFOFILE}" -PathType "Leaf") ) {
+    if ( -Not (Test-Path -Path "${profileDir}\${PROFILEINFOFILE}" -PathType "Leaf") ) {
       Lepton-ErrorMessage "Unable to find ${PROFILEINFOFILE} at ${profileDir}"
     }
   }
@@ -380,7 +381,7 @@ function Check-ProfileIni() {
 $firefoxProfilePaths = @()
 function Update-ProfilePaths() {
   foreach ( $profileDir in $firefoxProfileDirPaths ) {
-    $local:iniContent = Get-IniContent "${profiledir}/${PROFILEINFOFILE}"
+    $local:iniContent = Get-IniContent "${profiledir}\${PROFILEINFOFILE}"
     $firefoxProfilePaths += $iniContent.Values.Path
   }
 
@@ -438,7 +439,7 @@ function Select-Profile() {
 $LEPTONINFOFILE ="lepton.ini"
 function Check-LeptonIni() {
   foreach ( $profileDir in $firefoxProfileDirPaths ) {
-    if ( -Not (Test-Path -Path "${profileDir}/${LEPTONINFOFILE}") ) {
+    if ( -Not (Test-Path -Path "${profileDir}\${LEPTONINFOFILE}") ) {
       Lepton-ErrorMessage "Unable to find ${LEPTONINFOFILE} at ${profileDir}"
     }
   }
@@ -457,8 +458,8 @@ function Write-LeptonInfo() {
   $local:prevDir    = Split-Path $firefoxProfilePaths[0] -Parent
   $local:latestPath = ( $firefoxProfilePaths | Select-Object -Last 1 )
   foreach ( $profilePath in $firefoxProfilePaths ) {
-    $local:LEPTONINFOPATH = "${profilePath}/chrome/${CHROMEINFOFILE}"
-    $local:LEPTONGITPATH  = "${profilePath}/chrome/.git"
+    $local:LEPTONINFOPATH = "${profilePath}\chrome\${CHROMEINFOFILE}"
+    $local:LEPTONGITPATH  = "${profilePath}\chrome\.git"
 
     # Profile info
     $local:Type   = ""
@@ -489,7 +490,7 @@ function Write-LeptonInfo() {
     $local:profileDir  = Split-Path "${profilePath}" -Parent
     $local:profileName = Split-Path "${profilePath}" -Leaf
     if ( "${prevDir}" -ne "${profileDir}" ) {
-      Out-IniFile "${prevDir}/${LEPTONINFOFILE}" $output
+      Out-IniFile "${prevDir}\${LEPTONINFOFILE}" $output
       $output = @{}
     }
 
@@ -503,7 +504,7 @@ function Write-LeptonInfo() {
 
     # Latest element flushing
     if ( "${profilePath}" -eq "${latestPath}" ) {
-      Out-IniFile "${profileDir}/${LEPTONINFOFILE}" $output
+      Out-IniFile "${profileDir}\${LEPTONINFOFILE}" $output
     }
     $prevDir = "${profileDir}"
   }
