@@ -42,6 +42,22 @@ https://github.com/black7375/Firefox-UI-Fix#readme
 
 #>
 
+[CmdletBinding(
+  SupportsShouldProcess = $true,
+  PositionalBinding = $false
+)]
+
+param(
+  [Alias("u")]
+  [Switch]$updateMode,
+  [Alias("f")]
+  [string]$profileDir,
+  [Alias("p")]
+  [string]$profileName,
+  [Alias("h")]
+  [Switch]$help = $false
+)
+
 #** Helper Utils ***************************************************************
 #== Message ====================================================================
 function Lepton-ErrorMessage() {
@@ -83,7 +99,9 @@ function Install-Choco() {
 
 function Check-Git() {
   if( -Not (Get-Command git) ) {
-    Install-Choco
+    if ( -Not (Get-Command choco)) {
+      Install-Choco
+    }
     choco install git -y
   }
 
@@ -193,7 +211,7 @@ function Get-IniContent () {
   )
 
   $ini = @{}
-  switch ( -regex -file $filePath ) {
+  switch -regex -file $filePath {
     "^\[(.+)\]" {
       # Section
       $section = $matches[1]
@@ -225,8 +243,7 @@ function Out-IniFile() {
   )
 
   # Create new file
-  New-Item -Path "${filePath}" -Force
-  $local:outFile = New-Item -ItemType file -Path "${filepath}"
+  $local:outFile = New-Item -ItemType file -Path "${filepath}" -Force
 
   foreach ($i in $iniObject.keys) {
     if (!($($iniObject[$i].GetType().Name) -eq "Hashtable")) {
@@ -364,11 +381,11 @@ function Check-ProfileDir() {
   )
 
   if ( "${profileDir}" -ne "" ) {
-    $firefoxProfileDirPaths = @("${profileDir}")
+    $global:firefoxProfileDirPaths = @("${profileDir}")
   }
 
 
-  $firefoxProfileDirPaths = Filter-Path $firefoxProfileDirPaths "Container"
+  $global:firefoxProfileDirPaths = Filter-Path $global:firefoxProfileDirPaths "Container"
 
   if ( $firefoxProfileDirPaths.Length -eq 0 ) {
     Lepton-ErrorMessage "Unable to find firefox profile dir."
@@ -380,7 +397,7 @@ function Check-ProfileDir() {
 #== Profile Info ===============================================================
 $PROFILEINFOFILE="profiles.ini"
 function Check-ProfileIni() {
-  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+  foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
     if ( -Not (Test-Path -Path "${profileDir}\${PROFILEINFOFILE}" -PathType "Leaf") ) {
       Lepton-ErrorMessage "Unable to find ${PROFILEINFOFILE} at ${profileDir}"
     }
@@ -392,9 +409,9 @@ function Check-ProfileIni() {
 #== Profile PATH ===============================================================
 $firefoxProfilePaths = @()
 function Update-ProfilePaths() {
-  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+  foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
     $local:iniContent = Get-IniContent "${profiledir}\${PROFILEINFOFILE}"
-    $firefoxProfilePaths += $iniContent.Values.Path
+    $global:firefoxProfilePaths += $iniContent.Values.Path
   }
 
   if ( $firefoxProfilePaths.Length -ne 0 ) {
@@ -414,7 +431,7 @@ function Select-Profile() {
 
   if ( "${profileName}" -ne "" ) {
     $local:targetPath = ""
-    foreach ( $profilePath in $firefoxProfilePaths ) {
+    foreach ( $global:profilePath in $firefoxProfilePaths ) {
       if ( "${profilePath}" -like "*${profileName}" ) {
         $targetPath = "${profilePath}"
         break
@@ -423,7 +440,7 @@ function Select-Profile() {
 
     if ( "${targetPath}" -ne "" ) {
       Lepton-OkMessage "Profile, `"${profileName}`" found"
-      $firefoxProfilePaths = @("${targetPath}")
+      $global:firefoxProfilePaths = @("${targetPath}")
     }
     else {
       Lepton-ErrorMessage "Unable to find ${profileName}"
@@ -433,7 +450,7 @@ function Select-Profile() {
       Lepton-OkMessage "Auto detected profile"
     }
     else {
-      $firefoxProfilePaths = Menu $firefoxProfilePaths
+      $global:firefoxProfilePaths = Menu $firefoxProfilePaths
 
       if ( $firefoxProfilePaths.Length -eq 0 ) {
         Lepton-ErrorMessage "Please select profiles"
@@ -450,7 +467,7 @@ function Select-Profile() {
 #== Lepton Info ================================================================
 $LEPTONINFOFILE ="lepton.ini"
 function Check-LeptonIni() {
-  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+  foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
     if ( -Not (Test-Path -Path "${profileDir}\${LEPTONINFOFILE}") ) {
       Lepton-ErrorMessage "Unable to find ${LEPTONINFOFILE} at ${profileDir}"
     }
@@ -469,7 +486,7 @@ function Write-LeptonInfo() {
   $local:output     = @{}
   $local:prevDir    = Split-Path $firefoxProfilePaths[0] -Parent
   $local:latestPath = ( $firefoxProfilePaths | Select-Object -Last 1 )
-  foreach ( $profilePath in $firefoxProfilePaths ) {
+  foreach ( $profilePath in $global:firefoxProfilePaths ) {
     $local:LEPTONINFOPATH = "${profilePath}\chrome\${CHROMEINFOFILE}"
     $local:LEPTONGITPATH  = "${profilePath}\chrome\.git"
 
@@ -535,10 +552,10 @@ function Select-Distribution() {
     $local:selected = $false
     $local:selectedDistribution = Menu @("Original(default)", "Photon-Style", "Proton-Style", "Update")
     switch ( $selectedDistribution ) {
-      "Original(default)" { $leptonBranch = "master"      ; $selected = $true }
-      "Photon-Style"      { $leptonBranch = "photon-style"; $selected = $true }
-      "Proton-Style"      { $leptonBranch = "proton-style"; $selected = $true }
-      "Update"            { $updateMode   = $true         ; $selected = $true }
+      "Original(default)" { $global:leptonBranch = "master"      ; $selected = $true }
+      "Photon-Style"      { $global:leptonBranch = "photon-style"; $selected = $true }
+      "Proton-Style"      { $global:leptonBranch = "proton-style"; $selected = $true }
+      "Update"            { $global:updateMode   = $true         ; $selected = $true }
       default             { Write-Host "Invalid option, reselect please." }
     }
 
@@ -562,7 +579,7 @@ function Check-InstallType() {
   $local:foundCount  = (Filter-Path $targetList ).Length
 
   if ( "${targetCount}" -eq "${foundCount}" ) {
-    $leptonInstallType="${installType}"
+    $global:leptonInstallType="${installType}"
   }
 }
 
@@ -597,7 +614,7 @@ function Check-InstallTypes() {
 $chromeDuplicate = $false
 function Check-ChromeExist() {
   if ( Test-Path -Path "chrome" -and -Not (Test-Path -Path "chrome\${LEPTONINFOFILE}") ) {
-    $chromeDuplicate = $true
+    $global:chromeDuplicate = $true
     Move-Auto "chrome" "chrome.bak"
     Lepton-OkMessage "Backup files"
   }
@@ -641,7 +658,7 @@ function Copy-Lepton() {
     [string] $userJSPath = "${chromeDir}\user.js"
   )
 
-  foreach ( $profilePath in $firefoxProfilePaths ) {
+  foreach ( $profilePath in $global:firefoxProfilePaths ) {
     Copy-Auto "${userJSPath}" "${profilePath}\user.js"
     Copy-Auto "${chromeDir}"  "${profilePath}\chrome"
   }
@@ -684,7 +701,7 @@ function Install-Profile() {
 #** Update *********************************************************************
 function Update-Profile() {
   Check-Git
-  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+  foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
     $local:LEPTONINFOPATH = "${profileDir}\${LEPTONINFOFILE}"
     $local:LEPTONINFO     = Get-IniContent "${LEPTONINFOPATH}"
     $local:sections       = $LEPTONINFO.Keys
@@ -727,22 +744,6 @@ function Update-Profile() {
 }
 
 #** Main ***********************************************************************
-[CmdletBinding(
-  SupportsShouldProcess = $true,
-  PositionalBinding = $false
-)]
-
-param(
-  [Alias("u")]
-  [Switch]$updateMode,
-  [Alias("f")]
-  [string]$profileDir,
-  [Alias("p")]
-  [string]$profileName,
-  [Alias("h")]
-  [Switch]$help = $false
-)
-
 function Check-Help {
   # Cheap and dirty way of getting the same output as '-?' for '-h' and '-Help'
   if ($help) {
