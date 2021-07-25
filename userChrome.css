@@ -1129,20 +1129,33 @@
   @media (-moz-os-version: windows-win7 ),
          (-moz-os-version: windows-win8 ),
          (-moz-os-version: windows-win10) {
+    /* Checkbox */
+    :root {
+      --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
+    }
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"][checked="false"] > .menu-iconic-left {
+      padding-inline-start: var(--context-menu-text-padding);
+    }
+  }
+
+  @media (-moz-os-version: windows-win7 ){
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
+    #blockedPopupDontShowMessage {
+      background-position: left var(--context-menu-background-padding) center !important;
+      padding-inline-start: 0 !important;
+    }
+  }
+  @media (-moz-os-version: windows-win8 ),
+         (-moz-os-version: windows-win10) {
     :root {
       --context-menu-background-padding: 1em;
-      --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
     }
 
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
     #blockedPopupDontShowMessage {
       padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding)) !important;
-    }
-
-    /* Checkbox */
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"][checked="false"] > .menu-iconic-left {
-      padding-inline-start: var(--context-menu-text-padding);
     }
   }
 
