@@ -226,6 +226,12 @@ function Get-IniContent () {
       $ini[$section][$name] = $value
     }
     "(.+?)\s*=(.*)" {
+      # For compatibility
+      if ( $section -eq $null ) {
+        $section = "Info"
+        $ini[$section] = @{}
+      }
+
       # Key
       $name,$value = $matches[1..2]
       $ini[$section][$name] = $value
@@ -410,8 +416,8 @@ function Check-ProfileIni() {
 $firefoxProfilePaths = @()
 function Update-ProfilePaths() {
   foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
-    $local:iniContent = Get-IniContent "${profiledir}\${PROFILEINFOFILE}"
-    $global:firefoxProfilePaths += $iniContent.Values.Path
+    $local:iniContent = Get-IniContent "${profileDir}\${PROFILEINFOFILE}"
+    $global:firefoxProfilePaths += $iniContent.Values.Path | ForEach-Object  { "${profileDir}\${PSItem}" }
   }
 
   if ( $firefoxProfilePaths.Length -ne 0 ) {
@@ -480,11 +486,23 @@ function Check-LeptonIni() {
 # We should always create a new one, as it also takes into account the possibility of setting it manually.
 # Updates happen infrequently, so the creation overhead  is less significant.
 
+function Get-ProfileDir() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $profilePath
+  )
+  foreach ( $profileDir in $firefoxProfileDirPaths ) {
+    if ( "$profilePath" -like "${profileDir}*" ) {
+      return "$profileDir"
+    }
+  }
+}
+
 $CHROMEINFOFILE="LEPTON"
 function Write-LeptonInfo() {
   # Init info
   $local:output     = @{}
-  $local:prevDir    = Split-Path $firefoxProfilePaths[0] -Parent
+  $local:prevDir    = $firefoxProfileDirPaths[0]
   $local:latestPath = ( $firefoxProfilePaths | Select-Object -Last 1 )
   foreach ( $profilePath in $global:firefoxProfilePaths ) {
     $local:LEPTONINFOPATH = "${profilePath}\chrome\${CHROMEINFOFILE}"
@@ -516,7 +534,7 @@ function Write-LeptonInfo() {
     }
 
     # Flushing
-    $local:profileDir  = Split-Path "${profilePath}" -Parent
+    $local:profileDir  = Get-ProfileDir "${profilePath}"
     $local:profileName = Split-Path "${profilePath}" -Leaf
     if ( "${prevDir}" -ne "${profileDir}" ) {
       Out-IniFile "${prevDir}\${LEPTONINFOFILE}" $output
