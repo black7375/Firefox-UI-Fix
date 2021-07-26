@@ -475,11 +475,21 @@ check_lepton_ini() {
 # We should always create a new one, as it also takes into account the possibility of setting it manually.
 # Updates happen infrequently, so the creation overhead  is less significant.
 
+get_profile_dir() {
+  local profilePath="$1"
+  for profileDir in "${firefoxProfileDirPaths[@]}"; do
+    if [[ "${profilePath}" == "${profileDir}"* ]]; then
+      echo "${profileDir}"
+      return 0
+    fi
+  done
+}
+
 CHROMEINFOFILE="LEPTON"
 write_lepton_info() {
   # Init info
   local output=""
-  local prevDir=$(dirname "${firefoxProfilePaths[0]}")
+  local prevDir="$firefoxProfileDirPaths[0]"
   local latestPath="${firefoxProfilePaths[${#firefoxProfilePaths[@]} - 1]}"
   for profilePath in "${firefoxProfilePaths[@]}"; do
     local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
@@ -509,7 +519,7 @@ write_lepton_info() {
     fi
 
     # Flushing
-    local profileDir=$(dirname "${profilePath}")
+    local profileDir=$(get_profile_dir "${profilePath}")
     local profileName=$(basename "${profilePath}")
     if [ "${prevDir}" != "${profileDir}" ]; then
       write_file "${prevDir}/${LEPTONINFOFILE}" "${output}"
