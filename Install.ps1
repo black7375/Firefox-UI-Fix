@@ -543,8 +543,8 @@ function Write-LeptonInfo() {
 
     # Make output contents
     foreach ( $key in @("Type", "Branch", "Ver", "Path") ) {
-      $local:value = Get-Variable -Name "${key}"
-      if ( "$value" -ne $null ) {
+      $local:value = (Get-Variable -Name "${key}").Value
+      if ( "$value" -ne "" ) {
         $output["${profileName}"] += @{"${key}" = "${value}"}
       }
     }
