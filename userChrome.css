@@ -757,6 +757,11 @@
   :root[lwtheme-mozlightdark] #tabbrowser-tabs {
     --tab-line-color: rgb(10, 132, 255) !important;
   }
+  @media (-moz-gtk-csd-available) {
+    :root[lwtheme-mozlightdark]:not(:-moz-lwtheme) #tabbrowser-tabs {
+      --tab-line-color: Highlight !important; /* -moz-accent-color */
+    }
+  }
 
   .tab-context-line {
     display: -moz-inline-box !important;
