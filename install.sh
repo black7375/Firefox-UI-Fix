@@ -556,11 +556,11 @@ select_distribution() {
   select distribution in "Original(default)" "Photon-Style" "Proton-Style" "Update"; do
     selectedDistribution="${distribution}"
     case "${distribution}" in
-      "Original")     leptonBranch="master";       break;;
-      "Photon-Style") leptonBranch="photon-style"; break;;
-      "Proton-Style") leptonBranch="proton-style"; break;;
-      "Update")       updateMode="true";           break;;
-      *)              echo "Invalid option, reselect please.";;
+      "Original(default)") leptonBranch="master";       break;;
+      "Photon-Style")      leptonBranch="photon-style"; break;;
+      "Proton-Style")      leptonBranch="proton-style"; break;;
+      "Update")            updateMode="true";           break;;
+      *)                   echo "Invalid option, reselect please.";;
     esac
   done
   lepton_ok_message "Selected ${selectedDistribution}"
