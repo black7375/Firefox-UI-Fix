@@ -489,7 +489,7 @@ CHROMEINFOFILE="LEPTON"
 write_lepton_info() {
   # Init info
   local output=""
-  local prevDir="$firefoxProfileDirPaths[0]"
+  local prevDir="${firefoxProfileDirPaths[0]}"
   local latestPath="${firefoxProfilePaths[${#firefoxProfilePaths[@]} - 1]}"
   for profilePath in "${firefoxProfilePaths[@]}"; do
     local LEPTONINFOPATH="${profilePath}/chrome/${CHROMEINFOFILE}"
