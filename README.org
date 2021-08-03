@@ -34,6 +34,10 @@
   (Lepton's Photon styled design :arrow_up:)
 
   - *Color*
+    - Default light/dark theme constrast enhancement
+    - Colorful context menu
+    - More dark mode support
+    - GTK system theme support
     - Windows system theme support
     - Windows7 compatibility
   - *Icons*
@@ -44,6 +48,7 @@
     - Panel
     - Menu
     - Density
+    - Others...
   - *Tab Design*
     - General:
       - Connect with toolbar(Buttons like tabs): like Photon
@@ -77,8 +82,13 @@
    *Script Installation(experimental)*
 
    Linux, mac users:
-   #+BEGIN_SRC
+   #+BEGIN_SRC bash
    bash -c "$(curl -fsSL https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.sh)"
+   #+END_SRC
+
+   Windows users: Run powershell as administrator
+   #+BEGIN_SRC powershell
+   Powershell -c "iwr https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.ps1 -useb | iex"
    #+END_SRC
 
    *Menual Inatallation*
