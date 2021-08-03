@@ -21,6 +21,7 @@ Check like `- [x]`.
  - Distribution
    - [ ] [Original Lepton](https://github.com/black7375/Firefox-UI-Fix)
    - [ ] [Lepton's photon style](https://github.com/black7375/Firefox-UI-Fix/tree/photon-style)
+   - [ ] [Lepton's proton style](https://github.com/black7375/Firefox-UI-Fix/tree/proton-style)
  - Firefox Version: [write from `about:support` - `version`]
  - OS:
    - [ ] Linux
