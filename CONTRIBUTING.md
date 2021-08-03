@@ -143,7 +143,6 @@ Development: New Features.
 - **Meaningfully:**: It doesn't make meaningless commits.
 - **One per task:** It's difficult to distinguish when various tasks are mixed.
 - **Often:** Codes may corrupt during large changes.
-- **Build Check:** Check if SCSS can be compiled with the `npm run build` command.
 
 ### Commit Message
 
