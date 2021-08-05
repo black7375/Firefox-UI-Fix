@@ -631,7 +631,7 @@ function Check-InstallTypes() {
 #== Install Helpers ============================================================
 $chromeDuplicate = $false
 function Check-ChromeExist() {
-  if ( Test-Path -Path "chrome" -and -Not (Test-Path -Path "chrome\${LEPTONINFOFILE}") ) {
+  if ( (Test-Path -Path "chrome") -and (-Not (Test-Path -Path "chrome\${LEPTONINFOFILE}")) ) {
     $global:chromeDuplicate = $true
     Move-Auto "chrome" "chrome.bak"
     Lepton-OkMessage "Backup files"
@@ -656,7 +656,6 @@ function Clone-Lepton() {
     [Parameter(Position=0)]
     [string] $branch = ""
   )
-  local branch="$1"
 
   if ( "${branch}" -eq "" ) {
     $branch = "${leptonBranch}"

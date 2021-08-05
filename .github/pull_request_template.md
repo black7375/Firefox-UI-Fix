@@ -1,11 +1,3 @@
----
-name: Pull Request Template
-about: Pull Request
-title: ''
-assignees: ''
-
----
-
 **Describe the PR**
 A clear and concise description of what the PR is.
 
@@ -18,10 +10,10 @@ If applicable, add screenshots to help explain your commit.
 Check like `- [x]`.
 
  - PR Type
-  - `Add:` Add feature or enhanced.
-  - `Fix:` Bug fix or change default values.
-  - `Clean:` Refactoring.
-  - `Doc:` Update docs.
+   - [ ] `Add:` Add feature or enhanced.
+   - [ ] `Fix:` Bug fix or change default values.
+   - [ ] `Clean:` Refactoring.
+   - [ ] `Doc:` Update docs.
  - Distribution
    - [ ] [Original Lepton](https://github.com/black7375/Firefox-UI-Fix)
    - [ ] [Lepton's photon style](https://github.com/black7375/Firefox-UI-Fix/tree/photon-style)
