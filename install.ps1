@@ -437,7 +437,7 @@ function Select-Profile() {
 
   if ( "${profileName}" -ne "" ) {
     $local:targetPath = ""
-    foreach ( $global:profilePath in $firefoxProfilePaths ) {
+    foreach ( $profilePath in $global:firefoxProfilePaths ) {
       if ( "${profilePath}" -like "*${profileName}" ) {
         $targetPath = "${profilePath}"
         break
@@ -451,7 +451,8 @@ function Select-Profile() {
     else {
       Lepton-ErrorMessage "Unable to find ${profileName}"
     }
-  else
+  }
+  else {
     if ( $firefoxProfilePaths.Length -eq 1 ) {
       Lepton-OkMessage "Auto detected profile"
     }
