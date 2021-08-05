@@ -412,7 +412,7 @@
       .blogpost-nav * {
         background: var(--in-content-table-background) !important;
       }
-      
+
       .Paginate .Button.Paginate-item:is(:active, :hover) {
         background: var(--in-content-button-background-hover) !important;
       }
@@ -727,7 +727,7 @@
                  url-prefix("about:checkerboard"),
                  url-prefix("about:sync-log"),
                  url-prefix("about:memory"),
-                 url-prefix("file://") {
+                 regexp("^[file:///].*[^(html|svg|pdf)]$") {
     /* Base */
     html,
     body {
@@ -955,7 +955,7 @@
 
   /*= Directory View =========================================================*/
   @-moz-document url-prefix("about:sync-log"),
-                 url-prefix("file://") {
+                 regexp("^[file:///].*[^(html|svg|pdf)]$") {
     body {
       background-color: var(--in-content-box-background) !important;
     }
