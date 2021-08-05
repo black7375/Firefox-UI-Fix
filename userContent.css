@@ -4,7 +4,8 @@
     /* At DarkMode, Color */
     body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
     body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
-    body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"] {
+    body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"],
+    body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"] {
       /* inner */
       --newtab-focus-border: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
       --newtab-focus-border-selected: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF */
@@ -298,6 +299,9 @@
       .DropdownMenuItem-link a,
       .Select,
       .Badge,
+      .Notice-generic,
+      .Notice-genericWarning,
+      .Notice-button,
       .Paginate .Button.Paginate-item:first-child,
       .Paginate .Button.Paginate-item:last-child,
       .Paginate .Button.Paginate-item--current-page,
@@ -310,6 +314,7 @@
       .SecondaryHero-message-link,
       .SecondaryHero-module-link,
       .Card-footer-link a,
+      .Card-shelf-footer-in-header a,
       .SearchResult-link:is(:active, :focus, :hover),
       .SearchResult:hover .SearchResult-link,
       .Home-SubjectShelf-link:is(:active, :focus, :hover),
@@ -318,6 +323,7 @@
       .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:is(:active, :hover),
       .AddonMeta .MetadataCard-content a:is(:active, :hover),
       .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link:is(:active, :hover),
+      .Addon-summary a,
       .RatingsByStar-count a:hover,
       .RatingsByStar-star a:hover,
       .Paginate .Button.Paginate-item:not(:first-child, :last-child, .Paginate-item--current-page),
@@ -371,11 +377,14 @@
         background: var(--in-content-primary-button-background) !important;
       }
       .Select,
-      .Button--neutral, .Button--neutral:link {
+      .Button--neutral,
+      .Button--neutral:link,
+      .Notice-button {
         background-color: var(--in-content-button-background) !important;
       }
       .Button--neutral.Button--micro:not(.Button--disabled):hover,
-      .Button--neutral:not(.Button--disabled):hover {
+      .Button--neutral:not(.Button--disabled):hover,
+      .Notice-button:hover {
         background: var(--in-content-button-background-hover) !important;
       }
       .Button--action.Button--micro:not(.Button--disabled):hover,
@@ -403,9 +412,14 @@
       .blogpost-nav * {
         background: var(--in-content-table-background) !important;
       }
+
       .Paginate .Button.Paginate-item:is(:active, :hover) {
         background: var(--in-content-button-background-hover) !important;
       }
+      .Notice-generic,
+      .Notice-genericWarning {
+		    background: color-mix(in srgb, var(--in-content-page-background) 40%, var(--in-content-table-background)) !important;
+	    }
 
       .LanguageTools-header-row {
         color: var(--in-content-table-header-color) !important;
@@ -423,7 +437,8 @@
         -moz-context-properties: fill, fill-opacity !important;
         fill: currentColor !important;
       }
-      .Icon-magnifying-glass {
+      .Icon-magnifying-glass,
+      .Notice-icon {
         filter: invert(65%) !important;
       }
       .Icon-heart {
@@ -712,7 +727,7 @@
                  url-prefix("about:checkerboard"),
                  url-prefix("about:sync-log"),
                  url-prefix("about:memory"),
-                 url-prefix("file://") {
+                 regexp("^[file:///].*[^(html|svg|pdf)]$") {
     /* Base */
     html,
     body {
@@ -940,7 +955,7 @@
 
   /*= Directory View =========================================================*/
   @-moz-document url-prefix("about:sync-log"),
-                 url-prefix("file://") {
+                 regexp("^[file:///].*[^(html|svg|pdf)]$") {
     body {
       background-color: var(--in-content-box-background) !important;
     }
