@@ -20,3 +20,6 @@ user_pref("browser.compactmode.show", true);
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
 user_pref("browser.urlbar.suggest.calculator", true);
+
+// Integrated unit convertor at urlbar
+// user_pref("browser.urlbar.unitConversion.enabled", true);
