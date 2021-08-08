@@ -142,7 +142,7 @@ function Copy-Auto() {
     Write-Host ""
   }
 
-  Copy-Item -Path "${file}" -Destination "${target}" -Force
+  Copy-Item -Path "${file}" -Destination "${target}" -Force -Recurse
 }
 
 function Move-Auto() {
@@ -165,10 +165,10 @@ function Move-Auto() {
     Write-Host ""
   }
 
-  Move-Item -Path "${file}" -Destination "${target}" -Force
+  Get-ChildItem -Path "${target}" -Recurse | Move-Item -Path "${file}" -Destination "${target}" -Force
 }
 
-function Restore-Auto() {
+ function Restore-Auto() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
     [string] $file
@@ -178,9 +178,9 @@ function Restore-Auto() {
   if ( Test-Path -Path "${file}" ) {
     Remove-Item "${file}" -Recurse -Force
   }
-  Move-Item -Path "${target}" -Destination "${file}" -Force
+  Get-ChildItem -Path "${target}" -Recurse | Move-Item -Destination "${file}" -Force
 
-  $local:loopupTarget = "${target}.bak"
+  $local:lookupTarget = "${target}.bak"
   if ( Test-Path -Path "${lookupTarget}" ) {
     Restore-Auto "${target}"
   }
