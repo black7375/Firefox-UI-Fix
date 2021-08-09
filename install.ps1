@@ -142,7 +142,7 @@ function Copy-Auto() {
     Write-Host ""
   }
 
-  Copy-Item -Path "${file}" -Destination "${target}" -Force
+  Copy-Item -Path "${file}" -Destination "${target}" -Force -Recurse
 }
 
 function Move-Auto() {
@@ -165,10 +165,10 @@ function Move-Auto() {
     Write-Host ""
   }
 
-  Move-Item -Path "${file}" -Destination "${target}" -Force
+  Get-ChildItem -Path "${target}" -Recurse | Move-Item -Path "${file}" -Destination "${target}" -Force
 }
 
-function Restore-Auto() {
+ function Restore-Auto() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
     [string] $file
@@ -178,9 +178,9 @@ function Restore-Auto() {
   if ( Test-Path -Path "${file}" ) {
     Remove-Item "${file}" -Recurse -Force
   }
-  Move-Item -Path "${target}" -Destination "${file}" -Force
+  Get-ChildItem -Path "${target}" -Recurse | Move-Item -Destination "${file}" -Force
 
-  $local:loopupTarget = "${target}.bak"
+  $local:lookupTarget = "${target}.bak"
   if ( Test-Path -Path "${lookupTarget}" ) {
     Restore-Auto "${target}"
   }
@@ -437,7 +437,7 @@ function Select-Profile() {
 
   if ( "${profileName}" -ne "" ) {
     $local:targetPath = ""
-    foreach ( $global:profilePath in $firefoxProfilePaths ) {
+    foreach ( $profilePath in $global:firefoxProfilePaths ) {
       if ( "${profilePath}" -like "*${profileName}" ) {
         $targetPath = "${profilePath}"
         break
@@ -451,7 +451,8 @@ function Select-Profile() {
     else {
       Lepton-ErrorMessage "Unable to find ${profileName}"
     }
-  else
+  }
+  else {
     if ( $firefoxProfilePaths.Length -eq 1 ) {
       Lepton-OkMessage "Auto detected profile"
     }
