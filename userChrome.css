@@ -277,7 +277,7 @@
   }
 
   /* Fallback background */
-  menupopup {
+  #mainPopupSet >  menupopup {
     background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
   }
 
@@ -1457,6 +1457,17 @@
 
   #allTabsMenu-containerTabsView .subviewbutton:last-child {
     list-style-image: url(chrome://global/skin/icons/settings.svg);
+  }
+
+  /*= BMB_bookmarksPopup =====================================================*/
+  #BMB_viewBookmarksSidebar {
+  }
+  #BMB_bookmarksShowAllTop,
+  #BMB_bookmarksShowAll {
+    --menuitem-image: url(chrome://browser/skin/bookmark-star-on-tray.svg);
+  }
+  #BMB_bookmarksToolbar {
+    --menuitem-image: url(chrome://browser/skin/bookmarks-toolbar.svg);
   }
 
   /** Context Menu - Icons ****************************************************/
