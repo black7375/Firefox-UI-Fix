@@ -625,7 +625,7 @@ check_chrome_restore() {
 }
 
 clean_lepton() {
-  if [ ! "${chromeDuplicate}" == "true" ]; then
+  if [ ! "${chromeDuplicate}" == "true" ] && [ -e "chrome" ]; then
     rm -rf chrome
   fi
   lepton_ok_message "End clean files"

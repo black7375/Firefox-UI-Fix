@@ -79,6 +79,7 @@
 
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
+      --toolbarbutton-icon-fill: currentColor;
       --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
       --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
     }
@@ -1336,6 +1337,17 @@
     list-style-image: url(chrome://global/skin/icons/settings.svg);
   }
 
+  /*= BMB_bookmarksPopup =====================================================*/
+  #BMB_viewBookmarksSidebar {
+  }
+  #BMB_bookmarksShowAllTop,
+  #BMB_bookmarksShowAll {
+    --menuitem-image: url(chrome://browser/skin/bookmark-star-on-tray.svg);
+  }
+  #BMB_bookmarksToolbar {
+    --menuitem-image: url(chrome://browser/skin/bookmarks-toolbar.svg);
+  }
+
   /** Context Menu - Icons ****************************************************/
   /*= Layout =================================================================*/
   menupopup menuitem:not([type="checkbox"]),
@@ -1344,8 +1356,8 @@
   }
 
   /* Icon */
-  :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
-  :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
+  :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #blockedPopupDontShowMessage {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
@@ -1359,8 +1371,8 @@
 
   /* For native context menus on macOS */
   @supports -moz-bool-pref("widget.macos.native-context-menus") {
-    :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
-    :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist) {
+    :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+    :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
       list-style-image: var(--menuitem-image) !important;
     }
   }
@@ -1391,8 +1403,8 @@
   }
 
   @media (-moz-os-version: windows-win7 ){
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     #blockedPopupDontShowMessage {
       background-position: left var(--context-menu-background-padding) center !important;
       padding-inline-start: 0 !important;
@@ -1404,8 +1416,8 @@
       --context-menu-background-padding: 1em;
     }
 
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     #blockedPopupDontShowMessage {
       padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding)) !important;
     }
@@ -1419,8 +1431,8 @@
     }
 
     /* context menu width */
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], .in-menulist),
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     #blockedPopupDontShowMessage {
       padding-inline-end: var(--context-menu-background-padding) !important;
     }

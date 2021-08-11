@@ -647,8 +647,8 @@ function Check-ChromeRestore() {
 }
 
 function Clean-Lepton() {
-  if ( $chromeDuplicate -ne $true ) {
-    Remove-Item "chrome" -Recurse -Force
+  if ( ($chromeDuplicate -ne $true) -and (Test-Path -Path "chrome") ) {
+    Remove-Item -Path "chrome" -Recurse -Force
   }
   Lepton-OkMessage "End clean files"
 }
