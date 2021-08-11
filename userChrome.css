@@ -445,20 +445,6 @@
     width: 25px !important; /* Original: 40px */
   }
 
-  :root {
-    --newtab-button-minus-width-padding: 2px;
-    --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
-  }
-  #new-tab-button     > .toolbarbutton-icon,
-  #alltabs-button     > .toolbarbutton-badge-stack {
-    /* Original: calc(2 * var(--toolbarbutton-inner-padding) + 16px) */
-    width: calc(2 * var(--newtab-button-width-padding) + 16px) !important;
-
-    /* Original: --toolbarbutton-inner-padding */
-    padding-left:  var(--newtab-button-width-padding) !important;
-    padding-right: var(--newtab-button-width-padding) !important;
-  }
-
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
     margin-inline-start: 1px !important;
   }
@@ -474,10 +460,6 @@
   #scrollbutton-down {
     padding-left:  var(--scrollbtn-outer-padding, 4px) !important; /* Original: 4px */
     padding-right: var(--scrollbtn-inner-padding, 4px) !important;
-  }
-
-  :root:not([uidensity=touch]) #new-tab-button, #alltabs-button {
-    --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
   }
 
   /* Tab - Max Size */
@@ -496,8 +478,9 @@
 
   /*= Tab Bar - Reduce Height, Show more contents ============================*/
   /* Toolbar Height */
-  :root:not([uidensity=touch]) #TabsToolbar {
-    --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
+  #TabsToolbar
+  {
+    --toolbarbutton-inner-padding: unset !important;
   }
 
   .toolbar-items, .tabbrowser-tab {
@@ -812,8 +795,8 @@
     position: absolute;
   }
 
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
-  #tabs-newtab-button:not(:hover, [open])::before {
+  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before
+  {
     /* Box Model */
     content:  "";
     display: block;
@@ -832,14 +815,9 @@
     transition: opacity .2s var(--ease-basic);
     background-color: color-mix(in srgb, currentColor 20%, transparent); /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
   }
-  #tabs-newtab-button:is(:hover, [open])::before {
-    content: "";
-    position: absolute;
-  }
 
   #navigator-toolbox:not([movingtab]) .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) + .tabbrowser-tab .tab-background::before,
   #navigator-toolbox:not([movingtab]) .tabbrowser-tab:is([visuallyselected], [multiselected], :hover) ~ .tabbrowser-tab[afterhovered] .tab-background::before,
-  #navigator-toolbox:not([movingtab]) .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover) ~ #tabs-newtab-button::before,
   #navigator-toolbox:not([movingtab]) .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover) .tab-background::before,
   #navigator-toolbox:not([movingtab]) #tabbrowser-arrowscrollbox[overflowing] tab.tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
     opacity: 0 !important;
@@ -848,45 +826,6 @@
   /* Latest Tab & New tab margin */
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
     margin-inline-end: 1px !important;
-  }
-
-  /* New tab button - Looks like tab ******************************************/
-  #tabs-newtab-button {
-    /* Original:
-    margin: 0 0 var(--tabs-navbar-shadow-size) !important
-    => Can't ovrride style. Therefore, we should approach it by bypass.
-    */
-    --tabs-navbar-shadow-size: -1px; /* Original: 1px */
-    --tabs-navbar-original-shadow-size: 1px;
-
-    /* Size */
-    -moz-box-align: stretch !important;
-    padding-top: var(--tab-block-margin) !important;
-  }
-
-  #tabs-newtab-button > .toolbarbutton-icon {
-    border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
-  }
-
-  /* Coner Rounding */
-  #tabs-newtab-button:hover {
-    /* Color */
-    fill: color-mix(in srgb, currentColor 17%, transparent) !important; /* Replace var(--toolbarbutton-hover-background) - Hard coded for compatibility */
-    -moz-context-properties: fill !important;
-
-    /* Corner Image */
-    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
-    background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
-    background-repeat: no-repeat;
-    background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),  right var(--newtab-position)  bottom var(--tabs-navbar-original-shadow-size);
-    background-size: var(--tab-corner-rounding);
-  }
-
-  #tabs-newtab-button .toolbarbutton-icon {
-    padding: calc(var(--toolbarbutton-inner-padding) - (var(--tab-block-margin) / 4)) var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) + (var(--tab-block-margin) / 4) + var(--tabs-navbar-original-shadow-size)) !important;
-    -moz-context-properties: fill, fill-opacity;
-    fill: var(--toolbarbutton-icon-fill);
-    fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
 
   /** Clipped tabs - Letters cleary *******************************************/
