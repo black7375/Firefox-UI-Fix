@@ -126,6 +126,7 @@ autocp() {
     echo "${target} alreay exist."
     echo "Now Backup.."
     autocp "${target}" "${target}.bak"
+    rm -rf "${target}"
     echo ""
   fi
 

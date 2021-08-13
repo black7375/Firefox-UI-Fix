@@ -139,6 +139,7 @@ function Copy-Auto() {
     Write-Host "${target} alreay exist."
     Write-Host "Now Backup.."
     Copy-Auto "${target}" "${target}.bak"
+    Remove-Item "${target}" -Recurse -Force
     Write-Host ""
   }
 
