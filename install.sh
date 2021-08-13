@@ -74,7 +74,7 @@ check_git() {
     elif [[ "${OSTYPE}" == "darwin"* ]]; then
       mac_command_line_developer_tools
     else
-      lepton_error_message "OS NOT DETECTED, couldn't install required packages"
+      lepton_error_message "OS NOT DETECTED, couldn't install required packages. Please manually install git."
     fi
   fi
 
