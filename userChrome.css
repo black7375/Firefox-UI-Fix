@@ -503,12 +503,18 @@
   /* Toolbar Height */
   #TabsToolbar {
     --tab-min-height: 33px !important;
+    --toolbarbutton-inner-padding: unset !important;
   }
   :root[uidensity=compact] #TabsToolbar {
     --tab-min-height: 29px !important;
   }
   :root[uidensity=touch] #TabsToolbar {
     --tab-min-height: 41px !important;
+  }
+  #tabbrowser-tabs,
+  #tabbrowser-arrowscrollbox,
+  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
+    min-height: var(--tab-min-height) !important;
   }
 
   /* Top Margin */
