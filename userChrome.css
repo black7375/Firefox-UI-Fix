@@ -281,7 +281,7 @@
   }
 
   /* Fallback background */
-  menupopup:not(.cui-widget-panel.cui-widget-panelview, [context="placesContext"]) {
+  menupopup:not(.cui-widget-panel.cui-widget-panelview, [placespopup="true"]) {
     background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
   }
 
