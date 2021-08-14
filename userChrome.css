@@ -1149,6 +1149,10 @@
     margin-inline-end: 0 !important;
   }
 
+  .subviewbutton[type="checkbox"]:not([checked=true]) > .toolbarbutton-text {
+    margin-left: 16px !important;
+  }
+
   /* Icons Color */
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before,
