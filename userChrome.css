@@ -623,7 +623,7 @@
 
   /*= Menu - Reduce Padding ==================================================*/
   :root {
-    --menu-padding: 0.35em;
+    --menu-padding: 0.35em; /* Win7, 8: 0px */
   }
   :root[uidensity=compact] {
     --menu-padding: 0.25em;
@@ -1512,8 +1512,8 @@
     --context-menu-background-padding-default: 5px;
     --context-menu-background-padding: var(--context-menu-background-padding-default);
   }
-  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem,
-  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu,
+  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
+  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -1534,6 +1534,9 @@
 
   @media (-moz-os-version: windows-win7 ),
          (-moz-os-version: windows-win8 ) {
+    :root {
+      --context-menu-background-padding-default: 3px;
+    }
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     #blockedPopupDontShowMessage {
