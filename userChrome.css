@@ -48,8 +48,10 @@
   @media (-moz-os-version: windows-win7) {
     #TabsToolbar:-moz-lwtheme {
       color: var(--lwt-text-color) !important;
+    }
 
-      /* Remove Aero */
+    /* Remove Aero */
+    #TabsToolbar {
       /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
       background-image: unset !important;
     }
@@ -69,6 +71,24 @@
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
       border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important; /* Like: --toolbar-field-focus-border-color */
     }
+  }
+
+  /*= Windows7 - Aero Based Theme ============================================*/
+  @media (-moz-os-version: windows-win7) {
+    #TabsToolbar:not(:-moz-lwtheme) {
+      --background-color: rgb(229, 229, 235);
+    }
+   .tabbrowser-tab > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+      color: var(--background-color);
+      background-color: color-mix(in srgb, currentColor 60%, transparent);
+    }
+   .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+      background-color: color-mix(in srgb, currentColor 85%, transparent) !important; /* Original: color-mix(in srgb, currentColor 11%, transparent) */
+    }
+   #TabsToolbar:not(:-moz-lwtheme) .toolbarbutton-1 > .toolbarbutton-icon {
+     color: var(--background-color);
+     background-color: color-mix(in srgb, currentColor 50%, transparent);
+   }
   }
 
   /*= Windows10 - Titlebar accent color ======================================*/
