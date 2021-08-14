@@ -37,12 +37,15 @@
     --tabs-border-color: rgba(0,0,0,.3);
   }
 
-  /*= Windows 7 ==============================================================*/
-  @media (-moz-os-version: windows-win7) {
+  /** Windows 7, 8 - Compatibility ********************************************/
+  @media (-moz-os-version: windows-win7),
+         (-moz-os-version: windows-win8) {
     /* Header Color */
     :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
       background-color: var(--lwt-accent-color) !important;
     }
+  }
+  @media (-moz-os-version: windows-win7) {
     #TabsToolbar:-moz-lwtheme {
       color: var(--lwt-text-color) !important;
 
