@@ -287,7 +287,6 @@
   }
 
    /*== Menu color ===========================================================*/
-  :root,
   menupopup {
     /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
     --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
@@ -316,13 +315,30 @@
 
   /*= Notification ===========================================================*/
   @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
+    /* Color */
+    :root{
+      --menu-color: #15141a;
+      --menu-background-color: #f9f9fb;
+      --menu-border-color: #cfcfd8;
+      --menuitem-hover-background-color: #e0e0e6;
+    }
+    @media (-moz-toolbar-prefers-color-scheme:dark) {
+      :root {
+        --menu-border-color: rgba(107,107,107,.3);
+        --menu-color: #fbfbfe;
+        --menu-background-color: #2b2a33;
+        --menuitem-hover-background-color: #52525e;
+      }
+      #alertSourceLabel { color: rgb(5,209,241) !important; }
+    }
+
     /* line below removes background from the notification "window" on linux */
     #alertNotification{ background: transparent !important; }
 
     #alertBox {
-      color: var(--menu-color, #15141a) !important;
-      background-color: var(--menu-background-color, #f9f9fb) !important;
-      border-color: var(--menu-border-color, #cfcfd8) !important;
+      color: var(--menu-color) !important;
+      background-color: var(--menu-background-color) !important;
+      border-color: var(--menu-border-color) !important;
       border-radius: 6px !important;
       -moz-window-shadow: cliprounded !important;
     }
@@ -332,6 +348,14 @@
       border-radius: 0 !important;
       margin-inline: 0 !important;
       margin-bottom: -4px !important;
+    }
+    .close-icon,
+    #alertSettings {
+      background: transparent !important
+    }
+    .close-icon:hover > .toolbarbutton-icon,
+    #alertSettings:is(:hover,[open]) > .button-box > .box-inherit {
+      background-color: var(--menuitem-hover-background-color, #e0e0e6) !important;
     }
 
     /* Shape */
@@ -346,35 +370,6 @@
     }
     #alertSettings > .button-box > .box-inherit > .button-icon {
       padding: 1px;
-    }
-
-    /* Color */
-    .close-icon,
-    #alertSettings {
-      background: transparent !important
-    }
-    .close-icon:hover > .toolbarbutton-icon,
-    #alertSettings:is(:hover,[open]) > .button-box > .box-inherit {
-      background-color: var(--menuitem-hover-background-color, #e0e0e6) !important;
-    }
-
-    @media (-moz-toolbar-prefers-color-scheme:dark) {
-      :root {
-        --menu-border-color: rgba(107,107,107,.3) !important;
-      }
-
-      #alertBox {
-        color: var(--menu-color, #fbfbfe) !important;
-        background-color: var(--menu-background-color, #2b2a33) !important;
-      }
-      .close-icon:hover > .toolbarbutton-icon,
-      #alertSettings:is(:hover, [open]) > .button-box > .box-inherit {
-        background-color: var(--menuitem-hover-background-color, #52525e) !important;
-      }
-
-      #alertSourceLabel {
-        color: rgb(5,209,241) !important;
-      }
     }
   }
 
