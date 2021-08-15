@@ -1,8 +1,11 @@
 @media (-moz-proton) {
   /** Default Thme - Contrast *************************************************/
   /*= Lightmode - Color darker ===============================================*/
-  :root[lwtheme-mozlightdark][lwthemetextcolor="dark"] {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) {
     --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
+  }
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox {
+    background-color: var(--lwt-accent-color);
   }
 
   /*= Darkmode - Color lighter ===============================================*/
