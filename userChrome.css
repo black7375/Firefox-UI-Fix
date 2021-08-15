@@ -792,8 +792,10 @@
     --tab-corner-padding:  1px;
   }
 
-  :root[lwtheme="true"] tab[visuallyselected] > stack::before,
-  :root[lwtheme="true"] tab[visuallyselected] > stack::after {
+  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
+  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::before,
+  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::after,
+  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::after {
     /* Box */
     content: "" !important;
     display: block !important;
@@ -815,11 +817,13 @@
     background-position-y: bottom;
   }
 
-  :root[lwtheme="true"] tab[visuallyselected] > stack::before {
+  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
+  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::before {
     left: calc(var(--tab-corner-padding) - var(--tab-corner-rounding)) !important;
     background-image: url(./icons/tab-bottom-corner-left.svg);
   }
-  :root[lwtheme="true"] tab[visuallyselected] > stack::after {
+  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::after,
+  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::after {
     left:  auto;
     right: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
     background-image: url(./icons/tab-bottom-corner-right.svg);
