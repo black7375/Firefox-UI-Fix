@@ -805,6 +805,15 @@
     transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
   }
 
+  /* Remove side's background color border */
+  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
+    --tabs-border-color: rgba(0,0,0,.3) !important;
+    box-shadow: 0 0 1px var(--tabs-border-color) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)) */
+  }
+  #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background {
+    box-shadow: 0 0 1px var(--tabs-border-color), 0 0 4px rgba(128,128,142,0.5) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
+  }
+
   /* Container Tab */
   .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
     margin: unset !important;
