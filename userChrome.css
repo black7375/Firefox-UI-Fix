@@ -307,6 +307,12 @@
     background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
   }
 
+  /* Default theme color preservation */
+  :root[lwtheme-mozlightdark] menupopup {
+    --menu-color: var(--toolbar-color) !important;
+    --menu-background-color: var(--toolbar-bgcolor) !important;
+  }
+
   /* Fully Dark Mode **********************************************************/
   /*= Remove White Flash =====================================================*/
   #tabbrowser-tabbox,
