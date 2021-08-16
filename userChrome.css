@@ -292,8 +292,8 @@
    /*== Menu color ===========================================================*/
   menupopup {
     /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
-    --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
-    --menu-background-color: var(--toolbar-bgcolor, var(--in-content-button-background)) !important;
+    --menu-color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
+    --menu-background-color: var(--arrowpanel-background, var(--in-content-button-background)) !important;
 
     --menu-border-color: var(--toolbarbutton-active-background, var(--button-active-bgcolor, var(--card-outline-color))) !important;
     --menuitem-hover-background-color: var(--toolbarbutton-hover-background, var(--button-hover-bgcolor, var(--in-content-button-background-hover))) !important;
