@@ -1,8 +1,11 @@
 @media (-moz-proton) {
   /** Default Thme - Contrast *************************************************/
   /*= Lightmode - Color darker ===============================================*/
-  :root[lwtheme-mozlightdark][lwthemetextcolor="dark"] {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) {
     --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
+  }
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox {
+    background-color: var(--lwt-accent-color);
   }
 
   /*= Darkmode - Color lighter ===============================================*/
@@ -24,6 +27,7 @@
     background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
     background-repeat: no-repeat !important;
     background-position: right top !important;
+    background-size : cover;
   }
   :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
     background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
@@ -37,16 +41,21 @@
     --tabs-border-color: rgba(0,0,0,.3);
   }
 
-  /*= Windows 7 ==============================================================*/
-  @media (-moz-os-version: windows-win7) {
+  /** Windows 7, 8 - Compatibility ********************************************/
+  @media (-moz-os-version: windows-win7),
+         (-moz-os-version: windows-win8) {
     /* Header Color */
     :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
       background-color: var(--lwt-accent-color) !important;
     }
+  }
+  @media (-moz-os-version: windows-win7) {
     #TabsToolbar:-moz-lwtheme {
       color: var(--lwt-text-color) !important;
+    }
 
-      /* Remove Aero */
+    /* Remove Aero */
+    #TabsToolbar {
       /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
       background-image: unset !important;
     }
@@ -66,6 +75,24 @@
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
       border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important; /* Like: --toolbar-field-focus-border-color */
     }
+  }
+
+  /*= Windows7 - Aero Based Theme ============================================*/
+  @media (-moz-os-version: windows-win7) {
+    #TabsToolbar:not(:-moz-lwtheme) {
+      --background-color: rgb(229, 229, 235);
+    }
+   .tabbrowser-tab > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+      color: var(--background-color);
+      background-color: color-mix(in srgb, currentColor 60%, transparent);
+    }
+   .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+      background-color: color-mix(in srgb, currentColor 85%, transparent) !important; /* Original: color-mix(in srgb, currentColor 11%, transparent) */
+    }
+   #TabsToolbar:not(:-moz-lwtheme) .toolbarbutton-1 > .toolbarbutton-icon {
+     color: var(--background-color);
+     background-color: color-mix(in srgb, currentColor 50%, transparent);
+   }
   }
 
   /*= Windows10 - Titlebar accent color ======================================*/
@@ -264,11 +291,10 @@
   }
 
    /*== Menu color ===========================================================*/
-  :root,
   menupopup {
     /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
-    --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
-    --menu-background-color: var(--toolbar-bgcolor, var(--in-content-button-background)) !important;
+    --menu-color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
+    --menu-background-color: var(--arrowpanel-background, var(--in-content-button-background)) !important;
 
     --menu-border-color: var(--toolbarbutton-active-background, var(--button-active-bgcolor, var(--card-outline-color))) !important;
     --menuitem-hover-background-color: var(--toolbarbutton-hover-background, var(--button-hover-bgcolor, var(--in-content-button-background-hover))) !important;
@@ -278,8 +304,14 @@
   }
 
   /* Fallback background */
-  menupopup {
+  menupopup:not(.cui-widget-panel.cui-widget-panelview, [placespopup="true"]) {
     background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
+  }
+
+  /* Default theme color preservation */
+  :root[lwtheme-mozlightdark] menupopup {
+    --menu-color: var(--toolbar-color) !important;
+    --menu-background-color: var(--toolbar-bgcolor) !important;
   }
 
   /* Fully Dark Mode **********************************************************/
@@ -293,13 +325,30 @@
 
   /*= Notification ===========================================================*/
   @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
+    /* Color */
+    :root{
+      --menu-color: #15141a;
+      --menu-background-color: #f9f9fb;
+      --menu-border-color: #cfcfd8;
+      --menuitem-hover-background-color: #e0e0e6;
+    }
+    @media (-moz-toolbar-prefers-color-scheme:dark) {
+      :root {
+        --menu-border-color: rgba(107,107,107,.3);
+        --menu-color: #fbfbfe;
+        --menu-background-color: #2b2a33;
+        --menuitem-hover-background-color: #52525e;
+      }
+      #alertSourceLabel { color: rgb(5,209,241) !important; }
+    }
+
     /* line below removes background from the notification "window" on linux */
     #alertNotification{ background: transparent !important; }
 
     #alertBox {
-      color: var(--menu-color, #15141a) !important;
-      background-color: var(--menu-background-color, #f9f9fb) !important;
-      border-color: var(--menu-border-color, #cfcfd8) !important;
+      color: var(--menu-color) !important;
+      background-color: var(--menu-background-color) !important;
+      border-color: var(--menu-border-color) !important;
       border-radius: 6px !important;
       -moz-window-shadow: cliprounded !important;
     }
@@ -309,6 +358,14 @@
       border-radius: 0 !important;
       margin-inline: 0 !important;
       margin-bottom: -4px !important;
+    }
+    .close-icon,
+    #alertSettings {
+      background: transparent !important
+    }
+    .close-icon:hover > .toolbarbutton-icon,
+    #alertSettings:is(:hover,[open]) > .button-box > .box-inherit {
+      background-color: var(--menuitem-hover-background-color, #e0e0e6) !important;
     }
 
     /* Shape */
@@ -323,35 +380,6 @@
     }
     #alertSettings > .button-box > .box-inherit > .button-icon {
       padding: 1px;
-    }
-
-    /* Color */
-    .close-icon,
-    #alertSettings {
-      background: transparent !important
-    }
-    .close-icon:hover > .toolbarbutton-icon,
-    #alertSettings:is(:hover,[open]) > .button-box > .box-inherit {
-      background-color: var(--menuitem-hover-background-color, #e0e0e6) !important;
-    }
-
-    @media (-moz-toolbar-prefers-color-scheme:dark) {
-      :root {
-        --menu-border-color: rgba(107,107,107,.3) !important;
-      }
-
-      #alertBox {
-        color: var(--menu-color, #fbfbfe) !important;
-        background-color: var(--menu-background-color, #2b2a33) !important;
-      }
-      .close-icon:hover > .toolbarbutton-icon,
-      #alertSettings:is(:hover, [open]) > .button-box > .box-inherit {
-        background-color: var(--menuitem-hover-background-color, #52525e) !important;
-      }
-
-      #alertSourceLabel {
-        color: rgb(5,209,241) !important;
-      }
     }
   }
 
@@ -615,7 +643,7 @@
 
   /*= Menu - Reduce Padding ==================================================*/
   :root {
-    --menu-padding: 0.35em;
+    --menu-padding: 0.35em; /* Win7, 8: 0px */
   }
   :root[uidensity=compact] {
     --menu-padding: 0.25em;
@@ -1026,6 +1054,10 @@
     margin-inline-end: 0 !important;
   }
 
+  .subviewbutton[type="checkbox"]:not([checked=true]) > .toolbarbutton-text {
+    margin-left: 16px !important;
+  }
+
   /* Icons Color */
   #appMenu-multiView .subviewbutton::before,
   #appMenu-proton-update-banner::before,
@@ -1350,8 +1382,8 @@
 
   /** Context Menu - Icons ****************************************************/
   /*= Layout =================================================================*/
-  menupopup menuitem:not([type="checkbox"]),
-  menupopup menu:not([type="checkbox"]) {
+  menupopup menuitem:not([type="checkbox"], [type="radio"]),
+  menupopup menu:not([type="checkbox"], [type="radio"]) {
     -moz-appearance: none !important;  /* Linux: menulist */
   }
 
@@ -1382,8 +1414,8 @@
     --context-menu-background-padding-default: 5px;
     --context-menu-background-padding: var(--context-menu-background-padding-default);
   }
-  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem,
-  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu,
+  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
+  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -1402,7 +1434,11 @@
     }
   }
 
-  @media (-moz-os-version: windows-win7 ){
+  @media (-moz-os-version: windows-win7 ),
+         (-moz-os-version: windows-win8 ) {
+    :root {
+      --context-menu-background-padding-default: 3px;
+    }
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     #blockedPopupDontShowMessage {
@@ -1410,8 +1446,7 @@
       padding-inline-start: 0 !important;
     }
   }
-  @media (-moz-os-version: windows-win8 ),
-         (-moz-os-version: windows-win10) {
+  @media (-moz-os-version: windows-win10) {
     :root {
       --context-menu-background-padding: 1em;
     }
