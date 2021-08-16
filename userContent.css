@@ -379,7 +379,8 @@
       .Select,
       .Button--neutral,
       .Button--neutral:link,
-      .Notice-button {
+      .Notice-button,
+      .AMInstallButton .AMInstallButton-loading-button {
         background-color: var(--in-content-button-background) !important;
       }
       .Button--neutral.Button--micro:not(.Button--disabled):hover,
@@ -441,11 +442,12 @@
       .Notice-icon {
         filter: invert(65%) !important;
       }
+      .PermissionsCard-learn-more .Icon,
+      .Permission .Icon {
+        filter: invert(100%) !important;
+      }
       .Icon-heart {
         filter:  brightness(0) !important;
-      }
-      .Permission .Icon {
-        filter:  grayscale(100%) brightness(30) !important;
       }
 
       /* Others */
