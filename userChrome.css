@@ -1502,8 +1502,8 @@
 
   /** Context Menu - Icons ****************************************************/
   /*= Layout =================================================================*/
-  menupopup menuitem:not([type="checkbox"]),
-  menupopup menu:not([type="checkbox"]) {
+  menupopup menuitem:not([type="checkbox"], [type="radio"]),
+  menupopup menu:not([type="checkbox"], [type="radio"]) {
     -moz-appearance: none !important;  /* Linux: menulist */
   }
 
