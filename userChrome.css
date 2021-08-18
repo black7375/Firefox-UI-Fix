@@ -1585,12 +1585,20 @@
   @media (-moz-os-version: windows-win10) {
     :root {
       --context-menu-background-padding: 1em;
+      --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
+      --bookmark-menu-margin: 2px;
     }
 
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     #blockedPopupDontShowMessage {
-      padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding)) !important;
+      padding-inline-start: var(--menu-background-padding-default) !important;
+      margin-left: 0 !important;
+    }
+    menupopup:is(#BMB_bookmarksPopup) > menuitem:not(.menuitem-iconic),
+    menupopup:is(#BMB_bookmarksPopup) > menu:not(.menu-iconic) {
+      padding-inline-start: calc(var(--menu-background-padding-default) - var(--bookmark-menu-margin)) !important;
+      margin-left: var(--bookmark-menu-margin) !important;
     }
   }
 
