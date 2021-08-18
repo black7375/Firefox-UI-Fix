@@ -811,10 +811,10 @@
     --tab-corner-padding:  1px;
   }
 
-  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
-  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::before,
-  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::after,
-  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::after {
+  :root:not([customizing="true"])[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"]):not([gtktiledwindow="true"]) tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"])[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::after,
+  :root:not([customizing="true"]):not([gtktiledwindow="true"]) tab[visuallyselected] > stack::after {
     /* Box */
     content: "" !important;
     display: block !important;
