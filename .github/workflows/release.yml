@@ -33,11 +33,6 @@ jobs:
 
       - name: Release Structure
         run: |
-          mkdir -v chrome
-
-          shopt -s extglob
-          mv -v !(chrome|user.js|install.sh) chrome/
-
           zip -rv ${{ matrix.name }}.zip chrome user.js install.sh
 
       - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
