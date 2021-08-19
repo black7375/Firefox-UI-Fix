@@ -669,6 +669,10 @@
     /* Original: 0.5em */
     padding-block: var(--menu-padding) !important;
   }
+  menupopup > menu {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
 
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root:not([uidensity=touch]) .menu-text, .menu-iconic-text {
