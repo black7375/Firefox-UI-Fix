@@ -4,8 +4,10 @@
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) {
     --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
   }
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox {
-    background-color: var(--lwt-accent-color);
+  @media not all and ((-moz-os-version: windows-win7) or  (-moz-os-version: windows-win8)) { /*  Level 4  */
+    :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox {
+      background-color: var(--lwt-accent-color);
+    }
   }
 
   /*= Darkmode - Color lighter ===============================================*/
@@ -27,7 +29,11 @@
     background-image: var(--lwt-header-image)  !important; /* Original: var(--lwt-header-image) */
     background-repeat: no-repeat !important;
     background-position: right top !important;
-    background-size : contain;
+  }
+  @media (min-width: 2500px) {
+    :root[lwtheme-image] {
+      background-size: contain;
+    }
   }
   :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
     background-image:    var(--lwt-additional-images) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
@@ -82,17 +88,20 @@
     #TabsToolbar:not(:-moz-lwtheme) {
       --background-color: rgb(229, 229, 235);
     }
-   .tabbrowser-tab > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+    #TabsToolbar:not(:-moz-lwtheme) .tabbrowser-tab > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
       color: var(--background-color);
       background-color: color-mix(in srgb, currentColor 60%, transparent);
     }
-   .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+    #TabsToolbar:not(:-moz-lwtheme) .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
       background-color: color-mix(in srgb, currentColor 85%, transparent) !important; /* Original: color-mix(in srgb, currentColor 11%, transparent) */
     }
-   #TabsToolbar:not(:-moz-lwtheme) .toolbarbutton-1 > .toolbarbutton-icon {
-     color: var(--background-color);
-     background-color: color-mix(in srgb, currentColor 50%, transparent);
-   }
+    #scrollbutton-up:not(:-moz-lwtheme),
+    #scrollbutton-down:not(:-moz-lwtheme),
+    #alltabs-button:not(:-moz-lwtheme) > .toolbarbutton-badge-stack,
+    #TabsToolbar:not(:-moz-lwtheme) .toolbarbutton-1 > .toolbarbutton-icon {
+      color: var(--background-color) !important;
+      background-color: color-mix(in srgb, currentColor 50%, transparent);
+    }
   }
 
   /*= Windows10 - Titlebar accent color ======================================*/
@@ -651,9 +660,13 @@
   :root[uidensity=touch] {
     --menu-padding: 0.5em;
   }
-  menupopup > menuitem, menupopup > menu {
+  menupopup > menuitem,
+  menupopup > menu {
     /* Original: 0.5em */
     padding-block: var(--menu-padding) !important;
+  }
+  menupopup > menu {
+    padding-inline-start: 0.5em;
   }
 
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -669,6 +682,33 @@
     :root:not([uidensity=touch]) .menu-right {
       margin-right: 6px !important;     /* Original: 12px */
     }
+  }
+
+  /* Arrow Icon Align to Right */
+  .subviewbutton.subviewbutton-nav,
+  .bookmark-item.subviewbutton {
+    padding-inline-end: 0 !important;
+  }
+  .bookmark-item.subviewbutton {
+    margin-inline-end: 0 !important;
+  }
+
+  /*= Bookmark Menu - Reduce Padding =========================================*/
+  :root {
+    --bookmark-menu-padding: 0.2em;
+    --bookmark-seperator-margin: 1px 0.5em;
+  }
+  :root[uidensity=compact] {
+    --bookmark-menu-padding: 2px;
+    --bookmark-seperator-margin: 0px 0.5em;
+  }
+
+  :root:not([uidensity="touch"]) menupopup > menuitem.bookmark-item,
+  :root:not([uidensity="touch"]) menupopup > menuitem.openintabs-menuitem {
+    padding-block: var(--bookmark-menu-padding) !important;
+  }
+  :root:not([uidensity="touch"]) menupopup > .bookmarks-actions-menuseparator {
+    margin: var(--bookmark-seperator-margin) !important;
   }
 
   /*= Poup Panel - Reduce padding ============================================*/
@@ -1449,12 +1489,20 @@
   @media (-moz-os-version: windows-win10) {
     :root {
       --context-menu-background-padding: 1em;
+      --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
+      --bookmark-menu-margin: 2px;
     }
 
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     #blockedPopupDontShowMessage {
-      padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding)) !important;
+      padding-inline-start: var(--menu-background-padding-default) !important;
+      margin-left: 0 !important;
+    }
+    menupopup:is(#BMB_bookmarksPopup) > menuitem:not(.menuitem-iconic),
+    menupopup:is(#BMB_bookmarksPopup) > menu:not(.menu-iconic) {
+      padding-inline-start: calc(var(--menu-background-padding-default) - var(--bookmark-menu-margin)) !important;
+      margin-left: var(--bookmark-menu-margin) !important;
     }
   }
 
