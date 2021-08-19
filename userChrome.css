@@ -698,6 +698,24 @@
     margin-inline-end: 0 !important;
   }
 
+  /*= Bookmark Menu - Reduce Padding =========================================*/
+  :root {
+    --bookmark-menu-padding: 0.2em;
+    --bookmark-seperator-margin: 1px 0.5em;
+  }
+  :root[uidensity=compact] {
+    --bookmark-menu-padding: 2px;
+    --bookmark-seperator-margin: 0px 0.5em;
+  }
+
+  :root:not([uidensity="touch"]) menupopup > menuitem.bookmark-item,
+  :root:not([uidensity="touch"]) menupopup > menuitem.openintabs-menuitem {
+    padding-block: var(--bookmark-menu-padding) !important;
+  }
+  :root:not([uidensity="touch"]) menupopup > .bookmarks-actions-menuseparator {
+    margin: var(--bookmark-seperator-margin) !important;
+  }
+
   /*= Poup Panel - Reduce padding ============================================*/
   #protections-popup-main-header-label {
     height: unset !important; /* Original: 37.6px */
