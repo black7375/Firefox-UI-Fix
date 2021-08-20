@@ -994,6 +994,17 @@
     visibility: collapse !important;
   }
 
+  /* Closed Button Smaller */
+  #tabbrowser-tabs[closebuttons="activetab"] .tab-content > .tab-close-button {
+    padding: 5px !important; /* Original: 7px */
+    width:  20px !important; /* Original: 24px */
+    height: 20px !important; /* Original: 24px */
+  }
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not(:hover) > .tab-stack > .tab-content > .tab-close-button {
+    padding-inline-start: 2px !important; /* Original: 0px */
+    width: 17px !important; /* Redefine from 20px !important, Original: 17px = (width - padding)  */
+  }
+
   /** Sound Tab - Hide Label **************************************************/
   .tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]){
     display: none !important;
