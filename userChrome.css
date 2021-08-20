@@ -840,6 +840,7 @@
   #tabbrowser-tabs {
     --tab-corner-rounding: 4px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
     --tab-corner-padding:  1px;
+    --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
   }
 
   :root:not([customizing="true"])[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
@@ -869,13 +870,13 @@
 
   :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
   :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::before {
-    left: calc(var(--tab-corner-padding) - var(--tab-corner-rounding)) !important;
+    left: var(--tab-corner-position) !important;
     background-image: url(./icons/tab-bottom-corner-left.svg);
   }
   :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::after,
   :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::after {
     left:  auto;
-    right: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+    right: var(--tab-corner-position);
     background-image: url(./icons/tab-bottom-corner-right.svg);
   }
 
