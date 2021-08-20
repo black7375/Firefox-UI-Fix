@@ -311,8 +311,10 @@
         color: var(--in-content-text-color) !important;
       }
       .AutoSearchInput-suggestions-item:is(:active, :focus, :hover),
+      .AutoSearchInput-suggestions-item--highlighted,
       .SecondaryHero-message-link,
       .SecondaryHero-module-link,
+      .Card-contents a,
       .Card-footer-link a,
       .Card-shelf-footer-in-header a,
       .SearchResult-link:is(:active, :focus, :hover),
@@ -553,7 +555,7 @@
       .sumo-nav--logo,
       .sumo-nav--search-button,
       .sumo-nav--toggle-button,
-      .card--icon-sm,
+      .card:not(.is-inverse) .card--icon-sm,
       .mzp-c-menu-item-icon,
       .mzp-c-menu-button-close,
       .topic-article--icon,
@@ -562,6 +564,13 @@
       }
 
       /* Others */
+      .support-callouts > .card.is-inverse  {
+        background: #20133a !important;
+      }
+      .support-callouts > .card.is-inverse :is(h1, h2, h3, h4, h5, h6, li, p) {
+        color: var(--in-content-page-color) !important;
+      }
+
       .sumo-button.secondary-button {
         border-color: none !important;
       }
