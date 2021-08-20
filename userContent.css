@@ -610,6 +610,7 @@
       .cta-neutral:hover {
         color: var(--in-content-page-color) !important;
       }
+      #main-content.panel a,
       .links a,
       .link-blue,
       .text-blue-500 {
@@ -618,6 +619,12 @@
       .link-blue:hover {
         color: var(--in-content-link-color-hover) !important;
       }
+
+      .signed-in-email-message,
+      .verification-email-message,
+      .verification-message,
+      .verification-recovery-code-message,
+      .verification-totp-message,
       .input-row input[type="email"],
       .input-row input[type="number"],
       .input-row input[type="password"],
@@ -637,13 +644,13 @@
         background-color:  unset !important;
       }
       #main-content,
+      .modal,
       .firefox-family-services,
       .input-row input[type="email"],
       .input-row input[type="number"],
       .input-row input[type="password"],
       .input-row input[type="tel"],
       .input-row input[type="text"],
-      .password-row .show-password-label,
       header,
       .bg-white:not(nav) {
         background: var(--in-content-box-background) !important;
