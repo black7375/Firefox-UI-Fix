@@ -887,49 +887,6 @@
     margin: unset !important;
   }
 
-  /** Selected Tab - Bottom Rounded Corner ************************************/
-  #tabbrowser-tabs {
-    --tab-corner-rounding: 4px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
-    --tab-corner-padding:  1px;
-  }
-
-  :root:not([customizing="true"])[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
-  :root:not([customizing="true"]):not([gtktiledwindow="true"]) tab[visuallyselected] > stack::before,
-  :root:not([customizing="true"])[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::after,
-  :root:not([customizing="true"]):not([gtktiledwindow="true"]) tab[visuallyselected] > stack::after {
-    /* Box */
-    content: "" !important;
-    display: block !important;
-    position: absolute !important;
-    z-index: 1 !important;
-
-    /* Shape */
-    width:  var(--tab-corner-rounding) !important;
-    height: 100% !important;
-
-    /* Color */
-    fill:   var(--toolbar-bgcolor) !important;
-    stroke: var(--tabs-border-color, transparent) !important;
-    -moz-context-properties: fill, stroke !important;
-
-    /* Image */
-    background-size:   var(--tab-corner-rounding);
-    background-repeat: no-repeat;
-    background-position-y: bottom;
-  }
-
-  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::before,
-  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::before {
-    left: calc(var(--tab-corner-padding) - var(--tab-corner-rounding)) !important;
-    background-image: url(./icons/tab-bottom-corner-left.svg);
-  }
-  :root[gtktiledwindow="true"][lwtheme="true"] tab[visuallyselected] > stack::after,
-  :root:not([gtktiledwindow="true"]) tab[visuallyselected] > stack::after {
-    left:  auto;
-    right: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
-    background-image: url(./icons/tab-bottom-corner-right.svg);
-  }
-
   /** Unselected Tab - Divide line ********************************************/
   .tabbrowser-tab[first-visible-tab]::before,
   .tabbrowser-tab::after,
