@@ -881,7 +881,7 @@
       content: "" !important;
     }
   }
-  @media not (-moz-gtk-csd-available) {
+  @media not all and (-moz-gtk-csd-available) {
     :root:not([customizing="true"]) tab[visuallyselected] > stack::before,
     :root:not([customizing="true"]) tab[visuallyselected] > stack::after {
       content: "" !important;
