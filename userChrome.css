@@ -1621,7 +1621,6 @@
   /* Icon */
   :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  menuitem.openintabs-menuitem.subviewbutton,
   #blockedPopupDontShowMessage {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
@@ -2191,7 +2190,8 @@
     --menuitem-image: url(chrome://browser/skin/bookmark-star-on-tray.svg);
   }
 
-  menupopup[context="placesContext"]  > .openintabs-menuitem {
+  menupopup[context="placesContext"]  > .openintabs-menuitem,
+  menuitem.openintabs-menuitem.subviewbutton {
     --menuitem-image: url(./icons/movetowindow-16.svg);
   }
 
