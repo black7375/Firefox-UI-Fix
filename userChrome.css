@@ -675,7 +675,8 @@
   }
 
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root:not([uidensity="touch"]) .menu-text, .menu-iconic-text {
+    :root:not([uidensity="touch"]) .menu-text,
+    :root:not([uidensity="touch"]) .menu-iconic-text {
       padding-inline-end: 0 !important; /* Original: 2px */
     }
     :root:not([uidensity="touch"]) .menupopup-arrowscrollbox {
@@ -690,11 +691,7 @@
   }
 
   /* Arrow Icon Align to Right */
-  .subviewbutton.subviewbutton-nav,
-  .bookmark-item.subviewbutton {
-    padding-inline-end: 0 !important;
-  }
-  .bookmark-item.subviewbutton {
+  .bookmark-item.subviewbutton > .menu-right {
     margin-inline-end: 0 !important;
   }
 
@@ -1661,10 +1658,11 @@
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
     }
-    menupopup:is(#BMB_bookmarksPopup) > menuitem:not(.menuitem-iconic),
-    menupopup:is(#BMB_bookmarksPopup) > menu:not(.menu-iconic) {
-      padding-inline-start: calc(var(--menu-background-padding-default) - var(--bookmark-menu-margin)) !important;
-      margin-left: var(--bookmark-menu-margin) !important;
+    menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menuitem:not(.menuitem-iconic),
+    menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menu:not(.menu-iconic) {
+      margin-inline: var(--arrowpanel-menuicon-padding) !important;
+      padding-inline-start: calc(var(--menu-background-padding-default) - var(--arrowpanel-menuicon-padding)) !important;
+      background-position: left var(--arrowpanel-menuitem-padding) center !important;
     }
   }
 
