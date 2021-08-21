@@ -1724,7 +1724,7 @@
 
   #context_reloadTab,
   #context_reloadSelectedTabs {
-    --menuitem-image: url(chrome://browser/skin/reload.svg);
+    /* --menuitem-image: url("chrome://global/skin/icons/reload.svg"); */
   }
   #context_toggleMuteTab,
   #context_toggleMuteSelectedTabs {
@@ -1757,7 +1757,9 @@
   #context_sendTabToDevice {
     --menuitem-image: url(./icons/send-to-device.svg);
   }
-  #context_shareTabURL { /* At windows */
+
+  #context_sendTabToDevice:is([disabled="true"]) + #context_shareTabURL, /* Legacy */
+  #context_sendTabToDevice:is([disabled="true"]) + menuitem.share-tab-url-item { /* At windows */
     --menuitem-image: url(./icons/share.svg);
   }
   #context_reopenInContainer {
