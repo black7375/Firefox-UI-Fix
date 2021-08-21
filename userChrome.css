@@ -443,7 +443,7 @@
   /*= Root - Reduce Padding ==================================================*/
   :root {
     /* Tab Bar */
-    --proton-tab-block-margin: 2px !important; /* Original: 4px */
+    --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
     --tab-block-margin:        2px !important; /* New version of --proton-tab-block-margin */
     --inline-tab-padding:      6px !important; /* Original: 8px */
 
@@ -1232,8 +1232,8 @@
   #appMenu-proton-update-banner::before {
     display: -moz-inline-box;
     margin-inline-end: var(--arrowpanel-menuicon-padding);
-    width:  16px !important;
-    height: 16px !important;
+    width:  16px;
+    height: 16px;
   }
   #appMenu-proton-update-banner {
     margin-bottom: 2px !important;
@@ -1363,8 +1363,14 @@
   }
 
   /* Default */
-  #fxa-menu-avatar {
-    display: -moz-inline-box !important;
+  #fxa-manage-account-button::before {
+    content: '';
+    display: -moz-inline-box;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-size: 32px;
+    background-image: var(--avatar-image-url);
     margin-inline-end: var(--arrowpanel-menuicon-padding);
   }
 
@@ -1410,10 +1416,12 @@
   #PanelUI-sign-out-separator {
     display: none;
   }
-  .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
+  .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""], /* Legacy */
+  .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
     list-style-image: url(./icons/send-to-device.svg);
   }
-  .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]) {
+  .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]), /* Legacy */
+  .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]) {
     list-style-image: url(chrome://global/skin/icons/settings.svg);
   }
 
