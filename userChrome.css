@@ -1579,6 +1579,24 @@
     --menuitem-image: url(chrome://browser/skin/bookmarks-toolbar.svg);
   }
 
+  /*= identity-popup =========================================================*/
+  #identity-popup-clear-sitedata-button,
+  #identity-popup-more-info {
+    padding-inline: 5px !important;
+  }
+
+  #identity-popup-securityView-body {
+    margin-inline-start: 32px !important; /* Original: 10px */
+  }
+
+  #identity-popup-clear-sitedata-button {
+    list-style-image: url(./icons/broom.svg);
+  }
+
+  #identity-popup-more-info {
+    list-style-image: url(chrome://global/skin/icons/info.svg);
+  }
+
   /** Context Menu - Icons ****************************************************/
   /*= Layout =================================================================*/
   menupopup menuitem:not([type="checkbox"], [type="radio"]),
