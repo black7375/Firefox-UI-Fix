@@ -1676,7 +1676,7 @@
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
     }
-    menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menuitem:not(.menuitem-iconic),
+    menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menuitem:not(.menuitem-iconic, [disabled="true"]),
     menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuicon-padding) !important;
       padding-inline-start: calc(var(--menu-background-padding-default) - var(--arrowpanel-menuicon-padding)) !important;
