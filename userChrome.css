@@ -1607,6 +1607,7 @@
   /* Icon */
   :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menuitem.openintabs-menuitem.subviewbutton,
   #blockedPopupDontShowMessage {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
@@ -1667,7 +1668,6 @@
     :root {
       --context-menu-background-padding: 1em;
       --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
-      --bookmark-menu-margin: 2px;
     }
 
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
@@ -1680,7 +1680,7 @@
     menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuicon-padding) !important;
       padding-inline-start: calc(var(--menu-background-padding-default) - var(--arrowpanel-menuicon-padding)) !important;
-      background-position: left var(--arrowpanel-menuitem-padding) center !important;
+      background-position: left calc(var(--arrowpanel-menuitem-padding) + 1px) center !important;
     }
   }
 
