@@ -306,7 +306,7 @@
   }
 
    /*== Menu color ===========================================================*/
-  menupopup {
+   html#main-window menupopup {
     /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
     --menu-color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
     --menu-background-color: var(--arrowpanel-background, var(--in-content-button-background)) !important;
@@ -325,8 +325,8 @@
 
   /* Default theme color preservation */
   :root[lwtheme-mozlightdark] menupopup {
-    --menu-color: var(--toolbar-color) !important;
-    --menu-background-color: var(--toolbar-bgcolor) !important;
+    --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
+    --arrowpanel-background: var(--toolbar-bgcolor, var(--in-content-button-background)) !important; /* --menu-background-color */
   }
 
   /* Fully Dark Mode **********************************************************/
