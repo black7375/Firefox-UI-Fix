@@ -318,6 +318,18 @@
     --menuitem-disabled-hover-background-color: color-mix(in srgb, var(--menuitem-hover-background-color) 40%, transparent) !important;
   }
 
+  window:is(#bookmarksPanel, #history-panel)[lwt-sidebar="true"] menupopup {
+    --panel-color: var(--lwt-sidebar-text-color, var(--menu-color)) !important;
+    --panel-background: var(--lwt-sidebar-background-color, var(--menu-background-color)) !important;
+  }
+  window:is(#bookmarksPanel, #history-panel)[lwt-sidebar="true"] menu[_moz-menuactive="true"]:not([disabled="true"]),
+  window:is(#bookmarksPanel, #history-panel)[lwt-sidebar="true"] menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
+    --menuitem-hover-background-color: color-mix(in srgb, currentColor 17%, transparent); /* Looks like toolbar button */
+    /* or var(--lwt-sidebar-highlight-background-color)
+       If this value is used, unset is required in the default theme.
+    */
+  }
+
   /* Fallback background */
   menupopup:not(.cui-widget-panel.cui-widget-panelview, [placespopup="true"]) {
     background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
@@ -327,6 +339,11 @@
   :root[lwtheme-mozlightdark] menupopup {
     --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
     --arrowpanel-background: var(--toolbar-bgcolor, var(--in-content-button-background)) !important; /* --menu-background-color */
+  }
+  window:is(#bookmarksPanel, #history-panel)[style*="--newtab-background-color: rgba(249, 249, 251, 1);"] menupopup, /* Default Light Mode */
+  window:is(#bookmarksPanel, #history-panel)[style*="--newtab-background-color: rgba(43, 42, 51, 1);"]    menupopup { /* Default Dark Mode */
+    --panel-color: var(--menu-color) !important;
+    --panel-background: var(--menu-background-color) !important;
   }
 
   /* Fully Dark Mode **********************************************************/
