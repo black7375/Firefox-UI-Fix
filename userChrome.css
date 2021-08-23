@@ -403,6 +403,24 @@
     }
   }
 
+  /** Decoration **************************************************************/
+  /*= Downloads Panel ========================================================*/
+  /* Accent Color for downloaded item */
+  #downloadsListBox .download-state[exists] .downloadDetails {
+    color: var(--button-primary-bgcolor);
+  }
+  #downloadsListBox .download-state[exists] .downloadDetails.downloadDetailsHover {
+    color: var(--button-primary-hover-bgcolor);
+  }
+
+  /* File moved or missing */
+  #downloadsListBox .download-state:not([exists]) .downloadTarget {
+    text-decoration: line-through;
+  }
+  #downloadsListBox .download-state:not([exists]) .downloadTypeIcon {
+    filter: grayscale(100%) !important;
+  }
+
   /** Reduce Padding **********************************************************/
   /*= Root - Reduce Padding ==================================================*/
   :root {
