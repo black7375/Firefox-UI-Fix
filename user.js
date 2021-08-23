@@ -25,7 +25,8 @@ user_pref("browser.urlbar.suggest.calculator", true);
 // user_pref("browser.urlbar.unitConversion.enabled", true);
 
 // ** Scrolling Options ********************************************************
-user_pref("mousewheel.min_line_scroll_amount",               10); /* Original: 5    */
-user_pref("general.smoothScroll.mouseWheel.durationMinMS",   80); /* Original: 50   */
-user_pref("general.smoothScroll.currentVelocityWeighting", 0.15); /* Original: 0.25 */
-user_pref("general.smoothScroll.stopDecelerationWeighting", 0.6); /* Original: 0.4  */
+//         Pref                                             Value      Original
+user_pref("mousewheel.min_line_scroll_amount",                 10); //        5
+user_pref("general.smoothScroll.mouseWheel.durationMinMS",     80); //       50
+user_pref("general.smoothScroll.currentVelocityWeighting", "0.15"); //   "0.25"
+user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); //    "0.4"
