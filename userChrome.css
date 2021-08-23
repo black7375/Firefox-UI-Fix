@@ -421,6 +421,34 @@
     filter: grayscale(100%) !important;
   }
 
+  /*= Cursor Types ===========================================================*/
+  #appMenu-zoomReduce-button2,
+  #appMenu-zoomReset-button2,
+  #appMenu-zoomEnlarge-button2,
+  #appMenu-fullscreen-button2,
+  #panelMenu_showAllBookmarks,
+  #PanelUI-historyMore,
+  #appMenuClearRecentHistory:not([disabled]),
+  #appMenu-library-recentlyClosedTabs > .restoreallitem.panel-subview-footer-button,
+  #appMenu-library-recentlyClosedWindows > .restoreallitem.panel-subview-footer-button,
+  #BMB_viewBookmarksSidebar,
+  #BMB_bookmarksShowAllTop,
+  #BMB_bookmarksShowAll,
+  #import-button,
+  menuitem.openintabs-menuitem,
+  #downloadsListBox .download-state[exists],
+  #downloadsListBox .download-state[exists] .downloadDetails,
+  #downloadsHistory {
+    cursor: pointer !important;
+  }
+
+  /* TODO: For now, fxa-menu doesn't show any status.
+           (JS required, observe .syncNowBtn status)
+  #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] {
+    cursor: progress !important;
+  }
+  */
+
   /** Reduce Padding **********************************************************/
   /*= Root - Reduce Padding ==================================================*/
   :root {
