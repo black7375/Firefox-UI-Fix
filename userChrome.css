@@ -416,6 +416,7 @@
   /* File moved or missing */
   #downloadsListBox .download-state:not([exists]) .downloadTarget {
     text-decoration: line-through;
+    text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
   }
   #downloadsListBox .download-state:not([exists]) .downloadTypeIcon {
     filter: grayscale(100%) !important;
