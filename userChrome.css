@@ -643,7 +643,7 @@
   :root[uidensity="compact"] #tab-notification-deck {
     --infobar-message-margin: 0 4px 2px;
   }
-  #tab-notification-deck notification-message[message-bar-type="infobar"] {
+  #tab-notification-deck notification-message[message-bar-type="infobar"]:not([style*="margin-top"]) {
     margin: var(--infobar-message-margin, 0 4px 4px) !important;
   }
 
