@@ -95,6 +95,7 @@ function Install-Choco() {
   Set-ExecutionPolicy Bypass -Scope Process -Force
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+  $env:Path += ";C:\ProgramData\chocolatey"
 }
 
 function Check-Git() {
@@ -103,6 +104,7 @@ function Check-Git() {
       Install-Choco
     }
     choco install git -y
+    $env:Path += ";C:\Program Files\Git\bin"
   }
 
   Lepton-OKMessage "Required - git"
@@ -139,10 +141,11 @@ function Copy-Auto() {
     Write-Host "${target} alreay exist."
     Write-Host "Now Backup.."
     Copy-Auto "${target}" "${target}.bak"
+    Remove-Item "${target}" -Recurse -Force
     Write-Host ""
   }
 
-  Copy-Item -Path "${file}" -Destination "${target}" -Force
+  Copy-Item -Path "${file}" -Destination "${target}" -Force -Recurse
 }
 
 function Move-Auto() {
@@ -165,10 +168,10 @@ function Move-Auto() {
     Write-Host ""
   }
 
-  Move-Item -Path "${file}" -Destination "${target}" -Force
+  Get-ChildItem -Path "${target}" -Recurse | Move-Item -Path "${file}" -Destination "${target}" -Force
 }
 
-function Restore-Auto() {
+ function Restore-Auto() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
     [string] $file
@@ -178,9 +181,9 @@ function Restore-Auto() {
   if ( Test-Path -Path "${file}" ) {
     Remove-Item "${file}" -Recurse -Force
   }
-  Move-Item -Path "${target}" -Destination "${file}" -Force
+  Get-ChildItem -Path "${target}" -Recurse | Move-Item -Destination "${file}" -Force
 
-  $local:loopupTarget = "${target}.bak"
+  $local:lookupTarget = "${target}.bak"
   if ( Test-Path -Path "${lookupTarget}" ) {
     Restore-Auto "${target}"
   }
@@ -647,8 +650,8 @@ function Check-ChromeRestore() {
 }
 
 function Clean-Lepton() {
-  if ( $chromeDuplicate -ne $true ) {
-    Remove-Item "chrome" -Recurse -Force
+  if ( ($chromeDuplicate -ne $true) -and (Test-Path -Path "chrome") ) {
+    Remove-Item -Path "chrome" -Recurse -Force
   }
   Lepton-OkMessage "End clean files"
 }

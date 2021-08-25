@@ -11,8 +11,10 @@ jobs:
         include:
           - name: "Lepton"
             branch: "master"
-          - name: "Lepton-Phton-Style"
+          - name: "Lepton-Photon-Style"
             branch: "photon-style"
+          - name: "Lepton-Prton-Style"
+            branch: "proton-style"
     steps:
       - uses: actions/checkout@v2
         with:

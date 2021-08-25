@@ -35,6 +35,7 @@ Check like `- [x]`.
    - [ ] Alpenglow(System: Dark)
    - [ ] System Default
      - GTK Theme Name(Only Linux User): [sample] Adwaita, Adwaita-Dark, Breath, Breath-Dark
+   - [ ] Others: [sample] [Photon Colors](https://addons.mozilla.org/en-US/firefox/addon/photon-colors/), [Google Chrome Dark](https://addons.mozilla.org/en-US/firefox/addon/google-chrome-dark/), [Fairytale Of Nature](https://addons.mozilla.org/en-US/firefox/addon/fairytale-of-nature/)
 
 **Additional context**
 Add any other context about the problem here.
