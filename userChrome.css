@@ -884,7 +884,6 @@
     border-radius: var(--tab-border-radius, 4px) var(--tab-border-radius, 4px) 0 0 !important;
   }
 
-<<<<<<< HEAD
   .tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
     /* Photon like color
        Default: var(--tab-line-color, rgb(10, 132, 255))
@@ -907,64 +906,6 @@
   }
   .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
     transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
-=======
-  /** Selected Tab - Bottom Rounded Corner ************************************/
-  #tabbrowser-tabs {
-    --tab-corner-rounding: 4px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
-    --tab-corner-padding:  1px;
-    --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
-  }
-
-  :root:not([customizing="true"]) tab[visuallyselected] > stack::before,
-  :root:not([customizing="true"]) tab[visuallyselected] > stack::after {
-    /* Box */
-    display: block !important;
-    position: absolute !important;
-    z-index: 1 !important;
-
-    /* Shape */
-    width:  var(--tab-corner-rounding) !important;
-    height: 100% !important;
-
-    /* Color */
-    fill:   var(--toolbar-bgcolor) !important;
-    stroke: var(--tabs-border-color, transparent) !important;
-    -moz-context-properties: fill, stroke !important;
-
-    /* Image */
-    background-size:   var(--tab-corner-rounding);
-    background-repeat: no-repeat;
-    background-position-y: bottom;
-  }
-
-  tab[visuallyselected] > stack::before {
-    left: var(--tab-corner-position) !important;
-    background-image: url(./icons/tab-bottom-corner-left.svg);
-  }
-  tab[visuallyselected] > stack::after {
-    left:  auto;
-    right: var(--tab-corner-position);
-    background-image: url(./icons/tab-bottom-corner-right.svg);
-  }
-
-  @media (-moz-gtk-csd-available) {
-    /* Don't enabled at GTK */
-    :root:not([customizing="true"])[lwtheme="true"] tab[visuallyselected] > stack::before,
-    :root:not([customizing="true"])[lwtheme="true"] tab[visuallyselected] > stack::after {
-      content: "" !important;
-    }
-  }
-  @media not all and (-moz-gtk-csd-available) {
-    :root:not([customizing="true"]) tab[visuallyselected] > stack::before,
-    :root:not([customizing="true"]) tab[visuallyselected] > stack::after {
-      content: "" !important;
-    }
-  }
-
-  /** Unselected Tab - Divide line ********************************************/
-  #tabbrowser-arrowscrollbox {
-    position: absolute;
->>>>>>> master
   }
 
   /* Remove side's background color border */
