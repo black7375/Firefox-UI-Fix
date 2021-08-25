@@ -25,6 +25,7 @@ user_pref("browser.urlbar.suggest.calculator", true);
 // user_pref("browser.urlbar.unitConversion.enabled", true);
 
 // ** Scrolling Options ********************************************************
+// based on natural smooth scrolling v2 by aveyo
 // this preset will reset couple extra variables for consistency
 //         Pref                                              Value                 Original
 user_pref("apz.allow_zooming",                               true);            ///     true
