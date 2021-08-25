@@ -32,7 +32,7 @@ user_pref("apz.force_disable_desktop_zooming_scrollbars",   false);            /
 user_pref("apz.paint_skipping.enabled",                      true);            ///     true
 user_pref("apz.windows.use_direct_manipulation",             true);            ///     true
 user_pref("dom.event.wheel-deltaMode-lines.always-disabled", true);            ///    false
-user_pref("general.smoothScroll.currentVelocityWeighting", "0.15");            ///   "0.25"
+user_pref("general.smoothScroll.currentVelocityWeighting", "0.15");            ///   "0.25" <- 1. If scroll too fast, set to "0.12"
 user_pref("general.smoothScroll.durationToIntervalRatio",    1000);            ///      200
 user_pref("general.smoothScroll.lines.durationMaxMS",         100);            ///      150
 user_pref("general.smoothScroll.lines.durationMinMS",           0);            ///      150
@@ -63,7 +63,7 @@ user_pref("mousewheel.default.delta_multiplier_x",            100);            /
 user_pref("mousewheel.default.delta_multiplier_y",            100);            ///      100
 user_pref("mousewheel.default.delta_multiplier_z",            100);            ///      100
 user_pref("mousewheel.min_line_scroll_amount",                  0);            ///        5
-user_pref("mousewheel.system_scroll_override.enabled",       true);            ///     true
+user_pref("mousewheel.system_scroll_override.enabled",       true);            ///     true <- 2. If scroll too fast, set to false
 user_pref("mousewheel.system_scroll_override_on_root_content.enabled", false); ///     true
 user_pref("mousewheel.transaction.timeout",                  1500);            ///     1500
 user_pref("toolkit.scrollbox.horizontalScrollDistance",         3);            ///        5
