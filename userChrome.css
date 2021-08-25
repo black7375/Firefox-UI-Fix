@@ -1691,8 +1691,7 @@
     list-style-image: url(chrome://global/skin/icons/info.svg);
   }
 
-  /** Context Menu - Icons ****************************************************/
-  /*= Layout =================================================================*/
+  /** Menu - Icons Layout *****************************************************/
   menupopup menuitem:not([type="checkbox"], [type="radio"]),
   menupopup menu:not([type="checkbox"], [type="radio"]) {
     -moz-appearance: none !important;  /* Linux: menulist */
@@ -1701,6 +1700,8 @@
   /* Icon */
   :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #blockedPopupDontShowMessage {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
@@ -1727,6 +1728,8 @@
   }
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -1752,6 +1755,8 @@
     }
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     #blockedPopupDontShowMessage {
       background-position: left var(--context-menu-background-padding) center !important;
       padding-inline-start: 0 !important;
@@ -1765,6 +1770,8 @@
 
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     #blockedPopupDontShowMessage {
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
@@ -1804,6 +1811,7 @@
     }
   }
 
+  /** Context Menu - Icons ****************************************************/
   /*= tabContextMenu =========================================================*/
   #context_openANewTab {
     --menuitem-image: url(chrome://browser/skin/new-tab.svg);
@@ -2421,5 +2429,221 @@
   }
   #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_selectAll"]  {
     --menuitem-image: url(./icons/select-all-on.svg);
+  }
+
+  /** Global Menu *************************************************************/
+  /*= menu_FilePopup =========================================================*/
+  #menu_newNavigatorTab {
+    --menuitem-image: url(chrome://browser/skin/new-tab.svg);
+  }
+  #menu_newUserContext {
+  }
+  #menu_newNavigator {
+    --menuitem-image: url(chrome://browser/skin/window.svg);
+  }
+  #menu_newPrivateWindow {
+    --menuitem-image: url(chrome://browser/skin/privateBrowsing.svg);
+  }
+  #menu_newFissionWindow {
+  }
+  #menu_newNonFissionWindow {
+  }
+  #menu_openLocation {
+  }
+  #menu_openFile {
+    --menuitem-image: url(chrome://browser/skin/open.svg);
+  }
+  #menu_close {
+  }
+  #menu_closeWindow {
+  }
+
+  #menu_savePage {
+    --menuitem-image: url(chrome://browser/skin/save.svg);
+  }
+  #menu_sendLink {
+    --menuitem-image: url(chrome://browser/skin/mail.svg);
+  }
+
+  #menu_printPreview {
+  }
+  #menu_print {
+    --menuitem-image: url(chrome://global/skin/icons/print.svg);
+  }
+
+  #menu_importFromAnotherBrowser {
+    --menuitem-image: url("chrome://browser/skin/import.svg");
+  }
+
+  #goOfflineMenuitem {
+  }
+  #menu_FileQuitItem {
+    --menuitem-image: url(./icons/quit.svg);
+  }
+
+  /*= menu_EditPopup =========================================================*/
+  #menu_undo {
+    --menuitem-image: url(chrome://global/skin/icons/undo.svg);
+  }
+  #menu_redo {
+  }
+
+  #menu_cut {
+    --menuitem-image: url(chrome://browser/skin/edit-cut.svg);
+  }
+  #menu_copy {
+    --menuitem-image: url(chrome://browser/skin/edit-copy.svg);
+  }
+  #menu_paste {
+    --menuitem-image: url(chrome://browser/skin/edit-paste.svg);
+  }
+  #menu_delete {
+    --menuitem-image: url(chrome://global/skin/icons/delete.svg);
+  }
+
+  #menu_selectAll {
+    --menuitem-image: url(./icons/select-all-on.svg);
+  }
+
+  #menu_find {
+    --menuitem-image: url(chrome://global/skin/icons/search-glass.svg);
+  }
+  #menu_findAgain {
+  }
+
+  #textfieldDirection-swap {
+  }
+
+  #menu_preferences{
+    --menuitem-image: url(chrome://global/skin/icons/settings.svg);
+  }
+
+  /*= menu_viewPopup =========================================================*/
+  #viewToolbarsMenu {
+    --menuitem-image: url(.icons/toolbar.svg);
+  }
+  #viewSidebarMenuMenu {
+    --menuitem-image: url("chrome://browser/skin/sidebars.svg");
+  }
+
+  #viewFullZoomMenu {
+    --menuitem-image: url(./icons/screenshot.svg);
+  }
+  #pageStyleMenu {
+    --menuitem-image: url(./icons/document-css.svg);
+  }
+  #repair-text-encoding {
+    --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
+  }
+
+  #fullScreenItem {
+    --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
+  }
+  #menu_readerModeItem {
+    --menuitem-image: url(chrome://browser/skin/reader-mode.svg);
+  }
+  #menu_showAllTabs {
+  }
+
+  #documentDirection-swap {
+    --menuitem-image: url(./icons/text-direction-horizontal-ltr.svg);
+  }
+
+  /*= goPopup ================================================================*/
+  #menu_showAllHistory {
+    --menuitem-image: url(chrome://browser/skin/history.svg);
+  }
+  #sanitizeItem {
+    --menuitem-image: url(chrome://browser/skin/forget.svg);
+  }
+
+  #sync-tabs-menuitem {
+    --menuitem-image: url("chrome://browser/skin/sync.svg");
+  }
+  #historyRestoreLastSession {
+    --menuitem-image: url(./icons/restore-session.svg);
+  }
+  #hiddenTabsMenu {
+  }
+  #historyUndoMenu{
+    --menuitem-image: url(chrome://browser/skin/tab.svg);
+  }
+  #historyUndoWindowMenu {
+    --menuitem-image: url(chrome://browser/skin/window.svg);
+  }
+
+  /*= bookmarksMenuPopup =====================================================*/
+  #bookmarksShowAll {
+    --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
+  }
+
+  #menu_bookmarkThisPage,
+  #menu_bookmarkAllTabs {
+    --menuitem-image: url("chrome://browser/skin/bookmark-hollow.svg");
+  }
+  #menu_bookmarkThisPage[data-l10n-id="menu-bookmark-edit"] {
+    --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+  }
+
+  #bookmarksToolbarFolderMenu {
+  }
+  #menu_unsortedBookmarks {
+  }
+  #menu_mobileBookmarks {
+  }
+
+  /*= menu_ToolsPopup ========================================================*/
+  #menu_openDownloads {
+    --menuitem-image: url("chrome://browser/skin/downloads/downloads.svg");
+  }
+  #menu_openAddons {
+    --menuitem-image: url(chrome://mozapps/skin/extensions/extension.svg);
+  }
+  #sync-setup {
+    --menuitem-image: url(chrome://browser/skin/fxa/avatar-empty.svg);
+  }
+  #sync-enable {
+  }
+  #sync-unverifieditem {
+  }
+  #sync-syncnowitem {
+  }
+  #sync-reauthitem {
+  }
+
+  #webDeveloperMenu {
+    --menuitem-image: url(chrome://browser/skin/developer.svg);
+  }
+  #menu_pageInfo {
+    --menuitem-image: url(./icons/document-endnote.svg);
+  }
+
+  /*= menu_HelpPopup =========================================================*/
+  #menu_openHelp {
+    --menuitem-image: url(chrome://global/skin/icons/help.svg);
+  }
+  #feedbackPage {
+    --menuitem-image: url(./icons/send.svg);
+  }
+  #helpSafeMode {
+    --menuitem-image: url(chrome://devtools/skin/images/debugging-workers.svg);
+  }
+  #troubleShooting {
+    --menuitem-image: url(chrome://global/skin/icons/more.svg);
+  }
+  #help_reportSiteIssue {
+    --menuitem-image: url(chrome://global/skin/icons/lightbulb.svg);
+  }
+  #menu_HelpPopup_reportPhishingtoolmenu {
+    --menuitem-image: url(chrome://global/skin/icons/warning.svg);
+  }
+  #menu_HelpPopup_reportPhishingErrortoolmenu {
+  }
+
+  #aboutName {
+    --menuitem-image: url(chrome://global/skin/icons/info.svg);
+  }
+
+  #helpPolicySupport {
   }
 }
