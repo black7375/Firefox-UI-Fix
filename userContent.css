@@ -274,8 +274,6 @@
       --card-outline-color: var(--grey-60);
 
       --dialog-warning-text-color: var(--red-40);
-
-      scrollbar-color: rgba(249,249,250,.4) rgba(20,20,25,.3);
     }
 
   /*= Addons.org =============================================================*/
@@ -311,8 +309,10 @@
         color: var(--in-content-text-color) !important;
       }
       .AutoSearchInput-suggestions-item:is(:active, :focus, :hover),
+      .AutoSearchInput-suggestions-item--highlighted,
       .SecondaryHero-message-link,
       .SecondaryHero-module-link,
+      .Card-contents a:not(.Button),
       .Card-footer-link a,
       .Card-shelf-footer-in-header a,
       .SearchResult-link:is(:active, :focus, :hover),
@@ -493,10 +493,12 @@
         --color-inverse-bg: var(--in-content-page-color) !important;
         --color-inverse: var(--in-content-page-background) !important;
         --color-text: var(--in-content-page-color) !important;
+        --color-moz-text: var(--in-content-page-color) !important;
+        --color-moz-heading: var(--in-content-page-color) !important;
         --color-text-light: var(--in-content-deemphasized-text) !important;
         --color-link: var(--in-content-link-color) !important;
-        --color-success: var(--green-60) !important;
-        --color-warning: var(--yellow-60) !important;
+        --color-success: var(--green-70) !important;
+        --color-warning: var(--yellow-70) !important;
         --color-error: var(--red-60) !important;
         --color-error-hover: var(--red-50) !important;
         --color-moz-heading: #fff;
@@ -553,7 +555,7 @@
       .sumo-nav--logo,
       .sumo-nav--search-button,
       .sumo-nav--toggle-button,
-      .card--icon-sm,
+      .card:not(.is-inverse) .card--icon-sm,
       .mzp-c-menu-item-icon,
       .mzp-c-menu-button-close,
       .topic-article--icon,
@@ -562,6 +564,13 @@
       }
 
       /* Others */
+      .support-callouts > .card.is-inverse  {
+        background: #20133a !important;
+      }
+      .support-callouts > .card.is-inverse :is(h1, h2, h3, h4, h5, h6, li, p) {
+        color: var(--in-content-page-color) !important;
+      }
+
       .sumo-button.secondary-button {
         border-color: none !important;
       }
@@ -610,6 +619,7 @@
       .cta-neutral:hover {
         color: var(--in-content-page-color) !important;
       }
+      #main-content.panel a,
       .links a,
       .link-blue,
       .text-blue-500 {
@@ -618,6 +628,12 @@
       .link-blue:hover {
         color: var(--in-content-link-color-hover) !important;
       }
+
+      .signed-in-email-message,
+      .verification-email-message,
+      .verification-message,
+      .verification-recovery-code-message,
+      .verification-totp-message,
       .input-row input[type="email"],
       .input-row input[type="number"],
       .input-row input[type="password"],
@@ -637,13 +653,13 @@
         background-color:  unset !important;
       }
       #main-content,
+      .modal,
       .firefox-family-services,
       .input-row input[type="email"],
       .input-row input[type="number"],
       .input-row input[type="password"],
       .input-row input[type="tel"],
       .input-row input[type="text"],
-      .password-row .show-password-label,
       header,
       .bg-white:not(nav) {
         background: var(--in-content-box-background) !important;
