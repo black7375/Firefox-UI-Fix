@@ -1702,8 +1702,8 @@
   :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #main-menubar > menu,
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #blockedPopupDontShowMessage {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
@@ -1730,8 +1730,8 @@
   }
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -2520,6 +2520,11 @@
     --menuitem-image: url(./icons/quit.svg);
   }
 
+  /* Mange Containers */
+  #menu_newUserContext menupopup menuitem:last-child {
+    --menuitem-image: url(chrome://global/skin/icons/settings.svg);
+  }
+
   /*= menu_EditPopup =========================================================*/
   #menu_undo {
     --menuitem-image: url(chrome://global/skin/icons/undo.svg);
@@ -2559,7 +2564,7 @@
 
   /*= menu_viewPopup =========================================================*/
   #viewToolbarsMenu {
-    --menuitem-image: url(.icons/toolbar.svg);
+    --menuitem-image: url(./icons/toolbar.svg);
   }
   #viewSidebarMenuMenu {
     --menuitem-image: url("chrome://browser/skin/sidebars.svg");
@@ -2588,6 +2593,22 @@
     --menuitem-image: url(./icons/text-direction-horizontal-ltr.svg);
   }
 
+  /* view-menu-popup sub menu */
+  #menu_customizeToolbars {
+    --menuitem-image: url(chrome://browser/skin/customize.svg);
+  }
+
+  /* viewFullZoomMenu sub menu */
+  #menu_zoomEnlarge {
+    --menuitem-image: url(chrome://browser/skin/add-circle-fill.svg);
+  }
+  #menu_zoomReduce {
+    --menuitem-image: url(chrome://browser/skin/subtract-circle-fill.svg);
+  }
+  #menu_zoomReset {
+    --menuitem-image: url(./icons/resize.svg);
+  }
+
   /*= goPopup ================================================================*/
   #menu_showAllHistory {
     --menuitem-image: url(chrome://browser/skin/history.svg);
@@ -2609,6 +2630,14 @@
   }
   #historyUndoWindowMenu {
     --menuitem-image: url(chrome://browser/skin/window.svg);
+  }
+
+  /* sub menu */
+  #historyUndoPopup .restoreallitem {
+    --menuitem-image: url(./icons/movetowindow-16.svg);
+  }
+  #historyUndoWindowPopup .restoreallitem {
+    --menuitem-image: url(./icons/restore-session.svg);
   }
 
   /*= bookmarksMenuPopup =====================================================*/
@@ -2655,6 +2684,37 @@
   }
   #menu_pageInfo {
     --menuitem-image: url(./icons/document-endnote.svg);
+  }
+
+  /* menuWebDeveloperPopup sub menu */
+  #enableDeveloperTools {
+  }
+  #menu_devToolbox {
+  }
+  #menu_taskManager {
+    --menuitem-image: url(./icons/performance.svg);
+  }
+  #menu_devtools_remotedebugging {
+    --menuitem-image: url(./icons/bug.svg);
+  }
+  #menu_browserToolbox {
+    --menuitem-image: url(./icons/webdeveloper.svg);
+  }
+  #menu_browserContentToolbox {
+    --menuitem-image: url(./icons/command-frames.svg);
+  }
+  #menu_browserConsole {
+    --menuitem-image: url(chrome://devtools/skin/images/command-console.svg);
+  }
+  #menu_responsiveUI {
+  }
+  #menu_eyedropper {
+  }
+  #menu_pageSource {
+    --menuitem-image: url(./icons/search-file.svg);
+  }
+  #extensionsForDevelopers {
+    --menuitem-image: url(chrome://devtools/skin/images/debugging-addons.svg);
   }
 
   /*= menu_HelpPopup =========================================================*/
