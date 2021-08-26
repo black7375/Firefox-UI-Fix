@@ -350,7 +350,8 @@
   }
 
   /* Default theme color preservation */
-  :root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]) {
+  :root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
+  :root[lwtheme-mozlightdark] menupopup:is(#goPopup, #bookmarksMenuPopup) {
     --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
     --arrowpanel-background: var(--toolbar-bgcolor, var(--in-content-button-background)) !important; /* --menu-background-color */
   }
