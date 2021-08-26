@@ -753,6 +753,32 @@
     margin: var(--bookmark-seperator-margin) !important;
   }
 
+  /*= Global Menu - Set Padding ==============================================*/
+  /* Vertical Align - Center */
+  #menubar-items {
+    -moz-box-orient: horizontal !important;
+  }
+
+  /* Height: 100% */
+  #menubar-items,
+  #main-menubar {
+    height: inherit;
+  }
+
+  /* Menubar item padding */
+  :root {
+    --global-menubar-padding: 2px;
+  }
+  :root[uidensity="compact"] {
+    --global-menubar-padding: 1px;
+  }
+  :root[uidensity="touch"] {
+    --global-menubar-padding: 4px;
+  }
+  #main-menubar > menu {
+    padding-block: var(--global-menubar-padding) !important;
+  }
+
   /*= Poup Panel - Reduce padding ============================================*/
   #protections-popup-main-header-label {
     height: unset !important; /* Original: 37.6px */
