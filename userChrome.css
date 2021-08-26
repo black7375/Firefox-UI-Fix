@@ -1693,13 +1693,15 @@
 
   /** Menu - Icons Layout *****************************************************/
   menupopup menuitem:not([type="checkbox"], [type="radio"]),
-  menupopup menu:not([type="checkbox"], [type="radio"]) {
+  menupopup menu:not([type="checkbox"], [type="radio"]),
+  #main-menubar > menu {
     -moz-appearance: none !important;  /* Linux: menulist */
   }
 
   /* Icon */
   :not(menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  #main-menubar > menu,
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #blockedPopupDontShowMessage {
@@ -1733,6 +1735,20 @@
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
+  }
+
+  /* Menubar */
+  #main-menubar > menu {
+    background-position: left var(--context-menu-background-padding-default) center !important;
+    padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
+    padding-inline-end: 3px;
+  }
+  #main-menubar > menu:first-child {
+    background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
+    padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
+  }
+  #main-menubar > menu > menupopup {
+    --menuitem-image: none; /* Prevent Image Inheritance */
   }
 
   /* Padding - Windows */
@@ -2432,6 +2448,29 @@
   }
 
   /** Global Menu *************************************************************/
+  /*= main-menubar ===========================================================*/
+  #file-menu {
+    --menuitem-image: url(./icons/mail-inbox-all.svg);
+  }
+  #edit-menu {
+    --menuitem-image: url(chrome://global/skin/icons/edit.svg);
+  }
+  #view-menu {
+    --menuitem-image: url(./icons/content-view.svg);
+  }
+  #history-menu {
+    --menuitem-image: url(chrome://browser/skin/history.svg);
+  }
+  #bookmarksMenu {
+    --menuitem-image: url(chrome://browser/skin/bookmark.svg);
+  }
+  #tools-menu {
+    --menuitem-image: url(./icons/toolbox.svg);
+  }
+  #helpMenu {
+    --menuitem-image: url(chrome://global/skin/icons/help.svg);
+  }
+
   /*= menu_FilePopup =========================================================*/
   #menu_newNavigatorTab {
     --menuitem-image: url(chrome://browser/skin/new-tab.svg);
