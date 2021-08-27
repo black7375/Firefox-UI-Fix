@@ -1730,7 +1730,7 @@
   }
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
@@ -1771,8 +1771,8 @@
     }
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     #blockedPopupDontShowMessage {
       background-position: left var(--context-menu-background-padding) center !important;
       padding-inline-start: 0 !important;
@@ -1786,8 +1786,8 @@
 
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     #blockedPopupDontShowMessage {
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
