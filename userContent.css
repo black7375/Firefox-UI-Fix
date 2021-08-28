@@ -621,7 +621,12 @@
       .mzp-c-menu-item-icon,
       .mzp-c-menu-button-close,
       .topic-article--icon,
-      .card--topic > .card--icon {
+      .card--topic > .card--icon,
+      .mzp-c-details .is-summary button::before,
+      details .is-summary button::before,
+      summary::before,
+      .icon-button > button,
+      .search-button {
         filter: invert(95%) !important;
       }
 
