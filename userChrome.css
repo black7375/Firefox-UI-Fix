@@ -754,15 +754,9 @@
   }
 
   /*= Global Menu - Set Padding ==============================================*/
-  /* Vertical Align - Center */
+  /* Vertical Align - Center & Height: 100%  */
   #menubar-items {
-    -moz-box-orient: horizontal !important;
-  }
-
-  /* Height: 100% */
-  #menubar-items,
-  #main-menubar {
-    height: inherit;
+    display: flex !important;
   }
 
   /* Menubar item padding */
