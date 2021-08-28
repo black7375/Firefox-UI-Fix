@@ -945,9 +945,6 @@
   .tabbrowser-tab::before {
     margin-inline-start: -1px !important;
   }
-  .tabbrowser-tab[first-visible-tab]::before {
-    border-right: var(--tab-divide-line) !important;
-  }
 
   .tabbrowser-tab[first-visible-tab]::before,
   :root[tabsintitlebar]:not([extradragspace]) #toolbar-menubar[autohide="true"] + #TabsToolbar .tabbrowser-tab::after,
