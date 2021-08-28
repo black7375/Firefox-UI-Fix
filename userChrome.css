@@ -1336,7 +1336,20 @@
     list-style-image: url(./icons/folder.svg) !important;
   }
 
-  /*= Default Icon - Overide ===================================================*/
+  /*= Other Folder - Inbox Icon ==============================================*/
+  /* on Menus */
+  #BMB_bookmarksPopup #BMB_unsortedBookmarks > .menu-iconic-left > .menu-iconic-icon,
+  #bookmarksMenuPopup #menu_unsortedBookmarks  > .menu-iconic-left > .menu-iconic-icon,
+  /* Other Bookmarks -- in Sidebar, Library, Add/Edit Bookmark dialog */
+  :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, OrganizerQuery_UnfiledBookmarks),
+  :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, queryFolder_unfiled_____),
+  #editBMPanel_unfiledRootItem > .menu-iconic-left, #editBMPanel_folderMenuList[selectedIndex="2"] > .menulist-label-box > .menulist-icon,
+  #editBMPanel_folderMenuList[selectedGuid="unfiled_____"],
+  #OtherBookmarksPopup + .toolbarbutton-icon {
+    list-style-image: url(./icons/mail-inbox-all-big.svg) !important;
+  }
+
+  /*= Default Icon - Overide =================================================*/
   /* https://github.com/mozilla/gecko-dev/blob/master/browser/themes/shared/places/tree-icons.css */
 
   /* Query */
