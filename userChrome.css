@@ -825,6 +825,12 @@
     padding-block: var(--global-menubar-padding) !important;
   }
 
+  /* Reduce items */
+  #main-menubar > menu > menupopup menuitem,
+  #main-menubar > menu > menupopup menu {
+    padding-block: var(--bookmark-menu-padding) !important;
+  }
+
   /*= Poup Panel - Reduce padding ============================================*/
   #protections-popup-main-header-label {
     height: unset !important; /* Original: 37.6px */
