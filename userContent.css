@@ -16,6 +16,68 @@
       width:  100% !important; /* Original: 48px */
       height: 100% !important; /* Original: 48px */
     }
+
+    /** Activity Stream - Home Search Bar looks like proton *******************/
+    /* Dropdown Colors */
+    #root {
+      --newtab-search-background-color: rgba(255, 255, 255, 1); /* Same as light theme's --panel-background */
+
+      /* Set search dropdown background */
+      --newtab-search-dropdown-header-color: var(--newtab-search-background-color) !important;
+      --newtab-search-dropdown-color: var(--newtab-search-background-color) !important;
+      --newtab-element-hover-color: color-mix(in srgb, currentColor 9%, transparent) !important;
+    }
+
+    @media (-moz-toolbar-prefers-color-scheme: dark) {
+      #root {
+        /* Default Dark Mode */
+        --newtab-search-background-color: rgba(66, 65, 77, 1); /* Same as dark theme's --panel-background */
+      }
+    }
+    .activity-stream[lwt-sidebar]:not([style*="--newtab-background-color: rgba(43, 42, 51, 1);"]) #root {
+      /* Light weight theme */
+      --newtab-search-background-color: var(--lwt-sidebar-background-color);
+    }
+
+    /* Padding */
+    #searchSuggestionTable {
+      border-radius: 4px !important;
+      -moz-window-shadow: cliprounded;
+    }
+
+    .contentSearchSuggestionTable .contentSearchOneOffItem {
+      width: 32px !important;
+      height: 32px !important;
+
+      /* Margin */
+      margin-block: 5px !important;
+      margin-inline-start: 5px !important;
+      margin-inline-end: 8px !important;
+
+      /* Border */
+      border-radius: 4px !important;
+      border-image: none !important;      /* Original: linear-gradient(transparent 18%, var(--newtab-border-secondary-color) 18%, var(--newtab-border-secondary-color) 82%, transparent 82%) 1; */
+      border-inline-end: none !important; /* Original: 1px solid; */
+    }
+
+    #contentSearchSettingsButton::before {
+      content: url(chrome://global/skin/icons/settings.svg) !important;
+      display: -moz-inline-box;
+
+      /* Color */
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+
+      /* Align */
+      margin-inline-end: 5px;
+      vertical-align: -25%;
+    }
+
+    /* Pointer */
+    .contentSearchSuggestionTable .contentSearchOneOffItem,
+    #contentSearchSettingsButton {
+      cursor: pointer;
+    }
   }
 
   /** Error Page - Restore illustrations **************************************/
@@ -559,7 +621,12 @@
       .mzp-c-menu-item-icon,
       .mzp-c-menu-button-close,
       .topic-article--icon,
-      .card--topic > .card--icon {
+      .card--topic > .card--icon,
+      .mzp-c-details .is-summary button::before,
+      details .is-summary button::before,
+      summary::before,
+      .icon-button > button,
+      .search-button {
         filter: invert(95%) !important;
       }
 
@@ -583,7 +650,7 @@
 
       @media screen and (min-width: 768px) {
         .mzp-c-menu-panel {
-          box-shadow: box-shadow: 0 16px 16px -16px rgba(255,255,255,.3) !important;
+          box-shadow: 0 16px 16px -16px rgba(255,255,255,.3) !important;
         }
       }
       .card--product,
