@@ -67,5 +67,5 @@ user_pref("mousewheel.min_line_scroll_amount",                  0);            /
 user_pref("mousewheel.system_scroll_override.enabled",       true);            ///     true <- 2. If scroll too fast, set to false
 user_pref("mousewheel.system_scroll_override_on_root_content.enabled", false); ///     true
 user_pref("mousewheel.transaction.timeout",                  1500);            ///     1500
-user_pref("toolkit.scrollbox.horizontalScrollDistance",         3);            ///        5
+user_pref("toolkit.scrollbox.horizontalScrollDistance",         4);            ///        5
 user_pref("toolkit.scrollbox.verticalScrollDistance",           3);            ///        3
