@@ -4,7 +4,8 @@
     /* At DarkMode, Color */
     body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
     body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
-    body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"] {
+    body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"],
+    body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"] {
       /* inner */
       --newtab-focus-border: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
       --newtab-focus-border-selected: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF */
@@ -273,8 +274,6 @@
       --card-outline-color: var(--grey-60);
 
       --dialog-warning-text-color: var(--red-40);
-
-      scrollbar-color: rgba(249,249,250,.4) rgba(20,20,25,.3);
     }
 
   /*= Addons.org =============================================================*/
@@ -310,8 +309,10 @@
         color: var(--in-content-text-color) !important;
       }
       .AutoSearchInput-suggestions-item:is(:active, :focus, :hover),
+      .AutoSearchInput-suggestions-item--highlighted,
       .SecondaryHero-message-link,
       .SecondaryHero-module-link,
+      .Card-contents a:not(.Button),
       .Card-footer-link a,
       .Card-shelf-footer-in-header a,
       .SearchResult-link:is(:active, :focus, :hover),
@@ -378,7 +379,8 @@
       .Select,
       .Button--neutral,
       .Button--neutral:link,
-      .Notice-button {
+      .Notice-button,
+      .AMInstallButton .AMInstallButton-loading-button {
         background-color: var(--in-content-button-background) !important;
       }
       .Button--neutral.Button--micro:not(.Button--disabled):hover,
@@ -411,7 +413,7 @@
       .blogpost-nav * {
         background: var(--in-content-table-background) !important;
       }
-      
+
       .Paginate .Button.Paginate-item:is(:active, :hover) {
         background: var(--in-content-button-background-hover) !important;
       }
@@ -440,11 +442,12 @@
       .Notice-icon {
         filter: invert(65%) !important;
       }
+      .PermissionsCard-learn-more .Icon,
+      .Permission .Icon {
+        filter: invert(100%) !important;
+      }
       .Icon-heart {
         filter:  brightness(0) !important;
-      }
-      .Permission .Icon {
-        filter:  grayscale(100%) brightness(30) !important;
       }
 
       /* Others */
@@ -490,10 +493,12 @@
         --color-inverse-bg: var(--in-content-page-color) !important;
         --color-inverse: var(--in-content-page-background) !important;
         --color-text: var(--in-content-page-color) !important;
+        --color-moz-text: var(--in-content-page-color) !important;
+        --color-moz-heading: var(--in-content-page-color) !important;
         --color-text-light: var(--in-content-deemphasized-text) !important;
         --color-link: var(--in-content-link-color) !important;
-        --color-success: var(--green-60) !important;
-        --color-warning: var(--yellow-60) !important;
+        --color-success: var(--green-70) !important;
+        --color-warning: var(--yellow-70) !important;
         --color-error: var(--red-60) !important;
         --color-error-hover: var(--red-50) !important;
         --color-moz-heading: #fff;
@@ -550,7 +555,7 @@
       .sumo-nav--logo,
       .sumo-nav--search-button,
       .sumo-nav--toggle-button,
-      .card--icon-sm,
+      .card:not(.is-inverse) .card--icon-sm,
       .mzp-c-menu-item-icon,
       .mzp-c-menu-button-close,
       .topic-article--icon,
@@ -559,6 +564,13 @@
       }
 
       /* Others */
+      .support-callouts > .card.is-inverse  {
+        background: #20133a !important;
+      }
+      .support-callouts > .card.is-inverse :is(h1, h2, h3, h4, h5, h6, li, p) {
+        color: var(--in-content-page-color) !important;
+      }
+
       .sumo-button.secondary-button {
         border-color: none !important;
       }
@@ -607,6 +619,7 @@
       .cta-neutral:hover {
         color: var(--in-content-page-color) !important;
       }
+      #main-content.panel a,
       .links a,
       .link-blue,
       .text-blue-500 {
@@ -615,6 +628,12 @@
       .link-blue:hover {
         color: var(--in-content-link-color-hover) !important;
       }
+
+      .signed-in-email-message,
+      .verification-email-message,
+      .verification-message,
+      .verification-recovery-code-message,
+      .verification-totp-message,
       .input-row input[type="email"],
       .input-row input[type="number"],
       .input-row input[type="password"],
@@ -634,13 +653,13 @@
         background-color:  unset !important;
       }
       #main-content,
+      .modal,
       .firefox-family-services,
       .input-row input[type="email"],
       .input-row input[type="number"],
       .input-row input[type="password"],
       .input-row input[type="tel"],
       .input-row input[type="text"],
-      .password-row .show-password-label,
       header,
       .bg-white:not(nav) {
         background: var(--in-content-box-background) !important;
@@ -726,7 +745,7 @@
                  url-prefix("about:checkerboard"),
                  url-prefix("about:sync-log"),
                  url-prefix("about:memory"),
-                 url-prefix("file://") {
+                 regexp("^[file:///].*[^(html|svg|pdf|json)]$") {
     /* Base */
     html,
     body {
@@ -954,7 +973,7 @@
 
   /*= Directory View =========================================================*/
   @-moz-document url-prefix("about:sync-log"),
-                 url-prefix("file://") {
+                 regexp("^[file:///].*[^(html|svg|pdf|json)]$") {
     body {
       background-color: var(--in-content-box-background) !important;
     }
