@@ -1260,14 +1260,8 @@
     display: none;
   }
 
-  .tab-icon-image, .tab-sharing-icon-overlay {
-    box-sizing: content-box;
-    padding: 3px 0;
-
-    border-bottom: 2px solid var(--identity-icon-color);
-  }
-
-  .tabbrowser-tab:not([pinned]) .tab-content::before {
+  .tabbrowser-tab:not([pinned]) .tab-content::before,
+  .tabbrowser-tab[pinned][busy] .tab-content::before {
     /* Box Model */
     content: '';
     display: block;
@@ -1291,6 +1285,11 @@
     padding: 3px 0;
 
     border-bottom: 2px solid var(--identity-icon-color);
+  }
+
+  /* Pinned Tab - Busy */
+  .tabbrowser-tab[pinned][busy] .tab-content::before {
+    width: 16px;
   }
 
   /* Pinned Tab - Titlechanged Indicator override */
