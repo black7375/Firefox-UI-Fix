@@ -7,13 +7,18 @@
     body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"],
     body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"] {
       /* inner */
-      --newtab-focus-border: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
+      --newtab-focus-border: rgba(
+        0,
+        221,
+        255,
+        0.5
+      ) !important; /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
       --newtab-focus-border-selected: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF */
     }
 
     /** Activity Stream - Web Site Icon: full size ****************************/
     .top-site-outer .tile .icon-wrapper {
-      width:  100% !important; /* Original: 48px */
+      width: 100% !important; /* Original: 48px */
       height: 100% !important; /* Original: 48px */
     }
 
@@ -56,7 +61,7 @@
 
       /* Border */
       border-radius: 4px !important;
-      border-image: none !important;      /* Original: linear-gradient(transparent 18%, var(--newtab-border-secondary-color) 18%, var(--newtab-border-secondary-color) 82%, transparent 82%) 1; */
+      border-image: none !important; /* Original: linear-gradient(transparent 18%, var(--newtab-border-secondary-color) 18%, var(--newtab-border-secondary-color) 82%, transparent 82%) 1; */
       border-inline-end: none !important; /* Original: 1px solid; */
     }
 
@@ -83,9 +88,11 @@
   /** Error Page - Restore illustrations **************************************/
   @-moz-document url-prefix("about:neterror"),
   url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"),
-  url("about:sessionrestore"),  url(chrome://browser/content/aboutSessionRestore.xhtml) {
+  url("about:sessionrestore"),  url(chrome://browser/content/aboutSessionRestore.xhtml)
+  {
     /* Illustrations Position */
-    #errorPageContainer, .description-wrapper {
+    #errorPageContainer,
+    .description-wrapper {
       min-height: 300px;
       background-position: left center;
       background-repeat: no-repeat;
@@ -118,7 +125,8 @@
   url-prefix("about:neterror?e=netTimeout"),
   url-prefix("about:neterror?e=netReset"),
   url-prefix("about:neterror?e=netOffline"),
-  url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml") {
+  url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
+  {
     #errorPageContainer {
       background-image: url("./icons/error-connection-failure.svg");
     }
@@ -141,7 +149,8 @@
     }
   }
 
-  @-moz-document url("about:sessionrestore"), url(chrome://browser/content/aboutSessionRestore.xhtml) {
+  @-moz-document url("about:sessionrestore"), url(chrome://browser/content/aboutSessionRestore.xhtml)
+  {
     .description-wrapper {
       background-image: url("./icons/error-session-restore.svg");
     }
@@ -150,8 +159,7 @@
   @-moz-document url-prefix("about:neterror?e=fileNotFound") {
     @media (min-width: 970px) {
       .title {
-        background-image:
-          url("chrome://global/skin/icons/info.svg") !important;
+        background-image: url("chrome://global/skin/icons/info.svg") !important;
       }
     }
 
@@ -166,14 +174,16 @@
       }
     }
   }
-  @-moz-document url("about:robots"), url("chrome://browser/content/aboutRobots.xhtml") {
+  @-moz-document url("about:robots"), url("chrome://browser/content/aboutRobots.xhtml")
+  {
     @media (min-width: 970px) {
       .title {
         background-image: url("chrome://browser/content/aboutRobots-icon.png") !important;
       }
     }
   }
-  @-moz-document url("about:welcomeBack"), url("chrome://browser/content/aboutWelcomeBack.xhtml") {
+  @-moz-document url("about:welcomeBack"), url("chrome://browser/content/aboutWelcomeBack.xhtml")
+  {
     @media (min-width: 970px) {
       .title {
         background-image: url("./icons/welcome-back.svg") !important;
@@ -198,7 +208,7 @@
     --in-content-item-hover-text: var(--in-content-page-color);
     --in-content-item-selected: var(--in-content-primary-button-background);
     --in-content-item-selected-text: var(--in-content-primary-button-text-color);
-    --in-content-icon-color: rgb(91,91,102);
+    --in-content-icon-color: rgb(91, 91, 102);
     --in-content-accent-color: #0a84ff;
     --in-content-accent-color-active: #0060df;
     --in-content-border-hover: var(--grey-90-a50);
@@ -212,10 +222,10 @@
     /* button background states are also used for checkboxes and radiobuttons */
     --in-content-button-text-color: var(--in-content-text-color);
     --in-content-button-text-color-hover: var(--in-content-text-color);
-    --in-content-button-background: rgba(207,207,216,.33);
-    --in-content-button-background-hover: rgba(207,207,216,.66);
-    --in-content-button-background-active: rgb(207,207,216);
-    --in-content-primary-button-text-color: rgb(251,251,254);
+    --in-content-button-background: rgba(207, 207, 216, 0.33);
+    --in-content-button-background-hover: rgba(207, 207, 216, 0.66);
+    --in-content-button-background-active: rgb(207, 207, 216);
+    --in-content-primary-button-text-color: rgb(251, 251, 254);
     --in-content-primary-button-text-color-hover: var(--in-content-primary-button-text-color);
     --in-content-primary-button-background: #0061e0;
     --in-content-primary-button-background-hover: #0250bb;
@@ -293,36 +303,36 @@
     :host,
     :root {
       /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
-      --in-content-page-background: rgb(28,27,34);
-      --in-content-page-color: rgb(251,251,254);
-      --in-content-deemphasized-text: rgb(191,191,201);
+      --in-content-page-background: rgb(28, 27, 34);
+      --in-content-page-color: rgb(251, 251, 254);
+      --in-content-deemphasized-text: rgb(191, 191, 201);
 
       --in-content-box-background: rgb(35, 34, 43);
-      --in-content-box-background-odd: rgba(249,249,250,0.05);
-      --in-content-box-info-background: rgba(249,249,250,0.15);
+      --in-content-box-background-odd: rgba(249, 249, 250, 0.05);
+      --in-content-box-info-background: rgba(249, 249, 250, 0.15);
 
-      --in-content-border-color: rgba(249,249,250,0.2);
-      --in-content-border-hover: rgba(249,249,250,0.3);
-      --in-content-border-invalid: rgb(255,132,139);
+      --in-content-border-color: rgba(249, 249, 250, 0.2);
+      --in-content-border-hover: rgba(249, 249, 250, 0.3);
+      --in-content-border-invalid: rgb(255, 132, 139);
 
-      --in-content-error-text-color: #FF9AA2;
+      --in-content-error-text-color: #ff9aa2;
 
-      --in-content-button-background: rgb(43,42,51);
-      --in-content-button-background-hover: rgb(82,82,94);
-      --in-content-button-background-active: rgb(91,91,102);
-      --in-content-icon-color: rgb(251,251,254);
+      --in-content-button-background: rgb(43, 42, 51);
+      --in-content-button-background-hover: rgb(82, 82, 94);
+      --in-content-button-background-active: rgb(91, 91, 102);
+      --in-content-icon-color: rgb(251, 251, 254);
 
-      --in-content-primary-button-text-color: rgb(43,42,51);
-      --in-content-primary-button-background: rgb(0,221,255);
-      --in-content-primary-button-background-hover: rgb(128,235,255);
-      --in-content-primary-button-background-active: rgb(170,242,255);
+      --in-content-primary-button-text-color: rgb(43, 42, 51);
+      --in-content-primary-button-background: rgb(0, 221, 255);
+      --in-content-primary-button-background-hover: rgb(128, 235, 255);
+      --in-content-primary-button-background-active: rgb(170, 242, 255);
 
       --in-content-danger-button-background: #ff848b;
       --in-content-danger-button-background-hover: #ffbdc5;
       --in-content-danger-button-background-active: #ffdfe7;
 
       --in-content-table-background: rgb(35, 34, 43);
-      --in-content-table-border-dark-color: rgba(249,249,250,0.2);
+      --in-content-table-border-dark-color: rgba(249, 249, 250, 0.2);
       --in-content-table-header-background: rgb(5, 64, 150);
       --in-content-table-header-color: var(--in-content-page-color);
 
@@ -338,8 +348,9 @@
       --dialog-warning-text-color: var(--red-40);
     }
 
-  /*= Addons.org =============================================================*/
-    @-moz-document url-prefix("https://addons.mozilla.org") {
+    /*= Addons.org ===========================================================*/
+    @-moz-document url-prefix("https://addons.mozilla.org")
+    {
       /* Basic */
       .Page-content,
       .SecondaryHero,
@@ -430,7 +441,7 @@
         color: var(--in-content-deemphasized-text) !important;
       }
       .PromotedBadge-label--recommended {
-        color: color-mix(in srgb, #712b00 15%,  #ff9400) !important;
+        color: color-mix(in srgb, #712b00 15%, #ff9400) !important;
       }
 
       /* Background */
@@ -455,7 +466,7 @@
         background: var(--in-content-primary-button-background-hover) !important;
       }
       .ShowMoreCard-contents::after {
-        background: linear-gradient(hsla(0,0%,100%,0), var(--in-content-table-background)) !important;
+        background: linear-gradient(hsla(0, 0%, 100%, 0), var(--in-content-table-background)) !important;
       }
       .AutoSearchInput-query,
       .AutoSearchInput-suggestions-list,
@@ -481,8 +492,12 @@
       }
       .Notice-generic,
       .Notice-genericWarning {
-		    background: color-mix(in srgb, var(--in-content-page-background) 40%, var(--in-content-table-background)) !important;
-	    }
+        background: color-mix(
+          in srgb,
+          var(--in-content-page-background) 40%,
+          var(--in-content-table-background)
+        ) !important;
+      }
 
       .LanguageTools-header-row {
         color: var(--in-content-table-header-color) !important;
@@ -494,7 +509,7 @@
 
       /* Fill */
       .Icon-arrow-blue.SearchSuggestion-icon-arrow {
-        filter: hue-rotate(330deg) brightness(1.3)  !important;
+        filter: hue-rotate(330deg) brightness(1.3) !important;
       }
       .SecondaryHero-module-icon {
         -moz-context-properties: fill, fill-opacity !important;
@@ -509,12 +524,12 @@
         filter: invert(100%) !important;
       }
       .Icon-heart {
-        filter:  brightness(0) !important;
+        filter: brightness(0) !important;
       }
 
       /* Others */
       .DropdownMenu-items {
-        box-shadow:  0 0 2px var(--in-content-border-color) !important;
+        box-shadow: 0 0 2px var(--in-content-border-color) !important;
       }
 
       .AutoSearchInput-query {
@@ -535,18 +550,19 @@
         border-color: var(--in-content-link-color) !important;
       }
 
-      .blogpost-nav-arrow-left  .cls-1,
+      .blogpost-nav-arrow-left .cls-1,
       .blogpost-nav-arrow-right .cls-1 {
-        stroke: var(--in-content-text-color)  !important;
+        stroke: var(--in-content-text-color) !important;
       }
     }
 
-  /*= Support.org ============================================================*/
-    @-moz-document url-prefix("https://support.mozilla.org") {
+    /*= Support.org ==========================================================*/
+    @-moz-document url-prefix("https://support.mozilla.org")
+    {
       /* Basic */
       :root {
         --color-blue-06: var(--in-content-link-color) !important;
-        --color-blue-07: var(--in-content-link-color-hover)  !important;
+        --color-blue-07: var(--in-content-link-color-hover) !important;
 
         --page-bg: var(--in-content-page-background) !important;
         --color-white: var(--in-content-page-background) !important;
@@ -565,7 +581,8 @@
         --color-error-hover: var(--red-50) !important;
         --color-moz-heading: #fff;
         --color-moz-inverse-bg: var(red) !important;
-        --focus-shadow: 0 0 0 4px color-mix(in srgb, var(--in-content-primary-button-background) 30%, transparent),0 0 0 2px var(--in-content-primary-button-background-active);
+        --focus-shadow: 0 0 0 4px color-mix(in srgb, var(--in-content-primary-button-background) 30%, transparent),
+          0 0 0 2px var(--in-content-primary-button-background-active);
       }
       body,
       #main-content,
@@ -583,7 +600,7 @@
       .mzp-c-menu-item .mzp-c-menu-item-list a,
       #doc-content .menu,
       .document--content .menu,
-      .forum--entry-content .menu{
+      .forum--entry-content .menu {
         color: var(--in-content-page-color) !important;
       }
 
@@ -604,12 +621,13 @@
       .document--content .button,
       .document--content .key,
       .forum--entry-content .button,
-      .forum--entry-content .key{
+      .forum--entry-content .key {
         color: var(--in-content-deemphasized-text) !important;
       }
 
       /* Background */
-      .sidebar-nav.topics, .sidebar-nav.topics > li {
+      .sidebar-nav.topics,
+      .sidebar-nav.topics > li {
         background: var(--in-content-page-background) !important;
       }
 
@@ -631,7 +649,7 @@
       }
 
       /* Others */
-      .support-callouts > .card.is-inverse  {
+      .support-callouts > .card.is-inverse {
         background: #20133a !important;
       }
       .support-callouts > .card.is-inverse :is(h1, h2, h3, h4, h5, h6, li, p) {
@@ -650,20 +668,20 @@
 
       @media screen and (min-width: 768px) {
         .mzp-c-menu-panel {
-          box-shadow: 0 16px 16px -16px rgba(255,255,255,.3) !important;
+          box-shadow: 0 16px 16px -16px rgba(255, 255, 255, 0.3) !important;
         }
       }
       .card--product,
       .card--topic,
       .card--article {
-        box-shadow: 0 5px 10px -3px rgba(249, 249, 250, .12),
-                    0 3px 16px 2px rgba(91, 91, 102, .12),
-                    0 8px 12px 1px rgba(82, 82, 94, .04) !important;
+        box-shadow: 0 5px 10px -3px rgba(249, 249, 250, 0.12), 0 3px 16px 2px rgba(91, 91, 102, 0.12),
+          0 8px 12px 1px rgba(82, 82, 94, 0.04) !important;
       }
     }
 
-  /*= Accounts.com ===========================================================*/
-    @-moz-document url-prefix("https://accounts.firefox.com") {
+    /*= Accounts.com ===========================================================*/
+    @-moz-document url-prefix("https://accounts.firefox.com")
+    {
       /* Basic */
       body {
         color: var(--in-content-page-color) !important;
@@ -673,7 +691,8 @@
       .button[type="submit"]:not(.secondary-button),
       .settings-button.primary-button,
       .settings-button[type="submit"]:not(.secondary-button),
-      button.primary-button, button[type="submit"]:not(.secondary-button) {
+      button.primary-button,
+      button[type="submit"]:not(.secondary-button) {
         color: var(--in-content-primary-button-text-color) !important;
         background: var(--in-content-primary-button-background) !important;
       }
@@ -714,10 +733,9 @@
         color: var(--in-content-deemphasized-text) !important;
       }
 
-
       /* Background */
       .password-row .show-password-label {
-        background-color:  unset !important;
+        background-color: unset !important;
       }
       #main-content,
       .modal,
@@ -769,7 +787,7 @@
         filter: brightness(15) !important;
       }
       button.relative,
-      #fxa-settings nav svg{
+      #fxa-settings nav svg {
         filter: brightness(2) !important;
       }
 
@@ -779,8 +797,7 @@
       .input-row input[type="password"],
       .input-row input[type="tel"],
       .input-row input[type="text"],
-      .unit-row-hr
-      .border-grey-100 {
+      .unit-row-hr .border-grey-100 {
         border-color: var(--in-content-border-color) !important;
       }
       .input-row input[type="email"]:hover,
@@ -791,9 +808,8 @@
         border-color: var(--in-content-border-hover) !important;
       }
       #main-content {
-        box-shadow: 0 12px 18px 2px rgba(249, 249, 250, .12) ,
-                    0 6px 22px 4px rgba(91, 91, 102, .12),
-                    0 6px 10px -4px rgba(82, 82, 94, .04) !important;
+        box-shadow: 0 12px 18px 2px rgba(249, 249, 250, 0.12), 0 6px 22px 4px rgba(91, 91, 102, 0.12),
+          0 6px 10px -4px rgba(82, 82, 94, 0.04) !important;
       }
       .input-row input[type="email"]:focus,
       .input-row input[type="number"]:focus,
@@ -812,7 +828,8 @@
                  url-prefix("about:checkerboard"),
                  url-prefix("about:sync-log"),
                  url-prefix("about:memory"),
-                 regexp("^[file:///].*[^(html|svg|pdf|json)]$") {
+                 regexp("^[file:///].*[^(html|svg|pdf|json)]$")
+  {
     /* Base */
     html,
     body {
@@ -944,7 +961,7 @@
     input[type="checkbox"] {
       appearance: none !important;
       height: 16px !important;
-      width:  16px !important;
+      width: 16px !important;
       border: 1px solid var(--checkbox-border-color) !important;
       background-color: var(--checkbox-unchecked-bgcolor) !important;
       border-radius: 2px !important;
@@ -1029,7 +1046,8 @@
   }
   @-moz-document url-prefix("about:cache"),
                  url-prefix("about:checkerboard") {
-    th, td {
+    th,
+    td {
       border: 1px solid var(--in-content-border-color) !important;
     }
     th {
@@ -1040,7 +1058,8 @@
 
   /*= Directory View =========================================================*/
   @-moz-document url-prefix("about:sync-log"),
-                 regexp("^[file:///].*[^(html|svg|pdf|json)]$") {
+                 regexp("^[file:///].*[^(html|svg|pdf|json)]$")
+  {
     body {
       background-color: var(--in-content-box-background) !important;
     }
@@ -1066,7 +1085,8 @@
       padding: 0 !important;
     }
 
-    th, td {
+    th,
+    td {
       padding: 4px !important;
       text-align: match-parent !important;
     }
