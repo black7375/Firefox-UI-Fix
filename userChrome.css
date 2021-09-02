@@ -2207,14 +2207,14 @@
     /* Bookmark Popup - Iconic menu */
     #BMB_bookmarksPopup .menu-iconic-text,
     #PersonalToolbar menupopup[placespopup="true"] .bookmark-item .menu-iconic-text {
-      padding-inline-start: 3px !important;
+      padding-inline-start: 1px !important;
     }
     /* Bookmark Popup - None icon menu */
     menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 3px) !important;
+      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 1px) !important;
     }
   }
 
