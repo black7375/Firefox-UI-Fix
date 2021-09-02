@@ -2218,6 +2218,12 @@
     }
   }
 
+  /* Empty Menu */
+  menupopup menupopup[emptyplacesresult] .menu-text,
+  #PersonalToolbar menupopup[emptyplacesresult] .menu-text {
+    margin-inline-start: 0 !important;
+  }
+
   /** Context Menu - Icons ****************************************************/
   /*= tabContextMenu =========================================================*/
   #context_openANewTab {
