@@ -2154,7 +2154,14 @@
     }
   }
 
-  /* Padding Mac */
+  /* Padding - Linux */
+  @media (-moz-gtk-csd-available) {
+    :root {
+      --context-menu-background-padding-default: 6px;
+    }
+  }
+
+  /* Padding - Mac */
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root {
       --context-menu-background-padding-default: 10px;
