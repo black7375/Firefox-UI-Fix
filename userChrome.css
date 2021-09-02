@@ -1868,44 +1868,54 @@
     list-style-image: url("chrome://browser/skin/customize.svg");
   }
 
-  #appmenu-developer-tools-view .subviewbutton:nth-child(1) {
-    /* Web Developer Tools */
+  /* Web Developer Tools */
+  #appmenu-developer-tools-view .subviewbutton:nth-child(1),
+  #PanelUI-developer-tools-view .subviewbutton:nth-child(1) {
     list-style-image: url("chrome://browser/skin/developer.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-child(2) {
-    /* Task Manager */
+  /* Task Manager */
+  #appmenu-developer-tools-view .subviewbutton:nth-child(2),
+  #PanelUI-developer-tools-view .subviewbutton:nth-child(2) {
     list-style-image: url("./icons/performance.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-child(3) {
-    /* Remote Debugging - Edge bug.svg */
+  /* Remote Debugging - Edge bug.svg */
+  #appmenu-developer-tools-view .subviewbutton:nth-child(3),
+  #PanelUI-developer-tools-view .subviewbutton:nth-child(3) {
     list-style-image: url("./icons/bug.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-child(4) {
-    /* Browser Toolbox - Edge webdeveloper.svg */
+  /* Browser Toolbox - Edge webdeveloper.svg */
+  #appmenu-developer-tools-view .subviewbutton:nth-child(4),
+  #PanelUI-developer-tools-view .subviewbutton:nth-child(4) {
     list-style-image: url("./icons/webdeveloper.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-child(5) {
-    /* Browser Content Toolbaox -  */
+  /* Browser Content Toolbaox -  */
+  #appmenu-developer-tools-view .subviewbutton:nth-child(5),
+  #PanelUI-developer-tools-view .subviewbutton:nth-child(5) {
     list-style-image: url("./icons/command-frames.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-last-child(5) {
-    /* Browser Console */
+  /* Browser Console */
+  #appmenu-developer-tools-view .subviewbutton:nth-last-child(5),
+  #PanelUI-developer-tools-view .subviewbutton:nth-last-child(5) {
     list-style-image: url("chrome://devtools/skin/images/command-console.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-last-child(4) {
-    /* Responsive Design Mode */
+  /* Responsive Design Mode */
+  #appmenu-developer-tools-view .subviewbutton:nth-last-child(4),
+  #PanelUI-developer-tools-view .subviewbutton:nth-last-child(4) {
     list-style-image: url("./icons/command-responsivemode.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-last-child(3) {
-    /* Eyedropper */
+  /* Eyedropper */
+  #appmenu-developer-tools-view .subviewbutton:nth-last-child(3),
+  #PanelUI-developer-tools-view .subviewbutton:nth-last-child(3) {
     list-style-image: url("chrome://devtools/skin/images/command-eyedropper.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-last-child(2) {
-    /* Page Source - Edge file-search.svg */
+  /* Page Source - Edge file-search.svg */
+  #appmenu-developer-tools-view .subviewbutton:nth-last-child(2),
+  #PanelUI-developer-tools-view .subviewbutton:nth-last-child(2) {
     list-style-image: url("./icons/search-file.svg");
   }
-  #appmenu-developer-tools-view .subviewbutton:nth-last-child(1) {
-    /* Extensions for Devel */
+  /* Extensions for Devel */
+  #appmenu-developer-tools-view .subviewbutton:nth-last-child(1),
+  #PanelUI-developer-tools-view .subviewbutton:nth-last-child(1) {
     list-style-image: url("chrome://devtools/skin/images/debugging-addons.svg");
   }
   #appmenu-developer-tools-view .subviewbutton:last-child {
@@ -2550,7 +2560,7 @@
     --menuitem-image: url("chrome://devtools/skin/images/tool-accessibility.svg");
   }
   #context-inspect {
-    --menuitem-image: url("chrome://devtools/skin/images/command-pick.sv"g);
+    --menuitem-image: url("chrome://devtools/skin/images/command-pick.svg");
   }
 
   #context-media-eme-learnmore {
