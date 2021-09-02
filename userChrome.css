@@ -2192,6 +2192,29 @@
     }
   }
 
+  /*= Bookmark Menu - Layout =================================================*/
+  /* #goPoup, #bookmarksMenuPopup: looks like global menu
+   * #BMB_bookmarksPopup: looks like arrow panel
+   */
+
+  /* Linux */
+  @media (-moz-gtk-csd-available) {
+    /* Global Menu */
+    menupopup:is(#goPopup, #bookmarksMenuPopup) .bookmark-item {
+      padding-inline-start: var(--context-menu-background-padding) !important;
+    }
+
+    /* Bookmark Popup - Iconic menu */
+    #BMB_bookmarksPopup .menu-iconic-text {
+      padding-inline-start: 3px !important;
+    }
+    /* Bookmark Popup - None icon menu */
+    menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+    menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
+      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 3px) !important;
+    }
+  }
+
   /** Context Menu - Icons ****************************************************/
   /*= tabContextMenu =========================================================*/
   #context_openANewTab {
