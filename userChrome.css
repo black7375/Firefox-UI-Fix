@@ -1116,7 +1116,7 @@
 
     /* Bar Color */
     opacity: var(--tab-separator-opacity);
-    transition: opacity 0.2s var(--ease-basic);
+    transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     background-color: color-mix(
       in srgb,
       currentColor 20%,
@@ -1402,7 +1402,7 @@
     width: 25%;
 
     /* Animate */
-    transition: 0.2s !important;
+    transition: 0.15s var(--animation-easing-function) !important;
     transform: translateY(10px) !important;
   }
   .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
