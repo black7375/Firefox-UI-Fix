@@ -664,6 +664,18 @@
   }
 
   /*= Tab Bar - Reduce Height, Show more contents ============================*/
+  /* for Extra Drag Space */
+  :root {
+    --space-above-tabbar: 0px; /* If you want drag space, set to 8px */
+  }
+  :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
+    height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+  }
+  :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+  :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+    padding-top: var(--space-above-tabbar) !important;
+  }
+
   /* Toolbar Height */
   :root:not([uidensity="touch"]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
@@ -671,15 +683,16 @@
 
   .toolbar-items,
   .tabbrowser-tab {
-    max-height: 38px;
+    --tabbar-max-height: 38px;
+    max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
   }
   :root[uidensity="compact"] .toolbar-items,
   :root[uidensity="compact"] .tabbrowser-tab {
-    max-height: 36px;
+    --tabbar-max-height: 36px;
   }
   :root[uidensity="touch"] .toolbar-items,
   :root[uidensity="touch"] .tabbrowser-tab {
-    max-height: 45px;
+    --tabbar-max-height: 45px;
   }
 
   /* Scroll Button - Size Fix */
