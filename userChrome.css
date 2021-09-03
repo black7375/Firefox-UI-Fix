@@ -722,16 +722,10 @@
   }
 
   /* Pinned Tab - Titlechanged Indicator position fix */
-  :root:not([uidensity="touch"])
-    .tabbrowser-tab:is([image], [pinned])
-    > .tab-stack
-    > .tab-content[attention]:not([selected="true"]),
-  :root:not([uidensity="touch"])
-    .tabbrowser-tab
-    > .tab-stack
-    > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-    background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
+    background-position-y: bottom calc(2.5px + var(--tabs-navbar-shadow-size)) !important;
   }
   :root[uidensity="compact"]
     .tabbrowser-tab:is([image], [pinned])
@@ -740,6 +734,14 @@
   :root[uidensity="compact"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
     background-position-y: bottom calc(0.5px + var(--tabs-navbar-shadow-size)) !important;
+  }
+  :root[uidensity="touch"]
+    .tabbrowser-tab:is([image], [pinned])
+    > .tab-stack
+    > .tab-content[attention]:not([selected="true"]),
+  :root[uidensity="touch"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
+    background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
   }
 
   /*= URL Bar - Reduce Padding ===============================================*/
@@ -1403,8 +1405,7 @@
     display: none;
   }
 
-  .tabbrowser-tab:not([pinned]) .tab-content::before,
-  .tabbrowser-tab[pinned][busy] .tab-content::before {
+  .tab-content:not([titlechanged])::before {
     /* Box Model */
     content: "";
     display: block;
@@ -1416,32 +1417,22 @@
 
     /* Animate */
     transition: 0.15s var(--animation-easing-function) !important;
-    transform: translateY(10px) !important;
+    transform: translate(9px, 12px) !important;
   }
   .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-    width: 75%;
+    width: calc(100% - 30px);
+  }
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
+    width: calc(100% - 33px);
   }
 
   /* Pinned Tab */
-  .tabbrowser-tab[pinned] .tab-icon-image,
-  .tab-sharing-icon-overlay {
-    box-sizing: content-box;
-    padding: 3px 0;
-
-    border-bottom: 2px solid var(--identity-icon-color);
-  }
-
-  /* Pinned Tab - Busy */
-  .tabbrowser-tab[pinned][busy] .tab-content::before {
+  .tabbrowser-tab[pinned] .tab-content::before {
     width: 16px;
+    transform: translateY(12px) !important;
   }
 
   /* Pinned Tab - Titlechanged Indicator override */
-  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]) .tab-icon-image,
-  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) .tab-icon-image {
-    border-bottom: 2px solid transparent !important;
-  }
-
   .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
   .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
     /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
