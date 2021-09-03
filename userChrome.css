@@ -70,7 +70,8 @@
     --tabs-border-color: rgba(0, 0, 0, 0.3);
   }
 
-  /** Windows 7, 8 - Compatibility ********************************************/
+  /** OS - Compatibility ******************************************************/
+  /*= Windows 7, 8 - Tab Bar Background ***************************************/
   @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
     /* Header Color */
     :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
@@ -86,6 +87,15 @@
     #TabsToolbar {
       /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
       background-image: unset !important;
+    }
+  }
+
+  /*= Linux- Global Menubar Active Color =====================================*/
+  @media (-moz-gtk-csd-available) {
+    #main-menubar > menu[open="true"],
+    #main-menubar > menu[_moz-menuactive="true"] {
+      color: inherit !important; /* Original: -moz-menubarhovertext */
+      background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
     }
   }
 
