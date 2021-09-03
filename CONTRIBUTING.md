@@ -9,6 +9,9 @@
   - [Environment](#environment)
   - [Your First Contribution](#your-first-contribution)
   - [Contribution Targets](#contribution-targets)
+  - [Project Structure](#project-structure)
+    - [Icon files](#icon-files)
+    - [Meta Info files](#meta-info-files)
 - [Rules](#rules)
   - [Version](#version)
   - [Branch](#branch)
@@ -18,7 +21,7 @@
   - [Commit Message](#commit-message)
   - [Pull request](#pull-request)
   - [License](#license)
-  - [References](#references)
+- [References](#references)
 
 <!-- markdown-toc end -->
 
@@ -46,7 +49,7 @@ You can configure it as follows:
 git clone https://github.com/black7375/Firefox-UI-Fix.git
 cd ./Firefox-UI-Fix
 
-## install dependencies
+## checkout branch
 git checkout <BRANCH_NAME>
 ```
 
@@ -61,6 +64,7 @@ The following documents may be helpful:
 - [Wiki:Tips](https://github.com/black7375/Firefox-UI-Fix/wiki/Tips)
 
 Live Debugging:
+- [Tutorial: How to create and live-debug userChrome.css](https://www.reddit.com/r/FirefoxCSS/comments/73dvty/tutorial_how_to_create_and_livedebug_userchromecss/)
 - [Browser Toolbox](https://developer.mozilla.org/en-US/docs/Tools/Browser_Toolbox)
 - [Style Editor](https://developer.mozilla.org/en-US/docs/Tools/Style_Editor)
 
@@ -104,6 +108,65 @@ We love your input! We want to make contributing to this project as easy and tra
 - Improved compatibility or accessibility.
 - Refactoring.
 
+### Project Structure
+
+```
+root
+|- .gitattributes: Exclude at `Download Zip`
+|- .github: Issue/PR Template, Github Actions
+|- .prettierignore: Exclude coding style
+|- .prettierrc.json: Coding style
+|- icons/: Icons, illustrations
+|- install.ps1: Install script write in powersehll
+|- install.sh: Install script write in bash
+|- LEPTON: Meta infos (branch, version)
+|- user.js: about:config settings
+|- userChrome.css: CSS for Browser UI
+|- userContent.css: CSS for Web pages
+```
+
+#### Icon files
+
+Most of them are made in SVG.
+
+Except for illustrations, there must be an `fill="context-fill" fill-opacity="context-fill-opacity"` property to dynamically determine color and transparency.
+
+Icons are mainly [FirefoxUX/photon-icons](https://github.com/FirefoxUX/photon-icons)
+or [microsoft/fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
+
+#### Meta Info files
+
+It comes from [install.sh](https://github.com/black7375/Firefox-UI-Fix/blob/01ae88bf2c4710e1f364d9eb2901ca2b722cefe7/install.sh#L442).
+
+**`LEPTON` file format**
+
+If this file exist in same directory as the `userChrome.css` file,
+it is recognized as the "Lepton" installation directory.
+
+```ini
+[Info]
+Branch=master | photon-style | proton-style
+Ver=<git tag> | <git hash> | [NULL]
+```
+
+**`lepton.ini` file Format**
+
+In `lepton.ini`, various information is stored during the installation process.\
+This file is recreated every time the installer is created.
+
+```ini
+[Profile Name]
+Type=Local | Release | Git
+Branch=master | photon-style | proton-style
+Ver=<git tag> | <git hash> | [NULL]
+Path=<Full PATH>
+```
+
+**Update Policy according to `Type`**
+- Local(unknown): force latest commit update
+- Release(<git tag>): force latest tag update
+- Git<git hash>: latest commit update
+
 ## Rules
 
 ### Version
@@ -112,6 +175,8 @@ Milestone, The versioning scheme we use is [SemVer](https://semver.org/). (Maint
 
 We will release the feature as soon as it is complete, but the cycle should be 2-4 weeks.
 Rapid releases.
+
+It comes from [#109](https://github.com/black7375/Firefox-UI-Fix/issues/109#issuecomment-873313945).
 
 ### Branch
 
@@ -136,7 +201,7 @@ Development: New Features.
 ### Coding style
 
 - **Indent:** 2 spaces for indentation rather than tabs.
-- **Columns:** Fit `80`~`100` columns as much as possible.
+- **Columns:** Fit `80`~`100` columns as much as possible. (Auto formatting is using 120 to avoid the worst case)
 
 ### Commit
 
