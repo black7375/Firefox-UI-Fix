@@ -2028,6 +2028,15 @@
     --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
   }
 
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    #BMB_bookmarksShowAllTop {
+      list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg") !important;
+    }
+    #BMB_bookmarksShowAllTop > .menu-conic-left {
+      display: -moz-box !important;
+    }
+  }
+
   /*= identity-popup =========================================================*/
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info {
@@ -2244,6 +2253,19 @@
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
       padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 1px) !important;
+    }
+  }
+
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    /* Bookmark Popup - As Arrow Panel */
+    #BMB_bookmarksPopup {
+      --context-menu-background-padding: var(--arrowpanel-menuitem-padding);
+    }
+
+    /* Bookmark Popup - None icon menu */
+    menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+    menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
+      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 3px) !important;
     }
   }
 
