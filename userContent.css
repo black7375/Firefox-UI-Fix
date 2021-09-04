@@ -828,8 +828,7 @@
                  url-prefix("about:checkerboard"),
                  url-prefix("about:sync-log"),
                  url-prefix("about:memory"),
-                 regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$")
-  {
+                 regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$") {
     /* Base */
     html,
     body {
@@ -1058,8 +1057,7 @@
 
   /*= Directory View =========================================================*/
   @-moz-document url-prefix("about:sync-log"),
-                 regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$")
-  {
+                 regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$") {
     body {
       background-color: var(--in-content-box-background) !important;
     }
