@@ -2250,6 +2250,10 @@
       padding-inline-start: 1px !important;
     }
     /* Bookmark Popup - None icon menu */
+    #BMB_bookmarksPopup,
+    #PersonalToolbar {
+      --context-menu-background-padding: var(--arrowpanel-menuitem-padding);
+    }
     menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
