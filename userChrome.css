@@ -887,9 +887,7 @@
 
   /*= Global Menu - Set Padding ==============================================*/
   /* Prevent layout shifts */
-  @media (-moz-os-version: windows-win7),
-         (-moz-os-version: windows-win8),
-         (-moz-os-version: windows-win10) {
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
     #toolbar-menubar {
       display: flex !important;
       flex-direction: row;
