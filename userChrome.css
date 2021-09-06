@@ -869,20 +869,17 @@
 
   /*= Bookmark Menu - Reduce Padding =========================================*/
   :root {
-    --bookmark-menu-padding: 0.2em;
-    --bookmark-seperator-margin: 1px 0.5em;
+    --bookmark-menu-padding: 3px;
   }
   :root[uidensity="compact"] {
-    --bookmark-menu-padding: 1px;
-    --bookmark-seperator-margin: 0px 0.5em;
+    --bookmark-menu-padding: 1.5px;
   }
 
-  :root:not([uidensity="touch"]) menupopup > menuitem.bookmark-item,
-  :root:not([uidensity="touch"]) menupopup > menuitem.openintabs-menuitem {
+  :root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
+  :root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
+  :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .bookmark-item,
+  :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .openintabs-menuitem {
     padding-block: var(--bookmark-menu-padding) !important;
-  }
-  :root:not([uidensity="touch"]) menupopup > .bookmarks-actions-menuseparator {
-    margin: var(--bookmark-seperator-margin) !important;
   }
 
   /*= Global Menu - Set Padding ==============================================*/
