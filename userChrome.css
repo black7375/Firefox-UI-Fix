@@ -544,11 +544,11 @@
   }
 
   /* File moved or missing */
-  #downloadsListBox .download-state:not([exists]) .downloadTarget {
+  #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTarget {
     text-decoration: line-through;
     text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
   }
-  #downloadsListBox .download-state:not([exists]) .downloadTypeIcon {
+  #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
     filter: grayscale(100%) !important;
   }
 
@@ -567,6 +567,7 @@
   #BMB_bookmarksShowAll,
   #import-button,
   menuitem.openintabs-menuitem,
+  #downloadsListBox .downloadButton,
   #downloadsListBox .download-state[exists],
   #downloadsListBox .download-state[exists] .downloadDetails,
   #downloadsHistory {
