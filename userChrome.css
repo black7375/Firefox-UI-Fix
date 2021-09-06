@@ -2264,8 +2264,14 @@
 
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     /* Bookmark Popup - As Arrow Panel */
-    #BMB_bookmarksPopup {
+    #BMB_bookmarksPopup,
+    #PersonalToolbar {
       --context-menu-background-padding: var(--arrowpanel-menuitem-padding);
+    }
+
+    #PersonalToolbar menupopup menuitem,
+    #PersonalToolbar menupopup menu {
+      padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
     }
 
     /* Bookmark Popup - None icon menu */
