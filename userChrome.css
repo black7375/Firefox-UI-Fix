@@ -1346,7 +1346,7 @@
     margin-inline-end: 5.5px !important;
     padding: 2px 0 !important;
   }
-  .tabbrowser-tab:not([image])
+  .tabbrowser-tab:not([image], [busy])
     .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     box-sizing: content-box;
     padding: 3px 0;
