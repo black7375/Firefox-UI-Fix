@@ -1252,8 +1252,19 @@
     display: -moz-inline-box !important;
   }
 
-  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected], :hover) .tab-close-button {
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
     visibility: collapse !important;
+    opacity:0;
+
+    /* Animation - Fade out */
+    transition: opacity 0.1s var(--animation-easing-function) !important;
+  }
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
+    visibility: visible !important;
+    opacity:1;
+
+    /* Animation - Fade in */
+    transition: opacity 0.25s var(--animation-easing-function) !important;
   }
 
   /* Closed Button's icon thicker */
@@ -1312,6 +1323,9 @@
     border-radius: 10px !important;
     width: 17px !important;
     height: 17px !important;
+
+    /* Animation */
+    transition: 0.1s var(--animation-easing-function);
   }
   .tab-icon-overlay:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     /* Color */
