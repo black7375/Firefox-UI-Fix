@@ -1254,14 +1254,14 @@
 
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
     visibility: collapse !important;
-    opacity:0;
+    opacity: 0;
 
     /* Animation - Fade out */
     transition: opacity 0.1s var(--animation-easing-function) !important;
   }
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
     visibility: visible !important;
-    opacity:1;
+    opacity: 1;
 
     /* Animation - Fade in */
     transition: opacity 0.25s var(--animation-easing-function) !important;
