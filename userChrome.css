@@ -1350,6 +1350,9 @@
     margin-inline-end: 5.5px !important;
     padding: 0 !important;
   }
+  .tabbrowser-tab:not([image]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
+    opacity: 0 !important; /* Favicon hidden */
+  }
 
   /* Busy - Show */
   .tab-throbber[busy],
