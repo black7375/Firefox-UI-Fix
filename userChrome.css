@@ -1416,9 +1416,11 @@
   }
 
   /* Close Button's position */
+  .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-close-button {
+    -moz-box-ordinal-group: 2 !important;
+  }
   #tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-close-button {
     margin-left: 7px !important;
-    -moz-box-ordinal-group: 2 !important;
   }
   #tabbrowser-tabs:not([closebuttons="activetab"])
     .tabbrowser-tab[pictureinpicture]:not([pinned]):hover
