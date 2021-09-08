@@ -759,8 +759,12 @@
   /*= URL Bar - Reduce Padding ===============================================*/
   :root:not([uidensity="touch"]) #urlbar-container,
   :root:not([uidensity="touch"]) #search-container {
-    padding-block: 2px !important; /* Original: 4px */
+    padding-block: 3px !important; /* Original: 4px */
     margin-inline: 5px !important; /* Original: 5px */
+  }
+  :root:not([uidensity="compact"]) #urlbar-container,
+  :root:not([uidensity="compact"]) #search-container {
+    padding-block: 2px !important;
   }
 
   /* spread menu */
