@@ -138,8 +138,8 @@ function Copy-Auto() {
   }
 
   if ( Test-Path -Path "${target}" ) {
-    Write-Host "${target} alreay exist."
-    Write-Host "Now Backup.."
+    Write-Host "${target} already exists."
+    Write-Host "Now making a backup.."
     Copy-Auto "${target}" "${target}.bak"
     Remove-Item "${target}" -Recurse -Force
     Write-Host ""
@@ -162,8 +162,8 @@ function Move-Auto() {
   }
 
   if ( Test-Path -Path "${target}" ) {
-    Write-Host "${target} alreay exist."
-    Write-Host "Now Backup.."
+    Write-Host "${target} already exists."
+    Write-Host "Now making a backup.."
     Move-Auto "${target}" "${target}.bak"
     Write-Host ""
   }
