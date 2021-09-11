@@ -123,8 +123,8 @@ autocp() {
   fi
 
   if [ -e "${target}" ]; then
-    echo "${target} alreay exist."
-    echo "Now Backup.."
+    echo "${target} already exists."
+    echo "Now making a backup.."
     autocp "${target}" "${target}.bak"
     rm -rf "${target}"
     echo ""
@@ -143,8 +143,8 @@ automv() {
   fi
 
   if [ -e "${target}" ]; then
-    echo "${target} alreay exist."
-    echo "Now Backup.."
+    echo "${target} already exists."
+    echo "Now making a backup.."
     automv "${target}" "${target}.bak"
     echo ""
   fi
