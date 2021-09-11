@@ -2187,6 +2187,7 @@
   @media (-moz-os-version: windows-win10) {
     :root {
       --context-menu-background-padding: 1em;
+      --context-menu-text-padding: 24px; /* 16px + 8px */
       --menu-background-padding-default: calc(
         var(--context-menu-background-padding) + var(--context-menu-text-padding)
       );
@@ -2205,14 +2206,6 @@
     #blockedPopupDontShowMessage {
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
-    }
-    menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menuitem:not(.menuitem-iconic, [disabled="true"]),
-    menupopup:is(#BMB_bookmarksPopup, [placespopup="true"]) > menu:not(.menu-iconic) {
-      margin-inline: var(--arrowpanel-menuicon-padding) !important;
-      padding-inline-start: calc(
-        var(--menu-background-padding-default) - var(--arrowpanel-menuicon-padding)
-      ) !important;
-      background-position: left calc(var(--arrowpanel-menuitem-padding) + 1px) center !important;
     }
   }
 
@@ -2271,7 +2264,7 @@
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuitem-padding) !important;
-      padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + 16px + 8px) !important;
+      padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
       background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
    }
