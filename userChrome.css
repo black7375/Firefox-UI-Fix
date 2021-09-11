@@ -2259,6 +2259,23 @@
    * #BMB_bookmarksPopup: looks like arrow panel
    */
 
+   /* Windows */
+   @media (-moz-os-version: windows-win10) {
+     /* Bookmark Popup - None icon menu */
+    #BMB_bookmarksPopup,
+    #PersonalToolbar {
+      --context-menu-background-padding: var(--arrowpanel-menuitem-padding);
+    }
+    menupopup:is(#BMB_bookmarksPopup)  menuitem:not(.menuitem-iconic, [disabled="true"]),
+    menupopup:is(#BMB_bookmarksPopup)  menu:not(.menu-iconic),
+    #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+    #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+      margin-inline: var(--arrowpanel-menuitem-padding) !important;
+      padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + 16px + 8px) !important;
+      background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+    }
+   }
+
   /* Linux */
   @media (-moz-gtk-csd-available) {
     /* Global Menu */
