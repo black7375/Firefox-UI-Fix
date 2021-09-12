@@ -2252,8 +2252,8 @@
    * #BMB_bookmarksPopup: looks like arrow panel
    */
 
-   /* Windows 7, 8 */
-   @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+  /* Windows 7, 8 */
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
     /* Global Menu */
     menupopup:is(#goPopup, #bookmarksMenuPopup) .bookmark-item {
       padding-inline-start: 0 !important;
@@ -2265,16 +2265,18 @@
       --context-menu-background-padding: var(--arrowpanel-menuitem-padding);
       --arrowpanel-menuicon-padding: 9px;
     }
-    menupopup:is(#BMB_bookmarksPopup)  menuitem:not(.menuitem-iconic, [disabled="true"]),
-    menupopup:is(#BMB_bookmarksPopup)  menu:not(.menu-iconic),
+    menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+    menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuitem-padding) !important;
       background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
-    menupopup:is(#BMB_bookmarksPopup)  menuitem:not(.menuitem-iconic, [disabled="true"]),
-    menupopup:is(#BMB_bookmarksPopup)  menu:not(.menu-iconic) {
-      padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding) + 2px) !important;
+    menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+    menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
+      padding-inline-start: calc(
+        var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding) + 2px
+      ) !important;
     }
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
