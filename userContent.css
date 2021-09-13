@@ -354,6 +354,7 @@
       /* Basic */
       .Page-content,
       .SecondaryHero,
+      body,
       main[aria-label="Content"] {
         color: var(--in-content-page-color) !important;
         background: var(--in-content-page-background) !important;
@@ -483,6 +484,7 @@
       .AddonsCard-list,
       .Card-footer,
       .StaticAddonCard,
+      .blogpost-nav,
       .blogpost-nav * {
         background: var(--in-content-table-background) !important;
       }
@@ -828,8 +830,7 @@
                  url-prefix("about:checkerboard"),
                  url-prefix("about:sync-log"),
                  url-prefix("about:memory"),
-                 regexp("^[file:///].*[^(html|svg|pdf|json)]$")
-  {
+                 regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$") {
     /* Base */
     html,
     body {
@@ -1058,10 +1059,10 @@
 
   /*= Directory View =========================================================*/
   @-moz-document url-prefix("about:sync-log"),
-                 regexp("^[file:///].*[^(html|svg|pdf|json)]$")
-  {
+                 regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$") {
     body {
       background-color: var(--in-content-box-background) !important;
+      margin: 4em auto !important; /* Override to default */
     }
     thead a {
       color: var(--in-content-page-color) !important;

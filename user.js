@@ -5,6 +5,9 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Proton Enabled #127
 user_pref("browser.proton.enabled", true);
 
+// Proton Tooltip
+user_pref("browser.proton.places-tooltip.enabled", true);
+
 // Fill SVG Color
 user_pref("svg.context-properties.content.enabled", true);
 
