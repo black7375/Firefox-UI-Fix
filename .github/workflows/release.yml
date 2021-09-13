@@ -13,7 +13,7 @@ jobs:
             branch: "master"
           - name: "Lepton-Photon-Style"
             branch: "photon-style"
-          - name: "Lepton-Prton-Style"
+          - name: "Lepton-Proton-Style"
             branch: "proton-style"
     steps:
       - uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
           BRANCH=${{ matrix.branch }}
           TAGVER=${GITHUB_REF#refs/*/}
 
-          echo -e "\[Info\]\nVer=${TAGVER}\nBranch=${BRANCH}" > LEPTON
+          echo -e "[Info]\nVer=${TAGVER}\nBranch=${BRANCH}" > LEPTON
 
       - name: Release Structure
         run: |
