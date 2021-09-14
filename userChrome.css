@@ -97,7 +97,7 @@
   @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
     menupopup > menu,
     menupopup > menuitem {
-      border: 1px solid transparent;
+      border: 1px solid transparent; /* Need reduce 2px at menu */
     }
     menu[_moz-menuactive="true"],
     menuitem[_moz-menuactive="true"] {
@@ -871,6 +871,14 @@
   }
   menupopup > menu {
     padding-inline-start: 0.5em;
+  }
+
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+    menupopup > menuitem,
+    menupopup > menu {
+      /* Remove border */
+      padding-block: calc(var(--menu-padding) - 2px) !important;
+    }
   }
 
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
