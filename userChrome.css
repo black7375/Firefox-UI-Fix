@@ -894,14 +894,6 @@
     padding-inline-start: 0.5em;
   }
 
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
-    menupopup > menuitem,
-    menupopup > menu {
-      /* Remove border */
-      padding-block: calc(var(--menu-padding) - 2px) !important;
-    }
-  }
-
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root:not([uidensity="touch"]) .menu-text,
     :root:not([uidensity="touch"]) .menu-iconic-text {
@@ -915,6 +907,19 @@
     }
     :root:not([uidensity="touch"]) .menu-right {
       margin-right: 6px !important; /* Original: 12px */
+    }
+  }
+
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+    /* Remove border */
+    menupopup > menuitem,
+    menupopup > menu {
+      padding-block: calc(var(--menu-padding) - 2px) !important;
+    }
+
+    /* Make to original */
+    :root:not([uidensity="touch"]) #context-navigation:not([hidden]) {
+      padding: 0 0 4px !important;
     }
   }
 
