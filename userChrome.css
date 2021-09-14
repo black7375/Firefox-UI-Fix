@@ -2191,10 +2191,17 @@
     }
   }
 
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+  @media (-moz-os-version: windows-win7) {
     :root {
       --context-menu-background-padding-default: 2px;
     }
+  }
+  @media (-moz-os-version: windows-win8) {
+    :root {
+      --context-menu-background-padding-default: 3px;
+    }
+  }
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
       > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
