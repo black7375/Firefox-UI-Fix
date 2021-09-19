@@ -105,6 +105,11 @@
     #main-menubar > menu[_moz-menuactive="true"] {
       background-color: -moz-menuhover !important; /* Make to original */
     }
+    :root:-moz-lwtheme #main-menubar > menu[open="true"],
+    :root:-moz-lwtheme #main-menubar > menu[_moz-menuactive="true"] {
+      color: inherit !important; /* Original: -moz-menubarhovertext */
+      background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
+    }
 
     #PlacesToolbar menu,
     #PlacesToolbar menuitem,
@@ -124,6 +129,18 @@
     menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
+    }
+
+    /* Remove text shadow */
+    :root:-moz-lwtheme #toolbar-menubar {
+      text-shadow: unset !important;
+      /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
+    }
+
+    /* Remove Color */
+    :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
+      background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
+      color: unset !important; /* Original: black */
     }
   }
   @media (-moz-os-version: windows-win8) {
