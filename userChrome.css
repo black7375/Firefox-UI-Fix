@@ -944,17 +944,9 @@
   }
 
   /*= Global Menu - Set Padding ==============================================*/
-  /* Prevent layout shifts */
-  @media (-moz-os-version: windows-win10) {
-    #main-menubar {
-      height: 28px; /* Hard coded for compatibility */
-    }
-  }
-
   /* Vertical Align - Center & Height: 100%  */
-  #menubar-items,
   #main-menubar {
-    display: flex !important;
+    -moz-box-flex: 1 !important;
   }
 
   /* Rounding */
