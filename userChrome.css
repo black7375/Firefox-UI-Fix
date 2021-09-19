@@ -105,6 +105,13 @@
     #main-menubar > menu[_moz-menuactive="true"] {
       background-color: -moz-menuhover !important; /* Make to original */
     }
+
+    #PlacesToolbar menu,
+    #PlacesToolbar menuitem,
+    #BMB_bookmarksPopup menu,
+    #BMB_bookmarksPopup menuitem {
+      border: none !important; /* Remove border */
+    }
   }
 
   @media (-moz-os-version: windows-win7) {
