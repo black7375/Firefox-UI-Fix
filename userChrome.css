@@ -945,18 +945,9 @@
 
   /*= Global Menu - Set Padding ==============================================*/
   /* Prevent layout shifts */
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
-    #toolbar-menubar {
-      display: flex !important;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    #toolbar-menubar > spacer {
-      order: 1000; /* as Original's -moz-box-ordinal-group: 1000 */
-      flex: 1; /* Fill row */
-    }
-    #toolbar-menubar > .titlebar-buttonbox-container {
-      order: 1000; /* as Original's -moz-box-ordinal-group: 1000 */
+  @media (-moz-os-version: windows-win10) {
+    #main-menubar {
+      height: 28px; /* Hard coded for compatibility */
     }
   }
 
