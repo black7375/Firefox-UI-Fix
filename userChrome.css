@@ -430,6 +430,44 @@
     }
   }
 
+  /*= PopupAutoComplete ======================================================*/
+  #PopupAutoComplete {
+    --panel-border-radius: 4px; /* Original: 0 */
+    --panel-border-color: var(--arrowpanel-border-color, var(--menu-border-color)); /* Original: ThreeDShadow */
+  }
+
+  #PopupAutoComplete > richlistbox {
+    border-radius: var(--panel-border-radius) !important;
+    background-color: var(
+      --arrowpanel-background,
+      var(--in-content-button-background)
+    ) !important; /* Original: Field */
+    color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FiledText */
+  }
+
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="login"] > .ac-site-icon {
+    fill: GrayText !important;
+  }
+
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"] {
+    color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FieldText */
+    background-color: var(--arrowpanel-dimmed, hsla(0, 0%, 80%, 0.35)) !important; /* Original: hsla(0,0%,80%,.35) */
+    border-color: var(
+      --arrowpanel-border-color,
+      var(--menu-border-color)
+    ) !important; /* Original: rgba(38,38,38,.15) */
+  }
+
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"]:hover,
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"][selected] {
+    background-color: var(
+      --arrowpanel-dimmed-further,
+      hsla(0, 0%, 80%, 0.5)
+    ) !important; /* Original: hsla(0,0%,80%,.5), match arrowpanel-dimmed-further */
+  }
+
   /* Fully Dark Mode **********************************************************/
   /*= Remove White Flash =====================================================*/
   #tabbrowser-tabbox,
