@@ -96,18 +96,69 @@
   /*= Windows 7, 8 - Menu Active Color =======================================*/
   @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
     menupopup > menu,
-    menupopup > menuitem {
-      border: 1px solid transparent;
+    menupopup > menuitem,
+    #context-navigation > menuitem {
+      border: 1px solid transparent; /* Need reduce 2px at menu */
     }
+
+    #main-menubar > menu[open="true"],
+    #main-menubar > menu[_moz-menuactive="true"] {
+      background-color: -moz-menuhover !important; /* Make to original */
+    }
+    :root:-moz-lwtheme #main-menubar > menu[open="true"],
+    :root:-moz-lwtheme #main-menubar > menu[_moz-menuactive="true"] {
+      color: inherit !important; /* Original: -moz-menubarhovertext */
+      background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
+    }
+
+    #PlacesToolbar menu,
+    #PlacesToolbar menuitem,
+    #BMB_bookmarksPopup menu,
+    #BMB_bookmarksPopup menuitem {
+      border: none !important; /* Remove border */
+    }
+    #PlacesToolbar menu:not([disabed], :active)[_moz-menuactive="true"],
+    #PlacesToolbar menuitem:not([disabed], :active)[_moz-menuactive="true"],
+    #BMB_bookmarksPopup menu:not([disabed], :active)[_moz-menuactive="true"],
+    #BMB_bookmarksPopup menuitem:not([disabed], :active)[_moz-menuactive="true"] {
+      background-color: var(--button-hover-bgcolor) !important;
+    }
+  }
+
+  @media (-moz-os-version: windows-win7) {
     menu[_moz-menuactive="true"],
     menuitem[_moz-menuactive="true"] {
-      background-color: color-mix(in srgb, -moz-menuhover 5%, transparent);
-      border-color: color-mix(in srgb, -moz-menuhover 60%, transparent);
+      background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
+      border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
     }
     menu[_moz-menuactive="true"][disabled="disabled"],
     menuitem[_moz-menuactive="true"][disabled="true"] {
-      background-color: transparent;
-      border-color: transparent;
+      background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
+      border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
+    }
+
+    /* Remove text shadow */
+    :root:-moz-lwtheme #toolbar-menubar {
+      text-shadow: unset !important;
+      /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
+    }
+
+    /* Remove Color */
+    :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
+      background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
+      color: unset !important; /* Original: black */
+    }
+  }
+  @media (-moz-os-version: windows-win8) {
+    menu[_moz-menuactive="true"],
+    menuitem[_moz-menuactive="true"] {
+      background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
+      border-color: color-mix(in srgb, -moz-menuhover 80%, transparent) !important;
+    }
+    menu[_moz-menuactive="true"][disabled="disabled"],
+    menuitem[_moz-menuactive="true"][disabled="true"] {
+      background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
+      border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
     }
   }
 
@@ -880,6 +931,19 @@
     }
   }
 
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+    /* Remove border */
+    menupopup > menuitem,
+    menupopup > menu {
+      padding-block: calc(var(--menu-padding) - 2px) !important;
+    }
+
+    /* Make to original */
+    :root:not([uidensity="touch"]) #context-navigation:not([hidden]) {
+      padding: 0 0 4px !important;
+    }
+  }
+
   /* Arrow Icon Align to Right */
   .bookmark-item.subviewbutton > .menu-right {
     margin-inline-end: 0 !important;
@@ -901,26 +965,9 @@
   }
 
   /*= Global Menu - Set Padding ==============================================*/
-  /* Prevent layout shifts */
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
-    #toolbar-menubar {
-      display: flex !important;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    #toolbar-menubar > spacer {
-      order: 1000; /* as Original's -moz-box-ordinal-group: 1000 */
-      flex: 1; /* Fill row */
-    }
-    #toolbar-menubar > .titlebar-buttonbox-container {
-      order: 1000; /* as Original's -moz-box-ordinal-group: 1000 */
-    }
-  }
-
   /* Vertical Align - Center & Height: 100%  */
-  #menubar-items,
   #main-menubar {
-    display: flex !important;
+    -moz-box-flex: 1 !important;
   }
 
   /* Rounding */
@@ -2023,10 +2070,17 @@
     }
   }
 
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+  @media (-moz-os-version: windows-win7) {
     :root {
       --context-menu-background-padding-default: 2px;
     }
+  }
+  @media (-moz-os-version: windows-win8) {
+    :root {
+      --context-menu-background-padding-default: 3px;
+    }
+  }
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
       > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
