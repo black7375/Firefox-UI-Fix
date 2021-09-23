@@ -180,33 +180,33 @@
       --win-disabled-color: rgb(145, 145, 145); /* also button-active-color */
       --win-disabled-bgcolor: transparent;
       --win-hover-bgcolor: rgb(218, 218, 218);
-      --win-hover-active-bgcolor: #C2C2C2; /* also button-bgcolor */
-      --win-field-bgcolor: #FFFFFF;
-      --win-component-bgcolor: #F2F2F2;
-      --win-sidebar-bgcolor: #E6E6E6;
-      --win-sidebar-hover-bgcolor: #CFCFCF;
-      --win-sidebar-border-color: #8A8A8A;
-      --win-sidebar-button-hover-bgcolor: #B8B8B8;
-      --win-sidebar-button-hover-active-bgcolor: #A3A3A3;
+      --win-hover-active-bgcolor: #c2c2c2; /* also button-bgcolor */
+      --win-field-bgcolor: #ffffff;
+      --win-component-bgcolor: #f2f2f2;
+      --win-sidebar-bgcolor: #e6e6e6;
+      --win-sidebar-hover-bgcolor: #cfcfcf;
+      --win-sidebar-border-color: #8a8a8a;
+      --win-sidebar-button-hover-bgcolor: #b8b8b8;
+      --win-sidebar-button-hover-active-bgcolor: #a3a3a3;
       --win-button-border: #747474;
-      --win-button-hover-bgcolor: rgba(145, 145, 145, .66);
+      --win-button-hover-bgcolor: rgba(145, 145, 145, 0.66);
       --win-shorcut-text-color: #757575;
-      --win-red-color: #B31616;
-      --win-accent-color: #005DBA;
-      --win-accent-hover-color: #4599DB;
-      --win-accent-active-color: #0078D7;
+      --win-red-color: #b31616;
+      --win-accent-color: #005dba;
+      --win-accent-hover-color: #4599db;
+      --win-accent-active-color: #0078d7;
 
       /* Text, Icon Color */
-      --menu-color:  var(--win-text-color) !important;
-      --lwt-text-color:  var(--win-text-color) !important;
-      --button-color:  var(--win-text-color) !important;
-      --input-color:  var(--win-text-color) !important;
-      --toolbar-color:  var(--win-text-color) !important;
-      --toolbar-non-lwt-textcolor:  var(--win-text-color) !important;
-      --toolbarbutton-icon-fill:  var(--win-text-color) !important;
+      --menu-color: var(--win-text-color) !important;
+      --lwt-text-color: var(--win-text-color) !important;
+      --button-color: var(--win-text-color) !important;
+      --input-color: var(--win-text-color) !important;
+      --toolbar-color: var(--win-text-color) !important;
+      --toolbar-non-lwt-textcolor: var(--win-text-color) !important;
+      --toolbarbutton-icon-fill: var(--win-text-color) !important;
       --toolbar-field-focus-color: var(--win-text-color) !important;
-      --urlbar-popup-action-color:  var(--win-text-color) !important;
-      --toolbar-field-color:  var(--win-text-color) !important;
+      --urlbar-popup-action-color: var(--win-text-color) !important;
+      --toolbar-field-color: var(--win-text-color) !important;
       --autocomplete-popup-highlight-color: var(--win-text-color) !important;
       --tab-icon-overlay-fill: var(--win-text-color) !important;
       --panel-banner-item-color: var(--win-text-color) !important;
@@ -297,7 +297,7 @@
       --input-error-border-color: var(--win-red-color) !important;
 
       /* Others */
-      --tab-selected-bgcolor: rgb(255,255,255) !important;
+      --tab-selected-bgcolor: rgb(255, 255, 255) !important;
       --tabs-border-color: transparent !important;
       --checkbox-checked-border-color: transparent !important;
 
@@ -307,16 +307,16 @@
       --arrowpanel-dimmed-even-further: color-mix(in srgb, currentColor 27%, transparent) !important;
 
       --autocomplete-popup-highlight-background: #e0e0e6 !important;
-      --autocomplete-popup-separator-color: rgb(240,240,244) !important;
-      --autocomplete-popup-hover-background: rgb(240,240,244) !important;
+      --autocomplete-popup-separator-color: rgb(240, 240, 244) !important;
+      --autocomplete-popup-hover-background: rgb(240, 240, 244) !important;
 
-      --download-progress-flare-color: rgba(255,255,255,0.75) !important;
+      --download-progress-flare-color: rgba(255, 255, 255, 0.75) !important;
 
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
     }
 
     html#main-window menupopup:not(:-moz-lwtheme) {
-      --menu-color:  var(--win-text-color) !important;
+      --menu-color: var(--win-text-color) !important;
       --menu-background-color: var(--win-component-bgcolor) !important;
       --menu-border-color: var(--win-bgcolor) !important;
       --menuitem-hover-background-color: var(--win-hover-bgcolor) !important;
@@ -337,12 +337,8 @@
       --sidebar-border-color: var(--win-sidebar-border-color) !important;
     }
 
-    :root:not(:-moz-lwtheme) .subviewbutton:not(
-      #appMenu-fxa-label2,
-      #appMenu-zoomReduce-button2,
-      #appMenu-zoomEnlarge-button2,
-      #appMenu-fullscreen-button2
-    ) {
+    :root:not(:-moz-lwtheme)
+      .subviewbutton:not(#appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2) {
       --button-hover-bgcolor: var(--win-hover-bgcolor) !important;
       --button-active-bgcolor: var(--win-hover-active-bgcolor) !important;
     }
