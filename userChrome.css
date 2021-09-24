@@ -585,7 +585,29 @@
       margin-inline: 4px !important;
       min-width: 6.3em !important;
     }
-    button:-moz-focusring {
+
+    /* Medium and small buttons get sized to 7/14 and 6/12px padding (when adding
+     * the 1px border): */
+    button.medium {
+      padding: 6px 13px !important;
+      min-height: 28px !important;
+      font-size: 0.95em !important;
+    }
+    button.small {
+      padding: 5px 11px !important;
+      min-height: 24px !important;
+      font-size: 0.9em !important;
+    }
+
+    /* Remove margin added by button.css */
+    xul|button > .button-box > .button-text {
+      margin: 0 !important;
+    }
+
+    button:-moz-focusring,
+    xul|menulist:-moz-focusring,
+    xul|checkbox:-moz-focusring > .checkbox-check, /* :not([native]) to win specificity over checkbox.css */
+    xul|radio[focused="true"] {
       box-shadow: none !important;
       outline: 2px solid var(--in-content-focus-outline-color) !important;
       outline-offset: 2px !important;
@@ -595,13 +617,50 @@
       color: var(--in-content-button-text-color-hover) !important;
       border-color: transparent !important;
     }
-    button[open],
-    button[open]:hover {
-      background-color: var(--in-content-button-background-active);
+
+    xul|button:not([disabled="true"]):hover:active,
+    xul|button[open],
+    xul|button[open]:hover,
+    xul|menulist[open="true"]:not([disabled="true"]) {
+      background-color: var(--in-content-button-background-active) !important;
     }
-    button[disabled="true"],
-    menulist[disabled="true"] {
-      opacity: 0.4;
+
+    xul|button[default] {
+      background-color: var(--in-content-primary-button-background) !important;
+      color: var(--in-content-primary-button-text-color) !important;
+    }
+    xul|button[default]:not([disabled="true"]):hover {
+      background-color: var(--in-content-primary-button-background-hover) !important;
+      color: var(--in-content-primary-button-text-color) !important;
+    }
+    xul|button[default]:not([disabled="true"]):hover:active {
+      background-color: var(--in-content-primary-button-background-active) !important;
+    }
+
+    xul|button[disabled="true"],
+    xul|menulist[disabled="true"] {
+      opacity: 0.4 !important;
+    }
+    xul|button:not([disabled="true"]):hover,
+    xul|menulist:not([disabled="true"]):hover {
+      background-color: var(--in-content-button-background-hover) !important;
+      color: var(--in-content-button-text-color-hover) !important;
+      border-color: transparent !important;
+    }
+
+    @media (prefers-contrast) {
+      xul|button[default]:not([disabled="true"]):hover {
+        border-color: currentColor !important;
+      }
+
+      button:focus {
+        color: var(--in-content-button-text-color) !important;
+      }
+
+      xul|button[default]:focus,
+      button.primary:focus {
+        color: var(--in-content-primary-button-text-color) !important;
+      }
     }
   }
 
