@@ -347,6 +347,17 @@
     :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme) {
       --lwt-accent-color: var(--win-bgcolor) !important;
     }
+    #tabbrowser-tabs:not([movingtab])
+      > #tabbrowser-arrowscrollbox
+      > .tabbrowser-tab
+      > .tab-stack
+      > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme) {
+      background-image: linear-gradient(
+          color-mix(in srgb, currentColor 11%, transparent),
+          color-mix(in srgb, currentColor 11%, transparent)
+        ),
+        linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+    }
   }
 
   /*= Windows10 - Titlebar accent color ======================================*/
