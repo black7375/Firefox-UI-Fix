@@ -191,11 +191,41 @@
       --win-button-border: #747474;
       --win-button-hover-bgcolor: rgba(145, 145, 145, 0.66);
       --win-shorcut-text-color: #757575;
-      --win-red-color: #b31616;
+      --win-error-color: #b31616;
+      --win-red-border-color: #ff4343;
       --win-accent-color: #005dba;
       --win-accent-hover-color: #4599db;
       --win-accent-active-color: #0078d7;
+    }
+    @media (-moz-toolbar-prefers-color-scheme: dark) {
+      :root:not(:-moz-lwtheme),
+      :root[lwt-default-theme-in-dark-mode] {
+        --win-text-color: #ffffff;
+        --win-bgcolor: #2b2b2b;
+        --win-disabled-color: #747474; /* also button-active-color */
+        --win-disabled-bgcolor: transparent;
+        --win-hover-bgcolor: #2e2e2e;
+        --win-hover-active-bgcolor: #454545; /* also button-bgcolor */
+        --win-field-bgcolor: #373737;
+        --win-component-bgcolor: #171717;
+        --win-sidebar-bgcolor: #1f1f1f;
+        --win-sidebar-hover-bgcolor: #353535;
+        --win-sidebar-border-color: #5b5b5b;
+        --win-sidebar-button-hover-bgcolor: #353535;
+        --win-sidebar-button-hover-active-bgcolor: #4c4c4c;
+        --win-button-border: #8f8f8f;
+        --win-button-hover-bgcolor: rgba(116, 116, 116, 0.66);
+        --win-shorcut-text-color: #adadad;
+        --win-error-color: #ffb900;
+        --win-red-border-color: #ff4343;
+        --win-accent-color: #3195e3;
+        --win-accent-hover-color: #036fc4;
+        --win-accent-active-color: #0078d7;
+      }
+    }
 
+    :root:not(:-moz-lwtheme),
+    :root[lwt-default-theme-in-dark-mode] {
       /* Text, Icon Color */
       --menu-color: var(--win-text-color) !important;
       --lwt-text-color: var(--win-text-color) !important;
@@ -226,6 +256,7 @@
 
       /* Title Background, Border Color */
       --menu-border-color: var(--win-bgcolor) !important;
+      --lwt-accent-color: var(--win-bgcolor) !important;
       --toolbar-field-border-color: var(--win-bgcolor) !important;
       --arrowpanel-border-color: var(--win-bgcolor) !important;
       --chrome-content-separator-color: var(--win-bgcolor) !important;
@@ -293,8 +324,8 @@
       --checkbox-checked-active-bgcolor: var(--win-accent-active-color) !important;
 
       /* Error Color */
-      --error-text-color: var(--win-red-color) !important;
-      --input-error-border-color: var(--win-red-color) !important;
+      --error-text-color: var(--win-error-color) !important;
+      --input-error-border-color: var(--win-error-color) !important;
 
       /* Others */
       --tab-selected-bgcolor: rgb(255, 255, 255) !important;
@@ -324,20 +355,32 @@
       --menuitem-disabled-hover-background-color: var(--win-disabled-bgcolor) !important;
     }
 
-    :root:not(:-moz-lwtheme) #titlebar {
+    :root:not(:-moz-lwtheme) #titlebar,
+    :root[lwt-default-theme-in-dark-mode] #titlebar {
       --button-hover-bgcolor: var(--win-sidebar-button-hover-bgcolor);
       --button-active-bgcolor: var(--win-sidebar-button-hover-active-bgcolor);
       --toolbarbutton-hover-background: var(--win-sidebar-button-hover-bgcolor);
       --toolbarbutton-active-background: var(--win-sidebar-button-hover-active-bgcolor);
     }
 
-    :root:not(:-moz-lwtheme) #sidebar-box {
-      --sidebar-background-color: var(--win-sidebar-bgcolor) !important;
-      --sidebar-text-color: var(--win-text-color) !important;
-      --sidebar-border-color: var(--win-sidebar-border-color) !important;
+    @media (-moz-toolbar-prefers-color-scheme: dark) {
+      :root:not(:-moz-lwtheme) #sidebar-box,
+      :root[lwt-default-theme-in-dark-mode] #sidebar-box {
+        --sidebar-background-color: var(--win-sidebar-bgcolor) !important;
+        --sidebar-text-color: var(--win-text-color) !important;
+        --sidebar-border-color: var(--win-sidebar-border-color) !important;
+      }
+      .sidebar-panel[style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
+      body[lwt-sidebar][style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"] {
+        /* Only darkmode has more: --newtab-background-color-secondary: rgba(66, 65, 77, 1); */
+        --lwt-sidebar-background-color: var(--win-sidebar-bgcolor) !important;
+        --lwt-sidebar-text-color: var(--win-text-color) !important;
+      }
     }
 
     :root:not(:-moz-lwtheme)
+      .subviewbutton:not(#appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2),
+    :root[lwt-default-theme-in-dark-mode]
       .subviewbutton:not(#appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2) {
       --button-hover-bgcolor: var(--win-hover-bgcolor) !important;
       --button-active-bgcolor: var(--win-hover-active-bgcolor) !important;
@@ -347,11 +390,23 @@
     :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme) {
       --lwt-accent-color: var(--win-bgcolor) !important;
     }
+    @media (-moz-toolbar-prefers-color-scheme: dark) {
+      :root[lwt-default-theme-in-dark-mode][lwthemetextcolor="bright"] {
+        --toolbar-bgcolor: var(--win-component-bgcolor) !important; /* Original: rgba(43, 42, 51, 1) */
+      }
+    }
+
     #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
       > .tab-stack
-      > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme) {
+      > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme),
+    :root[lwtheme-mozlightdark]
+      #tabbrowser-tabs:not([movingtab])
+      > #tabbrowser-arrowscrollbox
+      > .tabbrowser-tab
+      > .tab-stack
+      > .tab-background[multiselected]:not([selected]) {
       background-image: linear-gradient(
           color-mix(in srgb, currentColor 11%, transparent),
           color-mix(in srgb, currentColor 11%, transparent)
