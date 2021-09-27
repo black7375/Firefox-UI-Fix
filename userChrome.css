@@ -764,10 +764,10 @@
   }
 
   :root:not([uidensity]) #TabsToolbar {
-    --tab-min-height: 38px !important;
+    --tab-min-height: 36px !important; /* 38px -> 36px */
   }
   :root[uidensity="compact"] #TabsToolbar {
-    --tab-min-height: 36px !important;
+    --tab-min-height: 29px !important; /* 36px -> 29px */
   }
 
   /* Scroll Button - Size Fix */
