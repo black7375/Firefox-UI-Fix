@@ -836,6 +836,73 @@
     xul|richlistitem > xul|*.checkbox-check {
       margin: 3px 6px !important;
     }
+
+    /* Each OS */
+    @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+      xul|checkbox,
+      xul|radio {
+        padding-inline-start: 0 !important;
+      }
+
+      /* Override menulist.css */
+      xul|menulist[disabled="true"] {
+        background-color: var(--in-content-button-background) !important;
+      }
+
+      xul|menulist:-moz-focusring > xul|*.menulist-label-box {
+        outline: none !important;
+      }
+    }
+
+    @media (-moz-gtk-csd-available) {
+      /* Overriding appearance also avoids incorrect selection background color with light text. */
+      xul|button > xul|*.button-box,
+      xul|menulist::part(label-box),
+      xul|*.radio-label-box,
+      xul|*.checkbox-label-box {
+        appearance: none !important;
+      }
+
+      xul|button[type="menu"] > xul|*.button-box > xul|*.button-menu-dropmarker {
+        appearance: none !important;
+      }
+      xul|menulist {
+        font-size: inherit !important;
+      }
+      xul|menulist::part(dropmarker) {
+        display: -moz-box;
+        margin-block: 6px !important;
+      }
+      xul|menulist:-moz-focusring::part(label-box) {
+        outline: none !important;
+      }
+    }
+
+    @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+      xul|menulist > xul|menupopup > xul|menuitem[checked="true"]::before,
+      xul|menulist > xul|menupopup > xul|menuitem[selected="true"]::before {
+        display: none !important;
+      }
+
+      xul|menulist::part(dropmarker) {
+        display: -moz-box !important;
+        margin-block: 1px !important;
+      }
+
+      xul|menulist > xul|menupopup xul|menu,
+      xul|menulist > xul|menupopup xul|menuitem {
+        padding-inline-end: 34px !important;
+      }
+
+      xul|*.checkbox-icon,
+      xul|*.radio-icon {
+        margin-inline-end: 0 !important;
+      }
+
+      xul|*.text-link:-moz-focusring {
+        box-shadow: none !important;
+      }
+    }
   }
 
   /** Decoration **************************************************************/
