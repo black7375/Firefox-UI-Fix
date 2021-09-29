@@ -36,7 +36,7 @@ user_pref("apz.force_disable_desktop_zooming_scrollbars",   false);            /
 user_pref("apz.paint_skipping.enabled",                      true);            ///     true
 user_pref("apz.windows.use_direct_manipulation",             true);            ///     true
 user_pref("dom.event.wheel-deltaMode-lines.always-disabled", true);            ///    false
-user_pref("general.smoothScroll.currentVelocityWeighting", "0.15");            ///   "0.25" <- 1. If scroll too fast, set to "0.12"
+user_pref("general.smoothScroll.currentVelocityWeighting", "0.12");            ///   "0.25" <- 1. If scroll too slow, set to "0.15"
 user_pref("general.smoothScroll.durationToIntervalRatio",    1000);            ///      200
 user_pref("general.smoothScroll.lines.durationMaxMS",         100);            ///      150
 user_pref("general.smoothScroll.lines.durationMinMS",           0);            ///      150
