@@ -7,7 +7,7 @@
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) {
     --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
   }
-  @media not all and ((-moz-os-version: windows-win7) or  (-moz-os-version: windows-win8)) {
+  @media not all and ((-moz-os-version: windows-win7) or (-moz-os-version: windows-win8) or (-moz-gtk-csd-available)) {
     /*  Level 4  */
     :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox {
       background-color: var(--lwt-accent-color) !important;
