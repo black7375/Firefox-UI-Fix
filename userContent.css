@@ -573,6 +573,7 @@
       :root {
         --color-blue-06: var(--in-content-link-color) !important;
         --color-blue-07: var(--in-content-link-color-hover) !important;
+        --color-blue-09: var(--in-content-link-color-active) !important;
 
         --page-bg: var(--in-content-page-background) !important;
         --color-white: var(--in-content-page-background) !important;
@@ -586,7 +587,7 @@
         --color-text-light: var(--in-content-deemphasized-text) !important;
         --color-link: var(--in-content-link-color) !important;
         --color-success: var(--green-70) !important;
-        --color-warning: var(--yellow-70) !important;
+        --color-warning: var(--yellow-80) !important;
         --color-error: var(--red-60) !important;
         --color-error-hover: var(--red-50) !important;
         --color-moz-heading: #fff;
@@ -594,6 +595,10 @@
         --focus-shadow: 0 0 0 4px color-mix(in srgb, var(--in-content-primary-button-background) 30%, transparent),
           0 0 0 2px var(--in-content-primary-button-background-active);
       }
+      .warning {
+        --color-link: rgb(55, 255, 255) !important;
+      }
+
       body,
       #main-content,
       #instant-search-content,
