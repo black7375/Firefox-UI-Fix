@@ -236,7 +236,7 @@ set_ini_value() {
 #== Multiselect ================================================================
 # https://stackoverflow.com/questions/45382472/bash-select-multiple-answers-at-once/54261882
 multiselect() {
-  echo 'Select with <space>, Done with <enter>!!!'
+  echo 'Select with <space>, confirm with <enter>'
 
   # little helpers for terminal print control and key input
   ESC=$( printf "\033")
