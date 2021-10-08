@@ -73,7 +73,7 @@
     }
 
     #contentSearchSettingsButton::before {
-      content: url(chrome://global/skin/icons/settings.svg) !important;
+      content: url("chrome://global/skin/icons/settings.svg") !important;
       display: -moz-inline-box;
 
       /* Color */
@@ -123,7 +123,7 @@
   /** Error Page - Restore illustrations **************************************/
   @-moz-document url-prefix("about:neterror"),
   url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"),
-  url("about:sessionrestore"),  url(chrome://browser/content/aboutSessionRestore.xhtml)
+  url("about:sessionrestore"),  url("chrome://browser/content/aboutSessionRestore.xhtml")
   {
     /* Illustrations Position */
     #errorPageContainer,
@@ -184,7 +184,7 @@
     }
   }
 
-  @-moz-document url("about:sessionrestore"), url(chrome://browser/content/aboutSessionRestore.xhtml)
+  @-moz-document url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml")
   {
     .description-wrapper {
       background-image: url("./icons/error-session-restore.svg");

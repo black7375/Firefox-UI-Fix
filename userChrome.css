@@ -888,7 +888,7 @@
     }
 
     dropmarker::part(icon) {
-      list-style-image: url(chrome://global/skin/icons/arrow-down.svg) !important;
+      list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
       -moz-context-properties: fill !important;
       fill: currentColor !important;
     }
@@ -3534,13 +3534,13 @@
     --menuitem-image: url("chrome://browser/skin/save.svg");
   }
   #menu_sendLink {
-    --menuitem-image: url(chrome://browser/skin/mail.svg);
+    --menuitem-image: url("chrome://browser/skin/mail.svg");
   }
 
   #menu_printPreview {
   }
   #menu_print {
-    --menuitem-image: url(chrome://global/skin/icons/print.svg);
+    --menuitem-image: url("chrome://global/skin/icons/print.svg");
   }
 
   #menu_importFromAnotherBrowser {
