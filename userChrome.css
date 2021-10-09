@@ -2802,6 +2802,40 @@
     list-style-image: url("./icons/bookmarksMenu-open.svg") !important; /* or bookmarksMenu-open2.svg" */
   }
 
+  /*= Menubar - Icons =========================================*/
+  @-moz-document url("chrome://browser/content/places/places.xhtml")
+  {
+    @media (-moz-gtk-csd-available) {
+      #organizeButton,
+      #viewMenu,
+      #maintenanceButton,
+      #back-button,
+      #forward-button {
+        fill: currentColor !important;
+        -moz-context-properties: fill !important;
+      }
+
+      /* Add */
+      #organizeButton {
+        list-style-image: url("chrome://global/skin/icons/settings.svg") !important;
+      }
+      #viewMenu {
+        list-style-image: url("./icons/sort.svg") !important;
+      }
+      #maintenanceButton {
+        list-style-image: url("./icons/import-export.svg") !important;
+      }
+
+      /* Replace */
+      #back-button {
+        list-style-image: url("chrome://browser/skin/back.svg") !important;
+      }
+      #forward-button {
+        list-style-image: url("chrome://browser/skin/forward.svg") !important;
+      }
+    }
+  }
+
   /** Panel - Icons ***********************************************************/
   /*= Padding ================================================================*/
   :root {
