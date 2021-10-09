@@ -3480,6 +3480,37 @@
     --menuitem-image: url("./icons/select-all-on.svg");
   }
 
+  /*= textbox-contextmenu ====================================================*/
+  /* Browser's Searchbar, Libray's Searchbar, Page Info */
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
+    --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
+  }
+
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-cut"] {
+    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-copy"] {
+    --menuitem-image: url("chrome://browser/skin/edit-copy.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
+    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-delete"] {
+    --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-select-all"] {
+    --menuitem-image: url("./icons/select-all-on.svg");
+  }
+
+  /* Only searchbar */
+  menuitem.searchbar-paste-and-search {
+  }
+  menuitem.searchbar-clear-history {
+    --menuitem-image: url("chrome://browser/skin/forget.svg");
+  }
+
   /** Global Menu *************************************************************/
   /*= main-menubar ===========================================================*/
   #file-menu {
