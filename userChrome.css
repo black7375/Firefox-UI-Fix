@@ -1413,7 +1413,7 @@
       display: none !important;
     }
 
-    label {
+    xul|menuitem > label:not(.menu-text) {
       margin: 0 3px !important;
     }
 
@@ -1611,6 +1611,12 @@
     }
     #securityTab {
       --viewgroup-image: url(chrome://global/skin/icons/security.svg);
+    }
+
+    #viewGroup > radio > .radio-label-box {
+      /* Overwrite */
+      margin: 0 !important;
+      padding: 0 6 !important;
     }
 
     #permList {
