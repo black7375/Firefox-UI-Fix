@@ -965,16 +965,24 @@
 
   /*= PopupAutoComplete ======================================================*/
   #PopupAutoComplete {
-    --panel-border-radius: 4px; /* Original: 0 */
-    --panel-border-color: var(--arrowpanel-border-color, var(--menu-border-color)); /* Original: ThreeDShadow */
+    --panel-bgcolor: var(--arrowpanel-background, var(--in-content-button-background));
+
+    /* overwrite */
+    --panel-border-radius: 4px !important; /* Original: 0 */
+    --panel-border-color: var(
+      --arrowpanel-border-color,
+      var(--menu-border-color)
+    ) !important; /* Original: ThreeDShadow */
+
+    appearance: none !important;
+    background: transparent !important;
+    border: none !important;
+    clip-path: inset(0 round var(--panel-border-radius));
   }
 
   #PopupAutoComplete > richlistbox {
     border-radius: var(--panel-border-radius) !important;
-    background-color: var(
-      --arrowpanel-background,
-      var(--in-content-button-background)
-    ) !important; /* Original: Field */
+    background-color: var(--panel-bgcolor) !important; /* Original: Field */
     color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FiledText */
   }
 
@@ -985,12 +993,10 @@
   }
 
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"] {
+    --panel-border-color: var(--panel-bgcolor);
     color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FieldText */
     background-color: var(--arrowpanel-dimmed, hsla(0, 0%, 80%, 0.35)) !important; /* Original: hsla(0,0%,80%,.35) */
-    border-color: var(
-      --arrowpanel-border-color,
-      var(--menu-border-color)
-    ) !important; /* Original: rgba(38,38,38,.15) */
+    border-color: var(--panel-border-color) !important; /* Original: rgba(38,38,38,.15) */
   }
 
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"]:hover,
