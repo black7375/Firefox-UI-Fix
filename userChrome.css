@@ -1585,8 +1585,7 @@
       color: var(--in-content-button-text-color) !important; /* SelectedItemText */
       background-color: var(--in-content-button-background-active) !important; /* #C1D2EE; */
     }
-    #viewGroup > radio,
-    #mainDeck input {
+    #viewGroup > radio {
       color: var(--in-content-deemphasized-text) !important; /* FieldText */
     }
 
@@ -1617,6 +1616,10 @@
       /* Overwrite */
       margin: 0 !important;
       padding: 0 6 !important;
+    }
+
+    #mainDeck input {
+      color: var(--in-content-page-color) !important;
     }
 
     #permList {
@@ -1674,6 +1677,10 @@
       border-spacing: 0 !important;
       padding: 4px !important;
       margin: 0 !important;
+    }
+    treechildren::-moz-tree-cell-text(selected) {
+      font-weight: 600 !important;
+      color: color-mix(in srgb, var(--in-content-text-color) 95%, var(--in-content-table-background)) !important;
     }
 
     #imagecontainerbox {
