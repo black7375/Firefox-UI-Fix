@@ -610,7 +610,7 @@
     button:-moz-focusring,
     xul|menulist:-moz-focusring,
     xul|checkbox:-moz-focusring > .checkbox-check, /* :not([native]) to win specificity over checkbox.css */
-    xul|radio[focused="true"] {
+    xul|radio[focused="true"]:-moz-focusring {
       box-shadow: none !important;
       outline: 2px solid var(--in-content-focus-outline-color) !important;
       outline-offset: 2px !important;
