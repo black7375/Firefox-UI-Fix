@@ -1095,7 +1095,8 @@
   }
 
   /*= Proton Commons =========================================================*/
-  @-moz-document url("chrome://mozapps/content/downloads/unknownContentType.xhtml"),
+  @-moz-document url("chrome://global/content/commonDialog.xhtml"),
+  url("chrome://mozapps/content/downloads/unknownContentType.xhtml"),
   url("chrome://browser/content/pageinfo/pageInfo.xhtml")
   {
     /*- Overwrite ------------------------------------------------------------*/
@@ -1577,6 +1578,16 @@
       xul|*.text-link:-moz-focusring {
         box-shadow: none !important;
       }
+    }
+  }
+
+  /*= Common Dialog ==========================================================*/
+  @-moz-document url("chrome://global/content/commonDialog.xhtml")
+  {
+    #commonDialog {
+      -moz-appearance: none !important; /* For Mac */
+      color: var(--in-content-page-color) !important;
+      background-color: var(--in-content-page-background) !important;
     }
   }
 
