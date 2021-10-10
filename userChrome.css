@@ -1100,6 +1100,7 @@
   url("chrome://pippki/content/deletecert.xhtml"),
   url("chrome://pippki/content/exceptionDialog.xhtml"),
   url("chrome://mozapps/content/downloads/unknownContentType.xhtml"),
+  url("chrome://global/content/appPicker.xhtml"),
   url("chrome://browser/content/pageinfo/pageInfo.xhtml")
   {
     /*- Overwrite ------------------------------------------------------------*/
@@ -1126,6 +1127,7 @@
     #deleteCertificate,
     #exceptiondialog,
     #unknownContentType,
+    #app-picker,
     #topBar, /* #topBar, #mainDeck: Page Info */
     #mainDeck {
       -moz-appearance: none !important; /* For Mac */
@@ -1528,6 +1530,89 @@
 
     xul|menulist:-moz-focusring > xul|*.menulist-label-box {
       outline: none !important;
+    }
+
+    /*- List Boxes -----------------------------------------------------------*/
+    html|select[size][multiple],
+    xul|listheader,
+    xul|richlistbox {
+      appearance: none !important;
+      margin-inline: 0 !important;
+      background-color: var(--in-content-box-background) !important;
+      border: 1px solid var(--in-content-box-border-color) !important;
+      border-radius: 4px !important;
+      color: var(--in-content-text-color) !important;
+    }
+
+    xul|listheader {
+      border-bottom: none !important;
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      padding-bottom: 1px !important;
+      box-shadow: inset 0 -1px var(--in-content-border-color) !important;
+      overflow: clip !important; /* Clip border-radius */
+    }
+
+    xul|listheader + xul|richlistbox {
+      margin-top: 0 !important;
+      border-top: none !important;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+
+    html|select[size][multiple] > html|option,
+    xul|treechildren::-moz-tree-row {
+      padding: 0.3em inherit !important;
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background-image: none !important;
+    }
+
+    xul|treechildren::-moz-tree-row(multicol, odd) {
+      background-color: var(--in-content-box-background-odd);
+    }
+
+    html|select[size][multiple] > html|option:hover,
+    xul|richlistbox > xul|richlistitem:not([disabled="true"], [selected]):hover,
+    xul|treechildren::-moz-tree-row(hover) {
+      background-color: var(--in-content-item-hover) !important;
+      color: var(--in-content-item-hover-text) !important;
+    }
+
+    xul|richlistbox > xul|richlistitem[selected],
+    xul|treechildren::-moz-tree-row(selected) {
+      background-color: var(--in-content-item-selected) !important;
+      color: var(--in-content-item-selected-text) !important;
+    }
+
+    xul|richlistbox:not(#categories) > xul|richlistitem[selected] {
+      /* Ensure buttons/menulists inside richlistitems (containers, applications) look OK */
+      --in-content-button-background: color-mix(in srgb, currentColor 15%, transparent) !important;
+      --in-content-button-background-hover: color-mix(in srgb, currentColor 30%, transparent) !important;
+      --in-content-button-background-active: color-mix(in srgb, currentColor 45%, transparent) !important;
+      --in-content-button-text-color: var(--in-content-item-selected-text) !important;
+      --in-content-button-text-color-hover: var(--in-content-item-selected-text) !important;
+      --in-content-focus-outline-color: var(--in-content-item-selected-text) !important;
+    }
+
+    xul|richlistitem[selected] xul|menulist:focus-visible {
+      outline-offset: -2px !important;
+    }
+
+    /* Use a 2px border so that selected row highlight is still visible behind
+        an existing high-contrast border that uses the background color */
+    @media (prefers-contrast) {
+      xul|treechildren::-moz-tree-row(selected) {
+        border: 2px solid currentColor !important;
+        border-radius: 4px !important;
+      }
+    }
+
+    xul|panel[type="autocomplete-richlistbox"] {
+      background-color: var(--in-content-box-background) !important;
+      border: 1px solid var(--in-content-box-border-color) !important;
+      color: var(--in-content-text-color) !important;
     }
 
     /*- Each OS --------------------------------------------------------------*/
