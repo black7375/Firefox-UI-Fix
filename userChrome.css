@@ -1117,6 +1117,16 @@
   }
 
   /*= Tab Bar - Reduce Width, Show more tabs =================================*/
+  /* for First Tab Space */
+  :root {
+    --space-left-tabbar: 0px; /* If you want drag space, set to 8px */
+  }
+  :root:not([tabsintitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
+  :root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs:not([positionpinnedtabs]) {
+    padding-inline-start: var(--space-left-tabbar) !important;
+  }
+
+  /* Titlebar Space */
   .titlebar-spacer[type="pre-tabs"] {
     width: 30px !important; /* Original: 40px */
   }
@@ -1124,6 +1134,7 @@
     width: 25px !important; /* Original: 40px */
   }
 
+  /* Tabbar Buttons */
   :root {
     --newtab-button-minus-width-padding: 2px;
     --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
