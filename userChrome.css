@@ -244,9 +244,10 @@
       --win-shorcut-text-color: #757575;
       --win-error-color: #b31616;
       --win-red-border-color: #ff4343;
-      --win-accent-color: #005dba;
-      --win-accent-hover-color: #4599db;
-      --win-accent-active-color: #0078d7;
+      --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
+      --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
+      --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
+      --win-accent-active-color: -moz-accent-color;
     }
     @media (-moz-toolbar-prefers-color-scheme: dark) {
       :root:not(:-moz-lwtheme),
@@ -269,9 +270,10 @@
         --win-shorcut-text-color: #adadad;
         --win-error-color: #ffb900;
         --win-red-border-color: #ff4343;
-        --win-accent-color: #3195e3;
-        --win-accent-hover-color: #036fc4;
-        --win-accent-active-color: #0078d7;
+        --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, -moz-accent-color);
+        --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
+        --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, -moz-accent-color);
+        --win-accent-active-color: -moz-accent-color;
       }
     }
 
@@ -362,12 +364,14 @@
       --autocomplete-popup-separator-color: var(--win-button-border) !important;
 
       /* Accent Color */
-      --toolbarbutton-icon-fill-attention: var(--win-accent-color) !important;
-      --urlbar-popup-url-color: var(--win-accent-color) !important;
       --button-primary-bgcolor: var(--win-accent-color) !important;
       --focus-outline-color: var(--win-accent-color) !important;
       --checkbox-checked-bgcolor: var(--win-accent-color) !important;
-      --download-progress-fill-color: var(--win-accent-color) !important;
+
+      /* Accent Content Color */
+      --toolbarbutton-icon-fill-attention: var(--win-accent-content-color) !important;
+      --urlbar-popup-url-color: var(--win-accent-content-color) !important;
+      --download-progress-fill-color: var(--win-accent-content-color) !important;
 
       /* Accent Hover Color */
       --button-primary-hover-bgcolor: var(--win-accent-hover-color) !important;
