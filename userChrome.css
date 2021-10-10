@@ -1096,6 +1096,7 @@
 
   /*= Proton Commons =========================================================*/
   @-moz-document url("chrome://global/content/commonDialog.xhtml"),
+  url("chrome://pippki/content/editcacert.xhtml"),
   url("chrome://mozapps/content/downloads/unknownContentType.xhtml"),
   url("chrome://browser/content/pageinfo/pageInfo.xhtml")
   {
@@ -1119,6 +1120,7 @@
 
     /*- Dialog ---------------------------------------------------------------*/
     #commonDialog,
+    #editCaCert,
     #unknownContentType,
     #topBar, /* #topBar, #mainDeck: Page Info */
     #mainDeck {
