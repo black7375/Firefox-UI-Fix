@@ -3351,6 +3351,23 @@
     }
   }
 
+  /*= protections-popup ======================================================*/
+  #protections-popup-settings-button > .protections-popup-settings-icon,
+  #protections-popup-show-report-button > .protections-popup-show-report-icon {
+    -moz-context-properties: fill;
+    fill: currentColor;
+    margin-inline-end: 1em;
+  }
+
+  #protections-popup-settings-button > .protections-popup-settings-icon {
+    list-style-image: url("chrome://global/skin/icons/settings.svg");
+  }
+
+  #protections-popup-show-report-button > .protections-popup-show-report-icon {
+    /* chrome://browser/skin/controlcenter/dashboard.svg */
+    list-style-image: url("icons/dashboard.svg");
+  }
+
   /*= identity-popup =========================================================*/
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info {
