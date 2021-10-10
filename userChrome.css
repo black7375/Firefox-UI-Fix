@@ -1097,6 +1097,7 @@
   /*= Proton Commons =========================================================*/
   @-moz-document url("chrome://global/content/commonDialog.xhtml"),
   url("chrome://pippki/content/editcacert.xhtml"),
+  url("chrome://pippki/content/deletecert.xhtml"),
   url("chrome://mozapps/content/downloads/unknownContentType.xhtml"),
   url("chrome://browser/content/pageinfo/pageInfo.xhtml")
   {
@@ -1121,6 +1122,7 @@
     /*- Dialog ---------------------------------------------------------------*/
     #commonDialog,
     #editCaCert,
+    #deleteCertificate,
     #unknownContentType,
     #topBar, /* #topBar, #mainDeck: Page Info */
     #mainDeck {
@@ -1591,6 +1593,18 @@
       xul|*.text-link:-moz-focusring {
         box-shadow: none !important;
       }
+    }
+  }
+
+  /*= Delete Cert =============================================================*/
+  @-moz-document url("chrome://pippki/content/deletecert.xhtml")
+  {
+    :root {
+      --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
+    }
+    #certlist {
+      border: 1px solid var(--in-content-border-color) !important;
+      border-radius: 4px !important;
     }
   }
 
