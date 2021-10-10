@@ -399,6 +399,7 @@
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
     }
 
+    /*- Menu -----------------------------------------------------------------*/
     html#main-window menupopup:not(:-moz-lwtheme) {
       --menu-color: var(--win-text-color) !important;
       --menu-background-color: var(--win-component-bgcolor) !important;
@@ -446,6 +447,7 @@
       --button-active-bgcolor: var(--win-hover-active-bgcolor) !important;
     }
 
+    /*- Others ---------------------------------------------------------------*/
     /* For overwrite */
     :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme) {
       --lwt-accent-color: var(--win-bgcolor) !important;
