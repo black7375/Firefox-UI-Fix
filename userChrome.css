@@ -1117,6 +1117,17 @@
       --checkbox-checked-active-bgcolor: var(--in-content-primary-button-background-active) !important;
     }
 
+    /*- Dialog ---------------------------------------------------------------*/
+    #commonDialog,
+    #unknownContentType,
+    #topBar, /* #topBar, #mainDeck: Page Info */
+    #mainDeck {
+		  -moz-appearance: none !important; /* For Mac */
+      color: var(--in-content-page-color) !important;
+      background-color: var(--in-content-page-background) !important;
+      /* border-radius: 0 0 8px 8px !important; */
+	  }
+
     /*- Button ---------------------------------------------------------------*/
     button {
       -moz-appearance: none !important;
@@ -1581,40 +1592,13 @@
     }
   }
 
-  /*= Common Dialog ==========================================================*/
-  @-moz-document url("chrome://global/content/commonDialog.xhtml")
-  {
-    #commonDialog {
-      -moz-appearance: none !important; /* For Mac */
-      color: var(--in-content-page-color) !important;
-      background-color: var(--in-content-page-background) !important;
-    }
-  }
-
-  /*= Downloads ==============================================================*/
-  @-moz-document url("chrome://mozapps/content/downloads/unknownContentType.xhtml")
-  {
-    #unknownContentType {
-      -moz-appearance: none !important; /* For Mac */
-      color: var(--in-content-page-color) !important;
-      background-color: var(--in-content-page-background) !important;
-      /* border-radius: 0 0 8px 8px !important; */
-    }
-  }
-
   /*= Page Info ==============================================================*/
   @-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml")
   {
     :root {
       --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
     }
-    #topBar,
-    #mainDeck {
-      -moz-appearance: none !important; /* For Mac */
-      color: var(--in-content-page-color) !important;
-      background-color: var(--in-content-page-background) !important;
-      /* border-radius: 0 0 8px 8px !important; */
-    }
+
     #viewGroup > radio {
       border-radius: 8px !important;
       padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
