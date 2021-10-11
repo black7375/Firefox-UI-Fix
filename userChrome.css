@@ -3490,6 +3490,8 @@
     menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   #blockedPopupDontShowMessage {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
@@ -3524,6 +3526,8 @@
     menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -3578,6 +3582,8 @@
       menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     #blockedPopupDontShowMessage {
       background-position: left var(--context-menu-background-padding) center !important;
       padding-inline-start: 0 !important;
@@ -3602,6 +3608,8 @@
       menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     #blockedPopupDontShowMessage {
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
@@ -4675,5 +4683,70 @@
   }
 
   #helpPolicySupport {
+  }
+
+  /** Libray Menu *************************************************************/
+  /*= organizeButtonPopup ====================================================*/
+  #newbookmark {
+    --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+  }
+  #newfolder {
+    --menuitem-image: url("./icons/folder.svg");
+  }
+  #newseparator {
+    --menuitem-image: url("./icons/vertical-line.svg");
+  }
+
+  #orgUndo {
+    --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  }
+  #orgRedo {
+  }
+
+  #orgCut {
+    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  }
+  #orgCopy {
+    --menuitem-image: url("chrome://browser/skin/edit-copy.svg");
+  }
+  #orgPaste {
+    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  }
+  #orgDelete {
+    --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+  }
+
+  #orgSelectAll {
+    --menuitem-image: url("./icons/select-all-on.svg");
+  }
+
+  #orgClose {
+    --menuitem-image: url("chrome://global/skin/icons/close.svg");
+  }
+
+  /*= viewMenuPopup ==========================================================*/
+  #viewColumns {
+    --menuitem-image: url("chrome://global/skin/icons/columnpicker.svg");
+  }
+  #viewSort {
+    --menuitem-image: url("./icons/text-sort-ascending.svg");
+  }
+
+  /*= maintenanceButtonPopup =================================================*/
+  #backupBookmarks {
+    --menuitem-image: url("chrome://devtools/skin/images/datastore.svg");
+  }
+  #fileRestoreMenu {
+  }
+
+  #fileImport {
+    --menuitem-image: url("chrome://browser/skin/save.svg");
+  }
+  #fileExport {
+    --menuitem-image: url("chrome://browser/skin/open.svg");
+  }
+
+  #browserImport {
+    --menuitem-image: url("chrome://browser/skin/import.svg");
   }
 }
