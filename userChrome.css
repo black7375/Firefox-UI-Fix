@@ -1841,11 +1841,11 @@
     }
 
     treechildren::-moz-tree-row(hover) {
-      background-color: var(--in-content-button-background-hover) !important;
+      color: var(--in-content-item-hover-text) !important;
+      background-color: var(--in-content-item-hover) !important;
     }
     treechildren::-moz-tree-row(selected) {
-      color: var(--in-content-text-color) !important;
-      background-color: var(--in-content-button-background-active) !important;
+      background-color: var(--in-content-item-selected) !important;
     }
 
     treechildren::-moz-tree-cell {
@@ -1854,9 +1854,12 @@
       padding: 4px !important;
       margin: 0 !important;
     }
+    treechildren::-moz-tree-cell-text(hover) {
+      color: var(--in-content-item-hover-text) !important;
+    }
     treechildren::-moz-tree-cell-text(selected) {
       font-weight: 600 !important;
-      color: color-mix(in srgb, var(--in-content-text-color) 95%, var(--in-content-table-background)) !important;
+      color: var(--in-content-item-selected-text) !important;
     }
 
     #imagecontainerbox {
