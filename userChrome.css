@@ -2107,6 +2107,12 @@
     background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
   }
 
+  /*= Nav Bar - Reduce Width =================================================*/
+  #nav-bar:not([customizing]) toolbarspring {
+    min-width: 1px !important;
+    max-width: 100px !important;
+  }
+
   /*= URL Bar - Reduce Padding ===============================================*/
   :root:not([uidensity="touch"]) #urlbar-container,
   :root:not([uidensity="touch"]) #search-container {
