@@ -2919,7 +2919,8 @@
   }
 
   /*= new-tab-button-popup ===================================================*/
-  #new-tab-button-popup > menuitem[command="Browser:OpenAboutContainers"] {
+  #new-tab-button-popup > menuitem[command="Browser:OpenAboutContainers"],
+  .new-tab-popup > menuitem[command="Browser:OpenAboutContainers"] {
     --menuitem-image: url("chrome://global/skin/icons/settings.svg");
   }
 
