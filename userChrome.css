@@ -610,7 +610,7 @@
     button:-moz-focusring,
     xul|menulist:-moz-focusring,
     xul|checkbox:-moz-focusring > .checkbox-check, /* :not([native]) to win specificity over checkbox.css */
-    xul|radio[focused="true"] {
+    xul|radio[focused="true"]:-moz-focusring {
       box-shadow: none !important;
       outline: 2px solid var(--in-content-focus-outline-color) !important;
       outline-offset: 2px !important;
@@ -888,7 +888,7 @@
     }
 
     dropmarker::part(icon) {
-      list-style-image: url(chrome://global/skin/icons/arrow-down.svg) !important;
+      list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
       -moz-context-properties: fill !important;
       fill: currentColor !important;
     }
@@ -1115,6 +1115,16 @@
   }
 
   /*= Tab Bar - Reduce Width, Show more tabs =================================*/
+  /* for First Tab Space */
+  :root {
+    --space-left-tabbar: 0px; /* If you want drag space, set to 8px */
+  }
+  :root:not([tabsintitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
+  :root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs:not([positionpinnedtabs]) {
+    padding-inline-start: var(--space-left-tabbar) !important;
+  }
+
+  /* Titlebar Space */
   .titlebar-spacer[type="pre-tabs"] {
     width: 30px !important; /* Original: 40px */
   }
@@ -1122,6 +1132,7 @@
     width: 25px !important; /* Original: 40px */
   }
 
+  /* Tabbar Buttons */
   :root {
     --newtab-button-minus-width-padding: 2px;
     --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
@@ -2748,7 +2759,8 @@
   }
 
   /*= new-tab-button-popup ===================================================*/
-  #new-tab-button-popup > menuitem[command="Browser:OpenAboutContainers"] {
+  #new-tab-button-popup > menuitem[command="Browser:OpenAboutContainers"],
+  .new-tab-popup > menuitem[command="Browser:OpenAboutContainers"] {
     --menuitem-image: url("chrome://global/skin/icons/settings.svg");
   }
 
@@ -3165,8 +3177,7 @@
     --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
   }
 
-  menupopup[context="placesContext"] > .openintabs-menuitem,
-  menuitem.openintabs-menuitem.subviewbutton {
+  .openintabs-menuitem {
     --menuitem-image: url("./icons/movetowindow-16.svg");
   }
 
@@ -3320,6 +3331,37 @@
     --menuitem-image: url("./icons/select-all-on.svg");
   }
 
+  /*= textbox-contextmenu ====================================================*/
+  /* Browser's Searchbar, Libray's Searchbar, Page Info */
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
+    --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
+  }
+
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-cut"] {
+    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-copy"] {
+    --menuitem-image: url("chrome://browser/skin/edit-copy.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
+    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-delete"] {
+    --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+  }
+  .textbox-contextmenu > menuitem[data-l10n-id="text-action-select-all"] {
+    --menuitem-image: url("./icons/select-all-on.svg");
+  }
+
+  /* Only searchbar */
+  menuitem.searchbar-paste-and-search {
+  }
+  menuitem.searchbar-clear-history {
+    --menuitem-image: url("chrome://browser/skin/forget.svg");
+  }
+
   /** Global Menu *************************************************************/
   /*= main-menubar ===========================================================*/
   #file-menu {
@@ -3374,13 +3416,13 @@
     --menuitem-image: url("chrome://browser/skin/save.svg");
   }
   #menu_sendLink {
-    --menuitem-image: url(chrome://browser/skin/mail.svg);
+    --menuitem-image: url("chrome://browser/skin/mail.svg");
   }
 
   #menu_printPreview {
   }
   #menu_print {
-    --menuitem-image: url(chrome://global/skin/icons/print.svg);
+    --menuitem-image: url("chrome://global/skin/icons/print.svg");
   }
 
   #menu_importFromAnotherBrowser {
