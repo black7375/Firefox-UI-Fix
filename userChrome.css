@@ -2703,19 +2703,26 @@
     fill-opacity: 0.8 !important;
     opacity: 1 !important;
   }
-  .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
-    margin-inline-end: 9.5px !important;
+  .tab-label-container > .tab-label {
+    transition: transform 0.25s var(--animation-easing-function);
+  }
+  .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
+    transform: translateX(4px);
   }
 
   /* None exist favicon - Size bigger */
   .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
     top: 0 !important;
     inset-inline-end: 0 !important;
-    margin-inline-end: 5.5px !important;
+    margin-inline-end: 0 !important;
     padding: 0 !important;
   }
   .tabbrowser-tab:not([image]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
     opacity: 0 !important; /* Favicon hidden */
+  }
+  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+    .tab-label {
+    transform: translateX(5.5px);
   }
 
   /* Busy - Show */
