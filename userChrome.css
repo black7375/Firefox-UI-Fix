@@ -1940,6 +1940,19 @@
   }
   */
 
+  /*= Animate ================================================================*/
+  /* Background Color */
+  button,
+  toolbarbutton,
+  menu,
+  menuitem,
+  stack,
+  vbox,
+  .subviewbutton,
+  .toolbarbutton-icon {
+    transition: background-color 1s var(--animation-easing-function) !important;
+  }
+
   /** Reduce Padding **********************************************************/
   /*= Root - Reduce Padding ==================================================*/
   :root {
