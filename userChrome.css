@@ -1952,6 +1952,12 @@
     transition: background-color 1s var(--animation-easing-function) !important;
   }
 
+  /* URL / Search Bar */
+  #urlbar-background,
+  #searchbar {
+    transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
+  }
+
   /** Reduce Padding **********************************************************/
   /*= Root - Reduce Padding ==================================================*/
   :root {
