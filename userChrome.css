@@ -1888,8 +1888,7 @@
   /*= URL, Search Bar ========================================================*/
   #urlbar:hover:not([focused="true"]) > #urlbar-background,
   #searchbar:hover:not(:focus-within) {
-    border-color: var(--toolbar-field-focus-border-color);
-    box-shadow: 0px 0px 3px var(--toolbar-field-focus-border-color);
+    --toolbar-field-border-color: var(--toolbar-field-focus-border-color);
   }
 
   /*= Downloads Panel ========================================================*/
