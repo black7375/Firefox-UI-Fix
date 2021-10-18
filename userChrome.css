@@ -1977,6 +1977,24 @@
     transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
   }
 
+  /* Arrow - Synced Tabs */
+  @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
+  {
+    #template-container .item.client .item-twisty-container {
+      transition: transform 0.1s var(--animation-easing-function) !important;
+    }
+
+    #template-container .item.client.closed .item-twisty-container {
+      transform: rotate(-90deg);
+      background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+    }
+
+    #template-container .item.client.closed .item-twisty-container:dir(rtl) {
+      transform: rotate(90deg);
+      background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+    }
+  }
+
   /** Reduce Padding **********************************************************/
   /*= Root - Reduce Padding ==================================================*/
   :root {
