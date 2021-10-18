@@ -1951,10 +1951,24 @@
   .toolbarbutton-icon {
     transition: background-color 1s var(--animation-easing-function) !important;
   }
+  button:hover,
+  toolbarbutton:hover,
+  menu:hover,
+  menuitem:hover,
+  stack:hover,
+  vbox:hover,
+  .subviewbutton:hover,
+  .toolbarbutton-icon:hover {
+    transition: background-color 0.25s var(--animation-easing-function) !important;
+  }
 
   /* URL / Search Bar */
   #urlbar-background,
   #searchbar {
+    transition: border-color 1s var(--animation-easing-function), background-color 1.5s var(--animation-easing-function) !important;
+  }
+  #urlbar-background:hover,
+  #searchbar:hover {
     transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
   }
 
