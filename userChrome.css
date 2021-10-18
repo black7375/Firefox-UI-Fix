@@ -1826,9 +1826,10 @@
   .tab-icon-overlay:not([crashed]),
   .tab-icon-overlay[pinned][crashed][selected] {
     /* Position */
-    top: -3.5px !important;
+    top: 0 !important;
     inset-inline-end: -9px !important;
     z-index: 1 !important;
+    transform: translateX(-0.5px) translateY(-6px);
 
     /* Shape */
     padding: 1.5px !important;
@@ -1853,7 +1854,7 @@
 
   /* None exist favicon - Size bigger */
   .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
-    top: 0 !important;
+    transform: translateX(-0.5px) translateY(-1px);
     inset-inline-end: 0 !important;
     margin-inline-end: 5.5px !important;
     padding: 0 !important;
@@ -1870,10 +1871,9 @@
 
   /* Busy - Overlay Position */
   .tabbrowser-tab:not([pinned])[busy] .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
-    transform: translateX(-0.5px) translateY(-2.5px);
+    transform: translateX(-0.5px) translateY(-6px);
   }
   .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed])[busy] {
-    top: -3.5px !important;
     inset-inline-end: -9px !important;
     margin-inline-end: 9.5px !important;
     padding: 1.5px !important;
