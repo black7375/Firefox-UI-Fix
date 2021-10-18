@@ -1943,23 +1943,28 @@
   /* Background Color */
   button,
   toolbarbutton,
-  menu,
-  menuitem,
   stack,
   vbox,
-  .subviewbutton,
   .toolbarbutton-icon {
     transition: background-color 1s var(--animation-easing-function) !important;
   }
   button:hover,
   toolbarbutton:hover,
-  menu:hover,
-  menuitem:hover,
   stack:hover,
   vbox:hover,
-  .subviewbutton:hover,
   .toolbarbutton-icon:hover {
     transition: background-color 0.25s var(--animation-easing-function) !important;
+  }
+
+  menu,
+  menuitem,
+  .subviewbutton {
+    transition: background-color 0.5s var(--animation-easing-function) !important;
+  }
+  menu:hover,
+  menuitem:hover,
+  .subviewbutton:hover {
+    transition: background-color 0.1s var(--animation-easing-function) !important;
   }
 
   /* URL / Search Bar */
