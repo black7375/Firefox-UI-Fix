@@ -1959,6 +1959,7 @@
   menu,
   menuitem,
   .subviewbutton {
+    /* treechildren::-moz-tree-row: Can't apply */
     transition: background-color 0.5s var(--animation-easing-function) !important;
   }
   menu:hover,
@@ -1980,6 +1981,7 @@
   /* Arrow - Synced Tabs */
   @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
   {
+    /* treechildren::-moz-tree-twisty: Can't apply */
     #template-container .item.client .item-twisty-container {
       transition: transform 0.1s var(--animation-easing-function) !important;
     }
@@ -1993,6 +1995,18 @@
       transform: rotate(90deg);
       background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
     }
+  }
+
+  /* Arrow - Edit Bookmark Popup */
+  #editBookmarkPanelRows .expander-up .button-icon,
+  #editBookmarkPanelRows .expander-down .button-icon {
+    transition: transform 0.1s var(--animation-easing-function) !important;
+  }
+  #editBookmarkPanelRows .expander-up {
+    list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
+  }
+  #editBookmarkPanelRows .expander-up .button-icon {
+    transform: rotate(180deg);
   }
 
   /** Reduce Padding **********************************************************/
