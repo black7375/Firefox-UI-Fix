@@ -1581,8 +1581,8 @@
 
   /** Selected Tab - Bottom Rounded Corner ************************************/
   #tabbrowser-tabs {
-    --tab-corner-rounding: 4px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
-    --tab-corner-padding: 1px;
+    --tab-corner-rounding: 3px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
+    --tab-corner-padding: 0px;
     --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
   }
 
@@ -1591,7 +1591,7 @@
     /* Box */
     display: block !important;
     position: absolute !important;
-    z-index: -1 !important;
+    z-index: 1 !important;
 
     /* Shape */
     width: var(--tab-corner-rounding) !important;
