@@ -1940,7 +1940,7 @@
   */
 
   /*= Animate ================================================================*/
-  /* Background Color */
+  /*- Background Color -------------------------------------------------------*/
   button,
   toolbarbutton,
   stack,
@@ -1968,7 +1968,26 @@
     transition: background-color 0.1s var(--animation-easing-function) !important;
   }
 
-  /* URL / Search Bar */
+  /*- Pinned Tab -------------------------------------------------------------*/
+  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab,
+  #tabbrowser-tabs:not([movingtab]) .tab-content,
+  #tabbrowser-tabs:not([movingtab]) .tab-content::before,
+  #tabbrowser-tabs:not([movingtab]) .tab-content::after {
+    transition: 0.2s var(--animation-easing-function) !important;
+  }
+
+  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab {
+    transition-property: -moz-box-flex, margin-inline !important;
+  }
+  #tabbrowser-tabs:not([movingtab]) .tab-content {
+    transition-property: padding-inline;
+  }
+  #tabbrowser-tabs:not([movingtab]) .tab-content::before,
+  #tabbrowser-tabs:not([movingtab]) .tab-content::after {
+    transition-property: width, transform;
+  }
+
+  /*- URL / Search Bar -------------------------------------------------------*/
   #urlbar-background,
   #searchbar {
     transition: border-color 1s var(--animation-easing-function), background-color 1.5s var(--animation-easing-function) !important;
@@ -1978,7 +1997,7 @@
     transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
   }
 
-  /* Arrow - Synced Tabs */
+  /*- Arrow - Synced Tabs ----------------------------------------------------*/
   @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
   {
     /* treechildren::-moz-tree-twisty: Can't apply */
@@ -1997,7 +2016,7 @@
     }
   }
 
-  /* Arrow - Edit Bookmark Popup */
+  /*- Arrow - Edit Bookmark Popup --------------------------------------------*/
   #editBookmarkPanelRows .expander-up .button-icon,
   #editBookmarkPanelRows .expander-down .button-icon {
     transition: transform 0.1s var(--animation-easing-function) !important;
