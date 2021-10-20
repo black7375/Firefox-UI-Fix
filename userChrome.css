@@ -1599,13 +1599,18 @@
 
     /* Color */
     fill: var(--toolbar-bgcolor) !important;
-    stroke: var(--tabs-border-color, transparent) !important;
+    stroke: var(--tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9))) !important;
     -moz-context-properties: fill, stroke !important;
 
     /* Image */
     background-size: var(--tab-corner-rounding);
     background-repeat: no-repeat;
     background-position-y: bottom;
+  }
+  :root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
+    /* As Selected Tab - Box Shadow */
+    stroke: var(--toolbar-color) !important;
   }
 
   tab[visuallyselected] > stack::before {
