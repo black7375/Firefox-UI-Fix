@@ -1972,12 +1972,14 @@
   #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab,
   #tabbrowser-tabs:not([movingtab]) .tab-content,
   #tabbrowser-tabs:not([movingtab]) .tab-content::before,
-  #tabbrowser-tabs:not([movingtab]) .tab-content::after {
+  #tabbrowser-tabs:not([movingtab]) .tab-content::after,
+  #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
     transition: 0.2s var(--animation-easing-function) !important;
   }
 
   #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab {
     transition-property: -moz-box-flex, margin-inline !important;
+    max-width: calc(var(--tab-max-width, 240px) + 5px);
   }
   #tabbrowser-tabs:not([movingtab]) .tab-content {
     transition-property: padding-inline;
@@ -1985,6 +1987,9 @@
   #tabbrowser-tabs:not([movingtab]) .tab-content::before,
   #tabbrowser-tabs:not([movingtab]) .tab-content::after {
     transition-property: width, transform;
+  }
+  #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
+    transition-property: margin-inline;
   }
 
   /*- URL / Search Bar -------------------------------------------------------*/
@@ -2119,8 +2124,11 @@
   }
 
   /* Tab - Max Size */
+  :root {
+    --tab-max-width: 240px;
+  }
   .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
-    max-width: 240px !important; /* Original: 225px */
+    max-width: var(--tab-max-width) !important; /* Original: 225px */
   }
 
   /* neighbouring tabs should "pinch" together */
