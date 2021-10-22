@@ -2008,6 +2008,27 @@
     transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
   }
 
+  /*- Expand - Synced Tabs ---------------------------------------------------*/
+  @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
+  {
+    .item-tabs-list {
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+      transform: translateY(0%);
+      opacity: 1;
+      max-height: 100%;
+    }
+
+    .item.client.closed .item-tabs-list {
+      display: flex !important;
+
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out, max-height 0.1s ease-in 0.05s;
+      visibility: hidden;
+      transform: translateY(-100%);
+      opacity: 0;
+      max-height: 0;
+    }
+  }
+
   /*- Arrow - Synced Tabs ----------------------------------------------------*/
   @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
   {
