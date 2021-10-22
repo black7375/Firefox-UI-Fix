@@ -366,7 +366,7 @@
     --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
   }
 
-  @media (-moz-toolbar-prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
     :host,
     :root {
       /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
@@ -500,7 +500,7 @@
       --menu-border-color: #cfcfd8;
       --menuitem-hover-background-color: #e0e0e6;
     }
-    @media (-moz-toolbar-prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
       :root {
         --menu-border-color: rgba(107, 107, 107, 0.3);
         --menu-color: #fbfbfe;
@@ -558,7 +558,7 @@
   /*= Downloads ==============================================================*/
   @-moz-document url("chrome://mozapps/content/downloads/unknownContentType.xhtml")
   {
-    @media (-moz-toolbar-prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
       :root {
         --in-content-page-background: #42414d;
       }
