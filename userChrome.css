@@ -1961,7 +1961,7 @@
     position: absolute !important;
 
     /* Shape */
-    border-bottom: 2px solid var(--identity-icon-color);
+    border-bottom: 2px solid color-mix(in srgb, var(--identity-icon-color) 75%, transparent);
     width: 25%;
 
     /* Animate */
@@ -1970,6 +1970,7 @@
   }
   .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
     width: calc(100% - 30px);
+    border-color: var(--identity-icon-color);
   }
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
     width: calc(100% - 33px);
