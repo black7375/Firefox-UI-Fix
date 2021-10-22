@@ -1969,27 +1969,29 @@
   }
 
   /*- Pinned Tab -------------------------------------------------------------*/
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab,
-  #tabbrowser-tabs:not([movingtab]) .tab-content,
-  #tabbrowser-tabs:not([movingtab]) .tab-content::before,
-  #tabbrowser-tabs:not([movingtab]) .tab-content::after,
-  #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
-    transition: 0.2s var(--animation-easing-function) !important;
+  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab:not([collapsed]) {
+    /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
+    transition: -moz-box-flex 0.2s var(--animation-easing-function),
+      margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
+    max-width: var(--tab-max-width, 240px);
+  }
+  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
+    transition: -moz-box-flex 0.2s var(--animation-easing-function),
+      margin-inline-start 0.2s var(--animation-easing-function) !important;
   }
 
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab {
-    transition-property: -moz-box-flex, margin-inline !important;
-    max-width: calc(var(--tab-max-width, 240px) + 5px);
-  }
   #tabbrowser-tabs:not([movingtab]) .tab-content {
-    transition-property: padding-inline;
+    transition: padding-inline 0.2s var(--animation-easing-function) !important;
   }
   #tabbrowser-tabs:not([movingtab]) .tab-content::before,
   #tabbrowser-tabs:not([movingtab]) .tab-content::after {
-    transition-property: width, transform;
+    transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
+  }
+  #tabbrowser-tabs:not([movingtab]) .tab-content .tab-label-container {
+    transition: width 0.3s var(--animation-easing-function) !important;
   }
   #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
-    transition-property: margin-inline;
+    transition: all 0.3s var(--animation-easing-function) !important;
   }
 
   /*- URL / Search Bar -------------------------------------------------------*/
