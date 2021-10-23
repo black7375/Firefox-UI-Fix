@@ -31,6 +31,39 @@
       height: 100% !important; /* Original: 48px */
     }
 
+    /** Activity Stream - Animate *********************************************/
+    :root {
+      --animation-easing-function: cubic-bezier(0.07, 0.95, 0, 1);
+    }
+
+    /* Background */
+    .top-site-outer,
+    #searchSubmit,
+    button.icon,
+    button.close-button {
+      transition: background 1.5s var(--animation-easing-function);
+    }
+    .top-site-outer:hover,
+    #searchSubmit:hover,
+    button.icon:hover,
+    button.close-button:hover {
+      transition: background 0.5s var(--animation-easing-function);
+    }
+
+    /* Search Bar */
+    .search-inner-wrapper input {
+      transition: 1s var(--animation-easing-function);
+      transition-property: border-color, box-shadow;
+    }
+    .search-wrapper .search-inner-wrapper:active input,
+    .search-wrapper input:focus {
+      transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
+    }
+    .search-wrapper .search-inner-wrapper:hover input {
+      border-color: var(--newtab-primary-action-background) !important;
+      transition: border-color 0.5s var(--animation-easing-function);
+    }
+
     /** Activity Stream - Home Search Bar looks like proton *******************/
     /* Dropdown Colors */
     #root {
