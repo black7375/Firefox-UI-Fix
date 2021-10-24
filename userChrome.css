@@ -2574,6 +2574,8 @@
 
   :root:not([customizing="true"]) tab[visuallyselected] > stack::before,
   :root:not([customizing="true"]) tab[visuallyselected] > stack::after {
+    content: "" !important;
+
     /* Box */
     display: block !important;
     position: absolute !important;
@@ -2610,16 +2612,19 @@
   }
 
   @media (-moz-gtk-csd-available) {
-    /* Don't enabled at GTK */
-    :root:not([customizing="true"])[lwtheme="true"] tab[visuallyselected] > stack::before,
-    :root:not([customizing="true"])[lwtheme="true"] tab[visuallyselected] > stack::after {
-      content: "" !important;
+    /* Fill color for GTK */
+    :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::before,
+    :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::after {
+      /* As GTK Toolbar's background-color + backround-image
+       * --toolbar-non-lwt-bgcolor: -moz-dialog;
+       * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
+       */
+      fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
+      stroke: transparent !important;
     }
-  }
-  @media not all and (-moz-gtk-csd-available) {
-    :root:not([customizing="true"]) tab[visuallyselected] > stack::before,
-    :root:not([customizing="true"]) tab[visuallyselected] > stack::after {
-      content: "" !important;
+    :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
+    :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
+      stroke: transparent !important;
     }
   }
 
