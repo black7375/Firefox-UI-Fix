@@ -2008,6 +2008,25 @@
     transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
   }
 
+  /*- Sidebar ----------------------------------------------------------------*/
+  #sidebar-box {
+      /* like #sidebar-box > #sidebar */
+      min-width: 14em;
+      width: 18em;
+      max-width: 36em;
+
+      /* Animation */
+      transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out, visibility 0s linear !important;
+
+  }
+  #sidebar-box[hidden="true"] {
+      display: -moz-box !important;
+      margin-inline-start: -18em;
+      opacity: 0;
+      visibility: collapse;
+      transition-delay: 0s, 0s, 0.25s !important;
+  }
+
   /*- Expand - Synced Tabs ---------------------------------------------------*/
   @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
   {
