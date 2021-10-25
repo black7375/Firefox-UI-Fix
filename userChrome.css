@@ -2622,8 +2622,14 @@
       fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
       stroke: transparent !important;
     }
-    :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
-    :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
+    :root:not([customizing="true"]):not([lwtheme="true"])
+      #TabsToolbar[brighttext]
+      tab[visuallyselected]
+      > stack::before,
+    :root:not([customizing="true"]):not([lwtheme="true"])
+      #TabsToolbar[brighttext]
+      tab[visuallyselected]
+      > stack::after {
       stroke: transparent !important;
     }
   }
