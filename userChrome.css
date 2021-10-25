@@ -2010,21 +2010,21 @@
 
   /*- Sidebar ----------------------------------------------------------------*/
   #sidebar-box {
-      /* like #sidebar-box > #sidebar */
-      min-width: 14em;
-      width: 18em;
-      max-width: 36em;
+    /* like #sidebar-box > #sidebar */
+    min-width: 14em;
+    width: 18em;
+    max-width: 36em;
 
-      /* Animation */
-      transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out, visibility 0s linear !important;
-
+    /* Animation */
+    transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
+      visibility 0s linear !important;
   }
   #sidebar-box[hidden="true"] {
-      display: -moz-box !important;
-      margin-inline-start: -18em;
-      opacity: 0;
-      visibility: collapse;
-      transition-delay: 0s, 0s, 0.25s !important;
+    display: -moz-box !important;
+    margin-inline-start: -18em;
+    opacity: 0;
+    visibility: collapse;
+    transition-delay: 0s, 0s, 0.25s !important;
   }
 
   /*- Expand - Synced Tabs ---------------------------------------------------*/
@@ -2040,7 +2040,8 @@
     .item.client.closed .item-tabs-list {
       display: flex !important;
 
-      transition: transform 0.2s ease-out, opacity 0.2s ease-out, max-height 0.25s cubic-bezier(0.82, 0.085, 0.395, 0.895) 0.05s;
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out,
+        max-height 0.25s cubic-bezier(0.82, 0.085, 0.395, 0.895) 0.05s;
       visibility: hidden;
       transform: translateY(-100%);
       opacity: 0;
