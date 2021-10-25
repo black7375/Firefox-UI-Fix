@@ -2021,7 +2021,7 @@
     .item.client.closed .item-tabs-list {
       display: flex !important;
 
-      transition: transform 0.2s ease-out, opacity 0.2s ease-out, max-height 0.1s ease-in 0.05s;
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out, max-height 0.25s cubic-bezier(0.82, 0.085, 0.395, 0.895) 0.05s;
       visibility: hidden;
       transform: translateY(-100%);
       opacity: 0;
