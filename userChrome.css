@@ -452,7 +452,7 @@
     :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme) {
       --lwt-accent-color: var(--win-bgcolor) !important;
     }
-    @media (toolbar-prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
       :root[lwt-default-theme-in-dark-mode][lwthemetextcolor="bright"] {
         --toolbar-bgcolor: var(--win-component-bgcolor) !important; /* Original: rgba(43, 42, 51, 1) */
       }
