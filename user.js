@@ -11,6 +11,9 @@ user_pref("browser.proton.places-tooltip.enabled", true);
 // Fill SVG Color
 user_pref("svg.context-properties.content.enabled", true);
 
+// CSS Color Mix - 88 Above
+user_pref("layout.css.color-mix.enabled", true);
+
 // CSS Blur Filter - 88 Above
 user_pref("layout.css.backdrop-filter.enabled", true);
 
