@@ -92,6 +92,11 @@
       background-image: unset !important;
     }
   }
+  @media (-moz-os-version: windows-win8) {
+    #navigator-toolbox:-moz-lwtheme {
+      color: var(--lwt-text-color) !important;
+    }
+  }
 
   /*= Windows 7, 8 - Menu Active Color =======================================*/
   @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
