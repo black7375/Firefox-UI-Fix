@@ -2766,6 +2766,11 @@
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
 
+  /* Unloaded Tab - Italic Label **********************************************/
+  #tabbrowser-tabs .tabbrowser-tab[pending] .tab-text.tab-label {
+    font-style: italic;
+  }
+
   /** Clipped tabs - Letters cleary *******************************************/
   #tabbrowser-tabs[closebuttons="activetab"] .tab-content:not([pinned]) {
     padding-inline-start: 8px !important;
