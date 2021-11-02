@@ -1991,7 +1991,8 @@
   }
 
   #tabbrowser-tabs:not([movingtab]) .tab-content {
-    transition: padding-inline 0.2s var(--animation-easing-function) !important;
+    transition: padding-inline 0.2s var(--animation-easing-function),
+      /* Unloaded Tab */ opacity 0.5s var(--animation-easing-function) !important;
   }
   #tabbrowser-tabs:not([movingtab]) .tab-content::before,
   #tabbrowser-tabs:not([movingtab]) .tab-content::after {
@@ -2766,9 +2767,9 @@
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
 
-  /* Unloaded Tab - Italic Label **********************************************/
-  #tabbrowser-tabs .tabbrowser-tab[pending] .tab-text.tab-label {
-    font-style: italic;
+  /* Unloaded Tab - Contents Opacity ******************************************/
+  #tabbrowser-tabs .tabbrowser-tab[pending] .tab-content {
+    opacity: 0.7;
   }
 
   /** Clipped tabs - Letters cleary *******************************************/
