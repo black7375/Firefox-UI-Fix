@@ -540,6 +540,21 @@
     --input-bgcolor: var(--arrowpanel-background, Field);
   }
 
+  /*== Sidebar - Field Color =================================================*/
+  .sidebar-panel[lwt-sidebar] #search-box {
+    appearance: none !important;
+    padding: 8px 11px !important;
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent) !important;
+    border-radius: 4px;
+
+    background-color: var(--lwt-sidebar-background-color, Field) !important;
+    color: var(--lwt-sidebar-text-color, FieldText) !important;
+  }
+  .sidebar-panel[lwt-sidebar] #search-box[focused="true"] {
+    border-color: var(--lwt-sidebar-highlight-background-color) !important;
+    outline: 1px solid var(--lwt-sidebar-highlight-background-color);
+  }
+
   /* Fully Dark Mode **********************************************************/
   /*= Remove White Flash =====================================================*/
   #tabbrowser-tabbox,
