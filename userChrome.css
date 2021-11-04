@@ -47,6 +47,25 @@
     --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, rgb(0, 120, 215));
   }
 
+  /*= Remove Tab Border ======================================================*/
+  /* Light Theme */
+  #TabsToolbar:not([brighttext])
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background {
+    border: unset !important; /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+  }
+
+  /* Dark Theme */
+  #TabsToolbar[brighttext]
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background:-moz-lwtheme {
+    border: unset !important; /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
+  }
+
   /*= Light Weight Theme =====================================================*/
   /* Header Image */
   :root[lwtheme-image] {
@@ -371,7 +390,7 @@
     --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
   }
 
-  @media (prefers-color-scheme: dark) {
+  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
     :host,
     :root {
       /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
@@ -486,6 +505,58 @@
     }
   }
 
+  /*== Bookmark Popup Color ==================================================*/
+  #editBMPanel_folderTree:-moz-lwtheme,
+  #editBMPanel_tagsSelector:-moz-lwtheme {
+    appearance: none !important;
+    border: 0.5px solid var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
+  }
+
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(hover),
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected),
+  #editBMPanel_tagsSelector:-moz-lwtheme {
+    color: var(--lwt-text-color, fieldtext) !important;
+  }
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected) {
+    font-weight: 600 !important;
+  }
+
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
+  #editBMPanel_tagsSelector:-moz-lwtheme {
+    background-color: color-mix(in srgb, var(--arrowpanel-background) 35%, var(--in-content-box-background)) !important;
+  }
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(hover),
+  #editBMPanel_tagsSelector > richlistitem:hover {
+    background-color: var(--button-hover-bgcolor, color-mix(in srgb, currentColor 17%, transparent)) !important;
+  }
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(selected),
+  #editBMPanel_tagsSelector > richlistitem[selected="true"] {
+    background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
+  }
+
+  #editBMPanel_namePicker,
+  #editBMPanel_tagsField {
+    --input-bgcolor: var(--arrowpanel-background, Field);
+  }
+
+  /*== Sidebar - Field Color =================================================*/
+  .sidebar-panel[lwt-sidebar] #search-box,
+  body[lwt-sidebar] xul|search-textbox.tabsFilter {
+    appearance: none !important;
+    padding: 8px 11px !important;
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent) !important;
+    border-radius: 4px;
+
+    background-color: var(--lwt-sidebar-background-color, Field) !important;
+    color: var(--lwt-sidebar-text-color, FieldText) !important;
+  }
+  .sidebar-panel[lwt-sidebar] #search-box[focused="true"],
+  body[lwt-sidebar] xul|search-textbox.tabsFilter[focused="true"] {
+    border-color: var(--lwt-sidebar-highlight-background-color) !important;
+    outline: 1px solid var(--lwt-sidebar-highlight-background-color);
+  }
+
   /* Fully Dark Mode **********************************************************/
   /*= Remove White Flash =====================================================*/
   #tabbrowser-tabbox,
@@ -505,7 +576,7 @@
       --menu-border-color: #cfcfd8;
       --menuitem-hover-background-color: #e0e0e6;
     }
-    @media (prefers-color-scheme: dark) {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :root {
         --menu-border-color: rgba(107, 107, 107, 0.3);
         --menu-color: #fbfbfe;
@@ -563,7 +634,7 @@
   /*= Downloads ==============================================================*/
   @-moz-document url("chrome://mozapps/content/downloads/unknownContentType.xhtml")
   {
-    @media (prefers-color-scheme: dark) {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :root {
         --in-content-page-background: #42414d;
       }
