@@ -2015,6 +2015,22 @@
     transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
   }
 
+  /* Buttons in URL bar */
+  #tracking-protection-icon-container,
+  #identity-icon-box,
+  #identity-permission-box,
+  #notification-popup-box,
+  #page-action-buttons > .urlbar-page-action {
+    transition: background-color 2.5s var(--animation-easing-function) !important;
+  }
+  #tracking-protection-icon-container:hover,
+  #identity-icon-box:hover,
+  #identity-permission-box:hover,
+  #notification-popup-box:hover,
+  #page-action-buttons > .urlbar-page-action:hover {
+    transition: background-color 1.25s var(--animation-easing-function) !important;
+  }
+
   /*- Sidebar ----------------------------------------------------------------*/
   #sidebar-box {
     /* like #sidebar-box > #sidebar */
