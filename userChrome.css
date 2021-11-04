@@ -505,6 +505,36 @@
     }
   }
 
+  /*== Bookmark Popup Color ==================================================*/
+  #editBMPanel_folderTree:-moz-lwtheme,
+  #editBMPanel_tagsSelector:-moz-lwtheme {
+    appearance: none !important;
+    border: 0.5px solid var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
+  }
+
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(hover),
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected),
+  #editBMPanel_tagsSelector:-moz-lwtheme {
+    color: var(--lwt-text-color, fieldtext) !important;
+  }
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected) {
+    font-weight: 600 !important;
+  }
+
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
+  #editBMPanel_tagsSelector:-moz-lwtheme {
+    background-color: color-mix(in srgb, var(--arrowpanel-background) 35%, var(--in-content-box-background)) !important;
+  }
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(hover),
+  #editBMPanel_tagsSelector > richlistitem:hover {
+    background-color: var(--button-hover-bgcolor, color-mix(in srgb, currentColor 17%, transparent)) !important;
+  }
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(selected),
+  #editBMPanel_tagsSelector > richlistitem[selected="true"] {
+    background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
+  }
+
   /* Fully Dark Mode **********************************************************/
   /*= Remove White Flash =====================================================*/
   #tabbrowser-tabbox,
