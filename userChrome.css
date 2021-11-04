@@ -535,6 +535,11 @@
     background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
   }
 
+  #editBMPanel_namePicker,
+  #editBMPanel_tagsField {
+    --input-bgcolor: var(--arrowpanel-background, Field);
+  }
+
   /* Fully Dark Mode **********************************************************/
   /*= Remove White Flash =====================================================*/
   #tabbrowser-tabbox,
