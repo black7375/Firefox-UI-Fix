@@ -512,10 +512,13 @@
     border: 0.5px solid var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
   }
 
+  #editBMPanel_folderTree:-moz-lwtheme,
   #editBMPanel_folderTree:-moz-lwtheme > treechildren,
+  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-image,
   #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(hover),
   #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected),
-  #editBMPanel_tagsSelector:-moz-lwtheme {
+  #editBMPanel_tagsSelector:-moz-lwtheme,
+  #editBMPanel_tagsSelector:-moz-lwtheme > richlistitem {
     color: var(--lwt-text-color, fieldtext) !important;
   }
   #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected) {
