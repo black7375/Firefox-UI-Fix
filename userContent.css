@@ -1134,13 +1134,18 @@
     }
   }
 
-  /*= View Source ============================================================*/
-  @-moz-document url-prefix(view-source) {
+  /*= Text ===================================================================*/
+  @-moz-document unobservable-document(),
+                 url-prefix("view-source") {
     :root {
-      /* Basic */
       background-color: var(--in-content-page-background) !important; /* Original: white */
       color: var(--in-content-page-color) !important; /* Original: black */
+    }
+  }
 
+  /*= View Source ============================================================*/
+  @-moz-document url-prefix("view-source") {
+    :root {
       /* Colors */
       --view-source-green: var(--green-80);
       --view-source-purple: #800080; /* Like alphenglow */
@@ -1193,14 +1198,6 @@
       .error
       > :-moz-any(.start-tag, .end-tag, .comment, .cdata, .doctype, .pi, .entity, .attribute-name, .attribute-value) {
       color: var(--in-content-error-text-color) !important; /* Original: red */
-    }
-  }
-
-  @-moz-document url-prefix(https://raw.githubusercontent.com)
-  {
-    html {
-      background: var(--in-content-page-background) !important;
-      color: var(--in-content-page-color) !important;
     }
   }
 
