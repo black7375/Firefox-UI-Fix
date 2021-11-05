@@ -1978,7 +1978,7 @@
     }
   }
 
-  /*= Page Info ==============================================================*/
+  /*= Library Popup ==========================================================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
     @media (-moz-gtk-csd-available) {
@@ -2119,13 +2119,7 @@
 
       #placesMenu > menu > .menubar-text {
         margin-block: 0 !important; /* override menu.css */
-        padding-inline-end: 8px !important;
-        background: url(chrome://global/skin/icons/arrow-down-12.svg) right center no-repeat !important;
-        background-size: 6px !important;
-      }
-
-      #placesMenu > menu > .menubar-text:-moz-locale-dir(rtl) {
-        background-position-x: left !important;
+        padding-inline-end: 4px !important;
       }
 
       /*- Search Bar ---------------------------------------------------------*/
