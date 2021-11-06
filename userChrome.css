@@ -2169,7 +2169,6 @@
 
       /*- Tree ---------------------------------------------------------------*/
       #contentView treecol {
-        padding: 4px !important;
         /* Use box-shadow to draw a bottom border instead of border-bottom
          * because otherwise the items on contentView won't be perfectly
          * aligned with the items on the sidebar. */
@@ -2179,6 +2178,40 @@
       tree {
         background-color: var(--organizer-content-background) !important;
         color: var(--organizer-color) !important;
+      }
+
+      treecol:not([hideheader="true"]),
+      treecolpicker {
+        appearance: none !important;
+        border: none !important;
+        background-color: var(--in-content-button-background) !important;
+        color: var(--organizer-color, inherit) !important;
+        padding: 5px 10px !important;
+      }
+
+      treecol:not([hideheader="true"], [sortable="false"]):hover,
+      treecolpicker:hover {
+        background-color: var(--organizer-hover-background) !important;
+        color: var(--organizer-color) !important;
+      }
+
+      treecol:not([hideheader="true"], [sortable="false"]):hover:active,
+      treecolpicker:hover:active {
+        background-color: var(--organizer-selected-background) !important;
+      }
+
+      treecol:not([hideheader="true"], :first-child),
+      treecolpicker {
+        padding-left: 10px !important;
+        border-inline-start-width: 1px !important;
+        border-inline-start-style: solid !important;
+        border-image: linear-gradient(transparent 0%, transparent 20%, var(--organizer-border-color) 20%, var(--organizer-border-color) 80%, transparent 80%, transparent 100%) 1 1 !important;
+      }
+
+      treecol[sortDirection]:not([hideheader="true"]) > xul|*.treecol-sortdirection {
+        fill: currentColor !important;
+        width: 18px !important;
+        height: 18px !important;
       }
 
       treechildren::-moz-tree-row {
