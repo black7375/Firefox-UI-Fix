@@ -3722,7 +3722,8 @@
       #viewMenu,
       #maintenanceButton,
       #back-button,
-      #forward-button {
+      #forward-button,
+      #clearDownloadsButton {
         fill: currentColor !important;
         -moz-context-properties: fill !important;
       }
@@ -3736,6 +3737,17 @@
       }
       #maintenanceButton {
         list-style-image: url("./icons/import-export.svg") !important;
+      }
+
+      #clearDownloadsButton {
+        list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
+      }
+      #clearDownloadsButton > .toolbarbutton-icon {
+        display: -moz-inline-box !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 2px;
       }
 
       /* Replace */
