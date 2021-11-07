@@ -586,8 +586,7 @@
         filter: hue-rotate(330deg) brightness(1.3) !important;
       }
       .SecondaryHero-module-icon {
-        -moz-context-properties: fill, fill-opacity !important;
-        fill: currentColor !important;
+        filter: invert(85%) !important;
       }
       .Icon-magnifying-glass,
       .Notice-icon {
@@ -611,6 +610,10 @@
       }
       .AutoSearchInput-query:is(:hover, :focus) {
         border-color: var(--in-content-primary-button-background) !important;
+      }
+      .AutoSearchInput-query:focus {
+        box-shadow: inset 0 0 0 1px var(--in-content-primary-button-background),
+          0 0 0 1px var(--in-content-primary-button-background), 0 0 0 4px rgba(0, 211, 255, 0.3) !important;
       }
 
       .PromotedBadge-link--line {
