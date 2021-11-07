@@ -1,4 +1,7 @@
 // ** Theme Related Options ****************************************************
+// Draw in Titlebar
+user_pref("browser.tabs.drawInTitlebar", true);
+
 // userchrome.css usercontent.css activate
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
