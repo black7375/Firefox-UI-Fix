@@ -780,7 +780,7 @@
      https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
   */
 
-  /*= Default Colors - Hardcorded ============================================*/
+  /*= Default Colors - Hard Coded ============================================*/
   /* Based on chrome://global/skin/in-content/common.css */
   :host,
   :root {
@@ -3208,11 +3208,7 @@
     /* Bar Color */
     opacity: var(--tab-separator-opacity);
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
-    background-color: color-mix(
-      in srgb,
-      currentColor 20%,
-      transparent
-    ); /*  Replace var(--toolbarseparator-color) - Hard coded for compatibility */
+    background-color: var(--toolbarseparator-color);
   }
   #tabs-newtab-button:is(:hover, [open])::before {
     content: "";
@@ -3267,11 +3263,7 @@
   /* Coner Rounding */
   #tabs-newtab-button:hover {
     /* Color */
-    fill: color-mix(
-      in srgb,
-      currentColor 17%,
-      transparent
-    ) !important; /* Replace var(--toolbarbutton-hover-background) - Hard coded for compatibility */
+    fill: var(--toolbarbutton-hover-background) !important;
     -moz-context-properties: fill !important;
 
     /* Corner Image */
