@@ -186,12 +186,30 @@
     }
   }
 
-  /*= Linux- Global Menubar Active Color =====================================*/
+  /*= Linux - Global Menubar Active Color ====================================*/
   @media (-moz-gtk-csd-available) {
     #main-menubar > menu[open="true"],
     #main-menubar > menu[_moz-menuactive="true"] {
       color: inherit !important; /* Original: -moz-menubarhovertext */
       background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
+    }
+  }
+
+  /*= Linux - Light System Default Theme's Selected Tab ======================*/
+  @media (-moz-gtk-csd-available) and (-moz-toolbar-prefers-color-scheme: light),
+         (-moz-gtk-csd-available) and (prefers-color-scheme: light) {
+    /* Because of
+    #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background {
+      border: 1px solid var(--tab-line-color, rgba(128,128,142,0.9));
+      box-shadow: 0 0 4px rgba(128,128,142,0.5);
+    }
+   */
+    #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background:not(:-moz-lwtheme) {
+      box-shadow: 0 0 4px rgba(128,128,142,0.5) !important;
+    }
+    #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background:not(:-moz-lwtheme) {
+      box-shadow: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)),
+                  0 0 4px rgba(128,128,142,0.5) !important;
     }
   }
 
