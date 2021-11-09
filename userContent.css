@@ -1137,18 +1137,12 @@
     }
   }
 
-  /*= Text ===================================================================*/
-  @-moz-document unobservable-document(),
-                 url-prefix("view-source") {
-    :root {
-      background-color: var(--in-content-page-background) !important; /* Original: white */
-      color: var(--in-content-page-color) !important; /* Original: black */
-    }
-  }
-
   /*= View Source ============================================================*/
   @-moz-document url-prefix("view-source") {
     :root {
+      background-color: var(--in-content-page-background) !important; /* Original: white */
+      color: var(--in-content-page-color) !important; /* Original: black */
+
       /* Colors */
       --view-source-green: var(--green-80);
       --view-source-purple: #800080; /* Like alphenglow */
