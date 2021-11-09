@@ -1,3 +1,5 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
 @media (-moz-proton) {
   @-moz-document url("about:home"), url("about:newtab") {
     /** Activity Stream - Search Focus Border: like URL ***********************/
@@ -27,6 +29,39 @@
     .top-site-outer .tile .icon-wrapper {
       width: 100% !important; /* Original: 48px */
       height: 100% !important; /* Original: 48px */
+    }
+
+    /** Activity Stream - Animate *********************************************/
+    :root {
+      --animation-easing-function: cubic-bezier(0.07, 0.95, 0, 1);
+    }
+
+    /* Background */
+    .top-site-outer,
+    #searchSubmit,
+    button.icon,
+    button.close-button {
+      transition: background 1.5s var(--animation-easing-function);
+    }
+    .top-site-outer:hover,
+    #searchSubmit:hover,
+    button.icon:hover,
+    button.close-button:hover {
+      transition: background 0.5s var(--animation-easing-function);
+    }
+
+    /* Search Bar */
+    .search-inner-wrapper input {
+      transition: 1s var(--animation-easing-function);
+      transition-property: border-color, box-shadow;
+    }
+    .search-wrapper .search-inner-wrapper:active input,
+    .search-wrapper input:focus {
+      transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
+    }
+    .search-wrapper .search-inner-wrapper:hover input {
+      border-color: var(--newtab-primary-action-background) !important;
+      transition: border-color 0.5s var(--animation-easing-function);
     }
 
     /** Activity Stream - Home Search Bar looks like proton *******************/
@@ -551,8 +586,7 @@
         filter: hue-rotate(330deg) brightness(1.3) !important;
       }
       .SecondaryHero-module-icon {
-        -moz-context-properties: fill, fill-opacity !important;
-        fill: currentColor !important;
+        filter: invert(85%) !important;
       }
       .Icon-magnifying-glass,
       .Notice-icon {
@@ -576,6 +610,10 @@
       }
       .AutoSearchInput-query:is(:hover, :focus) {
         border-color: var(--in-content-primary-button-background) !important;
+      }
+      .AutoSearchInput-query:focus {
+        box-shadow: inset 0 0 0 1px var(--in-content-primary-button-background),
+          0 0 0 1px var(--in-content-primary-button-background), 0 0 0 4px rgba(0, 211, 255, 0.3) !important;
       }
 
       .PromotedBadge-link--line {
@@ -1096,6 +1134,73 @@
     th {
       background-color: var(--in-content-table-header-background) !important;
       color: var(--in-content-table-header-color) !important;
+    }
+  }
+
+  /*= Text ===================================================================*/
+  @-moz-document unobservable-document(),
+                 url-prefix("view-source") {
+    :root {
+      background-color: var(--in-content-page-background) !important; /* Original: white */
+      color: var(--in-content-page-color) !important; /* Original: black */
+    }
+  }
+
+  /*= View Source ============================================================*/
+  @-moz-document url-prefix("view-source") {
+    :root {
+      /* Colors */
+      --view-source-green: var(--green-80);
+      --view-source-purple: #800080; /* Like alphenglow */
+    }
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      :root {
+        --view-source-green: var(--green-60);
+        --view-source-purple: #c68aff;
+      }
+    }
+
+    pre[id]::before,
+    span[id]::before {
+      color: color-mix(
+        in srgb,
+        var(--in-content-page-color) 70%,
+        var(--in-content-page-background)
+      ) !important; /* Original: #ccc */
+    }
+    .highlight .start-tag,
+    .highlight .end-tag {
+      color: var(--view-source-purple) !important; /* Original: purple */
+    }
+    .highlight .comment {
+      color: var(--view-source-green) !important; /* Original: green */
+    }
+    .highlight .cdata {
+      color: var(--in-content-border-invalid) !important; /* Original: #CC0066 */
+    }
+    .highlight .doctype {
+      color: #4682b4 !important; /* Original: steelblue */
+    }
+    .highlight .pi {
+      color: orchid !important; /* Original: orchid */
+    }
+    .highlight .entity {
+      color: #ff4500 !important; /* Original: #FF4500 */
+    }
+    .highlight .attribute-name {
+      color: var(--view-source-green) !important; /* Original: black */
+    }
+    .highlight .attribute-value {
+      color: var(--in-content-link-color) !important; /* Original: blue */
+    }
+    .highlight .markupdeclaration {
+      color: #4682b4 !important; /* Original: steelblue */
+    }
+    .highlight .error,
+    .highlight
+      .error
+      > :-moz-any(.start-tag, .end-tag, .comment, .cdata, .doctype, .pi, .entity, .attribute-name, .attribute-value) {
+      color: var(--in-content-error-text-color) !important; /* Original: red */
     }
   }
 
