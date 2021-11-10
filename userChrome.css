@@ -2467,14 +2467,16 @@
   toolbarbutton,
   stack,
   vbox,
-  .toolbarbutton-icon {
+  .toolbarbutton-icon,
+  #tabs-newtab-button > .toolbarbutton-icon {
     transition: background-color 1s var(--animation-easing-function) !important;
   }
   button:hover,
   toolbarbutton:hover,
   stack:hover,
   vbox:hover,
-  .toolbarbutton-icon:hover {
+  .toolbarbutton-icon:hover,
+  #tabs-newtab-button:hover > .toolbarbutton-icon {
     transition: background-color 0.25s var(--animation-easing-function) !important;
   }
   @media (-moz-gtk-csd-available) {
@@ -3279,6 +3281,19 @@
     /* Size */
     -moz-box-align: stretch !important;
     padding-top: var(--tab-block-margin) !important;
+
+    /* Corner Rounding Image */
+    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
+    background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
+    background-repeat: no-repeat;
+    background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
+      right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
+    background-size: var(--tab-corner-rounding);
+
+    /* Corner Rounding Color */
+    fill: none !important;
+    fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
+    -moz-context-properties: fill, fill-opacity !important;
   }
 
   #tabs-newtab-button > .toolbarbutton-icon {
@@ -3289,15 +3304,6 @@
   #tabs-newtab-button:hover {
     /* Color */
     fill: var(--toolbarbutton-hover-background) !important;
-    -moz-context-properties: fill !important;
-
-    /* Corner Image */
-    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
-    background-image: url("./icons/tab-bottom-corner-left.svg"), url("./icons/tab-bottom-corner-right.svg");
-    background-repeat: no-repeat;
-    background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
-      right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
-    background-size: var(--tab-corner-rounding);
   }
 
   #tabs-newtab-button .toolbarbutton-icon {
