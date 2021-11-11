@@ -2919,7 +2919,7 @@
   :root[uidensity="touch"] {
     --menu-padding: 0.5em;
   }
-  menupopup > menuitem,
+  menupopup:not(.in-menulist) > menuitem,
   menupopup > menu {
     /* Original: 0.5em */
     padding-block: var(--menu-padding) !important;
