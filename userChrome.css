@@ -2384,46 +2384,48 @@
   }
 
   /** Decoration **************************************************************/
-  /*= URL, Search Bar ========================================================*/
-  #urlbar:hover:not([focused="true"]) > #urlbar-background,
-  #searchbar:hover:not(:focus-within) {
-    --toolbar-field-border-color: var(--toolbar-field-focus-border-color);
-  }
+  @media (prefers-reduced-motion: no-preference) {
+    /*= URL, Search Bar ======================================================*/
+    #urlbar:hover:not([focused="true"]) > #urlbar-background,
+    #searchbar:hover:not(:focus-within) {
+      --toolbar-field-border-color: var(--toolbar-field-focus-border-color);
+    }
 
-  /*= Other Fields ===========================================================*/
-  /* Sidebar */
-  .sidebar-panel[lwt-sidebar] #search-box:hover,
-  body[lwt-sidebar] xul|search-textbox.tabsFilter:hover {
-    border-color: var(--lwt-sidebar-highlight-background-color, Highlight) !important;
-  }
-  .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
-  body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {
-    border-color: -moz-accent-color !important;
-  }
+    /*= Other Fields =========================================================*/
+    /* Sidebar */
+    .sidebar-panel[lwt-sidebar] #search-box:hover,
+    body[lwt-sidebar] xul|search-textbox.tabsFilter:hover {
+      border-color: var(--lwt-sidebar-highlight-background-color, Highlight) !important;
+    }
+    .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
+    body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {
+      border-color: -moz-accent-color !important;
+    }
 
-  /* Others */
-  #editBMPanel_namePicker:hover,
-  #editBMPanel_tagsField:hover,
-  .findbar-container .findbar-textbox:hover {
-    --input-border-color: color-mix(in srgb, var(--focus-outline-color, -moz-accent-color) 50%, transparent);
-  }
+    /* Others */
+    #editBMPanel_namePicker:hover,
+    #editBMPanel_tagsField:hover,
+    .findbar-container .findbar-textbox:hover {
+      --input-border-color: color-mix(in srgb, var(--focus-outline-color, -moz-accent-color) 50%, transparent);
+    }
 
-  /*= Downloads Panel ========================================================*/
-  /* Accent Color for downloaded item */
-  #downloadsListBox .download-state[exists] .downloadDetails {
-    color: var(--button-primary-bgcolor);
-  }
-  #downloadsListBox .download-state[exists] .downloadDetails.downloadDetailsHover {
-    color: var(--button-primary-hover-bgcolor);
-  }
+    /*= Downloads Panel ======================================================*/
+    /* Accent Color for downloaded item */
+    #downloadsListBox .download-state[exists] .downloadDetails {
+      color: var(--button-primary-bgcolor);
+    }
+    #downloadsListBox .download-state[exists] .downloadDetails.downloadDetailsHover {
+      color: var(--button-primary-hover-bgcolor);
+    }
 
-  /* File moved or missing */
-  #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTarget {
-    text-decoration: line-through;
-    text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
-  }
-  #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
-    filter: grayscale(100%) !important;
+    /* File moved or missing */
+    #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTarget {
+      text-decoration: line-through;
+      text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
+    }
+    #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
+      filter: grayscale(100%) !important;
+    }
   }
 
   /*= Cursor Types ===========================================================*/
@@ -2462,178 +2464,182 @@
   */
 
   /*= Animate ================================================================*/
-  /*- Background Color -------------------------------------------------------*/
-  button,
-  toolbarbutton,
-  stack,
-  vbox,
-  .toolbarbutton-icon,
-  #tabs-newtab-button > .toolbarbutton-icon {
-    transition: background-color 1s var(--animation-easing-function) !important;
-  }
-  button:hover,
-  toolbarbutton:hover,
-  stack:hover,
-  vbox:hover,
-  .toolbarbutton-icon:hover,
-  #tabs-newtab-button:hover > .toolbarbutton-icon {
-    transition: background-color 0.25s var(--animation-easing-function) !important;
-  }
-  @media (-moz-gtk-csd-available) {
-    .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
-      transition: background-image 0.25s var(--animation-easing-function) !important;
+  @media (prefers-reduced-motion: no-preference) {
+    /*- Background Color -----------------------------------------------------*/
+    button,
+    toolbarbutton,
+    stack,
+    vbox,
+    .toolbarbutton-icon,
+    #tabs-newtab-button > .toolbarbutton-icon {
+      transition: background-color 1s var(--animation-easing-function) !important;
     }
-  }
+    button:hover,
+    toolbarbutton:hover,
+    stack:hover,
+    vbox:hover,
+    .toolbarbutton-icon:hover,
+    #tabs-newtab-button:hover > .toolbarbutton-icon {
+      transition: background-color 0.25s var(--animation-easing-function) !important;
+    }
+    @media (-moz-gtk-csd-available) {
+      .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
+        transition: background-image 0.25s var(--animation-easing-function) !important;
+      }
+    }
 
-  .subviewbutton {
-    /* treechildren::-moz-tree-row: Can't apply
+    .subviewbutton {
+      /* treechildren::-moz-tree-row: Can't apply
        menu, menuitem is not apply.
      */
-    transition: background-color 0.5s var(--animation-easing-function) !important;
-  }
-  .subviewbutton:hover {
-    transition: background-color 0.1s var(--animation-easing-function) !important;
-  }
-
-  /*- Pinned Tab -------------------------------------------------------------*/
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab:not([collapsed]) {
-    /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
-    transition: -moz-box-flex 0.2s var(--animation-easing-function),
-      margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
-    max-width: var(--tab-max-width, 240px);
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
-    transition: -moz-box-flex 0.2s var(--animation-easing-function),
-      margin-inline-start 0.2s var(--animation-easing-function) !important;
-  }
-
-  #tabbrowser-tabs:not([movingtab]) .tab-content {
-    transition: padding-inline 0.2s var(--animation-easing-function),
-      /* Unloaded Tab */ opacity 0.5s var(--animation-easing-function) !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tab-content::before,
-  #tabbrowser-tabs:not([movingtab]) .tab-content::after {
-    transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tab-content .tab-label-container {
-    transition: width 0.3s var(--animation-easing-function) !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
-    transition: all 0.3s var(--animation-easing-function) !important;
-  }
-
-  /*- URL / Search Bar -------------------------------------------------------*/
-  #urlbar-background,
-  #searchbar {
-    transition: border-color 1s var(--animation-easing-function), background-color 1.5s var(--animation-easing-function) !important;
-  }
-  #urlbar-background:hover,
-  #searchbar:hover {
-    transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
-  }
-
-  /* Buttons in URL bar */
-  #tracking-protection-icon-container,
-  #identity-icon-box,
-  #identity-permission-box,
-  #notification-popup-box,
-  #page-action-buttons > .urlbar-page-action {
-    transition: background-color 2.5s var(--animation-easing-function) !important;
-  }
-  #tracking-protection-icon-container:hover,
-  #identity-icon-box:hover,
-  #identity-permission-box:hover,
-  #notification-popup-box:hover,
-  #page-action-buttons > .urlbar-page-action:hover {
-    transition: background-color 1.25s var(--animation-easing-function) !important;
-  }
-
-  /*- Border - Other Fields --------------------------------------------------*/
-  #search-box:hover,
-  xul|search-textbox.tabsFilter:hover,
-  #editBMPanel_namePicker:hover,
-  #editBMPanel_tagsField:hover,
-  .findbar-container .findbar-textbox:hover {
-    transition: border-color 1s var(--animation-easing-function) !important;
-  }
-  #search-box:hover,
-  xul|search-textbox.tabsFilter:hover,
-  #editBMPanel_namePicker:hover,
-  #editBMPanel_tagsField:hover,
-  .findbar-container .findbar-textbox:hover {
-    transition: border-color 0.5s var(--animation-easing-function) !important;
-  }
-
-  /*- Sidebar ----------------------------------------------------------------*/
-  #sidebar-box {
-    /* like #sidebar-box > #sidebar */
-    min-width: 14em;
-    width: 18em;
-    max-width: 36em;
-
-    /* Animation */
-    transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
-      visibility 0s linear !important;
-  }
-  #sidebar-box[hidden="true"] {
-    display: -moz-box !important;
-    margin-inline-start: -18em;
-    opacity: 0;
-    visibility: collapse;
-    transition-delay: 0s, 0s, 0.25s !important;
-  }
-
-  /*- Expand - Synced Tabs ---------------------------------------------------*/
-  @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
-  {
-    .item-tabs-list {
-      transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-      transform: translateY(0%);
-      opacity: 1;
-      max-height: 100%;
+      transition: background-color 0.5s var(--animation-easing-function) !important;
+    }
+    .subviewbutton:hover {
+      transition: background-color 0.1s var(--animation-easing-function) !important;
     }
 
-    .item.client.closed .item-tabs-list {
-      display: flex !important;
+    /*- Pinned Tab -----------------------------------------------------------*/
+    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab:not([collapsed]) {
+      /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
+      transition: -moz-box-flex 0.2s var(--animation-easing-function),
+        margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
+      max-width: var(--tab-max-width, 240px);
+    }
+    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
+      transition: -moz-box-flex 0.2s var(--animation-easing-function),
+        margin-inline-start 0.2s var(--animation-easing-function) !important;
+    }
 
-      transition: transform 0.2s ease-out, opacity 0.2s ease-out,
-        max-height 0.25s cubic-bezier(0.82, 0.085, 0.395, 0.895) 0.05s;
-      visibility: hidden;
-      transform: translateY(-100%);
+    #tabbrowser-tabs:not([movingtab]) .tab-content {
+      transition: padding-inline 0.2s var(--animation-easing-function),
+        /* Unloaded Tab */ opacity 0.5s var(--animation-easing-function) !important;
+    }
+    #tabbrowser-tabs:not([movingtab]) .tab-content::before,
+    #tabbrowser-tabs:not([movingtab]) .tab-content::after {
+      transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
+    }
+    #tabbrowser-tabs:not([movingtab]) .tab-content .tab-label-container {
+      transition: width 0.3s var(--animation-easing-function) !important;
+    }
+    #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
+      transition: all 0.3s var(--animation-easing-function) !important;
+    }
+
+    /*- URL / Search Bar -----------------------------------------------------*/
+    #urlbar-background,
+    #searchbar {
+      transition: border-color 1s var(--animation-easing-function),
+        background-color 1.5s var(--animation-easing-function) !important;
+    }
+    #urlbar-background:hover,
+    #searchbar:hover {
+      transition: border-color 0.5s var(--animation-easing-function),
+        background-color 1s var(--animation-easing-function) !important;
+    }
+
+    /* Buttons in URL bar */
+    #tracking-protection-icon-container,
+    #identity-icon-box,
+    #identity-permission-box,
+    #notification-popup-box,
+    #page-action-buttons > .urlbar-page-action {
+      transition: background-color 2.5s var(--animation-easing-function) !important;
+    }
+    #tracking-protection-icon-container:hover,
+    #identity-icon-box:hover,
+    #identity-permission-box:hover,
+    #notification-popup-box:hover,
+    #page-action-buttons > .urlbar-page-action:hover {
+      transition: background-color 1.25s var(--animation-easing-function) !important;
+    }
+
+    /*- Border - Other Fields ------------------------------------------------*/
+    #search-box:hover,
+    xul|search-textbox.tabsFilter:hover,
+    #editBMPanel_namePicker:hover,
+    #editBMPanel_tagsField:hover,
+    .findbar-container .findbar-textbox:hover {
+      transition: border-color 1s var(--animation-easing-function) !important;
+    }
+    #search-box:hover,
+    xul|search-textbox.tabsFilter:hover,
+    #editBMPanel_namePicker:hover,
+    #editBMPanel_tagsField:hover,
+    .findbar-container .findbar-textbox:hover {
+      transition: border-color 0.5s var(--animation-easing-function) !important;
+    }
+
+    /*- Sidebar --------------------------------------------------------------*/
+    #sidebar-box {
+      /* like #sidebar-box > #sidebar */
+      min-width: 14em;
+      width: 18em;
+      max-width: 36em;
+
+      /* Animation */
+      transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
+        visibility 0s linear !important;
+    }
+    #sidebar-box[hidden="true"] {
+      display: -moz-box !important;
+      margin-inline-start: -18em;
       opacity: 0;
-      max-height: 0;
+      visibility: collapse;
+      transition-delay: 0s, 0s, 0.25s !important;
     }
-  }
 
-  /*- Arrow - Synced Tabs ----------------------------------------------------*/
-  @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
-  {
-    /* treechildren::-moz-tree-twisty: Can't apply */
-    #template-container .item.client .item-twisty-container {
+    /*- Expand - Synced Tabs -------------------------------------------------*/
+    @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
+    {
+      .item-tabs-list {
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        transform: translateY(0%);
+        opacity: 1;
+        max-height: 100%;
+      }
+
+      .item.client.closed .item-tabs-list {
+        display: flex !important;
+
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out,
+          max-height 0.25s cubic-bezier(0.82, 0.085, 0.395, 0.895) 0.05s;
+        visibility: hidden;
+        transform: translateY(-100%);
+        opacity: 0;
+        max-height: 0;
+      }
+    }
+
+    /*- Arrow - Synced Tabs --------------------------------------------------*/
+    @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
+    {
+      /* treechildren::-moz-tree-twisty: Can't apply */
+      #template-container .item.client .item-twisty-container {
+        transition: transform 0.1s var(--animation-easing-function) !important;
+      }
+
+      #template-container .item.client.closed .item-twisty-container {
+        transform: rotate(-90deg);
+        background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+      }
+
+      #template-container .item.client.closed .item-twisty-container:dir(rtl) {
+        transform: rotate(90deg);
+        background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+      }
+    }
+
+    /*- Arrow - Edit Bookmark Popup ------------------------------------------*/
+    #editBookmarkPanelRows .expander-up .button-icon,
+    #editBookmarkPanelRows .expander-down .button-icon {
       transition: transform 0.1s var(--animation-easing-function) !important;
     }
-
-    #template-container .item.client.closed .item-twisty-container {
-      transform: rotate(-90deg);
-      background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+    #editBookmarkPanelRows .expander-up {
+      list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
     }
-
-    #template-container .item.client.closed .item-twisty-container:dir(rtl) {
-      transform: rotate(90deg);
-      background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+    #editBookmarkPanelRows .expander-up .button-icon {
+      transform: rotate(180deg);
     }
-  }
-
-  /*- Arrow - Edit Bookmark Popup --------------------------------------------*/
-  #editBookmarkPanelRows .expander-up .button-icon,
-  #editBookmarkPanelRows .expander-down .button-icon {
-    transition: transform 0.1s var(--animation-easing-function) !important;
-  }
-  #editBookmarkPanelRows .expander-up {
-    list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
-  }
-  #editBookmarkPanelRows .expander-up .button-icon {
-    transform: rotate(180deg);
   }
 
   /** Reduce Padding **********************************************************/
@@ -3232,7 +3238,6 @@
 
     /* Bar Color */
     opacity: 0;
-    transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     background-color: var(--toolbarseparator-color);
   }
 
@@ -3260,6 +3265,14 @@
     tab.tabbrowser-tab[first-visible-unpinned-tab]
     .tab-background::before {
     opacity: 0 !important;
+  }
+
+  /* Animate */
+  @media (prefers-reduced-motion: no-preference) {
+    .tab-background::before,
+    #tabs-newtab-button::before {
+      transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+    }
   }
 
   /* Latest Tab & New tab margin */
@@ -3304,11 +3317,19 @@
   @media (-moz-windows-accent-color-in-titlebar) {
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
-      fill: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent) !important; /* Hardcorded for compatibility */
+      fill: color-mix(
+        in srgb,
+        -moz-accent-color-foreground 10%,
+        transparent
+      ) !important; /* Hardcorded for compatibility */
     }
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
-      fill: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent) !important; /* Hardcorded for compatibility */
+      fill: color-mix(
+        in srgb,
+        -moz-accent-color-foreground 15%,
+        transparent
+      ) !important; /* Hardcorded for compatibility */
     }
   }
 
@@ -3358,16 +3379,23 @@
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
     visibility: collapse !important;
     opacity: 0;
-
-    /* Animation - Fade out */
-    transition: opacity 0.1s var(--animation-easing-function) !important;
   }
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
     visibility: visible !important;
     opacity: 1;
+  }
 
-    /* Animation - Fade in */
-    transition: opacity 0.25s var(--animation-easing-function) !important;
+  /* Animate */
+  @media (prefers-reduced-motion: no-preference) {
+    /* Fade out */
+    #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
+      transition: opacity 0.1s var(--animation-easing-function) !important;
+    }
+
+    /* Fade in */
+    #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
+      transition: opacity 0.25s var(--animation-easing-function) !important;
+    }
   }
 
   /* Closed Button's icon thicker */
@@ -3427,9 +3455,6 @@
     border-radius: 10px !important;
     width: 17px !important;
     height: 17px !important;
-
-    /* Animation */
-    transition: 0.1s var(--animation-easing-function);
   }
   .tab-icon-overlay:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     /* Color */
@@ -3439,11 +3464,20 @@
     fill-opacity: 0.8 !important;
     opacity: 1 !important;
   }
-  .tab-label-container > .tab-label {
-    transition: transform 0.25s var(--animation-easing-function);
-  }
   .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
     transform: translateX(4px);
+  }
+
+  /* Animate */
+  @media (prefers-reduced-motion: no-preference) {
+    .tab-icon-overlay:not([crashed]),
+    .tab-icon-overlay[pinned][crashed][selected] {
+      transition: 0.1s var(--animation-easing-function);
+    }
+
+    .tab-label-container > .tab-label {
+      transition: transform 0.25s var(--animation-easing-function);
+    }
   }
 
   /* None exist favicon - Size bigger */
@@ -3547,27 +3581,33 @@
     content: "";
     display: block;
     position: absolute !important;
+    transform: translate(9px, 12px) !important;
 
     /* Shape */
-    border-bottom: 2px solid color-mix(in srgb, var(--identity-icon-color) 75%, transparent);
+    border-bottom: 2px solid var(--identity-icon-color);
     width: 25%;
-
-    /* Animate */
-    transition: 0.15s var(--animation-easing-function) !important;
-    transform: translate(9px, 12px) !important;
+    opacity: 0.75;
   }
   .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
     width: calc(100% - 30px);
-    border-color: var(--identity-icon-color);
+    opacity: 1;
   }
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
     width: calc(100% - 33px);
   }
 
+  /* Animate */
+  @media (prefers-reduced-motion: no-preference) {
+    .tab-content:not([titlechanged])::before {
+      transition: 0.15s var(--animation-easing-function) !important;
+      transition-property: width, opacity;
+    }
+  }
+
   /* Pinned Tab */
   .tabbrowser-tab[pinned] .tab-content::before {
-    width: 16px;
     transform: translateY(12px) !important;
+    width: 16px;
   }
 
   /* Pinned Tab - Titlechanged Indicator override */
