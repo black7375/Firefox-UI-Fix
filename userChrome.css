@@ -2485,14 +2485,12 @@
     }
   }
 
-  menu,
-  menuitem,
   .subviewbutton {
-    /* treechildren::-moz-tree-row: Can't apply */
+    /* treechildren::-moz-tree-row: Can't apply
+       menu, menuitem is not apply.
+     */
     transition: background-color 0.5s var(--animation-easing-function) !important;
   }
-  menu:hover,
-  menuitem:hover,
   .subviewbutton:hover {
     transition: background-color 0.1s var(--animation-easing-function) !important;
   }
