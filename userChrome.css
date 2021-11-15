@@ -2159,8 +2159,9 @@
         padding-inline-end: 4px !important;
       }
 
-      /*- Search Bar ---------------------------------------------------------*/
-      #searchFilter {
+      /*- Search Bar & Input -------------------------------------------------*/
+      #searchFilter,
+      #detailsPane html|input {
         appearance: none !important;
         background-color: var(--organizer-toolbar-field-background) !important;
         color: var(--organizer-color) !important;
@@ -2202,6 +2203,16 @@
 
       #clearDownloadsButton:focus-visible {
         outline: 2px solid var(--organizer-outline-color) !important;
+      }
+
+      richlistitem[selected="true"],
+      richlistitem:hover {
+        background-color: var(--organizer-hover-background) !important;
+        color: var(--organizer-color) !important;
+      }
+
+      richlistbox:where(:focus) > richlistitem[selected="true"] {
+        background-color: var(--organizer-selected-background) !important;
       }
 
       /*- Tree ---------------------------------------------------------------*/
