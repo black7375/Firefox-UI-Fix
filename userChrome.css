@@ -1021,7 +1021,7 @@
 
   /* Default theme color preservation */
   :root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
-  :root[lwtheme-mozlightdark] menupopup:is(#goPopup, #bookmarksMenuPopup) {
+  :root[lwtheme-mozlightdark] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) {
     --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
     --arrowpanel-background: var(
       --toolbar-bgcolor,
@@ -4330,9 +4330,9 @@
     > menupopup
     > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #main-menubar > menu,
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
@@ -4366,9 +4366,9 @@
   }
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
@@ -4422,9 +4422,9 @@
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
       > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
@@ -4448,9 +4448,9 @@
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
       > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
@@ -4503,7 +4503,7 @@
   }
 
   /*= Bookmark Menu - Layout =================================================*/
-  /* #goPopup, #bookmarksMenuPopup: looks like global menu
+  /* #goPopup(Legacy of historyMenuPoup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
    * #BMB_bookmarksPopup: looks like arrow panel
    */
 
@@ -4522,7 +4522,7 @@
   /* Windows 7, 8 */
   @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
     /* Global Menu */
-    menupopup:is(#goPopup, #bookmarksMenuPopup) .bookmark-item {
+    menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
       padding-inline-start: 0 !important;
     }
 
@@ -4566,7 +4566,7 @@
   /* Linux */
   @media (-moz-gtk-csd-available) {
     /* Global Menu */
-    menupopup:is(#goPopup, #bookmarksMenuPopup) .bookmark-item {
+    menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
       padding-inline-start: var(--context-menu-background-padding) !important;
     }
 
