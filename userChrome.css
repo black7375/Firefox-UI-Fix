@@ -3208,8 +3208,10 @@
     opacity: 0 !important;
     transform: scaleX(0) !important;
   }
-  .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
-    transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
+  @media (prefers-reduced-motion: no-preference) {
+    .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
+      transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
+    }
   }
 
   /* Remove side's background color border */
