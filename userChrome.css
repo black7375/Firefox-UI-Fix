@@ -440,6 +440,18 @@
       --panel-separator-color: var(--win-border-color) !important;
     }
 
+    /*- Proton Tab Selected --------------------------------------------------*/
+    :root:not(:-moz-lwtheme),
+    :root[lwt-default-theme-in-dark-mode] {
+      --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
+    }
+    :root:not(:-moz-lwtheme) {
+      --tab-selected-color: var(--win-proton-tab-selected-bgcolor) !important;
+    }
+    :root[lwt-default-theme-in-dark-mode] {
+      --lwt-selected-tab-background-color: var(--win-proton-tab-selected-bgcolor) !important;
+    }
+
     /*- Menu -----------------------------------------------------------------*/
     html#main-window menupopup:not(:-moz-lwtheme) {
       --menu-color: var(--win-text-color) !important;
@@ -711,6 +723,18 @@
       }
     }
 
+    /*- Proton Tab Selected --------------------------------------------------*/
+    :root:not(:-moz-lwtheme),
+    :root[lwt-default-theme-in-dark-mode] {
+      --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
+    }
+    :root:not(:-moz-lwtheme) {
+      --tab-selected-color: var(--mac-proton-tab-selected-bgcolor) !important;
+    }
+    :root[lwt-default-theme-in-dark-mode] {
+      --lwt-selected-tab-background-color: var(--mac-proton-tab-selected-bgcolor) !important;
+    }
+
     /*- Toolbar --------------------------------------------------------------*/
     :root:not(:-moz-lwtheme) #navigator-toolbox,
     :root[lwt-default-theme-in-dark-mode] #navigator-toolbox {
@@ -768,15 +792,6 @@
     }
 
     /* Hard Coded */
-    :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode]
-      #tabbrowser-tabs:not([movingtab])
-      > #tabbrowser-arrowscrollbox
-      > .tabbrowser-tab
-      > .tab-stack
-      > .tab-background[selected="true"] {
-      background: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
-    }
-
     :root:not(:-moz-lwtheme) #tabs-newtab-button:hover,
     :root:not([customizing="true"]):not(:-moz-lwtheme) tab[visuallyselected] > stack::before,
     :root:not([customizing="true"]):not(:-moz-lwtheme) tab[visuallyselected] > stack::after,
