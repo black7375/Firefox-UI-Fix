@@ -448,6 +448,9 @@
 
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
     }
+    #navigator-toolbox:not(:-moz-lwtheme) {
+      background: var(--lwt-accent-color) !important;
+    }
 
     /*- Separator ------------------------------------------------------------*/
     :root:not(:-moz-lwtheme) {
