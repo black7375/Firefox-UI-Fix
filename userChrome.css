@@ -2954,9 +2954,6 @@
     /* Original: 0.5em */
     padding-block: var(--menu-padding) !important;
   }
-  menupopup > menu {
-    padding-inline-start: 0.5em;
-  }
 
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root:not([uidensity="touch"]) .menu-text,
@@ -2984,6 +2981,12 @@
     /* Make to original */
     :root:not([uidensity="touch"]) #context-navigation:not([hidden]) {
       padding: 0 0 4px !important;
+    }
+  }
+
+  @media (-moz-gtk-csd-available) {
+    menupopup > menu {
+      padding-inline-start: 0.5em;
     }
   }
 
