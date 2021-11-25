@@ -1,4 +1,5 @@
-@namespace url(http://www.w3.org/1999/xhtml);
+@namespace xul  url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
 
 @media (-moz-proton) {
   @-moz-document url("about:home"), url("about:newtab") {
@@ -1318,7 +1319,7 @@
           --organizer-pane-field-border-color: color-mix(in srgb, currentColor 41%, transparent);
         }
 
-        @media (prefers-color-scheme: dark) {
+        @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
           :root {
             --organizer-color: rgb(251, 251, 254);
             --organizer-deemphasized-color: rgb(191, 191, 201);
