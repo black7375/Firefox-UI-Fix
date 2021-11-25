@@ -407,7 +407,6 @@
       --autocomplete-popup-hover-background: var(--win-button-hover-bgcolor) !important;
 
       /* Button Border Color */
-      --tab-line-color: var(--win-button-border) !important;
       --checkbox-border-color: var(--win-button-border) !important;
       --input-border-color: var(--win-button-border) !important;
       --autocomplete-popup-separator-color: var(--win-button-border) !important;
@@ -435,6 +434,7 @@
       --input-error-border-color: var(--win-error-color) !important;
 
       /* Others */
+      --tab-line-color: Highlight !important;
       --tab-selected-bgcolor: unset !important;
       --tabs-border-color: transparent !important;
       --checkbox-checked-border-color: transparent !important;
@@ -447,6 +447,9 @@
       --download-progress-flare-color: rgba(255, 255, 255, 0.75) !important;
 
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
+    }
+    #navigator-toolbox:not(:-moz-lwtheme) {
+      background: var(--lwt-accent-color) !important;
     }
 
     /*- Separator ------------------------------------------------------------*/
@@ -1081,7 +1084,7 @@
     --input-bgcolor: color-mix(in srgb, currentColor 30%, transparent);
 
     appearance: none !important;
-    padding: 8px 11px !important;
+    padding: 5px 8px !important;
     border: 1px solid var(--input-bgcolor) !important;
     border-radius: 4px;
 
@@ -2073,7 +2076,7 @@
           --organizer-pane-field-border-color: color-mix(in srgb, currentColor 41%, transparent);
         }
 
-        @media (prefers-color-scheme: dark) {
+        @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
           :root {
             --organizer-color: rgb(251, 251, 254);
             --organizer-deemphasized-color: rgb(191, 191, 201);
@@ -2960,9 +2963,6 @@
     /* Original: 0.5em */
     padding-block: var(--menu-padding) !important;
   }
-  menupopup > menu {
-    padding-inline-start: 0.5em;
-  }
 
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root:not([uidensity="touch"]) .menu-text,
@@ -2990,6 +2990,12 @@
     /* Make to original */
     :root:not([uidensity="touch"]) #context-navigation:not([hidden]) {
       padding: 0 0 4px !important;
+    }
+  }
+
+  @media (-moz-gtk-csd-available) {
+    menupopup > menu {
+      padding-inline-start: 0.5em;
     }
   }
 
