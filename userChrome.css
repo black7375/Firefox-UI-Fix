@@ -3308,6 +3308,14 @@
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
     margin-inline-end: 1px !important;
   }
+  
+  /*Only show close buttons on background tabs when hovering with the mouse */
+.tabbrowser-tab:not([selected]):not([pinned]) .tab-close-button {
+  display: none !important;
+}
+.tabbrowser-tab:not([selected]):not([pinned]):hover .tab-close-button {
+  display: -moz-box !important;
+}
 
   /* New tab button - Looks like tab ******************************************/
   #tabs-newtab-button {
