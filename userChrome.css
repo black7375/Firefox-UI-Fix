@@ -1010,11 +1010,11 @@
          If this value is used, unset is required in the default theme.
       */
     }
-  }
 
-  /* Fallback background */
-  menupopup:not(.cui-widget-panel.cui-widget-panelview, [placespopup="true"]) {
-    background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
+    /* Fallback background */
+    menupopup:not(.cui-widget-panel.cui-widget-panelview, [placespopup="true"]) {
+      background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
+    }
   }
 
   /* Default theme color preservation */
