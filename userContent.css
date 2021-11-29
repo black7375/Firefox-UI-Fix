@@ -1450,7 +1450,9 @@
     }
 
     #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-    #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+    #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
       /* Color */
       -moz-context-properties: fill, fill-opacity !important;
       fill: currentColor !important;
@@ -1479,7 +1481,9 @@
       --context-menu-background-padding: var(--context-menu-background-padding-default);
     }
     #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-    #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+    #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
       background-position: left var(--context-menu-background-padding) center !important;
       padding-inline-start: var(--context-menu-background-padding) !important;
     }
@@ -1510,7 +1514,9 @@
     }
     @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
       #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-      #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+      #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
         background-position: left var(--context-menu-background-padding) center !important;
         padding-inline-start: 0 !important;
       }
@@ -1523,7 +1529,9 @@
       }
 
       #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-      #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+      #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
         padding-inline-start: var(--menu-background-padding-default) !important;
         margin-left: 0 !important;
       }
@@ -1637,6 +1645,70 @@
 
     .openintabs-menuitem {
       --menuitem-image: url("./icons/movetowindow-16.svg");
+    }
+
+    /*= organizeButtonPopup ======================================================*/
+    #newbookmark {
+      --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+    }
+    #newfolder {
+      --menuitem-image: url("./icons/folder.svg");
+    }
+    #newseparator {
+      --menuitem-image: url("./icons/vertical-line.svg");
+    }
+
+    #orgUndo {
+      --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+    }
+    #orgRedo {
+    }
+
+    #orgCut {
+      --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    }
+    #orgCopy {
+      --menuitem-image: url("./icons/edit-copy.svg");
+    }
+    #orgPaste {
+      --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    }
+    #orgDelete {
+      --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+    }
+
+    #orgSelectAll {
+      --menuitem-image: url("./icons/select-all-on.svg");
+    }
+
+    #orgClose {
+      --menuitem-image: url("chrome://global/skin/icons/close.svg");
+    }
+
+    /*= viewMenuPopup ============================================================*/
+    #viewColumns {
+      --menuitem-image: url("chrome://global/skin/icons/columnpicker.svg");
+    }
+    #viewSort {
+      --menuitem-image: url("./icons/text-sort-ascending.svg");
+    }
+
+    /*= maintenanceButtonPopup ===================================================*/
+    #backupBookmarks {
+      --menuitem-image: url("chrome://devtools/skin/images/datastore.svg");
+    }
+    #fileRestoreMenu {
+    }
+
+    #fileImport {
+      --menuitem-image: url("chrome://browser/skin/save.svg");
+    }
+    #fileExport {
+      --menuitem-image: url("chrome://browser/skin/open.svg");
+    }
+
+    #browserImport {
+      --menuitem-image: url("chrome://browser/skin/import.svg");
     }
 
     /*= Proton ===============================================================*/
