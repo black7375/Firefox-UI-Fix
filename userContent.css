@@ -1279,9 +1279,9 @@
 
   /* Standard Folder - Open */
   :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
-           .bookmark-item[container="true"]:not([query="true"], [tagContainer], [dayContainer])[open="true"],
+    .bookmark-item[container="true"]:not([query="true"], [tagContainer], [dayContainer])[open="true"],
   :-moz-any(#bookmarks-view, #historyTree, #editBMPanel_folderTree, #placesList, #placeContent)
-           treechildren::-moz-tree-image(title, container, open) {
+    treechildren::-moz-tree-image(title, container, open) {
     list-style-image: url("./icons/folder-open.svg") !important;
   }
 
@@ -1303,9 +1303,9 @@
   #BMB_bookmarksPopup #BMB_unsortedBookmarks[open="true"],
   #bookmarksMenuPopup #menu_unsortedBookmarks[open="true"],
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-           treechildren::-moz-tree-image(container, open, OrganizerQuery_UnfiledBookmarks),
+    treechildren::-moz-tree-image(container, open, OrganizerQuery_UnfiledBookmarks),
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-           treechildren::-moz-tree-image(container, open, queryFolder_unfiled_____) {
+    treechildren::-moz-tree-image(container, open, queryFolder_unfiled_____) {
     list-style-image: url("./icons/mail-inbox.svg") !important;
   }
 
@@ -1319,7 +1319,8 @@
 
   /* History */
   :-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query, dayContainer),
-  :-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_history____v) {
+  :-moz-any(#historyTree, #placesList, #placeContent)
+    treechildren::-moz-tree-image(query, OrganizerQuery_history____v) {
     list-style-image: url("chrome://browser/skin/history.svg") !important;
   }
 
@@ -1348,29 +1349,29 @@
 
   /* Bookmark Menu */
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-           treechildren::-moz-tree-image(container, queryFolder_menu________) {
+    treechildren::-moz-tree-image(container, queryFolder_menu________) {
     list-style-image: url("chrome://browser/skin/places/bookmarksMenu.svg") !important;
   }
 
   /*= Default Icon - Open ====================================================*/
   /* Query */
   :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
-           .bookmark-item[container="true"][query="true"]:not([tagContainer])[open="true"]
-                                                             > .menu-iconic-left
-                                                             > .menu-iconic-icon {
+    .bookmark-item[container="true"][query="true"]:not([tagContainer])[open="true"]
+    > .menu-iconic-left
+    > .menu-iconic-icon {
     transform: rotate(15deg) !important;
   }
 
   /* History */
   :-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query, open, dayContainer),
   :-moz-any(#historyTree, #placesList, #placeContent)
-           treechildren::-moz-tree-image(query, open, OrganizerQuery_history____v) {
+    treechildren::-moz-tree-image(query, open, OrganizerQuery_history____v) {
     list-style-image: url("./icons/history-reverse.svg") !important;
   }
 
   /* Tag */
   :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
-           .bookmark-item[container="true"][tagContainer="true"][open="true"],
+    .bookmark-item[container="true"][tagContainer="true"][open="true"],
   :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, open, tagContainer),
   :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, open, OrganizerQuery_tags_______v) {
     list-style-image: url("./icons/tag-open.svg") !important;
@@ -1385,13 +1386,13 @@
   #BMB_bookmarksPopup #BMB_bookmarksToolbar[open="true"],
   #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-           treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
+    treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
     list-style-image: url("./icons/bookmarksToolbar-open.svg") !important;
   }
 
   /* Bookmark Menu */
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-           treechildren::-moz-tree-image(container, open, queryFolder_menu________) {
+    treechildren::-moz-tree-image(container, open, queryFolder_menu________) {
     list-style-image: url("./icons/bookmarksMenu-open.svg") !important; /* or bookmarksMenu-open2.svg" */
   }
 
@@ -1466,11 +1467,11 @@
     /* For native context menus on macOS */
     @supports -moz-bool-pref("widget.macos.native-context-menus") {
       :not(menu, #ContentSelectDropdown)
-          > menupopup
-          > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+        > menupopup
+        > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
       :not(menu, #ContentSelectDropdown)
-          > menupopup
-          > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
+        > menupopup
+        > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
         list-style-image: var(--menuitem-image) !important;
       }
     }
@@ -1495,9 +1496,9 @@
         --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
       }
       :not(menu, #ContentSelectDropdown, #context-navigation)
-          > menupopup
-          > menuitem[type="checkbox"][checked="false"]
-          > .menu-iconic-left {
+        > menupopup
+        > menuitem[type="checkbox"][checked="false"]
+        > .menu-iconic-left {
         padding-inline-start: var(--context-menu-text-padding);
       }
     }
@@ -1515,8 +1516,8 @@
     @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
       #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
       #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+      menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+      menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
         background-position: left var(--context-menu-background-padding) center !important;
         padding-inline-start: 0 !important;
       }
@@ -1525,13 +1526,15 @@
       :root {
         --context-menu-background-padding: 1em;
         --context-menu-text-padding: 24px; /* 16px + 8px */
-        --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
+        --menu-background-padding-default: calc(
+          var(--context-menu-background-padding) + var(--context-menu-text-padding)
+        );
       }
 
       #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
       #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+      menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+      menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
         padding-inline-start: var(--menu-background-padding-default) !important;
         margin-left: 0 !important;
       }
