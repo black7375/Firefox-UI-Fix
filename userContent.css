@@ -1466,11 +1466,11 @@
   /* For native context menus on macOS */
   @supports -moz-bool-pref("widget.macos.native-context-menus") {
     :not(menu, #ContentSelectDropdown)
-        > menupopup
-        > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menupopup
+      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
     :not(menu, #ContentSelectDropdown)
-        > menupopup
-        > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
+      > menupopup
+      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
       list-style-image: var(--menuitem-image) !important;
     }
   }
@@ -1495,9 +1495,9 @@
       --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
     }
     :not(menu, #ContentSelectDropdown, #context-navigation)
-        > menupopup
-        > menuitem[type="checkbox"][checked="false"]
-        > .menu-iconic-left {
+      > menupopup
+      > menuitem[type="checkbox"][checked="false"]
+      > .menu-iconic-left {
       padding-inline-start: var(--context-menu-text-padding);
     }
   }
