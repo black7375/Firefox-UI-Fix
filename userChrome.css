@@ -98,14 +98,6 @@
   :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
     background-color: var(--lwt-accent-color) !important;
   }
-  :root[sizemode="normal"] .titlebar-buttonbox {
-    appearance: auto !important;
-    -moz-default-appearance: -moz-window-button-box !important;
-  }
-  :root[sizemode="maximized"] .titlebar-buttonbox {
-    appearance: auto !important;
-    -moz-default-appearance: -moz-window-button-box-maximized !important;
-  }
 }
 @media (-moz-os-version: windows-win7) {
   #TabsToolbar:-moz-lwtheme {
