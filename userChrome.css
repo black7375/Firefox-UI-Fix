@@ -4299,8 +4299,33 @@ panelMenuBookmarkThisPage[starred] {
   list-style-image: url("./icons/broom.svg");
 }
 
+/*= sidebarMenu-popup ========================================================*/
 #identity-popup-more-info {
   list-style-image: url("chrome://global/skin/icons/info.svg");
+}
+
+#sidebar-switcher-bookmarks {
+  list-style-image: url("chrome://browser/skin/bookmark.svg");
+}
+
+#sidebar-switcher-history {
+  list-style-image: url("chrome://browser/skin/history.svg");
+}
+
+#sidebar-switcher-tabs {
+  list-style-image: url("chrome://browser/skin/tab.svg");
+}
+
+#sidebar-reverse-position {
+  list-style-image: url("chrome://browser/skin/sidebars-right.svg");
+}
+#sidebar-box[positionend="true"] #sidebar-reverse-position {
+  /* Can't apply this. shadow dom */
+  list-style-image: url("chrome://browser/skin/sidebars.svg");
+}
+
+#sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
+  list-style-image: url("chrome://global/skin/icons/close.svg");
 }
 
 /** Menu - Icons Layout *******************************************************/
