@@ -4324,7 +4324,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
   menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
-#context_sendTabToDevicePopupMenu > menuitem,
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
 #blockedPopupDontShowMessage {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
@@ -4361,7 +4361,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
   menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
-#context_sendTabToDevicePopupMenu > menuitem,
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
 #blockedPopupDontShowMessage {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
@@ -4418,7 +4418,7 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
-  #context_sendTabToDevicePopupMenu > menuitem,
+  menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
@@ -4443,7 +4443,7 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
-  #context_sendTabToDevicePopupMenu > menuitem,
+  menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
   #blockedPopupDontShowMessage {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
@@ -5252,31 +5252,38 @@ menuitem.searchbar-clear-history {
 }
 
 /*= context_sendTabToDevicePopupMenu =========================================*/
-#context_sendTabToDevicePopupMenu > .sync-menuitem.sendtab-target[clientType="phone"] {
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="phone"] {
   --menuitem-image: url("chrome://browser/skin/device-phone.svg");
 }
 
-#context_sendTabToDevicePopupMenu > .sync-menuitem.sendtab-target[clientType="tablet"] {
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="tablet"] {
   --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
 }
 
-#context_sendTabToDevicePopupMenu > .sync-menuitem.sendtab-target[clientType="desktop"] {
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="desktop"] {
   --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
 }
 
-#context_sendTabToDevicePopupMenu > .sync-menuitem.sendtab-target[clientType="tv"] {
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="tv"] {
   --menuitem-image: url("chrome://browser/skin/device-tv.svg");
 }
 
-#context_sendTabToDevicePopupMenu > .sync-menuitem.sendtab-target[clientType="vr"] {
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="vr"] {
   --menuitem-image: url("chrome://browser/skin/device-vr.svg");
 }
 
-#context_sendTabToDevicePopupMenu > .sync-menuitem.sendtab-target[clientType=""] {
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType=""] {
   --menuitem-image: url("./icons/send-to-device.svg");
 }
 
-#context_sendTabToDevicePopupMenu > .sync-menuitem.sendtab-target:not([clientType]) {
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target:not([clientType]) {
   --menuitem-image: url("chrome://global/skin/icons/settings.svg");
 }
 
