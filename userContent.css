@@ -2246,7 +2246,9 @@
       ) !important;
     }
 
-    menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
+    menuitem[type="checkbox"]:not([disabled="true"]):hover:active
+      > .menu-iconic-left[checked="true"]
+      > .menu-iconic-icon {
       background-color: var(
         --checkbox-checked-active-bgcolor,
         color-mix(in srgb, currentColor 25%, -moz-accent-color)
@@ -2259,7 +2261,7 @@
     }
 
     @media (prefers-contrast) {
-      menuitem[type="checkbox"]:not([disabled="true"]) > .menu-iconic-left  > .menu-iconic-icon {
+      menuitem[type="checkbox"]:not([disabled="true"]) > .menu-iconic-left > .menu-iconic-icon {
         /* color will set the border-color on the check due to how HCM works for in-content pages. */
         color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
       }
@@ -2269,7 +2271,9 @@
         fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
       }
 
-      menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left[checked="true"]  > .menu-iconic-icon,
+      menuitem[type="checkbox"]:not([disabled="true"]):hover:active
+        > .menu-iconic-left[checked="true"]
+        > .menu-iconic-icon,
       menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
         color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
         fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
