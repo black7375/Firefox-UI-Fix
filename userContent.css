@@ -2122,11 +2122,11 @@
     menuitem[type="radio"] > .menu-iconic-left  {
       appearance: none !important;
       width: 16px !important;
-      height: 16px !important;
+      height: 18px !important; /* extend the vertical clicktarget instead of margin-block */
       padding: 0 !important;
       border: 1px solid var(--in-content-box-border-color) !important;
       border-radius: 100% !important;
-      margin-block: 0px !important; /* extend the vertical clicktarget */
+      margin-block: 0px !important; /* 2px -> 0px */
       margin-inline: 0 6px !important;
       background-color: var(--in-content-button-background) !important;
       background-position: center !important;
