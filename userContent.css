@@ -2280,5 +2280,16 @@
     menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
       margin-block: 2px !important;
     }
+
+    /*- Menu Separtor --------------------------------------------------------*/
+    menuseparator {
+      appearance: none !important;
+      min-width: 2px;
+      min-height: 0;
+      border-top: 1px solid var(--in-content-box-border-color, ThreeDDarkShadow);
+      border-bottom: none;
+      margin: var(--panel-separator-margin, 6px);
+      padding: 0;
+    }
   }
 }
