@@ -2112,5 +2112,71 @@
       background-color: var(--organizer-selected-background) !important;
       color: var(--organizer-selected-color) !important;
     }
+
+    /*- Radio Button ---------------------------------------------------------*/
+    menuitem[type="radio"] {
+      /* margin-inline-start: 0 !important; */
+      appearance: none !important;
+    }
+
+    menuitem[type="radio"] > .menu-iconic-left  {
+      appearance: none !important;
+      width: 16px !important;
+      height: 16px !important;
+      padding: 0 !important;
+      border: 1px solid var(--in-content-box-border-color) !important;
+      border-radius: 100% !important;
+      margin-block: 0px !important; /* extend the vertical clicktarget */
+      margin-inline: 0 6px !important;
+      background-color: var(--in-content-button-background) !important;
+      background-position: center !important;
+      flex-shrink: 0 !important; /* avoid shrinking inside flex container */
+    }
+
+    menuitem[type="radio"]:not([disabled="true"]):hover > .menu-iconic-left {
+      background-color: var(--in-content-button-background-hover) !important;
+      color: var(--in-content-button-text-color-hover) !important;
+    }
+
+    menuitem[type="radio"]:not([disabled="true"]):hover:active > .menu-iconic-left {
+      background-color: var(--in-content-button-background-active) !important;
+    }
+
+    menuitem[type="radio"] > .menu-iconic-left[checked="true"] {
+      -moz-context-properties: fill !important;
+      fill: currentColor !important;
+      color: var(--in-content-primary-button-text-color) !important;
+      background-color: var(--in-content-primary-button-background) !important;
+      background-image: url("chrome://global/skin/icons/radio.svg") !important;
+      border-color: transparent !important;
+
+      /* Style the button also when printing with "Print Backgrounds" unchecked */
+      color-adjust: exact !important;
+    }
+
+    menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover > .menu-iconic-left {
+      background-color: var(--in-content-primary-button-background-hover) !important;
+      color: var(--in-content-primary-button-text-color-hover) !important;
+    }
+
+    menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover:active > .menu-iconic-left {
+      background-color: var(--in-content-primary-button-background-active) !important;
+    }
+
+    menuitem[type="radio"] > .menu-iconic-text {
+      margin-inline: 0 8px !important;
+      padding-inline-start: 0 !important;
+    }
+
+    /* Disabled checkboxes, radios and labels */
+    menuitem[type="radio"][disabled="true"],
+    menuitem[type="checkbox"][disabled="true"] {
+      color: inherit !important;
+    }
+
+    menuitem[type="radio"][disabled="true"],
+    menuitem[type="checkbox"][disabled="true"] {
+      opacity: 0.5 !important;
+    }
   }
 }
