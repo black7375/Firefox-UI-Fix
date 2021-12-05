@@ -2119,30 +2119,30 @@
       appearance: none !important;
     }
 
-    menuitem[type="radio"] > .menu-iconic-left  {
+    menuitem[type="radio"] > .menu-iconic-left > .menu-iconic-icon {
       appearance: none !important;
       width: 16px !important;
-      height: 18px !important; /* extend the vertical clicktarget instead of margin-block */
+      height: 16px !important;
       padding: 0 !important;
       border: 1px solid var(--in-content-box-border-color) !important;
       border-radius: 100% !important;
-      margin-block: 0px !important; /* 2px -> 0px */
+      margin-block: 2px !important; /* extend the vertical clicktarget */
       margin-inline: 0 6px !important;
       background-color: var(--in-content-button-background) !important;
       background-position: center !important;
       flex-shrink: 0 !important; /* avoid shrinking inside flex container */
     }
 
-    menuitem[type="radio"]:not([disabled="true"]):hover > .menu-iconic-left {
+    menuitem[type="radio"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
       background-color: var(--in-content-button-background-hover) !important;
       color: var(--in-content-button-text-color-hover) !important;
     }
 
-    menuitem[type="radio"]:not([disabled="true"]):hover:active > .menu-iconic-left {
+    menuitem[type="radio"]:not([disabled="true"]):hover:active > .menu-iconic-left > .menu-iconic-icon {
       background-color: var(--in-content-button-background-active) !important;
     }
 
-    menuitem[type="radio"] > .menu-iconic-left[checked="true"] {
+    menuitem[type="radio"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
       -moz-context-properties: fill !important;
       fill: currentColor !important;
       color: var(--in-content-primary-button-text-color) !important;
@@ -2154,12 +2154,12 @@
       color-adjust: exact !important;
     }
 
-    menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover > .menu-iconic-left {
+    menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover > .menu-iconic-left > .menu-iconic-icon {
       background-color: var(--in-content-primary-button-background-hover) !important;
       color: var(--in-content-primary-button-text-color-hover) !important;
     }
 
-    menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover:active > .menu-iconic-left {
+    menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover:active > .menu-iconic-left > .menu-iconic-icon {
       background-color: var(--in-content-primary-button-background-active) !important;
     }
 
@@ -2198,7 +2198,7 @@
       opacity: 0.4 !important;
     }
 
-    menuitem[type="checkbox"] > .menu-iconic-left {
+    menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
       appearance: none !important;
       color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
       background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
@@ -2207,26 +2207,26 @@
       margin-inline-end: 6px !important;
     }
 
-    menuitem[type="checkbox"] > .menu-iconic-left {
+    menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
       height: 16px !important;
       width: 16px !important;
     }
 
-    menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left {
+    menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
       background-color: var(
         --checkbox-unchecked-hover-bgcolor,
         color-mix(in srgb, -moz-accent-color 4%, Field)
       ) !important;
     }
 
-    menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left {
+    menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left > .menu-iconic-icon {
       background-color: var(
         --checkbox-unchecked-active-bgcolor,
         color-mix(in srgb, -moz-accent-color 8%, Field)
       ) !important;
     }
 
-    menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] {
+    menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
       border-color: var(--checkbox-checked-border-color, transparent) !important;
       background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
       background-image: url("chrome://global/skin/icons/check.svg") !important;
@@ -2239,27 +2239,27 @@
       color-adjust: exact !important;
     }
 
-    menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] {
+    menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
       background-color: var(
         --checkbox-checked-hover-bgcolor,
         color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
       ) !important;
     }
 
-    menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left[checked="true"]{
+    menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
       background-color: var(
         --checkbox-checked-active-bgcolor,
         color-mix(in srgb, currentColor 25%, -moz-accent-color)
       ) !important;
     }
 
-    menuitem[type="checkbox"]:focus > .menu-iconic-left {
+    menuitem[type="checkbox"]:focus > .menu-iconic-left > .menu-iconic-icon {
       outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
       outline-offset: var(--focus-outline-offset, 2px) !important;
     }
 
     @media (prefers-contrast) {
-      menuitem[type="checkbox"]:not([disabled="true"]) > .menu-iconic-left {
+      menuitem[type="checkbox"]:not([disabled="true"]) > .menu-iconic-left  > .menu-iconic-icon {
         /* color will set the border-color on the check due to how HCM works for in-content pages. */
         color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
       }
@@ -2269,15 +2269,15 @@
         fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
       }
 
-      menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left[checked="true"],
-      menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] {
+      menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left[checked="true"]  > .menu-iconic-icon,
+      menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
         color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
         fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
       }
     }
 
     /* From common.css */
-    menuitem[type="checkbox"] > .menu-iconic-left {
+    menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
       margin-block: 2px !important;
     }
   }
