@@ -4043,12 +4043,28 @@ tab[visuallyselected] > stack::after {
 #PanelUI-fxa-menu-sendtab-button {
   list-style-image: url("./icons/send-to-device.svg");
 }
-#PanelUI-fxa-menu-sync-prefs-button,
-#PanelUI-remotetabs-view-managedevices {
+#PanelUI-fxa-menu-sync-prefs-button {
   list-style-image: url("chrome://global/skin/icons/settings.svg");
 }
 #PanelUI-fxa-menu-account-signout-button {
   list-style-image: url("./icons/sign-out.svg");
+}
+#PanelUI-remotetabs-view-managedevices::before {
+  /* Box */
+  content: "";
+  padding-inline-end: 16px;
+  padding-block: 1px;
+  margin-inline-end: var(--arrowpanel-menuicon-padding);
+
+  /* Color */
+  fill: currentColor;
+  fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+  -moz-context-properties: fill;
+
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-image: url("chrome://global/skin/icons/settings.svg");
 }
 
 .PanelUI-remotetabs-notabsforclient-label {
