@@ -76,7 +76,7 @@
 /*= Windows 7, 8 - Tab Bar Background *****************************************/
 @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
   /* Header Color */
-  :root:not([lwtheme-image]) #navigator-toolbox:-moz-lwtheme {
+  :root:not([lwtheme-image]):-moz-lwtheme {
     background-color: var(--lwt-accent-color) !important;
   }
 }
@@ -121,10 +121,10 @@
   #BMB_bookmarksPopup menuitem {
     border: none !important; /* Remove border */
   }
-  #PlacesToolbar menu:not([disabed], :active)[_moz-menuactive="true"],
-  #PlacesToolbar menuitem:not([disabed], :active)[_moz-menuactive="true"],
-  #BMB_bookmarksPopup menu:not([disabed], :active)[_moz-menuactive="true"],
-  #BMB_bookmarksPopup menuitem:not([disabed], :active)[_moz-menuactive="true"] {
+  #PlacesToolbar menu:not([disabled], :active)[_moz-menuactive="true"],
+  #PlacesToolbar menuitem:not([disabled], :active)[_moz-menuactive="true"],
+  #BMB_bookmarksPopup menu:not([disabled], :active)[_moz-menuactive="true"],
+  #BMB_bookmarksPopup menuitem:not([disabled], :active)[_moz-menuactive="true"] {
     background-color: var(--button-hover-bgcolor) !important;
   }
 }
@@ -2138,6 +2138,7 @@ browser[type="content"] > html {
       margin-inline-end: 2px !important;
     }
 
+    #placesMenu > menu[_moz-menuactive="true"],
     #placesMenu > menu:hover {
       background-color: var(--organizer-hover-background) !important;
       color: var(--organizer-hover-color) !important;
@@ -3053,7 +3054,7 @@ menupopup > menu {
 :root[uidensity="compact"] #protections-popup-multiView #protections-popup-footer {
   padding: 3px 0 20px !important;
 }
-/* Button and disabed category in Protection popup */
+/* Button and disabled category in Protection popup */
 :root[uidensity="compact"] #protections-popup-multiView .protections-popup-footer-button,
 :root[uidensity="compact"] #protections-popup-multiView .protections-popup-category {
   height: 20px !important;
@@ -4073,7 +4074,7 @@ panelMenuBookmarkThisPage[starred] {
   #BMB_bookmarksShowAllTop {
     list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg") !important;
   }
-  #BMB_bookmarksShowAllTop > .menu-conic-left {
+  #BMB_bookmarksShowAllTop > .menu-iconic-left {
     display: -moz-box !important;
   }
 }
@@ -4109,8 +4110,33 @@ panelMenuBookmarkThisPage[starred] {
   list-style-image: url("./icons/broom.svg");
 }
 
+/*= sidebarMenu-popup ========================================================*/
 #identity-popup-more-info {
   list-style-image: url("chrome://global/skin/icons/info.svg");
+}
+
+#sidebar-switcher-bookmarks {
+  list-style-image: url("chrome://browser/skin/bookmark.svg");
+}
+
+#sidebar-switcher-history {
+  list-style-image: url("chrome://browser/skin/history.svg");
+}
+
+#sidebar-switcher-tabs {
+  list-style-image: url("chrome://browser/skin/tab.svg");
+}
+
+#sidebar-reverse-position {
+  list-style-image: url("chrome://browser/skin/sidebars-right.svg");
+}
+#sidebar-box[positionend="true"] #sidebar-reverse-position {
+  /* Can't apply this. shadow dom */
+  list-style-image: url("chrome://browser/skin/sidebars.svg");
+}
+
+#sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
+  list-style-image: url("chrome://global/skin/icons/close.svg");
 }
 
 /** Menu - Icons Layout *******************************************************/
@@ -4134,6 +4160,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
   menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
 #blockedPopupDontShowMessage {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
@@ -4170,6 +4197,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
   menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
 #blockedPopupDontShowMessage {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
@@ -4226,6 +4254,7 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+  menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
@@ -4250,6 +4279,7 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+  menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
   #blockedPopupDontShowMessage {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
@@ -5055,6 +5085,42 @@ menuitem.searchbar-paste-and-search {
 }
 menuitem.searchbar-clear-history {
   --menuitem-image: url("chrome://browser/skin/forget.svg");
+}
+
+/*= context_sendTabToDevicePopupMenu =========================================*/
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="phone"] {
+  --menuitem-image: url("chrome://browser/skin/device-phone.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="tablet"] {
+  --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="desktop"] {
+  --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="tv"] {
+  --menuitem-image: url("chrome://browser/skin/device-tv.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="vr"] {
+  --menuitem-image: url("chrome://browser/skin/device-vr.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType=""] {
+  --menuitem-image: url("./icons/send-to-device.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target:not([clientType]) {
+  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
 }
 
 /** Global Menu ***************************************************************/
