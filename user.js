@@ -1,7 +1,4 @@
 // ** Theme Related Options ****************************************************
-// Draw in Titlebar
-user_pref("browser.tabs.drawInTitlebar", true);
-
 // userchrome.css usercontent.css activate
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
@@ -35,3 +32,7 @@ user_pref("browser.urlbar.suggest.calculator", true);
 
 // Integrated unit convertor at urlbar
 // user_pref("browser.urlbar.unitConversion.enabled", true);
+
+// Draw in Titlebar
+// user_pref("browser.tabs.drawInTitlebar", true);
+// user_pref("browser.tabs.inTitlebar",        1); // Nightly, 96 Above
