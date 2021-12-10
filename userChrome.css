@@ -185,12 +185,25 @@
   }
 }
 
-/*= Linux - Global Menubar Active Color ======================================*/
 @media (-moz-gtk-csd-available) {
+  /*= Linux - Global Menubar Active Color ====================================*/
   #main-menubar > menu[open="true"],
   #main-menubar > menu[_moz-menuactive="true"] {
     color: inherit !important; /* Original: -moz-menubarhovertext */
     background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
+  }
+
+  /*= Linux - Titlebar button at lwtheme =====================================*/
+  .titlebar-button:-moz-lwtheme {
+    appearance: auto !important;
+  }
+  .titlebar-min:-moz-lwtheme, .titlebar-max:-moz-lwtheme, .titlebar-restore:-moz-lwtheme, .titlebar-close:-moz-lwtheme {
+    list-style-image: none !important;
+  }
+  .titlebar-button:-moz-lwtheme:hover,
+  .titlebar-button:-moz-lwtheme:hover:active {
+    background-color: unset !important;
+    color: unset !important;
   }
 }
 
