@@ -709,10 +709,18 @@
     .forum--entry-content .key {
       color: var(--in-content-deemphasized-text) !important;
     }
+    .tag-name a{
+    color:var(--in-content-page-color) !important;
+    }
 
     /* Background */
     .sidebar-nav.topics,
     .sidebar-nav.topics > li {
+      background: var(--in-content-page-background) !important;
+    }
+    
+    .kbox-container {
+      color: var(--in-content-page-color) !important;
       background: var(--in-content-page-background) !important;
     }
 
@@ -762,6 +770,22 @@
       box-shadow: 0 5px 10px -3px rgba(249, 249, 250, 0.12), 0 3px 16px 2px rgba(91, 91, 102, 0.12),
         0 8px 12px 1px rgba(82, 82, 94, 0.04) !important;
     }
+    
+    button.markup-toolbar-button{
+      /*using 0.5 because in middle*/
+      filter:invert(0.5) !important;
+    }
+    .sidebar-nav .details-heading + .sidebar-nav--list .tag-list a{
+      color: var(--color-marketing-gray-10) !important;
+    }
+    .sidebar-nav .details-heading + .sidebar-nav--list .tag-list a:hover{
+      color: var(--color-link) !important;
+    }
+    .sidebar-nav a:hover{
+      color: var(--color-link) !important;
+    }
+    
+
   }
 
   /*= Accounts.com ===========================================================*/
