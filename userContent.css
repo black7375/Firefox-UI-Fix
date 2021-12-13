@@ -1,4 +1,4 @@
-@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+.tag-list a@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
 
 @-moz-document url("about:home"), url("about:newtab") {
@@ -688,8 +688,10 @@
     .document--content .menu,
     .forum--entry-content .menu,
     .tag-name a {
-      color: var(--in-content-page-color) !important;
+      color: var(--in-content-page-background) !important;
     }
+    
+    
 
     .ts-select-trigger,
     input[type="date"],
@@ -712,17 +714,27 @@
       color: var(--in-content-deemphasized-text) !important;
     }
 
-    .sidebar-nav .details-heading + .sidebar-nav--list .tag-list a {
+   .tag-list a {
       color: var(--color-marketing-gray-10) !important;
     }
-    .sidebar-nav .details-heading + .sidebar-nav--list .tag-list a:hover,
+    .tag-list a:hover,
     .sidebar-nav a:hover {
       color: var(--color-link) !important;
+    }
+    .tag-list li{
+      background: var(--in-content-page-color) !important;
+    }
+    .tag-list li:hover{
+      background: var(--in-content-deemphasized-text) !important;
     }
 
     /* Background */
     .sidebar-nav.topics,
     .sidebar-nav.topics > li {
+      background: var(--in-content-page-background) !important;
+    }
+    .mzp-c-menu-panel {
+      color: var(--in-content-page-color) !important;
       background: var(--in-content-page-background) !important;
     }
 
