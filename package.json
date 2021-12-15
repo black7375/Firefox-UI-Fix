@@ -8,9 +8,13 @@
   "license": "MPL 2.0",
   "private": true,
   "scripts": {
-    "build": "sass src/userChrome.scss ./userChrome.css && sass src/userContent.scss ./userContent.scss"
+    "build": "sass src/userChrome.scss ./userChrome.css && sass src/userContent.scss ./userContent.scss",
+    "test": "jest"
   },
   "devDependencies": {
-    "sass": "^1.45.0"
+    "glob": "^7.2.0",
+    "jest": "^27.4.5",
+    "sass": "^1.45.0",
+    "sass-true": "^6.0.1"
   }
 }
