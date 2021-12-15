@@ -1,0 +1,16 @@
+{
+  "name": "Lepton",
+  "version": "4.6.0",
+  "description": "I respect proton UI and aim to improve it. ",
+  "main": "index.js",
+  "repository": "https://github.com/black7375/Firefox-UI-Fix.git",
+  "author": "alstjr7375 <alstjr7375@daum.net>",
+  "license": "MPL 2.0",
+  "private": true,
+  "scripts": {
+    "build": "sass src/userChrome.scss ./userChrome.css && sass src/userContent.scss ./userContent.scss"
+  },
+  "devDependencies": {
+    "sass": "^1.45.0"
+  }
+}
