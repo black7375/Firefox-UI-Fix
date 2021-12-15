@@ -1,0 +1,45 @@
+@use 'true' as *;
+@use "../src/utils/media";
+
+// TODO: Need more tests..
+@include test-module("Create each media at once [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        $input: "hover: hover" "max-width: 1024px";
+        @include media.each($input) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (hover: hover), (max-width: 1024px) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("beyond") {
+    @include assert {
+      @include output {
+        $input: "hover: hover" "max-width: 1024px";
+        body {
+          @include media.each($input) {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (hover: hover), (max-width: 1024px) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

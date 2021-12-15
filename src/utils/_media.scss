@@ -1,0 +1,18 @@
+@use "sass:list";
+@use "list" as list-utils;
+
+@mixin each($list) {
+  $listL: list.length($list);
+  @if $listL != 1 {
+    @for $i from 1 through ($listL - 1) {
+      $media: list.nth($list, $i);
+      $list: list.set-nth($list, $i, "(" + $media + "), ");
+    }
+  }
+  $media: list.nth($list, $listL);
+  $list: list.set-nth($list, $listL, "(" + $media + ")");
+
+  @media #{list-utils.to-string($list)} {
+    @content;
+  }
+}
