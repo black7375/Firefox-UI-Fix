@@ -850,7 +850,7 @@
   */
 
 /*= Default Colors - Hard Coded ==============================================*/
-@use "theme/proton_color";
+@import "theme/proton_color";
 
 /*== Menu Color ==============================================================*/
 html#main-window menupopup {
@@ -3813,7 +3813,7 @@ tab[visuallyselected] > stack::after {
   opacity: 0.4;
 }
 
-@use "icons/panel";
+@import "icons/panel";
 
 /** Menu - Icons Layout *******************************************************/
 menupopup menuitem:not([type="checkbox"], [type="radio"]),
@@ -4098,6 +4098,6 @@ menupopup menupopup[emptyplacesresult] .menu-text,
   }
 }
 
-@use "icons/context_menu";
-@use "icons/global_menu";
-@use "icons/library";
+@import "icons/context_menu";
+@import "icons/global_menu";
+@import "icons/library";
