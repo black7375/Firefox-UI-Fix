@@ -42,4 +42,34 @@
       }
     }
   }
+
+  @include test("null") {
+    @include assert {
+      @include output {
+        $input: ();
+        body {
+          @include media.each($input) {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+      }
+    }
+  }
+
+  @include test("null element") {
+    @include assert {
+      @include output {
+        $input: (null);
+        body {
+          @include media.each($input) {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+      }
+    }
+  }
 }
