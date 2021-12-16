@@ -4,23 +4,7 @@
 @namespace html "http://www.w3.org/1999/xhtml";
 
 /** Default Thme - Contrast ***************************************************/
-/*= Lightmode - Color darker =================================================*/
-:root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]), /* Legacy */
-:root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
-  --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
-}
-@include OS($win10, $mac) {
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
-    background-color: var(--lwt-accent-color) !important;
-  }
-}
-
-/*= Darkmode - Color lighter =================================================*/
-:root[lwtheme-mozlightdark][lwthemetextcolor="bright"], /* Legacy */
-:root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
-  --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
-}
+@import "theme/built_in";
 
 /** Theme - Compatibility *****************************************************/
 /*= Hotfix #98 ===============================================================*/
