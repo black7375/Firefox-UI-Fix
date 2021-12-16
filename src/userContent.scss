@@ -1,3 +1,5 @@
+@use "utils/os" as *;
+
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
 
@@ -1361,7 +1363,7 @@
   }
 
   /* Padding - Windows */
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+  @include OS($win) {
     /* Checkbox */
     :root {
       --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
@@ -1374,17 +1376,17 @@
     }
   }
 
-  @media (-moz-os-version: windows-win7) {
+  @include OS($win7) {
     :root {
       --context-menu-background-padding-default: 2px;
     }
   }
-  @media (-moz-os-version: windows-win8) {
+  @include OS($win8) {
     :root {
       --context-menu-background-padding-default: 3px;
     }
   }
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+  @include OS($win7, $win8) {
     #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
@@ -1393,7 +1395,7 @@
       padding-inline-start: 0 !important;
     }
   }
-  @media (-moz-os-version: windows-win10) {
+  @include OS($win10) {
     :root {
       --context-menu-background-padding: 1em;
       --context-menu-text-padding: 24px; /* 16px + 8px */
@@ -1412,14 +1414,14 @@
   }
 
   /* Padding - Linux */
-  @media (-moz-gtk-csd-available) {
+  @include OS($linux) {
     :root {
       --context-menu-background-padding-default: 6px;
     }
   }
 
   /* Padding - Mac */
-  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+  @include OS($mac) {
     :root {
       --context-menu-background-padding-default: 10px;
       --context-menu-mac-padding: 21px;
@@ -1585,7 +1587,7 @@
     --menuitem-image: url("chrome://browser/skin/import.svg");
   }
 
-  @media (-moz-gtk-csd-available) {
+  @include OS($linux) {
     /*= Layout Fixes =========================================================*/
     menupopup menu {
       padding-block: 4px;

@@ -1,3 +1,5 @@
+@use "utils/os" as *;
+
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
 
@@ -7,13 +9,7 @@
 :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
   --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
 }
-@media (-moz-os-version: windows-win10) {
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
-    background-color: var(--lwt-accent-color) !important;
-  }
-}
-@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include OS($win10, $mac) {
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
     background-color: var(--lwt-accent-color) !important;
@@ -101,13 +97,13 @@
 
 /** OS - Compatibility ********************************************************/
 /*= Windows 7, 8 - Tab Bar Background *****************************************/
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@include OS($win7, $win8) {
   /* Header Color */
   :root:not([lwtheme-image]):-moz-lwtheme {
     background-color: var(--lwt-accent-color) !important;
   }
 }
-@media (-moz-os-version: windows-win7) {
+@include OS($win7) {
   #TabsToolbar:-moz-lwtheme {
     color: var(--lwt-text-color) !important;
   }
@@ -118,14 +114,14 @@
     background-image: unset !important;
   }
 }
-@media (-moz-os-version: windows-win8) {
+@include OS($win8) {
   #navigator-toolbox:-moz-lwtheme {
     color: var(--lwt-text-color) !important;
   }
 }
 
 /*= Windows 7, 8 - Menu Active Color =========================================*/
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@include OS($win7, $win8) {
   menupopup > menu,
   menupopup > menuitem,
   #context-navigation > menuitem {
@@ -156,7 +152,7 @@
   }
 }
 
-@media (-moz-os-version: windows-win7) {
+@include OS($win7) {
   menu[_moz-menuactive="true"],
   menuitem[_moz-menuactive="true"] {
     background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
@@ -180,7 +176,7 @@
     color: unset !important; /* Original: black */
   }
 }
-@media (-moz-os-version: windows-win8) {
+@include OS($win8) {
   menu[_moz-menuactive="true"],
   menuitem[_moz-menuactive="true"] {
     background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
@@ -193,7 +189,7 @@
   }
 }
 
-@media (-moz-gtk-csd-available) {
+@include OS($linux) {
   /*= Linux - Global Menubar Active Color ====================================*/
   #main-menubar > menu[open="true"],
   #main-menubar > menu[_moz-menuactive="true"] {
@@ -219,31 +215,33 @@
 }
 
 /*= Linux - Light System Default Theme's Selected Tab ========================*/
-@media (-moz-gtk-csd-available) and (-moz-toolbar-prefers-color-scheme: light),
-  (-moz-gtk-csd-available) and (prefers-color-scheme: light) {
-  /* Because of
-    #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background {
-      border: 1px solid var(--tab-line-color, rgba(128,128,142,0.9));
-      box-shadow: 0 0 4px rgba(128,128,142,0.5);
-    }
-   */
-  #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-    > .tab-stack
-    > .tab-background:not(:-moz-lwtheme) {
-    box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
-  }
-  #TabsToolbar:not([brighttext])
+@include OS($linux) {
+  @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+    /* Because of
+      #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background {
+        border: 1px solid var(--tab-line-color, rgba(128,128,142,0.9));
+        box-shadow: 0 0 4px rgba(128,128,142,0.5);
+      }
+     */
     #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-    > .tab-stack
-    > .tab-background:not(:-moz-lwtheme) {
-    box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background:not(:-moz-lwtheme) {
+      box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
+    }
+    #TabsToolbar:not([brighttext])
+      #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background:not(:-moz-lwtheme) {
+      box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
+    }
   }
 }
 
 /** System Default Theme ******************************************************/
 /*= Common - URL Bar focus color =============================================*/
+// TODO: `OS` Not covered case
 @media (-moz-windows-accent-color-in-titlebar), (-moz-gtk-csd-available) {
   /* URL Bar */
   :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
@@ -262,7 +260,7 @@
 }
 
 /*= Windows7 - Aero Based Theme ==============================================*/
-@media (-moz-os-version: windows-win7) {
+@include OS($win7) {
   #TabsToolbar:not(:-moz-lwtheme) {
     --background-color: rgb(229, 229, 235);
   }
@@ -293,7 +291,7 @@
 }
 
 /*= Windows10 - UWP like color ===============================================*/
-@media (-moz-os-version: windows-win10) {
+@include OS($win10) {
   :root:not(:-moz-lwtheme) {
     --win-text-color: rgba(0, 0, 0);
     --win-bgcolor: rgb(204, 204, 204);
@@ -587,7 +585,7 @@
 }
 
 /*= GTK - URL View url accent color ==========================================*/
-@media (-moz-gtk-csd-available) {
+@include OS($linux) {
   :root:not(:-moz-lwtheme) .urlbarView-url {
     --urlbar-popup-url-color: -moz-accent-color;
   }
@@ -600,7 +598,7 @@
 }
 
 /*= Mac - Default like color =================================================*/
-@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include OS($mac) {
   :root:not(:-moz-lwtheme),
   :root[lwt-default-theme-in-dark-mode] {
     /* Colors */
@@ -875,6 +873,7 @@ html#main-window menupopup {
   ) !important;
 }
 
+// TODO: `OS` not covered case
 @media not all and (-moz-gtk-csd-available) {
   window:is(#bookmarksPanel, #history-panel)[lwt-sidebar="true"] menupopup {
     --panel-color: var(--lwt-sidebar-text-color, var(--menu-color)) !important;
@@ -1629,7 +1628,7 @@ browser[type="content"] > html {
   }
 
   /*- Each OS ----------------------------------------------------------------*/
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+  @include OS($win) {
     xul|checkbox,
     xul|radio {
       padding-inline-start: 0 !important;
@@ -1645,7 +1644,7 @@ browser[type="content"] > html {
     }
   }
 
-  @media (-moz-gtk-csd-available) {
+  @include OS($linux) {
     /* Overriding appearance also avoids incorrect selection background color with light text. */
     xul|button > xul|*.button-box,
     xul|menulist::part(label-box),
@@ -1669,7 +1668,7 @@ browser[type="content"] > html {
     }
   }
 
-  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+  @include OS($mac) {
     xul|menulist > xul|menupopup > xul|menuitem[checked="true"]::before,
     xul|menulist > xul|menupopup > xul|menuitem[selected="true"]::before {
       display: none !important;
@@ -1900,7 +1899,7 @@ browser[type="content"] > html {
 /*= Library Popup ============================================================*/
 @-moz-document url("chrome://browser/content/places/places.xhtml")
 {
-  @media (-moz-gtk-csd-available) {
+  @include OS($linux) {
     :root {
       --organizer-color: -moz-DialogText;
       --organizer-deemphasized-color: GrayText;
@@ -2389,7 +2388,7 @@ menuitem.openintabs-menuitem,
   #tabs-newtab-button:hover > .toolbarbutton-icon {
     transition: background-color 0.25s var(--animation-easing-function) !important;
   }
-  @media (-moz-gtk-csd-available) {
+  @include OS($linux) {
     .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
       transition: background-image 0.25s var(--animation-easing-function) !important;
     }
@@ -2834,7 +2833,7 @@ menupopup > menu {
   padding-block: var(--menu-padding) !important;
 }
 
-@supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include OS($mac) {
   :root:not([uidensity="touch"]) .menu-text,
   :root:not([uidensity="touch"]) .menu-iconic-text {
     padding-inline-end: 0 !important; /* Original: 2px */
@@ -2850,7 +2849,7 @@ menupopup > menu {
   }
 }
 
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@include OS($win7, $win8) {
   /* Remove border */
   menupopup > menuitem,
   menupopup > menu {
@@ -2863,7 +2862,7 @@ menupopup > menu {
   }
 }
 
-@media (-moz-gtk-csd-available) {
+@include OS($linux) {
   menupopup > menu {
     padding-inline-start: 0.5em;
   }
@@ -3101,7 +3100,7 @@ tab[visuallyselected] > stack::after {
   background-image: url("./icons/tab-bottom-corner-right.svg");
 }
 
-@media (-moz-gtk-csd-available) {
+@include OS($linux) {
   /* Fill color for GTK */
   :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::before,
   :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::after {
@@ -3692,7 +3691,7 @@ tab[visuallyselected] > stack::after {
 /*= Menubar - Icons ==========================================================*/
 @-moz-document url("chrome://browser/content/places/places.xhtml")
 {
-  @media (-moz-gtk-csd-available) {
+  @include OS($linux) {
     #organizeButton,
     #viewMenu,
     #maintenanceButton,
@@ -3894,7 +3893,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 /* Padding - Windows */
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+@include OS($win) {
   /* Checkbox */
   :root {
     --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
@@ -3907,17 +3906,17 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   }
 }
 
-@media (-moz-os-version: windows-win7) {
+@include OS($win7) {
   :root {
     --context-menu-background-padding-default: 2px;
   }
 }
-@media (-moz-os-version: windows-win8) {
+@include OS($win8) {
   :root {
     --context-menu-background-padding-default: 3px;
   }
 }
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@include OS($win7, $win8) {
   :not(menu, #ContentSelectDropdown, #context-navigation)
     > menupopup
     > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
@@ -3936,7 +3935,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
     padding-inline-start: 0 !important;
   }
 }
-@media (-moz-os-version: windows-win10) {
+@include OS($win10) {
   :root {
     --context-menu-background-padding: 1em;
     --context-menu-text-padding: 24px; /* 16px + 8px */
@@ -3963,7 +3962,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 /* Padding - Linux */
-@media (-moz-gtk-csd-available) {
+@include OS($linux) {
   :root {
     --context-menu-background-padding-default: 6px;
   }
@@ -3974,7 +3973,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 /* Padding - Mac */
-@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include OS($mac) {
   :root {
     --context-menu-background-padding-default: 10px;
     --context-menu-mac-padding: 21px;
@@ -4022,7 +4021,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 }
 
 /* Windows 7, 8 */
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@include OS($win7, $win8) {
   /* Global Menu */
   menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
     padding-inline-start: 0 !important;
@@ -4051,7 +4050,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 }
 
 /* Windows */
-@media (-moz-os-version: windows-win10) {
+@include OS($win10) {
   /* Bookmark Popup - None icon menu */
   menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
   menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
@@ -4064,7 +4063,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 }
 
 /* Linux */
-@media (-moz-gtk-csd-available) {
+@include OS($linux) {
   /* Global Menu */
   menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -4084,7 +4083,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
   }
 }
 
-@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include OS($mac) {
   /* Bookmark Popup - As Arrow Panel */
   #PersonalToolbar menupopup menuitem,
   #PersonalToolbar menupopup menu {
