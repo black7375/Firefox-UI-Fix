@@ -1,0 +1,42 @@
+/*= Default Icon - Override ===================================================*/
+/* https://github.com/mozilla/gecko-dev/blob/master/browser/themes/shared/places/tree-icons.css */
+
+/* Query */
+:-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query) {
+  list-style-image: url("chrome://browser/skin/places/folder-smart.svg") !important;
+}
+
+/* History */
+:-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query, dayContainer),
+:-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_history____v) {
+  list-style-image: url("chrome://browser/skin/history.svg") !important;
+}
+
+/* Downloads */
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_downloads__v) {
+  list-style-image: url("chrome://browser/skin/downloads/downloads.svg") !important;
+}
+
+/* Tag */
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
+  list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+}
+
+/* Boomark */
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
+  list-style-image: url("chrome://browser/skin/bookmark.svg") !important;
+}
+
+/* Bookmark Toolbar */
+#BMB_bookmarksPopup #BMB_bookmarksToolbar,       /* Original: Default folder icon */
+  #bookmarksMenuPopup #bookmarksToolbarFolderMenu, /* Original: Default folder icon */
+  :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
+  list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+}
+
+/* Bookmark Menu */
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, queryFolder_menu________) {
+  list-style-image: url("chrome://browser/skin/places/bookmarksMenu.svg") !important;
+}
