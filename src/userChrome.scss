@@ -38,27 +38,7 @@
 @import "padding/index";
 
 /** Tab Bar - Connect to window ***********************************************/
-.tab-background {
-  border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
-  margin-bottom: 0px !important;
-}
-
-.tab-content {
-  margin-top: var(--tab-block-margin);
-}
-
-.tab-stack {
-  margin-top: 0px !important;
-  margin-bottom: 0px !important;
-}
-
-/* Remove line at Toolbar's top */
-#tabbrowser-tabs {
-  z-index: 1 !important;
-}
-#tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected]) {
-  overflow: hidden;
-}
+@import "tabbar/connect_to_window";
 
 /** Selected Tab - Color like toolbar *****************************************/
 :root:not(:-moz-lwtheme) {
