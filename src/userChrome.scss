@@ -71,131 +71,13 @@
 @import "tabbar/show_with_favicons";
 
 /** PictureInPicture Tab - Show PIP Icon **************************************/
-#tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-content::after,
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[pictureinpicture]:not([pinned], :hover) .tab-content::after {
-  content: "";
-}
-.tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-content::after {
-  /* Shape */
-  display: -moz-inline-box !important;
-  width: 14px;
-  height: 14px;
-  background-size: 14px;
-  -moz-box-ordinal-group: 1 !important;
-
-  /* Color */
-  fill: currentColor;
-  opacity: 0.8;
-  -moz-context-properties: fill;
-
-  /* Icon */
-  background-image: url("chrome://global/skin/media/picture-in-picture-open.svg");
-}
-.tabbrowser-tab[pictureinpicture]:not([pinned])[selected] .tab-content::after {
-  opacity: 0.95;
-}
-
-/* Close Button's position */
-.tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-close-button {
-  -moz-box-ordinal-group: 2 !important;
-}
-#tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-close-button {
-  margin-left: 7px !important;
-}
-#tabbrowser-tabs:not([closebuttons="activetab"])
-  .tabbrowser-tab[pictureinpicture]:not([pinned]):hover
-  .tab-close-button {
-  margin-left: 2px !important;
-}
+@import "tabbar/picture_in_picture_tab";
 
 /** Container Tab - Color line at icon's bottom *******************************/
-.tab-context-line {
-  display: none;
-}
-
-.tab-content:not([titlechanged])::before {
-  /* Box Model */
-  content: "";
-  display: block;
-  position: absolute !important;
-  transform: translate(9px, 12px) !important;
-
-  /* Shape */
-  border-bottom: 2px solid var(--identity-icon-color);
-  width: 25%;
-  opacity: 0.75;
-}
-.tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-  width: calc(100% - 30px);
-  opacity: 1;
-}
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-  width: calc(100% - 33px);
-}
-
-/* Animate */
-@media (prefers-reduced-motion: no-preference) {
-  .tab-content:not([titlechanged])::before {
-    transition: 0.15s var(--animation-easing-function) !important;
-    transition-property: width, opacity;
-  }
-}
-
-/* Pinned Tab */
-.tabbrowser-tab[pinned] .tab-content::before {
-  transform: translateY(12px) !important;
-  width: 16px;
-}
-
-/* Pinned Tab - Titlechanged Indicator override */
-.tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
-  --dotted-identity-image: radial-gradient(
-    circle,
-    var(--identity-icon-color),
-    var(--identity-icon-color) 2px,
-    transparent 2px
-  );
-  background-image: var(--dotted-identity-image), var(--dotted-identity-image), var(--dotted-identity-image) !important;
-  background-position-x: 32%, 50%, 70% !important;
-}
-:root[uidensity="compact"]
-  .tabbrowser-tab:is([image], [pinned])[usercontextid]
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-:root[uidensity="compact"]
-  .tabbrowser-tab[usercontextid]
-  > .tab-stack
-  > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
-  background-position-x: 30%, 50%, 70% !important;
-}
-
-/* Pinned Tab - Titlechanged & soundplaying */
-.tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  background-position-x: calc(32% - 1px), calc(50% - 1px), calc(70% - 1px) !important;
-}
-:root[uidensity="compact"]
-  .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-:root[uidensity="compact"]
-  .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  background-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px) !important;
-}
+@import "tabbar/container_tab";
 
 /** Crashed Tab - Don't show Favicons *****************************************/
-.tab-icon-image[crashed] {
-  display: none !important;
-}
+@import "tabbar/crashed_tab";
 
 /** Library - Icons Replace ***************************************************/
 /*= Standard Folder - More Visible ===========================================*/
