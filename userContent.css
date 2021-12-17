@@ -634,6 +634,23 @@
     .blogpost-nav-arrow-right .cls-1 {
       stroke: var(--in-content-text-color) !important;
     }
+    
+    /* /developers/ */
+    .DevHub-Navigation {
+      background: var(--in-content-page-background) !important
+    }
+    .DevHub-Navigation.scheme-light ul li a {
+      color: var(--in-content-page-color) !important;
+    }
+    .DevHub-content-copy h2,
+    .content p {
+      color: var(--in-content-page-color) !important;
+    }
+    .DevHub-callout-box {
+      background: var(--in-content-box-background) !important;
+      color: var(--in-content-page-color) !important;
+    }
+    
   }
 
   /*= Support.org ============================================================*/
@@ -735,6 +752,13 @@
       color: var(--in-content-page-color) !important;
       background: var(--in-content-page-background) !important;
     }
+    .mzp-c-menu-list-list, .mzp-c-menu-list-list:hover {
+      color: var(--in-content-page-color) !important;
+      background: var(--in-content-box-background) !important;
+    }
+    .mzp-c-menu-list-item :focus, .mzp-c-menu-list-item :hover {
+      background: var(--in-content-button-background-hover) !important;
+    }
 
     /* Fill */
     .sumo-nav--logo,
@@ -785,6 +809,9 @@
     .card--article {
       box-shadow: 0 5px 10px -3px rgba(249, 249, 250, 0.12), 0 3px 16px 2px rgba(91, 91, 102, 0.12),
         0 8px 12px 1px rgba(82, 82, 94, 0.04) !important;
+    }
+    .mzp-c-modal-close .mzp-c-modal-button-close{
+    filter: invert(0.5);
     }
   }
 
@@ -867,6 +894,11 @@
     .hover\:bg-grey-100:hover {
       background: var(--in-content-button-background-hover) !important;
     }
+    .text-blue-500 .cta-neutral,
+    .text-blue-500 .bg-grey-50,
+    .text-blue-500 .hover\:bg-grey-100 {
+      background: var(--in-content-button-background) !important;
+    }
     .hover\:bg-grey-200:hover {
       background: var(--in-content-button-background-active) !important;
     }
@@ -881,6 +913,9 @@
     .tooltip,
     .tooltip::before {
       background: var(--in-content-danger-button-background) !important;
+    }
+    .flex .flex-wrap {
+      background: var(--in-content-page-background)
     }
 
     /* Fill */
