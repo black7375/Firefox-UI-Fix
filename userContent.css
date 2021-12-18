@@ -639,9 +639,7 @@
     .DevHub-Navigation {
       background: var(--in-content-page-background) !important;
     }
-    .DevHub-Navigation.scheme-light ul li a {
-      color: var(--in-content-page-color) !important;
-    }
+    .DevHub-Navigation.scheme-light ul li a,
     .DevHub-content-copy h2,
     .content p {
       color: var(--in-content-page-color) !important;
@@ -756,8 +754,8 @@
       color: var(--in-content-page-color) !important;
       background: var(--in-content-box-background) !important;
     }
-    .mzp-c-menu-list-item :focus,
-    .mzp-c-menu-list-item :hover {
+    .mzp-c-menu-list-item:focus,
+    .mzp-c-menu-list-item:hover {
       background: var(--in-content-button-background-hover) !important;
     }
 
@@ -777,7 +775,8 @@
     .search-button {
       filter: invert(95%) !important;
     }
-    button.markup-toolbar-button {
+    button.markup-toolbar-button,
+    .mzp-c-modal-close .mzp-c-modal-button-close {
       /*using 0.5 because in middle*/
       filter: invert(0.5) !important;
     }
@@ -810,9 +809,6 @@
     .card--article {
       box-shadow: 0 5px 10px -3px rgba(249, 249, 250, 0.12), 0 3px 16px 2px rgba(91, 91, 102, 0.12),
         0 8px 12px 1px rgba(82, 82, 94, 0.04) !important;
-    }
-    .mzp-c-modal-close .mzp-c-modal-button-close {
-      filter: invert(0.5);
     }
   }
 
@@ -871,6 +867,9 @@
     }
 
     /* Background */
+    .flex .flex-wrap {
+      background: var(--in-content-page-background);
+    }
     .password-row .show-password-label {
       background-color: unset !important;
     }
@@ -914,9 +913,6 @@
     .tooltip,
     .tooltip::before {
       background: var(--in-content-danger-button-background) !important;
-    }
-    .flex .flex-wrap {
-      background: var(--in-content-page-background);
     }
 
     /* Fill */
