@@ -1807,7 +1807,7 @@
       --organizer-pane-field-border-color: ThreeDShadow;
     }
 
-    @media not (prefers-contrast) {
+    @media not all and (prefers-contrast) {
       :root {
         --organizer-color: var(--in-content-page-color);
         --organizer-deemphasized-color: var(--in-content-deemphasized-text);
