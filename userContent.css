@@ -634,6 +634,20 @@
     .blogpost-nav-arrow-right .cls-1 {
       stroke: var(--in-content-text-color) !important;
     }
+
+    /* /developers/ */
+    .DevHub-Navigation {
+      background: var(--in-content-page-background) !important;
+    }
+    .DevHub-Navigation.scheme-light ul li a,
+    .DevHub-content-copy h2,
+    .content p {
+      color: var(--in-content-page-color) !important;
+    }
+    .DevHub-callout-box {
+      background: var(--in-content-box-background) !important;
+      color: var(--in-content-page-color) !important;
+    }
   }
 
   /*= Support.org ============================================================*/
@@ -673,7 +687,8 @@
     #main-content,
     #instant-search-content,
     #mzp-c-menu-panel-help,
-    .mzp-c-navigation {
+    .mzp-c-navigation,
+    .kbox-container {
       color: var(--in-content-page-color) !important;
       background: var(--in-content-page-background) !important;
     }
@@ -685,7 +700,8 @@
     .mzp-c-menu-item .mzp-c-menu-item-list a,
     #doc-content .menu,
     .document--content .menu,
-    .forum--entry-content .menu {
+    .forum--entry-content .menu,
+    .tag-name a {
       color: var(--in-content-page-color) !important;
     }
 
@@ -710,10 +726,37 @@
       color: var(--in-content-deemphasized-text) !important;
     }
 
+    .tag-list a {
+      color: var(--color-marketing-gray-10) !important;
+    }
+    .tag-list a:hover,
+    .sidebar-nav a:hover {
+      color: var(--color-link) !important;
+    }
+    .tag-list li {
+      background: var(--in-content-page-color) !important;
+    }
+    .tag-list li:hover {
+      background: var(--in-content-deemphasized-text) !important;
+    }
+
     /* Background */
     .sidebar-nav.topics,
     .sidebar-nav.topics > li {
       background: var(--in-content-page-background) !important;
+    }
+    .mzp-c-menu-panel {
+      color: var(--in-content-page-color) !important;
+      background: var(--in-content-page-background) !important;
+    }
+    .mzp-c-menu-list-list,
+    .mzp-c-menu-list-list:hover {
+      color: var(--in-content-page-color) !important;
+      background: var(--in-content-box-background) !important;
+    }
+    .mzp-c-menu-list-item:focus,
+    .mzp-c-menu-list-item:hover {
+      background: var(--in-content-button-background-hover) !important;
     }
 
     /* Fill */
@@ -731,6 +774,11 @@
     .icon-button > button,
     .search-button {
       filter: invert(95%) !important;
+    }
+    button.markup-toolbar-button,
+    .mzp-c-modal-close .mzp-c-modal-button-close {
+      /*using 0.5 because in middle*/
+      filter: invert(0.5) !important;
     }
 
     /* Others */
@@ -819,6 +867,9 @@
     }
 
     /* Background */
+    .flex .flex-wrap {
+      background: var(--in-content-page-background);
+    }
     .password-row .show-password-label {
       background-color: unset !important;
     }
@@ -842,6 +893,11 @@
     .bg-grey-50:hover,
     .hover\:bg-grey-100:hover {
       background: var(--in-content-button-background-hover) !important;
+    }
+    .text-blue-500 .cta-neutral,
+    .text-blue-500 .bg-grey-50,
+    .text-blue-500 .hover\:bg-grey-100 {
+      background: var(--in-content-button-background) !important;
     }
     .hover\:bg-grey-200:hover {
       background: var(--in-content-button-background-active) !important;
@@ -1751,7 +1807,7 @@
       --organizer-pane-field-border-color: ThreeDShadow;
     }
 
-    @media not (prefers-contrast) {
+    @media not all and (prefers-contrast) {
       :root {
         --organizer-color: var(--in-content-page-color);
         --organizer-deemphasized-color: var(--in-content-deemphasized-text);
