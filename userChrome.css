@@ -7,8 +7,13 @@
 :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
   --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
 }
-@media not all and ((-moz-os-version: windows-win7) or (-moz-os-version: windows-win8) or (-moz-gtk-csd-available)) {
-  /*  Level 4  */
+@media (-moz-os-version: windows-win10) {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
+    background-color: var(--lwt-accent-color) !important;
+  }
+}
+@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
     background-color: var(--lwt-accent-color) !important;
@@ -2074,7 +2079,7 @@ browser[type="content"] > html {
       --organizer-pane-field-border-color: ThreeDShadow;
     }
 
-    @media not (prefers-contrast) {
+    @media not all and (prefers-contrast) {
       :root {
         --organizer-color: var(--in-content-page-color);
         --organizer-deemphasized-color: var(--in-content-deemphasized-text);
