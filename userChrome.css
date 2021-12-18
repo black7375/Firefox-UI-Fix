@@ -1056,7 +1056,7 @@ html#main-window menupopup {
 :root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]), /* Legacy */
 :root[lwtheme-mozlightdark] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup), /* Legacy */
 :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
-:root:is[[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) {
+:root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) {
   --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
   --arrowpanel-background: var(
     --toolbar-bgcolor,
