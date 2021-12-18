@@ -3,18 +3,26 @@
 
 /** Default Thme - Contrast ***************************************************/
 /*= Lightmode - Color darker =================================================*/
-:root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) {
+:root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]), /* Legacy */
+:root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
   --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
 }
-@media not all and ((-moz-os-version: windows-win7) or (-moz-os-version: windows-win8) or (-moz-gtk-csd-available)) {
-  /*  Level 4  */
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox {
+@media (-moz-os-version: windows-win10) {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
+    background-color: var(--lwt-accent-color) !important;
+  }
+}
+@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
     background-color: var(--lwt-accent-color) !important;
   }
 }
 
 /*= Darkmode - Color lighter =================================================*/
-:root[lwtheme-mozlightdark][lwthemetextcolor="bright"] {
+:root[lwtheme-mozlightdark][lwthemetextcolor="bright"], /* Legacy */
+:root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
   --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
 }
 
@@ -166,12 +174,28 @@
   }
 }
 
-/*= Linux - Global Menubar Active Color ======================================*/
 @media (-moz-gtk-csd-available) {
+  /*= Linux - Global Menubar Active Color ====================================*/
   #main-menubar > menu[open="true"],
   #main-menubar > menu[_moz-menuactive="true"] {
     color: inherit !important; /* Original: -moz-menubarhovertext */
     background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
+  }
+
+  /*= Linux - Titlebar button at lwtheme =====================================*/
+  .titlebar-button:-moz-lwtheme {
+    appearance: auto !important;
+  }
+  .titlebar-min:-moz-lwtheme,
+  .titlebar-max:-moz-lwtheme,
+  .titlebar-restore:-moz-lwtheme,
+  .titlebar-close:-moz-lwtheme {
+    list-style-image: none !important;
+  }
+  .titlebar-button:-moz-lwtheme:hover,
+  .titlebar-button:-moz-lwtheme:hover:active {
+    background-color: unset !important;
+    color: unset !important;
   }
 }
 
@@ -502,7 +526,9 @@
 
   /*- Others -----------------------------------------------------------------*/
   /* For overwrite */
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme) {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme), /* Legacy */
+  :root:not(:-moz-lwtheme) {
+    /* Light Theme */
     --lwt-accent-color: var(--win-bgcolor) !important;
   }
   @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
@@ -516,12 +542,18 @@
     > .tabbrowser-tab
     > .tab-stack
     > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme),
-  :root[lwtheme-mozlightdark]
+  :root[lwtheme-mozlightdark] /* Legacy */
     #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[multiselected]:not([selected]) {
+    > .tab-background[multiselected]:not([selected]),
+  :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+       #tabbrowser-tabs:not([movingtab])
+                           > #tabbrowser-arrowscrollbox
+                           > .tabbrowser-tab
+                           > .tab-stack
+                           > .tab-background[multiselected]:not([selected]) {
     background-image: linear-gradient(
         color-mix(in srgb, currentColor 11%, transparent),
         color-mix(in srgb, currentColor 11%, transparent)
@@ -794,12 +826,8 @@
   /* Hard Coded */
   :root:not([customizing="true"]):not(:-moz-lwtheme) tab[visuallyselected] > stack::before,
   :root:not([customizing="true"]):not(:-moz-lwtheme) tab[visuallyselected] > stack::after,
-  :root:not([customizing="true"])[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode]
-    tab[visuallyselected]
-    > stack::before,
-  :root:not([customizing="true"])[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode]
-    tab[visuallyselected]
-    > stack::after {
+  :root:not([customizing="true"])[lwt-default-theme-in-dark-mode] tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"])[lwt-default-theme-in-dark-mode] tab[visuallyselected] > stack::after {
     fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
   }
 }
@@ -1015,8 +1043,10 @@ html#main-window menupopup {
 }
 
 /* Default theme color preservation */
-:root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
-:root[lwtheme-mozlightdark] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) {
+:root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]), /* Legacy */
+:root[lwtheme-mozlightdark] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup), /* Legacy */
+:root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
+:root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) {
   --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
   --arrowpanel-background: var(
     --toolbar-bgcolor,
@@ -2039,7 +2069,7 @@ browser[type="content"] > html {
       --organizer-pane-field-border-color: ThreeDShadow;
     }
 
-    @media not (prefers-contrast) {
+    @media not all and (prefers-contrast) {
       :root {
         --organizer-color: var(--in-content-page-color);
         --organizer-deemphasized-color: var(--in-content-deemphasized-text);
