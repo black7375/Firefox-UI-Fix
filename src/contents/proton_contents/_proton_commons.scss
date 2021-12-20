@@ -212,15 +212,15 @@
 }
 
 @-moz-document url-prefix("about:plugins"),
-                 url-prefix("about:cache"),
-                 url-prefix("about:checkerboard") {
+               url-prefix("about:cache"),
+               url-prefix("about:checkerboard") {
   table {
     border: 1px solid var(--in-content-border-color) !important;
     border-radius: 0 !important;
   }
 }
 @-moz-document url-prefix("about:cache"),
-                 url-prefix("about:checkerboard") {
+               url-prefix("about:checkerboard") {
   th,
   td {
     border: 1px solid var(--in-content-border-color) !important;
