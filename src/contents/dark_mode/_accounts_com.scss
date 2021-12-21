@@ -53,6 +53,9 @@
   }
 
   /* Background */
+  .flex .flex-wrap {
+    background: var(--in-content-page-background);
+  }
   .password-row .show-password-label {
     background-color: unset !important;
   }
@@ -76,6 +79,11 @@
   .bg-grey-50:hover,
   .hover\:bg-grey-100:hover {
     background: var(--in-content-button-background-hover) !important;
+  }
+  .text-blue-500 .cta-neutral,
+  .text-blue-500 .bg-grey-50,
+  .text-blue-500 .hover\:bg-grey-100 {
+    background: var(--in-content-button-background) !important;
   }
   .hover\:bg-grey-200:hover {
     background: var(--in-content-button-background-active) !important;

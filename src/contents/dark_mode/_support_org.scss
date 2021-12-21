@@ -88,6 +88,20 @@
     background: var(--in-content-deemphasized-text) !important;
   }
 
+  .tag-list a {
+    color: var(--color-marketing-gray-10) !important;
+  }
+  .tag-list a:hover,
+  .sidebar-nav a:hover {
+    color: var(--color-link) !important;
+  }
+  .tag-list li {
+    background: var(--in-content-page-color) !important;
+  }
+  .tag-list li:hover {
+    background: var(--in-content-deemphasized-text) !important;
+  }
+
   /* Background */
   .sidebar-nav.topics,
   .sidebar-nav.topics > li {
@@ -96,6 +110,15 @@
   .mzp-c-menu-panel {
     color: var(--in-content-page-color) !important;
     background: var(--in-content-page-background) !important;
+  }
+  .mzp-c-menu-list-list,
+  .mzp-c-menu-list-list:hover {
+    color: var(--in-content-page-color) !important;
+    background: var(--in-content-box-background) !important;
+  }
+  .mzp-c-menu-list-item:focus,
+  .mzp-c-menu-list-item:hover {
+    background: var(--in-content-button-background-hover) !important;
   }
 
   /* Fill */
