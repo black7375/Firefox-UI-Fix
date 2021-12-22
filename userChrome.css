@@ -297,10 +297,11 @@
   :root:not(:-moz-lwtheme) {
     --win-text-color: rgba(0, 0, 0);
     --win-bgcolor: rgb(204, 204, 204);
-    --win-disabled-color: rgb(145, 145, 145); /* also button-active-color */
+    --win-disabled-color: rgb(145, 145, 145);
     --win-disabled-bgcolor: transparent;
-    --win-hover-bgcolor: rgb(218, 218, 218);
-    --win-hover-active-bgcolor: #c2c2c2; /* also button-bgcolor */
+    --win-hover-bgcolor: rgb(218, 218, 218); /* also button-bgcolor */
+    --win-hover-active-bgcolor: #c2c2c2; /* also button-hover-bgcolor */
+    --win-button-active-bgcolor: #aaaaaa;
     --win-field-bgcolor: #ffffff;
     --win-component-bgcolor: #f2f2f2;
     --win-border-color: #8a8a8a;
@@ -324,10 +325,10 @@
     :root[lwt-default-theme-in-dark-mode] {
       --win-text-color: #ffffff;
       --win-bgcolor: #2b2b2b;
-      --win-disabled-color: #747474; /* also button-active-color */
+      --win-disabled-color: #747474;
       --win-disabled-bgcolor: transparent;
-      --win-hover-bgcolor: #2e2e2e;
-      --win-hover-active-bgcolor: #454545; /* also button-bgcolor */
+      --win-hover-bgcolor: #2e2e2e; /* also button-bgcolor */
+      --win-hover-active-bgcolor: #454545; /* also button-active-color */
       --win-field-bgcolor: #373737;
       --win-component-bgcolor: #171717;
       --win-border-color: #5b5b5b;
@@ -369,7 +370,6 @@
 
     /* Text Disabled Color */
     --menu-disabled-color: var(--win-disabled-color) !important;
-    --button-active-bgcolor: var(--win-disabled-color) !important;
     --checkbox-unchecked-active-bgcolor: var(--win-disabled-color) !important;
     --panel-disabled-color: var(--win-disabled-color) !important;
     --download-progress-paused-color: var(--win-disabled-color) !important;
@@ -402,21 +402,24 @@
     --button-primary-color: var(--win-field-bgcolor) !important;
     --checkbox-checked-color: var(--win-field-bgcolor) !important;
 
-    /* Hover Background Color  */
+    /* Hover Background Color, Button Color  */
     --menuitem-hover-background-color: var(--win-hover-bgcolor) !important;
-    --toolbarbutton-hover-background: var(--win-hover-bgcolor) !important;
-    --panel-banner-item-hover-bgcolor: var(--win-hover-bgcolor) !important;
+    --button-bgcolor: var(--win-hover-bgcolor) !important;
+    --panel-banner-item-background-color: var(--win-hover-bgcolor) !important;
 
-    /* Hover Active, Button Color */
-    --button-bgcolor: var(--win-hover-active-bgcolor) !important;
+    /* Hover Active, Button Hover Color */
     --checkbox-unchecked-bgcolor: var(--win-hover-active-bgcolor) !important;
-    --panel-banner-item-background-color: var(--win-hover-active-bgcolor) !important;
     --urlbar-box-bgcolor: var(--win-hover-active-bgcolor) !important;
     --urlbar-box-focus-bgcolor: var(--win-hover-active-bgcolor) !important;
-    --panel-banner-item-active-bgcolor: var(--win-hover-active-bgcolor) !important;
     --toolbarbutton-active-background: var(--win-hover-active-bgcolor) !important;
     --urlbar-box-active-bgcolor: var(--win-hover-active-bgcolor) !important;
     --autocomplete-popup-highlight-background: var(--win-hover-active-bgcolor) !important;
+    --toolbarbutton-hover-background: var(--win-hover-active-bgcolor) !important;
+    --panel-banner-item-hover-bgcolor: var(--win-hover-active-bgcolor) !important;
+
+    /* Button Hover Active Color */
+    --button-active-bgcolor: var(--win-button-active-bgcolor) !important;
+    --panel-banner-item-active-bgcolor: var(--win-button-active-bgcolor) !important;
 
     /* Disabled Background Color */
     --menuitem-disabled-hover-background-color: var(--win-disabled-bgcolor) !important;
@@ -523,12 +526,18 @@
     }
   }
 
+  /*- Panel ------------------------------------------------------------------*/
   :root:not(:-moz-lwtheme)
-    .subviewbutton:not(#appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2),
+    toolbarbutton.subviewbutton:not([disabled], [open], :active, #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is(:hover),
   :root[lwt-default-theme-in-dark-mode]
-    .subviewbutton:not(#appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2) {
-    --button-hover-bgcolor: var(--win-hover-bgcolor) !important;
-    --button-active-bgcolor: var(--win-hover-active-bgcolor) !important;
+    toolbarbutton.subviewbutton:not([disabled], [open], :active, #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is(:hover) {
+    background-color: var(--win-hover-bgcolor) !important;
+  }
+  :root:not(:-moz-lwtheme)
+    toolbarbutton.subviewbutton:not([disabled], #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is([open], :hover:active),
+  :root[lwt-default-theme-in-dark-mode]
+    toolbarbutton.subviewbutton:not([disabled], #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is([open], :hover:active) {
+    background-color: var(--win-hover-active-bgcolor) !important;
   }
 
   /*- Others -----------------------------------------------------------------*/
