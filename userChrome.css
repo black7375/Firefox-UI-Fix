@@ -329,6 +329,7 @@
       --win-disabled-bgcolor: transparent;
       --win-hover-bgcolor: #2e2e2e; /* also button-bgcolor */
       --win-hover-active-bgcolor: #454545; /* also button-active-color */
+      --win-button-active-bgcolor: #515151;
       --win-field-bgcolor: #373737;
       --win-component-bgcolor: #171717;
       --win-border-color: #5b5b5b;
@@ -404,6 +405,7 @@
 
     /* Hover Background Color, Button Color  */
     --menuitem-hover-background-color: var(--win-hover-bgcolor) !important;
+    --toolbarbutton-hover-background: var(--win-hover-bgcolor) !important;
     --button-bgcolor: var(--win-hover-bgcolor) !important;
     --panel-banner-item-background-color: var(--win-hover-bgcolor) !important;
 
@@ -414,7 +416,7 @@
     --toolbarbutton-active-background: var(--win-hover-active-bgcolor) !important;
     --urlbar-box-active-bgcolor: var(--win-hover-active-bgcolor) !important;
     --autocomplete-popup-highlight-background: var(--win-hover-active-bgcolor) !important;
-    --toolbarbutton-hover-background: var(--win-hover-active-bgcolor) !important;
+    --button-hover-bgcolor: var(--win-button-active-bgcolor) !important;
     --panel-banner-item-hover-bgcolor: var(--win-hover-active-bgcolor) !important;
 
     /* Button Hover Active Color */
@@ -425,7 +427,6 @@
     --menuitem-disabled-hover-background-color: var(--win-disabled-bgcolor) !important;
 
     /* Button Hover Color */
-    --button-hover-bgcolor: var(--win-button-hover-bgcolor) !important;
     --checkbox-unchecked-hover-bgcolor: var(--win-button-hover-bgcolor) !important;
     --urlbar-box-hover-bgcolor: var(--win-button-hover-bgcolor) !important;
     --autocomplete-popup-hover-background: var(--win-button-hover-bgcolor) !important;
