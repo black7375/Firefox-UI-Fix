@@ -55,6 +55,8 @@
 }
 
 /*= Remove Tab Border ========================================================*/
+@supports -moz-bool-pref("userChrome.tab.connect_to_window") {
+  /* TARGET: original, photon */
 /* Light Theme */
 #TabsToolbar:not([brighttext])
   #tabbrowser-tabs:not([noshadowfortests])
@@ -71,6 +73,7 @@
   > .tab-stack
   > .tab-background:-moz-lwtheme {
   border: unset !important; /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
+}
 }
 
 /*= Light Weight Theme =======================================================*/
@@ -819,6 +822,7 @@
   }
 
   /* Hard Coded */
+  @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
   :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode] /* Legacy */
     #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
@@ -832,6 +836,7 @@
     > .tab-stack
     > .tab-background[selected="true"] {
     background: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
+  }
   }
 
   :root:not([customizing="true"]):not(:-moz-lwtheme) tab[visuallyselected] > stack::before,
@@ -2702,10 +2707,14 @@ menuitem.openintabs-menuitem,
 
 /** Reduce Padding ************************************************************/
 /*= Root - Reduce Padding ====================================================*/
+@supports -moz-bool-pref("userChrome.tab.original") {
 :root {
   /* Tab Bar */
   --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
   --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
+}
+}
+:root {
   --inline-tab-padding: 6px !important; /* Original: 8px */
 
   /* Panel */
@@ -2825,6 +2834,7 @@ menuitem.openintabs-menuitem,
   --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
 }
 
+@supports -moz-bool-pref("userChrome.tab.original") {
 .toolbar-items,
 .tabbrowser-tab {
   --tabbar-max-height: 38px;
@@ -2837,6 +2847,7 @@ menuitem.openintabs-menuitem,
 :root[uidensity="touch"] .toolbar-items,
 :root[uidensity="touch"] .tabbrowser-tab {
   --tabbar-max-height: 45px;
+}
 }
 
 /* Scroll Button - Size Fix */
@@ -3127,6 +3138,7 @@ menupopup > menu {
 }
 
 /** Tab Bar - Connect to window ***********************************************/
+@supports -moz-bool-pref("userChrome.tab.connect_to_window") {
 .tab-background {
   border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
   margin-bottom: 0px !important;
@@ -3148,8 +3160,10 @@ menupopup > menu {
 #tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected]) {
   overflow: hidden;
 }
+}
 
 /** Selected Tab - Color like toolbar *****************************************/
+@supports -moz-bool-pref("userChrome.tab.connect_to_window") {
 :root:not(:-moz-lwtheme) {
   /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
   --tab-selected-bgcolor: unset !important; /* Original: rgb(255,255,255); */
@@ -3164,8 +3178,9 @@ menupopup > menu {
   background-image: linear-gradient(transparent, transparent),
     linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
 }
+}
 
-/* Multi Selected Color */
+/** Multi Selected Color - More Contrast **************************************/
 #tabbrowser-tabs:not([movingtab])
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
@@ -3186,6 +3201,7 @@ menupopup > menu {
 }
 
 /** Selected Tab - Box Shadow *************************************************/
+@supports -moz-bool-pref("userChrome.tab.original") {
 #TabsToolbar[brighttext]
   #tabbrowser-tabs:not([noshadowfortests])
   .tabbrowser-tab[visuallyselected="true"]:not(:focus)
@@ -3207,8 +3223,10 @@ menupopup > menu {
 #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
   z-index: 0 !important;
 }
+}
 
 /** Selected Tab - Bottom Rounded Corner **************************************/
+@supports -moz-bool-pref("userChrome.tab.original") {
 #tabbrowser-tabs {
   --tab-corner-rounding: 3px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
   --tab-corner-padding: 0px;
@@ -3270,12 +3288,16 @@ tab[visuallyselected] > stack::after {
     stroke: transparent !important;
   }
 }
+}
 
 /** Unselected Tab - Divide line **********************************************/
+@supports -moz-bool-pref("userChrome.tab.original") {
 #tabbrowser-arrowscrollbox {
   position: absolute;
 }
+}
 
+@supports -moz-bool-pref("userChrome.tab.original") {
 .tab-background::before,
 #tabs-newtab-button::before {
   /* Box Model */
@@ -3295,12 +3317,27 @@ tab[visuallyselected] > stack::after {
   opacity: 0;
   background-color: var(--toolbarseparator-color);
 }
+}
 
-.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before,
+.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
+  opacity: var(--tab-separator-opacity);
+}
+@supports -moz-bool-pref("userChrome.tab.original") {
 #tabs-newtab-button:not(:hover, [open])::before {
   opacity: var(--tab-separator-opacity);
 }
+}
 
+#navigator-toolbox:not([movingtab])
+  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
+  .tab-background::before,
+#navigator-toolbox:not([movingtab])
+  #tabbrowser-arrowscrollbox[overflowing]
+  tab.tabbrowser-tab[first-visible-unpinned-tab]
+  .tab-background::before {
+  opacity: 0 !important;
+}
+@supports -moz-bool-pref("userChrome.tab.original") {
 #navigator-toolbox:not([movingtab])
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
   + .tabbrowser-tab
@@ -3311,22 +3348,20 @@ tab[visuallyselected] > stack::after {
   .tab-background::before,
 #navigator-toolbox:not([movingtab])
   .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
-  ~ #tabs-newtab-button::before,
-#navigator-toolbox:not([movingtab])
-  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
-  .tab-background::before,
-#navigator-toolbox:not([movingtab])
-  #tabbrowser-arrowscrollbox[overflowing]
-  tab.tabbrowser-tab[first-visible-unpinned-tab]
-  .tab-background::before {
+  ~ #tabs-newtab-button::before {
   opacity: 0 !important;
+}
 }
 
 /* Animate */
 @media (prefers-reduced-motion: no-preference) {
-  .tab-background::before,
+  .tab-background::before {
+    transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+  }
+  @supports -moz-bool-pref("userChrome.tab.original") {
   #tabs-newtab-button::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+  }
   }
 }
 
@@ -3336,6 +3371,7 @@ tab[visuallyselected] > stack::after {
 }
 
 /* New tab button - Looks like tab ********************************************/
+@supports -moz-bool-pref("userChrome.tab.original") {
 #tabs-newtab-button {
   /* Original:
     margin: 0 0 var(--tabs-navbar-shadow-size) !important
@@ -3397,6 +3433,7 @@ tab[visuallyselected] > stack::after {
   -moz-context-properties: fill, fill-opacity;
   fill: var(--toolbarbutton-icon-fill);
   fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+}
 }
 
 /* Unloaded Tab - Contents Opacity ********************************************/
