@@ -1,4 +1,4 @@
-// ** Theme Related Options ****************************************************
+// ** Theme Default Options ****************************************************
 // userchrome.css usercontent.css activate
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
@@ -25,6 +25,11 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 
 // Browser Theme Based Scheme - Will be activate 95 Above
 // user_pref("layout.css.prefers-color-scheme.content-override", 3);
+
+// ** Theme Related Options ****************************************************
+// user_pref("userChrome.tab.original",          true); // Original
+user_pref("userChrome.tab.proton",            true); // Proton
+user_pref("userChrome.tab.connect_to_window", true); // Original, Photon
 
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
