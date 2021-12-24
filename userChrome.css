@@ -1033,7 +1033,7 @@
   }
 }
 
-/*== Menu color =============================================================*/
+/*== Menu Color =============================================================*/
 html#main-window menupopup {
   /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
   --menu-color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
@@ -2157,7 +2157,7 @@ browser[type="content"] > html {
       }
     }
 
-    /*- Toolbar & Menus ----------------------------------------------------*/
+    /*- Toolbar & Menus ------------------------------------------------------*/
     #placesToolbar {
       appearance: none !important;
       background-color: var(--organizer-toolbar-background) !important;
@@ -3983,7 +3983,7 @@ menupopup > menu {
   list-style-image: url("./icons/bookmarksMenu-open.svg") !important; /* or bookmarksMenu-open2.svg" */
 }
 
-/*= Menubar - Icons ===========================================*/
+/*= Menubar - Icons ==========================================================*/
 @-moz-document url("chrome://browser/content/places/places.xhtml")
 {
   @media (-moz-gtk-csd-available) {
