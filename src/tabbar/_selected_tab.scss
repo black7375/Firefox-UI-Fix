@@ -1,8 +1,22 @@
 /*= Selected Tab - Color like toolbar ========================================*/
-@import "selected_tab/color_like_toolbar";
+@include Option("userChrome.tab.connect_to_window") {
+  @import "selected_tab/color_like_toolbar";
+}
+
+/*= Multi Selected Color - More Contrast =====================================*/
+@import "selected_tab/multi_selected";
 
 /*= Selected Tab - Box Shadow ================================================*/
-@import "selected_tab/box_shadow";
+@include Option("userChrome.tab.original") {
+  @import "selected_tab/box_shadow";
+}
 
 /*= Selected Tab - Bottom Rounded Corner =====================================*/
-@import "selected_tab/bottom_rounded_corner";
+@include Option("userChrome.tab.original") {
+  @import "selected_tab/bottom_rounded_corner";
+}
+
+/*= Selected Tab - Photon like contextline ===================================*/
+@include Option("userChrome.tab.photon") {
+  @import "selected_tab/photon_like_contextline";
+}

@@ -1,0 +1,37 @@
+.tabbrowser-tab[first-visible-tab]::before,
+.tabbrowser-tab::after,
+#tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[visuallyselected]::before {
+  content: "";
+  display: block;
+}
+.tabbrowser-tab::before,
+.tabbrowser-tab::after {
+  --tab-divide-line: 1px solid var(--lwt-background-tab-separator-color, currentColor);
+  border-left: var(--tab-divide-line) !important;
+  margin-block: 5px 4px !important;
+  opacity: 0.3 !important;
+}
+.tabbrowser-tab::before {
+  margin-inline-start: -1px !important;
+}
+
+.tabbrowser-tab[first-visible-tab]::before,
+:root[tabsintitlebar]:not([extradragspace]) #toolbar-menubar[autohide="true"] + #TabsToolbar .tabbrowser-tab::after,
+.tabbrowser-tab:hover::after,
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[beforehovered]::after,
+.tabbrowser-tab[multiselected]::after,
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[before-multiselected]::after {
+  margin-top: var(--tabs-top-border-width) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Selected - Hide */
+.tabbrowser-tab[first-visible-tab][visuallyselected]::before,
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[beforeselected-visible]::after,
+#tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[visuallyselected]::before,
+.tabbrowser-tab[visuallyselected]::after {
+  border-color: var(--tabs-border-color) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  opacity: 1 !important;
+}

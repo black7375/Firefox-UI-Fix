@@ -1,0 +1,10 @@
+:root:not([uidensity="touch"]) #tabs-newtab-button > .toolbarbutton-icon {
+  --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 16px) / 2 - 1px);
+}
+
+:root:not([uidensity="compact"]) #tabs-newtab-button > .toolbarbutton-icon {
+  margin-left: 2px;
+}
+:root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
+  margin-left: 1px;
+}

@@ -1,0 +1,139 @@
+@include Option("userChrome.tab.original") {
+  #tabbrowser-arrowscrollbox {
+    position: absolute;
+  }
+}
+
+@include Option("userChrome.tab.original") {
+  .tab-background::before,
+  #tabs-newtab-button::before {
+    /* Box Model */
+    content: "";
+    display: block;
+    position: absolute;
+
+    /* Position */
+    top: 50%;
+    transform: translateX(-2.5px) translateY(calc(-50% + 1px));
+
+    /* Bar shape */
+    width: 1px;
+    height: 20px;
+
+    /* Bar Color */
+    opacity: 0;
+    background-color: var(--toolbarseparator-color);
+  }
+}
+
+@include Option("userChrome.tab.proton") {
+  .tab-background::before,
+  #tabbrowser-arrowscrollbox:not([overflowing])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+    .tab-background::after {
+    /* Box Model */
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+
+    /* Bar shape */
+    width: 1px;
+    height: 20px;
+
+    /* Bar Color */
+    opacity: 0;
+    background-color: var(--toolbarseparator-color);
+  }
+}
+
+@include Option("userChrome.tab.proton") {
+  .tab-background::before {
+    transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
+  }
+  .tabbrowser-tab[last-visible-tab] .tab-background::after {
+    right: 0;
+    transform: translateX(1.5px) translateY(calc(-50% + 1px)) !important;
+  }
+}
+
+@include Option("userChrome.tab.shareProton") {
+  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
+    opacity: var(--tab-separator-opacity);
+  }
+}
+@include Option("userChrome.tab.original") {
+  #tabs-newtab-button:not(:hover, [open])::before {
+    opacity: var(--tab-separator-opacity);
+  }
+}
+@include Option("userChrome.tab.proton") {
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
+  #tabbrowser-arrowscrollbox:not([overflowing])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+    .tab-background::after {
+    opacity: var(--tab-separator-opacity);
+  }
+}
+
+@include Option("userChrome.tab.shareProton") {
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
+    .tab-background::before,
+  #navigator-toolbox:not([movingtab])
+    #tabbrowser-arrowscrollbox[overflowing]
+    tab.tabbrowser-tab[first-visible-unpinned-tab]
+    .tab-background::before {
+    opacity: 0 !important;
+  }
+}
+@include Option("userChrome.tab.original") {
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    + .tabbrowser-tab
+    .tab-background::before,
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    ~ .tabbrowser-tab[afterhovered]
+    .tab-background::before,
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+    ~ #tabs-newtab-button::before {
+    opacity: 0 !important;
+  }
+}
+@include Option("userChrome.tab.proton") {
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    + .tabbrowser-tab:not([visuallyselected])
+    .tab-background::before {
+    opacity: 0 !important;
+  }
+}
+
+/* Animate */
+@media (prefers-reduced-motion: no-preference) {
+  @include Option("userChrome.tab.shareProton") {
+    .tab-background::before {
+      transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+    }
+  }
+  @include Option("userChrome.tab.original") {
+    #tabs-newtab-button::before {
+      transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+    }
+  }
+  @include Option("userChrome.tab.proton") {
+    #tabbrowser-arrowscrollbox:not([overflowing])
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+      .tab-background::after {
+      transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+    }
+  }
+}
+
+/* Latest Tab & New tab margin */
+@include Option("userChrome.tab.shareProton") {
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
+    margin-inline-end: 1px !important;
+  }
+}

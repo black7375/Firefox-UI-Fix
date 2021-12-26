@@ -1,8 +1,20 @@
 /*= Root - Reduce Padding ====================================================*/
+@include Option("userChrome.tab.original") {
+  :root {
+    /* Tab Bar */
+    --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
+    --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
+  }
+}
+@include Option("userChrome.tab.photon") {
+  :root {
+    --proton-tab-block-margin: 0px !important; /* Original: 4px, Legacy */
+    --tab-block-margin: 0px !important; /* New version of --proton-tab-block-margin */
+    --tab-border-radius: 0px !important; /* Original: 4px */
+  }
+}
 :root {
   /* Tab Bar */
-  --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
-  --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
   --inline-tab-padding: 6px !important; /* Original: 8px */
 
   /* Panel */
@@ -28,6 +40,16 @@
 
   /* Panel - Like Original */
   --arrowpanel-menuitem-padding: 8px !important; /* Original: 8px */
+}
+
+/* Fix Tab bar button radious */
+@supports -moz-bool-pref("userChrome.tab.photon") {
+  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon,
+  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-text,
+  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  .tab-close-button {
+    --tab-border-radius: 4px !important;
+  }
 }
 
 /*= Tab Bar - Reduce Width, Show more tabs ===================================*/
@@ -63,10 +85,19 @@
   padding-right: var(--newtab-button-width-padding) !important;
 }
 
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
-  > #tabbrowser-arrowscrollbox
-  > .tabbrowser-tab[first-visible-unpinned-tab] {
-  margin-inline-start: 1px !important;
+@include Option("userChrome.tab.shareProton") {
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+    > #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 1px !important;
+  }
+}
+@include Option("userChrome.tab.photon") {
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+    > #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 0 !important;
+  }
 }
 
 :root:not([uidensity="touch"]) #tabbrowser-arrowscrollbox {
@@ -88,20 +119,33 @@
 }
 
 /* Tab - Max Size */
-:root {
-  --tab-max-width: 240px;
+@include Option("userChrome.tab.shareProton") {
+  :root {
+    --tab-max-width: 240px;
+  }
+}
+@include Option("userChrome.tab.photon") {
+  :root {
+    --tab-max-width: 225px;
+  }
 }
 .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
   max-width: var(--tab-max-width) !important; /* Original: 225px */
 }
 
 /* neighbouring tabs should "pinch" together */
-.tabbrowser-tab {
-  padding-inline: 1px !important;
+@include Option("userChrome.tab.shareProton") {
+  .tabbrowser-tab {
+    padding-inline: 1px !important;
+  }
+  .tabbrowser-tab:not([last-visible-tab]) {
+    margin-inline-end: -0.5px !important;
+  }
 }
-
-.tabbrowser-tab:not([last-visible-tab]) {
-  margin-inline-end: -0.5px !important;
+@include Option("userChrome.tab.photon") {
+  .tabbrowser-tab {
+    padding-inline: 0 !important;
+  }
 }
 
 /*= Tab Bar - Reduce Height, Show more contents ==============================*/
@@ -118,22 +162,65 @@
 }
 
 /* Toolbar Height */
-:root:not([uidensity="touch"]) #TabsToolbar {
-  --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
+@include Option("userChrome.tab.shareProton") {
+  :root:not([uidensity="touch"]) #TabsToolbar {
+    --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
+  }
+
+  :root:not([uidensity]) #TabsToolbar {
+    --tab-min-height: 36px !important; /* 38px -> 36px */
+  }
+  :root[uidensity="compact"] #TabsToolbar {
+    --tab-min-height: 29px !important; /* 36px -> 29px */
+  }
 }
 
-.toolbar-items,
-.tabbrowser-tab {
-  --tabbar-max-height: 38px;
-  max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
+@include Option("userChrome.tab.photon") {
+  #TabsToolbar {
+    --tab-min-height: 33px !important;
+    --toolbarbutton-inner-padding: unset !important;
+  }
+  :root[uidensity="compact"] #TabsToolbar {
+    --tab-min-height: 29px !important;
+  }
+  :root[uidensity="touch"] #TabsToolbar {
+    --tab-min-height: 41px !important;
+  }
+  #tabbrowser-tabs,
+  #tabbrowser-arrowscrollbox,
+  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
+    min-height: var(--tab-min-height) !important;
+  }
+
+  /* Top Margin */
+  .tab-background,
+  .tab-content {
+    margin-top: 0 !important;
+  }
 }
-:root[uidensity="compact"] .toolbar-items,
-:root[uidensity="compact"] .tabbrowser-tab {
-  --tabbar-max-height: 36px;
+
+@include Option("userChrome.tab.original") {
+  .toolbar-items,
+  .tabbrowser-tab {
+    --tabbar-max-height: 38px;
+    max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
+  }
+  :root[uidensity="compact"] .toolbar-items,
+  :root[uidensity="compact"] .tabbrowser-tab {
+    --tabbar-max-height: 36px;
+  }
+  :root[uidensity="touch"] .toolbar-items,
+  :root[uidensity="touch"] .tabbrowser-tab {
+    --tabbar-max-height: 45px;
+  }
 }
-:root[uidensity="touch"] .toolbar-items,
-:root[uidensity="touch"] .tabbrowser-tab {
-  --tabbar-max-height: 45px;
+@include Option("userChrome.tab.proton") {
+  :root:not([uidensity]) #TabsToolbar {
+    --tab-min-height: 36px !important; /* 38px -> 36px */
+  }
+  :root[uidensity="compact"] #TabsToolbar {
+    --tab-min-height: 29px !important; /* 36px -> 29px */
+  }
 }
 
 /* Scroll Button - Size Fix */

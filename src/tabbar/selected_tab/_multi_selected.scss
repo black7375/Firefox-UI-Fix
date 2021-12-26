@@ -1,0 +1,18 @@
+ #tabbrowser-tabs:not([movingtab])
+  > #tabbrowser-arrowscrollbox
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[multiselected]:not([selected]):-moz-lwtheme {
+  background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)),
+    linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+}
+
+.tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
+  background: color-mix(in srgb, currentColor 65%, transparent);
+  opacity: 0.3;
+}
+#TabsToolbar[brighttext]
+  .tab-background[multiselected="true"]:not([selected="true"])
+  > .tab-loading-burst:not([bursting]) {
+  opacity: 0.15;
+}

@@ -1,0 +1,12 @@
+#tabs-newtab-button > .toolbarbutton-icon {
+  margin-left: 1px;
+
+  /* Origianl: calc((var(--tab-min-height) - 16px) / 2) = 10px */
+  --toolbarbutton-inner-padding: 6px;
+}
+:root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
+  --toolbarbutton-inner-padding: 4px; /* Photon: 6px */
+}
+:root[uidensity="touch"] #tabs-newtab-button > .toolbarbutton-icon {
+  --toolbarbutton-inner-padding: 9px; /* Photon: 9px */
+}

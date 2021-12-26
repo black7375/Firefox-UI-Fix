@@ -26,22 +26,25 @@
 }
 
 /*= Remove Tab Border ========================================================*/
-/* Light Theme */
-#TabsToolbar:not([brighttext])
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-  > .tab-stack
-  > .tab-background {
-  border: unset !important; /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
-}
+@include Option("userChrome.tab.connect_to_window") {
+  /* TARGET: original, photon */
+  /* Light Theme */
+  #TabsToolbar:not([brighttext])
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background {
+    border: unset !important; /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+  }
 
-/* Dark Theme */
-#TabsToolbar[brighttext]
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-  > .tab-stack
-  > .tab-background:-moz-lwtheme {
-  border: unset !important; /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
+  /* Dark Theme */
+  #TabsToolbar[brighttext]
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background:-moz-lwtheme {
+    border: unset !important; /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
+  }
 }
 
 /*= Light Weight Theme =======================================================*/

@@ -1,4 +1,5 @@
 @use "utils/os" as *;
+@use "utils/option" as *;
 
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
@@ -38,16 +39,18 @@
 @import "padding/index";
 
 /** Tab Bar - Connect to window ***********************************************/
-@import "tabbar/connect_to_window";
+@include Option("userChrome.tab.connect_to_window") {
+  @import "tabbar/connect_to_window";
+}
 
 /** Selected Tab **************************************************************/
 @import "tabbar/selected_tab";
 
 /** Unselected Tab - Divide line **********************************************/
-@import "tabbar/divide_line";
+@import "tabbar/unselected_tab";
 
-/* New tab button - Looks like tab ********************************************/
-@import "tabbar/newtab_looks_like_tab";
+/* New tab button *************************************************************/
+@import "tabbar/newtab_button";
 
 /* Unloaded Tab - Contents Opacity ********************************************/
 @import "tabbar/unload_tab";

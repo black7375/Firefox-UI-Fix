@@ -1,5 +1,7 @@
-.tab-context-line {
-  display: none;
+@include Option("userChrome.tab.shareProton") {
+  .tab-context-line {
+    display: none;
+  }
 }
 
 .tab-content:not([titlechanged])::before {

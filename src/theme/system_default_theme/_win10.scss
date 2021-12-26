@@ -189,6 +189,20 @@
     --panel-separator-color: var(--win-border-color) !important;
   }
 
+  /*- Proton Tab Selected ----------------------------------------------------*/
+  @include Option($tabProton) {
+    :root:not(:-moz-lwtheme),
+    :root[lwt-default-theme-in-dark-mode] {
+      --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
+    }
+    :root:not(:-moz-lwtheme) {
+      --tab-selected-color: var(--win-proton-tab-selected-bgcolor) !important;
+    }
+    :root[lwt-default-theme-in-dark-mode] {
+      --lwt-selected-tab-background-color: var(--win-proton-tab-selected-bgcolor) !important;
+    }
+  }
+
   /*- Menu -------------------------------------------------------------------*/
   html#main-window menupopup:not(:-moz-lwtheme) {
     --menu-color: var(--win-text-color) !important;

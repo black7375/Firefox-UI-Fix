@@ -1,0 +1,7 @@
+$tabProton: "userChrome.tab.proton";
+
+@mixin Option($optionName) {
+  @supports -moz-bool-pref("#{$optionName}") {
+    @content;
+  }
+}

@@ -24,8 +24,27 @@
   background-image: var(--avatar-image-url) !important;
 }
 
-#appMenu-new-tab-button2 {
-  list-style-image: url("chrome://browser/skin/new-tab.svg");
+@include Option("userChrome.panel.proton") {
+  #appMenu-new-tab-button2 {
+    list-style-image: url("chrome://browser/skin/new-tab.svg");
+  }
+}
+@include Option("userChrome.panel.photon") {
+  #appMenu-new-tab-button2,           /* Seperate */
+  #appMenu-passwords-button,          /* Seperate */
+  #appMenu-extensions-themes-button,
+  #appMenu-save-file-button2,         /* Seperate */
+  #appMenu-find-button2,
+  #appMenu-more-button2,              /* Seperate */
+  #appMenu-help-button2,
+  #appMenu-quit-button2               /* Seperate */ {
+    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+    padding-top: var(--arrowpanel-menuitemblank-padding) !important;
+    padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+  }
+  #appMenu-zoom-controls2 {
+    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+  }
 }
 #appMenu-new-window-button2 {
   list-style-image: url("chrome://browser/skin/window.svg");
@@ -43,38 +62,44 @@
 #appMenu-downloads-button {
   list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
 }
-#appMenu-passwords-button {
-  list-style-image: url("chrome://browser/skin/login.svg");
-}
-#appMenu-extensions-themes-button {
-  list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+@supports -moz-bool-pref("userChrome.panel.proton") {
+  #appMenu-passwords-button {
+    list-style-image: url("chrome://browser/skin/login.svg");
+  }
+  #appMenu-extensions-themes-button {
+    list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+  }
 }
 
 #appMenu-print-button2 {
   list-style-image: url("chrome://global/skin/icons/print.svg");
 }
-#appMenu-save-file-button2 {
-  list-style-image: url("chrome://browser/skin/save.svg");
-}
-#appMenu-find-button2 {
-  list-style-image: url("chrome://global/skin/icons/search-glass.svg");
-}
-#appMenu-zoom-controls2::before {
-  content: url("./icons/screenshot.svg");
+@supports -moz-bool-pref("userChrome.panel.proton") {
+  #appMenu-save-file-button2 {
+    list-style-image: url("chrome://browser/skin/save.svg");
+  }
+  #appMenu-find-button2 {
+    list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+  }
+  #appMenu-zoom-controls2::before {
+    content: url("./icons/screenshot.svg");
+  }
 }
 
 #appMenu-settings-button {
   list-style-image: url("chrome://global/skin/icons/settings.svg");
 }
-#appMenu-more-button2 {
-  list-style-image: url("chrome://browser/skin/ion.svg");
-}
-#appMenu-help-button2 {
-  list-style-image: url("chrome://global/skin/icons/help.svg");
-}
+@supports -moz-bool-pref("userChrome.panel.proton") {
+  #appMenu-more-button2 {
+    list-style-image: url("chrome://browser/skin/ion.svg");
+  }
+  #appMenu-help-button2 {
+    list-style-image: url("chrome://global/skin/icons/help.svg");
+  }
 
-#appMenu-quit-button2 {
-  list-style-image: url("./icons/quit.svg");
+  #appMenu-quit-button2 {
+    list-style-image: url("./icons/quit.svg");
+  }
 }
 
 /*= Panel - Account ==========================================================*/
@@ -300,7 +325,7 @@ panelMenuBookmarkThisPage[starred] {
   list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
 }
 
-/*= Panel - Downloads ======================================================*/
+/*= Panel - Downloads ========================================================*/
 #downloadsHistory {
   list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
 }
