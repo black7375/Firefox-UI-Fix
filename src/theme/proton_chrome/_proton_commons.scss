@@ -8,7 +8,7 @@
   url("chrome://browser/content/pageinfo/pageInfo.xhtml")
 {
   /*- Overwrite --------------------------------------------------------------*/
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @include Dark {
     :root {
       --in-content-page-background: #42414d;
     }

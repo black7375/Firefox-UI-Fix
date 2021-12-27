@@ -1,0 +1,6 @@
+@mixin Dark() {
+  // -moz-toolbar-prefers-color-scheme is removed at v95, #250
+  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+    @content;
+  }
+}

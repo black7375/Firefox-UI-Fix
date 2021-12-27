@@ -1,0 +1,23 @@
+@use 'true' as *;
+@use "../src/utils/option";
+
+@include test-module("If exist pref [mx]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("userChrome.tab.photon") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

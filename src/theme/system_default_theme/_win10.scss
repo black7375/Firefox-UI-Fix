@@ -25,7 +25,7 @@
     --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
     --win-accent-active-color: -moz-accent-color;
   }
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @include Dark {
     :root:not(:-moz-lwtheme),
     :root[lwt-default-theme-in-dark-mode] {
       --win-text-color: #ffffff;
@@ -232,7 +232,7 @@
     --sidebar-text-color: var(--win-text-color) !important;
     --sidebar-border-color: var(--win-border-color) !important;
   }
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @include Dark {
     .sidebar-panel[style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
       body[lwt-sidebar][style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
       .sidebar-panel[style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"], /* Nightly */
