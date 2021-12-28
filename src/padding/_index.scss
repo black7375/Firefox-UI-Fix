@@ -85,7 +85,7 @@
   padding-right: var(--newtab-button-width-padding) !important;
 }
 
-@include Option("userChrome.tab.shareProton") {
+@include NotOption("userChrome.tab.photon") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab[first-visible-unpinned-tab] {
@@ -119,7 +119,7 @@
 }
 
 /* Tab - Max Size */
-@include Option("userChrome.tab.shareProton") {
+@include NotOption("userChrome.tab.photon") {
   :root {
     --tab-max-width: 240px;
   }
@@ -134,7 +134,7 @@
 }
 
 /* neighbouring tabs should "pinch" together */
-@include Option("userChrome.tab.shareProton") {
+@include NotOption("userChrome.tab.photon") {
   .tabbrowser-tab {
     padding-inline: 1px !important;
   }
@@ -162,7 +162,7 @@
 }
 
 /* Toolbar Height */
-@include Option("userChrome.tab.shareProton") {
+@include NotOption("userChrome.tab.photon") {
   :root:not([uidensity="touch"]) #TabsToolbar {
     --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
   }

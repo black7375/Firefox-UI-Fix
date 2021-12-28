@@ -5,3 +5,9 @@ $tabProton: "userChrome.tab.proton";
     @content;
   }
 }
+
+@mixin NotOption($optionName) {
+  @supports not -moz-bool-pref("#{$optionName}") {
+    @content;
+  }
+}

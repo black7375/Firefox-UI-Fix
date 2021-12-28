@@ -27,9 +27,6 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 // user_pref("layout.css.prefers-color-scheme.content-override", 3);
 
 // ** Theme Related Options ****************************************************
-user_pref("userChrome.tab.sharePhoton",            true); // Original, Photon
-user_pref("userChrome.tab.shareProton",            true); // Original, Proton
-
 user_pref("userChrome.tab.original",          true); // Original
 // user_pref("userChrome.tab.photon",            true); // Photon
 // user_pref("userChrome.tab.proton",            true); // Proton

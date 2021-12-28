@@ -57,10 +57,8 @@
   }
 }
 
-@include Option("userChrome.tab.shareProton") {
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
-    opacity: var(--tab-separator-opacity);
-  }
+.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
+  opacity: var(--tab-separator-opacity);
 }
 @include Option("userChrome.tab.original") {
   #tabs-newtab-button:not(:hover, [open])::before {
@@ -76,16 +74,14 @@
   }
 }
 
-@include Option("userChrome.tab.shareProton") {
-  #navigator-toolbox:not([movingtab])
-    .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
-    .tab-background::before,
-  #navigator-toolbox:not([movingtab])
-    #tabbrowser-arrowscrollbox[overflowing]
-    tab.tabbrowser-tab[first-visible-unpinned-tab]
-    .tab-background::before {
-    opacity: 0 !important;
-  }
+#navigator-toolbox:not([movingtab])
+  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
+  .tab-background::before,
+#navigator-toolbox:not([movingtab])
+  #tabbrowser-arrowscrollbox[overflowing]
+  tab.tabbrowser-tab[first-visible-unpinned-tab]
+  .tab-background::before {
+  opacity: 0 !important;
 }
 @include Option("userChrome.tab.original") {
   #navigator-toolbox:not([movingtab])
@@ -112,10 +108,8 @@
 
 /* Animate */
 @media (prefers-reduced-motion: no-preference) {
-  @include Option("userChrome.tab.shareProton") {
-    .tab-background::before {
-      transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
-    }
+  .tab-background::before {
+    transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
   @include Option("userChrome.tab.original") {
     #tabs-newtab-button::before {
@@ -132,8 +126,6 @@
 }
 
 /* Latest Tab & New tab margin */
-@include Option("userChrome.tab.shareProton") {
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
-    margin-inline-end: 1px !important;
-  }
+#tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
+  margin-inline-end: 1px !important;
 }

@@ -21,3 +21,24 @@
     }
   }
 }
+
+@include test-module("If not exist pref [mx]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include option.NotOption("userChrome.tab.photon") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @supports not -moz-bool-pref("userChrome.tab.photon") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
