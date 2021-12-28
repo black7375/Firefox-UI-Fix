@@ -28,7 +28,9 @@
   */
 
 @import "theme/proton_color";
-@import "theme/fully_color";
+@include Option($fullyColor) {
+  @import "theme/fully_color";
+}
 
 /* Fully Dark Mode ************************************************************/
 @import "theme/fully_dark";
