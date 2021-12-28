@@ -1,0 +1,82 @@
+@use 'true' as *;
+@use "../src/utils/color_scheme";
+
+@include test-module("Color scheme is dark [mx]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Dark {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("simple reversed") {
+    @include assert {
+      @include output {
+        body {
+          @include color_scheme.Dark {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Color scheme is light [mx]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Light {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("simple reversed") {
+    @include assert {
+      @include output {
+        body {
+          @include color_scheme.Light {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

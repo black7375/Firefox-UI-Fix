@@ -3,6 +3,7 @@
 @use "list" as list-utils;
 @use "media";
 
+//== Args ======================================================================
 $win:    "win";
 $mac:    "mac";
 $linux:  "linux";
@@ -12,6 +13,7 @@ $win8:   "win8";
 $win10:  "win10";
 $bigsur: "bigsur";
 
+//== Privated Variables ========================================================
 $_win-template: "-moz-os-version: windows-";
 $_win-media: (
   #{$win7}: $_win-template + "win7",
@@ -26,6 +28,7 @@ $_os-media: map.merge(
   $_win-media, $_others-media
 );
 
+//== Mixin =====================================================================
 @mixin OS($osNames...) {
   @if list.index($osNames, $win) {
     $osNames: list-utils.remove($osNames, $win);

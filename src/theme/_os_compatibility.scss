@@ -118,7 +118,7 @@
 
 /*= Linux - Light System Default Theme's Selected Tab ========================*/
 @include OS($linux) {
-  @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+  @include Light {
     /* Because of
       #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background {
         border: 1px solid var(--tab-line-color, rgba(128,128,142,0.9));
