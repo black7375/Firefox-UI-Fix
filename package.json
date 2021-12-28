@@ -9,6 +9,7 @@
   "private": true,
   "scripts": {
     "build": "sass src/userChrome.scss ./userChrome.css && sass src/userContent.scss ./userContent.css",
+    "format": "prettier --write .",
     "test": "jest"
   },
   "devDependencies": {
