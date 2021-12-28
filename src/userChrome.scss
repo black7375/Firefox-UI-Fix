@@ -10,11 +10,10 @@
   @import "theme/built_in";
 }
 
-/** Theme - Compatibility *****************************************************/
-@import "theme/theme_compatibility";
-
-/** OS - Compatibility ********************************************************/
-@import "theme/os_compatibility";
+/** Compatibility Fixes *******************************************************/
+@include Option($compatibility) {
+  @import "theme/compatibility";
+}
 
 /** System Default Theme ******************************************************/
 @import "theme/system_default_theme";

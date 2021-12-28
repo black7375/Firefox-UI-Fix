@@ -1,0 +1,9 @@
+/*= Theme - Compatibility ====================================================*/
+@include Option($compatibilityTheme) {
+  @import "compatibility/theme";
+}
+
+/*= OS - Compatibility =======================================================*/
+@include Option($compatibilityOS) {
+  @import "compatibility/os";
+}
