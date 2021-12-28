@@ -6,6 +6,8 @@ $compatibilityTheme: "userChrome.theme.compatibility.theme";
 $compatibilityOS: "userChrome.theme.compatibility.os";
 $systemDefault: "userChrome.theme.system_default";
 $fullyColor: "userChrome.theme.fully_color";
+$darkColor: "userChrome.theme.fully_dark";
+$protonChrome: "userChrome.theme.proton_chrome";
 
 @mixin Option($optionName) {
   @supports -moz-bool-pref("#{$optionName}") {

@@ -33,10 +33,14 @@
 }
 
 /* Fully Dark Mode ************************************************************/
-@import "theme/fully_dark";
+@include Option($fullyDark) {
+  @import "theme/fully_dark";
+}
 
 /* Proton Theme Mode **********************************************************/
-@import "theme/proton_chrome";
+@include Option($protonChrome) {
+  @import "theme/proton_chrome";
+}
 
 /** Decoration ****************************************************************/
 @import "theme/decoration";

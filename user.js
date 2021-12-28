@@ -42,6 +42,8 @@ user_pref("userChrome.theme.compatibility.theme", true);
 user_pref("userChrome.theme.compatibility.os", true);
 user_pref("userChrome.theme.system_default", true);
 user_pref("userChrome.theme.fully_color", true);
+user_pref("userChrome.theme.fully_dark", true);
+user_pref("userChrome.theme.proton_chrome", true);
 
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
