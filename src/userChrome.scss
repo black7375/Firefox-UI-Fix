@@ -11,9 +11,7 @@
 }
 
 /** Compatibility Fixes *******************************************************/
-@include Option($compatibility) {
-  @import "theme/compatibility";
-}
+@import "compatibility/index";
 
 /** System Default Theme ******************************************************/
 @include Option($systemDefault) {
