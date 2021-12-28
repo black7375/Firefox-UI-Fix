@@ -36,10 +36,11 @@ user_pref("userChrome.panel.proton", true); // Original, Proton
 // user_pref("userChrome.panel.photon", true); // Photon
 
 // == Theme Default Settings ===================================================
-user_pref("userChrome.theme.builtInContrast", true);
+user_pref("userChrome.theme.built_in_contrast", true);
 user_pref("userChrome.theme.compatibility", true);
 user_pref("userChrome.theme.compatibility.theme", true);
 user_pref("userChrome.theme.compatibility.os", true);
+user_pref("userChrome.theme.system_default", true);
 
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar

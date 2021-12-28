@@ -16,7 +16,9 @@
 }
 
 /** System Default Theme ******************************************************/
-@import "theme/system_default_theme";
+@include Option($systemDefault) {
+  @import "theme/system_default_theme";
+}
 
 /** Fully Theme Mode **********************************************************/
 /* Default Themes

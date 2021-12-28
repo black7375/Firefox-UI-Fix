@@ -1,9 +1,10 @@
 $tabProton: "userChrome.tab.proton";
 
-$builtInContrast: "userChrome.theme.builtInContrast";
+$builtInContrast: "userChrome.theme.built_in_contrast";
 $compatibility: "userChrome.theme.compatibility";
 $compatibilityTheme: "userChrome.theme.compatibility.theme";
 $compatibilityOS: "userChrome.theme.compatibility.os";
+$systemDefault: "userChrome.theme.system_default";
 
 @mixin Option($optionName) {
   @supports -moz-bool-pref("#{$optionName}") {
