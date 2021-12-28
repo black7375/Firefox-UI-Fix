@@ -6,7 +6,9 @@
 @namespace html "http://www.w3.org/1999/xhtml";
 
 /** Default Thme - Contrast ***************************************************/
-@import "theme/built_in";
+@include Option($builtInContrast) {
+  @import "theme/built_in";
+}
 
 /** Theme - Compatibility *****************************************************/
 @import "theme/theme_compatibility";

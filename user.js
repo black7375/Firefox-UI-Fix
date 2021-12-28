@@ -35,6 +35,9 @@ user_pref("userChrome.tab.connect_to_window", true); // Original, Photon
 user_pref("userChrome.panel.proton", true); // Original, Proton
 // user_pref("userChrome.panel.photon", true); // Photon
 
+// == Theme Default Settings ===================================================
+user_pref("userChrome.theme.builtInContrast");
+
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
 user_pref("browser.urlbar.suggest.calculator", true);

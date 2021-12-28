@@ -1,5 +1,7 @@
 $tabProton: "userChrome.tab.proton";
 
+$builtInContrast: "userChrome.theme.builtInContrast";
+
 @mixin Option($optionName) {
   @supports -moz-bool-pref("#{$optionName}") {
     @content;
