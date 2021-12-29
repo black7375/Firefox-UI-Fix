@@ -45,6 +45,11 @@ user_pref("userChrome.theme.fully_color", true);
 user_pref("userChrome.theme.fully_dark", true);
 user_pref("userChrome.theme.proton_chrome", true);
 
+user_pref("userChrome.decoration.cursor", true);
+user_pref("userChrome.decoration.field_border", true);
+user_pref("userChrome.decoration.download_panel", true);
+user_pref("userChrome.decoration.animate", true);
+
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
 user_pref("browser.urlbar.suggest.calculator", true);

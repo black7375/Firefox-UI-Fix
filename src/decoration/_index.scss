@@ -1,13 +1,21 @@
 /*= Cursor Types =============================================================*/
-@import "cursor";
+@include Option($cursor) {
+  @import "cursor";
+}
 
 @media (prefers-reduced-motion: no-preference) {
   /*= Field Border ===========================================================*/
-  @import "field_border";
+  @include Option($fieldBorder) {
+    @import "field_border";
+  }
 
   /*= Downloads Panel ========================================================*/
-  @import "download_panel";
+  @include Option($downloadPanel) {
+    @import "download_panel";
+  }
 
   /*= Animate ================================================================*/
-  @import "animate";
+  @include Option($animate) {
+    @import "animate";
+  }
 }

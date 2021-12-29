@@ -9,6 +9,11 @@ $fullyColor: "userChrome.theme.fully_color";
 $darkColor: "userChrome.theme.fully_dark";
 $protonChrome: "userChrome.theme.proton_chrome";
 
+$cursor: "userChrome.decoration.cursor";
+$fieldBorder: "userChrome.decoration.field_border";
+$downloadPanel: "userChrome.decoration.download_panel";
+$animate: "userChrome.decoration.animate";
+
 @mixin Option($optionName) {
   @supports -moz-bool-pref("#{$optionName}") {
     @content;
