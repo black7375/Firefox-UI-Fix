@@ -2531,8 +2531,8 @@ menuitem.openintabs-menuitem,
 #downloadsListBox .download-state[exists],
 #downloadsListBox .download-state[exists] .downloadDetails,
 #downloadsHistory,
-#protections-popup-settings-button,
-#protections-popup-show-report-button,
+#protections-popup-footer .protections-popup-footer-button,
+#protections-popup-multiView .panel-subview-footer-button,
 #identity-popup-clear-sitedata-button,
 #identity-popup-more-info {
   cursor: pointer !important;
@@ -4350,7 +4350,8 @@ panelMenuBookmarkThisPage[starred] {
   margin-inline-end: 1em;
 }
 
-#protections-popup-settings-button > .protections-popup-settings-icon {
+#protections-popup-settings-button > .protections-popup-settings-icon,
+#protections-popup-multiView .panel-subview-footer-button {
   list-style-image: url("chrome://global/skin/icons/settings.svg");
 }
 
