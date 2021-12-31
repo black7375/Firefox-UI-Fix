@@ -678,6 +678,7 @@
       --color-moz-inverse-bg: var(red) !important;
       --focus-shadow: 0 0 0 4px color-mix(in srgb, var(--in-content-primary-button-background) 30%, transparent),
         0 0 0 2px var(--in-content-primary-button-background-active);
+      scrollbar-color: var(--in-content-deemphasized-text) var(--in-content-page-background);
     }
     .warning {
       --color-link: rgb(55, 255, 255) !important;
@@ -690,6 +691,23 @@
     .mzp-c-navigation,
     .kbox-container {
       color: var(--in-content-page-color) !important;
+      background: var(--in-content-page-background) !important;
+    }
+    
+    #editor {
+      border: 2px solid var(--in-content-border-color) !important;
+    }
+    
+    .CodeMirror-linenumbers {
+      background: var(--in-content-table-background)
+    }
+    
+    .CodeMirror-lines {
+      color: var(--in-content-deemphasized-text) !important;
+      background: var(--in-content-page-background) !important;
+    }
+    
+    .CodeMirror-scroll {
       background: var(--in-content-page-background) !important;
     }
 
@@ -739,6 +757,9 @@
     .tag-list li:hover {
       background: var(--in-content-deemphasized-text) !important;
     }
+    #remaining-characters {
+      color:var(--in-content-page-color) !important;
+    }
 
     /* Background */
     .sidebar-nav.topics,
@@ -757,6 +778,9 @@
     .mzp-c-menu-list-item:focus,
     .mzp-c-menu-list-item:hover {
       background: var(--in-content-button-background-hover) !important;
+    }
+    .cm-bold {
+      color: var(--in-content-page-color) !important;
     }
 
     /* Fill */
