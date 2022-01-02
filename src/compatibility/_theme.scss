@@ -25,6 +25,12 @@
   --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, rgb(0, 120, 215));
 }
 
+/*= Disabled menu background color ===========================================*/
+menuitem[disabled],
+menu[disabled] {
+  background-color: transparent !important;
+}
+
 /*= Remove Tab Border ========================================================*/
 @include Option("userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
