@@ -55,8 +55,8 @@
 }
 
 /*= Disabled menu background color ===========================================*/
-menuitem[disabled],
-menu[disabled] {
+menuitem[disabled="true"],
+menu[disabled="true"] {
   background-color: transparent !important;
 }
 
@@ -1980,6 +1980,11 @@ browser[type="content"] > html {
     /* Overwrite */
     margin: 0 !important;
     padding: 0 6 !important;
+  }
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    #viewGroup > radio > .radio-label-box {
+      padding-top: 32px !important; /* as -moz-image-region: rect(0px, 32px, 32px, 0px); */
+    }
   }
 
   #mainDeck input {
