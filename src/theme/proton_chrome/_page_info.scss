@@ -49,6 +49,11 @@
     margin: 0 !important;
     padding: 0 6 !important;
   }
+  @include OS($mac) {
+    #viewGroup > radio > .radio-label-box {
+      padding-top: 32px !important; /* as -moz-image-region: rect(0px, 32px, 32px, 0px); */
+    }
+  }
 
   #mainDeck input {
     color: var(--in-content-page-color) !important;
