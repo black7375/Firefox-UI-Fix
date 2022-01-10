@@ -33,7 +33,9 @@ user_pref("userChrome.tab.original",                true); // Original
 user_pref("userChrome.tab.connect_to_window",       true); // Original, Photon
 user_pref("userChrome.tab.box_shadow",              true); // Original
 user_pref("userChrome.tab.bottom_rounded_corner",   true); // Original
-user_pref("userChrome.tab.photon_like_contextline", true); // Photon
+user_pref("userChrome.tab.lepton_like_padding",     true); // Original
+// user_pref("userChrome.tab.photon_like_contextline", true); // Photon
+// user_pref("userChrome.tab.photon_like_padding",  true); // Photon
 
 user_pref("userChrome.panel.proton", true); // Original, Proton
 // user_pref("userChrome.panel.photon", true); // Photon
@@ -52,6 +54,17 @@ user_pref("userChrome.decoration.cursor", true);
 user_pref("userChrome.decoration.field_border", true);
 user_pref("userChrome.decoration.download_panel", true);
 user_pref("userChrome.decoration.animate", true);
+
+user_pref("userChrome.padding.tabbarWidth", true);
+user_pref("userChrome.padding.tabbarHeight", true);
+user_pref("userChrome.padding.navbarWidth", true);
+user_pref("userChrome.padding.urlbar", true);
+user_pref("userChrome.padding.bookmarkbar", true);
+user_pref("userChrome.padding.infobar", true);
+user_pref("userChrome.padding.menu", true);
+user_pref("userChrome.padding.bookmarkMenu", true);
+user_pref("userChrome.padding.globalMenu", true);
+user_pref("userChrome.padding.popupPanel", true);
 
 user_pref("userChrome.tab.multi_selected", true);
 

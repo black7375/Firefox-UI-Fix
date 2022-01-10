@@ -1,0 +1,13 @@
+:root {
+  --bookmark-menu-padding: 3px;
+}
+:root[uidensity="compact"] {
+  --bookmark-menu-padding: 1.5px;
+}
+
+:root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
+:root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
+:root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .bookmark-item,
+:root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .openintabs-menuitem {
+  padding-block: var(--bookmark-menu-padding) !important;
+}
