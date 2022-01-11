@@ -57,6 +57,11 @@
 :root {
   --space-left-tabbar: 0px; /* If you want drag space, set to 8px */
 }
+@include Option($firstTabPadding) {
+  :root {
+    --space-left-tabbar: 8px;
+  }
+}
 :root:not([tabsintitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
 :root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs:not([positionpinnedtabs]) {
   padding-inline-start: var(--space-left-tabbar) !important;
@@ -70,6 +75,11 @@
 /* for Extra Drag Space */
 :root {
   --space-above-tabbar: 0px; /* If you want drag space, set to 8px */
+}
+@include Option($dragSpacePadding) {
+  :root {
+    --space-above-tabbar: 8px;
+  }
 }
 :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
   height: calc(var(--tab-min-height) + var(--space-above-tabbar));
