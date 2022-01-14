@@ -102,7 +102,8 @@ menu[disabled="true"] {
 
 /* Navbar Border */
 #navigator-toolbox:-moz-lwtheme {
-  --tabs-border-color: rgba(0, 0, 0, 0.3);
+  --tabs-border-color: rgba(0, 0, 0, 0.3); /* Legacy: v96 */
+  --lwt-tabs-border-color: rgba(0, 0, 0, 0.3);
 }
 
 /** OS - Compatibility ********************************************************/
@@ -3333,6 +3334,7 @@ menupopup > menu {
 #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[beforeselected-visible]::after,
 #tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[visuallyselected]::before,
 .tabbrowser-tab[visuallyselected]::after {
+  --tabs-border-color: transparent;
   border-color: var(--tabs-border-color) !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
