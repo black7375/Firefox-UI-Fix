@@ -3223,11 +3223,13 @@ menupopup > menu {
 }
 
 /** Selected Tab - Photon like contextline ************************************/
-:root[lwtheme-mozlightdark] #tabbrowser-tabs {
+:root[lwtheme-mozlightdark] #tabbrowser-tabs, /* Legacy: v96 */
+:root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
+:root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
   --tab-line-color: rgb(10, 132, 255) !important;
 }
 @media (-moz-gtk-csd-available) {
-  :root[lwtheme-mozlightdark]:not(:-moz-lwtheme) #tabbrowser-tabs {
+  :root:not(:-moz-lwtheme) #tabbrowser-tabs {
     --tab-line-color: Highlight !important; /* -moz-accent-color */
   }
 }
