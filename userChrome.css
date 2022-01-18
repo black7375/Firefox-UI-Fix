@@ -927,9 +927,9 @@ menu[disabled="true"] {
   --in-content-button-vertical-padding: 7px;
 
   --in-content-table-background: #f8f8fa;
-  --in-content-table-border-dark-color: #d1d1d1;
-  --in-content-table-header-background: #0a84ff;
-  --in-content-table-header-color: #ffffff;
+  --in-content-table-border-color: var(--in-content-box-border-color); /* Legacy: #d1d1d1; rgba(249, 249, 250, 0.2) */
+  --in-content-table-header-background: var(--in-content-primary-button-background); /* Legacy: #0a84ff; rgb(5, 64, 150); */
+  --in-content-table-header-color: var(--in-content-primary-button-text-color); /* Legacy: #ffffff; var(--in-content-page-color); */
   --in-content-sidebar-width: 240px;
 
   --dialog-warning-text-color: var(--red-60);
@@ -1016,9 +1016,7 @@ menu[disabled="true"] {
     --in-content-danger-button-background-active: #ffdfe7;
 
     --in-content-table-background: rgb(35, 34, 43);
-    --in-content-table-border-dark-color: rgba(249, 249, 250, 0.2);
-    --in-content-table-header-background: rgb(5, 64, 150);
-    --in-content-table-header-color: var(--in-content-page-color);
+    --in-content-table-border-dark-color: var(--in-content-box-border-color);
 
     --in-content-accent-color: var(--in-content-primary-button-background);
     --in-content-accent-color-active: var(--in-content-primary-button-background-hover);
@@ -1743,7 +1741,7 @@ browser[type="content"] > html {
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
     padding-bottom: 1px !important;
-    box-shadow: inset 0 -1px var(--in-content-border-color) !important;
+    box-shadow: inset 0 -1px var(--in-content-table-border-color) !important;
     overflow: clip !important; /* Clip border-radius */
   }
 
@@ -1880,11 +1878,8 @@ browser[type="content"] > html {
 /*= Delete Cert ==============================================================*/
 @-moz-document url("chrome://pippki/content/deletecert.xhtml")
 {
-  :root {
-    --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
-  }
   #certlist {
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
     border-radius: 4px !important;
   }
 }
@@ -1892,9 +1887,6 @@ browser[type="content"] > html {
 /*= Cert Exeption Dialog =====================================================*/
 @-moz-document url("chrome://pippki/content/exceptionDialog.xhtml")
 {
-  :root {
-    --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
-  }
   #locationTextBox {
     appearance: none !important;
     border: 1px solid var(--in-content-box-border-color) !important;
@@ -2020,7 +2012,7 @@ browser[type="content"] > html {
     -moz-appearance: none !important;
     color: var(--in-content-table-header-color) !important;
     background: var(--in-content-table-header-background) !important;
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
     padding: 4px !important;
     border-spacing: 0;
 
@@ -2032,7 +2024,7 @@ browser[type="content"] > html {
     -moz-appearance: none !important;
     color: var(--in-content-text-color) !important;
     background-color: var(--in-content-table-background) !important;
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
   }
 
   treechildren::-moz-tree-row(odd) {
@@ -2048,7 +2040,7 @@ browser[type="content"] > html {
   }
 
   treechildren::-moz-tree-cell {
-    border-inline: 1px solid var(--in-content-border-color) !important;
+    border-inline: 1px solid var(--in-content-table-border-color) !important;
     border-spacing: 0 !important;
     padding: 4px !important;
     margin: 0 !important;
@@ -2079,7 +2071,7 @@ browser[type="content"] > html {
   #topBar,
   #imagecontainerbox,
   #permList {
-    border-color: var(--in-content-border-color) !important;
+    border-color: var(--in-content-table-border-color) !important;
   }
 }
 

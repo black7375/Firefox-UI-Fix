@@ -315,9 +315,9 @@
   --in-content-button-vertical-padding: 7px;
 
   --in-content-table-background: #f8f8fa;
-  --in-content-table-border-dark-color: #d1d1d1;
-  --in-content-table-header-background: #0a84ff;
-  --in-content-table-header-color: #ffffff;
+  --in-content-table-border-color: var(--in-content-box-border-color); /* Legacy: #d1d1d1; rgba(249, 249, 250, 0.2) */
+  --in-content-table-header-background: var(--in-content-primary-button-background); /* Legacy: #0a84ff; rgb(5, 64, 150); */
+  --in-content-table-header-color: var(--in-content-primary-button-text-color); /* Legacy: #ffffff; var(--in-content-page-color); */
   --in-content-sidebar-width: 240px;
 
   --dialog-warning-text-color: var(--red-60);
@@ -405,9 +405,7 @@
     --in-content-danger-button-background-active: #ffdfe7;
 
     --in-content-table-background: rgb(35, 34, 43);
-    --in-content-table-border-dark-color: rgba(249, 249, 250, 0.2);
-    --in-content-table-header-background: rgb(5, 64, 150);
-    --in-content-table-header-color: var(--in-content-page-color);
+    --in-content-table-border-dark-color: var(--in-content-box-border-color);
 
     --in-content-accent-color: var(--in-content-primary-button-background);
     --in-content-accent-color-active: var(--in-content-primary-button-background-hover);
@@ -1203,7 +1201,7 @@
                  url-prefix("about:cache"),
                  url-prefix("about:checkerboard") {
   table {
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
     border-radius: 0 !important;
   }
 }
@@ -1211,7 +1209,7 @@
                  url-prefix("about:checkerboard") {
   th,
   td {
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
   }
   th {
     background-color: var(--in-content-table-header-background) !important;
