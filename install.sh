@@ -336,9 +336,12 @@ multiselect() {
 #== Profile Dir ================================================================
 firefoxProfileDirPaths=(
   "${HOME}/.mozilla/firefox"
-  "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
-  "${HOME}/.firedragon/"
   "${HOME}/.librewolf/"
+  "${HOME}/.firedragon/"
+  "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
+  "${HOME}/snap/firefox/common/.mozilla/firefox"
+  "${HOME}/snap/firefox/common/.librewolf/"
+  "${HOME}/snap/firefox/common/.firedragon/"
   "${HOME}/Library/Application Support/Firefox"
   "${HOME}/Library/Application Support/LibreWolf"
 )
