@@ -2834,10 +2834,6 @@ menuitem.openintabs-menuitem,
 }
 
 /* Toolbar Height */
-:root:not([uidensity="touch"]) #TabsToolbar {
-  --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
-}
-
 :root:not([uidensity]) #TabsToolbar {
   --tab-min-height: 36px !important; /* 38px -> 36px */
 }
