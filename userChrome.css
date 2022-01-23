@@ -2846,21 +2846,15 @@ menuitem.openintabs-menuitem,
 }
 
 /* Toolbar Height */
-:root[uidensity="compact"] #TabsToolbar {
-  --toolbarbutton-inner-padding: 9px !important; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
-}
-
-.toolbar-items,
-.tabbrowser-tab {
+#tabbrowser-arrowscrollbox {
   --tabbar-max-height: 38px;
   max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
 }
-:root[uidensity="compact"] .toolbar-items,
-:root[uidensity="compact"] .tabbrowser-tab {
-  --tabbar-max-height: 36px;
+
+:root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+  --tabbar-max-height: 32px;
 }
-:root[uidensity="touch"] .toolbar-items,
-:root[uidensity="touch"] .tabbrowser-tab {
+:root[uidensity="touch"] #tabbrowser-arrowscrollbox {
   --tabbar-max-height: 45px;
 }
 
