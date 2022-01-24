@@ -3298,8 +3298,17 @@ menupopup > menu {
   background-repeat: no-repeat;
   background-position-y: bottom;
 }
-:root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
-:root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
+
+:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  #TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  tab[visuallyselected]
+  > stack:-moz-lwtheme::before,
+:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  #TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  tab[visuallyselected]
+  > stack:-moz-lwtheme::after {
   /* As Selected Tab - Box Shadow */
   stroke: var(--toolbar-color) !important;
 }
