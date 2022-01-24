@@ -928,8 +928,12 @@ menu[disabled="true"] {
 
   --in-content-table-background: #f8f8fa;
   --in-content-table-border-color: var(--in-content-box-border-color); /* Legacy: #d1d1d1; rgba(249, 249, 250, 0.2) */
-  --in-content-table-header-background: var(--in-content-primary-button-background); /* Legacy: #0a84ff; rgb(5, 64, 150); */
-  --in-content-table-header-color: var(--in-content-primary-button-text-color); /* Legacy: #ffffff; var(--in-content-page-color); */
+  --in-content-table-header-background: var(
+    --in-content-primary-button-background
+  ); /* Legacy: #0a84ff; rgb(5, 64, 150); */
+  --in-content-table-header-color: var(
+    --in-content-primary-button-text-color
+  ); /* Legacy: #ffffff; var(--in-content-page-color); */
   --in-content-sidebar-width: 240px;
 
   --dialog-warning-text-color: var(--red-60);
@@ -3290,7 +3294,10 @@ menupopup > menu {
 
   /* Color */
   fill: var(--toolbar-bgcolor) !important;
-  stroke: var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))) !important;
+  stroke: var(
+    --tab-line-color,
+    var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))
+  ) !important;
   -moz-context-properties: fill, stroke !important;
 
   /* Image */
