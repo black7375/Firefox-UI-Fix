@@ -151,6 +151,12 @@ menu[disabled="true"] {
     background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
   }
 
+  menulist > menupopup > menuitem[_moz-menuactive="true"],
+  menulist > menupopup > menu[_moz-menuactive="true"] {
+    background-color: higlight !important;
+    color: higlighttext !important;
+  }
+
   #PlacesToolbar menu,
   #PlacesToolbar menuitem,
   #BMB_bookmarksPopup menu,
