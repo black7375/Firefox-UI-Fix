@@ -5,6 +5,11 @@
   border-radius: 4px;
 }
 
+/*= Remote Tabs Panel's Bottom Padding =======================================*/
+#PanelUI-remotetabs #PanelUI-remotetabs-main {
+  margin-bottom: 6px;
+}
+
 /*= Identity Popup Icon Crop =================================================*/
 .identity-popup-security-connection.identity-button {
   padding-block: 1px !important;
@@ -66,9 +71,7 @@ menu[disabled="true"] {
   }
 }
 :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
-  background-image: var(
-    --lwt-additional-images
-  ) !important; /* Original: var(--lwt-header-image), var(--lwt-additional-images); */
+  background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
   background-repeat: var(--lwt-background-tiling) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-color: unset !important; /* Original:  var(--lwt-accent-color) */
@@ -76,5 +79,6 @@ menu[disabled="true"] {
 
 /* Navbar Border */
 #navigator-toolbox:-moz-lwtheme {
-  --tabs-border-color: rgba(0, 0, 0, 0.3);
+  --tabs-border-color: rgba(0, 0, 0, 0.3); /* Legacy: v96 */
+  --lwt-tabs-border-color: rgba(0, 0, 0, 0.3);
 }

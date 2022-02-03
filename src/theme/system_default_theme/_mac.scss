@@ -189,6 +189,9 @@
     --button-active-bgcolor: var(--mac-hover-bgcolor);
     --toolbarbutton-hover-background: var(--mac-hover-bgcolor);
     --toolbarbutton-active-background: var(--mac-hover-bgcolor);
+
+    /* Prevent transparent tabbar at fullscreen hover #312 */
+    background: var(--mac-bgcolor);
   }
 
   :root[lwt-default-theme-in-dark-mode] #urlbar {

@@ -1,11 +1,8 @@
 /*= Delete Cert ==============================================================*/
 @-moz-document url("chrome://pippki/content/deletecert.xhtml")
 {
-  :root {
-    --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
-  }
   #certlist {
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
     border-radius: 4px !important;
   }
 }
@@ -13,9 +10,6 @@
 /*= Cert Exeption Dialog =====================================================*/
 @-moz-document url("chrome://pippki/content/exceptionDialog.xhtml")
 {
-  :root {
-    --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
-  }
   #locationTextBox {
     appearance: none !important;
     border: 1px solid var(--in-content-box-border-color) !important;

@@ -82,7 +82,7 @@
     -moz-appearance: none !important;
     color: var(--in-content-table-header-color) !important;
     background: var(--in-content-table-header-background) !important;
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
     padding: 4px !important;
     border-spacing: 0;
 
@@ -94,7 +94,7 @@
     -moz-appearance: none !important;
     color: var(--in-content-text-color) !important;
     background-color: var(--in-content-table-background) !important;
-    border: 1px solid var(--in-content-border-color) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
   }
 
   treechildren::-moz-tree-row(odd) {
@@ -110,7 +110,7 @@
   }
 
   treechildren::-moz-tree-cell {
-    border-inline: 1px solid var(--in-content-border-color) !important;
+    border-inline: 1px solid var(--in-content-table-border-color) !important;
     border-spacing: 0 !important;
     padding: 4px !important;
     margin: 0 !important;
@@ -141,6 +141,6 @@
   #topBar,
   #imagecontainerbox,
   #permList {
-    border-color: var(--in-content-border-color) !important;
+    border-color: var(--in-content-table-border-color) !important;
   }
 }
