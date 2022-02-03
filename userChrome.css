@@ -3013,6 +3013,11 @@ menupopup > menu {
   padding-block: var(--menu-padding) !important;
 }
 
+#ContentSelectDropdown > menupopup > menucaption,
+#ContentSelectDropdown > menupopup > menuitem {
+  padding-block: 0 !important;
+}
+
 @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
   :root:not([uidensity="touch"]) .menu-text,
   :root:not([uidensity="touch"]) .menu-iconic-text {
