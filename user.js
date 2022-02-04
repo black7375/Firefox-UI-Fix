@@ -46,29 +46,29 @@ user_pref("userChrome.panel.proton", true); // Original, Proton
 
 // == Theme Default Settings ===================================================
 user_pref("userChrome.compatibility.theme", true);
-user_pref("userChrome.compatibility.os", true);
+user_pref("userChrome.compatibility.os",    true);
 
 user_pref("userChrome.theme.built_in_contrast", true);
-user_pref("userChrome.theme.system_default", true);
-user_pref("userChrome.theme.fully_color", true);
-user_pref("userChrome.theme.fully_dark", true);
-user_pref("userChrome.theme.proton_chrome", true);
+user_pref("userChrome.theme.system_default",    true);
+user_pref("userChrome.theme.fully_color",       true);
+user_pref("userChrome.theme.fully_dark",        true);
+user_pref("userChrome.theme.proton_chrome",     true);
 
-user_pref("userChrome.decoration.cursor", true);
-user_pref("userChrome.decoration.field_border", true);
+user_pref("userChrome.decoration.cursor",         true);
+user_pref("userChrome.decoration.field_border",   true);
 user_pref("userChrome.decoration.download_panel", true);
-user_pref("userChrome.decoration.animate", true);
+user_pref("userChrome.decoration.animate",        true);
 
-user_pref("userChrome.padding.tabbarWidth", true);
+user_pref("userChrome.padding.tabbarWidth",  true);
 user_pref("userChrome.padding.tabbarHeight", true);
-user_pref("userChrome.padding.navbarWidth", true);
-user_pref("userChrome.padding.urlbar", true);
-user_pref("userChrome.padding.bookmarkbar", true);
-user_pref("userChrome.padding.infobar", true);
-user_pref("userChrome.padding.menu", true);
+user_pref("userChrome.padding.navbarWidth",  true);
+user_pref("userChrome.padding.urlbar",       true);
+user_pref("userChrome.padding.bookmarkbar",  true);
+user_pref("userChrome.padding.infobar",      true);
+user_pref("userChrome.padding.menu",         true);
 user_pref("userChrome.padding.bookmarkMenu", true);
-user_pref("userChrome.padding.globalMenu", true);
-user_pref("userChrome.padding.popupPanel", true);
+user_pref("userChrome.padding.globalMenu",   true);
+user_pref("userChrome.padding.popupPanel",   true);
 
 user_pref("userChrome.tab.multi_selected", true);
 
