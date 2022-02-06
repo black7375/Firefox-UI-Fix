@@ -13,6 +13,9 @@ assignees: ''
 **The solution I'd like**
 <!-- A clear and concise description of what you want to happen. -->
 
+**Screenshots or video**
+<!-- It is helpful to attach screenshots or video similar to the desired features. -->
+
 **Alternatives I've considered**
 <!-- A clear and concise description of any alternative solutions or features you've considered. -->
 
