@@ -357,7 +357,10 @@
     height: 12px !important;
   }
 
-  dropmarker::part(icon) {
+  /* dropmarker::part(icon)
+   * ::part is not apply chrome
+   */
+  dropmarker[exportparts="icon: dropmarker-icon"] {
     list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
     -moz-context-properties: fill !important;
     fill: currentColor !important;

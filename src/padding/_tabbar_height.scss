@@ -1,9 +1,5 @@
 /* Toolbar Height */
 @include NotOption($tabPhotonLikePadding) {
-  :root:not([uidensity="touch"]) #TabsToolbar {
-    --toolbarbutton-inner-padding: 9px; /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
-  }
-
   :root:not([uidensity]) #TabsToolbar {
     --tab-min-height: 36px !important; /* 38px -> 36px */
   }
@@ -13,23 +9,15 @@
 }
 
 @include Option($tabPhotonLikePadding) {
-  #TabsToolbar {
-    --tab-min-height: 33px !important;
-    --toolbarbutton-inner-padding: unset !important;
+  tabbrowser-arrowscrollbox {
+    --tabbar-max-height: 33px;
+    max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
   }
-  :root[uidensity="compact"] #TabsToolbar {
-    --tab-min-height: 29px !important;
+  :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+    --tabbar-max-height: 29px;
   }
-  :root[uidensity="touch"] #TabsToolbar {
-    --tab-min-height: 41px !important;
-  }
-  #tabbrowser-tabs,
-  #tabbrowser-arrowscrollbox,
-  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
-    min-height: var(--tab-min-height) !important;
-  }
-  #tabbrowser-arrowscrollbox {
-    height: var(--tab-min-height);
+  :root[uidensity="touch"] #tabbrowser-arrowscrollbox {
+    --tabbar-max-height: 45px;
   }
 
   /* Top Margin */
@@ -40,17 +28,14 @@
 }
 
 @include Option($tabLeptonLikePadding) {
-  .toolbar-items,
-  .tabbrowser-tab {
+  #tabbrowser-arrowscrollbox {
     --tabbar-max-height: 38px;
     max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
   }
-  :root[uidensity="compact"] .toolbar-items,
-  :root[uidensity="compact"] .tabbrowser-tab {
-    --tabbar-max-height: 36px;
+  :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+    --tabbar-max-height: 32px;
   }
-  :root[uidensity="touch"] .toolbar-items,
-  :root[uidensity="touch"] .tabbrowser-tab {
+  :root[uidensity="touch"] #tabbrowser-arrowscrollbox {
     --tabbar-max-height: 45px;
   }
 }

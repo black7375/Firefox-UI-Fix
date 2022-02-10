@@ -13,6 +13,11 @@ menupopup > menu {
   padding-block: var(--menu-padding) !important;
 }
 
+#ContentSelectDropdown > menupopup > menucaption,
+#ContentSelectDropdown > menupopup > menuitem {
+  padding-block: 0 !important;
+}
+
 @include OS($mac) {
   :root:not([uidensity="touch"]) .menu-text,
   :root:not([uidensity="touch"]) .menu-iconic-text {
