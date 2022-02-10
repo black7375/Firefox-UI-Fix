@@ -7,44 +7,35 @@
     --tab-min-height: 29px !important; /* 36px -> 29px */
   }
 }
-
-@include Option($tabPhotonLikePadding) {
-  tabbrowser-arrowscrollbox {
-    --tabbar-max-height: 33px;
-    max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
-  }
-  :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
-    --tabbar-max-height: 29px;
+@include NotOption($tabProtonLikePadding) {
+  #tabbrowser-arrowscrollbox {
+    max-height: calc(var(--tabbar-max-height, 38px) + var(--space-above-tabbar));
   }
   :root[uidensity="touch"] #tabbrowser-arrowscrollbox {
     --tabbar-max-height: 45px;
-  }
-
-  /* Top Margin */
-  .tab-background,
-  .tab-content {
-    margin-top: 0 !important;
   }
 }
 
 @include Option($tabLeptonLikePadding) {
   #tabbrowser-arrowscrollbox {
     --tabbar-max-height: 38px;
-    max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
   }
   :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
     --tabbar-max-height: 32px;
   }
-  :root[uidensity="touch"] #tabbrowser-arrowscrollbox {
-    --tabbar-max-height: 45px;
-  }
 }
-@include Option($tabProtonLikePadding) {
-  :root:not([uidensity]) #TabsToolbar {
-    --tab-min-height: 36px !important; /* 38px -> 36px */
+@include Option($tabPhotonLikePadding) {
+  #tabbrowser-arrowscrollbox {
+    --tabbar-max-height: 33px;
   }
-  :root[uidensity="compact"] #TabsToolbar {
-    --tab-min-height: 29px !important; /* 36px -> 29px */
+  :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+    --tabbar-max-height: 29px;
+  }
+
+  /* Top Margin */
+  .tab-background,
+  .tab-content {
+    margin-top: 0 !important;
   }
 }
 
