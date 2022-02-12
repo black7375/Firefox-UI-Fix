@@ -7,7 +7,8 @@
 :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
   --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
 }
-@media (-moz-os-version: windows-win10) {
+@media (-moz-os-version: windows-win10), /* Legacy - v99 */
+       (-moz-platform: windows-win10) {
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
     background-color: var(--lwt-accent-color) !important;
@@ -110,13 +111,15 @@ menu[disabled="true"] {
 
 /** OS - Compatibility ********************************************************/
 /*= Windows 7, 8 - Tab Bar Background *****************************************/
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
   /* Header Color */
   :root:not([lwtheme-image]):-moz-lwtheme {
     background-color: var(--lwt-accent-color) !important;
   }
 }
-@media (-moz-os-version: windows-win7) {
+@media (-moz-os-version: windows-win7), /* Legacy - v99 */
+       (-moz-platform: windows-win7) {
   #TabsToolbar:-moz-lwtheme {
     color: var(--lwt-text-color) !important;
   }
@@ -127,14 +130,16 @@ menu[disabled="true"] {
     background-image: unset !important;
   }
 }
-@media (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win8) {
   #navigator-toolbox:-moz-lwtheme {
     color: var(--lwt-text-color) !important;
   }
 }
 
 /*= Windows 7, 8 - Menu Active Color =========================================*/
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
   menupopup > menu,
   menupopup > menuitem,
   #context-navigation > menuitem {
@@ -171,7 +176,8 @@ menu[disabled="true"] {
   }
 }
 
-@media (-moz-os-version: windows-win7) {
+@media (-moz-os-version: windows-win7), /* Legacy - v99 */
+       (-moz-platform: windows-win7) {
   menu[_moz-menuactive="true"],
   menuitem[_moz-menuactive="true"] {
     background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
@@ -195,7 +201,8 @@ menu[disabled="true"] {
     color: unset !important; /* Original: black */
   }
 }
-@media (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win8) {
   menu[_moz-menuactive="true"],
   menuitem[_moz-menuactive="true"] {
     background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
@@ -277,7 +284,8 @@ menu[disabled="true"] {
 }
 
 /*= Windows7 - Aero Based Theme ==============================================*/
-@media (-moz-os-version: windows-win7) {
+@media (-moz-os-version: windows-win7), /* Legacy - v99 */
+       (-moz-platform: windows-win7) {
   #TabsToolbar:not(:-moz-lwtheme) {
     --background-color: rgb(229, 229, 235);
   }
@@ -308,7 +316,8 @@ menu[disabled="true"] {
 }
 
 /*= Windows10 - UWP like color ===============================================*/
-@media (-moz-os-version: windows-win10) {
+@media (-moz-os-version: windows-win10), /* Legacy - v99 */
+       (-moz-platform: windows-win10) {
   :root:not(:-moz-lwtheme) {
     --win-text-color: rgba(0, 0, 0);
     --win-bgcolor: rgb(204, 204, 204);
@@ -1821,7 +1830,8 @@ browser[type="content"] > html {
   }
 
   /*- Each OS ----------------------------------------------------------------*/
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), /* Legacy - v99 */
+         (-moz-platform: windows-win7), (-moz-platform: windows-win8), (-moz-platform: windows-win10) {
     xul|checkbox,
     xul|radio {
       padding-inline-start: 0 !important;
@@ -3040,7 +3050,8 @@ menupopup > menu {
   }
 }
 
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
   /* Remove border */
   menupopup > menuitem,
   menupopup > menu {
@@ -4550,7 +4561,8 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 /* Padding - Windows */
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), /* Legacy - v99 */
+       (-moz-platform: windows-win7), (-moz-platform: windows-win8), (-moz-platform: windows-win10) {
   /* Checkbox */
   :root {
     --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
@@ -4563,17 +4575,20 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   }
 }
 
-@media (-moz-os-version: windows-win7) {
+@media (-moz-os-version: windows-win7), /* Legacy - v99 */
+       (-moz-platform: windows-win7) {
   :root {
     --context-menu-background-padding-default: 2px;
   }
 }
-@media (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win8) {
   :root {
     --context-menu-background-padding-default: 3px;
   }
 }
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
   :not(menu, #ContentSelectDropdown, #context-navigation)
     > menupopup
     > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
@@ -4592,7 +4607,8 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
     padding-inline-start: 0 !important;
   }
 }
-@media (-moz-os-version: windows-win10) {
+@media (-moz-os-version: windows-win10), /* Legacy - v99 */
+       (-moz-platform: windows-win10) {
   :root {
     --context-menu-background-padding: 1em;
     --context-menu-text-padding: 24px; /* 16px + 8px */
@@ -4678,7 +4694,8 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 }
 
 /* Windows 7, 8 */
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), /* Legacy - v99 */
+       (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
   /* Global Menu */
   menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
     padding-inline-start: 0 !important;
@@ -4707,7 +4724,8 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 }
 
 /* Windows */
-@media (-moz-os-version: windows-win10) {
+@media (-moz-os-version: windows-win10), /* Legacy - v99 */
+       (-moz-platform: windows-win10) {
   /* Bookmark Popup - None icon menu */
   menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
   menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
