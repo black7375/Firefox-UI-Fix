@@ -3,26 +3,26 @@
 
 /** Default Thme - Contrast ***************************************************/
 /*= Lightmode - Color darker =================================================*/
-:root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]), /* Legacy */
+:root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]), /* Legacy - v96 */
 :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
   --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
 }
 @media (-moz-os-version: windows-win10), /* Legacy - v99 */
        (-moz-platform: windows-win10) {
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy - v96 */
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
     background-color: var(--lwt-accent-color) !important;
   }
 }
 @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy */
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,  /* Legacy - v96 */
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
     background-color: var(--lwt-accent-color) !important;
   }
 }
 
 /*= Darkmode - Color lighter =================================================*/
-:root[lwtheme-mozlightdark][lwthemetextcolor="bright"], /* Legacy */
+:root[lwtheme-mozlightdark][lwthemetextcolor="bright"], /* Legacy - v96 */
 :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
   --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
 }
@@ -573,7 +573,7 @@ menu[disabled="true"] {
 
   /*- Others -----------------------------------------------------------------*/
   /* For overwrite */
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme), /* Legacy */
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme), /* Legacy - lwtheme-mozlightdark at v96 */
   :root:not(:-moz-lwtheme) {
     /* Light Theme */
     --lwt-accent-color: var(--win-bgcolor) !important;
@@ -589,7 +589,7 @@ menu[disabled="true"] {
     > .tabbrowser-tab
     > .tab-stack
     > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme),
-  :root[lwtheme-mozlightdark] /* Legacy */
+  :root[lwtheme-mozlightdark] /* Legacy - lwtheme-mozlightdark at v96 */
     #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
@@ -862,7 +862,7 @@ menu[disabled="true"] {
   }
 
   /* Hard Coded */
-  :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode] /* Legacy */
+  :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode] /* Legacy - lwtheme-mozlightdark at v96 */
     #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
@@ -1098,8 +1098,8 @@ html#main-window menupopup {
 }
 
 /* Default theme color preservation */
-:root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]), /* Legacy */
-:root[lwtheme-mozlightdark] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup), /* Legacy */
+:root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]), /* Legacy - lwtheme-mozlightdark at v96 */
+:root[lwtheme-mozlightdark] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup), /* Legacy - lwtheme-mozlightdark at v96 */
 :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
 :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) {
   --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
@@ -3271,7 +3271,7 @@ menupopup > menu {
 
 /* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
    around the tab to help themes that are dependent on tab_line to show the selected tab. */
-:root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
+:root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"]) /* Legacy - lwtheme-mozlightdark at v96 */
   #TabsToolbar:not([brighttext])
   #tabbrowser-tabs:not([noshadowfortests])
   .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
@@ -3282,7 +3282,7 @@ menupopup > menu {
     0 0 4px rgba(128, 128, 142, 0.5) !important;
 }
 
-:root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+:root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) /* Legacy - lwtheme-mozlightdark at v96 */
   #TabsToolbar[brighttext]
   #tabbrowser-tabs:not([noshadowfortests])
   .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
@@ -3331,12 +3331,12 @@ menupopup > menu {
   background-position-y: bottom;
 }
 
-:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) /* Legacy - lwtheme-mozlightdark at v96 */
   #TabsToolbar[brighttext]
   #tabbrowser-tabs:not([noshadowfortests])
   tab[visuallyselected]
   > stack:-moz-lwtheme::before,
-:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) /* Legacy - lwtheme-mozlightdark at v96 */
   #TabsToolbar[brighttext]
   #tabbrowser-tabs:not([noshadowfortests])
   tab[visuallyselected]
