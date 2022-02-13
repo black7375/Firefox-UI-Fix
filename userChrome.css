@@ -2865,16 +2865,19 @@ menuitem.openintabs-menuitem,
 }
 
 /* Toolbar Height */
-#tabbrowser-arrowscrollbox {
-  --tabbar-max-height: 33px;
-  max-height: calc(var(--tabbar-max-height) + var(--space-above-tabbar));
+#TabsToolbar {
+  --tab-min-height: 33px !important;
+  --toolbarbutton-inner-padding: unset !important;
+}
+:root[uidensity="compact"] #TabsToolbar {
+  --tab-min-height: 29px !important;
+}
+:root[uidensity="touch"] #TabsToolbar {
+  --tab-min-height: 41px !important;
 }
 
-:root[uidensity="compact"] #tabbrowser-arrowscrollbox {
-  --tabbar-max-height: 29px;
-}
-:root[uidensity="touch"] #tabbrowser-arrowscrollbox {
-  --tabbar-max-height: 45px;
+#tabbrowser-arrowscrollbox {
+  max-height: calc(var(--tab-min-height) + var(--space-above-tabbar));
 }
 
 /* Top Margin */
