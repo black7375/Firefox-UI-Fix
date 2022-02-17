@@ -2866,18 +2866,26 @@ menuitem.openintabs-menuitem,
 
 /* Toolbar Height */
 #TabsToolbar {
-  --tab-min-height: 33px !important;
-  --toolbarbutton-inner-padding: unset !important;
+  --tab-min-height: 33px;
+  --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important; /* Prevent overflow pinned tab bottom margin */
 }
 :root[uidensity="compact"] #TabsToolbar {
-  --tab-min-height: 29px !important;
+  --tab-min-height: 29px;
 }
 :root[uidensity="touch"] #TabsToolbar {
-  --tab-min-height: 41px !important;
+  --tab-min-height: 41px;
 }
 
-#tabbrowser-arrowscrollbox {
-  max-height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+#tabbrowser-arrowscrollbox,
+#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-background {
+  max-height: var(--tab-min-height) !important; /* Force apply height */
+}
+#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-background {
+  min-height: unset !important; /* Prevent overflow pinned tab hover background overlap */
+}
+#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
+  margin-top: auto !important; /* Fix overflow pinned tab icon to vertical center */
 }
 
 /* Top Margin */
