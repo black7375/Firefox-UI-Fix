@@ -2885,15 +2885,6 @@ menuitem.openintabs-menuitem,
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-background {
   max-height: var(--tab-min-height) !important; /* Force apply height */
 }
-#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-background {
-  min-height: unset !important; /* Prevent overflow pinned tab hover background overlap */
-}
-#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
-  margin-top: auto !important; /* Fix overflow pinned tab icon to vertical center */
-}
-:root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-icon-stack {
-  margin-top: 4px; /* Also fix for overflow pinned tab icon to vertical center */
-}
 
 /* Scroll Button - Size Fix */
 :root #tabbrowser-arrowscrollbox {
@@ -3204,6 +3195,7 @@ menupopup > menu {
 }
 
 /* Remove line at Toolbar's top */
+#nav-bar,
 #tabbrowser-tabs {
   z-index: 1 !important;
 }
