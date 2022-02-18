@@ -2781,6 +2781,11 @@ menuitem.openintabs-menuitem,
   --arrowpanel-menuitem-padding: 8px !important; /* Original: 8px */
 }
 
+.tab-content[pinned] {
+  --inline-tab-padding: 8px; /* Prevent overflow pinned tab's divide line not aligned */
+  padding-inline: var(--inline-tab-padding) !important;
+}
+
 /*= Tab Bar - Reduce Width, Show more tabs ===================================*/
 /* for First Tab Space */
 :root {
