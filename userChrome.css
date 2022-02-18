@@ -2882,7 +2882,8 @@ menuitem.openintabs-menuitem,
 
 #tabbrowser-arrowscrollbox,
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
-#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-background {
+#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
+#tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
   max-height: var(--tab-min-height) !important; /* Force apply height */
 }
 
