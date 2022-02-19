@@ -2695,6 +2695,32 @@ menuitem.openintabs-menuitem,
     transition-delay: 0s, 0s, 0.25s !important;
   }
 
+  /*- Full Screen ------------------------------------------------------------*/
+  #navigator-toolbox {
+    /* Full screen out */
+    transition: margin-top 1s ease;
+  }
+  #navigator-toolbox[inFullscreen="true"] {
+    /* Full screen enter */
+    animation-duration: 1s;
+    animation-name: fullscreen;
+    animation-timing-function: ease;
+
+    /* Full screen navbar not hover */
+    transition: margin-top 0.3s var(--animation-easing-function) 50ms;
+  }
+  #navigator-toolbox[inFullscreen="true"]:hover {
+    transition-duration: 1.5s;
+    transition-delay: 0.1s;
+  }
+
+  @keyframes fullscreen {
+    from {
+      margin-top: 0;
+    }
+    /* Dont' use `to`: Depending on density */
+  }
+
   /*- Expand - Synced Tabs ---------------------------------------------------*/
   @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
   {
@@ -2891,11 +2917,14 @@ menuitem.openintabs-menuitem,
   --tab-min-height: 41px;
 }
 
-#tabbrowser-arrowscrollbox,
+:root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
   max-height: var(--tab-min-height) !important; /* Force apply height */
+}
+:root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+  height: var(--tab-min-height) !important;
 }
 
 /* Top Margin */
