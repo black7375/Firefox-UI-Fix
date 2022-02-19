@@ -2885,11 +2885,14 @@ menuitem.openintabs-menuitem,
   --tab-min-height: 41px;
 }
 
-#tabbrowser-arrowscrollbox,
+:root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
 #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
   max-height: var(--tab-min-height) !important; /* Force apply height */
+}
+:root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+  height: var(--tab-min-height) !important;
 }
 
 /* Scroll Button - Size Fix */
