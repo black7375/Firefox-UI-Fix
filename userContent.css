@@ -1570,7 +1570,8 @@
   }
 
   /* Padding - Windows */
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), /* Legacy - v99 */
+         (-moz-platform: windows-win7), (-moz-platform: windows-win8), (-moz-platform: windows-win10) {
     /* Checkbox */
     :root {
       --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
@@ -1583,17 +1584,20 @@
     }
   }
 
-  @media (-moz-os-version: windows-win7) {
+  @media (-moz-os-version: windows-win7), /* Legacy - v99 */
+         (-moz-platform: windows-win7) {
     :root {
       --context-menu-background-padding-default: 2px;
     }
   }
-  @media (-moz-os-version: windows-win8) {
+  @media (-moz-os-version: windows-win8), /* Legacy - v99 */
+         (-moz-platform: windows-win8) {
     :root {
       --context-menu-background-padding-default: 3px;
     }
   }
-  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8) {
+  @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), /* Legacy - v99 */
+         (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
     #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
@@ -1602,7 +1606,8 @@
       padding-inline-start: 0 !important;
     }
   }
-  @media (-moz-os-version: windows-win10) {
+  @media (-moz-os-version: windows-win10), /* Legacy - v99 */
+         (-moz-platform: windows-win10) {
     :root {
       --context-menu-background-padding: 1em;
       --context-menu-text-padding: 24px; /* 16px + 8px */

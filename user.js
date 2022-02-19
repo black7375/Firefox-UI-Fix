@@ -2,7 +2,7 @@
 // userchrome.css usercontent.css activate
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
-// Proton Enabled #127
+// Proton Enabled #127 || Removed at 97 #328 (Maintained for compatibility with ESR)
 user_pref("browser.proton.enabled", true);
 
 // Proton Tooltip
