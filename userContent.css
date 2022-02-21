@@ -1,6 +1,33 @@
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
 
+/** Video player ************************************************************/
+/* Size */
+#controlsContainer {
+  --button-size: 32px !important; /* Original: 30px */
+  --controlBar-height: 40px; /* Original: 40px, Replace to this value */
+}
+#controlsContainer .touch {
+  --button-size: 48px !important; /* Original: 40px */
+  --controlBar-height: 52px; /* Original: 52px */
+}
+.videocontrols[inDOMFullscreen] #controlsContainer {
+  --button-size: 64px !important; /* Original: 30px */
+  --track-size: 6px !important; /* Original: 5px, Touch: 7px */
+  --thumb-size: 15px !important; /* Original: 13px, Touch: 16px */
+  --controlBar-height: 64px; /* Original: 40px */
+}
+.videocontrols[inDOMFullscreen] #controlsContainer .touch {
+  --button-size: 72px !important; /* Original: 40px */
+  --controlBar-height: 64px; /* Original: 52px */
+}
+#controlsContainer .controlBar {
+  height: var(--controlBar-height) !important; /* Original: 40px */
+}
+.videocontrols[inDOMFullscreen] #controlsContainer .controlBar {
+  padding-bottom: 8px !important;
+}
+
 @-moz-document url("about:home"), url("about:newtab") {
   /** Activity Stream - Search Focus Border: like URL *************************/
   /* At DarkMode, Color */
