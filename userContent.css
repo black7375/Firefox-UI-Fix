@@ -2,7 +2,15 @@
 @namespace html url("http://www.w3.org/1999/xhtml");
 
 /** Video player ************************************************************/
-/* Size */
+/* Control Bar UI */
+#controlsContainer .controlBar {
+  background: linear-gradient(transparent, rgba(26,26,26,.85)) !important;
+}
+#controlsContainer .duration {
+  color: #eee !important; /* Original: #929292 */
+}
+
+/* Control Bar Size */
 #controlsContainer {
   --button-size: 32px !important; /* Original: 30px */
   --controlBar-height: 40px; /* Original: 40px, Replace to this value */
