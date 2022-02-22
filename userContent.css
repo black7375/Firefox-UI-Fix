@@ -21,6 +21,11 @@ video {
   color: #eee !important; /* Original: #929292 */
 }
 
+#controlsContainer .muteButton[noAudio] {
+  /* Remove volume button at noAudio */
+  display: none !important;
+}
+
 /* Control Bar Size */
 #controlsContainer {
   --button-size: 32px !important; /* Original: 30px */
