@@ -3,8 +3,19 @@
 
 /** Video player ************************************************************/
 /* Control Bar UI */
+audio {
+  --media-background: rgba(26,26,26,.8); /* Like Original */
+}
+video {
+  --media-background: linear-gradient(transparent, rgba(26,26,26,.85));
+}
+@media (prefers-contrast) {
+  video {
+    --media-background: rgba(26,26,26,.8); /* Like Original */
+  }
+}
 #controlsContainer .controlBar {
-  background: linear-gradient(transparent, rgba(26,26,26,.85)) !important;
+  background: var(--media-background) !important;
 }
 #controlsContainer .duration {
   color: #eee !important; /* Original: #929292 */
