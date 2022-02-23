@@ -1,7 +1,7 @@
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
 
-/** Video player ************************************************************/
+/** Video player **************************************************************/
 /* Control Bar UI */
 audio {
   --media-background: rgba(26,26,26,.8); /* Like Original */
@@ -50,6 +50,19 @@ video {
 }
 .videocontrols[inDOMFullscreen] #controlsContainer .controlBar {
   padding-bottom: 8px !important;
+}
+
+/* Click to play UI */
+#controlsContainer .clickToPlay {
+  cursor: pointer;
+  opacity: 0.65 !important;
+}
+#controlsContainer .controlsSpacerStack:hover > .clickToPlay {
+  opacity: 0.85 !important;
+}
+#controlsContainer .controlsSpacerStack:hover > .clickToPlay:hover {
+  opacity: 1 !important;
+  fill: #48a0f7 !important; /* color as .scrubber */
 }
 
 @-moz-document url("about:home"), url("about:newtab") {
