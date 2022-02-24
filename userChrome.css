@@ -2620,10 +2620,6 @@ menuitem.openintabs-menuitem,
       margin-inline-start 0.2s var(--animation-easing-function) !important;
   }
 
-  #tabbrowser-tabs:not([movingtab]) .tab-content {
-    transition: padding-inline 0.2s var(--animation-easing-function),
-      /* Unloaded Tab */ opacity 0.5s var(--animation-easing-function) !important;
-  }
   #tabbrowser-tabs:not([movingtab]) .tab-content::before,
   #tabbrowser-tabs:not([movingtab]) .tab-content::after {
     transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
