@@ -3376,15 +3376,19 @@ menupopup > menu {
 }
 
 /** Unselected Tab - Divide line **********************************************/
+.tabbrowser-tab[first-visible-tab="true"] .tab-background::before,
+.tab-background::after {
+  content: "";
+}
+
+.tab-background::before,
 .tab-background::after {
   /* Box Model */
-  content: "";
   display: block;
   position: absolute;
 
   /* Position */
   top: 50%;
-  right: 0;
   transform:  translateY(calc(-50% + 1px)) !important;
 
   /* Bar shape */
@@ -3395,7 +3399,11 @@ menupopup > menu {
   opacity: 0.3;
   background-color: var(--lwt-background-tab-separator-color, currentColor) !important;
 }
+.tab-background::after {
+  right: 0;
+}
 
+.tabbrowser-tab[visuallyselected] .tab-background::before,
 .tabbrowser-tab[visuallyselected] .tab-background::after,
 .tabbrowser-tab[beforeselected-visible] .tab-background::after {
   opacity: 0;
@@ -3403,6 +3411,7 @@ menupopup > menu {
 
 /* Animate */
 @media (prefers-reduced-motion: no-preference) {
+  .tab-background::before,
   .tab-background::after {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
