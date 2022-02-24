@@ -1209,6 +1209,9 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
   background-color: var(--panel-bgcolor) !important; /* Original: Field */
   color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FiledText */
 }
+.autocomplete-richlistitem:hover {
+  background-color: var(--arrowpanel-dimmed) !important;
+}
 
 #PopupAutoComplete > richlistbox > richlistitem[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
 #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,
@@ -2611,7 +2614,6 @@ menuitem.openintabs-menuitem,
     /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
     transition: -moz-box-flex 0.2s var(--animation-easing-function),
       margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
-    max-width: var(--tab-max-width, 240px);
   }
   #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
     transition: -moz-box-flex 0.2s var(--animation-easing-function),
