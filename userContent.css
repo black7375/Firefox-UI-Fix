@@ -4,13 +4,32 @@
 /** Video player **************************************************************/
 /* Control Bar UI */
 audio {
+  --duration-color: #929292; /* Like Original */
   --media-background: rgba(26,26,26,.8); /* Like Original */
+
+  border-radius: 8px;
+  --box-shadow1: rgba(14,13,26,.12);
+  --box-shadow2: rgba(7,48,114,.12);
+  --box-shadow3: rgba(34,0,51,.04);
+  box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2),
+              0 8px 12px  1px var(--box-shadow3);
+  /* Or: 0 2px 15px rgba(0,0,0,.1); */
 }
 video {
+  --duration-color: #eee;
   --media-background: linear-gradient(transparent, rgba(26,26,26,.85));
+}
+
+@media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  audio {
+    --box-shadow1: rgba(249, 249, 250, 0.12);
+    --box-shadow2: rgba(91, 91, 102, 0.12);
+    --box-shadow3: rgba(82, 82, 94, 0.04);
+  }
 }
 @media (prefers-contrast) {
   video {
+    --duration-color: #929292; /* Like Original */
     --media-background: rgba(26,26,26,.8); /* Like Original */
   }
 }
@@ -18,7 +37,7 @@ video {
   background: var(--media-background) !important;
 }
 #controlsContainer .duration {
-  color: #eee !important; /* Original: #929292 */
+  color: var(--duration-color) !important; /* Original: #929292 */
 }
 
 #controlsContainer .muteButton[noAudio] {
