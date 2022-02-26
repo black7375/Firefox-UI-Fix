@@ -39,6 +39,12 @@ video {
 #controlsContainer .duration {
   color: var(--duration-color) !important; /* Original: #929292 */
 }
+#controlsContainer .fullscreenButton {
+  background-image: url("./icons/enter-fullscreen.svg") !important;
+}
+#controlsContainer .fullscreenButton[fullscreened] {
+  background-image: url("./icons/exit-fullscreen.svg") !important;
+}
 
 #controlsContainer .muteButton[noAudio] {
   /* Remove volume button at noAudio */
