@@ -4542,7 +4542,8 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage {
+#blockedPopupDontShowMessage,
+menuitem.privatetab-icon /* Waterfox */ {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
@@ -4579,7 +4580,8 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage {
+#blockedPopupDontShowMessage,
+menuitem.privatetab-icon /* Waterfox */ {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
@@ -4640,7 +4642,8 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage {
+  #blockedPopupDontShowMessage,
+  menuitem.privatetab-icon /* Waterfox */ {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
   }
@@ -4666,7 +4669,8 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage {
+  #blockedPopupDontShowMessage,
+  menuitem.privatetab-icon /* Waterfox */ {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
   }
@@ -5877,4 +5881,16 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 
 #browserImport {
   --menuitem-image: url("chrome://browser/skin/import.svg");
+}
+
+/*= Waterfox =================================================================*/
+#appMenu-restart-button {
+  list-style-image: url("./icons/refresh-cw.svg") !important;
+}
+#menu_FileRestartItem {
+  --menuitem-image: url("./icons/refresh-cw.svg");
+}
+
+menuitem.privatetab-icon {
+  --menuitem-image: url("./icons/priavate-favicon.svg");
 }
