@@ -2696,6 +2696,7 @@ menuitem.openintabs-menuitem,
   #navigator-toolbox {
     /* Full screen out */
     transition: margin-top 1s ease;
+    transform-origin: top;
   }
   #navigator-toolbox[inFullscreen="true"] {
     /* Full screen enter */
@@ -3846,6 +3847,22 @@ tab[visuallyselected] > stack::after {
 /** Crashed Tab - Don't show Favicons *****************************************/
 .tab-icon-image[crashed] {
   display: none !important;
+}
+
+/** Fullscreen - Overlap toolbar **********************************************/
+:root[sizemode="fullscreen"] #navigator-toolbox {
+  position: fixed !important; /* Needed for content to take up entire height */
+  display: block !important; /* Needed for content to take up entire height */
+  z-index: 1000 !important; /* Puts the UI above the content */
+}
+
+:root[sizemode="fullscreen"] :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
+  width: 100%; /* Makes the UI take up the entire width */
+}
+
+:root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
+:root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
+  visibility: unset !important; /* Makes the bookmarks toolbar visible if enabled */
 }
 
 /** Library - Icons Replace ***************************************************/
