@@ -14,12 +14,23 @@ $win10:  "win10";
 $bigsur: "bigsur";
 
 //== Privated Variables ========================================================
-$_win-template: "-moz-os-version: windows-";
+$_win-template: "-moz-os-version: windows-" "-moz-platform: windows-";
 $_win-media: (
-  #{$win7}: $_win-template + "win7",
-  #{$win8}: $_win-template + "win8",
-  #{$win10}: $_win-template + "win10",
+  #{$win7}:  "win7",
+  #{$win8}:  "win8",
+  #{$win10}: "win10",
 );
+@each $_win-key in map.keys($_win-media) {
+  $_win-value: map.get($_win-media, $_win-key);
+
+  $result-template: ();
+  @for $i from 1 through list.length($_win-template) {
+    $result-value: list.nth($_win-template, $i) + $_win-value;
+    $result-template: list.append($result-template, $result-value);
+  }
+  $_win-media: map.set($_win-media, $_win-key, $result-template);
+}
+
 $_others-media: (
   #{$linux}: "-moz-gtk-csd-available",
   #{$bigsur}: "-moz-mac-big-sur-theme: 0",
@@ -39,7 +50,7 @@ $_os-media: map.merge(
   @each $osName in $osNames {
     $osMedia: map.get($_os-media, $osName);
     @if $osMedia != null {
-      $osMedias: list.append($osMedias, $osMedia);
+      $osMedias: list.join($osMedias, $osMedia);
     }
   }
 

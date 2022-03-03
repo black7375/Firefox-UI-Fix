@@ -17,7 +17,7 @@
         }
       }
       @include expect {
-        @media (-moz-os-version: windows-win7) {
+        @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
           @include example;
         }
       }
@@ -32,7 +32,7 @@
         }
       }
       @include expect {
-        @media (-moz-os-version: windows-win8) {
+        @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
           @include example;
         }
       }
@@ -47,7 +47,7 @@
         }
       }
       @include expect {
-        @media (-moz-os-version: windows-win10) {
+        @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
           @include example;
         }
       }
@@ -107,7 +107,7 @@
         }
       }
       @include expect {
-        @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+        @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
           @include example;
         }
       }
@@ -122,7 +122,7 @@
         }
       }
       @include expect {
-        @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available) {
+        @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10), (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available) {
           @include example;
         }
         @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -140,7 +140,7 @@
         }
       }
       @include expect {
-        @media (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available), (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10) {
+        @media (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available), (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
           @include example;
         }
         @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {

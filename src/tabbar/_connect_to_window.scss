@@ -16,6 +16,6 @@
 #tabbrowser-tabs {
   z-index: 1 !important;
 }
-#tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected]) {
-  overflow: hidden;
+#TabsToolbar {
+  overflow: hidden;   /* Prevent toolbar area over */
 }
