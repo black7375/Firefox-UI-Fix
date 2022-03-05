@@ -60,6 +60,11 @@
   --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, rgb(0, 120, 215));
 }
 
+/*= First visible tab margin at maximized #332 ===============================*/
+:root[tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar {
+  margin-left: -1px;
+}
+
 /*= Disabled menu background color ===========================================*/
 menuitem[disabled="true"],
 menu[disabled="true"] {
@@ -1209,6 +1214,9 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
   border-radius: var(--panel-border-radius) !important;
   background-color: var(--panel-bgcolor) !important; /* Original: Field */
   color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FiledText */
+}
+.autocomplete-richlistitem:hover {
+  background-color: var(--arrowpanel-dimmed) !important;
 }
 
 #PopupAutoComplete > richlistbox > richlistitem[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
@@ -2612,17 +2620,12 @@ menuitem.openintabs-menuitem,
     /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
     transition: -moz-box-flex 0.2s var(--animation-easing-function),
       margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
-    max-width: var(--tab-max-width, 240px);
   }
   #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
     transition: -moz-box-flex 0.2s var(--animation-easing-function),
       margin-inline-start 0.2s var(--animation-easing-function) !important;
   }
 
-  #tabbrowser-tabs:not([movingtab]) .tab-content {
-    transition: padding-inline 0.2s var(--animation-easing-function),
-      /* Unloaded Tab */ opacity 0.5s var(--animation-easing-function) !important;
-  }
   #tabbrowser-tabs:not([movingtab]) .tab-content::before,
   #tabbrowser-tabs:not([movingtab]) .tab-content::after {
     transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
@@ -2699,6 +2702,7 @@ menuitem.openintabs-menuitem,
   #navigator-toolbox {
     /* Full screen out */
     transition: margin-top 1s ease;
+    transform-origin: top;
   }
   #navigator-toolbox[inFullscreen="true"] {
     /* Full screen enter */
@@ -3739,6 +3743,22 @@ menupopup > menu {
   display: none !important;
 }
 
+/** Fullscreen - Overlap toolbar **********************************************/
+:root[sizemode="fullscreen"] #navigator-toolbox {
+  position: fixed !important; /* Needed for content to take up entire height */
+  display: block !important; /* Needed for content to take up entire height */
+  z-index: 1000 !important; /* Puts the UI above the content */
+}
+
+:root[sizemode="fullscreen"] :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
+  width: 100%; /* Makes the UI take up the entire width */
+}
+
+:root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
+:root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
+  visibility: unset !important; /* Makes the bookmarks toolbar visible if enabled */
+}
+
 /** Library - Icons Replace ***************************************************/
 /*= Standard Folder - More Visible ===========================================*/
 /* on Toolbar and Menus */
@@ -4445,7 +4465,8 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage {
+#blockedPopupDontShowMessage,
+menuitem.privatetab-icon /* Waterfox */ {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
@@ -4482,7 +4503,8 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage {
+#blockedPopupDontShowMessage,
+menuitem.privatetab-icon /* Waterfox */ {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
@@ -4543,7 +4565,8 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage {
+  #blockedPopupDontShowMessage,
+  menuitem.privatetab-icon /* Waterfox */ {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
   }
@@ -4569,7 +4592,8 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage {
+  #blockedPopupDontShowMessage,
+  menuitem.privatetab-icon /* Waterfox */ {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
   }
@@ -5172,7 +5196,7 @@ menuitem.viewCustomizeToolbar {
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #placesContext_new\:folder {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  --menuitem-image: url("./icons/folder.svg");
 }
 #placesContext_new\:separator {
   --menuitem-image: url("./icons/vertical-line.svg");
@@ -5248,7 +5272,7 @@ menuitem.viewCustomizeToolbar {
   /* checkbox */
 }
 .downloadShowMenuItem {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  --menuitem-image: url("./icons/folder.svg");
 }
 
 #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
@@ -5258,8 +5282,11 @@ menuitem.viewCustomizeToolbar {
   --menuitem-image: url("./icons/link.svg");
 }
 
-.downloadRemoveFromHistoryMenuItem {
+.downloadDeleteFileMenuItem {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+.downloadRemoveFromHistoryMenuItem {
+  --menuitem-image: url("./icons/eraser.svg");
 }
 #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
 #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
@@ -5777,4 +5804,16 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 
 #browserImport {
   --menuitem-image: url("chrome://browser/skin/import.svg");
+}
+
+/*= Waterfox =================================================================*/
+#appMenu-restart-button {
+  list-style-image: url("./icons/refresh-cw.svg") !important;
+}
+#menu_FileRestartItem {
+  --menuitem-image: url("./icons/refresh-cw.svg");
+}
+
+menuitem.privatetab-icon {
+  --menuitem-image: url("./icons/priavate-favicon.svg");
 }
