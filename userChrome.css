@@ -4564,8 +4564,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage,
-menuitem.privatetab-icon /* Waterfox */ {
+#blockedPopupDontShowMessage {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
@@ -4602,8 +4601,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage,
-menuitem.privatetab-icon /* Waterfox */ {
+#blockedPopupDontShowMessage {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
@@ -4664,8 +4662,7 @@ menuitem.privatetab-icon /* Waterfox */ {
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage,
-  menuitem.privatetab-icon /* Waterfox */ {
+  #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
   }
@@ -4691,8 +4688,7 @@ menuitem.privatetab-icon /* Waterfox */ {
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage,
-  menuitem.privatetab-icon /* Waterfox */ {
+  #blockedPopupDontShowMessage {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
   }
@@ -5914,5 +5910,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 menuitem.privatetab-icon {
-  --menuitem-image: url("./icons/priavate-favicon.svg");
+  list-style-image: url("./icons/priavate-favicon.svg") !important;
+  fill: currentColor;
+  -moz-context-properties: fill;
 }
