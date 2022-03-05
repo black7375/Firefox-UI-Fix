@@ -60,6 +60,11 @@
   --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, rgb(0, 120, 215));
 }
 
+/*= First visible tab margin at maximized #332 ===============================*/
+:root[tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar {
+  margin-left: -1px;
+}
+
 /*= Disabled menu background color ===========================================*/
 menuitem[disabled="true"],
 menu[disabled="true"] {
