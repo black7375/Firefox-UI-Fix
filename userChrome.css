@@ -3242,6 +3242,11 @@ menupopup > menu {
   overflow: hidden;   /* Prevent toolbar area over */
 }
 
+/* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
+#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
+  z-index: 0 !important;
+}
+
 /** Selected Tab - Color like toolbar *****************************************/
 :root:not(:-moz-lwtheme) {
   /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
@@ -3335,11 +3340,6 @@ menupopup > menu {
   > .tab-background:-moz-lwtheme {
   box-shadow: 0 0 0 1px
     var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))) !important;
-}
-
-/* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
-#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
-  z-index: 0 !important;
 }
 
 /** Selected Tab - Bottom Rounded Corner **************************************/
