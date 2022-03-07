@@ -111,7 +111,8 @@ menu[disabled="true"] {
 
 /* Navbar Border */
 #navigator-toolbox:-moz-lwtheme {
-  --tabs-border-color: rgba(0, 0, 0, 0.3);
+  --tabs-border-color: rgba(0, 0, 0, 0.3); /* Legacy: v96 */
+  --lwt-tabs-border-color: rgba(0, 0, 0, 0.3);
 }
 
 /** OS - Compatibility ********************************************************/
@@ -3566,7 +3567,7 @@ tab[visuallyselected] > stack::after {
   mask-image: linear-gradient(to left, black 70%, transparent) !important;
 }
 
-/** Clipped tabs - Show close button at hover ****************&&***************/
+/** Clipped tabs - Show close button at hover *********************************/
 #tabbrowser-tabs[closebuttons="activetab"]
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab:not([pinned])
