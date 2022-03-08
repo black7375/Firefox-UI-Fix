@@ -5924,38 +5924,27 @@ menuitem.privatetab-icon {
 
 /* New Folder Button */
 #editBMPanel_newFolderButton {
-  -moz-appearance: none !important;
-  color: var(--in-content-button-text-color) !important;
-  background-color: var(--in-content-button-background) !important;
-  font: inherit;
-  font-size: 1em !important;
-  font-weight: 600 !important;
-  min-height: 32px !important;
-  border: 1px solid transparent !important; /* shows up in high-contrast mode */
-  border-radius: var(--in-content-button-border-radius) !important;
-  padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
+  appearance: none;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--button-bgcolor);
+  color: var(--button-color, inherit);
+  font-weight: 600;
+  min-width: 0;
+  padding: 8px 16px;
 
-  min-height: 32px !important;
-  /* Use the same margin of other elements for the alignment */
-  margin-inline: 4px !important;
-  min-width: 6.3em !important;
+  /* This button is deeper in the visual hierarchy than others (notably the
+     buttons at the bottom of the panel), so it should be slightly smaller. */
+  font-size: 90%;
+
+  /* This button needs to align with the tree above it. */
+  margin-inline-start: 4px;
 }
 
-#editBMPanel_newFolderButton > .button-box > .button-text {
-  margin: 0 !important;
+#editBMPanel_newFolderButton:hover {
+  background-color: var(--button-hover-bgcolor);
 }
 
-#editBMPanel_newFolderButton:-moz-focusring {
-  box-shadow: none !important;
-  outline: 2px solid var(--in-content-focus-outline-color) !important;
-  outline-offset: 2px !important;
-}
-#editBMPanel_newFolderButton:not([disabled="true"]):hover {
-  background-color: var(--in-content-button-background-hover) !important;
-  color: var(--in-content-button-text-color-hover) !important;
-  border-color: transparent !important;
-}
-
-#editBMPanel_newFolderButton:not([disabled="true"]):hover:active {
-  background-color: var(--in-content-button-background-active) !important;
+#editBMPanel_newFolderButton:hover:active {
+  background-color: var(--button-active-bgcolor);
 }
