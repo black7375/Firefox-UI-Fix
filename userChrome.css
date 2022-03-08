@@ -345,6 +345,7 @@ menu[disabled="true"] {
     --win-shorcut-text-color: #757575;
     --win-error-color: #b31616;
     --win-red-border-color: #ff4343;
+    --win-accent-forground-color: -moz-accent-color-foreground;
     --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
     --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
     --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
@@ -430,8 +431,6 @@ menu[disabled="true"] {
     --toolbar-field-background-color: var(--win-field-bgcolor) !important;
     --toolbar-field-focus-background-color: var(--win-field-bgcolor) !important;
     --tab-icon-overlay-stroke: var(--win-field-bgcolor) !important;
-    --button-primary-color: var(--win-field-bgcolor) !important;
-    --checkbox-checked-color: var(--win-field-bgcolor) !important;
 
     /* Hover Background Color, Button Color  */
     --menuitem-hover-background-color: var(--win-hover-bgcolor) !important;
@@ -465,6 +464,10 @@ menu[disabled="true"] {
     --checkbox-border-color: var(--win-button-border) !important;
     --input-border-color: var(--win-button-border) !important;
     --autocomplete-popup-separator-color: var(--win-button-border) !important;
+
+    /* Accent Forground Color */
+    --button-primary-color: var(--win-accent-forground-color) !important;
+    --checkbox-checked-color: var(--win-accent-forground-color) !important;
 
     /* Accent Color */
     --button-primary-bgcolor: var(--win-accent-color) !important;
