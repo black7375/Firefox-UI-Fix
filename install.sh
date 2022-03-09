@@ -340,12 +340,14 @@ firefoxProfileDirPaths=(
   "${HOME}/.librewolf"
   "${HOME}/.pulse-browser"
   "${HOME}/.firedragon"
+  "${HOME}/.local/opt/tor-browser/app/Browser/TorBrowser/Data/Browser"
   "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
   "${HOME}/snap/firefox/common/.mozilla/firefox"
   "${HOME}/Library/Application Support/Firefox"
   "${HOME}/Library/Application Support/Waterfox"
   "${HOME}/Library/Application Support/libreWolf"
   "${HOME}/Library/Application Support/pulse-browser"
+  "${HOME}/Library/Application Support/TorBrowser/Browser"
 )
 
 check_profile_dir() {
