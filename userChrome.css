@@ -5951,3 +5951,24 @@ menuitem.privatetab-icon {
 #editBMPanel_newFolderButton:hover:active {
   background-color: var(--button-active-bgcolor);
 }
+
+/*= Tor Browser ==============================================================*/
+#appMenuNewIdentity{
+  list-style-image: url("chrome://browser/skin/new_identity.svg");
+}
+#appMenuNewCircuit {
+  list-style-image: url("chrome://browser/skin/new_circuit.svg");
+}
+#appMenu_torBrowserUserManual {
+  list-style-image: url("chrome://browser/skin/onion.svg");
+}
+
+#menu_newIdentity {
+  --menuitem-image: url("chrome://browser/skin/new_identity.svg");
+}
+#menu_newCircuit {
+  --menuitem-image: url("chrome://browser/skin/new_circuit.svg");
+}
+#torBrowserUserManual {
+  --menuitem-image: url("chrome://browser/skin/onion.svg");
+}
