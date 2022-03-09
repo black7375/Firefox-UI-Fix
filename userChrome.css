@@ -2816,8 +2816,11 @@ menuitem.openintabs-menuitem,
 }
 
 .tab-content[pinned] {
-  --inline-tab-padding: 8px; /* Prevent overflow pinned tab's divide line not aligned */
+  --inline-tab-padding: 10px; /* Prevent overflow pinned tab's divide line not aligned */
   padding-inline: var(--inline-tab-padding) !important;
+}
+:root[uidensity="compact"] .tab-content[pinned] {
+  --inline-tab-padding: 8px;
 }
 
 /*= Tab Bar - Reduce Width, Show more tabs ===================================*/
