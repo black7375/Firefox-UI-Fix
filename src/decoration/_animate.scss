@@ -36,17 +36,12 @@ vbox:hover,
   /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
   transition: -moz-box-flex 0.2s var(--animation-easing-function),
     margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
-  max-width: var(--tab-max-width, 240px);
 }
 #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
   transition: -moz-box-flex 0.2s var(--animation-easing-function),
     margin-inline-start 0.2s var(--animation-easing-function) !important;
 }
 
-#tabbrowser-tabs:not([movingtab]) .tab-content {
-  transition: padding-inline 0.2s var(--animation-easing-function),
-    /* Unloaded Tab */ opacity 0.5s var(--animation-easing-function) !important;
-}
 #tabbrowser-tabs:not([movingtab]) .tab-content::before,
 #tabbrowser-tabs:not([movingtab]) .tab-content::after {
   transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
@@ -123,6 +118,7 @@ xul|search-textbox.tabsFilter:hover,
 #navigator-toolbox {
   /* Full screen out */
   transition: margin-top 1s ease;
+  transform-origin: top;
 }
 #navigator-toolbox[inFullscreen="true"] {
   /* Full screen enter */

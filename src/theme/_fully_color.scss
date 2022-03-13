@@ -158,6 +158,9 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
   background-color: var(--panel-bgcolor) !important; /* Original: Field */
   color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FiledText */
 }
+.autocomplete-richlistitem:hover {
+  background-color: var(--arrowpanel-dimmed) !important;
+}
 
 #PopupAutoComplete > richlistbox > richlistitem[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
 #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,

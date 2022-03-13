@@ -75,7 +75,7 @@
   /* checkbox */
 }
 .downloadShowMenuItem {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  --menuitem-image: url("./icons/folder.svg");
 }
 
 #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
@@ -85,8 +85,11 @@
   --menuitem-image: url("./icons/link.svg");
 }
 
-.downloadRemoveFromHistoryMenuItem {
+.downloadDeleteFileMenuItem {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+.downloadRemoveFromHistoryMenuItem {
+  --menuitem-image: url("./icons/eraser.svg");
 }
 #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
 #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
