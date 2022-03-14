@@ -1,5 +1,9 @@
 /** Clipped tabs - Letters cleary *********************************************/
-@import "clipped_tab/letters_cleary";
+@include Option("userChrome.tab.letters_cleary") {
+  @import "clipped_tab/letters_cleary";
+}
 
 /** Clipped tabs - Show close button at hover *********************************/
-@import "clipped_tab/show_close_button_at_hover";
+@include Option("userChrome.tab.close_button_at_hover") {
+  @import "clipped_tab/show_close_button_at_hover";
+}

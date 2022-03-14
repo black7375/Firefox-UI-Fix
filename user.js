@@ -70,7 +70,15 @@ user_pref("userChrome.padding.bookmarkMenu", true);
 user_pref("userChrome.padding.globalMenu",   true);
 user_pref("userChrome.padding.popupPanel",   true);
 
-user_pref("userChrome.tab.multi_selected", true);
+user_pref("userChrome.tab.multi_selected",        true);
+user_pref("userChrome.tab.unloaded",              true);
+user_pref("userChrome.tab.letters_cleary",        true);
+user_pref("userChrome.tab.close_button_at_hover", true);
+user_pref("userChrome.tab.sound_hide_label",      true);
+user_pref("userChrome.tab.sound_with_favicons",   true);
+user_pref("userChrome.tab.pip",                   true);
+user_pref("userChrome.tab.container",             true);
+user_pref("userChrome.tab.crashed",               true);
 
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar

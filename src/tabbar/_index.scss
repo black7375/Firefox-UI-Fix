@@ -1,6 +1,6 @@
 /*= Tab Bar - Connect to window ==============================================*/
 @include Option("userChrome.tab.connect_to_window") {
-  @import "tabbar/connect_to_window";
+  @import "connect_to_window";
 }
 
 /*= Selected Tab =============================================================*/
@@ -13,7 +13,9 @@
 @import "newtab_button";
 
 /*= Unloaded Tab - Contents Opacity ===========================================*/
-@import "unload_tab";
+@include Option("userChrome.tab.unloaded") {
+  @import "unload_tab";
+}
 
 /*= Clipped tabs =============================================================*/
 @import "clipped_tab";
@@ -22,10 +24,16 @@
 @import "sound_tab";
 
 /*= PictureInPicture Tab - Show PIP Icon =====================================*/
-@import "picture_in_picture_tab";
+@include Option("userChrome.tab.pip") {
+  @import "picture_in_picture_tab";
+}
 
 /*= Container Tab - Color line at icon's bottom ==============================*/
-@import "container_tab";
+@include Option("userChrome.tab.container") {
+  @import "container_tab";
+}
 
 /*= Crashed Tab - Don't show Favicons ========================================*/
-@import "crashed_tab";
+@include Option("userChrome.tab.crashed") {
+  @import "crashed_tab";
+}
