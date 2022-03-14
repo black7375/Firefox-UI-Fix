@@ -46,37 +46,8 @@
 /** Reduce Padding ************************************************************/
 @import "padding/index";
 
-/** Tab Bar - Connect to window ***********************************************/
-@include Option("userChrome.tab.connect_to_window") {
-  @import "tabbar/connect_to_window";
-}
-
-/** Selected Tab **************************************************************/
-@import "tabbar/selected_tab";
-
-/** Unselected Tab - Divide line **********************************************/
-@import "tabbar/unselected_tab";
-
-/* New tab button *************************************************************/
-@import "tabbar/newtab_button";
-
-/* Unloaded Tab - Contents Opacity ********************************************/
-@import "tabbar/unload_tab";
-
-/** Clipped tabs **************************************************************/
-@import "tabbar/clipped_tab";
-
-/** Sound Tab *****************************************************************/
-@import "tabbar/sound_tab";
-
-/** PictureInPicture Tab - Show PIP Icon **************************************/
-@import "tabbar/picture_in_picture_tab";
-
-/** Container Tab - Color line at icon's bottom *******************************/
-@import "tabbar/container_tab";
-
-/** Crashed Tab - Don't show Favicons *****************************************/
-@import "tabbar/crashed_tab";
+/** Tab Bar UI ****************************************************************/
+@import "tabbar/index";
 
 /** Fullscreen - Overlap toolbar **********************************************/
 @import "fullscreen/index";
