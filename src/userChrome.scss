@@ -50,7 +50,9 @@
 @import "tabbar/index";
 
 /** Fullscreen - Overlap toolbar **********************************************/
-@import "fullscreen/index";
+@include Option("userChrome.fullscreen.overlap") {
+  @import "fullscreen/index";
+}
 
 /** Library - Icons Replace ***************************************************/
 @import "library/chrome";

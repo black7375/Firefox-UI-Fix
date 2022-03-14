@@ -80,6 +80,14 @@ user_pref("userChrome.tab.pip",                   true);
 user_pref("userChrome.tab.container",             true);
 user_pref("userChrome.tab.crashed",               true);
 
+user_pref("userChrome.fullscreen.overlap", true);
+
+user_pref("userContent.player.ui",            true);
+user_pref("userContent.player.icon",          true);
+user_pref("userContent.player.noaudio",       true);
+user_pref("userContent.player.size",          true);
+user_pref("userContent.player.click_to_play", true);
+
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
 user_pref("browser.urlbar.suggest.calculator", true);

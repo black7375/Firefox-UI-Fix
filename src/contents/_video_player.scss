@@ -1,89 +1,100 @@
 /* Control Bar UI */
-audio {
-  --duration-color: #929292; /* Like Original */
-  --media-background: rgba(26,26,26,.8); /* Like Original */
-
-  border-radius: 8px;
-  --box-shadow1: rgba(14,13,26,.12);
-  --box-shadow2: rgba(7,48,114,.12);
-  --box-shadow3: rgba(34,0,51,.04);
-  box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2),
-              0 8px 12px  1px var(--box-shadow3);
-  /* Or: 0 2px 15px rgba(0,0,0,.1); */
-}
-video {
-  --duration-color: #eee;
-  --media-background: linear-gradient(transparent, rgba(26,26,26,.85));
-}
-
-@media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+@include Option("userContent.player.ui") {
   audio {
-    --box-shadow1: rgba(249, 249, 250, 0.12);
-    --box-shadow2: rgba(91, 91, 102, 0.12);
-    --box-shadow3: rgba(82, 82, 94, 0.04);
-  }
-}
-@media (prefers-contrast) {
-  video {
     --duration-color: #929292; /* Like Original */
     --media-background: rgba(26,26,26,.8); /* Like Original */
+
+    border-radius: 8px;
+    --box-shadow1: rgba(14,13,26,.12);
+    --box-shadow2: rgba(7,48,114,.12);
+    --box-shadow3: rgba(34,0,51,.04);
+    box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2),
+                0 8px 12px  1px var(--box-shadow3);
+    /* Or: 0 2px 15px rgba(0,0,0,.1); */
+  }
+  video {
+    --duration-color: #eee;
+    --media-background: linear-gradient(transparent, rgba(26,26,26,.85));
+  }
+
+  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+    audio {
+      --box-shadow1: rgba(249, 249, 250, 0.12);
+      --box-shadow2: rgba(91, 91, 102, 0.12);
+      --box-shadow3: rgba(82, 82, 94, 0.04);
+    }
+  }
+  @media (prefers-contrast) {
+    video {
+      --duration-color: #929292; /* Like Original */
+      --media-background: rgba(26,26,26,.8); /* Like Original */
+    }
+  }
+  #controlsContainer .controlBar {
+    background: var(--media-background) !important;
+  }
+  #controlsContainer .duration {
+    color: var(--duration-color) !important; /* Original: #929292 */
   }
 }
-#controlsContainer .controlBar {
-  background: var(--media-background) !important;
-}
-#controlsContainer .duration {
-  color: var(--duration-color) !important; /* Original: #929292 */
-}
-#controlsContainer .fullscreenButton {
-  background-image: url("./icons/enter-fullscreen.svg") !important;
-}
-#controlsContainer .fullscreenButton[fullscreened] {
-  background-image: url("./icons/exit-fullscreen.svg") !important;
+
+@include Option("userContent.player.icon") {
+  #controlsContainer .fullscreenButton {
+    background-image: url("./icons/enter-fullscreen.svg") !important;
+  }
+  #controlsContainer .fullscreenButton[fullscreened] {
+    background-image: url("./icons/exit-fullscreen.svg") !important;
+  }
 }
 
-#controlsContainer .muteButton[noAudio] {
-  /* Remove volume button at noAudio */
-  display: none !important;
+@include Option("userContent.player.noaudio") {
+  #controlsContainer .muteButton[noAudio] {
+    /* Remove volume button at noAudio */
+    display: none !important;
+  }
 }
 
 /* Control Bar Size */
-#controlsContainer {
-  --button-size: 32px !important; /* Original: 30px */
-  --controlBar-height: 40px; /* Original: 40px, Replace to this value */
-}
-#controlsContainer .touch {
-  --button-size: 48px !important; /* Original: 40px */
-  --controlBar-height: 52px; /* Original: 52px */
-}
-.videocontrols[inDOMFullscreen] #controlsContainer {
-  --button-size: 64px !important; /* Original: 30px */
-  --track-size: 6px !important; /* Original: 5px, Touch: 7px */
-  --thumb-size: 15px !important; /* Original: 13px, Touch: 16px */
-  --controlBar-height: 64px; /* Original: 40px */
-}
-.videocontrols[inDOMFullscreen] #controlsContainer .touch {
-  --button-size: 72px !important; /* Original: 40px */
-  --controlBar-height: 64px; /* Original: 52px */
-}
-#controlsContainer .controlBar {
-  height: var(--controlBar-height) !important; /* Original: 40px */
-}
-.videocontrols[inDOMFullscreen] #controlsContainer .controlBar {
-  padding-bottom: 8px !important;
+@include Option("userContent.player.size") {
+  #controlsContainer {
+    --button-size: 32px !important; /* Original: 30px */
+    --controlBar-height: 40px; /* Original: 40px, Replace to this value */
+  }
+  #controlsContainer .touch {
+    --button-size: 48px !important; /* Original: 40px */
+    --controlBar-height: 52px; /* Original: 52px */
+  }
+  .videocontrols[inDOMFullscreen] #controlsContainer {
+    --button-size: 64px !important; /* Original: 30px */
+    --track-size: 6px !important; /* Original: 5px, Touch: 7px */
+    --thumb-size: 15px !important; /* Original: 13px, Touch: 16px */
+    --controlBar-height: 64px; /* Original: 40px */
+  }
+  .videocontrols[inDOMFullscreen] #controlsContainer .touch {
+    --button-size: 72px !important; /* Original: 40px */
+    --controlBar-height: 64px; /* Original: 52px */
+  }
+  #controlsContainer .controlBar {
+    height: var(--controlBar-height) !important; /* Original: 40px */
+  }
+  .videocontrols[inDOMFullscreen] #controlsContainer .controlBar {
+    padding-bottom: 8px !important;
+  }
 }
 
 /* Click to play UI */
-#controlsContainer .clickToPlay {
-  cursor: pointer;
-  opacity: 0.65 !important;
-}
-#controlsContainer .controlsSpacerStack:hover > .clickToPlay {
-  opacity: 0.85 !important;
-}
-#controlsContainer .controlsSpacerStack:hover > .clickToPlay:hover {
-  opacity: 1 !important;
-  fill: #48a0f7 !important; /* color as .scrubber */
+@include Option("userContent.player.click_to_play") {
+  #controlsContainer .clickToPlay {
+    cursor: pointer;
+    opacity: 0.65 !important;
+  }
+  #controlsContainer .controlsSpacerStack:hover > .clickToPlay {
+    opacity: 0.85 !important;
+  }
+  #controlsContainer .controlsSpacerStack:hover > .clickToPlay:hover {
+    opacity: 1 !important;
+    fill: #48a0f7 !important; /* color as .scrubber */
+  }
 }
 
 /* Animation */
