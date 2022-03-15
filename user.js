@@ -82,6 +82,12 @@ user_pref("userChrome.tab.crashed",               true);
 
 user_pref("userChrome.fullscreen.overlap", true);
 
+user_pref("userChrome.icon.library",      true);
+user_pref("userChrome.icon.panel",        true);
+user_pref("userChrome.icon.menu",         true);
+user_pref("userChrome.icon.context_menu", true);
+user_pref("userChrome.icon.global_menu",  true);
+
 user_pref("userContent.player.ui",            true);
 user_pref("userContent.player.icon",          true);
 user_pref("userContent.player.noaudio",       true);

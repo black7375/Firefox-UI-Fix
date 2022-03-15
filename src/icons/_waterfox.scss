@@ -1,12 +1,16 @@
-#appMenu-restart-button {
-  list-style-image: url("./icons/refresh-cw.svg") !important;
+@include Option("userChrome.icon.panel") {
+  #appMenu-restart-button {
+    list-style-image: url("./icons/refresh-cw.svg") !important;
+  }
 }
-#menu_FileRestartItem {
-  --menuitem-image: url("./icons/refresh-cw.svg");
-}
+@include Option("userChrome.icon.menu") {
+  #menu_FileRestartItem {
+    --menuitem-image: url("./icons/refresh-cw.svg");
+  }
 
-menuitem.privatetab-icon {
-  list-style-image: url("./icons/priavate-favicon.svg") !important;
-  fill: currentColor;
-  -moz-context-properties: fill;
+  menuitem.privatetab-icon {
+    list-style-image: url("./icons/priavate-favicon.svg") !important;
+    fill: currentColor;
+    -moz-context-properties: fill;
+  }
 }

@@ -55,21 +55,35 @@
 }
 
 /** Library - Icons Replace ***************************************************/
-@import "library/chrome";
+@include Option("userChrome.icon.library") {
+  @import "library/chrome";
+}
 
 /** Panel - Icons *************************************************************/
-@import "panel/icon_padding";
-@import "icons/panel";
+@include Option("userChrome.icon.panel") {
+  @import "panel/icon_padding";
+  @import "icons/panel";
+}
 
 /** Menu - Icons Layout *******************************************************/
-@import "menu/icons_layout";
-@import "menu/bookmark_layout";
+@include Option("userChrome.icon.menu") {
+  @import "menu/icons_layout";
+  @import "menu/bookmark_layout";
 
-@import "icons/context_menu";
-@import "icons/global_menu";
+  @include Option("userChrome.icon.context_menu") {
+    @import "icons/context_menu";
+  }
+  @include Option("userChrome.icon.global_menu") {
+    @import "icons/global_menu";
+  }
+}
 
 /** Libray Menu ***************************************************************/
-@import "icons/library";
+@include Option("userChrome.icon.library") {
+  @include Option("userChrome.icon.library") {
+    @import "icons/library";
+  }
+}
 
 /*= Waterfox =================================================================*/
 @import "icons/waterfox";
