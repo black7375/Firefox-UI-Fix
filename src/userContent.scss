@@ -12,12 +12,18 @@
 @import "contents/activity_stream";
 
 /** Error Page - Restore illustrations ****************************************/
-@import "contents/error_page";
+@include Option("userContent.page.illustration") {
+  @import "contents/error_page";
+}
 
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @import "theme/proton_color";
-@import "contents/dark_mode";
+@include Option("userContent.page.dark_mode") {
+  @import "contents/dark_mode";
+}
 
 /** Fully Proton Mode *********************************************************/
-@import "contents/proton_contents";
+@include Option("userContent.page.proton") {
+  @import "contents/proton_contents";
+}

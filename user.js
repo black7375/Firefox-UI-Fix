@@ -94,6 +94,10 @@ user_pref("userContent.player.noaudio",       true);
 user_pref("userContent.player.size",          true);
 user_pref("userContent.player.click_to_play", true);
 
+user_pref("userContent.error.illustration", true);
+user_pref("userContent.page.dark_mode",     true);
+user_pref("userContent.page.proton",        true);
+
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
 user_pref("browser.urlbar.suggest.calculator", true);
