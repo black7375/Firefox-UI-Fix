@@ -1,7 +1,7 @@
 @use 'true' as *;
 @use "../src/utils/color_scheme";
 
-@include test-module("Color scheme is dark [mx]") {
+@include test-module("Color scheme is dark [mix]") {
   @include test("simple") {
     @include assert {
       @include output {
@@ -41,7 +41,7 @@
   }
 }
 
-@include test-module("Color scheme is light [mx]") {
+@include test-module("Color scheme is light [mix]") {
   @include test("simple") {
     @include assert {
       @include output {
