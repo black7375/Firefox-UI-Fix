@@ -274,7 +274,7 @@
     /* Light Theme */
     --lwt-accent-color: var(--win-bgcolor) !important;
   }
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @include Dark {
     :root[lwt-default-theme-in-dark-mode][lwthemetextcolor="bright"] {
       --toolbar-bgcolor: var(--win-component-bgcolor) !important; /* Original: rgba(43, 42, 51, 1) */
     }

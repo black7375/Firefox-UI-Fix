@@ -17,7 +17,7 @@
     --media-background: linear-gradient(transparent, rgba(26,26,26,.85));
   }
 
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @include Dark {
     audio {
       --box-shadow1: rgba(249, 249, 250, 0.12);
       --box-shadow2: rgba(91, 91, 102, 0.12);

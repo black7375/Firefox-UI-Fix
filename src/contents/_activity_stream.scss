@@ -81,7 +81,7 @@
       --newtab-element-hover-color: color-mix(in srgb, currentColor 9%, transparent) !important;
     }
 
-    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+    @include Dark {
       #root {
         /* Default Dark Mode */
         --newtab-search-background-color: rgba(66, 65, 77, 1); /* Same as dark theme's --panel-background */

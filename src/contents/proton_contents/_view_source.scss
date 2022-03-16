@@ -7,7 +7,7 @@
     --view-source-green: var(--green-80);
     --view-source-purple: #800080; /* Like alphenglow */
   }
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @include Dark {
     :root {
       --view-source-green: var(--green-60);
       --view-source-purple: #c68aff;

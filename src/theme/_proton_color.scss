@@ -108,7 +108,7 @@
   --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
 }
 
-@media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+@include Dark {
   :host,
   :root {
     /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
