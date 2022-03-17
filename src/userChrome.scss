@@ -6,7 +6,7 @@
 @namespace html "http://www.w3.org/1999/xhtml";
 
 /** Default Thme - Contrast ***************************************************/
-@include Option($builtInContrast) {
+@include Option("userChrome.theme.built_in_contrast") {
   @import "theme/built_in";
 }
 
@@ -14,7 +14,7 @@
 @import "compatibility/index";
 
 /** System Default Theme ******************************************************/
-@include Option($systemDefault) {
+@include Option("userChrome.theme.system_default") {
   @import "theme/system_default_theme";
 }
 
