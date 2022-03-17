@@ -1,21 +1,21 @@
 /*= Cursor Types =============================================================*/
-@include Option($cursor) {
+@include Option("userChrome.decoration.cursor") {
   @import "cursor";
 }
 
 @include Animate {
   /*= Field Border ===========================================================*/
-  @include Option($fieldBorder) {
+  @include Option("userChrome.decoration.field_border") {
     @import "field_border";
   }
 
   /*= Downloads Panel ========================================================*/
-  @include Option($downloadPanel) {
+  @include Option("userChrome.decoration.download_panel") {
     @import "download_panel";
   }
 
   /*= Animate ================================================================*/
-  @include Option($animate) {
+  @include Option("userChrome.decoration.animate") {
     @import "animate";
   }
 }
