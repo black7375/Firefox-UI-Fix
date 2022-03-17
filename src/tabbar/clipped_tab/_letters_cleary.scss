@@ -1,5 +1,8 @@
-#tabbrowser-tabs[closebuttons="activetab"] .tab-content:not([pinned]) {
-  padding-inline-start: 8px !important;
+:root {
+  --inline-tab-padding: 6px !important; /* Original: 8px */
+}
+:root[uidensity="touch"] {
+  --inline-tab-padding: 8px !important; /* Original: 8px */
 }
 
 #tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
