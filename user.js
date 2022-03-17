@@ -60,16 +60,16 @@ user_pref("userChrome.decoration.field_border",   true);
 user_pref("userChrome.decoration.download_panel", true);
 user_pref("userChrome.decoration.animate",        true);
 
-user_pref("userChrome.padding.tabbarWidth",  true);
-user_pref("userChrome.padding.tabbarHeight", true);
-user_pref("userChrome.padding.navbarWidth",  true);
-user_pref("userChrome.padding.urlbar",       true);
-user_pref("userChrome.padding.bookmarkbar",  true);
-user_pref("userChrome.padding.infobar",      true);
-user_pref("userChrome.padding.menu",         true);
-user_pref("userChrome.padding.bookmarkMenu", true);
-user_pref("userChrome.padding.globalMenu",   true);
-user_pref("userChrome.padding.popupPanel",   true);
+user_pref("userChrome.padding.tabbar_width",  true);
+user_pref("userChrome.padding.tabbar_height", true);
+user_pref("userChrome.padding.navbar_width",  true);
+user_pref("userChrome.padding.urlbar",        true);
+user_pref("userChrome.padding.bookmarkbar",   true);
+user_pref("userChrome.padding.infobar",       true);
+user_pref("userChrome.padding.menu",          true);
+user_pref("userChrome.padding.bookmark_menu", true);
+user_pref("userChrome.padding.global_menu",   true);
+user_pref("userChrome.padding.popup_panel",   true);
 
 user_pref("userChrome.tab.multi_selected",        true);
 user_pref("userChrome.tab.unloaded",              true);

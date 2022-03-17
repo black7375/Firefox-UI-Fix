@@ -67,7 +67,7 @@
   padding-inline-start: var(--space-left-tabbar) !important;
 }
 
-@include Option($tabbarWidth) {
+@include Option("userChrome.padding.tabbar_width") {
   @import "tabbar_width";
 }
 
@@ -89,46 +89,46 @@
   padding-top: var(--space-above-tabbar) !important;
 }
 
-@include Option($tabbarHeight) {
+@include Option("userChrome.padding.tabbar_height") {
   @import "tabbar_height";
 }
 
 /*= Nav Bar - Reduce Width ===================================================*/
-@include Option($navbarWidth) {
+@include Option("userChrome.padding.navbar_width") {
   @import "nav_bar";
 }
 
 /*= URL Bar - Reduce Padding =================================================*/
-@include Option($urlbarPadding) {
+@include Option("userChrome.padding.urlbar") {
   @import "url_bar";
 }
 
 /*= BookMark Bar - Reduce Height =============================================*/
-@include Option($bookmarkbarPadding) {
+@include Option("userChrome.padding.bookmarkbar") {
   @import "bookmark_bar";
 }
 
 /*= Info Bar - Reduce Padding ================================================*/
-@include Option($infobarPadding) {
+@include Option("userChrome.padding.infobar") {
   @import "info_bar";
 }
 
 /*= Menu - Reduce Padding ====================================================*/
-@include Option($menuPadding) {
+@include Option("userChrome.padding.menu") {
   @import "menu";
 }
 
 /*= Bookmark Menu - Reduce Padding ===========================================*/
-@include Option($bookmarkMenuPadding) {
+@include Option("userChrome.padding.bookmark_menu") {
   @import "bookmark_menu";
 }
 
 /*= Global Menu - Set Padding ================================================*/
-@include Option($globalMenuPadding) {
+@include Option("userChrome.padding.global_menu") {
   @import "global_menu";
 }
 
 /*= Popup Panel - Reduce padding =============================================*/
-@include Option($popupPanelPadding) {
+@include Option("userChrome.padding.popup_panel") {
   @import "popup_panel";
 }
