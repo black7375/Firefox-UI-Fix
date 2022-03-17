@@ -14,11 +14,6 @@
   }
 }
 
-:root[uidensity="compact"] {
-  /* Tool Bar */
-  --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
-}
-
 :root[uidensity="touch"] {
   /* Tab Bar - Like Original */
   --proton-tab-block-margin: 4px !important; /* Original: 4px */
@@ -51,6 +46,11 @@
 
 @include Option("userChrome.padding.tabbar_height") {
   @import "tabbar_height";
+}
+
+/*= Tool Bar - Button Padding ================================================*/
+@include Option("userChrome.padding.toolbar_button") {
+  @import "toolbar_button";
 }
 
 /*= Nav Bar - Reduce Width ===================================================*/
