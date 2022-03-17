@@ -31,7 +31,7 @@
 }
 
 /* Animate */
-@media (prefers-reduced-motion: no-preference) {
+@include Animate {
   .tab-icon-overlay:not([crashed]),
   .tab-icon-overlay[pinned][crashed][selected] {
     transition: 0.1s var(--animation-easing-function);

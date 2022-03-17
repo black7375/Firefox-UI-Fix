@@ -34,7 +34,7 @@
 
   /** Activity Stream - Animate ***********************************************/
   @include Option("userContent.newTab.animate") {
-    @media (prefers-reduced-motion: no-preference) {
+    @include Animate {
       :root {
         --animation-easing-function: cubic-bezier(0.07, 0.95, 0, 1);
       }

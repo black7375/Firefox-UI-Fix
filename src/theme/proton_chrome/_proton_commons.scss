@@ -121,7 +121,7 @@
     border-color: transparent !important;
   }
 
-  @media (prefers-contrast) {
+  @inclue Contrast {
     xul|button[default]:not([disabled="true"]):hover {
       border-color: currentColor !important;
     }
@@ -283,7 +283,7 @@
     outline-offset: var(--focus-outline-offset, 2px) !important;
   }
 
-  @media (prefers-contrast) {
+  @include Contrast {
     checkbox:not([disabled="true"]):hover > .checkbox-check {
       /* color will set the border-color on the check due to how HCM works for in-content pages. */
       color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
@@ -509,7 +509,7 @@
 
   /* Use a 2px border so that selected row highlight is still visible behind
         an existing high-contrast border that uses the background color */
-  @media (prefers-contrast) {
+  @include Contrast {
     xul|treechildren::-moz-tree-row(selected) {
       border: 2px solid currentColor !important;
       border-radius: 4px !important;

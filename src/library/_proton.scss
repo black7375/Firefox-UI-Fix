@@ -23,7 +23,7 @@
   --organizer-pane-field-border-color: ThreeDShadow;
 }
 
-@media not all and (prefers-contrast) {
+@include NotContrast {
   :root {
     --organizer-color: var(--in-content-page-color);
     --organizer-deemphasized-color: var(--in-content-deemphasized-text);

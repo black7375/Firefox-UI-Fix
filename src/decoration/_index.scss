@@ -3,7 +3,7 @@
   @import "cursor";
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@include Animate {
   /*= Field Border ===========================================================*/
   @include Option($fieldBorder) {
     @import "field_border";

@@ -24,7 +24,7 @@
       --box-shadow3: rgba(82, 82, 94, 0.04);
     }
   }
-  @media (prefers-contrast) {
+  @include Contrast {
     video {
       --duration-color: #929292; /* Like Original */
       --media-background: rgba(26,26,26,.8); /* Like Original */
@@ -98,7 +98,7 @@
 }
 
 /* Animation */
-@media (prefers-reduced-motion: no-preference) {
+@include Animate {
   /* Control Bar */
   #controlsContainer .controlBar {
     transition: transform 350ms ease;

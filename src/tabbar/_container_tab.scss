@@ -25,7 +25,7 @@
 }
 
 /* Animate */
-@media (prefers-reduced-motion: no-preference) {
+@include Animate {
   .tab-content:not([titlechanged])::before {
     transition: 0.15s var(--animation-easing-function) !important;
     transition-property: width, opacity;

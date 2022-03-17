@@ -17,7 +17,7 @@
 }
 
 /* Animate */
-@media (prefers-reduced-motion: no-preference) {
+@include Animate {
   /* Fade out */
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
     transition: opacity 0.1s var(--animation-easing-function) !important;

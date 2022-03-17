@@ -107,7 +107,7 @@
 }
 
 /* Animate */
-@media (prefers-reduced-motion: no-preference) {
+@include Animate {
   .tab-background::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
