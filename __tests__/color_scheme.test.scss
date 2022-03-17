@@ -80,3 +80,66 @@
     }
   }
 }
+
+@include test-module("Color contrast [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Contrast {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (prefers-contrast) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Color not contrast [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.NotContrast {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media not all and (prefers-contrast) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Animate, not reduced motion [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Animate {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (prefers-reduced-motion: no-preference) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

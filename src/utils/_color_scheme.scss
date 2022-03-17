@@ -10,3 +10,21 @@
     @content;
   }
 }
+
+@mixin Contrast() {
+  @media (prefers-contrast) {
+    @content;
+  }
+}
+
+@mixin NotContrast() {
+  @media not all and (prefers-contrast) {
+    @content;
+  }
+}
+
+@mixin Animate() {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
