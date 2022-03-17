@@ -41,8 +41,8 @@ user_pref("userChrome.panel.proton", true); // Original, Proton
 // user_pref("userChrome.panel.photon", true); // Photon
 
 // == Theme Custom Settings ====================================================
-// user_pref("userChrome.padding.firstTab",  true);
-// user_pref("userChrome.padding.dragSpace", true);
+// user_pref("userChrome.padding.first_tab",  true);
+// user_pref("userChrome.padding.drag_space", true);
 
 // == Theme Default Settings ===================================================
 user_pref("userChrome.compatibility.theme", true);
