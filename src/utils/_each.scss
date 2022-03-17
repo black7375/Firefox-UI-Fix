@@ -1,0 +1,20 @@
+@use "sass:list";
+@use "list" as list-utils;
+
+@mixin AtEach($name, $list, $prefix: null, $seperator: ", ") {
+  $listL: list.length($list);
+  $first: list.nth($list, 1);
+  @if $listL >= 1 and $first != null {
+    $blocks: "#{$prefix}(#{$first})";
+    @if $listL > 1 {
+      @for $i from 2 through ($listL) {
+        $nextBlock: list.nth($list, $i);
+        $nextBlock: "#{$seperator}#{$prefix}(#{$nextBlock})";
+        $blocks: "#{$blocks}#{$nextBlock}";
+      }
+    }
+    @#{$name} #{"#{$blocks}"} {
+      @content;
+    }
+  }
+}

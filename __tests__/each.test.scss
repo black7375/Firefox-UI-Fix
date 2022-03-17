@@ -1,0 +1,121 @@
+@use 'true' as *;
+@use "../src/utils/each";
+
+@include test-module("Create each at rules [mix]") {
+  @include test("prefix single") {
+    @include assert {
+      @include output {
+        @include each.AtEach("-moz-document", "about:home", "url") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @-moz-document url(about:home) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("prefix multiple") {
+    @include assert {
+      @include output {
+        $input: "about:home" "about:newtab";
+        @include each.AtEach("-moz-document", $input, "url") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @-moz-document url(about:home), url(about:newtab) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("null prefix single") {
+    @include assert {
+      @include output {
+        @include each.AtEach("media", "max-width: 1024px") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (max-width: 1024px) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("null prefix multiple") {
+    @include assert {
+      @include output {
+        $input: "hover: hover" "max-width: 1024px";
+        @include each.AtEach("media", $input) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (hover: hover), (max-width: 1024px) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("prefix custom seperator single") {
+    @include assert {
+      @include output {
+        @include each.AtEach("supports", "userChrome.tab.photon", "-moz-bool-pref", " or ") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref(userChrome.tab.photon) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("prefix custom seperator multiple") {
+    @include assert {
+      @include output {
+        $input: "userChrome.tab.photon" "userChrome.padding.photon";
+        @include each.AtEach("supports", $input, "-moz-bool-pref", " or ") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
