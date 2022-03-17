@@ -69,6 +69,7 @@ user_pref("userChrome.padding.infobar",       true);
 user_pref("userChrome.padding.menu",          true);
 user_pref("userChrome.padding.bookmark_menu", true);
 user_pref("userChrome.padding.global_menu",   true);
+user_pref("userChrome.padding.panel",         true);
 user_pref("userChrome.padding.popup_panel",   true);
 
 user_pref("userChrome.tab.multi_selected",        true);

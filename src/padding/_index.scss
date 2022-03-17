@@ -13,29 +13,16 @@
     --tab-border-radius: 0px !important; /* Original: 4px */
   }
 }
-:root {
-  /* Panel */
-  --arrowpanel-menuicon-padding: 8px;
-  --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
-  --arrowpanel-menuitem-padding: 5px !important; /* Original: 8px */
-  --arrowpanel-padding: 0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
-}
 
 :root[uidensity="compact"] {
   /* Tool Bar */
   --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
-
-  /* Panel */
-  --arrowpanel-menuitem-padding: 3px !important; /* Original: 8px */
 }
 
 :root[uidensity="touch"] {
   /* Tab Bar - Like Original */
   --proton-tab-block-margin: 4px !important; /* Original: 4px */
   --tab-block-margin: 4px !important; /* New version of --proton-tab-block-margin */
-
-  /* Panel - Like Original */
-  --arrowpanel-menuitem-padding: 8px !important; /* Original: 8px */
 }
 
 /* Fix Tab bar button radious */
@@ -99,6 +86,11 @@
 /*= Global Menu - Set Padding ================================================*/
 @include Option("userChrome.padding.global_menu") {
   @import "global_menu";
+}
+
+/*= Panel - Reduce padding ===================================================*/
+@include Option("userChrome.padding.panel") {
+  @import "panel";
 }
 
 /*= Popup Panel - Reduce padding =============================================*/
