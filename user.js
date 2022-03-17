@@ -102,7 +102,7 @@ user_pref("userContent.newTab.full_icon",    true);
 user_pref("userContent.newTab.animate",      true);
 user_pref("userContent.newTab.searchbar",    true);
 
-user_pref("userContent.page.illustration", true);
+user_pref("userContent.page.illustration",  true);
 user_pref("userContent.page.dark_mode",     true);
 user_pref("userContent.page.proton",        true);
 
