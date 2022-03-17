@@ -25,18 +25,20 @@
      https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
   */
 
-@import "theme/proton_color";
-@include Option($fullyColor) {
+@include Option("userChrome.theme.proton_color") {
+  @import "theme/proton_color";
+}
+@include Option("userChrome.theme.fully_color") {
   @import "theme/fully_color";
 }
 
 /* Fully Dark Mode ************************************************************/
-@include Option($fullyDark) {
+@include Option("userChrome.theme.fully_dark") {
   @import "theme/fully_dark";
 }
 
 /* Proton Theme Mode **********************************************************/
-@include Option($protonChrome) {
+@include Option("userChrome.theme.proton_chrome") {
   @import "theme/proton_chrome";
 }
 

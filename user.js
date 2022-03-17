@@ -50,9 +50,10 @@ user_pref("userChrome.compatibility.os",    true);
 
 user_pref("userChrome.theme.built_in_contrast", true);
 user_pref("userChrome.theme.system_default",    true);
-user_pref("userChrome.theme.fully_color",       true);
-user_pref("userChrome.theme.fully_dark",        true);
-user_pref("userChrome.theme.proton_chrome",     true);
+user_pref("userChrome.theme.proton_color",      true);
+user_pref("userChrome.theme.proton_chrome",     true); // Need proton_color
+user_pref("userChrome.theme.fully_color",       true); // Need proton_color
+user_pref("userChrome.theme.fully_dark",        true); // Need proton_color
 
 user_pref("userChrome.decoration.cursor",         true);
 user_pref("userChrome.decoration.field_border",   true);
