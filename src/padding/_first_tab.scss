@@ -1,0 +1,9 @@
+/* for First Tab Space */
+:root {
+  --space-left-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
+}
+
+:root:not([tabsintitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
+:root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs:not([positionpinnedtabs]) {
+  padding-inline-start: var(--space-left-tabbar) !important;
+}
