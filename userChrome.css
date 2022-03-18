@@ -2789,20 +2789,11 @@ menuitem.openintabs-menuitem,
   --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
   --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
   --inline-tab-padding: 6px !important; /* Original: 8px */
-
-  /* Panel */
-  --arrowpanel-menuicon-padding: 8px;
-  --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
-  --arrowpanel-menuitem-padding: 5px !important; /* Original: 8px */
-  --arrowpanel-padding: 0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
 }
 
 :root[uidensity="compact"] {
   /* Tool Bar */
   --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
-
-  /* Panel */
-  --arrowpanel-menuitem-padding: 3px !important; /* Original: 8px */
 }
 
 :root[uidensity="touch"] {
@@ -2810,9 +2801,6 @@ menuitem.openintabs-menuitem,
   --proton-tab-block-margin: 4px !important; /* Original: 4px */
   --tab-block-margin: 4px !important; /* New version of --proton-tab-block-margin */
   --inline-tab-padding: 8px !important; /* Original: 8px */
-
-  /* Panel - Like Original */
-  --arrowpanel-menuitem-padding: 8px !important; /* Original: 8px */
 }
 
 .tab-content[pinned] {
@@ -3170,6 +3158,21 @@ menupopup > menu {
 #main-menubar > menu > menupopup menuitem,
 #main-menubar > menu > menupopup menu {
   padding-block: var(--bookmark-menu-padding) !important;
+}
+
+/*= Panel - Reduce padding ===================================================*/
+:root {
+  --arrowpanel-menuicon-padding: 8px;
+  --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
+  --arrowpanel-menuitem-padding: 5px !important; /* Original: 8px */
+  --arrowpanel-padding: 0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
+}
+
+:root[uidensity="compact"] {
+  --arrowpanel-menuitem-padding: 3px !important; /* Original: 8px */
+}
+:root[uidensity="touch"] {
+  --arrowpanel-menuitem-padding: 8px !important; /* Original: 8px */
 }
 
 /*= Popup Panel - Reduce padding =============================================*/
