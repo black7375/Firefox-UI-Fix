@@ -62,17 +62,19 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 /* Menubar */
-#main-menubar > menu {
-  background-position: left var(--context-menu-background-padding-default) center !important;
-  padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
-  padding-inline-end: 3px;
-}
-#main-menubar > menu:first-child {
-  background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
-  padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
-}
-#main-menubar > menu > menupopup {
-  --menuitem-image: none; /* Prevent Image Inheritance */
+@include Option("userChrome.icon.global_menu") {
+  #main-menubar > menu {
+    background-position: left var(--context-menu-background-padding-default) center !important;
+    padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
+    padding-inline-end: 3px;
+  }
+  #main-menubar > menu:first-child {
+    background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
+    padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
+  }
+  #main-menubar > menu > menupopup {
+    --menuitem-image: none; /* Prevent Image Inheritance */
+  }
 }
 
 /* Padding - Windows */
