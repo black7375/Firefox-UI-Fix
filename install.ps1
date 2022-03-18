@@ -380,7 +380,9 @@ function Menu {
 # $HOME = (get-psprovider 'FileSystem').Home
 $firefoxProfileDirPaths = @(
   "${HOME}\AppData\Roaming\Mozilla\Firefox",
-  "${HOME}\AppData\Roaming\LibreWolf"
+  "${HOME}\AppData\Roaming\Waterfox",
+  "${HOME}\AppData\Roaming\librewolf",
+  "${HOME}\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser"
 )
 
 function Check-ProfileDir() {

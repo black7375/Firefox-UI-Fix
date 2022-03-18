@@ -345,6 +345,7 @@ menu[disabled="true"] {
     --win-shorcut-text-color: #757575;
     --win-error-color: #b31616;
     --win-red-border-color: #ff4343;
+    --win-accent-forground-color: -moz-accent-color-foreground;
     --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
     --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
     --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
@@ -430,8 +431,6 @@ menu[disabled="true"] {
     --toolbar-field-background-color: var(--win-field-bgcolor) !important;
     --toolbar-field-focus-background-color: var(--win-field-bgcolor) !important;
     --tab-icon-overlay-stroke: var(--win-field-bgcolor) !important;
-    --button-primary-color: var(--win-field-bgcolor) !important;
-    --checkbox-checked-color: var(--win-field-bgcolor) !important;
 
     /* Hover Background Color, Button Color  */
     --menuitem-hover-background-color: var(--win-hover-bgcolor) !important;
@@ -465,6 +464,10 @@ menu[disabled="true"] {
     --checkbox-border-color: var(--win-button-border) !important;
     --input-border-color: var(--win-button-border) !important;
     --autocomplete-popup-separator-color: var(--win-button-border) !important;
+
+    /* Accent Forground Color */
+    --button-primary-color: var(--win-accent-forground-color) !important;
+    --checkbox-checked-color: var(--win-accent-forground-color) !important;
 
     /* Accent Color */
     --button-primary-bgcolor: var(--win-accent-color) !important;
@@ -2814,8 +2817,11 @@ menuitem.openintabs-menuitem,
 }
 
 .tab-content[pinned] {
-  --inline-tab-padding: 8px; /* Prevent overflow pinned tab's divide line not aligned */
+  --inline-tab-padding: 10px; /* Prevent overflow pinned tab's divide line not aligned */
   padding-inline: var(--inline-tab-padding) !important;
+}
+:root[uidensity="compact"] .tab-content[pinned] {
+  --inline-tab-padding: 8px;
 }
 
 /* Fix Tab bar button radious */
@@ -3205,7 +3211,7 @@ menupopup > menu {
 }
 /* not cut off for Protection popup Footer on windows */
 :root[uidensity="compact"] #protections-popup-multiView #protections-popup-footer {
-  padding: 3px 0 20px !important;
+  padding: 3px 0 10px !important;
 }
 /* Button and disabled category in Protection popup */
 :root[uidensity="compact"] #protections-popup-multiView .protections-popup-footer-button,
@@ -3251,6 +3257,11 @@ menupopup > menu {
 }
 #TabsToolbar {
   overflow: hidden;   /* Prevent toolbar area over */
+}
+
+/* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
+#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
+  z-index: 0 !important;
 }
 
 /** Selected Tab - Color like toolbar *****************************************/
@@ -3744,19 +3755,21 @@ menupopup > menu {
 }
 
 /** Fullscreen - Overlap toolbar **********************************************/
-:root[sizemode="fullscreen"] #navigator-toolbox {
-  position: fixed !important; /* Needed for content to take up entire height */
-  display: block !important; /* Needed for content to take up entire height */
-  z-index: 1000 !important; /* Puts the UI above the content */
-}
+@supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+  :root[sizemode="fullscreen"] #navigator-toolbox {
+    position: fixed !important; /* Needed for content to take up entire height */
+    display: block !important; /* Needed for content to take up entire height */
+    z-index: 1000 !important; /* Puts the UI above the content */
+  }
 
-:root[sizemode="fullscreen"] :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
-  width: 100%; /* Makes the UI take up the entire width */
-}
+  :root[sizemode="fullscreen"] :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
+    width: 100%; /* Makes the UI take up the entire width */
+  }
 
-:root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
-:root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
-  visibility: unset !important; /* Makes the bookmarks toolbar visible if enabled */
+  :root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
+  :root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
+    visibility: unset !important; /* Makes the bookmarks toolbar visible if enabled */
+  }
 }
 
 /** Library - Icons Replace ***************************************************/
@@ -3972,6 +3985,9 @@ menupopup > menu {
     var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding)
   );
   --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
+}
+.subviewbutton > .toolbarbutton-icon {
+  width: 16px;
 }
 
 #downloadsHistory .button-text,
@@ -4465,8 +4481,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage,
-menuitem.privatetab-icon /* Waterfox */ {
+#blockedPopupDontShowMessage {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
@@ -4503,8 +4518,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-#blockedPopupDontShowMessage,
-menuitem.privatetab-icon /* Waterfox */ {
+#blockedPopupDontShowMessage {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
@@ -4565,8 +4579,7 @@ menuitem.privatetab-icon /* Waterfox */ {
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage,
-  menuitem.privatetab-icon /* Waterfox */ {
+  #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
   }
@@ -4592,8 +4605,7 @@ menuitem.privatetab-icon /* Waterfox */ {
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
-  #blockedPopupDontShowMessage,
-  menuitem.privatetab-icon /* Waterfox */ {
+  #blockedPopupDontShowMessage {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
   }
@@ -5807,6 +5819,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 /*= Waterfox =================================================================*/
+/* Icons */
 #appMenu-restart-button {
   list-style-image: url("./icons/refresh-cw.svg") !important;
 }
@@ -5815,5 +5828,55 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 menuitem.privatetab-icon {
-  --menuitem-image: url("./icons/priavate-favicon.svg");
+  list-style-image: url("./icons/priavate-favicon.svg") !important;
+  fill: currentColor;
+  -moz-context-properties: fill;
+}
+
+/* New Folder Button */
+#editBMPanel_newFolderButton {
+  appearance: none;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--button-bgcolor);
+  color: var(--button-color, inherit);
+  font-weight: 600;
+  min-width: 0;
+  padding: 8px 16px;
+
+  /* This button is deeper in the visual hierarchy than others (notably the
+     buttons at the bottom of the panel), so it should be slightly smaller. */
+  font-size: 90%;
+
+  /* This button needs to align with the tree above it. */
+  margin-inline-start: 4px;
+}
+
+#editBMPanel_newFolderButton:hover {
+  background-color: var(--button-hover-bgcolor);
+}
+
+#editBMPanel_newFolderButton:hover:active {
+  background-color: var(--button-active-bgcolor);
+}
+
+/*= Tor Browser ==============================================================*/
+#appMenuNewIdentity{
+  list-style-image: url("chrome://browser/skin/new_identity.svg");
+}
+#appMenuNewCircuit {
+  list-style-image: url("chrome://browser/skin/new_circuit.svg");
+}
+#appMenu_torBrowserUserManual {
+  list-style-image: url("chrome://browser/skin/onion.svg");
+}
+
+#menu_newIdentity {
+  --menuitem-image: url("chrome://browser/skin/new_identity.svg");
+}
+#menu_newCircuit {
+  --menuitem-image: url("chrome://browser/skin/new_circuit.svg");
+}
+#torBrowserUserManual {
+  --menuitem-image: url("chrome://browser/skin/onion.svg");
 }
