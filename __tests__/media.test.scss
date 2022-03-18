@@ -7,7 +7,7 @@
     @include assert {
       @include output {
         $input: "hover: hover" "max-width: 1024px";
-        @include media.each($input) {
+        @include media.each($input...) {
           body {
             font-size: 16px;
           }
@@ -28,7 +28,7 @@
       @include output {
         $input: "hover: hover" "max-width: 1024px";
         body {
-          @include media.each($input) {
+          @include media.each($input...) {
             font-size: 16px;
           }
         }

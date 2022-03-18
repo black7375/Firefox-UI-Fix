@@ -12,7 +12,26 @@
         }
       }
       @include expect {
-        @supports -moz-bool-pref("userChrome.tab.photon") {
+        @supports -moz-bool-pref(userChrome.tab.photon) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("multiple") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon", "userChrome.padding.photon") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
           body {
             font-size: 16px;
           }
@@ -33,7 +52,26 @@
         }
       }
       @include expect {
-        @supports not -moz-bool-pref("userChrome.tab.photon") {
+        @supports not -moz-bool-pref(userChrome.tab.photon) {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("multiple") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon", "userChrome.padding.photon") {
+          body {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
           body {
             font-size: 16px;
           }

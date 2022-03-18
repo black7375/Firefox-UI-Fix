@@ -54,7 +54,7 @@ $_os-media: map.merge(
     }
   }
 
-  @include media.each($osMedias) {
+  @include media.each($osMedias...) {
     @content;
   }
 

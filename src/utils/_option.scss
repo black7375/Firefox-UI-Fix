@@ -1,3 +1,5 @@
+@use "each";
+
 $tabProton: "userChrome.tab.proton";
 $tabConnectToWindow: "userChrome.tab.connect_to_window";
 $tabBoxShadow: "userChrome.tab.box_shadow";
@@ -9,14 +11,14 @@ $tabProtonLikePadding: "userChrome.tab.proton_like_padding";
 
 $tabMultiSelected: "userChrome.tab.multi_selected";
 
-@mixin Option($optionName) {
-  @supports -moz-bool-pref("#{$optionName}") {
+@mixin Option($optionNames...) {
+  @include each.AtEach("supports", $optionNames, "-moz-bool-pref", " or ") {
     @content;
   }
 }
 
-@mixin NotOption($optionName) {
-  @supports not -moz-bool-pref("#{$optionName}") {
+@mixin NotOption($optionNames...) {
+  @include each.AtEach("supports", $optionNames, "not -moz-bool-pref", " or ") {
     @content;
   }
 }
