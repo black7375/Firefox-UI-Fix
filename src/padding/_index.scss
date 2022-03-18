@@ -1,27 +1,31 @@
-/*= Root - Reduce Padding ====================================================*/
-@include Option($tabLeptonLikePadding) {
+/*= Tab Bar - Distribution padding, radius ===================================*/
+@include Option("userChrome.tab.lepton_like_padding", "userChrome.tab.photon_like_padding") {
   :root {
-    /* Tab Bar */
-    --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
+    // --tab-block-margin: New version of --proton-tab-block-margin
+    --proton-tab-block-margin: var(--tab-block-margin) !important; /* Original: 4px, Legacy */
+  }
+  :root[uidensity="touch"] {
+    /* Like Original */
+    --tab-block-margin: 4px !important;
+  }
+}
+
+@include Option("userChrome.tab.lepton_like_padding") {
+  :root {
     --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
   }
 }
-@include Option($tabPhotonLikePadding) {
+@include Option("userChrome.tab.photon_like_padding") {
   :root {
-    --proton-tab-block-margin: 0px !important; /* Original: 4px, Legacy */
-    --tab-block-margin: 0px !important; /* New version of --proton-tab-block-margin */
-    --tab-border-radius: 0px !important; /* Original: 4px */
+    --tab-block-margin: 0px !important;
   }
 }
 
-:root[uidensity="touch"] {
-  /* Tab Bar - Like Original */
-  --proton-tab-block-margin: 4px !important; /* Original: 4px */
-  --tab-block-margin: 4px !important; /* New version of --proton-tab-block-margin */
-}
-
-/* Fix Tab bar button radious */
-@include Option($tabPhotonLikePadding) {
+@include Option("userChrome.tab.photon_like_radius") {
+  :root {
+    --tab-border-radius: 0px !important; /* Original: 4px */
+  }
+  /* Fix Tab bar button radious */
   #TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon,
   #TabsToolbar .toolbarbutton-1 > .toolbarbutton-text,
   #TabsToolbar .toolbarbutton-1 > .toolbarbutton-badge-stack,
