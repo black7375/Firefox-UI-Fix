@@ -24,12 +24,12 @@
   background-image: var(--avatar-image-url) !important;
 }
 
-@include Option("userChrome.panel.proton") {
+@include Option("userChrome.icon.panel_full") {
   #appMenu-new-tab-button2 {
     list-style-image: url("chrome://browser/skin/new-tab.svg");
   }
 }
-@include Option("userChrome.panel.photon") {
+@include Option("userChrome.icon.panel_sparse") {
   #appMenu-new-tab-button2,           /* Seperate */
   #appMenu-passwords-button,          /* Seperate */
   #appMenu-extensions-themes-button,
@@ -62,7 +62,7 @@
 #appMenu-downloads-button {
   list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
 }
-@supports -moz-bool-pref("userChrome.panel.proton") {
+@include Option("userChrome.icon.panel_full") {
   #appMenu-passwords-button {
     list-style-image: url("chrome://browser/skin/login.svg");
   }
@@ -74,7 +74,7 @@
 #appMenu-print-button2 {
   list-style-image: url("chrome://global/skin/icons/print.svg");
 }
-@supports -moz-bool-pref("userChrome.panel.proton") {
+@include Option("userChrome.icon.panel_full") {
   #appMenu-save-file-button2 {
     list-style-image: url("chrome://browser/skin/save.svg");
   }
@@ -89,7 +89,7 @@
 #appMenu-settings-button {
   list-style-image: url("chrome://global/skin/icons/settings.svg");
 }
-@supports -moz-bool-pref("userChrome.panel.proton") {
+@include Option("userChrome.icon.panel_full") {
   #appMenu-more-button2 {
     list-style-image: url("chrome://browser/skin/ion.svg");
   }
@@ -368,7 +368,7 @@ panelMenuBookmarkThisPage[starred] {
   --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
 }
 
-@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include OS($mac) {
   #BMB_bookmarksShowAllTop {
     list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg") !important;
   }

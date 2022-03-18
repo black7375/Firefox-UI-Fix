@@ -30,9 +30,6 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 // Mutliple
 user_pref("userChrome.tab.connect_to_window",          true); // Original, Photon
 
-user_pref("userChrome.panel.proton",                   true); // Original, Proton
-// user_pref("userChrome.panel.photon",                true); // Photon
-
 user_pref("userChrome.tab.lepton_like_padding",        true); // Original
 // user_pref("userChrome.tab.photon_like_padding",     true); // Photon
 
@@ -42,6 +39,9 @@ user_pref("userChrome.tab.dynamic_separtor",           true); // Original, Proto
 user_pref("userChrome.tab.newtab_button_like_tab",     true); // Original
 // user_pref("userChrome.tab.newtab_button_smaller",   true); // Photon
 // user_pref("userChrome.tab.newtab_button_proton",    true); // Proton
+
+user_pref("userChrome.icon.panel_full",                true); // Original, Proton
+// user_pref("userChrome.icon.panel_sparse",           true); // Photon
 
 // Original Only
 user_pref("userChrome.tab.box_shadow",                 true);

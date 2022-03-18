@@ -4,7 +4,7 @@
   --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
 }
 
-@supports -moz-bool-pref("userChrome.panel.photon") {
+@include Option("userChrome.icon.panel_sparse") {
   :root {
     /* Blank Menu Left Padding */
     --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
