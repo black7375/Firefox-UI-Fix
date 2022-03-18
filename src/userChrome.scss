@@ -53,7 +53,9 @@
 
 /** Fullscreen - Overlap toolbar **********************************************/
 @include Option("userChrome.fullscreen.overlap") {
-  @import "fullscreen/index";
+  @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    @import "fullscreen/index";
+  }
 }
 
 /** Library - Icons Replace ***************************************************/
@@ -89,3 +91,9 @@
 
 /*= Waterfox =================================================================*/
 @import "icons/waterfox";
+@include Option("userChrome.theme.fully_color") {
+  @import "theme/waterfox";
+}
+
+/*= Tor Browser ==============================================================*/
+@import "icons/tor_browser";

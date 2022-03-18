@@ -3,6 +3,9 @@
   --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
   --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
 }
+.subviewbutton > .toolbarbutton-icon {
+  width: 16px;
+}
 
 @include Option("userChrome.icon.panel_sparse") {
   :root {

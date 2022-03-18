@@ -1,0 +1,23 @@
+@include Option("userChrome.icon.panel") {
+  #appMenuNewIdentity{
+    list-style-image: url("chrome://browser/skin/new_identity.svg");
+  }
+  #appMenuNewCircuit {
+    list-style-image: url("chrome://browser/skin/new_circuit.svg");
+  }
+  #appMenu_torBrowserUserManual {
+    list-style-image: url("chrome://browser/skin/onion.svg");
+  }
+}
+
+@include Option("userChrome.icon.menu") {
+  #menu_newIdentity {
+    --menuitem-image: url("chrome://browser/skin/new_identity.svg");
+  }
+  #menu_newCircuit {
+    --menuitem-image: url("chrome://browser/skin/new_circuit.svg");
+  }
+  #torBrowserUserManual {
+    --menuitem-image: url("chrome://browser/skin/onion.svg");
+  }
+}
