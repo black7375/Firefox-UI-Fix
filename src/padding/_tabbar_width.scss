@@ -21,14 +21,14 @@
   padding-right: var(--newtab-button-width-padding) !important;
 }
 
-@include NotOption($tabPhotonLikePadding) {
+@include NotOption("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab[first-visible-unpinned-tab] {
     margin-inline-start: 1px !important;
   }
 }
-@include Option($tabPhotonLikePadding) {
+@include Option("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab[first-visible-unpinned-tab] {
@@ -55,12 +55,12 @@
 }
 
 /* Tab - Max Size */
-@include NotOption($tabPhotonLikePadding) {
+@include NotOption("userChrome.tab.photon_like_padding") {
   :root {
     --tab-max-width: 240px;
   }
 }
-@include Option($tabPhotonLikePadding) {
+@include Option("userChrome.tab.photon_like_padding") {
   :root {
     --tab-max-width: 225px;
   }
@@ -70,7 +70,7 @@
 }
 
 /* neighbouring tabs should "pinch" together */
-@include NotOption($tabPhotonLikePadding) {
+@include NotOption("userChrome.tab.photon_like_padding") {
   .tabbrowser-tab {
     padding-inline: 1px !important;
   }
@@ -78,7 +78,7 @@
     margin-inline-end: -0.5px !important;
   }
 }
-@include Option($tabPhotonLikePadding) {
+@include Option("userChrome.tab.photon_like_padding") {
   .tabbrowser-tab {
     padding-inline: 0 !important;
   }

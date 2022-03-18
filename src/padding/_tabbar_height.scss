@@ -1,5 +1,5 @@
 /* Toolbar Height */
-@include Option($tabLeptonLikePadding) {
+@include Option("userChrome.tab.lepton_like_padding") {
   :root:not([uidensity]) #TabsToolbar {
     --tab-min-height: 36px;
   }
@@ -10,7 +10,7 @@
     --tab-min-height: 41px;
   }
 }
-@include Option($tabPhotonLikePadding) {
+@include Option("userChrome.tab.photon_like_padding") {
   :root:not([uidensity]) #TabsToolbar {
     --tab-min-height: 32px;
   }
@@ -27,7 +27,7 @@
     margin-top: 0 !important;
   }
 }
-@include NotOption($tabPhotonLikePadding) {
+@include NotOption("userChrome.tab.photon_like_padding") {
   :root:not([uidensity]) #TabsToolbar {
     --tab-min-height: 36px !important; /* 38px -> 36px */
   }
@@ -35,7 +35,7 @@
     --tab-min-height: 29px !important; /* 36px -> 29px */
   }
 }
-@include NotOption($tabProtonLikePadding) {
+@include Option("userChrome.tab.connect_to_window") {
   #TabsToolbar {
     --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important; /* Prevent overflow pinned tab bottom margin */
   }
