@@ -1,12 +1,6 @@
 @use "each";
 
 $tabProton: "userChrome.tab.proton";
-$tabConnectToWindow: "userChrome.tab.connect_to_window";
-$tabBoxShadow: "userChrome.tab.box_shadow";
-$tabBottomRoundedCorner: "userChrome.tab.bottom_rounded_corner";
-$tabPhotonLikeContextLine: "userChrome.tab.photon_like_contextline";
-
-$tabMultiSelected: "userChrome.tab.multi_selected";
 
 @mixin Option($optionNames...) {
   @include each.AtEach("supports", $optionNames, "-moz-bool-pref", " or ") {
