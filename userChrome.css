@@ -2783,16 +2783,14 @@ menuitem.openintabs-menuitem,
 }
 
 /** Reduce Padding ************************************************************/
-/*= Root - Reduce Padding ====================================================*/
+/*= Tab Bar - Distribution padding, radius ===================================*/
 :root {
-  /* Tab Bar */
-  --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
   --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
+  --proton-tab-block-margin: var(--tab-block-margin) !important; /* Original: 4px, Legacy */
 }
 
 :root[uidensity="touch"] {
-  /* Tab Bar - Like Original */
-  --proton-tab-block-margin: 4px !important; /* Original: 4px */
+  /* Like Original */
   --tab-block-margin: 4px !important; /* New version of --proton-tab-block-margin */
 }
 
