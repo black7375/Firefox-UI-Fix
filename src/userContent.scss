@@ -18,7 +18,9 @@
 
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
-@import "theme/proton_color";
+@include Option("userContent.page.proton_color") {
+  @import "theme/proton_color";
+}
 @include Option("userContent.page.dark_mode") {
   @import "contents/dark_mode";
 }

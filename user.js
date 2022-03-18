@@ -118,9 +118,10 @@ user_pref("userContent.newTab.full_icon",    true);
 user_pref("userContent.newTab.animate",      true);
 user_pref("userContent.newTab.searchbar",    true);
 
-user_pref("userContent.page.illustration",  true);
-user_pref("userContent.page.dark_mode",     true);
-user_pref("userContent.page.proton",        true);
+user_pref("userContent.page.illustration", true);
+user_pref("userContent.page.proton_color", true);
+user_pref("userContent.page.dark_mode",    true); // Need proton_color
+user_pref("userContent.page.proton",       true); // Need proton_color
 
 // ** Useful Options ***********************************************************
 // Integrated calculator at urlbar
