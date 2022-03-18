@@ -98,24 +98,26 @@
 }
 
 /* Animation */
-@include Animate {
-  /* Control Bar */
-  #controlsContainer .controlBar {
-    transition: transform 350ms ease;
-  }
-  #controlsContainer .controlBar[hidden] {
-    transform: translateY(100%);
-    transition: transform 350ms ease-in-out, opacity 1s ease 100ms !important;
-  }
-  #controlsContainer .controlBar[hidden] .progressBar,
-  #controlsContainer .controlBar[hidden] .bufferBar {
-    display: unset !important;
-    opacity: 0.55;
-    transition: opacity 150ms ease 50ms;
-  }
+@include Option("userContent.player.animate") {
+  @include Animate {
+    /* Control Bar */
+    #controlsContainer .controlBar {
+      transition: transform 350ms ease;
+    }
+    #controlsContainer .controlBar[hidden] {
+      transform: translateY(100%);
+      transition: transform 350ms ease-in-out, opacity 1s ease 100ms !important;
+    }
+    #controlsContainer .controlBar[hidden] .progressBar,
+    #controlsContainer .controlBar[hidden] .bufferBar {
+      display: unset !important;
+      opacity: 0.55;
+      transition: opacity 150ms ease 50ms;
+    }
 
-  /* Click to play */
-  #controlsContainer .clickToPlay {
+    /* Click to play */
+    #controlsContainer .clickToPlay {
     transition: opacity 150ms ease-in-out, fill 150ms ease-in-out;
+    }
   }
 }
