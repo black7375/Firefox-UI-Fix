@@ -1,28 +1,32 @@
+@mixin separaorShape() {
+  /* Box Model */
+  content: "";
+  display: block;
+  position: absolute;
+
+  /* Position */
+  top: 50%;
+
+  /* Bar shape */
+  width: 1px;
+  height: 20px;
+
+  /* Bar Color */
+  opacity: 0;
+  background-color: var(--toolbarseparator-color);
+}
+
 @include Option("userChrome.tab.dynamic_separtor_contain_button") {
   #tabbrowser-arrowscrollbox {
     position: absolute;
   }
-}
 
-@include Option("userChrome.tab.dynamic_separtor_contain_button") {
   .tab-background::before,
   #tabs-newtab-button::before {
-    /* Box Model */
-    content: "";
-    display: block;
-    position: absolute;
+    @include separatorShape;
 
-    /* Position */
-    top: 50%;
+    /* More position */
     transform: translateX(-2.5px) translateY(calc(-50% + 1px));
-
-    /* Bar shape */
-    width: 1px;
-    height: 20px;
-
-    /* Bar Color */
-    opacity: 0;
-    background-color: var(--toolbarseparator-color);
   }
 }
 
@@ -31,23 +35,9 @@
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
     .tab-background::after {
-    /* Box Model */
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-
-    /* Bar shape */
-    width: 1px;
-    height: 20px;
-
-    /* Bar Color */
-    opacity: 0;
-    background-color: var(--toolbarseparator-color);
+    @include separatorShape;
   }
-}
 
-@include Option("userChrome.tab.dynamic_separtor_only_tab") {
   .tab-background::before {
     transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
   }
