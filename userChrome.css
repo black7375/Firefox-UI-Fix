@@ -2783,45 +2783,17 @@ menuitem.openintabs-menuitem,
 }
 
 /** Reduce Padding ************************************************************/
-/*= Root - Reduce Padding ====================================================*/
+/*= Tab Bar - Distribution padding, radius ===================================*/
 :root {
-  /* Tab Bar */
-  --proton-tab-block-margin: 0px !important; /* Original: 4px, Legacy */
-  --tab-block-margin: 0px !important; /* New version of --proton-tab-block-margin */
   --tab-border-radius: 0px !important; /* Original: 4px */
-  --inline-tab-padding: 6px !important; /* Original: 8px */
 
-  /* Panel */
-  --arrowpanel-menuicon-padding: 8px;
-  --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
-  --arrowpanel-menuitem-padding: 5px !important; /* Original: 8px */
-  --arrowpanel-padding: 0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
-}
-
-:root[uidensity="compact"] {
-  /* Tool Bar */
-  --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
-
-  /* Panel */
-  --arrowpanel-menuitem-padding: 3px !important; /* Original: 8px */
+  --tab-block-margin: 0px !important; /* New version of --proton-tab-block-margin */
+  --proton-tab-block-margin: var(--tab-block-margin) !important; /* Original: 4px, Legacy */
 }
 
 :root[uidensity="touch"] {
-  /* Tab Bar - Like Original */
-  --proton-tab-block-margin: 4px !important; /* Original: 4px */
+  /* Like Original */
   --tab-block-margin: 4px !important; /* New version of --proton-tab-block-margin */
-  --inline-tab-padding: 8px !important; /* Original: 8px */
-
-  /* Panel - Like Original */
-  --arrowpanel-menuitem-padding: 8px !important; /* Original: 8px */
-}
-
-.tab-content[pinned] {
-  --inline-tab-padding: 10px; /* Prevent overflow pinned tab's divide line not aligned */
-  padding-inline: var(--inline-tab-padding) !important;
-}
-:root[uidensity="compact"] .tab-content[pinned] {
-  --inline-tab-padding: 8px;
 }
 
 /* Fix Tab bar button radious */
@@ -2990,6 +2962,11 @@ menuitem.openintabs-menuitem,
 :root[uidensity="touch"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
   /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
   background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
+}
+
+/*= Tool Bar - Button Padding ================================================*/
+:root[uidensity="compact"] {
+  --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
 }
 
 /*= Nav Bar - Reduce Width ===================================================*/
@@ -3181,6 +3158,21 @@ menupopup > menu {
 #main-menubar > menu > menupopup menuitem,
 #main-menubar > menu > menupopup menu {
   padding-block: var(--bookmark-menu-padding) !important;
+}
+
+/*= Panel - Reduce padding ===================================================*/
+:root {
+  --arrowpanel-menuicon-padding: 8px;
+  --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important; /* Original: 0 8px */
+  --arrowpanel-menuitem-padding: 5px !important; /* Original: 8px */
+  --arrowpanel-padding: 0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
+}
+
+:root[uidensity="compact"] {
+  --arrowpanel-menuitem-padding: 3px !important; /* Original: 8px */
+}
+:root[uidensity="touch"] {
+  --arrowpanel-menuitem-padding: 8px !important; /* Original: 8px */
 }
 
 /*= Popup Panel - Reduce padding =============================================*/
@@ -3454,8 +3446,19 @@ menupopup > menu {
 }
 
 /** Clipped tabs - Letters cleary *********************************************/
-#tabbrowser-tabs[closebuttons="activetab"] .tab-content:not([pinned]) {
-  padding-inline-start: 8px !important;
+:root {
+  --inline-tab-padding: 6px !important; /* Original: 8px */
+}
+:root[uidensity="touch"] {
+  --inline-tab-padding: 8px !important; /* Original: 8px */
+}
+
+.tab-content[pinned] {
+  --inline-tab-padding: 10px; /* Prevent overflow pinned tab's divide line not aligned */
+  padding-inline: var(--inline-tab-padding) !important;
+}
+:root[uidensity="compact"] .tab-content[pinned] {
+  --inline-tab-padding: 8px;
 }
 
 #tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
