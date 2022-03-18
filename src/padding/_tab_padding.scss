@@ -1,0 +1,21 @@
+@include Option("userChrome.tab.lepton_like_padding", "userChrome.tab.photon_like_padding") {
+  :root {
+    // --tab-block-margin: New version of --proton-tab-block-margin
+    --proton-tab-block-margin: var(--tab-block-margin) !important; /* Original: 4px, Legacy */
+  }
+  :root[uidensity="touch"] {
+    /* Like Original */
+    --tab-block-margin: 4px !important;
+  }
+}
+
+@include Option("userChrome.tab.lepton_like_padding") {
+  :root {
+    --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
+  }
+}
+@include Option("userChrome.tab.photon_like_padding") {
+  :root {
+    --tab-block-margin: 0px !important;
+  }
+}
