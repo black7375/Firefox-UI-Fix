@@ -2790,11 +2790,6 @@ menuitem.openintabs-menuitem,
   --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
 }
 
-:root[uidensity="compact"] {
-  /* Tool Bar */
-  --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
-}
-
 :root[uidensity="touch"] {
   /* Tab Bar - Like Original */
   --proton-tab-block-margin: 4px !important; /* Original: 4px */
@@ -2965,6 +2960,11 @@ menuitem.openintabs-menuitem,
 :root[uidensity="touch"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
   /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
   background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
+}
+
+/*= Tool Bar - Button Padding ================================================*/
+:root[uidensity="compact"] {
+  --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
 }
 
 /*= Nav Bar - Reduce Width ===================================================*/
