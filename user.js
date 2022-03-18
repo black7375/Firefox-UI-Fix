@@ -30,16 +30,27 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 user_pref("userChrome.tab.original",                true); // Original
 // user_pref("userChrome.tab.photon",               true); // Photon
 // user_pref("userChrome.tab.proton",               true); // Proton
-user_pref("userChrome.tab.connect_to_window",       true); // Original, Photon
-user_pref("userChrome.tab.box_shadow",              true); // Original
-user_pref("userChrome.tab.bottom_rounded_corner",   true); // Original
-user_pref("userChrome.tab.lepton_like_padding",     true); // Original
-// user_pref("userChrome.tab.photon_like_padding",  true); // Photon
-// user_pref("userChrome.tab.photon_like_contextline", true); // Photon
-// user_pref("userChrome.tab.photon_like_radius",   true); // Photon
 
-user_pref("userChrome.panel.proton", true); // Original, Proton
+// Mutliple
+user_pref("userChrome.tab.connect_to_window", true); // Original, Photon
+
+user_pref("userChrome.panel.proton",    true); // Original, Proton
 // user_pref("userChrome.panel.photon", true); // Photon
+
+user_pref("userChrome.tab.lepton_like_padding",    true); // Original
+// user_pref("userChrome.tab.photon_like_padding", true); // Photon
+
+user_pref("userChrome.tab.dynamic_separtor_contain_button", true); // Original
+// user_pref("userChrome.tab.dynamic_separtor_only_tab",    true); // Proton
+// user_pref("userChrome.tab.static_separator",             true); // Photon
+
+// Original Only
+user_pref("userChrome.tab.box_shadow",              true);
+user_pref("userChrome.tab.bottom_rounded_corner",   true);
+
+// Photon Only
+// user_pref("userChrome.tab.photon_like_contextline", true);
+// user_pref("userChrome.tab.photon_like_radius",      true);
 
 // == Theme Custom Settings ====================================================
 // user_pref("userChrome.padding.first_tab",  true);

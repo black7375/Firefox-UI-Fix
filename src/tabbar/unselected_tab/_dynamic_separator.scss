@@ -1,10 +1,10 @@
-@include Option("userChrome.tab.original") {
+@include Option("userChrome.tab.dynamic_separtor_contain_button") {
   #tabbrowser-arrowscrollbox {
     position: absolute;
   }
 }
 
-@include Option("userChrome.tab.original") {
+@include Option("userChrome.tab.dynamic_separtor_contain_button") {
   .tab-background::before,
   #tabs-newtab-button::before {
     /* Box Model */
@@ -26,7 +26,7 @@
   }
 }
 
-@include Option("userChrome.tab.proton") {
+@include Option("userChrome.tab.dynamic_separtor_only_tab") {
   .tab-background::before,
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
@@ -47,7 +47,7 @@
   }
 }
 
-@include Option("userChrome.tab.proton") {
+@include Option("userChrome.tab.dynamic_separtor_only_tab") {
   .tab-background::before {
     transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
   }
@@ -60,12 +60,12 @@
 .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
   opacity: var(--tab-separator-opacity);
 }
-@include Option("userChrome.tab.original") {
+@include Option("userChrome.tab.dynamic_separtor_contain_button") {
   #tabs-newtab-button:not(:hover, [open])::before {
     opacity: var(--tab-separator-opacity);
   }
 }
-@include Option("userChrome.tab.proton") {
+@include Option("userChrome.tab.dynamic_separtor_only_tab") {
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
@@ -83,7 +83,7 @@
   .tab-background::before {
   opacity: 0 !important;
 }
-@include Option("userChrome.tab.original") {
+@include Option("userChrome.tab.dynamic_separtor_contain_button") {
   #navigator-toolbox:not([movingtab])
     .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab
@@ -98,7 +98,7 @@
     opacity: 0 !important;
   }
 }
-@include Option("userChrome.tab.proton") {
+@include Option("userChrome.tab.dynamic_separtor_only_tab") {
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab:not([visuallyselected])
     .tab-background::before {
@@ -111,12 +111,12 @@
   .tab-background::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
-  @include Option("userChrome.tab.original") {
+  @include Option("userChrome.tab.dynamic_separtor_contain_button") {
     #tabs-newtab-button::before {
       transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     }
   }
-  @include Option("userChrome.tab.proton") {
+  @include Option("userChrome.tab.dynamic_separtor_only_tab") {
     #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
       .tab-background::after {
