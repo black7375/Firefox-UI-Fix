@@ -2788,7 +2788,6 @@ menuitem.openintabs-menuitem,
   /* Tab Bar */
   --proton-tab-block-margin: 2px !important; /* Original: 4px, Legacy */
   --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
-  --inline-tab-padding: 6px !important; /* Original: 8px */
 }
 
 :root[uidensity="compact"] {
@@ -2800,7 +2799,6 @@ menuitem.openintabs-menuitem,
   /* Tab Bar - Like Original */
   --proton-tab-block-margin: 4px !important; /* Original: 4px */
   --tab-block-margin: 4px !important; /* New version of --proton-tab-block-margin */
-  --inline-tab-padding: 8px !important; /* Original: 8px */
 }
 
 .tab-content[pinned] {
@@ -3560,8 +3558,11 @@ tab[visuallyselected] > stack::after {
 }
 
 /** Clipped tabs - Letters cleary *********************************************/
-#tabbrowser-tabs[closebuttons="activetab"] .tab-content:not([pinned]) {
-  padding-inline-start: 8px !important;
+:root {
+  --inline-tab-padding: 6px !important; /* Original: 8px */
+}
+:root[uidensity="touch"] {
+  --inline-tab-padding: 8px !important; /* Original: 8px */
 }
 
 #tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
