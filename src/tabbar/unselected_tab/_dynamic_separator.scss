@@ -16,7 +16,7 @@
   background-color: var(--toolbarseparator-color);
 }
 
-@include Option("userChrome.tab.dynamic_separtor_contain_button") {
+@include Option("userChrome.tab.newtab_button_like_tab") {
   #tabbrowser-arrowscrollbox {
     position: absolute;
   }
@@ -30,7 +30,7 @@
   }
 }
 
-@include Option("userChrome.tab.dynamic_separtor_only_tab") {
+@include NotOption("userChrome.tab.newtab_button_like_tab") {
   .tab-background::before,
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
@@ -50,12 +50,12 @@
 .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
   opacity: var(--tab-separator-opacity);
 }
-@include Option("userChrome.tab.dynamic_separtor_contain_button") {
+@include Option("userChrome.tab.newtab_button_like_tab") {
   #tabs-newtab-button:not(:hover, [open])::before {
     opacity: var(--tab-separator-opacity);
   }
 }
-@include Option("userChrome.tab.dynamic_separtor_only_tab") {
+@include NotOption("userChrome.tab.newtab_button_like_tab") {
   #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
@@ -73,7 +73,7 @@
   .tab-background::before {
   opacity: 0 !important;
 }
-@include Option("userChrome.tab.dynamic_separtor_contain_button") {
+@include Option("userChrome.tab.newtab_button_like_tab") {
   #navigator-toolbox:not([movingtab])
     .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab
@@ -88,7 +88,7 @@
     opacity: 0 !important;
   }
 }
-@include Option("userChrome.tab.dynamic_separtor_only_tab") {
+@include NotOption("userChrome.tab.newtab_button_like_tab") {
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab:not([visuallyselected])
     .tab-background::before {
@@ -101,12 +101,12 @@
   .tab-background::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
-  @include Option("userChrome.tab.dynamic_separtor_contain_button") {
+  @include Option("userChrome.tab.newtab_button_like_tab") {
     #tabs-newtab-button::before {
       transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     }
   }
-  @include Option("userChrome.tab.dynamic_separtor_only_tab") {
+  @include NotOption("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
       .tab-background::after {

@@ -40,9 +40,12 @@ user_pref("userChrome.panel.proton",    true); // Original, Proton
 user_pref("userChrome.tab.lepton_like_padding",    true); // Original
 // user_pref("userChrome.tab.photon_like_padding", true); // Photon
 
-user_pref("userChrome.tab.dynamic_separtor_contain_button", true); // Original
-// user_pref("userChrome.tab.dynamic_separtor_only_tab",    true); // Proton
-// user_pref("userChrome.tab.static_separator",             true); // Photon
+user_pref("userChrome.tab.dynamic_separtor",    true); // Original, Proton
+// user_pref("userChrome.tab.static_separator", true); // Photon
+
+user_pref("userChrome.tab.newtab_button_like_tab",   true); // Original
+// user_pref("userChrome.tab.newtab_button_smaller", true); // Photon
+// user_pref("userChrome.tab.newtab_button_proton",  true); // Proton
 
 // Original Only
 user_pref("userChrome.tab.box_shadow",              true);
