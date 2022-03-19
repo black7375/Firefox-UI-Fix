@@ -44,6 +44,7 @@
     - Context Menu
     - Global Menu
     - Library's open context
+    - Video Player
   - *Padding Narrower*
     - Tab
     - Panel
@@ -81,9 +82,14 @@
       - Size: Fill(Changes dynamically to your size)
   - *Error Page Design*
     - Illustrations: Restore error page illustrations
+  - *Video Player*
+    - Background Style
+    - Size at fullscreen
+  - *Fullscreen*
+    - Overlap mode
   - *Others*
-    - Activate calculator at address bar
     - Animations
+    - Activate calculator at address bar
     - Mouse pointer for each context
 
 ** Installation Guide
@@ -95,7 +101,7 @@
    bash -c "$(curl -fsSL https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.sh)"
    #+END_SRC
 
-   Windows users: Run powershell as administrator
+   Windows users: Run with powershell
    #+BEGIN_SRC powershell
    Powershell -c "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iwr https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.ps1 -useb | iex"
    #+END_SRC
@@ -166,7 +172,8 @@
   Please follow the [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]], \\
   or set =about:config='s =svg.context-properties.content.enabled= to =true= .
 
-  - *Some panel menu items doesn't show* \\
+  - *The closed button and some panel menu icons are not visible.* \\
+    [[https://user-images.githubusercontent.com/77958663/130395848-7af58241-bbbf-4273-bb62-14382c44098d.png]]
     [[https://user-images.githubusercontent.com/25581533/120487528-93b40200-c3a5-11eb-98ad-3498beb9f38e.png]]
 
   Please follow the [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]], \\
@@ -177,5 +184,5 @@
     [[https://user-images.githubusercontent.com/25581533/123761424-5746c980-d8b1-11eb-9a0f-83fb305f9f08.png]]
     [[https://user-images.githubusercontent.com/25581533/123762962-d4bf0980-d8b2-11eb-8492-d497d330c72a.png]]
 
-  I didn't put all the icons like before.\\
-  [[https://user-images.githubusercontent.com/25581533/123602947-dd4b0d80-d7e8-11eb-93a6-2b263bdd99f7.png]]
+    I didn't put all the icons like before.\\
+    [[https://user-images.githubusercontent.com/25581533/123602947-dd4b0d80-d7e8-11eb-93a6-2b263bdd99f7.png]]
