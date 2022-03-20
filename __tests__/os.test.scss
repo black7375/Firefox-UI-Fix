@@ -1,13 +1,8 @@
 @use 'true' as *;
+@use "example" as *;
 @use "../src/utils/os" as *;
 
 // TODO: Need more tests..
-@mixin example() {
-  body {
-    font-size: 16px;
-  }
-}
-
 @include test-module("Create OS related media [mix]") {
   @include test("win7") {
     @include assert {

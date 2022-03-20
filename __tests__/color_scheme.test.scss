@@ -1,4 +1,5 @@
 @use 'true' as *;
+@use "example" as *;
 @use "../src/utils/color_scheme";
 
 @include test-module("Color scheme is dark [mix]") {
@@ -6,16 +7,12 @@
     @include assert {
       @include output {
         @include color_scheme.Dark {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -24,16 +21,16 @@
   @include test("simple reversed") {
     @include assert {
       @include output {
-        body {
+        @include example_tag {
           @include color_scheme.Dark {
-            font-size: 16px;
+            @include example_property;
           }
         }
       }
       @include expect {
         @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
-          body {
-            font-size: 16px;
+          @include example_tag {
+            @include example_property;
           }
         }
       }
@@ -46,16 +43,12 @@
     @include assert {
       @include output {
         @include color_scheme.Light {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -64,16 +57,16 @@
   @include test("simple reversed") {
     @include assert {
       @include output {
-        body {
-          @include color_scheme.Light {
-            font-size: 16px;
+        @include example_tag {
+          @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+            @include example_property;
           }
         }
       }
       @include expect {
         @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
-          body {
-            font-size: 16px;
+          @include example_tag {
+            @include example_property;
           }
         }
       }
@@ -86,16 +79,12 @@
     @include assert {
       @include output {
         @include color_scheme.Contrast {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @media (prefers-contrast) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -107,16 +96,12 @@
     @include assert {
       @include output {
         @include color_scheme.NotContrast {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @media not all and (prefers-contrast) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -128,16 +113,12 @@
     @include assert {
       @include output {
         @include color_scheme.Animate {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @media (prefers-reduced-motion: no-preference) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }

@@ -1,4 +1,5 @@
 @use 'true' as *;
+@use "example" as *;
 @use "../src/utils/option";
 
 @include test-module("If exist pref [mix]") {
@@ -6,16 +7,12 @@
     @include assert {
       @include output {
         @include option.Option("userChrome.tab.photon") {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @supports -moz-bool-pref(userChrome.tab.photon) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -25,16 +22,12 @@
     @include assert {
       @include output {
         @include option.Option("userChrome.tab.photon", "userChrome.padding.photon") {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -46,16 +39,12 @@
     @include assert {
       @include output {
         @include option.NotOption("userChrome.tab.photon") {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @supports not -moz-bool-pref(userChrome.tab.photon) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -65,16 +54,12 @@
     @include assert {
       @include output {
         @include option.Option("userChrome.tab.photon", "userChrome.padding.photon") {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }

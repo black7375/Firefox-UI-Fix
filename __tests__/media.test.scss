@@ -1,4 +1,5 @@
 @use 'true' as *;
+@use "example" as *;
 @use "../src/utils/media";
 
 // TODO: Need more tests..
@@ -8,16 +9,12 @@
       @include output {
         $input: "hover: hover" "max-width: 1024px";
         @include media.each($input...) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
       @include expect {
         @media (hover: hover), (max-width: 1024px) {
-          body {
-            font-size: 16px;
-          }
+          @include example;
         }
       }
     }
@@ -27,7 +24,7 @@
     @include assert {
       @include output {
         $input: "hover: hover" "max-width: 1024px";
-        body {
+        @include example_tag {
           @include media.each($input...) {
             font-size: 16px;
           }
@@ -35,8 +32,8 @@
       }
       @include expect {
         @media (hover: hover), (max-width: 1024px) {
-          body {
-            font-size: 16px;
+          @include example_tag {
+            @include example_property;
           }
         }
       }
@@ -47,9 +44,9 @@
     @include assert {
       @include output {
         $input: ();
-        body {
+        @include example_tag {
           @include media.each($input) {
-            font-size: 16px;
+            @include example_property;
           }
         }
       }
@@ -62,9 +59,9 @@
     @include assert {
       @include output {
         $input: (null);
-        body {
+        @include example_tag {
           @include media.each($input) {
-            font-size: 16px;
+            @include example_property;
           }
         }
       }
