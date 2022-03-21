@@ -52,11 +52,11 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.photon_like_radius",      true);
 
 // == Theme Custom Settings ====================================================
-// user_pref("userChrome.padding.first_tab",        true);
-// user_pref("userChrome.padding.drag_space",       true);
+// user_pref("userChrome.padding.first_tab",                true);
+// user_pref("userChrome.padding.drag_space",               true);
 
-// user_pref("userChrome.padding.urlView_expanding", true);
-// user_pref("userChrome.padding.urlView_result",    true);
+// user_pref("userChrome.padding.urlView_expanding",        true);
+// user_pref("userChrome.padding.urlView_result",           true);
 
 // user_pref("userChrome.urlView.move_icon_to_left",        true);
 // user_pref("userChrome.urlView.go_button_when_typing",    true);
