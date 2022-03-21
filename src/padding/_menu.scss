@@ -7,6 +7,15 @@
 :root[uidensity="touch"] {
   --menu-padding: 0.5em;
 }
+@include Option("userChrome.padding.menu_compact") {
+  :root {
+    --menu-padding: 2px;
+  }
+  :root[uidensity=compact] {
+    --menu-padding: 0px;
+  }
+}
+
 menupopup:not(.in-menulist) > menuitem,
 menupopup > menu {
   /* Original: 0.5em */

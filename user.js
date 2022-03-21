@@ -55,6 +55,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.padding.first_tab",                true);
 // user_pref("userChrome.padding.drag_space",               true);
 
+// user_pref("userChrome.padding.menu_compact",             true);
 // user_pref("userChrome.padding.urlView_expanding",        true);
 // user_pref("userChrome.padding.urlView_result",           true);
 
@@ -66,6 +67,8 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.close_button_at_hover.always", true); // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",             true); // Need remove sound_hide_label
 // user_pref("userChrome.tab.centered_label",               true);
+
+// user_pref("userChrome.panel.remove_strip",               true);
 
 // == Theme Default Settings ===================================================
 // -- User Chrome --------------------------------------------------------------
