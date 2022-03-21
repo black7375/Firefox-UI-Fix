@@ -45,6 +45,12 @@
 @include Option("userChrome.padding.urlbar") {
   @import "url_bar";
 }
+@include Option("userChrome.padding.urlView_expanding") {
+  @import "urlview_expanding";
+}
+@include Option("userChrome.padding.urlView_result") {
+  @import "urlview_result";
+}
 
 /*= BookMark Bar - Reduce Height =============================================*/
 @include Option("userChrome.padding.bookmarkbar") {

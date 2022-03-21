@@ -53,6 +53,9 @@
 /** Tab Bar UI ****************************************************************/
 @import "tabbar/index";
 
+/** Url View UI ***************************************************************/
+@import "urlview/index";
+
 /** Fullscreen - Overlap toolbar **********************************************/
 @include Option("userChrome.fullscreen.overlap") {
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
