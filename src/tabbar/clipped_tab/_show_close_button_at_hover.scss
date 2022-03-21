@@ -15,7 +15,7 @@
   visibility: visible !important;
   opacity: 1;
 }
-@include Option("userChrome.tab.always_show_close_button_at_hover") {
+@include Option("userChrome.tab.close_button_at_hover.always") {
   .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
     visibility: collapse !important;
     opacity: 0;
@@ -38,7 +38,7 @@
     transition: opacity 0.25s var(--animation-easing-function) !important;
   }
 
-  @include Option("userChrome.tab.always_show_close_button_at_hover") {
+  @include Option("userChrome.tab.close_button_at_hover.always") {
     /* Fade out */
     .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
       transition: opacity 0.1s var(--animation-easing-function) !important;
