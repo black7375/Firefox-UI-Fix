@@ -1,7 +1,6 @@
 /*= Mac - Default like color =================================================*/
 @include OS($mac) {
-  :root:not(:-moz-lwtheme),
-  :root[lwt-default-theme-in-dark-mode] {
+  #{system-default-theme()} {
     /* Colors */
     --mac-text-color: -moz-dialogtext;
     --mac-disabled-color: GrayText;
@@ -162,8 +161,7 @@
   }
   /*- Proton Tab Selected ----------------------------------------------------*/
   @include Option("userChrome.tab.proton") {
-    :root:not(:-moz-lwtheme),
-    :root[lwt-default-theme-in-dark-mode] {
+    #{system-default-theme()} {
       --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
     }
     :root:not(:-moz-lwtheme) {
@@ -175,16 +173,14 @@
   }
 
   /*- Toolbar ----------------------------------------------------------------*/
-  :root:not(:-moz-lwtheme) #navigator-toolbox,
-  :root[lwt-default-theme-in-dark-mode] #navigator-toolbox {
+  #{selector.nest(system-default-theme(), "#navigator-toolbox")} {
     background-color: var(--mac-bgcolor) !important;
   }
 
   :root:not(:-moz-lwtheme) #titlebar {
     --mac-hover-bgcolor: ButtonFace;
   }
-  :root:not(:-moz-lwtheme) #titlebar,
-  :root[lwt-default-theme-in-dark-mode] #titlebar {
+  #{selector.nest(system-default-theme(), "#titlebar")} {
     --button-hover-bgcolor: var(--mac-hover-bgcolor);
     --button-active-bgcolor: var(--mac-hover-bgcolor);
     --toolbarbutton-hover-background: var(--mac-hover-bgcolor);
@@ -203,8 +199,7 @@
   #sidebar-box:not([lwt-sidebar]) {
     appearance: none !important;
   }
-  :root:not(:-moz-lwtheme) #sidebar-box,
-  :root[lwt-default-theme-in-dark-mode] #sidebar-box {
+  #{selector.nest(system-default-theme(), "#sidebar-box")} {
     --sidebar-background-color: var(--mac-sidebar-bgcolor) !important;
     --sidebar-text-color: var(--mac-text-color) !important;
     /* --sidebar-border-color: var(--win-sidebar-border-color) !important; */
@@ -251,10 +246,7 @@
     }
   }
 
-  :root:not([customizing="true"]):not(:-moz-lwtheme) tab[visuallyselected] > stack::before,
-  :root:not([customizing="true"]):not(:-moz-lwtheme) tab[visuallyselected] > stack::after,
-  :root:not([customizing="true"])[lwt-default-theme-in-dark-mode] tab[visuallyselected] > stack::before,
-  :root:not([customizing="true"])[lwt-default-theme-in-dark-mode] tab[visuallyselected] > stack::after {
+  #{selector.append(system-default-theme(), ":not([customizing=true]) tab[visuallyselected] > stack", "::before, ::after")} {
     fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
   }
 }

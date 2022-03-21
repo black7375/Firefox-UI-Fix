@@ -28,8 +28,7 @@
     --win-accent-active-color: -moz-accent-color;
   }
   @include Dark {
-    :root:not(:-moz-lwtheme),
-    :root[lwt-default-theme-in-dark-mode] {
+    #{system-default-theme()} {
       --win-text-color: #ffffff;
       --win-bgcolor: #2b2b2b;
       --win-disabled-color: #747474;
@@ -57,8 +56,7 @@
     }
   }
 
-  :root:not(:-moz-lwtheme),
-  :root[lwt-default-theme-in-dark-mode] {
+  #{system-default-theme()} {
     /* Text, Icon Color */
     --menu-color: var(--win-text-color) !important;
     --lwt-text-color: var(--win-text-color) !important;
@@ -198,8 +196,7 @@
 
   /*- Proton Tab Selected ----------------------------------------------------*/
   @include Option($tabProton) {
-    :root:not(:-moz-lwtheme),
-    :root[lwt-default-theme-in-dark-mode] {
+    #{system-default-theme()} {
       --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
     }
     :root:not(:-moz-lwtheme) {
@@ -221,8 +218,7 @@
   }
 
   /*- Toolbar ----------------------------------------------------------------*/
-  :root:not(:-moz-lwtheme) #titlebar,
-  :root[lwt-default-theme-in-dark-mode] #titlebar {
+  #{selector.nest(system-default-theme(), "#titlebar")} {
     --button-hover-bgcolor: var(--win-sidebar-button-hover-bgcolor);
     --button-active-bgcolor: var(--win-sidebar-button-hover-active-bgcolor);
     --toolbarbutton-hover-background: var(--win-sidebar-button-hover-bgcolor);
@@ -233,8 +229,7 @@
   #sidebar-box:not([lwt-sidebar]) {
     appearance: none !important;
   }
-  :root:not(:-moz-lwtheme) #sidebar-box,
-  :root[lwt-default-theme-in-dark-mode] #sidebar-box {
+  #{selector.nest(system-default-theme(), "#sidebar-box")} {
     --sidebar-background-color: var(--win-sidebar-bgcolor) !important;
     --sidebar-text-color: var(--win-text-color) !important;
     --sidebar-border-color: var(--win-border-color) !important;
@@ -251,22 +246,16 @@
   }
 
   /*- Panel ------------------------------------------------------------------*/
-  :root:not(:-moz-lwtheme) .subviewbutton,
-  :root[lwt-default-theme-in-dark-mode] .subviewbutton {
+  #{selector.nest(system-default-theme(), ".subviewbutton")} {
     --button-hover-bgcolor: var(--win-hover-active-bgcolor) !important;
     --button-active-bgcolor: var(--win-button-active-bgcolor) !important;
   }
 
-  :root:not(:-moz-lwtheme)
-    toolbarbutton.subviewbutton:not([disabled], [open], :active, #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is(:hover),
-  :root[lwt-default-theme-in-dark-mode]
-    toolbarbutton.subviewbutton:not([disabled], [open], :active, #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is(:hover) {
+  $panelZoomButtons: "#appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2";
+  #{selector.nest(system-default-theme(), "toolbarbutton.subviewbutton:not([disabled], [open], :active, #{$panelZoomButtons}):is(:hover)")} {
     background-color: var(--win-hover-bgcolor) !important;
   }
-  :root:not(:-moz-lwtheme)
-    toolbarbutton.subviewbutton:not([disabled], #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is([open], :hover:active),
-  :root[lwt-default-theme-in-dark-mode]
-    toolbarbutton.subviewbutton:not([disabled], #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is([open], :hover:active) {
+  #{selector.nest(system-default-theme(), "toolbarbutton.subviewbutton:not([disabled], #{$panelZoomButtons}):is([open], :hover:active)")} {
     background-color: var(--win-hover-active-bgcolor) !important;
   }
 

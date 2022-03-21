@@ -14,8 +14,7 @@
     }
   }
 
-  :root:not(:-moz-lwtheme),
-  :root[lwt-default-theme-in-dark-mode] {
+  #{system-default-theme()} {
     --checkbox-unchecked-bgcolor: var(--in-content-button-background) !important;
     --checkbox-unchecked-hover-bgcolor: var(--in-content-button-background-hover) !important;
     --checkbox-unchecked-active-bgcolor: var(--in-content-button-background-active) !important;
