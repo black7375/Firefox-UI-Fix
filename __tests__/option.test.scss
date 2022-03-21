@@ -11,7 +11,7 @@
         }
       }
       @include expect {
-        @supports -moz-bool-pref(userChrome.tab.photon) {
+        @supports -moz-bool-pref("userChrome.tab.photon") {
           @include example;
         }
       }
@@ -26,7 +26,7 @@
         }
       }
       @include expect {
-        @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
+        @supports -moz-bool-pref("userChrome.tab.photon") or -moz-bool-pref("userChrome.padding.photon") {
           @include example;
         }
       }
@@ -43,7 +43,7 @@
         }
       }
       @include expect {
-        @supports not -moz-bool-pref(userChrome.tab.photon) {
+        @supports not -moz-bool-pref("userChrome.tab.photon") {
           @include example;
         }
       }
@@ -58,7 +58,7 @@
         }
       }
       @include expect {
-        @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
+        @supports -moz-bool-pref("userChrome.tab.photon") or -moz-bool-pref("userChrome.padding.photon") {
           @include example;
         }
       }

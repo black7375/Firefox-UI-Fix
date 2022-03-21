@@ -1,7 +1,7 @@
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
 /** Default Thme - Contrast ***************************************************/
-@supports -moz-bool-pref(userChrome.theme.built_in_contrast) {
+@supports -moz-bool-pref("userChrome.theme.built_in_contrast") {
   /*= Lightmode - Color darker =================================================*/
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]),
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
@@ -30,7 +30,7 @@
 }
 /** Compatibility Fixes *******************************************************/
 /*= Theme - Compatibility ====================================================*/
-@supports -moz-bool-pref(userChrome.compatibility.theme) {
+@supports -moz-bool-pref("userChrome.compatibility.theme") {
   /*= Hotfix #98 ===============================================================*/
   /* Hidden Tab Panel Padding */
   #allTabsMenu-hiddenTabsView .all-tabs-item {
@@ -75,7 +75,7 @@
   }
 
   /*= Remove Tab Border ========================================================*/
-  @supports -moz-bool-pref(userChrome.tab.connect_to_window) {
+  @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
     /* TARGET: original, photon */
     /* Light Theme */
     #TabsToolbar:not([brighttext])
@@ -127,7 +127,7 @@
   }
 }
 /*= OS - Compatibility =======================================================*/
-@supports -moz-bool-pref(userChrome.compatibility.os) {
+@supports -moz-bool-pref("userChrome.compatibility.os") {
   /*= Windows 7, 8 - Tab Bar Background *****************************************/
   @media (-moz-os-version: windows-win7),
     (-moz-platform: windows-win7),
@@ -296,7 +296,7 @@
   }
 }
 /** System Default Theme ******************************************************/
-@supports -moz-bool-pref(userChrome.theme.system_default) {
+@supports -moz-bool-pref("userChrome.theme.system_default") {
   /*= Common - URL Bar focus color =============================================*/
   @media (-moz-windows-accent-color-in-titlebar), (-moz-gtk-csd-available) {
     /* URL Bar */
@@ -526,7 +526,7 @@
     }
 
     /*- Proton Tab Selected ----------------------------------------------------*/
-    @supports -moz-bool-pref(userChrome.tab.proton) {
+    @supports -moz-bool-pref("userChrome.tab.proton") {
       :root:not(:-moz-lwtheme),
       :root[lwt-default-theme-in-dark-mode] {
         --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
@@ -811,7 +811,7 @@
       }
     }
     /*- Proton Tab Selected ----------------------------------------------------*/
-    @supports -moz-bool-pref(userChrome.tab.proton) {
+    @supports -moz-bool-pref("userChrome.tab.proton") {
       :root:not(:-moz-lwtheme),
       :root[lwt-default-theme-in-dark-mode] {
         --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
@@ -885,7 +885,7 @@
       }
     }
     /* Hard Coded */
-    @supports -moz-bool-pref(userChrome.tab.connect_to_window) {
+    @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
       :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode]
         #tabbrowser-tabs:not([movingtab])
         > #tabbrowser-arrowscrollbox
@@ -915,7 +915,7 @@
      https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/light/manifest.json
      https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
   */
-@supports -moz-bool-pref(userChrome.theme.proton_color) {
+@supports -moz-bool-pref("userChrome.theme.proton_color") {
   /*= Default Colors - Hard Coded ==============================================*/
   /* Based on chrome://global/skin/in-content/common.css */
   :host,
@@ -1058,7 +1058,7 @@
     }
   }
 }
-@supports -moz-bool-pref(userChrome.theme.fully_color) {
+@supports -moz-bool-pref("userChrome.theme.fully_color") {
   /*== Menu Color ==============================================================*/
   html#main-window menupopup {
     /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
@@ -1245,7 +1245,7 @@
   }
 }
 /* Fully Dark Mode ************************************************************/
-@supports -moz-bool-pref(userChrome.theme.fully_dark) {
+@supports -moz-bool-pref("userChrome.theme.fully_dark") {
   /*= Remove White Flash =======================================================*/
   #tabbrowser-tabbox,
   #tabbrowser-tabpanels,
@@ -1326,7 +1326,7 @@
   }
 }
 /* Proton Theme Mode **********************************************************/
-@supports -moz-bool-pref(userChrome.theme.proton_chrome) {
+@supports -moz-bool-pref("userChrome.theme.proton_chrome") {
   /*= Proton Commons ===========================================================*/
   @-moz-document url("chrome://global/content/commonDialog.xhtml"),
   url("chrome://pippki/content/editcacert.xhtml"),
@@ -2533,7 +2533,7 @@
 }
 /** Decoration ****************************************************************/
 /*= Cursor Types =============================================================*/
-@supports -moz-bool-pref(userChrome.decoration.cursor) {
+@supports -moz-bool-pref("userChrome.decoration.cursor") {
   #appMenu-proton-update-banner,
   #appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2,
   #appMenu-zoomReduce-button2,
@@ -2570,7 +2570,7 @@
 }
 @media (prefers-reduced-motion: no-preference) {
   /*= Field Border ===========================================================*/
-  @supports -moz-bool-pref(userChrome.decoration.field_border) {
+  @supports -moz-bool-pref("userChrome.decoration.field_border") {
     /*- URL, Search Bar --------------------------------------------------------*/
     #urlbar:hover:not([focused="true"]) > #urlbar-background,
     #searchbar:hover:not(:focus-within) {
@@ -2597,7 +2597,7 @@
     }
   }
   /*= Downloads Panel ========================================================*/
-  @supports -moz-bool-pref(userChrome.decoration.download_panel) {
+  @supports -moz-bool-pref("userChrome.decoration.download_panel") {
     /* Accent Color for downloaded item */
     #downloadsListBox .download-state[exists] .downloadDetails {
       color: var(--button-primary-bgcolor);
@@ -2618,7 +2618,7 @@
     }
   }
   /*= Animate ================================================================*/
-  @supports -moz-bool-pref(userChrome.decoration.animate) {
+  @supports -moz-bool-pref("userChrome.decoration.animate") {
     /*- Background Color -------------------------------------------------------*/
     button,
     toolbarbutton,
@@ -2727,7 +2727,7 @@
     }
 
     /*- Sidebar ----------------------------------------------------------------*/
-    @supports not -moz-bool-pref(userChrome.decoration.disable_sidebar_animate) {
+    @supports not -moz-bool-pref("userChrome.decoration.disable_sidebar_animate") {
       #sidebar-box {
         /* like #sidebar-box > #sidebar */
         min-width: 14em;
@@ -2825,7 +2825,7 @@
       transform: rotate(180deg);
     }
   }
-  @supports -moz-bool-pref(userChrome.decoration.disable_panel_animate) {
+  @supports -moz-bool-pref("userChrome.decoration.disable_panel_animate") {
     :root {
       --panelui-subview-transition-duration: 1ms !important;
       /* Disable top right corner menu sliding animation (0ms will not work!) */
@@ -2834,7 +2834,7 @@
 }
 /** Reduce Padding ************************************************************/
 /*= Tab Bar - Distribution padding, radius ===================================*/
-@supports -moz-bool-pref(userChrome.tab.lepton_like_padding) or -moz-bool-pref(userChrome.tab.photon_like_padding) {
+@supports -moz-bool-pref("userChrome.tab.lepton_like_padding") or -moz-bool-pref("userChrome.tab.photon_like_padding") {
   :root {
     --proton-tab-block-margin: var(--tab-block-margin) !important;
     /* Original: 4px, Legacy */
@@ -2845,18 +2845,18 @@
     --tab-block-margin: 4px !important;
   }
 }
-@supports -moz-bool-pref(userChrome.tab.lepton_like_padding) {
+@supports -moz-bool-pref("userChrome.tab.lepton_like_padding") {
   :root {
     --tab-block-margin: 2px !important;
     /* New version of --proton-tab-block-margin */
   }
 }
-@supports -moz-bool-pref(userChrome.tab.photon_like_padding) {
+@supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
   :root {
     --tab-block-margin: 0px !important;
   }
 }
-@supports -moz-bool-pref(userChrome.tab.photon_like_radius) {
+@supports -moz-bool-pref("userChrome.tab.photon_like_radius") {
   :root {
     --tab-border-radius: 0px !important;
     /* Original: 4px */
@@ -2871,7 +2871,7 @@
   }
 }
 /*= Tab Bar - Reduce Width, Show more tabs ===================================*/
-@supports -moz-bool-pref(userChrome.padding.first_tab) {
+@supports -moz-bool-pref("userChrome.padding.first_tab") {
   /* for First Tab Space */
   :root {
     --space-left-tabbar: 8px;
@@ -2883,7 +2883,7 @@
     padding-inline-start: var(--space-left-tabbar) !important;
   }
 }
-@supports -moz-bool-pref(userChrome.padding.tabbar_width) {
+@supports -moz-bool-pref("userChrome.padding.tabbar_width") {
   /* Titlebar Space */
   .titlebar-spacer[type="pre-tabs"] {
     width: 30px !important;
@@ -2910,14 +2910,14 @@
     padding-right: var(--newtab-button-width-padding) !important;
   }
 
-  @supports not -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab[first-visible-unpinned-tab] {
       margin-inline-start: 1px !important;
     }
   }
-  @supports -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
     #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab[first-visible-unpinned-tab] {
@@ -2948,12 +2948,12 @@
   }
 
   /* Tab - Max Size */
-  @supports not -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     :root {
       --tab-max-width: 240px;
     }
   }
-  @supports -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
     :root {
       --tab-max-width: 225px;
     }
@@ -2964,7 +2964,7 @@
   }
 
   /* neighbouring tabs should "pinch" together */
-  @supports not -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     .tabbrowser-tab {
       padding-inline: 1px !important;
     }
@@ -2973,14 +2973,14 @@
       margin-inline-end: -0.5px !important;
     }
   }
-  @supports -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
     .tabbrowser-tab {
       padding-inline: 0 !important;
     }
   }
 }
 /*= Tab Bar - Reduce Height, Show more contents ==============================*/
-@supports -moz-bool-pref(userChrome.padding.drag_space) {
+@supports -moz-bool-pref("userChrome.padding.drag_space") {
   /* for Extra Drag Space */
   :root {
     --space-above-tabbar: 8px;
@@ -2996,9 +2996,9 @@
     padding-top: var(--space-above-tabbar) !important;
   }
 }
-@supports -moz-bool-pref(userChrome.padding.tabbar_height) {
+@supports -moz-bool-pref("userChrome.padding.tabbar_height") {
   /* Toolbar Height */
-  @supports -moz-bool-pref(userChrome.tab.lepton_like_padding) {
+  @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") {
     :root:not([uidensity]) #TabsToolbar {
       --tab-min-height: 36px;
     }
@@ -3011,7 +3011,7 @@
       --tab-min-height: 41px;
     }
   }
-  @supports -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
     :root:not([uidensity]) #TabsToolbar {
       --tab-min-height: 32px;
     }
@@ -3030,7 +3030,7 @@
       margin-top: 0 !important;
     }
   }
-  @supports not -moz-bool-pref(userChrome.tab.photon_like_padding) {
+  @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     :root:not([uidensity]) #TabsToolbar {
       --tab-min-height: 36px !important;
       /* 38px -> 36px */
@@ -3041,7 +3041,7 @@
       /* 36px -> 29px */
     }
   }
-  @supports -moz-bool-pref(userChrome.tab.connect_to_window) {
+  @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
     #TabsToolbar {
       --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important;
       /* Prevent overflow pinned tab bottom margin */
@@ -3110,21 +3110,21 @@
   }
 }
 /*= Tool Bar - Button Padding ================================================*/
-@supports -moz-bool-pref(userChrome.padding.toolbar_button) {
+@supports -moz-bool-pref("userChrome.padding.toolbar_button") {
   :root[uidensity="compact"] {
     --toolbarbutton-outer-padding: 2px !important;
     /* Original: 3px, General is 2px */
   }
 }
 /*= Nav Bar - Reduce Width ===================================================*/
-@supports -moz-bool-pref(userChrome.padding.navbar_width) {
+@supports -moz-bool-pref("userChrome.padding.navbar_width") {
   #nav-bar:not([customizing]) toolbarspring {
     min-width: 1px !important;
     max-width: 100px !important;
   }
 }
 /*= URL Bar - Reduce Padding =================================================*/
-@supports -moz-bool-pref(userChrome.padding.urlbar) {
+@supports -moz-bool-pref("userChrome.padding.urlbar") {
   :root:not([uidensity="touch"]) #urlbar-container,
   :root:not([uidensity="touch"]) #search-container {
     padding-block: 3px !important;
@@ -3157,7 +3157,7 @@
     padding-block: 2px !important;
   }
 }
-@supports -moz-bool-pref(userChrome.padding.urlView_expanding) {
+@supports -moz-bool-pref("userChrome.padding.urlView_expanding") {
   #urlbar[breakout][breakout-extend] {
     top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
     left: 0 !important;
@@ -3175,7 +3175,7 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) !important;
   }
 }
-@supports -moz-bool-pref(userChrome.padding.urlView_result) {
+@supports -moz-bool-pref("userChrome.padding.urlView_result") {
   .urlbarView {
     margin-inline: 0 !important;
     width: 100% !important;
@@ -3186,14 +3186,14 @@
   }
 }
 /*= BookMark Bar - Reduce Height =============================================*/
-@supports -moz-bool-pref(userChrome.padding.bookmarkbar) {
+@supports -moz-bool-pref("userChrome.padding.bookmarkbar") {
   :root[uidensity="compact"] #PersonalToolbar toolbarbutton {
     margin-top: 0px;
     /* Original: 2px */
   }
 }
 /*= Info Bar - Reduce Padding ================================================*/
-@supports -moz-bool-pref(userChrome.padding.infobar) {
+@supports -moz-bool-pref("userChrome.padding.infobar") {
   :root:not([uidensity]) #tab-notification-deck {
     --infobar-message-margin: 0 4px 3px;
   }
@@ -3251,7 +3251,7 @@
   }
 }
 /*= Menu - Reduce Padding ====================================================*/
-@supports -moz-bool-pref(userChrome.padding.menu) {
+@supports -moz-bool-pref("userChrome.padding.menu") {
   :root {
     --menu-padding: 0.35em;
     /* Win7, 8: 0px */
@@ -3265,7 +3265,7 @@
     --menu-padding: 0.5em;
   }
 
-  @supports -moz-bool-pref(userChrome.padding.menu_compact) {
+  @supports -moz-bool-pref("userChrome.padding.menu_compact") {
     :root {
       --menu-padding: 2px;
     }
@@ -3333,7 +3333,7 @@
   }
 }
 /*= Bookmark Menu - Reduce Padding ===========================================*/
-@supports -moz-bool-pref(userChrome.padding.bookmark_menu) {
+@supports -moz-bool-pref("userChrome.padding.bookmark_menu") {
   :root {
     --bookmark-menu-padding: 3px;
   }
@@ -3350,7 +3350,7 @@
   }
 }
 /*= Global Menu - Set Padding ================================================*/
-@supports -moz-bool-pref(userChrome.padding.global_menu) {
+@supports -moz-bool-pref("userChrome.padding.global_menu") {
   /* Vertical Align - Center & Height: 100%  */
   #main-menubar {
     -moz-box-flex: 1 !important;
@@ -3385,7 +3385,7 @@
   }
 }
 /*= Panel - Reduce padding ===================================================*/
-@supports -moz-bool-pref(userChrome.padding.panel) {
+@supports -moz-bool-pref("userChrome.padding.panel") {
   :root {
     --arrowpanel-menuicon-padding: 8px;
     --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important;
@@ -3407,7 +3407,7 @@
   }
 }
 /*= Popup Panel - Reduce padding =============================================*/
-@supports -moz-bool-pref(userChrome.padding.popup_panel) {
+@supports -moz-bool-pref("userChrome.padding.popup_panel") {
   #protections-popup-main-header-label {
     height: unset !important;
     /* Original: 37.6px */
@@ -3472,7 +3472,7 @@
 }
 /** Tab Bar UI ****************************************************************/
 /*= Tab Bar - Connect to window ==============================================*/
-@supports -moz-bool-pref(userChrome.tab.connect_to_window) {
+@supports -moz-bool-pref("userChrome.tab.connect_to_window") {
   .tab-background {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px !important;
     margin-bottom: 0px !important;
@@ -3504,7 +3504,7 @@
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Color like toolbar ========================================*/
-@supports -moz-bool-pref(userChrome.tab.connect_to_window) {
+@supports -moz-bool-pref("userChrome.tab.connect_to_window") {
   :root:not(:-moz-lwtheme) {
     /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
     --tab-selected-bgcolor: unset !important;
@@ -3523,7 +3523,7 @@
   }
 }
 /*= Multi Selected Color - More Contrast =====================================*/
-@supports -moz-bool-pref(userChrome.tab.multi_selected) {
+@supports -moz-bool-pref("userChrome.tab.multi_selected") {
   #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
@@ -3545,7 +3545,7 @@
   }
 }
 /*= Selected Tab - Box Shadow ================================================*/
-@supports -moz-bool-pref(userChrome.tab.box_shadow) {
+@supports -moz-bool-pref("userChrome.tab.box_shadow") {
   #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[visuallyselected="true"]:not(:focus)
@@ -3606,7 +3606,7 @@
   }
 }
 /*= Selected Tab - Bottom Rounded Corner =====================================*/
-@supports -moz-bool-pref(userChrome.tab.bottom_rounded_corner) {
+@supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner") {
   #tabbrowser-tabs {
     --tab-corner-rounding: 3px;
     /* 10px looks about like chromium - 17px looks close to Australis tabs */
@@ -3684,7 +3684,7 @@
   }
 }
 /*= Selected Tab - Photon like contextline ===================================*/
-@supports -moz-bool-pref(userChrome.tab.photon_like_contextline) {
+@supports -moz-bool-pref("userChrome.tab.photon_like_contextline") {
   :root[lwtheme-mozlightdark] #tabbrowser-tabs,
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
@@ -3774,8 +3774,8 @@
 }
 /*= Unselected Tab - Divide line =============================================*/
 /*= Unselected Tab - Dynamic Separator =======================================*/
-@supports -moz-bool-pref(userChrome.tab.dynamic_separtor) {
-  @supports -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+@supports -moz-bool-pref("userChrome.tab.dynamic_separtor") {
+  @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox {
       position: absolute;
     }
@@ -3798,7 +3798,7 @@
       transform: translateX(-2.5px) translateY(calc(-50% + 1px));
     }
   }
-  @supports not -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+  @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     .tab-background::before,
     #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
@@ -3830,12 +3830,12 @@
     opacity: var(--tab-separator-opacity);
   }
 
-  @supports -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+  @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     #tabs-newtab-button:not(:hover, [open])::before {
       opacity: var(--tab-separator-opacity);
     }
   }
-  @supports not -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+  @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
     #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
@@ -3853,7 +3853,7 @@
     opacity: 0 !important;
   }
 
-  @supports -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+  @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     #navigator-toolbox:not([movingtab])
       .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
       + .tabbrowser-tab
@@ -3868,7 +3868,7 @@
       opacity: 0 !important;
     }
   }
-  @supports not -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+  @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
       + .tabbrowser-tab:not([visuallyselected])
       .tab-background::before {
@@ -3882,13 +3882,13 @@
       /* cubic-bezier(.07, .95, 0, 1) */
     }
 
-    @supports -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+    @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
       #tabs-newtab-button::before {
         transition: opacity 0.2s var(--animation-easing-function);
         /* cubic-bezier(.07, .95, 0, 1) */
       }
     }
-    @supports not -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+    @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
       #tabbrowser-arrowscrollbox:not([overflowing])
         .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
         .tab-background::after {
@@ -3903,7 +3903,7 @@
   }
 }
 /*= Unselected Tab - Static Separator ========================================*/
-@supports -moz-bool-pref(userChrome.tab.static_separator) {
+@supports -moz-bool-pref("userChrome.tab.static_separator") {
   .tabbrowser-tab[first-visible-tab="true"] .tab-background::before,
   .tab-background::after {
     content: "";
@@ -3946,7 +3946,7 @@
 }
 /*= New tab button ============================================================*/
 /*= New tab button - Looks like tab ==========================================*/
-@supports -moz-bool-pref(userChrome.tab.newtab_button_like_tab) {
+@supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
   #tabs-newtab-button {
     /* Original:
       margin: 0 0 var(--tabs-navbar-shadow-size) !important
@@ -4006,7 +4006,7 @@
   }
 }
 /*= New tab button - Smaller button ==========================================*/
-@supports -moz-bool-pref(userChrome.tab.newtab_button_smaller) {
+@supports -moz-bool-pref("userChrome.tab.newtab_button_smaller") {
   #tabs-newtab-button > .toolbarbutton-icon {
     margin-left: 1px;
     /* Origianl: calc((var(--tab-min-height) - 16px) / 2) = 10px */
@@ -4024,7 +4024,7 @@
   }
 }
 /*= New tab button - Proton like button ======================================*/
-@supports -moz-bool-pref(userChrome.tab.newtab_button_proton) {
+@supports -moz-bool-pref("userChrome.tab.newtab_button_proton") {
   :root:not([uidensity="touch"]) #tabs-newtab-button > .toolbarbutton-icon {
     --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 16px) / 2 - 1px);
   }
@@ -4038,14 +4038,14 @@
   }
 }
 /*= Unloaded Tab - Contents Opacity ===========================================*/
-@supports -moz-bool-pref(userChrome.tab.unloaded) {
+@supports -moz-bool-pref("userChrome.tab.unloaded") {
   #tabbrowser-tabs .tabbrowser-tab[pending] .tab-content {
     opacity: 0.7;
   }
 }
 /*= Clipped tabs =============================================================*/
 /** Clipped tabs - Letters cleary *********************************************/
-@supports -moz-bool-pref(userChrome.tab.letters_cleary) {
+@supports -moz-bool-pref("userChrome.tab.letters_cleary") {
   :root {
     --inline-tab-padding: 6px !important;
     /* Original: 8px */
@@ -4079,7 +4079,7 @@
   }
 }
 /** Clipped tabs - Show close button at hover *********************************/
-@supports -moz-bool-pref(userChrome.tab.close_button_at_hover) {
+@supports -moz-bool-pref("userChrome.tab.close_button_at_hover") {
   #tabbrowser-tabs[closebuttons="activetab"]
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab:not([pinned])
@@ -4099,7 +4099,7 @@
     opacity: 1;
   }
 
-  @supports -moz-bool-pref(userChrome.tab.close_button_at_hover.always) {
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_hover.always") {
     .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
       visibility: collapse !important;
       opacity: 0;
@@ -4122,7 +4122,7 @@
       transition: opacity 0.25s var(--animation-easing-function) !important;
     }
 
-    @supports -moz-bool-pref(userChrome.tab.close_button_at_hover.always) {
+    @supports -moz-bool-pref("userChrome.tab.close_button_at_hover.always") {
       /* Fade out */
       .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
         transition: opacity 0.1s var(--animation-easing-function) !important;
@@ -4176,26 +4176,26 @@
   }
 }
 /** Clipped tabs - Always show tab icon ***************************************/
-@supports -moz-bool-pref(userChrome.tab.always_show_tab_icon) {
+@supports -moz-bool-pref("userChrome.tab.always_show_tab_icon") {
   .tab-icon-image:not([src], [pinned], [crashed], [busy]) {
     display: -moz-inline-box !important;
   }
 }
 /*= Sound Tab ================================================================*/
 /*= Sound Tab - Hide Label ===================================================*/
-@supports -moz-bool-pref(userChrome.tab.sound_hide_label) {
+@supports -moz-bool-pref("userChrome.tab.sound_hide_label") {
   .tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) {
     display: none !important;
   }
 }
 /*= Sound Tab - Show Label ===================================================*/
-@supports -moz-bool-pref(userChrome.tab.sound_show_label) {
+@supports -moz-bool-pref("userChrome.tab.sound_show_label") {
   .tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) {
     display: -moz-box !important;
   }
 }
 /*= Sound Tab - Show with Favicons ===========================================*/
-@supports -moz-bool-pref(userChrome.tab.sound_with_favicons) {
+@supports -moz-bool-pref("userChrome.tab.sound_with_favicons") {
   /* Makes the favicons always visible (also on hover) */
   .tab-icon-image:not([pinned]) {
     opacity: 1 !important;
@@ -4297,7 +4297,7 @@
   }
 }
 /*= PictureInPicture Tab - Show PIP Icon =====================================*/
-@supports -moz-bool-pref(userChrome.tab.pip) {
+@supports -moz-bool-pref("userChrome.tab.pip") {
   #tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-content::after,
   #tabbrowser-tabs[closebuttons="activetab"]
     .tabbrowser-tab[pictureinpicture]:not([pinned], :hover)
@@ -4340,8 +4340,8 @@
   }
 }
 /*= Container Tab - Color line at icon's bottom ==============================*/
-@supports -moz-bool-pref(userChrome.tab.container) {
-  @supports not -moz-bool-pref(userChrome.tab.photon_like_contextline) {
+@supports -moz-bool-pref("userChrome.tab.container") {
+  @supports not -moz-bool-pref("userChrome.tab.photon_like_contextline") {
     .tab-context-line {
       display: none;
     }
@@ -4428,13 +4428,13 @@
   }
 }
 /*= Crashed Tab - Don't show Favicons ========================================*/
-@supports -moz-bool-pref(userChrome.tab.crashed) {
+@supports -moz-bool-pref("userChrome.tab.crashed") {
   .tab-icon-image[crashed] {
     display: none !important;
   }
 }
 /*= Tab Label - Make to Center ===============================================*/
-@supports -moz-bool-pref(userChrome.tab.centered_label) {
+@supports -moz-bool-pref("userChrome.tab.centered_label") {
   /* Based on https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/centered_tab_label.css */
   .tab-label-container {
     display: grid;
@@ -4452,7 +4452,7 @@
     margin-inline-end: 5px;
   }
 
-  @supports -moz-bool-pref(userChrome.tab.close_button_at_hover) {
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_hover") {
     #tabbrowser-tabs[closebuttons="activetab"]
       .tabbrowser-tab:not(:hover, [pinned])
       .tab-label-container:not([textoverflow]) {
@@ -4468,7 +4468,7 @@
 }
 /** Url View UI ***************************************************************/
 /*= Url View - Move icon to left =============================================*/
-@supports -moz-bool-pref(userChrome.urlView.move_icon_to_left) {
+@supports -moz-bool-pref("userChrome.urlView.move_icon_to_left") {
   .urlbarView-type-icon {
     min-width: 16px !important;
     height: 16px !important;
@@ -4481,19 +4481,19 @@
   }
 }
 /*= Url View - Go button when typing =========================================*/
-@supports -moz-bool-pref(userChrome.urlView.go_button_when_typing) {
+@supports -moz-bool-pref("userChrome.urlView.go_button_when_typing") {
   #urlbar-input-container[pageproxystate="invalid"] #urlbar-go-button {
     display: block !important;
   }
 }
 /*= Url View - Always show page actions ======================================*/
-@supports -moz-bool-pref(userChrome.urlView.always_show_page_actions) {
+@supports -moz-bool-pref("userChrome.urlView.always_show_page_actions") {
   #pageActionButton {
     display: block !important;
   }
 }
 /** Fullscreen - Overlap toolbar **********************************************/
-@supports -moz-bool-pref(userChrome.fullscreen.overlap) {
+@supports -moz-bool-pref("userChrome.fullscreen.overlap") {
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root[sizemode="fullscreen"] #navigator-toolbox {
       position: fixed !important;
@@ -4517,7 +4517,7 @@
   }
 }
 /** Library - Icons Replace ***************************************************/
-@supports -moz-bool-pref(userChrome.icon.library) {
+@supports -moz-bool-pref("userChrome.icon.library") {
   /*= Standard Folder - More Visible ===========================================*/
   /* on Toolbar and Menus */
   :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
@@ -4707,12 +4707,12 @@
   }
 }
 /** Panel - Icons *************************************************************/
-@supports -moz-bool-pref(userChrome.panel.remove_strip) {
+@supports -moz-bool-pref("userChrome.panel.remove_strip") {
   #appMenu-fxa-separator {
     display: none;
   }
 }
-@supports -moz-bool-pref(userChrome.icon.panel) {
+@supports -moz-bool-pref("userChrome.icon.panel") {
   /*= Padding ==================================================================*/
   :root {
     --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
@@ -4723,7 +4723,7 @@
     width: 16px;
   }
 
-  @supports -moz-bool-pref(userChrome.icon.panel_sparse) {
+  @supports -moz-bool-pref("userChrome.icon.panel_sparse") {
     :root {
       /* Blank Menu Left Padding */
       --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
@@ -4855,12 +4855,12 @@
     background-image: var(--avatar-image-url) !important;
   }
 
-  @supports -moz-bool-pref(userChrome.icon.panel_full) {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") {
     #appMenu-new-tab-button2 {
       list-style-image: url("chrome://browser/skin/new-tab.svg");
     }
   }
-  @supports -moz-bool-pref(userChrome.icon.panel_sparse) {
+  @supports -moz-bool-pref("userChrome.icon.panel_sparse") {
     #appMenu-new-tab-button2,
     #appMenu-passwords-button,
     #appMenu-extensions-themes-button,
@@ -4897,7 +4897,7 @@
     list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
   }
 
-  @supports -moz-bool-pref(userChrome.icon.panel_full) {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") {
     #appMenu-passwords-button {
       list-style-image: url("chrome://browser/skin/login.svg");
     }
@@ -4910,7 +4910,7 @@
     list-style-image: url("chrome://global/skin/icons/print.svg");
   }
 
-  @supports -moz-bool-pref(userChrome.icon.panel_full) {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") {
     #appMenu-save-file-button2 {
       list-style-image: url("chrome://browser/skin/save.svg");
     }
@@ -4927,7 +4927,7 @@
     list-style-image: url("chrome://global/skin/icons/settings.svg");
   }
 
-  @supports -moz-bool-pref(userChrome.icon.panel_full) {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") {
     #appMenu-more-button2 {
       list-style-image: url("chrome://browser/skin/ion.svg");
     }
@@ -5312,7 +5312,7 @@
   }
 }
 /** Menu - Icons Layout *******************************************************/
-@supports -moz-bool-pref(userChrome.icon.menu) {
+@supports -moz-bool-pref("userChrome.icon.menu") {
   menupopup menuitem:not([type="checkbox"], [type="radio"]),
   menupopup menu:not([type="checkbox"], [type="radio"]),
   #main-menubar > menu {
@@ -5377,7 +5377,7 @@
   }
 
   /* Menubar */
-  @supports -moz-bool-pref(userChrome.icon.global_menu) {
+  @supports -moz-bool-pref("userChrome.icon.global_menu") {
     #main-menubar > menu {
       background-position: left var(--context-menu-background-padding-default) center !important;
       padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
@@ -5611,7 +5611,7 @@
       padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 3px) !important;
     }
   }
-  @supports -moz-bool-pref(userChrome.icon.context_menu) {
+  @supports -moz-bool-pref("userChrome.icon.context_menu") {
     /** Context Menu - Icons ******************************************************/
     /*= tabContextMenu ===========================================================*/
     #context_openANewTab {
@@ -6421,7 +6421,7 @@
       --menuitem-image: url("chrome://global/skin/icons/settings.svg");
     }
   }
-  @supports -moz-bool-pref(userChrome.icon.global_menu) {
+  @supports -moz-bool-pref("userChrome.icon.global_menu") {
     /** Global Menu ***************************************************************/
     /*= main-menubar =============================================================*/
     #file-menu {
@@ -6708,8 +6708,8 @@
   }
 }
 /** Libray Menu ***************************************************************/
-@supports -moz-bool-pref(userChrome.icon.library) {
-  @supports -moz-bool-pref(userChrome.icon.menu) {
+@supports -moz-bool-pref("userChrome.icon.library") {
+  @supports -moz-bool-pref("userChrome.icon.menu") {
     /*= organizeButtonPopup ======================================================*/
     #newbookmark {
       --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -6779,12 +6779,12 @@
   }
 }
 /*= Waterfox =================================================================*/
-@supports -moz-bool-pref(userChrome.icon.panel) {
+@supports -moz-bool-pref("userChrome.icon.panel") {
   #appMenu-restart-button {
     list-style-image: url("./icons/refresh-cw.svg") !important;
   }
 }
-@supports -moz-bool-pref(userChrome.icon.menu) {
+@supports -moz-bool-pref("userChrome.icon.menu") {
   #menu_FileRestartItem {
     --menuitem-image: url("./icons/refresh-cw.svg");
   }
@@ -6795,7 +6795,7 @@
     -moz-context-properties: fill;
   }
 }
-@supports -moz-bool-pref(userChrome.theme.fully_color) {
+@supports -moz-bool-pref("userChrome.theme.fully_color") {
   /* New Folder Button */
   #editBMPanel_newFolderButton {
     appearance: none;
@@ -6822,7 +6822,7 @@
   }
 }
 /*= Tor Browser ==============================================================*/
-@supports -moz-bool-pref(userChrome.icon.panel) {
+@supports -moz-bool-pref("userChrome.icon.panel") {
   #appMenuNewIdentity {
     list-style-image: url("chrome://browser/skin/new_identity.svg");
   }
@@ -6835,7 +6835,7 @@
     list-style-image: url("chrome://browser/skin/onion.svg");
   }
 }
-@supports -moz-bool-pref(userChrome.icon.menu) {
+@supports -moz-bool-pref("userChrome.icon.menu") {
   #menu_newIdentity {
     --menuitem-image: url("chrome://browser/skin/new_identity.svg");
   }

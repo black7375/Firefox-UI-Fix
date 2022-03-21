@@ -2,7 +2,7 @@
 @namespace html url("http://www.w3.org/1999/xhtml");
 /** Video player **************************************************************/
 /* Control Bar UI */
-@supports -moz-bool-pref(userContent.player.ui) {
+@supports -moz-bool-pref("userContent.player.ui") {
   audio {
     --duration-color: #929292;
     /* Like Original */
@@ -45,7 +45,7 @@
     /* Original: #929292 */
   }
 }
-@supports -moz-bool-pref(userContent.player.icon) {
+@supports -moz-bool-pref("userContent.player.icon") {
   #controlsContainer .fullscreenButton {
     background-image: url("./icons/enter-fullscreen.svg") !important;
   }
@@ -54,14 +54,14 @@
     background-image: url("./icons/exit-fullscreen.svg") !important;
   }
 }
-@supports -moz-bool-pref(userContent.player.noaudio) {
+@supports -moz-bool-pref("userContent.player.noaudio") {
   #controlsContainer .muteButton[noAudio] {
     /* Remove volume button at noAudio */
     display: none !important;
   }
 }
 /* Control Bar Size */
-@supports -moz-bool-pref(userContent.player.size) {
+@supports -moz-bool-pref("userContent.player.size") {
   #controlsContainer {
     --button-size: 32px !important;
     /* Original: 30px */
@@ -104,7 +104,7 @@
   }
 }
 /* Click to play UI */
-@supports -moz-bool-pref(userContent.player.click_to_play) {
+@supports -moz-bool-pref("userContent.player.click_to_play") {
   #controlsContainer .clickToPlay {
     cursor: pointer;
     opacity: 0.65 !important;
@@ -121,7 +121,7 @@
   }
 }
 /* Animation */
-@supports -moz-bool-pref(userContent.player.animate) {
+@supports -moz-bool-pref("userContent.player.animate") {
   @media (prefers-reduced-motion: no-preference) {
     /* Control Bar */
     #controlsContainer .controlBar {
@@ -149,7 +149,7 @@
 /** Activity Stream ***********************************************************/
 @-moz-document url("about:home"), url("about:newtab") {
   /** Activity Stream - Search Focus Border: like URL *************************/
-  @supports -moz-bool-pref(userContent.newTab.field_border) {
+  @supports -moz-bool-pref("userContent.newTab.field_border") {
     /* At DarkMode, Color */
     body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
     body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
@@ -165,7 +165,7 @@
     }
   }
   /** Activity Stream - Web Site Icon: full size ******************************/
-  @supports -moz-bool-pref(userContent.newTab.full_icon) {
+  @supports -moz-bool-pref("userContent.newTab.full_icon") {
     .top-site-outer .tile {
       overflow: hidden;
     }
@@ -178,7 +178,7 @@
     }
   }
   /** Activity Stream - Animate ***********************************************/
-  @supports -moz-bool-pref(userContent.newTab.animate) {
+  @supports -moz-bool-pref("userContent.newTab.animate") {
     @media (prefers-reduced-motion: no-preference) {
       :root {
         --animation-easing-function: cubic-bezier(0.07, 0.95, 0, 1);
@@ -217,7 +217,7 @@
     }
   }
   /** Activity Stream - Home Search Bar looks like proton *********************/
-  @supports -moz-bool-pref(userContent.newTab.animate) {
+  @supports -moz-bool-pref("userContent.newTab.animate") {
     /* Dropdown Colors */
     #root {
       --newtab-search-background-color: rgba(255, 255, 255, 1);
@@ -309,7 +309,7 @@
   }
 }
 /** Error Page - Restore illustrations ****************************************/
-@supports -moz-bool-pref(userContent.page.illustration) {
+@supports -moz-bool-pref("userContent.page.illustration") {
   @-moz-document url-prefix("about:neterror"),
   url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"),
   url("about:sessionrestore"),  url("chrome://browser/content/aboutSessionRestore.xhtml")
@@ -416,7 +416,7 @@
 }
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
-@supports -moz-bool-pref(userContent.page.proton_color) {
+@supports -moz-bool-pref("userContent.page.proton_color") {
   /*= Default Colors - Hard Coded ==============================================*/
   /* Based on chrome://global/skin/in-content/common.css */
   :host,
@@ -559,7 +559,7 @@
     }
   }
 }
-@supports -moz-bool-pref(userContent.page.dark_mode) {
+@supports -moz-bool-pref("userContent.page.dark_mode") {
   @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
     /*= Addons.org =============================================================*/
     @-moz-document url-prefix("https://addons.mozilla.org")
@@ -1172,7 +1172,7 @@
   }
 }
 /** Fully Proton Mode *********************************************************/
-@supports -moz-bool-pref(userContent.page.proton) {
+@supports -moz-bool-pref("userContent.page.proton") {
   /*= Common contents ==========================================================*/
   /*= abouts' common ===========================================================*/
   @-moz-document url-prefix("about:plugins"),
@@ -1581,7 +1581,7 @@
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
     /** Library - Icons Replace *************************************************/
-    @supports -moz-bool-pref(userChrome.icon.library) {
+    @supports -moz-bool-pref("userChrome.icon.library") {
       /*= Standard Folder - More Visible ===========================================*/
       /* on Toolbar and Menus */
       :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
@@ -1767,7 +1767,7 @@
       }
     }
     /*= Context Menu ===========================================================*/
-    @supports -moz-bool-pref(userChrome.icon.context_menu) {
+    @supports -moz-bool-pref("userChrome.icon.context_menu") {
       menupopup menuitem:not([type="checkbox"], [type="radio"]),
       menupopup menu:not([type="checkbox"], [type="radio"]),
       #main-menubar > menu {

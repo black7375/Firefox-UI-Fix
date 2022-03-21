@@ -65,31 +65,31 @@
     }
   }
 
-  @include test("prefix custom seperator single") {
+  @include test("prefix custom option") {
     @include assert {
       @include output {
-        @include each.AtEach("supports", "userChrome.tab.photon", "-moz-bool-pref", " or ") {
+        @include each.AtEach("supports", "userChrome.tab.photon", "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
           @include example;
         }
       }
       @include expect {
-        @supports -moz-bool-pref(userChrome.tab.photon) {
+        @supports -moz-bool-pref("userChrome.tab.photon") {
           @include example;
         }
       }
     }
   }
 
-  @include test("prefix custom seperator multiple") {
+  @include test("prefix custom option multiple") {
     @include assert {
       @include output {
         $input: "userChrome.tab.photon" "userChrome.padding.photon";
-        @include each.AtEach("supports", $input, "-moz-bool-pref", " or ") {
+        @include each.AtEach("supports", $input, "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
           @include example;
         }
       }
       @include expect {
-        @supports -moz-bool-pref(userChrome.tab.photon) or -moz-bool-pref(userChrome.padding.photon) {
+        @supports -moz-bool-pref("userChrome.tab.photon") or -moz-bool-pref("userChrome.padding.photon") {
           @include example;
         }
       }
