@@ -18,4 +18,9 @@
   @include Option("userChrome.decoration.animate") {
     @import "animate";
   }
+  @include Option("userChrome.decoration.disable_panel_animate") {
+    :root {
+      --panelui-subview-transition-duration: 1ms !important; /* Disable top right corner menu sliding animation (0ms will not work!) */
+    }
+  }
 }
