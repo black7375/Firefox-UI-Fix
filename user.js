@@ -65,6 +65,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.always_show_tab_icon",              true);
 // user_pref("userChrome.tab.always_show_close_button_at_hover", true); // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                  true); // Need remove sound_hide_label
+// user_pref("userChrome.tab.centered_label",                    true);
 
 // == Theme Default Settings ===================================================
 // -- User Chrome --------------------------------------------------------------
