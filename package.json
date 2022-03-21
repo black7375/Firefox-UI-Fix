@@ -8,7 +8,7 @@
   "license": "MPL 2.0",
   "private": true,
   "scripts": {
-    "build": "sass src/userChrome.scss ./userChrome.css && sass src/userContent.scss ./userContent.css",
+    "build": "sass src/userChrome.scss ./userChrome.css && sass src/userContent.scss ./userContent.css && prettier --write userChrome.css userContent.css",
     "format": "prettier --write .",
     "test": "jest"
   },
