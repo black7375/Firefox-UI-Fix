@@ -160,7 +160,7 @@
     }
   }
   /*- Proton Tab Selected ----------------------------------------------------*/
-  @include Option("userChrome.tab.proton") {
+  @include NotOption("userChrome.tab.connect_to_window") {
     #{system-default-theme()} {
       --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
     }

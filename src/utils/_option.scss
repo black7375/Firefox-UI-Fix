@@ -1,7 +1,5 @@
 @use "each";
 
-$tabProton: "userChrome.tab.proton";
-
 @mixin Option($optionNames...) {
   @include each.AtEach("supports", $optionNames, "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
     @content;

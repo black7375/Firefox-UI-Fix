@@ -195,7 +195,7 @@
   }
 
   /*- Proton Tab Selected ----------------------------------------------------*/
-  @include Option($tabProton) {
+  @include NotOption("userChrome.tab.connect_to_window") {
     #{system-default-theme()} {
       --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
     }
