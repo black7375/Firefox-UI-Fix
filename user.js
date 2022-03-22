@@ -80,6 +80,9 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 
 // user_pref("userChrome.panel.remove_strip",                 true);
 
+// user_pref("userChrome.icon.account_image_to_right",        true);
+// user_pref("userChrome.icon.account_label_to_right",        true);
+
 // == Theme Default Settings ===================================================
 // -- User Chrome --------------------------------------------------------------
 user_pref("userChrome.compatibility.theme",       true);

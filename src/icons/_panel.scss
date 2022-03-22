@@ -118,6 +118,15 @@
   background-size: 32px;
   background-image: var(--avatar-image-url);
   margin-inline-end: var(--arrowpanel-menuicon-padding);
+
+  @include Option("userChrome.icon.account_image_to_right") {
+    -moz-box-ordinal-group: 2 !important;
+  }
+}
+@include Option("userChrome.icon.account_label_to_right") {
+  #fxa-menu-header-title, #fxa-menu-header-description {
+    text-align: right;
+  }
 }
 
 .syncNowBtn {
