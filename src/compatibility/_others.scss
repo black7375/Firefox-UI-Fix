@@ -1,0 +1,11 @@
+@include Option("userChrome.compatibility.panel_cutoff") {
+  #appMenu-popup panelview {
+    width: 24.5em !important; /* can modify panel width, Original: 22.5em */
+  }
+}
+
+@include Option("userChrome.compatibility.navbar_top_border") {
+  #nav-bar {
+    box-shadow: none !important;
+  }
+}

@@ -110,6 +110,11 @@
     :root[lwtheme-image] {
       background-size: contain;
     }
+    @supports -moz-bool-pref("userChrome.compatibility.covered_header_image") {
+      :root[lwtheme-image] {
+        background-size: cover;
+      }
+    }
   }
   :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
     background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
@@ -293,6 +298,18 @@
         box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
       }
     }
+  }
+}
+/*= Others - Compatibility ===================================================*/
+@supports -moz-bool-pref("userChrome.compatibility.panel_cutoff") {
+  #appMenu-popup panelview {
+    width: 24.5em !important;
+    /* can modify panel width, Original: 22.5em */
+  }
+}
+@supports -moz-bool-pref("userChrome.compatibility.navbar_top_border") {
+  #nav-bar {
+    box-shadow: none !important;
   }
 }
 /** System Default Theme ******************************************************/
@@ -3797,6 +3814,12 @@
       /* More position */
       transform: translateX(-2.5px) translateY(calc(-50% + 1px));
     }
+    @supports -moz-bool-pref("userChrome.compatibility.dynamic_separator") {
+      .tab-background::before,
+      #tabs-newtab-button::before {
+        background-color: var(--tabs-border-color);
+      }
+    }
   }
   @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     .tab-background::before,
@@ -3815,6 +3838,14 @@
       /* Bar Color */
       opacity: 0;
       background-color: var(--toolbarseparator-color);
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.dynamic_separator") {
+      .tab-background::before,
+      #tabbrowser-arrowscrollbox:not([overflowing])
+        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+        .tab-background::after {
+        background-color: var(--tabs-border-color);
+      }
     }
 
     .tab-background::before {
@@ -4492,6 +4523,12 @@
     display: block !important;
   }
 }
+/** Panel UI ******************************************************************/
+@supports -moz-bool-pref("userChrome.panel.remove_strip") {
+  #appMenu-fxa-separator {
+    display: none;
+  }
+}
 /** Fullscreen - Overlap toolbar **********************************************/
 @supports -moz-bool-pref("userChrome.fullscreen.overlap") {
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -4707,11 +4744,6 @@
   }
 }
 /** Panel - Icons *************************************************************/
-@supports -moz-bool-pref("userChrome.panel.remove_strip") {
-  #appMenu-fxa-separator {
-    display: none;
-  }
-}
 @supports -moz-bool-pref("userChrome.icon.panel") {
   /*= Padding ==================================================================*/
   :root {

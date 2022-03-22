@@ -52,6 +52,12 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.photon_like_contextline", true);
 // user_pref("userChrome.tab.photon_like_radius",      true);
 
+// == Theme Compatibility settings =============================================
+// user_pref("userChrome.compatibility.covered_header_image", true);
+// user_pref("userChrome.compatibility.panel_cutoff",         true);
+// user_pref("userChrome.compatibility.navbar_top_border",    true);
+// user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
+
 // == Theme Custom Settings ====================================================
 // user_pref("userChrome.decoration.disable_panel_animate",   true);
 // user_pref("userChrome.decoration.disable_sidebar_animate", true);

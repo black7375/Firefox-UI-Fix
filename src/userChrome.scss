@@ -56,6 +56,9 @@
 /** Url View UI ***************************************************************/
 @import "urlview/index";
 
+/** Panel UI ******************************************************************/
+@import "panel/index";
+
 /** Fullscreen - Overlap toolbar **********************************************/
 @include Option("userChrome.fullscreen.overlap") {
   @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -69,9 +72,6 @@
 }
 
 /** Panel - Icons *************************************************************/
-@include Option("userChrome.panel.remove_strip") {
-  @import "panel/remove_strip";
-}
 @include Option("userChrome.icon.panel") {
   @import "panel/icon_padding";
   @import "icons/panel";

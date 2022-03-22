@@ -14,6 +14,10 @@
   /* Bar Color */
   opacity: 0;
   background-color: var(--toolbarseparator-color);
+
+  @include Option("userChrome.compatibility.dynamic_separator") {
+    background-color: var(--tabs-border-color);
+  }
 }
 
 @include Option("userChrome.tab.newtab_button_like_tab") {

@@ -73,6 +73,10 @@ menu[disabled="true"] {
 @media (min-width: 2500px) {
   :root[lwtheme-image] {
     background-size: contain;
+
+    @include Option("userChrome.compatibility.covered_header_image") {
+      background-size: cover;
+    }
   }
 }
 :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
