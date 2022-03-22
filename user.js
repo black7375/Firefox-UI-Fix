@@ -27,7 +27,7 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 // user_pref("layout.css.prefers-color-scheme.content-override", 3);
 
 // ** Theme Related Options ****************************************************
-// Mutliple
+// == Theme Distribution Settings ==============================================
 user_pref("userChrome.tab.connect_to_window",          true); // Original, Photon
 user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photon
 
@@ -52,7 +52,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.photon_like_contextline", true);
 // user_pref("userChrome.tab.photon_like_radius",      true);
 
-// == Theme Compatibility settings =============================================
+// == Theme Compatibility Settings =============================================
 // user_pref("userChrome.compatibility.covered_header_image", true);
 // user_pref("userChrome.compatibility.panel_cutoff",         true);
 // user_pref("userChrome.compatibility.navbar_top_border",    true);
