@@ -29,6 +29,7 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 // ** Theme Related Options ****************************************************
 // Mutliple
 user_pref("userChrome.tab.connect_to_window",          true); // Original, Photon
+user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photon
 
 user_pref("userChrome.tab.lepton_like_padding",        true); // Original
 // user_pref("userChrome.tab.photon_like_padding",     true); // Photon

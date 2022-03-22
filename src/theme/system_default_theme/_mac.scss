@@ -160,7 +160,7 @@
     }
   }
   /*- Proton Tab Selected ----------------------------------------------------*/
-  @include NotOption("userChrome.tab.connect_to_window") {
+  @include NotOption("userChrome.tab.color_like_toolbar") {
     #{system-default-theme()} {
       --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
     }
@@ -229,7 +229,7 @@
   }
 
   /* Hard Coded */
-  @include Option("userChrome.tab.connect_to_window") {
+  @include Option("userChrome.tab.color_like_toolbar") {
     :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode] /* Legacy */
       #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox

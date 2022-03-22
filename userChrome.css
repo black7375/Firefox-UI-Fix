@@ -526,7 +526,7 @@
     }
 
     /*- Proton Tab Selected ----------------------------------------------------*/
-    @supports not -moz-bool-pref("userChrome.tab.connect_to_window") {
+    @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
       :root:not(:-moz-lwtheme),
       :root[lwt-default-theme-in-dark-mode] {
         --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
@@ -811,7 +811,7 @@
       }
     }
     /*- Proton Tab Selected ----------------------------------------------------*/
-    @supports not -moz-bool-pref("userChrome.tab.connect_to_window") {
+    @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
       :root:not(:-moz-lwtheme),
       :root[lwt-default-theme-in-dark-mode] {
         --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
@@ -885,7 +885,7 @@
       }
     }
     /* Hard Coded */
-    @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
+    @supports -moz-bool-pref("userChrome.tab.color_like_toolbar") {
       :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode]
         #tabbrowser-tabs:not([movingtab])
         > #tabbrowser-arrowscrollbox
@@ -3504,7 +3504,7 @@
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Color like toolbar ========================================*/
-@supports -moz-bool-pref("userChrome.tab.connect_to_window") {
+@supports -moz-bool-pref("userChrome.tab.color_like_toolbar") {
   :root:not(:-moz-lwtheme) {
     /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
     --tab-selected-bgcolor: unset !important;
