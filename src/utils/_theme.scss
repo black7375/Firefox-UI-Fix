@@ -1,5 +1,6 @@
 @use "sass:selector";
 
+//== Privated Variables ========================================================
 $_lwTheme: ":-moz-lwtheme";
 
 $_lightdark: "[lwtheme-mozlightdark]"; // Legacy - FF v96
@@ -10,6 +11,7 @@ $_sysDark: "[lwt-default-theme-in-dark-mode]";
 $_lightStyle: '[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"]';
 $_darkStyle: '[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]';
 
+//== Mixin =====================================================================
 @function built-in-default-theme() {
   $oldDefault: selector.append(":root", $_lightdark);
   $newDefault: selector.append(":root", ":is(#{$_lightStyle}, #{$_darkStyle})");
