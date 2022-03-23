@@ -132,6 +132,7 @@ user_pref("userChrome.icon.panel",                true);
 user_pref("userChrome.icon.menu",                 true);
 user_pref("userChrome.icon.context_menu",         true);
 user_pref("userChrome.icon.global_menu",          true);
+user_pref("userChrome.icon.global_menubar",       true);
 
 // -- User Content -------------------------------------------------------------
 user_pref("userContent.player.ui",            true);

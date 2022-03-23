@@ -62,7 +62,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 /* Menubar */
-@include Option("userChrome.icon.global_menu") {
+@include Option("userChrome.icon.global_menubar") {
   #main-menubar > menu {
     background-position: left var(--context-menu-background-padding-default) center !important;
     padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
