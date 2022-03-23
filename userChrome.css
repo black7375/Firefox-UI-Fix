@@ -3864,7 +3864,7 @@ tab[visuallyselected] > stack::after {
 }
 
 /** Fullscreen - Overlap toolbar **********************************************/
-@supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@supports -moz-bool-pref("browser.fullscreen.autohide") {
   :root[sizemode="fullscreen"] #navigator-toolbox {
     position: fixed !important; /* Needed for content to take up entire height */
     display: block !important; /* Needed for content to take up entire height */
