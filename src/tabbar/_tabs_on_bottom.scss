@@ -61,6 +61,10 @@ See the above repository for updates as well as full license text. */
   }
 }
 
+#navigator-toolbox {
+  padding-top: var(--uc-titlebar-padding, 0px) !important;
+}
+
 :root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {
   height: 32px;
 }
@@ -69,14 +73,27 @@ See the above repository for updates as well as full license text. */
   opacity: 0;
 }
 
-#navigator-toolbox {
-  padding-top: var(--uc-titlebar-padding, 0px) !important;
-}
-
 .titlebar-buttonbox-container > .titlebar-buttonbox {
   height: 100%;
 }
 
+/* At Full Screen */
+:root[sizemode="fullscreen"] #window-controls {
+  position: fixed;
+  display: flex;
+  top: 0;
+  right: 0;
+  height: 40px;
+}
+:root[uidensity="compact"][sizemode="fullscreen"] #window-controls {
+  height: 32px;
+}
+
+@include Option("browser.fullscreen.autohide") {
+  :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
+    visibility: hidden;
+  }
+}
 
 /* At Activated Menubar */
 :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) + #TabsToolbar > .titlebar-buttonbox-container {
@@ -97,21 +114,6 @@ See the above repository for updates as well as full license text. */
   --uc-window-drag-space-pre: 0px; /* Remove pre space */
 }
 
-@include Option("browser.fullscreen.autohide") {
-  :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
-    visibility: hidden;
-  }
-}
-:root[sizemode="fullscreen"] #window-controls {
-  position: fixed;
-  display: flex;
-  top: 0;
-  right: 0;
-  height: 40px;
-}
-:root[uidensity="compact"][sizemode="fullscreen"] #window-controls {
-  height: 32px;
-}
 #nav-bar {
   border-inline-start-width: var(--uc-window-drag-space-pre, 0px);
   border-inline-end-width: calc(var(--uc-window-control-width, 0px) + var(--uc-window-drag-space-post, 0px));
