@@ -2929,29 +2929,6 @@ menuitem.openintabs-menuitem,
   ); /* Compact: 28px, Normal: 33px, Touch: 38px */
 }
 
-/* Pinned Tab - Titlechanged Indicator position fix */
-.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-  background-position-y: bottom calc(2.5px + var(--tabs-navbar-shadow-size)) !important;
-}
-:root[uidensity="compact"]
-  .tabbrowser-tab:is([image], [pinned])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-:root[uidensity="compact"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-  background-position-y: bottom calc(0.5px + var(--tabs-navbar-shadow-size)) !important;
-}
-:root[uidensity="touch"]
-  .tabbrowser-tab:is([image], [pinned])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-:root[uidensity="touch"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-  background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
-}
-
 /*= Tool Bar - Button Padding ================================================*/
 :root[uidensity="compact"] {
   --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
@@ -3779,12 +3756,21 @@ tab[visuallyselected] > stack::after {
   display: none;
 }
 
+.tabbrowser-tab {
+  --container-position-y: 11px;
+}
+:root[uidensity="compact"] .tabbrowser-tab {
+  --container-position-y: 10px;
+}
+:root[uidensity="touch"] .tabbrowser-tab {
+  --container-position-y: 12px;
+}
 .tab-content:not([titlechanged])::before {
   /* Box Model */
   content: "";
   display: block;
   position: absolute !important;
-  transform: translate(9px, 12px) !important;
+  transform: translate(9px, var(--container-position-y)) !important;
 
   /* Shape */
   border-bottom: 2px solid var(--identity-icon-color);
@@ -3809,7 +3795,7 @@ tab[visuallyselected] > stack::after {
 
 /* Pinned Tab */
 .tabbrowser-tab[pinned] .tab-content::before {
-  transform: translateY(12px) !important;
+  transform: translateY(var(--container-position-y)) !important;
   width: 16px;
 }
 
@@ -3836,6 +3822,12 @@ tab[visuallyselected] > stack::after {
   > .tab-content[pinned][titlechanged]:not([selected="true"]) {
   /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
   background-position-x: 30%, 50%, 70% !important;
+}
+
+.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+.tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
+  background-position-y: top calc(0.5px + 50% + var(--container-position-y)) !important;
 }
 
 /* Pinned Tab - Titlechanged & soundplaying */
