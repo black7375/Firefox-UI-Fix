@@ -16,3 +16,22 @@
   > .tab-loading-burst:not([bursting]) {
   opacity: 0.15;
 }
+
+
+@include Option("userChrome.tab.connect_to_window") {
+  .tab-background[multiselected=true] {
+    outline: none !important;
+  }
+}
+@include NotOption("userChrome.tab.connect_to_window") {
+  /* Backport from FF 99 */
+  .tab-background[multiselected=true] {
+    outline: 1px solid color-mix(in srgb, var(--focus-outline-color, currentColor) 40%, transparent);
+    outline-offset: -1px;
+  }
+
+  .tab-background[multiselected=true][selected=true] {
+    outline-width: 2px;
+    outline-offset: -2px;
+  }
+}
