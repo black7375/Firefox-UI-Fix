@@ -78,26 +78,3 @@
     var(--tab-min-height) - var(--tabs-navbar-shadow-size) - 2px
   ); /* Compact: 28px, Normal: 33px, Touch: 38px */
 }
-
-/* Pinned Tab - Titlechanged Indicator position fix */
-.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-  background-position-y: bottom calc(2.5px + var(--tabs-navbar-shadow-size)) !important;
-}
-:root[uidensity="compact"]
-  .tabbrowser-tab:is([image], [pinned])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-:root[uidensity="compact"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-  background-position-y: bottom calc(0.5px + var(--tabs-navbar-shadow-size)) !important;
-}
-:root[uidensity="touch"]
-  .tabbrowser-tab:is([image], [pinned])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-:root[uidensity="touch"] .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-  background-position-y: bottom calc(4.5px + var(--tabs-navbar-shadow-size)) !important;
-}
