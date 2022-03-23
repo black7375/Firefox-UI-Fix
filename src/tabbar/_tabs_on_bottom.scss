@@ -75,6 +75,9 @@ See the above repository for updates as well as full license text. */
 
 .titlebar-buttonbox-container > .titlebar-buttonbox {
   height: 100%;
+  @include OS($mac) {
+    margin-block: 10px;
+  }
 }
 
 /* At Full Screen */
@@ -96,7 +99,7 @@ See the above repository for updates as well as full license text. */
 }
 
 /* At Activated Menubar */
-:root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) + #TabsToolbar > .titlebar-buttonbox-container {
+:root:not([chromehidden~="menubar"], [sizemode="fullscreen"]) #toolbar-menubar:not([autohide="true"]) + #TabsToolbar > .titlebar-buttonbox-container {
   display: block !important;
 }
 :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
@@ -138,7 +141,7 @@ See the above repository for updates as well as full license text. */
 /* Use this pref to check Mac OS where window controls are on left */
 /* This pref defaults to true on Mac and doesn't actually do anything on other platforms. So if your system has window controls on LEFT side you can set the pref to true */
 @include OS($mac) {
-  :root {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
     --uc-window-control-width: 72px;
   }
   :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {

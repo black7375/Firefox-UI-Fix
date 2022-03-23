@@ -3586,6 +3586,11 @@
   .titlebar-buttonbox-container > .titlebar-buttonbox {
     height: 100%;
   }
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    .titlebar-buttonbox-container > .titlebar-buttonbox {
+      margin-block: 10px;
+    }
+  }
 
   /* At Full Screen */
   :root[sizemode="fullscreen"] #window-controls {
@@ -3606,7 +3611,7 @@
     }
   }
   /* At Activated Menubar */
-  :root:not([chromehidden~="menubar"])
+  :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
     #toolbar-menubar:not([autohide="true"])
     + #TabsToolbar
     > .titlebar-buttonbox-container {
@@ -3657,7 +3662,7 @@
   /* Use this pref to check Mac OS where window controls are on left */
   /* This pref defaults to true on Mac and doesn't actually do anything on other platforms. So if your system has window controls on LEFT side you can set the pref to true */
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
       --uc-window-control-width: 72px;
     }
 
