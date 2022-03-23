@@ -3,12 +3,12 @@ See the above repository for updates as well as full license text. */
 
 /*= Tabbar - Move to bottom ==================================================*/
 #titlebar{
-  -moz-box-ordinal-group: 2;
+  order: 2;
   -moz-appearance: none !important;
   --tabs-navbar-shadow-size: 0px;
 }
 #tab-notification-deck {
-  -moz-box-ordinal-group: 2;
+  order: 2;
 }
 
 #TabsToolbar .titlebar-spacer {
@@ -17,7 +17,7 @@ See the above repository for updates as well as full license text. */
 
 @include Option("userChrome.tab.on_bottom.above_bookmark") {
   #PersonalToolbar {
-    -moz-box-ordinal-group: 2;
+    order: 2;
   }
 }
 @include NotOption("userChrome.tab.on_bottom.above_bookmark") {

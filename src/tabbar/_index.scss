@@ -1,4 +1,17 @@
 /*= Tabs on Bottom ===========================================================*/
+@include Option("userChrome.tab.on_bottom", "userChrome.fullscreen.overlap") {
+  #navigator-toolbox {
+    display: flex !important; /* Needed for content to take up entire height, compatibility with tabs on bottom */
+    flex-wrap: wrap;
+  }
+  #titlebar,
+  #nav-bar,
+  #PersonalToolbar,
+  #tab-notification-deck-template {
+    flex-basis: 100%;
+  }
+}
+
 @include Option("userChrome.tab.on_bottom") {
   @import "tabs_on_bottom";
 }
