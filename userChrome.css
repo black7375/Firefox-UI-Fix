@@ -3615,8 +3615,8 @@
     /* Remove pre space */
   }
 
-  :root[sizemode="fullscreen"] .titlebar-buttonbox-container {
-    display: none !important;
+  :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
+    visibility: hidden;
   }
 
   :root[sizemode="fullscreen"] #window-controls {
