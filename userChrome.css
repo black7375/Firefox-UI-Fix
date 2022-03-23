@@ -3615,10 +3615,11 @@
     /* Remove pre space */
   }
 
-  :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
-    visibility: hidden;
+  @supports -moz-bool-pref("browser.fullscreen.autohide") {
+    :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
+      visibility: hidden;
+    }
   }
-
   :root[sizemode="fullscreen"] #window-controls {
     position: fixed;
     display: flex;
@@ -4713,7 +4714,7 @@
 }
 /** Fullscreen - Overlap toolbar **********************************************/
 @supports -moz-bool-pref("userChrome.fullscreen.overlap") {
-  @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+  @supports -moz-bool-pref("browser.fullscreen.autohide") {
     :root[sizemode="fullscreen"] #navigator-toolbox {
       position: fixed !important;
       /* Needed for content to take up entire height */

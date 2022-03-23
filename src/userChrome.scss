@@ -61,7 +61,7 @@
 
 /** Fullscreen - Overlap toolbar **********************************************/
 @include Option("userChrome.fullscreen.overlap") {
-  @supports not -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+  @include Option("browser.fullscreen.autohide") {
     @import "fullscreen/index";
   }
 }

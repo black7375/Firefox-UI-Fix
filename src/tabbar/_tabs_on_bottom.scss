@@ -97,8 +97,10 @@ See the above repository for updates as well as full license text. */
   --uc-window-drag-space-pre: 0px; /* Remove pre space */
 }
 
-:root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
-  visibility: hidden;
+@include Option("browser.fullscreen.autohide") {
+  :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
+    visibility: hidden;
+  }
 }
 :root[sizemode="fullscreen"] #window-controls {
   position: fixed;
