@@ -3619,7 +3619,7 @@
 
   /*= Navbar - Padding for window controls =====================================*/
   /* Customized https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
-  :root[tabsintitlebar] {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
     --uc-window-control-width: 84px;
     /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls, 84px is default value of linux */
     --uc-window-drag-space-pre: 30px;
@@ -3628,7 +3628,7 @@
     /* Same as .titlebar-spacer[type="post-tabs"] */
   }
 
-  :root[tabsintitlebar][sizemode="maximized"] {
+  :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
     --uc-window-drag-space-pre: 0px;
     /* Remove pre space */
   }
@@ -3645,12 +3645,12 @@
     (-moz-platform: windows-win7),
     (-moz-os-version: windows-win8),
     (-moz-platform: windows-win8) {
-    :root[tabsintitlebar] {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
       --uc-window-control-width: 105px;
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root[tabsintitlebar] {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
       --uc-window-control-width: 138px;
     }
   }
