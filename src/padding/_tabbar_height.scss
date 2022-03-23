@@ -27,12 +27,14 @@
     margin-top: 0 !important;
   }
 }
-@include NotOption("userChrome.tab.photon_like_padding") {
-  :root:not([uidensity]) #TabsToolbar {
-    --tab-min-height: 36px !important; /* 38px -> 36px */
-  }
-  :root[uidensity="compact"] #TabsToolbar {
-    --tab-min-height: 29px !important; /* 36px -> 29px */
+@include NotOption("userChrome.tab.lepton_like_padding") {
+  @include NotOption("userChrome.tab.photon_like_padding") {
+    :root:not([uidensity]) #TabsToolbar {
+      --tab-min-height: 36px; /* 38px -> 36px */
+    }
+    :root[uidensity="compact"] #TabsToolbar {
+      --tab-min-height: 29px; /* 36px -> 29px */
+    }
   }
 }
 @include Option("userChrome.tab.connect_to_window") {

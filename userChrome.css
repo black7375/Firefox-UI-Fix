@@ -3047,15 +3047,17 @@
       margin-top: 0 !important;
     }
   }
-  @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
-    :root:not([uidensity]) #TabsToolbar {
-      --tab-min-height: 36px !important;
-      /* 38px -> 36px */
-    }
+  @supports not -moz-bool-pref("userChrome.tab.lepton_like_padding") {
+    @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
+      :root:not([uidensity]) #TabsToolbar {
+        --tab-min-height: 36px;
+        /* 38px -> 36px */
+      }
 
-    :root[uidensity="compact"] #TabsToolbar {
-      --tab-min-height: 29px !important;
-      /* 36px -> 29px */
+      :root[uidensity="compact"] #TabsToolbar {
+        --tab-min-height: 29px;
+        /* 36px -> 29px */
+      }
     }
   }
   @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
