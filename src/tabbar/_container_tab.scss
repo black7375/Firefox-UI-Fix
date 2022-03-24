@@ -46,6 +46,11 @@
   transform: translateY(var(--container-position-y)) !important;
   width: 16px;
 }
+@include Option("userChrome.tab.close_button_at_pinned") {
+  .tabbrowser-tab[pinned][visuallyselected]:not([busy]):hover .tab-content::before {
+    opacity: 0;
+  }
+}
 
 /* Pinned Tab - Titlechanged Indicator override */
 .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),

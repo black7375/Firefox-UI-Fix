@@ -60,7 +60,7 @@
 .tab-close-button {
   padding: 6px !important; /* Original: 7px */
 }
-.tabbrowser-tab:not(:hover) > .tab-stack > .tab-content > .tab-close-button {
+.tabbrowser-tab:not(:hover, [pinned]) > .tab-stack > .tab-content > .tab-close-button {
   padding-inline-start: 1px !important; /* Original: 0px */
   width: 19px !important; /* Original: 17px */
 }

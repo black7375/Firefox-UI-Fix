@@ -3973,6 +3973,28 @@
     margin: unset !important;
   }
 }
+/*= Selected Tab - Photon like contextline ===================================*/
+@supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
+  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
+    display: -moz-box !important;
+    -moz-box-ordinal-group: 0 !important;
+    /* Looks like hover */
+    width: 24px !important;
+    height: 24px !important;
+    margin-inline: -4px !important;
+    /* (24px - 16px) / 2 */
+  }
+
+  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
+    width: 0 !important;
+    position: absolute;
+    bottom: 8px;
+  }
+
+  .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
+    display: none !important;
+  }
+}
 /*= Unselected Tab - Divide line =============================================*/
 /*= Unselected Tab - Dynamic Separator =======================================*/
 @supports -moz-bool-pref("userChrome.tab.dynamic_separtor") {
@@ -4360,7 +4382,7 @@
     /* Original: 7px */
   }
 
-  .tabbrowser-tab:not(:hover) > .tab-stack > .tab-content > .tab-close-button {
+  .tabbrowser-tab:not(:hover, [pinned]) > .tab-stack > .tab-content > .tab-close-button {
     padding-inline-start: 1px !important;
     /* Original: 0px */
     width: 19px !important;
@@ -4607,6 +4629,11 @@
     width: 16px;
   }
 
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
+    .tabbrowser-tab[pinned][visuallyselected]:not([busy]):hover .tab-content::before {
+      opacity: 0;
+    }
+  }
   /* Pinned Tab - Titlechanged Indicator override */
   .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
   .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
