@@ -14,6 +14,7 @@
     - [Meta Info files](#meta-info-files)
   - [Restrictions](#restrictions)
 - [Rules](#rules)
+  - [Modify only source file](modify-only-source-file)
   - [Version](#version)
   - [Branch](#branch)
   - [Issue](#issue)
@@ -43,6 +44,7 @@ We use [github](https://github.com/black7375/Firefox-UI-Fix) to host code, to tr
 After feedback has been given we expect responses within two weeks. After two weeks we may close the issue and pull request if it isn't showing any activity.
 
 ### Environment
+[`git`](https://git-scm.com/) and [`yarn`](https://yarnpkg.com/) should be installed.
 
 You can configure it as follows:
 ```shell
@@ -52,6 +54,14 @@ cd ./Firefox-UI-Fix
 
 ## checkout branch
 git checkout <BRANCH_NAME>
+
+## env setup
+yarn install
+```
+
+You can build with this command:
+```shell
+yarn build
 ```
 
 ### Your First Contribution
@@ -63,6 +73,11 @@ The following documents may be helpful:
 - [Each Versions Plan](https://github.com/black7375/Firefox-UI-Fix/milestones)
 - [Wiki:Compatibility Issues Solution](https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution)
 - [Wiki:Tips](https://github.com/black7375/Firefox-UI-Fix/wiki/Tips)
+
+CSS, SASS Documents:
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [SASS(SCSS)](https://sass-lang.com/documentation)
+- [SASS Live Compile](https://www.sassmeister.com/)
 
 Live Debugging:
 - [Tutorial: How to create and live-debug userChrome.css](https://www.reddit.com/r/FirefoxCSS/comments/73dvty/tutorial_how_to_create_and_livedebug_userchromecss/)
@@ -113,17 +128,22 @@ We love your input! We want to make contributing to this project as easy and tra
 
 ```
 root
+|- icons/: Icons, illustrations
+|- src/: Source files
+|- src/userChrome.scss: Entry of SCSS for Browser UI
+|- src/userContent.scss: Entry of SCSS for Web pages
 |- .gitattributes: Exclude at `Download Zip`
 |- .github: Issue/PR Template, Github Actions
 |- .prettierignore: Exclude coding style
 |- .prettierrc.json: Coding style
-|- icons/: Icons, illustrations
 |- install.ps1: Install script write in powersehll
 |- install.sh: Install script write in bash
+|- package.json: Build setup, package dependency
 |- LEPTON: Meta infos (branch, version)
 |- user.js: about:config settings
-|- userChrome.css: CSS for Browser UI
-|- userContent.css: CSS for Web pages
+|- userChrome.css: Build result of src/userChrome.scss (Don't modify directly!!)
+|- userContent.css: Build result of src/userContent.scss (Don't modify directly!!)
+|- yarn.lock: Auto generated dependency (Don't modify directly!!)
 ```
 
 #### Icon files
@@ -191,6 +211,10 @@ Path=<Full PATH>
 
 ## Rules
 
+### Modify only source file
+
+Do not modify files that are built directly or automatically generated.
+
 ### Version
 
 Milestone, The versioning scheme we use is [SemVer](https://semver.org/). (Maintainer decides, do not pull request.)
@@ -235,6 +259,7 @@ Development: New Features.
 
 For intuitive recognition, I [put a **prefix**](https://github.com/black7375/Firefox-UI-Fix/commits/master).
 - `Add:` Add feature or enhanced.
+- `Bump:` Update dependency packages.
 - `Fix:` Bug fix or change default values.
 - `Clean:` Refactoring.
 - `Doc:` Update docs.
@@ -243,6 +268,7 @@ For intuitive recognition, I [put a **prefix**](https://github.com/black7375/Fir
 
 - **Branch:** Check the [Branch](#branch) section and PR to the correct branch.
 - **Issue:** We recommend that you open the issue first to discuss the changes with the owner of this repository.
+- **Build:** Please check if it was built before PR.
 
 ### License
 
