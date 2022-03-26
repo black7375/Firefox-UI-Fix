@@ -3532,7 +3532,7 @@
   #TabsToolbar > .titlebar-buttonbox-container {
     position: fixed;
     display: block;
-    top: var(--uc-titlebar-padding, 0px);
+    top: var(--uc-titlebar-padding);
     right: 0;
     height: 40px;
   }
@@ -3549,7 +3549,7 @@
     }
   }
   #navigator-toolbox {
-    padding-top: var(--uc-titlebar-padding, 0px) !important;
+    padding-top: var(--uc-titlebar-padding) !important;
   }
 
   :root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {
@@ -3601,23 +3601,33 @@
 
   /*= Navbar - Padding for window controls =====================================*/
   /* Customized https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
-  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-    --uc-window-control-width: 84px;
-    /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls, 84px is default value of linux */
-    --uc-window-drag-space-pre: 30px;
+  :root {
+    --uc-window-control-width: 0px;
+    /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls */
+    --uc-window-drag-space-pre: 0px;
     /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
-    --uc-window-drag-space-post: 25px;
+    --uc-window-drag-space-post: 0px;
     /* Same as .titlebar-spacer[type="post-tabs"] */
   }
 
-  :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    --uc-window-control-width: 84px;
+    /* 84px is default value of linux */
+    --uc-window-drag-space-post: 25px;
+  }
+
+  :root[tabsintitlebar] {
+    --uc-window-drag-space-pre: 30px;
+  }
+
+  :root[tabsintitlebar][sizemode="maximized"] {
     --uc-window-drag-space-pre: 0px;
     /* Remove pre space */
   }
 
   #nav-bar {
-    border-inline-start-width: var(--uc-window-drag-space-pre, 0px);
-    border-inline-end-width: calc(var(--uc-window-control-width, 0px) + var(--uc-window-drag-space-post, 0px));
+    border-inline-start-width: var(--uc-window-drag-space-pre);
+    border-inline-end-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
     border-inline-style: solid !important;
     border-inline-color: var(--toolbar-bgcolor);
   }
@@ -3644,8 +3654,8 @@
     }
 
     :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
-      border-inline-start-width: calc(var(--uc-window-control-width, 0px) + var(--uc-window-drag-space-post, 0px));
-      border-inline-end-width: var(--uc-window-drag-space-pre, 0px);
+      border-inline-start-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+      border-inline-end-width: var(--uc-window-drag-space-pre);
     }
 
     :root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,
@@ -3683,7 +3693,7 @@
 
     #navigator-toolbox {
       -moz-window-dragging: drag;
-      padding-top: calc(var(--uc-menubar-height) + var(--uc-titlebar-padding, 0px)) !important;
+      padding-top: calc(var(--uc-menubar-height) + var(--uc-titlebar-padding)) !important;
     }
 
     :root[sizemode="fullscreen"] #navigator-toolbox {
@@ -3693,7 +3703,7 @@
     #toolbar-menubar {
       position: fixed;
       display: flex;
-      top: var(--uc-titlebar-padding, 0px);
+      top: var(--uc-titlebar-padding);
       height: var(--uc-menubar-height);
       width: 100%;
       overflow: hidden;
@@ -3711,7 +3721,7 @@
     #toolbar-menubar > spacer[flex] {
       order: 99;
       flex-grow: 1;
-      min-width: var(--uc-window-drag-space-post, 20px);
+      min-width: var(--uc-window-drag-space-post);
     }
 
     #toolbar-menubar .toolbarbutton-1 {
