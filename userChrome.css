@@ -3613,14 +3613,11 @@
   :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
     --uc-window-control-width: 84px;
     /* 84px is default value of linux */
+    --uc-window-drag-space-pre: 30px;
     --uc-window-drag-space-post: 25px;
   }
 
-  :root[tabsintitlebar] {
-    --uc-window-drag-space-pre: 30px;
-  }
-
-  :root[tabsintitlebar][sizemode="maximized"] {
+  :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
     --uc-window-drag-space-pre: 0px;
     /* Remove pre space */
   }
@@ -3709,6 +3706,11 @@
       overflow: hidden;
     }
 
+    :root[tabsintitlebar] #toolbar-menubar[autohide="true"]:not([inactive="true"]) {
+      height: var(--uc-menubar-height) !important;
+      /* calc(var(--tab-min-height) + 2 * var(--tab-block-margin)) */
+    }
+
     #toolbar-menubar > .titlebar-buttonbox-container {
       height: 100%;
       order: 100;
@@ -3728,8 +3730,22 @@
       --toolbarbutton-inner-padding: 3px;
     }
 
-    :root:not([chromehidden~="menubar"], [sizemode="fullscreen"]) #TabsToolbar > .titlebar-buttonbox-container {
+    #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
+    #TabsToolbar > .titlebar-buttonbox-container {
       height: var(--uc-menubar-container-height);
+    }
+
+    :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
+      #toolbar-menubar:not([autohide="true"])
+      + #TabsToolbar
+      > .titlebar-buttonbox-container {
+      visibility: collapse !important;
+    }
+
+    :root:not([chromehidden~="menubar"]):not([sizemode="fullscreen"])
+      #toolbar-menubar:not([autohide="true"])
+      .titlebar-buttonbox-container {
+      visibility: visible;
     }
   }
 }
