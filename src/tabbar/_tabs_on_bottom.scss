@@ -153,3 +153,68 @@ See the above repository for updates as well as full license text. */
     right: unset;
   }
 }
+
+/*= Menubar - Always on top ==================================================*/
+@include Option("userChrome.tab.on_bottom.menubar_on_top") {
+  /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+  :root {
+    /* height if native titlebar is enabled, assumes empty menubar */
+    --uc-menubar-height: 20px;
+    --uc-menubar-padding: 1px; /* FF's menubar padding */
+    --uc-menubar-container-height: calc(var(--uc-menubar-height) - (2 * var(--uc-menubar-padding)));
+  }
+  :root[tabsintitlebar] {
+    /* height when native titlebar is disabled, more roomy so can fit buttons etc. */
+    --uc-menubar-height: 30px;
+  }
+
+  /* Menubar on top patch - use with tabs_on_bottom.css */
+  /* Only really useful if menubar is ALWAYS visible */
+  :root:not([sizemode="fullscreen"]) {
+    --uc-window-control-width: 0px !important;
+  }
+  /* Since menubar is statically at top, remove fake drag-space that might be set by window_control_placeholder_support.css */
+  :root:not([sizemode="fullscreen"]) #nav-bar {
+    border-inline-width: 0;
+  }
+
+  #navigator-toolbox{
+    -moz-window-dragging: drag;
+    padding-top: calc(var(--uc-menubar-height) + var(--uc-titlebar-padding, 0px)) !important;
+  }
+  :root[sizemode="fullscreen"] #navigator-toolbox {
+    padding-top: 0px !important;
+  }
+  #toolbar-menubar {
+    position: fixed;
+    display: flex;
+    top: var(--uc-titlebar-padding,0px);
+    height: var(--uc-menubar-height);
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #toolbar-menubar > .titlebar-buttonbox-container {
+    height: 100%;
+    order: 100;
+  }
+
+  #toolbar-menubar > [flex] {
+    flex-grow: 100;
+  }
+  #toolbar-menubar > spacer[flex] {
+    order: 99;
+    flex-grow: 1;
+    min-width: var(--uc-window-drag-space-post,20px);
+  }
+
+  #toolbar-menubar .toolbarbutton-1 {
+    --toolbarbutton-inner-padding: 3px;
+  }
+
+  :root:not([chromehidden~="menubar"], [sizemode="fullscreen"]) #TabsToolbar > .titlebar-buttonbox-container {
+    height: var(--uc-menubar-container-height);
+  }
+}
