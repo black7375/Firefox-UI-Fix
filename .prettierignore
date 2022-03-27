@@ -4,3 +4,14 @@
 
 # User.js
 user.js
+
+# Prettier error exeption
+src/utils/_each.scss
+# [error] src/utils/_each.scss: SyntaxError: CssSyntaxError: At-rule without name (28:7)
+# [error]   26 |         }
+# [error]   27 |       }
+# [error] > 28 |       @#{$name} #{"#{$blocks}"} {
+# [error]      |       ^
+# [error]   29 |         @content;
+# [error]   30 |       }
+# [error]   31 |     }
