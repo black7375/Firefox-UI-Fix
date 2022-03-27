@@ -31,26 +31,26 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 user_pref("userChrome.tab.connect_to_window",          true); // Original, Photon
 user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photon
 
-user_pref("userChrome.tab.lepton_like_padding",        true); // Original
-// user_pref("userChrome.tab.photon_like_padding",     true); // Photon
+// user_pref("userChrome.tab.lepton_like_padding",     true); // Original
+user_pref("userChrome.tab.photon_like_padding",        true); // Photon
 
-user_pref("userChrome.tab.dynamic_separtor",           true); // Original, Proton
-// user_pref("userChrome.tab.static_separator",        true); // Photon
+// user_pref("userChrome.tab.dynamic_separtor",        true); // Original, Proton
+user_pref("userChrome.tab.static_separator",           true); // Photon
 
-user_pref("userChrome.tab.newtab_button_like_tab",     true); // Original
-// user_pref("userChrome.tab.newtab_button_smaller",   true); // Photon
+// user_pref("userChrome.tab.newtab_button_like_tab",  true); // Original
+user_pref("userChrome.tab.newtab_button_smaller",      true); // Photon
 // user_pref("userChrome.tab.newtab_button_proton",    true); // Proton
 
-user_pref("userChrome.icon.panel_full",                true); // Original, Proton
-// user_pref("userChrome.icon.panel_sparse",           true); // Photon
+// user_pref("userChrome.icon.panel_full",             true); // Original, Proton
+user_pref("userChrome.icon.panel_sparse",              true); // Photon
 
 // Original Only
-user_pref("userChrome.tab.box_shadow",                 true);
-user_pref("userChrome.tab.bottom_rounded_corner",      true);
+// user_pref("userChrome.tab.box_shadow",              true);
+// user_pref("userChrome.tab.bottom_rounded_corner",   true);
 
 // Photon Only
-// user_pref("userChrome.tab.photon_like_contextline", true);
-// user_pref("userChrome.tab.photon_like_radius",      true);
+user_pref("userChrome.tab.photon_like_contextline",    true);
+user_pref("userChrome.tab.photon_like_radius",         true);
 
 // == Theme Compatibility Settings =============================================
 // user_pref("userChrome.compatibility.covered_header_image", true);
