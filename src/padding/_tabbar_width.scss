@@ -71,8 +71,10 @@
 
 /* neighbouring tabs should "pinch" together */
 @include NotOption("userChrome.tab.photon_like_padding") {
-  .tabbrowser-tab {
-    padding-inline: 1px !important;
+  @include Option("userChrome.tab.lepton_like_padding") {
+    .tabbrowser-tab {
+      padding-inline: 1px !important;
+    }
   }
   .tabbrowser-tab:not([last-visible-tab]) {
     margin-inline-end: -0.5px !important;
