@@ -3284,11 +3284,11 @@ menupopup > menu {
 }
 
 /** Clipped tabs - Letters cleary *********************************************/
-:root {
-  --inline-tab-padding: 6px !important; /* Original: 8px */
+#tabbrowser-tabs[closebuttons="activetab"] {
+  --inline-tab-padding: 7px !important; /* Original: 8px */
 }
-:root[uidensity="touch"] {
-  --inline-tab-padding: 8px !important; /* Original: 8px */
+#tabbrowser-tabs[overflow="true"] {
+  --inline-tab-padding: 6px !important; /* Original: 8px */
 }
 
 .tab-content[pinned] {

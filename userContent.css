@@ -95,10 +95,12 @@ video {
   /* Control Bar */
   #controlsContainer .controlBar {
     transition: transform 350ms ease;
+    opacity: 1 !important;
   }
   #controlsContainer .controlBar[hidden] {
     transform: translateY(100%);
     transition: transform 350ms ease-in-out, opacity 1s ease 100ms !important;
+    opacity: 0 !important;
   }
   #controlsContainer .controlBar[hidden] .progressBar,
   #controlsContainer .controlBar[hidden] .bufferBar {
