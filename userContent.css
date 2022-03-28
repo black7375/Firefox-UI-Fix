@@ -126,11 +126,13 @@
     /* Control Bar */
     #controlsContainer .controlBar {
       transition: transform 350ms ease;
+      opacity: 1 !important;
     }
 
     #controlsContainer .controlBar[hidden] {
       transform: translateY(100%);
       transition: transform 350ms ease-in-out, opacity 1s ease 100ms !important;
+      opacity: 0 !important;
     }
 
     #controlsContainer .controlBar[hidden] .progressBar,
@@ -1970,7 +1972,12 @@
       }
 
       #placesContext_new\:folder {
-        --menuitem-image: url("./icons/folder.svg");
+        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+      }
+      @supports -moz-bool-pref("userChrome.icon.library") {
+        #placesContext_new\:folder {
+          --menuitem-image: url("./icons/folder.svg");
+        }
       }
 
       #placesContext_new\:separator {
@@ -2004,7 +2011,12 @@
       }
 
       #newfolder {
-        --menuitem-image: url("./icons/folder.svg");
+        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+      }
+      @supports -moz-bool-pref("userChrome.icon.library") {
+        #newfolder {
+          --menuitem-image: url("./icons/folder.svg");
+        }
       }
 
       #newseparator {

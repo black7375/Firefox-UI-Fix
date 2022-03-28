@@ -75,7 +75,10 @@
   /* checkbox */
 }
 .downloadShowMenuItem {
-  --menuitem-image: url("./icons/folder.svg");
+  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  @include Option("userChrome.icon.library") {
+    --menuitem-image: url("./icons/folder.svg");
+  }
 }
 
 #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {

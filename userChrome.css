@@ -2982,10 +2982,11 @@
 
   /* neighbouring tabs should "pinch" together */
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
-    .tabbrowser-tab {
-      padding-inline: 1px !important;
+    @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") {
+      .tabbrowser-tab {
+        padding-inline: 1px !important;
+      }
     }
-
     .tabbrowser-tab:not([last-visible-tab]) {
       margin-inline-end: -0.5px !important;
     }
@@ -4378,13 +4379,13 @@
 /*= Clipped tabs =============================================================*/
 /** Clipped tabs - Letters cleary *********************************************/
 @supports -moz-bool-pref("userChrome.tab.letters_cleary") {
-  :root {
-    --inline-tab-padding: 6px !important;
+  #tabbrowser-tabs[closebuttons="activetab"] {
+    --inline-tab-padding: 7px !important;
     /* Original: 8px */
   }
 
-  :root[uidensity="touch"] {
-    --inline-tab-padding: 8px !important;
+  #tabbrowser-tabs[overflow="true"] {
+    --inline-tab-padding: 6px !important;
     /* Original: 8px */
   }
 
@@ -6489,7 +6490,12 @@
     }
 
     #placesContext_new\:folder {
-      --menuitem-image: url("./icons/folder.svg");
+      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      #placesContext_new\:folder {
+        --menuitem-image: url("./icons/folder.svg");
+      }
     }
 
     #placesContext_new\:separator {
@@ -6604,7 +6610,12 @@
     }
 
     .downloadShowMenuItem {
-      --menuitem-image: url("./icons/folder.svg");
+      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      .downloadShowMenuItem {
+        --menuitem-image: url("./icons/folder.svg");
+      }
     }
 
     #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
@@ -7082,7 +7093,12 @@
     }
 
     #newfolder {
-      --menuitem-image: url("./icons/folder.svg");
+      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      #newfolder {
+        --menuitem-image: url("./icons/folder.svg");
+      }
     }
 
     #newseparator {
