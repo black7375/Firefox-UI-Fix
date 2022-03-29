@@ -4574,7 +4574,7 @@
     }
   }
   /* None exist favicon - Size bigger */
-  @icnlude NotOption("userChrome.tab.always_show_tab_icon") {
+  @supports not -moz-bool-pref("userChrome.tab.always_show_tab_icon") {
     .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
       transform: translateX(-0.5px) translateY(-1px);
       inset-inline-end: 0 !important;
