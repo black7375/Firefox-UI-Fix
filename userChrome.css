@@ -1472,7 +1472,7 @@
       border-color: transparent !important;
     }
 
-    @inclue Contrast {
+    @media (prefers-contrast) {
       xul|button[default]:not([disabled="true"]):hover {
         border-color: currentColor !important;
       }
@@ -2059,7 +2059,7 @@
     #viewGroup > radio > .radio-label-box {
       /* Overwrite */
       margin: 0 !important;
-      padding: 0 6 !important;
+      padding: 0 6px !important;
     }
 
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
