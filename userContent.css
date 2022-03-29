@@ -1,65 +1,6 @@
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
 /** Video player **************************************************************/
-/* Control Bar UI */
-@supports -moz-bool-pref("userContent.player.ui") {
-  audio {
-    --duration-color: #929292;
-    /* Like Original */
-    --media-background: rgba(26, 26, 26, 0.8);
-    /* Like Original */
-    border-radius: 8px;
-    --box-shadow1: rgba(14, 13, 26, 0.12);
-    --box-shadow2: rgba(7, 48, 114, 0.12);
-    --box-shadow3: rgba(34, 0, 51, 0.04);
-    box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2), 0 8px 12px 1px var(--box-shadow3);
-    /* Or: 0 2px 15px rgba(0,0,0,.1); */
-  }
-
-  video {
-    --duration-color: #eee;
-    --media-background: linear-gradient(transparent, rgba(26, 26, 26, 0.85));
-  }
-
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
-    audio {
-      --box-shadow1: rgba(249, 249, 250, 0.12);
-      --box-shadow2: rgba(91, 91, 102, 0.12);
-      --box-shadow3: rgba(82, 82, 94, 0.04);
-    }
-  }
-  @media (prefers-contrast) {
-    video {
-      --duration-color: #929292;
-      /* Like Original */
-      --media-background: rgba(26, 26, 26, 0.8);
-      /* Like Original */
-    }
-  }
-  #controlsContainer .controlBar {
-    background: var(--media-background) !important;
-  }
-
-  #controlsContainer .duration {
-    color: var(--duration-color) !important;
-    /* Original: #929292 */
-  }
-}
-@supports -moz-bool-pref("userContent.player.icon") {
-  #controlsContainer .fullscreenButton {
-    background-image: url("./icons/enter-fullscreen.svg") !important;
-  }
-
-  #controlsContainer .fullscreenButton[fullscreened] {
-    background-image: url("./icons/exit-fullscreen.svg") !important;
-  }
-}
-@supports -moz-bool-pref("userContent.player.noaudio") {
-  #controlsContainer .muteButton[noAudio] {
-    /* Remove volume button at noAudio */
-    display: none !important;
-  }
-}
 /* Control Bar Size */
 @supports -moz-bool-pref("userContent.player.size") {
   #controlsContainer {
@@ -103,6 +44,167 @@
     padding-bottom: 8px !important;
   }
 }
+/* Control Bar UI */
+@supports -moz-bool-pref("userContent.player.ui") {
+  audio {
+    --duration-color: #929292;
+    /* Like Original */
+    --media-background: rgba(26, 26, 26, 0.8);
+    /* Like Original */
+    border-radius: 8px;
+    --box-shadow1: rgba(14, 13, 26, 0.12);
+    --box-shadow2: rgba(7, 48, 114, 0.12);
+    --box-shadow3: rgba(34, 0, 51, 0.04);
+    box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2), 0 8px 12px 1px var(--box-shadow3);
+    /* Or: 0 2px 15px rgba(0,0,0,.1); */
+  }
+
+  video {
+    --duration-color: #eee;
+    --media-background: linear-gradient(transparent, rgba(26, 26, 26, 0.85));
+  }
+
+  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+    audio {
+      --box-shadow1: rgba(249, 249, 250, 0.12);
+      --box-shadow2: rgba(91, 91, 102, 0.12);
+      --box-shadow3: rgba(82, 82, 94, 0.04);
+    }
+  }
+  @media (prefers-contrast) {
+    video {
+      --duration-color: #929292;
+      /* Like Original */
+      --media-background: rgba(26, 26, 26, 0.8);
+      /* Like Original */
+    }
+  }
+  #controlsContainer .controlBar {
+    background: var(--media-background) !important;
+  }
+
+  #controlsContainer .duration {
+    color: var(--duration-color) !important;
+    /* Original: #929292 */
+  }
+
+  @supports -moz-bool-pref("userContent.player.ui.twoline") {
+    audio {
+      /* #controlsContainer .controlBar */
+      --controlBar-flex-wrap: unset;
+      --controlBar-justify-content: center;
+      --controlBar-align-content: unset;
+      --controlBar-twoline-more-height: 0px;
+      --controlBar-padding-inline: 9px;
+      /* #controlsContainer .scrubberStack */
+      /* .scrubberStack - Vertical */
+      --scrubberStack-order: unset;
+      --scrubberStack-height: 100%;
+      --scrubberStack-transform: none;
+      /* .scrubberStack - Horizontal */
+      --scrubberStack-margin-inline: 9px;
+      /* #controlsContainer .positionDurationBox */
+      --positionDurationBox-flex-grow: unset;
+      --positionDurationBox-margin-left: unset;
+      --positionDurationBox-text-align: center;
+      /* Others */
+      --button-outside-margin: 0;
+    }
+
+    video {
+      /* #scrubber .scrubber::-moz-range-thumb */
+      --scrubber-thumb-scale: 0;
+      --scrubber-thumb-color: #48a0f7;
+      /* Color as hover, Prevent flashing */
+      /* .progressBar::-moz-progress-bar */
+      --progressBar-scale: 0.65;
+      /* #controlsContainer .controlBar */
+      --controlBar-flex-wrap: wrap;
+      --controlBar-justify-content: space-between;
+      --controlBar-align-content: space-around;
+      --controlBar-padding-inline: 0 !important;
+      /* Original: 9px */
+      /* #controlsContainer .scrubberStack */
+      /* .scrubberStack - Vertical */
+      --scrubberStack-order: -1;
+      /* .scrubberStack - Horizontal */
+      --scrubberStack-flex-basis: auto;
+      --scrubberStack-twoline-width: 100%;
+      --scrubberStack-margin-inline: 0;
+      /* #controlsContainer .positionDurationBox */
+      --positionDurationBox-flex-grow: 2;
+      --positionDurationBox-margin-left: 15px;
+      --positionDurationBox-text-align: left;
+      /* Others */
+      --duration-color: #dadada;
+      --button-outside-margin: 9px;
+    }
+
+    .scrubber:not(:hover)::-moz-range-thumb {
+      transform: scale(var(--scrubber-thumb-scale, 1));
+      background-color: var(--scrubber-thumb-color, currentColor) !important;
+    }
+
+    .progressStack {
+      transform-origin: bottom;
+      transform: scaleY(var(--progressBar-scale, 1));
+    }
+
+    .scrubber:hover::-moz-range-thumb,
+    .progressContainer:hover .progressStack {
+      transform: scale(1);
+    }
+
+    #controlsContainer .controlBar {
+      flex-wrap: var(--controlBar-flex-wrap);
+      justify-content: var(--controlBar-justify-content);
+      align-content: var(--controlBar-align-content);
+      height: calc(var(--controlBar-height) + var(--controlBar-twoline-more-height, var(--thumb-size))) !important;
+      padding-inline: var(--controlBar-padding-inline) !important;
+      /* Original: 9px */
+    }
+
+    #controlsContainer .scrubberStack {
+      /* Vertical */
+      order: var(--scrubberStack-order);
+      height: var(--scrubberStack-height, var(--thumb-size)) !important;
+      transform: var(--scrubberStack-transform, translateY(calc(var(--thumb-size) / 2)));
+      /* Horizontal */
+      flex-basis: var(--scrubberStack-flex-basis, calc(var(--scrubberStack-width) - 18px)) !important;
+      width: var(--scrubberStack-twoline-width, var(--scrubberStack-width));
+      margin-inline: var(--scrubberStack-margin-inline) !important;
+    }
+
+    #controlsContainer .positionDurationBox {
+      flex-grow: var(--positionDurationBox-flex-grow);
+      margin-left: var(--positionDurationBox-margin-left);
+      text-align: var(--positionDurationBox-text-align) !important;
+    }
+
+    #playButton {
+      margin-left: var(--button-outside-margin) !important;
+    }
+
+    #fullscreenButton {
+      margin-right: var(--button-outside-margin) !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userContent.player.icon") {
+  #controlsContainer .fullscreenButton {
+    background-image: url("./icons/enter-fullscreen.svg") !important;
+  }
+
+  #controlsContainer .fullscreenButton[fullscreened] {
+    background-image: url("./icons/exit-fullscreen.svg") !important;
+  }
+}
+@supports -moz-bool-pref("userContent.player.noaudio") {
+  #controlsContainer .muteButton[noAudio] {
+    /* Remove volume button at noAudio */
+    display: none !important;
+  }
+}
 /* Click to play UI */
 @supports -moz-bool-pref("userContent.player.click_to_play") {
   #controlsContainer .clickToPlay {
@@ -140,6 +242,12 @@
       display: unset !important;
       opacity: 0.55;
       transition: opacity 150ms ease 50ms;
+    }
+
+    /* Two line Control Bar */
+    .scrubber::-moz-range-thumb,
+    .progressStack {
+      transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
     }
 
     /* Click to play */
