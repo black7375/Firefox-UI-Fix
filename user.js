@@ -42,7 +42,8 @@ user_pref("userChrome.tab.newtab_button_like_tab",     true); // Original
 // user_pref("userChrome.tab.newtab_button_proton",    true); // Proton
 
 user_pref("userChrome.icon.panel_full",                true); // Original, Proton
-// user_pref("userChrome.icon.panel_sparse",           true); // Photon
+// user_pref("userChrome.icon.panel_photon",           true); // Photon
+// user_pref("userChrome.icon.panel_sparse",           true); // Just option
 
 // Original Only
 user_pref("userChrome.tab.box_shadow",                 true);

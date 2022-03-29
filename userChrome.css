@@ -5078,7 +5078,7 @@
     width: 16px;
   }
 
-  @supports -moz-bool-pref("userChrome.icon.panel_sparse") {
+  @supports -moz-bool-pref("userChrome.icon.panel_photon") or -moz-bool-pref("userChrome.icon.panel_sparse") {
     :root {
       /* Blank Menu Left Padding */
       --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
@@ -5210,9 +5210,21 @@
     background-image: var(--avatar-image-url) !important;
   }
 
-  @supports -moz-bool-pref("userChrome.icon.panel_full") {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
     #appMenu-new-tab-button2 {
       list-style-image: url("chrome://browser/skin/new-tab.svg");
+    }
+  }
+  @supports -moz-bool-pref("userChrome.icon.panel_photon") {
+    #appMenu-save-file-button2,
+    #appMenu-find-button2,
+    #appMenu-more-button2 {
+      padding-top: var(--arrowpanel-menuitemblank-padding) !important;
+      padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+    }
+
+    #appMenu-zoom-controls2 {
+      padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
     }
   }
   @supports -moz-bool-pref("userChrome.icon.panel_sparse") {
@@ -5252,7 +5264,7 @@
     list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
   }
 
-  @supports -moz-bool-pref("userChrome.icon.panel_full") {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
     #appMenu-passwords-button {
       list-style-image: url("chrome://browser/skin/login.svg");
     }
@@ -5286,7 +5298,8 @@
     #appMenu-more-button2 {
       list-style-image: url("chrome://browser/skin/ion.svg");
     }
-
+  }
+  @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
     #appMenu-help-button2 {
       list-style-image: url("chrome://global/skin/icons/help.svg");
     }

@@ -7,7 +7,7 @@
   width: 16px;
 }
 
-@include Option("userChrome.icon.panel_sparse") {
+@include Option("userChrome.icon.panel_photon", "userChrome.icon.panel_sparse") {
   :root {
     /* Blank Menu Left Padding */
     --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
