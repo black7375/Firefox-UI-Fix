@@ -31,6 +31,10 @@
 
 I'm really glad you're reading this, because we need volunteer developers to help this project come to fruition.
 
+This document is intended to help, not burden you.
+
+You can use it as a reference for various guidelines and information, and PR comfortably.
+
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
 ### Code of Conduct
@@ -62,6 +66,17 @@ yarn install
 You can build with this command:
 ```shell
 yarn build
+```
+
+You can check test and css validate:
+```shell
+## test - When you make mixin or function
+# __tests__ direcory, You can also find out how to use internal utils.
+yarn test
+
+## validate - Will be failed, this project uses non-standard features.
+# Just use only for checking.
+yarn validate
 ```
 
 ### Your First Contribution
@@ -128,6 +143,7 @@ We love your input! We want to make contributing to this project as easy and tra
 
 ```
 root
+|- __tests__/: Mixin spec test
 |- icons/: Icons, illustrations
 |- src/: Source files
 |- src/userChrome.scss: Entry of SCSS for Browser UI

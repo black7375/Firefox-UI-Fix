@@ -16,9 +16,11 @@
   "scripts": {
     "build": "sass --no-source-map src/userChrome.scss ./userChrome.css && sass --no-source-map src/userContent.scss ./userContent.css && prettier --write userChrome.css userContent.css",
     "format": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "validate": "csstree-validator userChrome.css; csstree-validator userContent.css"
   },
   "devDependencies": {
+    "csstree-validator": "^3.0.0",
     "fast-glob": "^3.2.11",
     "jest": "^27.5.1",
     "prettier": "^2.6.1",
