@@ -28,24 +28,39 @@
   darken(#0060df, 15.5%):  #003e90;
   darken(#0060df, 28.1%):  #002250;
  */
+  --blue-20: #b6d6ff; /* lighten(#0060df, 42%) - rgb(182, 214, 255), Add for link active color*/
   --blue-30: #74c0ff; /* rgb(116, 192, 255), Add for active color */
 
-  --organizer-outline-color: var(--blue-50) !important;
+  --organizer-outline-color: var(--blue-40) !important;
 }
 
 :host, :root, button, select, input, menulist, radio {
+  --in-content-primary-button-text-color: var(--in-content-page-color) !important;
   --in-content-primary-button-background: var(--blue-50) !important;
   --in-content-primary-button-background-hover: var(--blue-40) !important;
   --in-content-primary-button-background-active: var(--blue-30) !important;
+
+  --in-content-focus-outline-color: var(--blue-40) !important;
+  --in-content-accent-color: var(--blue-40) !important;
+  --in-content-accent-color-active: var(--blue-30) !important;
+
+  --in-content-link-color: var(--blue-40) !important;
+  --in-content-link-color-hover: var(--blue-30) !important;
+  --in-content-link-color-active: var(--blue-20) !important;
+  --in-content-link-color-visited: var(--blue-40) !important;
 }
 
 #{built-in-dark-theme()} {
+  --button-primary-color: var(--in-content-page-color) !important;
   --button-primary-bgcolor: var(--blue-50) !important;
   --button-primary-hover-bgcolor: var(--blue-40) !important;
   --button-primary-active-bgcolor: var(--blue-30) !important;
-  --focus-outline-color: var(--blue-50) !important;
-  --lwt-toolbarbutton-icon-fill-attention: var(--blue-50) !important;
-  --download-progress-fill-color: var(--blue-50) !important;
-  --panel-banner-item-info-icon-bgcolor: var(--blue-40) !important;
+
+  --focus-outline-color: var(--blue-40) !important;
+
+  --lwt-toolbarbutton-icon-fill-attention: var(--blue-40) !important;
+  --download-progress-fill-color: var(--blue-40) !important;
+  --panel-banner-item-info-icon-bgcolor: var(--blue-30) !important;
+
   --lwt-brighttext-url-color: var(--blue-30) !important; /* Original: as primary bgcolor */
 }
