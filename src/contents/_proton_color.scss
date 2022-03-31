@@ -3,11 +3,15 @@
                url-prefix("https://support.mozilla.org"),
                url-prefix("https://accounts.firefox.com"),
                regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$") {
-  @include Dark {
-    @import "../theme/dark_blue_color";
+  @import "../theme/proton_color";
 
-    :host, :root {
-      @include DarkBlueContent;
+  @include Option("userContent.page.proton_color.dark_blue_accent") {
+    @include Dark {
+      @import "../theme/dark_blue_color";
+
+      :host, :root {
+        @include DarkBlueContent;
+      }
     }
   }
 }
