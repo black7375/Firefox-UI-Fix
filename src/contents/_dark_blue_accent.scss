@@ -1,0 +1,13 @@
+@-moz-document url-prefix("about:"),
+               url-prefix("https://addons.mozilla.org"),
+               url-prefix("https://support.mozilla.org"),
+               url-prefix("https://accounts.firefox.com"),
+               regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$") {
+  @include Dark {
+    @import "../theme/dark_blue_color";
+
+    :host, :root {
+      @include DarkBlueContent;
+    }
+  }
+}

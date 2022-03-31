@@ -91,6 +91,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.icon.account_label_to_right",        true);
 
 // user_pref("userContent.player.ui.twoline",                 true);
+// user_pref("userContent.page.proton_color.dark_blue_accent", true);
 
 // == Theme Default Settings ===================================================
 // -- User Chrome --------------------------------------------------------------
