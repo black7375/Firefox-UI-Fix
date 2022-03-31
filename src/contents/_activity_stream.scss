@@ -5,7 +5,8 @@
     body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
     body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
     body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"],
-    body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"] {
+    body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"],
+    body[style*="--newtab-background-color: rgb(43, 42, 51);"] {
       /* inner */
       --newtab-focus-border: rgba(
         0,
@@ -13,10 +14,16 @@
         255,
         0.5
       ) !important; /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
-      --newtab-focus-border-selected: rgba(0, 221, 255, 0.5) !important; /* Original: #B5D3FF */
+      --newtab-focus-border-selected: var(--newtab-focus-border) !important; /* Original: #B5D3FF */
 
       /* For Nightly */
       --newtab-primary-action-background: var(--newtab-focus-border) !important;
+
+      @include Option("userContent.page.proton_color") {
+        @include Option("userContent.page.proton_color.dark_blue_accent") {
+          --newtab-focus-border: var(--in-content-focus-outline-color) !important;
+        }
+      }
     }
   }
 
