@@ -2,7 +2,8 @@
                url-prefix("https://addons.mozilla.org"),
                url-prefix("https://support.mozilla.org"),
                url-prefix("https://accounts.firefox.com"),
-               regexp("^((file:\/\/\/)|(chrome:\/\/)).*\/$") {
+               url-prefix("view-source"),
+               regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
   @import "../theme/proton_color";
 
   @include Option("userContent.page.proton_color.dark_blue_accent") {
