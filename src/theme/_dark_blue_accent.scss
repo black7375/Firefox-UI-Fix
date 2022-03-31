@@ -1,0 +1,51 @@
+:host, :root {
+  /* Color Memo
+  Just refer - Photon's dark color
+  --button-primary-bgcolor: #0060DF;
+  --button-primary-hover-bgcolor: #003EAA;
+  --button-primary-active-bgcolor: #002275;
+  --lwt-brighttext-url-color: #74c0ff;
+  --lwt-toolbarbutton-icon-fill-attention: #45a1ff;
+
+  Just refer - Proton's light color
+  --in-content-accent-color: #0a84ff;
+  --in-content-accent-color-active: #0060df;
+  --in-content-primary-button-background: #0061e0;
+  --in-content-primary-button-background-hover: #0250bb;
+  --in-content-primary-button-background-active: #053e94;
+
+  --blue-40: #45a1ff; rgb(69, 161, 255)
+  --blue-50: #0a84ff; rgb(10, 132, 255)
+  --blue-60: #0060df; rgb(0, 96, 223)
+  --blue-70: #003eaa; rgb(0, 62, 170)
+  --blue-80: #002275; rgb(0, 34, 117)
+
+  Relation
+  lighten(#0060df,   29%): #74b0ff;
+  lighten(#0060df, 19.8%): #4595ff
+  lighten(#0060df,  8.3%): #0a74ff
+  #0060df
+  darken(#0060df, 15.5%):  #003e90;
+  darken(#0060df, 28.1%):  #002250;
+ */
+  --blue-30: #74c0ff; /* rgb(116, 192, 255), Add for active color */
+
+  --organizer-outline-color: var(--blue-50) !important;
+}
+
+:host, :root, button, select, input, menulist, radio {
+  --in-content-primary-button-background: var(--blue-50) !important;
+  --in-content-primary-button-background-hover: var(--blue-40) !important;
+  --in-content-primary-button-background-active: var(--blue-30) !important;
+}
+
+#{built-in-dark-theme()} {
+  --button-primary-bgcolor: var(--blue-50) !important;
+  --button-primary-hover-bgcolor: var(--blue-40) !important;
+  --button-primary-active-bgcolor: var(--blue-30) !important;
+  --focus-outline-color: var(--blue-50) !important;
+  --lwt-toolbarbutton-icon-fill-attention: var(--blue-50) !important;
+  --download-progress-fill-color: var(--blue-50) !important;
+  --panel-banner-item-info-icon-bgcolor: var(--blue-40) !important;
+  --lwt-brighttext-url-color: var(--blue-30) !important; /* Original: as primary bgcolor */
+}

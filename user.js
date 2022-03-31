@@ -63,6 +63,8 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.decoration.disable_panel_animate",   true);
 // user_pref("userChrome.decoration.disable_sidebar_animate", true);
 
+// user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
+
 // user_pref("userChrome.padding.first_tab",                  true);
 // user_pref("userChrome.padding.drag_space",                 true);
 
