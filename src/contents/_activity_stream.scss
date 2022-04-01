@@ -1,6 +1,6 @@
 @-moz-document url("about:home"), url("about:newtab") {
   /** Activity Stream - Search Focus Border: like URL *************************/
-  @include Option("userContent.newTab.field_border") {
+  @include Option("userContent.page.field_border") {
     /* At DarkMode, Color */
     body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
     body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
@@ -69,9 +69,11 @@
       .search-wrapper input:focus {
         transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
       }
-      .search-wrapper .search-inner-wrapper:hover input {
-        border-color: var(--newtab-primary-action-background) !important;
-        transition: border-color 0.5s var(--animation-easing-function);
+      @include Option("userContent.page.field_border") {
+        .search-wrapper .search-inner-wrapper:hover input {
+          border-color: var(--newtab-primary-action-background) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
       }
     }
   }

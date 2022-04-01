@@ -259,7 +259,7 @@
 /** Activity Stream ***********************************************************/
 @-moz-document url("about:home"), url("about:newtab") {
   /** Activity Stream - Search Focus Border: like URL *************************/
-  @supports -moz-bool-pref("userContent.newTab.field_border") {
+  @supports -moz-bool-pref("userContent.page.field_border") {
     /* At DarkMode, Color */
     body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
     body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
@@ -332,9 +332,11 @@
         transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
       }
 
-      .search-wrapper .search-inner-wrapper:hover input {
-        border-color: var(--newtab-primary-action-background) !important;
-        transition: border-color 0.5s var(--animation-easing-function);
+      @supports -moz-bool-pref("userContent.page.field_border") {
+        .search-wrapper .search-inner-wrapper:hover input {
+          border-color: var(--newtab-primary-action-background) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
       }
     }
   }
@@ -1628,6 +1630,23 @@
     th {
       background-color: var(--in-content-table-header-background) !important;
       color: var(--in-content-table-header-color) !important;
+    }
+  }
+  /*= Field Border =============================================================*/
+  @supports -moz-bool-pref("userContent.page.field_border") {
+    @media (prefers-reduced-motion: no-preference) {
+      @-moz-document url-prefix("about:") {
+        xul|search-textbox:hover {
+          border-color: var(--in-content-focus-outline-color) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
+      }
+      @-moz-document url-prefix("about:config") {
+        #about-config-search:hover {
+          border-color: var(--in-content-focus-outline-color) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
+      }
     }
   }
   /*= View Source ==============================================================*/
