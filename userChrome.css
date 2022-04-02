@@ -4932,7 +4932,8 @@
 /** Panel UI ******************************************************************/
 @supports -moz-bool-pref("userChrome.panel.remove_strip") {
   #appMenu-fxa-separator {
-    display: none;
+    --panel-separator-zap-gradient: none;
+    /* Original: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%) */
   }
 }
 /** Fullscreen - Overlap toolbar **********************************************/
