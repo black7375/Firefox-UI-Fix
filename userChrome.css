@@ -4936,6 +4936,17 @@
     /* Original: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%) */
   }
 }
+@supports -moz-bool-pref("userChrome.panel.full_width_separator") {
+  /* Full width separators */
+  :root {
+    /* Original
+    --panel-separator-margin-vertical: 4px;
+    --panel-separator-margin-horizontal: 8px;
+    --panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal);
+     */
+    --panel-separator-margin-horizontal: 0 !important;
+  }
+}
 /** Fullscreen - Overlap toolbar **********************************************/
 @supports -moz-bool-pref("userChrome.fullscreen.overlap") {
   @supports -moz-bool-pref("browser.fullscreen.autohide") {

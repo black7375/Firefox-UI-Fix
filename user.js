@@ -86,6 +86,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.centered_label",                 true);
 
 // user_pref("userChrome.panel.remove_strip",                 true);
+// user_pref("userChrome.panel.full_width_separator",         true);
 
 // user_pref("userChrome.icon.account_image_to_right",        true);
 // user_pref("userChrome.icon.account_label_to_right",        true);
