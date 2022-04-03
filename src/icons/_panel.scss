@@ -49,8 +49,8 @@
   #appMenu-more-button2,              /* Seperate */
   #appMenu-help-button2,
   #appMenu-quit-button2               /* Seperate */ {
-    padding-top: var(--arrowpanel-menuitemblank-padding) !important;
-    padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+    padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
+    padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
   }
   #appMenu-zoom-controls2 {
     padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
@@ -182,7 +182,7 @@
 }
 
 .PanelUI-remotetabs-notabsforclient-label {
-  margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
+  margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
   padding-inline-start: var(--arrowpanel-menublank-padding) !important;
 }
 

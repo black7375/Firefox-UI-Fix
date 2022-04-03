@@ -3463,22 +3463,27 @@
 /*= Panel - Reduce padding ===================================================*/
 @supports -moz-bool-pref("userChrome.padding.panel") {
   :root {
-    --arrowpanel-menuicon-padding: 8px;
     --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important;
     /* Original: 0 8px */
-    --arrowpanel-menuitem-padding: 5px !important;
+    --arrowpanel-menuitem-padding-block: 5px !important;
     /* Original: 8px */
+    --arrowpanel-menuitem-padding-inline: 5px !important;
+    /* Original: 8px */
+    --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline) !important;
+    /* Compatibility */
     --arrowpanel-padding: 0.8em !important;
     /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
   }
 
   :root[uidensity="compact"] {
-    --arrowpanel-menuitem-padding: 3px !important;
-    /* Original: 8px */
+    --arrowpanel-menuitem-padding-block: 3px !important;
+    --arrowpanel-menuitem-padding-inline: 3px !important;
   }
 
   :root[uidensity="touch"] {
-    --arrowpanel-menuitem-padding: 8px !important;
+    --arrowpanel-menuitem-padding-block: 8px !important;
+    /* Original: 8px */
+    --arrowpanel-menuitem-padding-inline: 8px !important;
     /* Original: 8px */
   }
 }
@@ -5169,8 +5174,12 @@
 @supports -moz-bool-pref("userChrome.icon.panel") {
   /*= Padding ==================================================================*/
   :root {
-    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
-    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
+    --arrowpanel-menuicon-padding: 8px;
+    --arrowpanel-menublank-padding: calc(
+      var(--arrowpanel-menuicon-padding) * 2 + var(var(--arrowpanel-menuitem-padding-inline))
+    ) !important;
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
+    --arrowpanel-menuimageblank-padding-block: calc(var(--arrowpanel-menuitem-padding-block) - 2px) !important;
   }
 
   .subviewbutton > .toolbarbutton-icon {
@@ -5179,30 +5188,16 @@
 
   @supports -moz-bool-pref("userChrome.icon.panel_photon") or -moz-bool-pref("userChrome.icon.panel_sparse") {
     :root {
-      /* Blank Menu Left Padding */
-      --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
-      --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
-    }
-
-    :root[uidensity="compact"] {
-      --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 5px);
-    }
-
-    :root[uidensity="touch"] {
-      --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding));
-    }
-
-    :root {
       /* Global */
       --arrowpanel-menuicon-paddingx2: calc(var(--arrowpanel-menuicon-padding) * 2);
       /* General Panel */
       --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-paddingx2) + 8px) !important;
-      --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
+      --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
       /* Blank Menu Left Padding */
       --arrowpanel-menuimageblank-padding-horizontal: calc(
-        var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding)
+        var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding-inline)
       );
-      --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
+      --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding-block) + 1px);
     }
   }
   #downloadsHistory .button-text,
@@ -5236,14 +5231,14 @@
   }
 
   #appMenu-proton-update-banner::before {
-    margin-inline-start: var(--arrowpanel-menuitem-padding) !important;
+    margin-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
   }
 
   #appMenu-fxa-status2,
   #appMenu-zoom-controls2 {
     align-items: center;
-    padding-top: var(--arrowpanel-menuimageblank-padding) !important;
-    padding-bottom: var(--arrowpanel-menuimageblank-padding) !important;
+    padding-top: var(--arrowpanel-menuimageblank-padding-block) !important;
+    padding-bottom: var(--arrowpanel-menuimageblank-padding-block) !important;
   }
 
   #appMenu-zoom-controls2::before {
@@ -5342,8 +5337,8 @@
     #appMenu-more-button2,
     #appMenu-help-button2,
     #appMenu-quit-button2 {
-      padding-top: var(--arrowpanel-menuitemblank-padding) !important;
-      padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+      padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
+      padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
     }
 
     #appMenu-zoom-controls2 {
@@ -5487,7 +5482,9 @@
   }
 
   .PanelUI-remotetabs-notabsforclient-label {
-    margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
+    margin-inline-start: calc(
+      var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)
+    ) !important;
     padding-inline-start: var(--arrowpanel-menublank-padding) !important;
   }
 
@@ -6011,7 +6008,7 @@
   /* Bookmark Popup - As Arrow Panel */
   #BMB_bookmarksPopup,
   #PersonalToolbar {
-    --context-menu-background-padding: var(--arrowpanel-menuitem-padding);
+    --context-menu-background-padding: var(--arrowpanel-menuitem-padding-inline);
   }
 
   /* Windows 7, 8 */
@@ -6034,7 +6031,7 @@
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-      margin-inline: var(--arrowpanel-menuitem-padding) !important;
+      margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
 
@@ -6057,7 +6054,7 @@
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-      margin-inline: var(--arrowpanel-menuitem-padding) !important;
+      margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
       background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
@@ -6080,20 +6077,20 @@
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 1px) !important;
+      padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
     }
   }
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     /* Bookmark Popup - As Arrow Panel */
     #PersonalToolbar menupopup menuitem,
     #PersonalToolbar menupopup menu {
-      padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
+      padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
     }
 
     /* Bookmark Popup - None icon menu */
     menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
-      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 3px) !important;
+      padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
     }
   }
   @supports -moz-bool-pref("userChrome.icon.context_menu") {
