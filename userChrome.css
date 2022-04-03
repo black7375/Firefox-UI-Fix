@@ -4958,6 +4958,19 @@
     --panel-separator-margin-horizontal: 0 !important;
   }
 }
+@supports -moz-bool-pref("userChrome.panel.full_width_padding") {
+  /* Original
+  --arrowpanel-menuitem-margin: 0 8px;
+  --arrowpanel-menuitem-padding-block: 8px;
+  --arrowpanel-menuitem-padding-inline: 8px;
+  --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline);
+  */
+  :root,
+  :root:is([uidensity="compact"], [uidensity="touch"]) {
+    --arrowpanel-menuitem-margin: 0 !important;
+    --arrowpanel-menuitem-padding-inline: calc(var(--arrowpanel-menuitem-padding-block) + 8px) !important;
+  }
+}
 /** Fullscreen - Overlap toolbar **********************************************/
 @supports -moz-bool-pref("userChrome.fullscreen.overlap") {
   @supports -moz-bool-pref("browser.fullscreen.autohide") {
