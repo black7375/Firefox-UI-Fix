@@ -72,6 +72,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.padding.menu_compact",                true);
 // user_pref("userChrome.padding.urlView_expanding",           true);
 // user_pref("userChrome.padding.urlView_result",              true);
+// user_pref("userChrome.padding.panel_header",                true);
 
 // user_pref("userChrome.urlView.move_icon_to_left",           true);
 // user_pref("userChrome.urlView.go_button_when_typing",       true);
