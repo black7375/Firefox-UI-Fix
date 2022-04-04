@@ -340,6 +340,24 @@
       }
     }
   }
+  /** Activity Stream - Pocket order to last **********************************/
+  @supports -moz-bool-pref("userContent.newTab.pocket_to_bottom") {
+    .body-wrapper.on {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .body-wrapper.on > .discovery-stream.ds-layout {
+      flex-basis: 100%;
+    }
+
+    .body-wrapper.on > .collapsible-section[data-section-id="topstories"],
+    .home-section > #pocket-section,
+    .home-section > .divider,
+    .home-section > div:not(.section) {
+      order: 2;
+    }
+  }
   /** Activity Stream - Home Search Bar looks like proton *********************/
   @supports -moz-bool-pref("userContent.newTab.animate") {
     /* Dropdown Colors */

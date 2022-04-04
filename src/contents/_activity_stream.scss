@@ -78,6 +78,25 @@
     }
   }
 
+  /** Activity Stream - Pocket order to last **********************************/
+  @include Option("userContent.newTab.pocket_to_bottom") {
+    .body-wrapper.on {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .body-wrapper.on > .discovery-stream.ds-layout {
+      flex-basis: 100%;
+    }
+
+    .body-wrapper.on > .collapsible-section[data-section-id="topstories"],
+    .home-section > #pocket-section,
+    .home-section > .divider,
+    .home-section > div:not(.section) {
+      order: 2;
+    }
+  }
+
   /** Activity Stream - Home Search Bar looks like proton *********************/
   @include Option("userContent.newTab.animate") {
     /* Dropdown Colors */
