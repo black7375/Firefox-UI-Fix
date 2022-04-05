@@ -2930,6 +2930,70 @@
     }
   }
 }
+/** Rounding ******************************************************************/
+/** Rounding ******************************************************************/
+@supports -moz-bool-pref("userChrome.rounding.square_tab") {
+  :root {
+    --tab-border-radius: 0 !important;
+    /* Original: 4px */
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_button") {
+  :root {
+    --toolbarbutton-border-radius: 0 !important;
+    /* Original: 4px */
+  }
+
+  button {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_tab") or -moz-bool-pref("userChrome.round.square_button") {
+  /* Fix Tab bar button radious */
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-icon,
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-text,
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-badge-stack,
+  .tab-close-button {
+    --tab-border-radius: var(--toolbarbutton-border-radius) !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_panel") {
+  :root {
+    --arrowpanel-border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_panelitem") {
+  :root {
+    --arrowpanel-menuitem-border-radius: 0 !important;
+    --subviewbutton-border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
+  xul|menupopup {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_menuitem") {
+  xul|menulist:not([native]),
+  xul|menulist > xul|menupopup xul|menu,
+  xul|menulist > xul|menupopup xul|menuitem {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_field") {
+  html|select[size][multiple],
+  xul|listheader,
+  xul|richlistbox,
+  html|input {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
+  .checkbox-check,
+  xul|*.radio-check {
+    border-radius: 0 !important;
+  }
+}
 /** Reduce Padding ************************************************************/
 /*= Tab Bar - Distribution padding, radius ===================================*/
 @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") or -moz-bool-pref("userChrome.tab.photon_like_padding") {
@@ -2952,20 +3016,6 @@
 @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
   :root {
     --tab-block-margin: 0px !important;
-  }
-}
-@supports -moz-bool-pref("userChrome.tab.photon_like_radius") {
-  :root {
-    --tab-border-radius: 0px !important;
-    /* Original: 4px */
-  }
-
-  /* Fix Tab bar button radious */
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon,
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-text,
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-badge-stack,
-  .tab-close-button {
-    --tab-border-radius: 4px !important;
   }
 }
 /*= Tab Bar - Reduce Width, Show more tabs ===================================*/

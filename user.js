@@ -51,7 +51,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 
 // Photon Only
 // user_pref("userChrome.tab.photon_like_contextline", true);
-// user_pref("userChrome.tab.photon_like_radius",      true);
+// user_pref("userChrome.rounding.square_tab",         true);
 
 // == Theme Compatibility Settings =============================================
 // user_pref("userChrome.compatibility.covered_header_image", true);
@@ -65,6 +65,14 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.decoration.disable_sidebar_animate",  true);
 
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
+
+// user_pref("userChrome.rounding.square_button",             true);
+// user_pref("userChrome.rounding.square_panel",              true);
+// user_pref("userChrome.rounding.square_panelitem",          true);
+// user_pref("userChrome.rounding.square_menupopup",          true);
+// user_pref("userChrome.rounding.square_menuitem",           true);
+// user_pref("userChrome.rounding.square_field",              true);
+// user_pref("userChrome.rounding.square_checklabel",         true);
 
 // user_pref("userChrome.padding.first_tab",                   true);
 // user_pref("userChrome.padding.drag_space",                  true);
