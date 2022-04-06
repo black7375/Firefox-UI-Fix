@@ -1,13 +1,15 @@
 # Project Structure
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Project Structure](#project-structure)
-    - [Icon files](#icon-files)
-    - [Meta Info files](#meta-info-files)
+- [Basics](#basics)
+- [Icon files](#icon-files)
+- [Meta Info files](#meta-info-files)
 
 <!-- markdown-toc end -->
 
+## Basics
 The overall structure of this project.
 
 ```
