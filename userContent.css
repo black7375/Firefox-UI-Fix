@@ -341,7 +341,7 @@
     }
   }
   /** Activity Stream - Pocket order to last **********************************/
-  @supports -moz-bool-pref("userContent.newTab.pocket_to_bottom") {
+  @supports -moz-bool-pref("userContent.newTab.pocket_to_last") {
     .body-wrapper.on {
       display: flex;
       flex-wrap: wrap;
@@ -766,6 +766,15 @@
           --in-content-link-color-active: var(--blue-20) !important;
           --in-content-link-color-visited: var(--blue-40) !important;
         }
+      }
+    }
+    @supports -moz-bool-pref("userContent.page.proton_color.system_accent") {
+      :host,
+      :root {
+        --in-content-primary-button-text-color: -moz-accent-color-foreground !important;
+        --in-content-primary-button-background: -moz-accent-color !important;
+        --in-content-primary-button-background-hover: color-mix(in srgb, black 10%, -moz-accent-color) !important;
+        --in-content-primary-button-background-active: color-mix(in srgb, black 20%, -moz-accent-color) !important;
       }
     }
   }
