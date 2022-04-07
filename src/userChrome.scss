@@ -29,6 +29,9 @@
 
 @include Option("userChrome.theme.proton_color") {
   @import "theme/proton_color";
+  @include Option("userChrome.theme.proton_color.dark_blue_accent") {
+    @import "theme/dark_blue_accent";
+  }
 }
 @include Option("userChrome.theme.fully_color") {
   @import "theme/fully_color";
@@ -46,6 +49,9 @@
 
 /** Decoration ****************************************************************/
 @import "decoration/index";
+
+/** Rounding ******************************************************************/
+@import "rounding/index";
 
 /** Reduce Padding ************************************************************/
 @import "padding/index";

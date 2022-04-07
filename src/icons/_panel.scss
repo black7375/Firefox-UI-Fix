@@ -24,9 +24,20 @@
   background-image: var(--avatar-image-url) !important;
 }
 
-@include Option("userChrome.icon.panel_full") {
+@include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
   #appMenu-new-tab-button2 {
     list-style-image: url("chrome://browser/skin/new-tab.svg");
+  }
+}
+@include Option("userChrome.icon.panel_photon") {
+  #appMenu-save-file-button2,
+  #appMenu-find-button2,
+  #appMenu-more-button2 {
+    padding-top: var(--arrowpanel-menuitemblank-padding) !important;
+    padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+  }
+  #appMenu-zoom-controls2 {
+    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
   }
 }
 @include Option("userChrome.icon.panel_sparse") {
@@ -38,8 +49,8 @@
   #appMenu-more-button2,              /* Seperate */
   #appMenu-help-button2,
   #appMenu-quit-button2               /* Seperate */ {
-    padding-top: var(--arrowpanel-menuitemblank-padding) !important;
-    padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+    padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
+    padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
   }
   #appMenu-zoom-controls2 {
     padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
@@ -61,7 +72,7 @@
 #appMenu-downloads-button {
   list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
 }
-@include Option("userChrome.icon.panel_full") {
+@include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
   #appMenu-passwords-button {
     list-style-image: url("chrome://browser/skin/login.svg");
   }
@@ -92,6 +103,8 @@
   #appMenu-more-button2 {
     list-style-image: url("chrome://browser/skin/ion.svg");
   }
+}
+@include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
   #appMenu-help-button2 {
     list-style-image: url("chrome://global/skin/icons/help.svg");
   }
@@ -169,7 +182,7 @@
 }
 
 .PanelUI-remotetabs-notabsforclient-label {
-  margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
+  margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
   padding-inline-start: var(--arrowpanel-menublank-padding) !important;
 }
 

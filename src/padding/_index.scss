@@ -1,17 +1,5 @@
 /*= Tab Bar - Distribution padding, radius ===================================*/
 @import "tab_padding";
-@include Option("userChrome.tab.photon_like_radius") {
-  :root {
-    --tab-border-radius: 0px !important; /* Original: 4px */
-  }
-  /* Fix Tab bar button radious */
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon,
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-text,
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-badge-stack,
-  .tab-close-button {
-    --tab-border-radius: 4px !important;
-  }
-}
 
 /*= Tab Bar - Reduce Width, Show more tabs ===================================*/
 @include Option("userChrome.padding.first_tab") {
@@ -80,6 +68,9 @@
 /*= Panel - Reduce padding ===================================================*/
 @include Option("userChrome.padding.panel") {
   @import "panel";
+}
+@include Option("userChrome.padding.panel_header") {
+  @import "panel_header";
 }
 
 /*= Popup Panel - Reduce padding =============================================*/

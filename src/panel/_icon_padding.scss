@@ -1,37 +1,28 @@
 /*= Padding ==================================================================*/
 :root {
-  --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
-  --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
+  --arrowpanel-menuicon-padding: 8px;
+  --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + var(var(--arrowpanel-menuitem-padding-inline))) !important;
+  --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
+  --arrowpanel-menuimageblank-padding-block: calc(var(--arrowpanel-menuitem-padding-block) - 2px) !important;
 }
 .subviewbutton > .toolbarbutton-icon {
   width: 16px;
 }
 
-@include Option("userChrome.icon.panel_sparse") {
-  :root {
-    /* Blank Menu Left Padding */
-    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
-    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
-  }
-  :root[uidensity="compact"] {
-    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 5px);
-  }
-  :root[uidensity="touch"] {
-    --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding));
-  }
+@include Option("userChrome.icon.panel_photon", "userChrome.icon.panel_sparse") {
   :root {
     /* Global */
     --arrowpanel-menuicon-paddingx2: calc(var(--arrowpanel-menuicon-padding) * 2);
 
     /* General Panel */
     --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-paddingx2) + 8px) !important;
-    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
 
     /* Blank Menu Left Padding */
     --arrowpanel-menuimageblank-padding-horizontal: calc(
-      var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding)
+      var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding-inline)
     );
-    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
+    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding-block) + 1px);
   }
 }
 
@@ -61,16 +52,22 @@
   margin-bottom: 2px !important;
 }
 #appMenu-proton-update-banner::before {
-  margin-inline-start: var(--arrowpanel-menuitem-padding) !important;
+  margin-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
 }
 #appMenu-fxa-status2,
 #appMenu-zoom-controls2 {
   align-items: center;
-  padding-top: var(--arrowpanel-menuimageblank-padding) !important;
-  padding-bottom: var(--arrowpanel-menuimageblank-padding) !important;
+  padding-top: var(--arrowpanel-menuimageblank-padding-block) !important;
+  padding-bottom: var(--arrowpanel-menuimageblank-padding-block) !important;
 }
 #appMenu-zoom-controls2::before {
   margin-inline-end: 0 !important;
+}
+#appMenu-zoomReduce-button2,
+#appMenu-zoomReset-button2,
+#appMenu-zoomEnlarge-button2,
+#appMenu-fullscreen-button2 {
+  --arrowpanel-menuitem-padding-block: 0px;
 }
 
 .subviewbutton[type="checkbox"]:not([checked="true"]) > .toolbarbutton-text {
