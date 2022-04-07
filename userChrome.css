@@ -984,6 +984,7 @@
     --in-content-table-background: #f8f8fa;
     --in-content-table-border-color: var(--in-content-box-border-color);
     /* Legacy: #d1d1d1; rgba(249, 249, 250, 0.2) */
+    --in-content-table-border-dark-color: var(--in-content-table-border-color);
     --in-content-table-header-background: var(--in-content-primary-button-background);
     /* Legacy: #0a84ff; rgb(5, 64, 150); */
     --in-content-table-header-color: var(--in-content-primary-button-text-color);
@@ -1072,6 +1073,84 @@
       --in-content-link-color-visited: var(--in-content-link-color);
       --card-outline-color: var(--grey-60);
       --dialog-warning-text-color: var(--red-40);
+    }
+  }
+  @supports -moz-bool-pref("userChrome.theme.proton_color.dark_blue_accent") {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      :host,
+      :root {
+        /* Color Memo
+         Just refer - Photon's dark color
+         --button-primary-bgcolor: #0060DF;
+         --button-primary-hover-bgcolor: #003EAA;
+         --button-primary-active-bgcolor: #002275;
+         --lwt-brighttext-url-color: #74c0ff;
+         --lwt-toolbarbutton-icon-fill-attention: #45a1ff;
+
+         Just refer - Proton's light color
+         --in-content-accent-color: #0a84ff;
+         --in-content-accent-color-active: #0060df;
+         --in-content-primary-button-background: #0061e0;
+         --in-content-primary-button-background-hover: #0250bb;
+         --in-content-primary-button-background-active: #053e94;
+
+         --blue-40: #45a1ff; rgb(69, 161, 255)
+         --blue-50: #0a84ff; rgb(10, 132, 255)
+         --blue-60: #0060df; rgb(0, 96, 223)
+         --blue-70: #003eaa; rgb(0, 62, 170)
+         --blue-80: #002275; rgb(0, 34, 117)
+
+         Relation
+         lighten(#0060df,   29%): #74b0ff;
+         lighten(#0060df, 19.8%): #4595ff
+         lighten(#0060df,  8.3%): #0a74ff
+         #0060df
+         darken(#0060df, 15.5%):  #003e90;
+         darken(#0060df, 28.1%):  #002250;
+        */
+        --blue-20: #b6d6ff;
+        /* lighten(#0060df, 42%) - rgb(182, 214, 255), Add for link active color*/
+        --blue-30: #74c0ff;
+        /* rgb(116, 192, 255), Add for active color */
+      }
+
+      :host,
+      :root,
+      button,
+      select,
+      input,
+      menulist,
+      radio {
+        --in-content-primary-button-text-color: var(--in-content-page-color) !important;
+        --in-content-primary-button-background: var(--blue-60) !important;
+        --in-content-primary-button-background-hover: var(--blue-50) !important;
+        --in-content-primary-button-background-active: var(--blue-40) !important;
+        --in-content-focus-outline-color: var(--blue-40) !important;
+        --in-content-accent-color: var(--blue-40) !important;
+        --in-content-accent-color-active: var(--blue-30) !important;
+        --in-content-table-background: rgb(35, 34, 43) !important;
+        --in-content-table-border-color: rgba(249, 249, 250, 0.2) !important;
+        --in-content-table-header-background: rgb(5, 64, 150) !important;
+        --in-content-table-header-color: var(--in-content-page-color) !important;
+        --in-content-link-color: var(--blue-40) !important;
+        --in-content-link-color-hover: var(--blue-30) !important;
+        --in-content-link-color-active: var(--blue-20) !important;
+        --in-content-link-color-visited: var(--blue-40) !important;
+      }
+
+      :root[lwtheme-mozlightdark][lwthemetextcolor="bright"],
+      :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
+        --button-primary-color: var(--in-content-page-color) !important;
+        --button-primary-bgcolor: var(--blue-60) !important;
+        --button-primary-hover-bgcolor: var(--blue-50) !important;
+        --button-primary-active-bgcolor: var(--blue-40) !important;
+        --focus-outline-color: var(--blue-40) !important;
+        --lwt-toolbarbutton-icon-fill-attention: var(--blue-40) !important;
+        --download-progress-fill-color: var(--blue-40) !important;
+        --panel-banner-item-info-icon-bgcolor: var(--blue-30) !important;
+        --lwt-brighttext-url-color: var(--blue-30) !important;
+        /* Original: as primary bgcolor */
+      }
     }
   }
 }
@@ -2201,7 +2280,7 @@
           --organizer-hover-color: var(--organizer-color);
           --organizer-selected-background: var(--in-content-button-background-active);
           --organizer-selected-color: var(--organizer-color);
-          --organizer-outline-color: var(--in-content-primary-button-background);
+          --organizer-outline-color: var(--in-content-focus-outline-color);
           --organizer-separator-color: var(--organizer-pane-field-border-color);
           --organizer-border-color: var(--in-content-border-color);
           --organizer-toolbar-field-background: rgb(240, 240, 244);
@@ -2226,7 +2305,6 @@
             --organizer-content-background: rgb(28, 27, 34);
             --organizer-hover-background: rgb(82, 82, 94);
             --organizer-selected-background: rgb(91, 91, 102);
-            --organizer-outline-color: rgb(0, 221, 255);
             --organizer-toolbar-field-background: var(--in-content-page-background);
             --organizer-toolbar-field-background-focused: rgb(66, 65, 77);
             scrollbar-color: rgba(249, 249, 250, 0.4) rgba(20, 20, 25, 0.3);
@@ -2337,7 +2415,8 @@
       }
 
       /*- Downloads Pane -------------------------------------------------------*/
-      #downloadsRichListBox {
+      #downloadsRichListBox,
+      #downloadsListBox {
         color: var(--organizer-color) !important;
         background-color: var(--organizer-content-background) !important;
       }
@@ -2849,6 +2928,73 @@
     }
   }
 }
+/** Rounding ******************************************************************/
+/** Rounding ******************************************************************/
+@supports -moz-bool-pref("userChrome.rounding.square_tab") {
+  :root {
+    --tab-border-radius: 0 !important;
+    /* Original: 4px */
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_button") {
+  :root {
+    --toolbarbutton-border-radius: 0 !important;
+    /* Original: 4px */
+  }
+
+  button {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_tab") or -moz-bool-pref("userChrome.round.square_button") {
+  /* Fix Tab bar button radious */
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-icon,
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-text,
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-badge-stack,
+  .tab-close-button {
+    --tab-border-radius: var(--toolbarbutton-border-radius) !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_panel") {
+  :root {
+    --arrowpanel-border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_panelitem") {
+  :root {
+    --arrowpanel-menuitem-border-radius: 0 !important;
+    --subviewbutton-border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
+  xul|menupopup {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_menuitem") {
+  xul|menulist:not([native]),
+  xul|menulist > xul|menupopup xul|menu,
+  xul|menulist > xul|menupopup xul|menuitem {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_field") {
+  html|select[size][multiple],
+  xul|listheader,
+  xul|richlistbox,
+  html|input {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
+  .checkbox-check,
+  xul|*.radio-check {
+    border-radius: 0 !important;
+  }
+}
+/*
+--toolbarbutton-border-radius: 4px;
+*/
 /** Reduce Padding ************************************************************/
 /*= Tab Bar - Distribution padding, radius ===================================*/
 @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") or -moz-bool-pref("userChrome.tab.photon_like_padding") {
@@ -2871,20 +3017,6 @@
 @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
   :root {
     --tab-block-margin: 0px !important;
-  }
-}
-@supports -moz-bool-pref("userChrome.tab.photon_like_radius") {
-  :root {
-    --tab-border-radius: 0px !important;
-    /* Original: 4px */
-  }
-
-  /* Fix Tab bar button radious */
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon,
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-text,
-  #TabsToolbar .toolbarbutton-1 > .toolbarbutton-badge-stack,
-  .tab-close-button {
-    --tab-border-radius: 4px !important;
   }
 }
 /*= Tab Bar - Reduce Width, Show more tabs ===================================*/
@@ -3382,23 +3514,34 @@
 /*= Panel - Reduce padding ===================================================*/
 @supports -moz-bool-pref("userChrome.padding.panel") {
   :root {
-    --arrowpanel-menuicon-padding: 8px;
     --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important;
     /* Original: 0 8px */
-    --arrowpanel-menuitem-padding: 5px !important;
+    --arrowpanel-menuitem-padding-block: 5px !important;
     /* Original: 8px */
+    --arrowpanel-menuitem-padding-inline: 5px !important;
+    /* Original: 8px */
+    --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline) !important;
+    /* Compatibility */
     --arrowpanel-padding: 0.8em !important;
     /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
   }
 
   :root[uidensity="compact"] {
-    --arrowpanel-menuitem-padding: 3px !important;
-    /* Original: 8px */
+    --arrowpanel-menuitem-padding-block: 3px !important;
+    --arrowpanel-menuitem-padding-inline: 3px !important;
   }
 
   :root[uidensity="touch"] {
-    --arrowpanel-menuitem-padding: 8px !important;
+    --arrowpanel-menuitem-padding-block: 8px !important;
     /* Original: 8px */
+    --arrowpanel-menuitem-padding-inline: 8px !important;
+    /* Original: 8px */
+  }
+}
+@supports -moz-bool-pref("userChrome.padding.panel_header") {
+  .panel-header {
+    padding: unset !important;
+    padding-top: 4px !important;
   }
 }
 /*= Popup Panel - Reduce padding =============================================*/
@@ -4851,7 +4994,32 @@
 /** Panel UI ******************************************************************/
 @supports -moz-bool-pref("userChrome.panel.remove_strip") {
   #appMenu-fxa-separator {
-    display: none;
+    --panel-separator-zap-gradient: none;
+    /* Original: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%) */
+  }
+}
+@supports -moz-bool-pref("userChrome.panel.full_width_separator") {
+  /* Full width separators */
+  :root {
+    /* Original
+    --panel-separator-margin-vertical: 4px;
+    --panel-separator-margin-horizontal: 8px;
+    --panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal);
+     */
+    --panel-separator-margin-horizontal: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.panel.full_width_padding") {
+  /* Original
+  --arrowpanel-menuitem-margin: 0 8px;
+  --arrowpanel-menuitem-padding-block: 8px;
+  --arrowpanel-menuitem-padding-inline: 8px;
+  --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline);
+  */
+  :root,
+  :root:is([uidensity="compact"], [uidensity="touch"]) {
+    --arrowpanel-menuitem-margin: 0 !important;
+    --arrowpanel-menuitem-padding-inline: calc(var(--arrowpanel-menuitem-padding-block) + 8px) !important;
   }
 }
 /** Fullscreen - Overlap toolbar **********************************************/
@@ -5070,40 +5238,30 @@
 @supports -moz-bool-pref("userChrome.icon.panel") {
   /*= Padding ==================================================================*/
   :root {
-    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + 8px) !important;
-    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
+    --arrowpanel-menuicon-padding: 8px;
+    --arrowpanel-menublank-padding: calc(
+      var(--arrowpanel-menuicon-padding) * 2 + var(var(--arrowpanel-menuitem-padding-inline))
+    ) !important;
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
+    --arrowpanel-menuimageblank-padding-block: calc(var(--arrowpanel-menuitem-padding-block) - 2px) !important;
   }
 
   .subviewbutton > .toolbarbutton-icon {
     width: 16px;
   }
 
-  @supports -moz-bool-pref("userChrome.icon.panel_sparse") {
-    :root {
-      /* Blank Menu Left Padding */
-      --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 3px);
-      --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
-    }
-
-    :root[uidensity="compact"] {
-      --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding) - 5px);
-    }
-
-    :root[uidensity="touch"] {
-      --arrowpanel-menuimageblank-padding-horizontal: calc(var(--arrowpanel-menublank-padding));
-    }
-
+  @supports -moz-bool-pref("userChrome.icon.panel_photon") or -moz-bool-pref("userChrome.icon.panel_sparse") {
     :root {
       /* Global */
       --arrowpanel-menuicon-paddingx2: calc(var(--arrowpanel-menuicon-padding) * 2);
       /* General Panel */
       --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-paddingx2) + 8px) !important;
-      --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding) - 2px) !important;
+      --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
       /* Blank Menu Left Padding */
       --arrowpanel-menuimageblank-padding-horizontal: calc(
-        var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding)
+        var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding-inline)
       );
-      --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding) + 1px);
+      --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding-block) + 1px);
     }
   }
   #downloadsHistory .button-text,
@@ -5137,18 +5295,25 @@
   }
 
   #appMenu-proton-update-banner::before {
-    margin-inline-start: var(--arrowpanel-menuitem-padding) !important;
+    margin-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
   }
 
   #appMenu-fxa-status2,
   #appMenu-zoom-controls2 {
     align-items: center;
-    padding-top: var(--arrowpanel-menuimageblank-padding) !important;
-    padding-bottom: var(--arrowpanel-menuimageblank-padding) !important;
+    padding-top: var(--arrowpanel-menuimageblank-padding-block) !important;
+    padding-bottom: var(--arrowpanel-menuimageblank-padding-block) !important;
   }
 
   #appMenu-zoom-controls2::before {
     margin-inline-end: 0 !important;
+  }
+
+  #appMenu-zoomReduce-button2,
+  #appMenu-zoomReset-button2,
+  #appMenu-zoomEnlarge-button2,
+  #appMenu-fullscreen-button2 {
+    --arrowpanel-menuitem-padding-block: 0px;
   }
 
   .subviewbutton[type="checkbox"]:not([checked="true"]) > .toolbarbutton-text {
@@ -5210,9 +5375,21 @@
     background-image: var(--avatar-image-url) !important;
   }
 
-  @supports -moz-bool-pref("userChrome.icon.panel_full") {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
     #appMenu-new-tab-button2 {
       list-style-image: url("chrome://browser/skin/new-tab.svg");
+    }
+  }
+  @supports -moz-bool-pref("userChrome.icon.panel_photon") {
+    #appMenu-save-file-button2,
+    #appMenu-find-button2,
+    #appMenu-more-button2 {
+      padding-top: var(--arrowpanel-menuitemblank-padding) !important;
+      padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+    }
+
+    #appMenu-zoom-controls2 {
+      padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
     }
   }
   @supports -moz-bool-pref("userChrome.icon.panel_sparse") {
@@ -5224,8 +5401,8 @@
     #appMenu-more-button2,
     #appMenu-help-button2,
     #appMenu-quit-button2 {
-      padding-top: var(--arrowpanel-menuitemblank-padding) !important;
-      padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+      padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
+      padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
     }
 
     #appMenu-zoom-controls2 {
@@ -5252,7 +5429,7 @@
     list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
   }
 
-  @supports -moz-bool-pref("userChrome.icon.panel_full") {
+  @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
     #appMenu-passwords-button {
       list-style-image: url("chrome://browser/skin/login.svg");
     }
@@ -5286,7 +5463,8 @@
     #appMenu-more-button2 {
       list-style-image: url("chrome://browser/skin/ion.svg");
     }
-
+  }
+  @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
     #appMenu-help-button2 {
       list-style-image: url("chrome://global/skin/icons/help.svg");
     }
@@ -5368,7 +5546,9 @@
   }
 
   .PanelUI-remotetabs-notabsforclient-label {
-    margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
+    margin-inline-start: calc(
+      var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)
+    ) !important;
     padding-inline-start: var(--arrowpanel-menublank-padding) !important;
   }
 
@@ -5892,7 +6072,7 @@
   /* Bookmark Popup - As Arrow Panel */
   #BMB_bookmarksPopup,
   #PersonalToolbar {
-    --context-menu-background-padding: var(--arrowpanel-menuitem-padding);
+    --context-menu-background-padding: var(--arrowpanel-menuitem-padding-inline);
   }
 
   /* Windows 7, 8 */
@@ -5915,7 +6095,7 @@
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-      margin-inline: var(--arrowpanel-menuitem-padding) !important;
+      margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
 
@@ -5938,7 +6118,7 @@
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-      margin-inline: var(--arrowpanel-menuitem-padding) !important;
+      margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
       background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
@@ -5961,20 +6141,20 @@
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 1px) !important;
+      padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
     }
   }
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     /* Bookmark Popup - As Arrow Panel */
     #PersonalToolbar menupopup menuitem,
     #PersonalToolbar menupopup menu {
-      padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding)) !important;
+      padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
     }
 
     /* Bookmark Popup - None icon menu */
     menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
     menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
-      padding-inline-start: calc(var(--arrowpanel-menuitem-padding) + 3px) !important;
+      padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
     }
   }
   @supports -moz-bool-pref("userChrome.icon.context_menu") {

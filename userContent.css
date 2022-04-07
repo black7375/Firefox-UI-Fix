@@ -259,19 +259,31 @@
 /** Activity Stream ***********************************************************/
 @-moz-document url("about:home"), url("about:newtab") {
   /** Activity Stream - Search Focus Border: like URL *************************/
-  @supports -moz-bool-pref("userContent.newTab.field_border") {
+  @supports -moz-bool-pref("userContent.page.field_border") {
     /* At DarkMode, Color */
     body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
     body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
     body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"],
-    body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"] {
+    body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"],
+    body[style*="--newtab-background-color: rgb(43, 42, 51);"] {
       /* inner */
       --newtab-focus-border: rgba(0, 221, 255, 0.5) !important;
       /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
-      --newtab-focus-border-selected: rgba(0, 221, 255, 0.5) !important;
+      --newtab-focus-border-selected: var(--newtab-focus-border) !important;
       /* Original: #B5D3FF */
       /* For Nightly */
       --newtab-primary-action-background: var(--newtab-focus-border) !important;
+    }
+    @supports -moz-bool-pref("userContent.page.proton_color") {
+      @supports -moz-bool-pref("userContent.page.proton_color.dark_blue_accent") {
+        body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
+        body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
+        body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"],
+        body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"],
+        body[style*="--newtab-background-color: rgb(43, 42, 51);"] {
+          --newtab-focus-border: var(--in-content-focus-outline-color) !important;
+        }
+      }
     }
   }
   /** Activity Stream - Web Site Icon: full size ******************************/
@@ -320,10 +332,30 @@
         transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
       }
 
-      .search-wrapper .search-inner-wrapper:hover input {
-        border-color: var(--newtab-primary-action-background) !important;
-        transition: border-color 0.5s var(--animation-easing-function);
+      @supports -moz-bool-pref("userContent.page.field_border") {
+        .search-wrapper .search-inner-wrapper:hover input {
+          border-color: var(--newtab-primary-action-background) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
       }
+    }
+  }
+  /** Activity Stream - Pocket order to last **********************************/
+  @supports -moz-bool-pref("userContent.newTab.pocket_to_last") {
+    .body-wrapper.on {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .body-wrapper.on > .discovery-stream.ds-layout {
+      flex-basis: 100%;
+    }
+
+    .body-wrapper.on > .collapsible-section[data-section-id="topstories"],
+    .home-section > #pocket-section,
+    .home-section > .divider,
+    .home-section > div:not(.section) {
+      order: 2;
     }
   }
   /** Activity Stream - Home Search Bar looks like proton *********************/
@@ -527,145 +559,222 @@
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @supports -moz-bool-pref("userContent.page.proton_color") {
-  /*= Default Colors - Hard Coded ==============================================*/
-  /* Based on chrome://global/skin/in-content/common.css */
-  :host,
-  :root {
-    --in-content-page-color: rgb(21, 20, 26);
-    --in-content-page-background: #fff;
-    --in-content-text-color: var(--in-content-page-color);
-    --in-content-deemphasized-text: rgb(91, 91, 102);
-    --in-content-box-background: #fff;
-    --in-content-box-background-odd: rgba(12, 12, 13, 0.05);
-    /* grey 90 a05 */
-    --in-content-box-border-color: color-mix(in srgb, currentColor 41%, transparent);
-    --in-content-box-info-background: #f0f0f4;
-    --in-content-item-hover: color-mix(in srgb, var(--in-content-primary-button-background) 20%, transparent);
-    --in-content-item-hover-text: var(--in-content-page-color);
-    --in-content-item-selected: var(--in-content-primary-button-background);
-    --in-content-item-selected-text: var(--in-content-primary-button-text-color);
-    --in-content-icon-color: rgb(91, 91, 102);
-    --in-content-accent-color: #0a84ff;
-    --in-content-accent-color-active: #0060df;
-    --in-content-border-hover: var(--grey-90-a50);
-    --in-content-border-invalid: var(--red-50);
-    --in-content-border-color: #d7d7db;
-    --in-content-error-text-color: #c50042;
-    --in-content-link-color: var(--blue-60);
-    --in-content-link-color-hover: var(--blue-70);
-    --in-content-link-color-active: var(--blue-80);
-    --in-content-link-color-visited: var(--blue-60);
-    /* button background states are also used for checkboxes and radiobuttons */
-    --in-content-button-text-color: var(--in-content-text-color);
-    --in-content-button-text-color-hover: var(--in-content-text-color);
-    --in-content-button-background: rgba(207, 207, 216, 0.33);
-    --in-content-button-background-hover: rgba(207, 207, 216, 0.66);
-    --in-content-button-background-active: rgb(207, 207, 216);
-    --in-content-primary-button-text-color: rgb(251, 251, 254);
-    --in-content-primary-button-text-color-hover: var(--in-content-primary-button-text-color);
-    --in-content-primary-button-background: #0061e0;
-    --in-content-primary-button-background-hover: #0250bb;
-    --in-content-primary-button-background-active: #053e94;
-    --in-content-danger-button-background: #e22850;
-    --in-content-danger-button-background-hover: #c50042;
-    --in-content-danger-button-background-active: #810220;
-    --in-content-focus-outline-color: var(--in-content-primary-button-background);
-    /* Note: 1px smaller than we want because we have a 1px transparent border. */
-    /* Once proton ships, these can probably stop being variables. */
-    --in-content-button-border-radius: 4px;
-    --in-content-button-horizontal-padding: 15px;
-    --in-content-button-vertical-padding: 7px;
-    --in-content-table-background: #f8f8fa;
-    --in-content-table-border-color: var(--in-content-box-border-color);
-    /* Legacy: #d1d1d1; rgba(249, 249, 250, 0.2) */
-    --in-content-table-header-background: var(--in-content-primary-button-background);
-    /* Legacy: #0a84ff; rgb(5, 64, 150); */
-    --in-content-table-header-color: var(--in-content-primary-button-text-color);
-    /* Legacy: #ffffff; var(--in-content-page-color); */
-    --in-content-sidebar-width: 240px;
-    --dialog-warning-text-color: var(--red-60);
-    --checkbox-border-color: var(--in-content-box-border-color);
-    --checkbox-unchecked-bgcolor: var(--in-content-button-background);
-    --checkbox-unchecked-hover-bgcolor: var(--in-content-button-background-hover);
-    --checkbox-unchecked-active-bgcolor: var(--in-content-button-background-active);
-    --checkbox-checked-bgcolor: var(--in-content-primary-button-background);
-    --checkbox-checked-color: var(--in-content-primary-button-text-color);
-    --checkbox-checked-border-color: transparent;
-    --checkbox-checked-hover-bgcolor: var(--in-content-primary-button-background-hover);
-    --checkbox-checked-active-bgcolor: var(--in-content-primary-button-background-active);
-    --blue-40: #45a1ff;
-    --blue-50: #0a84ff;
-    --blue-60: #0060df;
-    --blue-70: #003eaa;
-    --blue-80: #002275;
-    --grey-30: #d7d7db;
-    --grey-60: #4a4a4f;
-    --grey-90-a10: rgba(12, 12, 13, 0.1);
-    --grey-90-a20: rgba(12, 12, 13, 0.2);
-    --grey-90-a30: rgba(12, 12, 13, 0.3);
-    --grey-90-a50: rgba(12, 12, 13, 0.5);
-    --grey-90-a60: rgba(12, 12, 13, 0.6);
-    --green-50: #30e60b;
-    --green-60: #12bc00;
-    --green-70: #058b00;
-    --green-80: #006504;
-    --green-90: #003706;
-    --orange-50: #ff9400;
-    --red-40: #ff4f5e;
-    --red-50: #ff0039;
-    --red-60: #d70022;
-    --red-70: #a4000f;
-    --red-80: #5a0002;
-    --red-90: #3e0200;
-    --yellow-50: #ffe900;
-    --yellow-60: #d7b600;
-    --yellow-60-a30: rgba(215, 182, 0, 0.3);
-    --yellow-70: #a47f00;
-    --yellow-80: #715100;
-    --yellow-90: #3e2800;
-    --shadow-10: 0 1px 4px var(--grey-90-a10);
-    --shadow-30: 0 4px 16px var(--grey-90-a10);
-    --card-padding: 16px;
-    --card-shadow: var(--shadow-10);
-    --card-outline-color: var(--grey-30);
-    --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
-  }
-
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @-moz-document url-prefix("about:"),
+               url-prefix("https://addons.mozilla.org"),
+               url-prefix("https://support.mozilla.org"),
+               url-prefix("https://accounts.firefox.com"),
+               url-prefix("view-source"),
+               regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+  {
+    /*= Default Colors - Hard Coded ==============================================*/
+    /* Based on chrome://global/skin/in-content/common.css */
     :host,
     :root {
-      /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
-      --in-content-page-background: rgb(28, 27, 34);
-      --in-content-page-color: rgb(251, 251, 254);
-      --in-content-deemphasized-text: rgb(191, 191, 201);
-      --in-content-box-background: rgb(35, 34, 43);
-      --in-content-box-background-odd: rgba(249, 249, 250, 0.05);
-      --in-content-box-info-background: rgba(249, 249, 250, 0.15);
-      --in-content-border-color: rgba(249, 249, 250, 0.2);
-      --in-content-border-hover: rgba(249, 249, 250, 0.3);
-      --in-content-border-invalid: rgb(255, 132, 139);
-      --in-content-error-text-color: #ff9aa2;
-      --in-content-button-background: rgb(43, 42, 51);
-      --in-content-button-background-hover: rgb(82, 82, 94);
-      --in-content-button-background-active: rgb(91, 91, 102);
-      --in-content-icon-color: rgb(251, 251, 254);
-      --in-content-primary-button-text-color: rgb(43, 42, 51);
-      --in-content-primary-button-background: rgb(0, 221, 255);
-      --in-content-primary-button-background-hover: rgb(128, 235, 255);
-      --in-content-primary-button-background-active: rgb(170, 242, 255);
-      --in-content-danger-button-background: #ff848b;
-      --in-content-danger-button-background-hover: #ffbdc5;
-      --in-content-danger-button-background-active: #ffdfe7;
-      --in-content-table-background: rgb(35, 34, 43);
-      --in-content-table-border-dark-color: var(--in-content-box-border-color);
-      --in-content-accent-color: var(--in-content-primary-button-background);
-      --in-content-accent-color-active: var(--in-content-primary-button-background-hover);
-      --in-content-link-color: var(--in-content-primary-button-background);
-      --in-content-link-color-hover: var(--in-content-primary-button-background-hover);
-      --in-content-link-color-active: var(--in-content-primary-button-background-active);
-      --in-content-link-color-visited: var(--in-content-link-color);
-      --card-outline-color: var(--grey-60);
-      --dialog-warning-text-color: var(--red-40);
+      --in-content-page-color: rgb(21, 20, 26);
+      --in-content-page-background: #fff;
+      --in-content-text-color: var(--in-content-page-color);
+      --in-content-deemphasized-text: rgb(91, 91, 102);
+      --in-content-box-background: #fff;
+      --in-content-box-background-odd: rgba(12, 12, 13, 0.05);
+      /* grey 90 a05 */
+      --in-content-box-border-color: color-mix(in srgb, currentColor 41%, transparent);
+      --in-content-box-info-background: #f0f0f4;
+      --in-content-item-hover: color-mix(in srgb, var(--in-content-primary-button-background) 20%, transparent);
+      --in-content-item-hover-text: var(--in-content-page-color);
+      --in-content-item-selected: var(--in-content-primary-button-background);
+      --in-content-item-selected-text: var(--in-content-primary-button-text-color);
+      --in-content-icon-color: rgb(91, 91, 102);
+      --in-content-accent-color: #0a84ff;
+      --in-content-accent-color-active: #0060df;
+      --in-content-border-hover: var(--grey-90-a50);
+      --in-content-border-invalid: var(--red-50);
+      --in-content-border-color: #d7d7db;
+      --in-content-error-text-color: #c50042;
+      --in-content-link-color: var(--blue-60);
+      --in-content-link-color-hover: var(--blue-70);
+      --in-content-link-color-active: var(--blue-80);
+      --in-content-link-color-visited: var(--blue-60);
+      /* button background states are also used for checkboxes and radiobuttons */
+      --in-content-button-text-color: var(--in-content-text-color);
+      --in-content-button-text-color-hover: var(--in-content-text-color);
+      --in-content-button-background: rgba(207, 207, 216, 0.33);
+      --in-content-button-background-hover: rgba(207, 207, 216, 0.66);
+      --in-content-button-background-active: rgb(207, 207, 216);
+      --in-content-primary-button-text-color: rgb(251, 251, 254);
+      --in-content-primary-button-text-color-hover: var(--in-content-primary-button-text-color);
+      --in-content-primary-button-background: #0061e0;
+      --in-content-primary-button-background-hover: #0250bb;
+      --in-content-primary-button-background-active: #053e94;
+      --in-content-danger-button-background: #e22850;
+      --in-content-danger-button-background-hover: #c50042;
+      --in-content-danger-button-background-active: #810220;
+      --in-content-focus-outline-color: var(--in-content-primary-button-background);
+      /* Note: 1px smaller than we want because we have a 1px transparent border. */
+      /* Once proton ships, these can probably stop being variables. */
+      --in-content-button-border-radius: 4px;
+      --in-content-button-horizontal-padding: 15px;
+      --in-content-button-vertical-padding: 7px;
+      --in-content-table-background: #f8f8fa;
+      --in-content-table-border-color: var(--in-content-box-border-color);
+      /* Legacy: #d1d1d1; rgba(249, 249, 250, 0.2) */
+      --in-content-table-border-dark-color: var(--in-content-table-border-color);
+      --in-content-table-header-background: var(--in-content-primary-button-background);
+      /* Legacy: #0a84ff; rgb(5, 64, 150); */
+      --in-content-table-header-color: var(--in-content-primary-button-text-color);
+      /* Legacy: #ffffff; var(--in-content-page-color); */
+      --in-content-sidebar-width: 240px;
+      --dialog-warning-text-color: var(--red-60);
+      --checkbox-border-color: var(--in-content-box-border-color);
+      --checkbox-unchecked-bgcolor: var(--in-content-button-background);
+      --checkbox-unchecked-hover-bgcolor: var(--in-content-button-background-hover);
+      --checkbox-unchecked-active-bgcolor: var(--in-content-button-background-active);
+      --checkbox-checked-bgcolor: var(--in-content-primary-button-background);
+      --checkbox-checked-color: var(--in-content-primary-button-text-color);
+      --checkbox-checked-border-color: transparent;
+      --checkbox-checked-hover-bgcolor: var(--in-content-primary-button-background-hover);
+      --checkbox-checked-active-bgcolor: var(--in-content-primary-button-background-active);
+      --blue-40: #45a1ff;
+      --blue-50: #0a84ff;
+      --blue-60: #0060df;
+      --blue-70: #003eaa;
+      --blue-80: #002275;
+      --grey-30: #d7d7db;
+      --grey-60: #4a4a4f;
+      --grey-90-a10: rgba(12, 12, 13, 0.1);
+      --grey-90-a20: rgba(12, 12, 13, 0.2);
+      --grey-90-a30: rgba(12, 12, 13, 0.3);
+      --grey-90-a50: rgba(12, 12, 13, 0.5);
+      --grey-90-a60: rgba(12, 12, 13, 0.6);
+      --green-50: #30e60b;
+      --green-60: #12bc00;
+      --green-70: #058b00;
+      --green-80: #006504;
+      --green-90: #003706;
+      --orange-50: #ff9400;
+      --red-40: #ff4f5e;
+      --red-50: #ff0039;
+      --red-60: #d70022;
+      --red-70: #a4000f;
+      --red-80: #5a0002;
+      --red-90: #3e0200;
+      --yellow-50: #ffe900;
+      --yellow-60: #d7b600;
+      --yellow-60-a30: rgba(215, 182, 0, 0.3);
+      --yellow-70: #a47f00;
+      --yellow-80: #715100;
+      --yellow-90: #3e2800;
+      --shadow-10: 0 1px 4px var(--grey-90-a10);
+      --shadow-30: 0 4px 16px var(--grey-90-a10);
+      --card-padding: 16px;
+      --card-shadow: var(--shadow-10);
+      --card-outline-color: var(--grey-30);
+      --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
+    }
+
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      :host,
+      :root {
+        /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
+        --in-content-page-background: rgb(28, 27, 34);
+        --in-content-page-color: rgb(251, 251, 254);
+        --in-content-deemphasized-text: rgb(191, 191, 201);
+        --in-content-box-background: rgb(35, 34, 43);
+        --in-content-box-background-odd: rgba(249, 249, 250, 0.05);
+        --in-content-box-info-background: rgba(249, 249, 250, 0.15);
+        --in-content-border-color: rgba(249, 249, 250, 0.2);
+        --in-content-border-hover: rgba(249, 249, 250, 0.3);
+        --in-content-border-invalid: rgb(255, 132, 139);
+        --in-content-error-text-color: #ff9aa2;
+        --in-content-button-background: rgb(43, 42, 51);
+        --in-content-button-background-hover: rgb(82, 82, 94);
+        --in-content-button-background-active: rgb(91, 91, 102);
+        --in-content-icon-color: rgb(251, 251, 254);
+        --in-content-primary-button-text-color: rgb(43, 42, 51);
+        --in-content-primary-button-background: rgb(0, 221, 255);
+        --in-content-primary-button-background-hover: rgb(128, 235, 255);
+        --in-content-primary-button-background-active: rgb(170, 242, 255);
+        --in-content-danger-button-background: #ff848b;
+        --in-content-danger-button-background-hover: #ffbdc5;
+        --in-content-danger-button-background-active: #ffdfe7;
+        --in-content-table-background: rgb(35, 34, 43);
+        --in-content-table-border-dark-color: var(--in-content-box-border-color);
+        --in-content-accent-color: var(--in-content-primary-button-background);
+        --in-content-accent-color-active: var(--in-content-primary-button-background-hover);
+        --in-content-link-color: var(--in-content-primary-button-background);
+        --in-content-link-color-hover: var(--in-content-primary-button-background-hover);
+        --in-content-link-color-active: var(--in-content-primary-button-background-active);
+        --in-content-link-color-visited: var(--in-content-link-color);
+        --card-outline-color: var(--grey-60);
+        --dialog-warning-text-color: var(--red-40);
+      }
+    }
+    @supports -moz-bool-pref("userContent.page.proton_color.dark_blue_accent") {
+      @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+        :host,
+        :root {
+          /* Color Memo
+           Just refer - Photon's dark color
+           --button-primary-bgcolor: #0060DF;
+           --button-primary-hover-bgcolor: #003EAA;
+           --button-primary-active-bgcolor: #002275;
+           --lwt-brighttext-url-color: #74c0ff;
+           --lwt-toolbarbutton-icon-fill-attention: #45a1ff;
+
+           Just refer - Proton's light color
+           --in-content-accent-color: #0a84ff;
+           --in-content-accent-color-active: #0060df;
+           --in-content-primary-button-background: #0061e0;
+           --in-content-primary-button-background-hover: #0250bb;
+           --in-content-primary-button-background-active: #053e94;
+
+           --blue-40: #45a1ff; rgb(69, 161, 255)
+           --blue-50: #0a84ff; rgb(10, 132, 255)
+           --blue-60: #0060df; rgb(0, 96, 223)
+           --blue-70: #003eaa; rgb(0, 62, 170)
+           --blue-80: #002275; rgb(0, 34, 117)
+
+           Relation
+           lighten(#0060df,   29%): #74b0ff;
+           lighten(#0060df, 19.8%): #4595ff
+           lighten(#0060df,  8.3%): #0a74ff
+           #0060df
+           darken(#0060df, 15.5%):  #003e90;
+           darken(#0060df, 28.1%):  #002250;
+          */
+          --blue-20: #b6d6ff;
+          /* lighten(#0060df, 42%) - rgb(182, 214, 255), Add for link active color*/
+          --blue-30: #74c0ff;
+          /* rgb(116, 192, 255), Add for active color */
+        }
+
+        :host,
+        :root {
+          --in-content-primary-button-text-color: var(--in-content-page-color) !important;
+          --in-content-primary-button-background: var(--blue-60) !important;
+          --in-content-primary-button-background-hover: var(--blue-50) !important;
+          --in-content-primary-button-background-active: var(--blue-40) !important;
+          --in-content-focus-outline-color: var(--blue-40) !important;
+          --in-content-accent-color: var(--blue-40) !important;
+          --in-content-accent-color-active: var(--blue-30) !important;
+          --in-content-table-background: rgb(35, 34, 43) !important;
+          --in-content-table-border-color: rgba(249, 249, 250, 0.2) !important;
+          --in-content-table-header-background: rgb(5, 64, 150) !important;
+          --in-content-table-header-color: var(--in-content-page-color) !important;
+          --in-content-link-color: var(--blue-40) !important;
+          --in-content-link-color-hover: var(--blue-30) !important;
+          --in-content-link-color-active: var(--blue-20) !important;
+          --in-content-link-color-visited: var(--blue-40) !important;
+        }
+      }
+    }
+    @supports -moz-bool-pref("userContent.page.proton_color.system_accent") {
+      :host,
+      :root {
+        --in-content-primary-button-text-color: -moz-accent-color-foreground !important;
+        --in-content-primary-button-background: Highlight !important;
+        --in-content-primary-button-background-hover: color-mix(in srgb, black 10%, Highlight) !important;
+        --in-content-primary-button-background-active: color-mix(in srgb, black 20%, Highlight) !important;
+      }
     }
   }
 }
@@ -1290,7 +1399,7 @@
                url-prefix("about:checkerboard"),
                url-prefix("about:sync-log"),
                url-prefix("about:memory"),
-               regexp("^((file:///)|(chrome://)).*/$")
+               regexp("^(((jar:)?file:///)|(chrome://)).*/$")
   {
     /* Base */
     html,
@@ -1549,6 +1658,23 @@
       color: var(--in-content-table-header-color) !important;
     }
   }
+  /*= Field Border =============================================================*/
+  @supports -moz-bool-pref("userContent.page.field_border") {
+    @media (prefers-reduced-motion: no-preference) {
+      @-moz-document url-prefix("about:") {
+        xul|search-textbox:hover {
+          border-color: var(--in-content-focus-outline-color) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
+      }
+      @-moz-document url-prefix("about:config") {
+        #about-config-search:hover {
+          border-color: var(--in-content-focus-outline-color) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
+      }
+    }
+  }
   /*= View Source ==============================================================*/
   @-moz-document url-prefix("view-source") {
     :root {
@@ -1630,7 +1756,7 @@
   }
   /*= Directory View ===========================================================*/
   @-moz-document url-prefix("about:sync-log"),
-               regexp("^((file:///)|(chrome://)).*/$")
+               regexp("^(((jar:)?file:///)|(chrome://)).*/$")
   {
     body {
       background-color: var(--in-content-box-background) !important;
@@ -2234,7 +2360,7 @@
             --organizer-hover-color: var(--organizer-color);
             --organizer-selected-background: var(--in-content-button-background-active);
             --organizer-selected-color: var(--organizer-color);
-            --organizer-outline-color: var(--in-content-primary-button-background);
+            --organizer-outline-color: var(--in-content-focus-outline-color);
             --organizer-separator-color: var(--organizer-pane-field-border-color);
             --organizer-border-color: var(--in-content-border-color);
             --organizer-toolbar-field-background: rgb(240, 240, 244);
@@ -2259,7 +2385,6 @@
               --organizer-content-background: rgb(28, 27, 34);
               --organizer-hover-background: rgb(82, 82, 94);
               --organizer-selected-background: rgb(91, 91, 102);
-              --organizer-outline-color: rgb(0, 221, 255);
               --organizer-toolbar-field-background: var(--in-content-page-background);
               --organizer-toolbar-field-background-focused: rgb(66, 65, 77);
               scrollbar-color: rgba(249, 249, 250, 0.4) rgba(20, 20, 25, 0.3);
@@ -2370,7 +2495,8 @@
         }
 
         /*- Downloads Pane -------------------------------------------------------*/
-        #downloadsRichListBox {
+        #downloadsRichListBox,
+        #downloadsListBox {
           color: var(--organizer-color) !important;
           background-color: var(--organizer-content-background) !important;
         }

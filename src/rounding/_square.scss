@@ -1,0 +1,63 @@
+@include Option("userChrome.rounding.square_tab") {
+  :root {
+    --tab-border-radius: 0 !important; /* Original: 4px */
+  }
+}
+@include Option("userChrome.rounding.square_button") {
+  :root {
+    --toolbarbutton-border-radius: 0 !important;  /* Original: 4px */
+  }
+  button {
+    border-radius: 0 !important;
+  }
+}
+@include Option("userChrome.rounding.square_tab", "userChrome.round.square_button") {
+  /* Fix Tab bar button radious */
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-icon,
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-text,
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-badge-stack,
+  .tab-close-button {
+    --tab-border-radius: var(--toolbarbutton-border-radius) !important;
+  }
+}
+
+@include Option("userChrome.rounding.square_panel") {
+  :root {
+    --arrowpanel-border-radius: 0 !important;
+  }
+}
+@include Option("userChrome.rounding.square_panelitem") {
+  :root {
+    --arrowpanel-menuitem-border-radius: 0 !important;
+    --subviewbutton-border-radius: 0 !important;
+  }
+}
+
+@include Option("userChrome.rounding.square_menupopup") {
+  xul|menupopup {
+    border-radius: 0 !important;
+  }
+}
+@include Option("userChrome.rounding.square_menuitem") {
+  xul|menulist:not([native]),
+  xul|menulist > xul|menupopup xul|menu,
+  xul|menulist > xul|menupopup xul|menuitem {
+    border-radius: 0 !important;
+  }
+}
+
+@include Option("userChrome.rounding.square_field") {
+  html|select[size][multiple],
+  xul|listheader,
+  xul|richlistbox,
+  html|input {
+    border-radius: 0 !important;
+  }
+}
+
+@include Option("userChrome.rounding.square_checklabel") {
+  .checkbox-check,
+  xul|*.radio-check {
+    border-radius: 0 !important;
+  }
+}
