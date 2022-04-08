@@ -6,7 +6,11 @@
 - [Basics](#basics)
 - [Default Config](#default-config)
 - [User Config](#user-config)
+  * [about:config](#about-config)
+  * [prefs.js](#prefsjs)
+  * [user.js](#userjs)
 - [Using with User Custom CSS](#using-with-user-custom-css)
+- [Sync](#sync)
 - [Related Source file](#related-source-file)
 
 <!-- markdown-toc end -->
@@ -33,6 +37,15 @@
 
 **Preference file RFC**
 
+Key information on the sets that can be used in the configuration file.
+
+- `pref()`: Set default pref
+  - `sticky` attr: same as `sticky_pref()`
+  - `locked` attr: cannot change from default.
+- `sticky_pref()`: Always logged even if the defaults match
+- `user_pref()`: Set user pref
+
+The following is a method of operating the configuration file parser.  
 See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
 
 ```text
@@ -56,12 +69,6 @@ See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Bac
               = <empty>                 // in user pref files
 <pref-attr>   = "sticky" | "locked"     // default pref files only
 ```
-
-- `pref()`: Set default pref
-  - `sticky` attr: same as `sticky_pref()`
-  - `locked` attr: cannot change from default.
-- `sticky_pref()`: Always logged even if the defaults match
-- `user_pref()`: Set user pref
 
 ## Default Config
 - [`modules/libpref/init/all.js`](https://github.com/mozilla/gecko-dev/blob/master/modules/libpref/init/all.js): all products
@@ -93,14 +100,16 @@ It is written to `prefs.js` in a way that can be set by the GUI.
 - [Support Mozilla: Configuration Editor for Firefox](https://support.mozilla.org/en-US/kb/about-config-editor-firefox)
 
 ### prefs.js
+**Related Docs**
+- [mozillaZine: Prefs.js file](https://kb.mozillazine.org/Prefs.js_file)
 
+**Basics**
 It exists in the profile directory, and is used to store settings that are changed from *defaults* or when users added *new settings*.
 
 In general, Do NOT edit `prefs.js` directly.
 
-- [mozillaZine: Prefs.js file](https://kb.mozillazine.org/Prefs.js_file)
-
 ### user.js
+**Related Docs**
 - [mozillaZine: User.js file](https://kb.mozillazine.org/User.js_file)
 
 **Restrictions**
@@ -184,6 +193,34 @@ Test each case by turning on/off the following settings.
     background-color: blue !important;
   }
 }
+```
+
+## Sync
+
+**Related Docs**
+- [Support Mozilla: Sync custom preferences](https://support.mozilla.org/en-US/kb/sync-custom-preferences)
+
+**How to**
+
+Firefox Sync allows you to [choose the types of data](https://support.mozilla.org/en-US/kb/how-do-i-choose-what-information-sync-firefox) to sync across all devices.
+
+![Choose sync data](https://user-images.githubusercontent.com/25581533/162106009-85f8efe6-c310-488b-9940-763b6e7dd271.png)
+
+The following options are required to sync custom configs.
+- `services.sync.prefs.dangerously_allow_arbitrary` to `true`
+
+Then, subsequently any pref can be pushed there by creating a remote with prefix.
+- `services.sync.prefs.sync.`
+
+**Example**
+
+```javascript
+// user.js
+user_pref("services.sync.prefs.dangerously_allow_arbitrary", true); // Must need
+
+// Sync UI
+user_pref("services.sync.prefs.sync.browser.uiCustomization.state", true);
+user_pref("services.sync.prefs.sync.browser.uidensity", true);
 ```
 
 ## Related Source file
