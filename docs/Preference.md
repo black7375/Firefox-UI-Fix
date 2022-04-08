@@ -4,6 +4,7 @@
 **Table of Contents**
 
 - [Basics](#basics)
+- [Default Config](#default-config)
 - [User Config](#user-config)
 - [Using with User Custom CSS](#using-with-user-custom-css)
 - [Related Source file](#related-source-file)
@@ -30,6 +31,44 @@
 - Application data (Ex. `browser.onboarding.tour.onboarding-tour-addons.completed`, `services.sync.clients.lastSync`).
 - Things that might need locking in an enterprise installation.
 
+**Preference file RFC**
+
+See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
+
+```text
+<pref-file>   = <pref>*
+<pref>        = <pref-spec> "(" <pref-name> "," <pref-value> <pref-attrs> ")" ";"
+<pref-spec>   = "user_pref" | "pref" | "sticky_pref" // in default pref files
+<pref-spec>   = "user_pref"                          // in user pref files
+<pref-name>   = <string-literal>
+<pref-value>  = <string-literal> | "true" | "false" | <int-value>
+<int-value>   = <sign>? <int-literal>
+<sign>        = "+" | "-"
+<int-literal> = [0-9]+ (and cannot be followed by [A-Za-z_])
+<string-literal> =
+  A single or double-quoted string, with the following escape sequences
+  allowed: \", \', \\, \n, \r, \xNN, \uNNNN, where \xNN gives a raw byte
+  value that is copied directly into an 8-bit string value, and \uNNNN
+  gives a UTF-16 code unit that is converted to UTF-8 before being copied
+  into an 8-bit string value. \x00 and \u0000 are disallowed because they
+  would cause C++ code handling such strings to misbehave.
+<pref-attrs>  = ("," <pref-attr>)*      // in default pref files
+              = <empty>                 // in user pref files
+<pref-attr>   = "sticky" | "locked"     // default pref files only
+```
+
+- `pref()`: Set default pref
+  - `sticky` attr: same as `sticky_pref()`
+  - `locked` attr: cannot change from default.
+- `sticky_pref()`: Always logged even if the defaults match
+- `user_pref()`: Set user pref
+
+## Default Config
+- [`modules/libpref/init/all.js`](https://github.com/mozilla/gecko-dev/blob/master/modules/libpref/init/all.js): all products
+- [`browser/app/profile/firefox.js`](https://github.com/mozilla/gecko-dev/blob/master/browser/app/profile/firefox.js): only firefox deskstop
+
+In release builds these are all put into `omni.ja`.
+
 ## User Config
 **Related Docs**
 - [mozillaZine: Editing configuration](https://kb.mozillazine.org/Editing_configuration)
@@ -43,13 +82,17 @@ It can be defined using only `user_pref()`.
 
 > User pref file syntax is slightly more restrictive than default pref file syntax. In user pref files `user_pref` definitions are allowed but `pref` and `sticky_pref` definitions are not, and attributes (such as `locked`) are not allowed.
 
-**`about:config`**
+**File Path**
+
+`prefs.js`, `user.js`  is located in the profile directory.
+
+### about:config
 
 It is written to `prefs.js` in a way that can be set by the GUI.
 
 - [Support Mozilla: Configuration Editor for Firefox](https://support.mozilla.org/en-US/kb/about-config-editor-firefox)
 
-**`prefs.js`**
+### prefs.js
 
 It exists in the profile directory, and is used to store settings that are changed from *defaults* or when users added *new settings*.
 
@@ -57,8 +100,16 @@ In general, Do NOT edit `prefs.js` directly.
 
 - [mozillaZine: Prefs.js file](https://kb.mozillazine.org/Prefs.js_file)
 
-**`user.js`**
+### user.js
 - [mozillaZine: User.js file](https://kb.mozillazine.org/User.js_file)
+
+**Restrictions**
+
+A `user.js` file can make certain preference settings more or less "permanent" in a specific profile.
+
+Once an entry for a preference setting exists in the `user.js` file, any change you make to that setting in the options and preference dialogs or via `about:config` will be lost when you restart your firefox because the `user.js` entry will override it.
+
+You'll have to first delete or edit the `user.js` file to remove the entries before the preferences can be changed in the application.
 
 **Example**
 
