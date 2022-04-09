@@ -9,6 +9,7 @@
   * [about:config](#about-config)
   * [prefs.js](#prefsjs)
   * [user.js](#userjs)
+- [Auto Config](#auto-config)
 - [Using with User Custom CSS](#using-with-user-custom-css)
 - [Sync](#sync)
 - [Related Source file](#related-source-file)
@@ -48,7 +49,7 @@ Key information on the sets that can be used in the configuration file.
 The following is a method of operating the configuration file parser.  
 See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
 
-```text
+```ebnf
 <pref-file>   = <pref>*
 <pref>        = <pref-spec> "(" <pref-name> "," <pref-value> <pref-attrs> ")" ";"
 <pref-spec>   = "user_pref" | "pref" | "sticky_pref" // in default pref files
@@ -127,6 +128,24 @@ You'll have to first delete or edit the `user.js` file to remove the entries bef
 user_pref("browser.cache.disk.enable", false);                      // Bool
 user_pref("layout.css.prefers-color-scheme.content-override", 3);   // Int
 user_pref("general.smoothScroll.currentVelocityWeighting", "0.12"); // String
+```
+
+## Auto Config
+**Related Docs**
+- [Support Mozilla: Customizing Firefox Using AutoConfig](https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig)
+
+**Basics**
+
+**How to**
+```javascript
+pref("general.config.filename", "config.js"); // alternative to "firefox.cfg", for using highlight
+pref("general.config.obscure_value", 0);
+```
+
+**Example**
+```javascript
+pref("general.config.filename", "config.js"); // alternative to "firefox.cfg", for using highlight
+pref("general.config.obscure_value", 0);
 ```
 
 ## Using with User Custom CSS
