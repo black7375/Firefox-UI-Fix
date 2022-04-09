@@ -6,7 +6,6 @@
 - [Introduce](#introduce)
   * [Code of Conduct](#code-of-conduct)
   * [We Develop with Github](#we-develop-with-github)
-  * [Environment](#environment)
   * [Your First Contribution](#your-first-contribution)
   * [Contribution Targets](#contribution-targets)
 - [License](#license)
@@ -33,38 +32,6 @@ Refer to [CODE\_OF\_CONDUCT.md](./CODE_OF_CONDUCT.md).
 We use [github](https://github.com/black7375/Firefox-UI-Fix) to host code, to track [issues](https://github.com/black7375/Firefox-UI-Fix/issues) and feature requests, as well as accept [pull requests](https://github.com/black7375/Firefox-UI-Fix/pulls).
 
 After feedback has been given we expect responses within two weeks. After two weeks we may close the issue and pull request if it isn't showing any activity.
-
-### Environment
-[`git`](https://git-scm.com/) and [`yarn`](https://yarnpkg.com/) should be installed.
-
-You can configure it as follows:
-```shell
-## clone repository
-git clone https://github.com/black7375/Firefox-UI-Fix.git
-cd ./Firefox-UI-Fix
-
-## checkout branch
-git checkout <BRANCH_NAME>
-
-## env setup
-yarn install
-```
-
-You can build with this command:
-```shell
-yarn build
-```
-
-You can check test and css validate:
-```shell
-## test - When you make mixin or function
-# __tests__ direcory, You can also find out how to use internal utils.
-yarn test
-
-## validate - Will be failed, this project uses non-standard features.
-# Just use only for checking.
-yarn validate
-```
 
 ### Your First Contribution
 

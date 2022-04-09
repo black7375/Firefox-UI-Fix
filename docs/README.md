@@ -5,6 +5,7 @@
 
 - [Basics](#basics)
 - [Project-Specific](#project-specific)
+  * [Environment](#environment)
   * [Project Structure](#project-structure)
   * [Rules](#rules)
 - [User Custom CSS](#user-custom-css)
@@ -29,6 +30,38 @@ Test for None mac users:
 - [Docker-OSX](https://github.com/sickcodes/Docker-OSX)
 
 ## Project-Specific
+### Environment
+[`git`](https://git-scm.com/) and [`yarn`](https://yarnpkg.com/) should be installed.
+
+You can configure it as follows:
+```shell
+## clone repository
+git clone https://github.com/black7375/Firefox-UI-Fix.git
+cd ./Firefox-UI-Fix
+
+## checkout branch
+git checkout <BRANCH_NAME>
+
+## env setup
+yarn install
+```
+
+You can build with this command:
+```shell
+yarn build
+```
+
+You can check test and css validate:
+```shell
+## test - When you make mixin or function
+# __tests__ direcory, You can also find out how to use internal utils.
+yarn test
+
+## validate - Will be failed, this project uses non-standard features.
+# Just use only for checking.
+yarn validate
+```
+
 ### Project Structure
 - [Project\_Structure.md](./Project_Structure.md).
 
