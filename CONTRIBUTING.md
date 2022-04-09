@@ -51,6 +51,10 @@ We love your input! We want to make contributing to this project as easy and tra
 - Improved compatibility or accessibility.
 - Refactoring.
 
+**Graphic Resources**
+- Icons ([#213](https://github.com/black7375/Firefox-UI-Fix/issues/213), We need the help of a designer!!)
+- Social preview image ([sample](https://github.com/topics/firefox-theme))
+
 **Issues**
 - Report a bug.
 - Discussing the current state of the code.
