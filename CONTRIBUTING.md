@@ -9,7 +9,6 @@
   * [Environment](#environment)
   * [Your First Contribution](#your-first-contribution)
   * [Contribution Targets](#contribution-targets)
-- [Rules](#rules)
 - [License](#license)
 - [References](#references)
 
