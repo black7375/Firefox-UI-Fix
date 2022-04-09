@@ -18,6 +18,10 @@
 <!-- markdown-toc end -->
 
 ## Basics
+This is a rough guideline. (Not forced)
+
+Feel free to make PR.
+
 ### Issue
 
 **Search:**

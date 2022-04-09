@@ -4,13 +4,11 @@
 **Table of Contents**
 
 - [Introduce](#introduce)
-  - [Code of Conduct](#code-of-conduct)
-  - [We Develop with Github](#we-develop-with-github)
-  - [Environment](#environment)
-  - [Your First Contribution](#your-first-contribution)
-  - [Contribution Targets](#contribution-targets)
-  - [Project Structure](#project-structure)
-  - [Restrictions](#restrictions)
+  * [Code of Conduct](#code-of-conduct)
+  * [We Develop with Github](#we-develop-with-github)
+  * [Environment](#environment)
+  * [Your First Contribution](#your-first-contribution)
+  * [Contribution Targets](#contribution-targets)
 - [Rules](#rules)
 - [License](#license)
 - [References](#references)
@@ -71,35 +69,33 @@ yarn validate
 
 ### Your First Contribution
 
-**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+**Working on your first Pull Request?**
 
-The following documents may be helpful:
-- [Roadmap](https://github.com/black7375/Firefox-UI-Fix/issues/2)
-- [Each Versions Plan](https://github.com/black7375/Firefox-UI-Fix/milestones)
-- [Wiki:Compatibility Issues Solution](https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution)
-- [Wiki:Tips](https://github.com/black7375/Firefox-UI-Fix/wiki/Tips)
+You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
 
-CSS, SASS Documents:
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [SASS(SCSS)](https://sass-lang.com/documentation)
-- [SASS Live Compile](https://www.sassmeister.com/)
-
-Live Debugging:
-- [Tutorial: How to create and live-debug userChrome.css](https://www.reddit.com/r/FirefoxCSS/comments/73dvty/tutorial_how_to_create_and_livedebug_userchromecss/)
-- [Browser Toolbox](https://developer.mozilla.org/en-US/docs/Tools/Browser_Toolbox)
-- [Style Editor](https://developer.mozilla.org/en-US/docs/Tools/Style_Editor)
-
-Firefox Source Code:
-- [Github](https://github.com/mozilla/gecko-dev)
-- [Searchfox](https://searchfox.org/)
-- [Firefox Source Docs](https://firefox-source-docs.mozilla.org/)
-
-Test for None mac users:
-- [Docker-OSX](https://github.com/sickcodes/Docker-OSX)
+And, Please refer to the [development documentation](./docs/).
 
 ### Contribution Targets
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+
+**Codes**
+- New Features.
+- Bug fixes.
+- Improved compatibility or accessibility.
+- Refactoring.
+
+**Issues**
+- Report a bug.
+- Discussing the current state of the code.
+- Tell us about related or relevant projects and documents.
+- Help other users issue.
+- Proposing others..
+
+**Docs**
+- Fix typos, alignments.
+- Correct awkward sentences.
+- Improve document readability.
 
 **Promotions**
 - Introduce project
@@ -110,36 +106,6 @@ We love your input! We want to make contributing to this project as easy and tra
 - Sample
   - [Producthunt](https://www.producthunt.com/posts/firefox-ui-fix-proton)([#43](https://github.com/black7375/Firefox-UI-Fix/issues/43))
   - [Youtube](https://www.youtube.com/watch?v=ECta0icNMgY)
-
-**Docs**
-- Fix typos, alignments.
-- Correct awkward sentences.
-- Improve document readability.
-
-**Issues**
-- Report a bug.
-- Discussing the current state of the code.
-- Tell us about related or relevant projects and documents.
-- Help other users issue.
-- Proposing others..
-
-**Codes**
-- New Features.
-- Bug fixes.
-- Improved compatibility or accessibility.
-- Refactoring.
-
-### Project Structure
-
-Refer to [Project\_Structure.md](./docs/Project_Structure.md).
-
-### Restrictions
-
-Refer to [Restrictions.md](./docs/Restrictions.md).
-
-## Rules
-
-Refer to [Rules.md](./docs/Rules.md).
 
 ## License
 
