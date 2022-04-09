@@ -52,7 +52,7 @@ User CSS(`userChrome.css`, `userContent.css`) is usually loaded first.
 In many cases, overriding should be prevented with [`important!`](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_!important_exception)(Anti-pattern in general web), and side effects should also be considered.
 
 ### DOM structure cannot be modified
-It is possible with [JS(Autoconfig)](./Prefence.md#auto-config), but there are security and configuration issues, so we should make the most of CSS.
+It is possible with [JS(Autoconfig)](./Preference.md#auto-config), but there are security and configuration issues, so we should make the most of CSS.
 
 [`::before`](https://developer.mozilla.org/en-US/docs/Web/CSS/::before) and [`::after`](https://developer.mozilla.org/en-US/docs/Web/CSS/::after) can indirectly add CSS elements.
 

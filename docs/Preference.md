@@ -6,7 +6,7 @@
 - [Basics](#basics)
 - [Default Config](#default-config)
 - [User Config](#user-config)
-  * [about:config](#about-config)
+  * [about:config](#aboutconfig)
   * [prefs.js](#prefsjs)
   * [user.js](#userjs)
 - [Auto Config](#auto-config)
