@@ -8,6 +8,7 @@
   * [Environment](#environment)
   * [Project Structure](#project-structure)
   * [Rules](#rules)
+- [Policies](#policies)
 - [User Custom CSS](#user-custom-css)
   * [Basics](#basics-1)
   * [Restrictions](#restrictions)
@@ -73,6 +74,10 @@ yarn validate
 This is a rough guideline. (Not forced)
 
 - [Rules.md](./Rules.md).
+
+## Policies
+- [Support Mozilla: Policies overview](https://support.mozilla.org/en-US/products/firefox-enterprise/policies-customization-enterprise/policies-overview-enterprise)
+- [Policy Templates](https://github.com/mozilla/policy-templates)
 
 ## User Custom CSS
 ### Basics
