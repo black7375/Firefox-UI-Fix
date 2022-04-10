@@ -26,6 +26,10 @@ Firefox Source Code:
 - [Searchfox](https://searchfox.org/)
 - [Firefox Source Docs](https://firefox-source-docs.mozilla.org/)
 
+Firefox Documents:
+- [Support Mozilla: Firefox advanced customization and configuration options](https://support.mozilla.org/en-US/kb/firefox-advanced-customization-and-configuration)
+- [Support Mozilla: Profiles - Where Firefox stores your bookmarks, passwords and other user data](https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data)
+
 Test for None mac users:
 - [Docker-OSX](https://github.com/sickcodes/Docker-OSX)
 
@@ -72,8 +76,16 @@ This is a rough guideline. (Not forced)
 
 ## User Custom CSS
 ### Basics
+`userChrome.css` file is for browser UI, `userContent.css` file is for web contents.
+
+Start Guide:
+- [What is userChrome.css? What can it do?](https://www.userchrome.org/what-is-userchrome-css.html)
+- [How to Create a userChrome.css File](https://www.userchrome.org/how-create-userchrome-css.html)
+- [Where to Find Style Recipes](https://www.userchrome.org/find-user-style-recipes.html)
+
 CSS, SASS Documents:
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [MDN: CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [MDN: Introducing the CSS Cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade)
 - [SASS(SCSS)](https://sass-lang.com/documentation)
 - [SASS Live Compile](https://www.sassmeister.com/)
 
@@ -81,6 +93,10 @@ Live Debugging:
 - [Tutorial: How to create and live-debug userChrome.css](https://www.reddit.com/r/FirefoxCSS/comments/73dvty/tutorial_how_to_create_and_livedebug_userchromecss/)
 - [Browser Toolbox](https://developer.mozilla.org/en-US/docs/Tools/Browser_Toolbox)
 - [Style Editor](https://developer.mozilla.org/en-US/docs/Tools/Style_Editor)
+
+Advanced CSS keywords:
+- [UDN: Chrome-only CSS reference](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS)
+- [UDN: Mozilla CSS extensions](https://udn.realityripple.com/docs/Web/CSS/Mozilla_Extensions)
 
 ### Restrictions
 - [Restrictions.md](./Restrictions.md).
