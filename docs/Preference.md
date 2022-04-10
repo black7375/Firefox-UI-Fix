@@ -133,8 +133,13 @@ user_pref("general.smoothScroll.currentVelocityWeighting", "0.12"); // String
 ## Auto Config
 **Related Docs**
 - [Support Mozilla: Customizing Firefox Using AutoConfig](https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig)
+- [What is Autoconfig Startup Scripting (AKA userChrome.js)?](https://www.userchrome.org/what-is-userchrome-js.html)
+- [UDN: Gecko Chrome](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome)
+- [UDN: JavaScript code modules](https://udn.realityripple.com/docs/Mozilla/JavaScript_code_modules)
+- [UDN: Limitations of chrome scripts](https://udn.realityripple.com/docs/Mozilla/Firefox/Multiprocess_Leftovers/Limitations_of_chrome_scripts)
 
 **Basics**
+Customizations that cannot be done with add-on and `User Custom CSS`, such as adding browser UI elements directly or changing default behavior, must use `Auto Config`.
 
 **How to**
 ```javascript
