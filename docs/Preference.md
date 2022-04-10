@@ -75,7 +75,7 @@ See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Bac
 - [`modules/libpref/init/all.js`](https://github.com/mozilla/gecko-dev/blob/master/modules/libpref/init/all.js): all products
 - [`browser/app/profile/firefox.js`](https://github.com/mozilla/gecko-dev/blob/master/browser/app/profile/firefox.js): only firefox deskstop
 
-In release builds these are all put into `omni.ja`.
+In release builds these are all put into [`omni.ja`](./omni_ja.md).
 
 ## User Config
 **Related Docs**
@@ -139,7 +139,7 @@ user_pref("general.smoothScroll.currentVelocityWeighting", "0.12"); // String
 - [UDN: Limitations of chrome scripts](https://udn.realityripple.com/docs/Mozilla/Firefox/Multiprocess_Leftovers/Limitations_of_chrome_scripts)
 
 **Basics**
-Customizations that cannot be done with add-on and `User Custom CSS`, such as adding browser UI elements directly or changing default behavior, must use `Auto Config`.
+Customizations that cannot be done with add-on and [`User Custom CSS`](./README.md#user-custom-css), such as adding browser UI elements directly or changing default behavior, must use `Auto Config`.
 
 **How to**
 ```javascript
