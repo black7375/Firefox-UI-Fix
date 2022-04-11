@@ -1,4 +1,4 @@
-# Develper Documents
+# Develper Documents for Firefox Custom
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
@@ -71,27 +71,29 @@ yarn validate
 ```
 
 ### Project Structure
-- [Project\_Structure.md](./Project_Structure.md).
+- [Doc: Project\_Structure.md](./Project_Structure.md).
 
 ### Rules
 This is a rough guideline. (Not forced)
 
-- [Rules.md](./Rules.md).
+- [Doc: Rules.md](./Rules.md).
 
 ## Advanced Customizing
 ### Smart Bookmarks
-- [Smart_Bookmarks.md](./Smart_Bookmarks.md).
+- [Doc: Smart_Bookmarks.md](./Smart_Bookmarks.md).
 
 ### Policies
 - [Support Mozilla: Policies overview](https://support.mozilla.org/en-US/products/firefox-enterprise/policies-customization-enterprise/policies-overview-enterprise)
 - [Policy Templates](https://github.com/mozilla/policy-templates)
 
 ### Preference
-- [Preference.md](./Preference.md).
+- [Doc: Preference.md](./Preference.md).
 
 ## User Custom CSS
 ### Basics
 `userChrome.css` file is for browser UI, `userContent.css` file is for web contents.
+
+Unlike [User config](./Preference.md#user-config), they are located in `<Firefox_Profile>/chrome/`.
 
 Start Guide:
 - [What is userChrome.css? What can it do?](https://www.userchrome.org/what-is-userchrome-css.html)
@@ -114,4 +116,4 @@ Advanced CSS keywords:
 - [UDN: Mozilla CSS extensions](https://udn.realityripple.com/docs/Web/CSS/Mozilla_Extensions)
 
 ### Restrictions
-- [Restrictions.md](./Restrictions.md).
+- [Doc: Restrictions.md](./Restrictions.md).
