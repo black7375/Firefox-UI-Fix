@@ -5,7 +5,9 @@
 
 - [Basics](#basics)
 - [Icon files](#icon-files)
-- [Meta Info files](#meta-info-files)
+- [Install Scripts](#install-scripts)
+  * [Meta Info files](#meta-info-files)
+  * [Overriding](#overriding)
 
 <!-- markdown-toc end -->
 
@@ -16,6 +18,7 @@ The overall structure of this project.
 root
 |- __tests__/: Mixin spec test
 |- icons/: Icons, illustrations
+|- docs/: Development Documents
 |- src/: Source files
 |- src/userChrome.scss: Entry of SCSS for Browser UI
 |- src/userContent.scss: Entry of SCSS for Web pages
@@ -44,7 +47,8 @@ or [microsoft/fluentui-system-icons](https://github.com/microsoft/fluentui-syste
 
 You can see more in the issue, [Unify icon design langauge #213](https://github.com/black7375/Firefox-UI-Fix/issues/213).
 
-## Meta Info files
+## Install Scripts
+### Meta Info files
 
 It comes from [install.sh](https://github.com/black7375/Firefox-UI-Fix/blob/01ae88bf2c4710e1f364d9eb2901ca2b722cefe7/install.sh#L442).
 
@@ -76,3 +80,22 @@ Path=<Full PATH>
 - Local(unknown): force latest commit update
 - Release(<git tag>): force latest tag update
 - Git<git hash>: latest commit update
+
+## Overriding
+
+Inspired by [arkenfox](https://github.com/arkenfox/user.js/wiki/3.1-Overrides).
+
+CSS settings are relatively simple.
+- `userChrome-overrides.css` at `<Firefox_Profile>/chrome/`
+- `userContent-overrides.css` at `<Firefox_Profile>/chrome/`
+
+Then, activate the following options:
+- `userChrome.overrides` to `true`
+- `userContent.overrides` to `true`
+
+It is now loading, and there is no need to manage the version control to the `userChrome.css` and `userContents.css` file.
+
+`user-overrides.js` needs to use a shell script and has some priorities.
+- `<Firefox_Profile>/user-overrides.js`
+- `./user-overrides.js` (Will be copied `<Firefox_Profile>/chrome/`)
+- `<Firefox_Profile>/chrome/user-overrides.js`
