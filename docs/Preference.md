@@ -75,7 +75,7 @@ See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Bac
 - [`modules/libpref/init/all.js`](https://github.com/mozilla/gecko-dev/blob/master/modules/libpref/init/all.js): all products
 - [`browser/app/profile/firefox.js`](https://github.com/mozilla/gecko-dev/blob/master/browser/app/profile/firefox.js): only firefox deskstop
 
-In release builds these are all put into [`omni.ja`](./omni_ja.md).
+In release builds these are all put into [`omni.ja`](./Omni_ja.md).
 
 ## User Config
 **Related Docs**
