@@ -9,6 +9,7 @@
   * [Project Structure](#project-structure)
   * [Rules](#rules)
 - [Advanced Customizing](#advanced-customizing)
+  * [Smart Bookmarks](#smart-bookmarks)
   * [Policies](#policies)
   * [Preference](#preference)
 - [User Custom CSS](#user-custom-css)
@@ -78,6 +79,9 @@ This is a rough guideline. (Not forced)
 - [Rules.md](./Rules.md).
 
 ## Advanced Customizing
+### Smart Bookmarks
+- [Smart_Bookmarks.md](./Smart_Bookmarks.md).
+
 ### Policies
 - [Support Mozilla: Policies overview](https://support.mozilla.org/en-US/products/firefox-enterprise/policies-customization-enterprise/policies-overview-enterprise)
 - [Policy Templates](https://github.com/mozilla/policy-templates)
