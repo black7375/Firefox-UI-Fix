@@ -18,6 +18,7 @@
 - [How to Optimize or Deoptimize Firefox OMNI.JA File](https://www.raymond.cc/blog/edit-files-inside-firefox-4-omni-jar-to-auto-save-password/)
 
 **Explanation**
+
 Firefox achieve performance improvements by moving many of their internal parts from being standalone files or sets of JAR files into just one JAR file called `omni.ja`.  
 This reduces the amount of I/O needed to load the application.
 

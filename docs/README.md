@@ -8,7 +8,9 @@
   * [Environment](#environment)
   * [Project Structure](#project-structure)
   * [Rules](#rules)
-- [Policies](#policies)
+- [Advanced Customizing](#advanced-customizing)
+  * [Policies](#policies)
+  * [Preference](#preference)
 - [User Custom CSS](#user-custom-css)
   * [Basics](#basics-1)
   * [Restrictions](#restrictions)
@@ -75,9 +77,13 @@ This is a rough guideline. (Not forced)
 
 - [Rules.md](./Rules.md).
 
-## Policies
+## Advanced Customizing
+### Policies
 - [Support Mozilla: Policies overview](https://support.mozilla.org/en-US/products/firefox-enterprise/policies-customization-enterprise/policies-overview-enterprise)
 - [Policy Templates](https://github.com/mozilla/policy-templates)
+
+### Preference
+- [Preference.md](./Preference.md).
 
 ## User Custom CSS
 ### Basics
