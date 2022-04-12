@@ -28,7 +28,7 @@ Even the implementation is also different like [Context menu's image](https://gi
 If you need to implement it in a variety of forms, make a sort of API using [`css var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var).
 
 Problems that are not [`appearance: auto`](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance#values) may require emulation like [Win7, 8's menu active color](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L146-L223).  
-Complex UI emulation is quite tricky. [Linux's Proton UI Library Chrome](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2113-L2504), [Linux's Proton UI Library Content](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L1458).
+Complex UI emulation is quite tricky. [[Linux's Proton UI Library Chrome](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2113-L2504), [Linux's Proton UI Library Content](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L1458)]
 
 [Bookmark menu](https://github.com/black7375/Firefox-UI-Fix/issues/136) is also similar example([code](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4745-L4840)).
 
@@ -52,7 +52,7 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).
 
 Especially be careful when customizing XUL elements.  
-The following code will cause extension panels fail to open and trying to open them might even crash Firefox. (@MrOtherGuy reports)
+The following code will cause extension panels fail to open and trying to open them might even crash Firefox. ([@MrOtherGuy](https://www.reddit.com/r/FirefoxCSS/comments/u1mdld/comment/i4eg29n/?utm_source=share&utm_medium=web2x&context=3) reports)
 ```css
 #nav-bar {
   display: flex;
