@@ -3477,7 +3477,7 @@
   }
 }
 /*= Global Menu - Set Padding ================================================*/
-@supports -moz-bool-pref("userChrome.padding.global_menu") {
+@supports -moz-bool-pref("userChrome.padding.global_menubar") {
   /* Vertical Align - Center & Height: 100%  */
   #main-menubar {
     -moz-box-flex: 1 !important;
@@ -3620,6 +3620,7 @@
   #titlebar,
   #nav-bar,
   #PersonalToolbar,
+  #tab-notification-deck,
   #tab-notification-deck-template {
     flex-basis: 100%;
   }
