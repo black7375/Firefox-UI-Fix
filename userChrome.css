@@ -7353,9 +7353,7 @@
   }
 
   menuitem.privatetab-icon {
-    list-style-image: url("./icons/priavate-favicon.svg") !important;
-    fill: currentColor;
-    -moz-context-properties: fill;
+    --menuitem-image: url("./icons/priavate-favicon.svg");
   }
 }
 @supports -moz-bool-pref("userChrome.theme.fully_color") {
