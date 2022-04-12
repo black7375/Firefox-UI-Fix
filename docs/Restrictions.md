@@ -81,8 +81,10 @@ In experience, the detailed actions of `-moz-box` and `flex` are different, so t
 - [Sync Menu Item's Image Order](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4234-L4238)
 - [Tabs On Bottom](https://github.com/black7375/Firefox-UI-Fix/blob/c453ef43a699759f55800a5d266a89ac11321b2b/src/tabbar/_tabs_on_bottom.scss#L4-L32)
 
-Finally, it's time to respond to various states.  
-[Hard coding](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L873-L893) according to selector priority is available, and [both transitions and keyframes](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2704-L2730) are available for animation.
+Finally, it's time to respond to various states.
+
+By default, [attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) is used, and sometimes [hard coding](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L873-L893) according to [selector specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) may be required.  
+If there is no state attributes, you can bypass by using [both transitions and keyframes](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2704-L2730) for animation.
 
 ### Shadow DOM
 Firefox actively uses [shadow dom](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) internally.
