@@ -66,7 +66,7 @@ Many implementations using `::before`, `::after`.
 - [Picture In Picture Indicator](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L3716-L3753)
 - [Contaner Indicator](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L3754-L3852)
 
-For icons, `list-style-image` and `background-image`() are available.
+For icons, [`list-style-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-image) and [`background-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image) are available.
 
 It is recommended to use `list-style-image` when a layout is provided for the image.  
 `background-image` may require many calculations to fit the layout.
