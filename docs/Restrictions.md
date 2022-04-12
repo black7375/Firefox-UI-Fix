@@ -34,14 +34,14 @@ There may be changes that change by version of Firefox.
 
 It's [more frequent than your thought](https://github.com/black7375/Firefox-UI-Fix/issues?q=is%3Aissue+label%3Aupstream+), and we need to respond to compatibility between [Nightly](https://www.mozilla.org/en-US/firefox/nightly/notes/) and [ESR](https://www.mozilla.org/en-US/firefox/organizations/notes/) versions.
 
-This project is using SCSS to make a reusable compatible mixins.
+This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 ```scss
 @include OS($linux) {
-  // Your CSS`
+  // Your CSS
 }
 
 @include Dark {
-  // Your CSS`
+  // Your CSS
 }
 ```
 
@@ -94,6 +94,7 @@ To modify, it is often a roundabout approach or impossible to inherit.
 Onething bypass method is to declare [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) to shadow root.
 - [Scrollbutton Padding](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2906-L2924)
 - [Audio, Video Player UI](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L5-L47)
+- [Video Player Twoline UI](https://github.com/black7375/Firefox-UI-Fix/blob/cbf14cd55a9edada7ab2f5f1b626608fb9fe38a2/src/contents/_video_player.scss#L68-L171): It is pretty difficult when the condition becomes complicated.
 
 ### XUL
 Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and binded with C++ for performance like a treeview of bookmarks.
