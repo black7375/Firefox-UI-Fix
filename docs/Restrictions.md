@@ -51,6 +51,14 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 ### Side Effect
 Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).
 
+Especially be careful when customizing XUL elements.  
+The following code will cause extension panels fail to open and trying to open them might even crash Firefox. (@MrOtherGuy reports)
+```css
+#nav-bar {
+  display: flex;
+}
+```
+
 ## Internals
 ### CSS Loading Order
 User CSS(`userChrome.css`, `userContent.css`) is usually loaded first.
