@@ -27,6 +27,8 @@ Consider compatibility as much as possible, but use [dedicated media queries](ht
 Even the implementation is also different like ([Context menu's image](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4558-L4595)).  
 If you need to implement it in a variety of forms, make a sort of API using [`css var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var).
 
+Problems that are not [`appearance: auto`](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance#values) may require emulation. (Ex. [Win7, 8's menu active color](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L146-L223), [Linux's Proton UI Library Chrome](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2113-L2504), [Linux's Proton UI Library Content](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L1458))
+
 [Bookmark menu](https://github.com/black7375/Firefox-UI-Fix/issues/136) is also similar example([code](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4745-L4840)).
 
 ### Firefox Version
