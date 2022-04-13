@@ -221,6 +221,16 @@ menu[disabled="true"] {
   }
 }
 
+/*= Windows 10 - Top border of accent color at ESR #358 ======================*/
+@media (-moz-windows-accent-color-in-titlebar) {
+  :root[sizemode=normal][tabsintitlebar] #navigator-toolbox {
+    border-top: .5px solid -moz-accent-color !important;
+  }
+  :root[sizemode=normal][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
+    border-top-color: rgb(57, 57, 57) !important;
+  }
+}
+
 @media (-moz-gtk-csd-available) {
   /*= Linux - Global Menubar Active Color ====================================*/
   #main-menubar > menu[open="true"],
