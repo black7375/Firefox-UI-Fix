@@ -4450,7 +4450,7 @@ panelMenuBookmarkThisPage[starred] {
 
 /*= Tabbar - All Tab Menu ====================================================*/
 #allTabsMenu-undoCloseTab {
-  list-style-image: url("chrome://global/skin/icons/undo.svg");
+  list-style-image: url("./icons/undo.svg");
 }
 #allTabsMenu-searchTabs {
   list-style-image: url("chrome://global/skin/icons/search-glass.svg");
@@ -4590,7 +4590,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   :not(menu, #ContentSelectDropdown)
     > menupopup
     > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
-    list-style-image: var(--menuitem-image) !important;
+    list-style-image: var(--menuitem-image, url("./icons/blank.svg")) !important;
   }
 }
 
@@ -4902,7 +4902,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 #context_closeTabOptions {
 }
 #context_undoCloseTab {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 
 /*= new-tab-button-popup =====================================================*/
@@ -4952,7 +4952,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
   --menuitem-image: url("./icons/tab-multiple.svg");
 }
 #toolbar-context-undoCloseTab {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 
 #toggle_toolbar-menubar {
@@ -5010,7 +5010,7 @@ menuitem.viewCustomizeToolbar {
   --menuitem-image: url("./icons/book-add.svg");
 }
 #spell-undo-add-to-dictionary {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 
 #context-openlinkincurrent {
@@ -5158,7 +5158,7 @@ menuitem.viewCustomizeToolbar {
 }
 
 #context-undo {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 #context-redo {
 }
@@ -5436,7 +5436,7 @@ menuitem.viewCustomizeToolbar {
 
 /*= SyncedTabsSidebarTabsFilterContext =======================================*/
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_undo"] {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
@@ -5461,7 +5461,7 @@ menuitem.viewCustomizeToolbar {
 
 /*= urlbar-input-container ===================================================*/
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_undo"] {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"] {
 }
@@ -5487,7 +5487,7 @@ menuitem.viewCustomizeToolbar {
 /*= textbox-contextmenu ======================================================*/
 /* Browser's Searchbar, Libray's Searchbar, Page Info */
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
 }
@@ -5631,7 +5631,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 
 /*= menu_EditPopup ===========================================================*/
 #menu_undo {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 #menu_redo {
 }
@@ -5865,7 +5865,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 }
 
 #orgUndo {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 #orgRedo {
 }
