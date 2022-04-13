@@ -4570,6 +4570,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+.openintabs-menuitem,
 #blockedPopupDontShowMessage {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
@@ -4607,6 +4608,7 @@ menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #histo
 menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
 menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+.openintabs-menuitem,
 #blockedPopupDontShowMessage {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
@@ -4668,6 +4670,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+  .openintabs-menuitem,
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
@@ -4694,6 +4697,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+  .openintabs-menuitem,
   #blockedPopupDontShowMessage {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
@@ -4902,6 +4906,11 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 }
 
 /*= new-tab-button-popup =====================================================*/
+#new-tab-button-popup > menuitem[command="Browser:NewUserContextTab"],
+.new-tab-popup > menuitem[command="Browser:NewUserContextTab"] {
+  --menuitem-image: url("./icons/container-openin-16.svg");
+}
+
 #new-tab-button-popup > menuitem[command="Browser:OpenAboutContainers"],
 .new-tab-popup > menuitem[command="Browser:OpenAboutContainers"] {
   --menuitem-image: url("chrome://global/skin/icons/settings.svg");
@@ -5770,6 +5779,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 #sync-unverifieditem {
 }
 #sync-syncnowitem {
+  --menuitem-image: url("chrome://browser/skin/sync.svg");
 }
 #sync-reauthitem {
 }
