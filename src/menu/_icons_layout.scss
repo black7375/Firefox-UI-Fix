@@ -39,7 +39,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   :not(menu, #ContentSelectDropdown)
     > menupopup
     > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
-    list-style-image: var(--menuitem-image) !important;
+    list-style-image: var(--menuitem-image, url("./icons/blank.svg")) !important;
   }
 }
 

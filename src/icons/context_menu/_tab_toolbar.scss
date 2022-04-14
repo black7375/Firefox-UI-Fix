@@ -57,10 +57,15 @@
 #context_closeTabOptions {
 }
 #context_undoCloseTab {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 
 /*= new-tab-button-popup =====================================================*/
+#new-tab-button-popup > menuitem[command="Browser:NewUserContextTab"],
+.new-tab-popup > menuitem[command="Browser:NewUserContextTab"] {
+  --menuitem-image: url("./icons/container-openin-16.svg");
+}
+
 #new-tab-button-popup > menuitem[command="Browser:OpenAboutContainers"],
 .new-tab-popup > menuitem[command="Browser:OpenAboutContainers"] {
   --menuitem-image: url("chrome://global/skin/icons/settings.svg");
@@ -102,7 +107,7 @@
   --menuitem-image: url("./icons/tab-multiple.svg");
 }
 #toolbar-context-undoCloseTab {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("./icons/undo.svg");
 }
 
 #toggle_toolbar-menubar {
