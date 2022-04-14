@@ -133,6 +133,22 @@
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
+  /*= Windows 10 - Top border of accent color at ESR #358 ======================*/
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+    :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
+      border-top: 0.5px solid #2f2f2f !important;
+    }
+
+    :root[sizemode="normal"][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
+      border-top-color: #393939 !important;
+    }
+
+    @media (-moz-windows-accent-color-in-titlebar) {
+      :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
+        border-top-color: -moz-accent-color !important;
+      }
+    }
+  }
   /*= Windows 7, 8 - Tab Bar Background *****************************************/
   @media (-moz-os-version: windows-win7),
     (-moz-platform: windows-win7),
@@ -334,6 +350,7 @@
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
     #TabsToolbar:not(:-moz-lwtheme) {
       --background-color: rgb(229, 229, 235);
+      --toolbarseparator-color: transparent;
     }
 
     #TabsToolbar:not(:-moz-lwtheme)
@@ -542,6 +559,15 @@
       --panel-separator-color: var(--win-border-color) !important;
     }
 
+    @supports -moz-bool-pref("userChrome.theme.system_default") {
+      @media (-moz-windows-accent-color-in-titlebar) {
+        :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+        :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
+          --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent) !important;
+          /* As default */
+        }
+      }
+    }
     /*- Proton Tab Selected ----------------------------------------------------*/
     @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
       :root:not(:-moz-lwtheme),
@@ -5882,6 +5908,7 @@
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+  .openintabs-menuitem,
   #blockedPopupDontShowMessage {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
@@ -5918,6 +5945,7 @@
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+  .openintabs-menuitem,
   #blockedPopupDontShowMessage {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
@@ -5987,6 +6015,7 @@
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+    .openintabs-menuitem,
     #blockedPopupDontShowMessage {
       background-position: left var(--context-menu-background-padding) center !important;
       padding-inline-start: 0 !important;
@@ -6015,6 +6044,7 @@
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
+    .openintabs-menuitem,
     #blockedPopupDontShowMessage {
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
@@ -6059,6 +6089,16 @@
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic) {
       padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
     }
+
+    /* Global Menu */
+    /* Disabled. some icons not appear
+     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+       menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+       list-style-image: var(--menuitem-image, url("./icons/blank.svg"));
+     }
+    */
   }
   /*= Bookmark Menu - Layout ===================================================*/
   /* #goPopup(Legacy of historyMenuPoup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
@@ -7195,6 +7235,10 @@
 
     #sync-setup {
       --menuitem-image: url("chrome://browser/skin/fxa/avatar-empty.svg");
+    }
+
+    #sync-syncnowitem {
+      --menuitem-image: url("chrome://browser/skin/sync.svg");
     }
 
     #webDeveloperMenu,

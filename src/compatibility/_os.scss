@@ -1,3 +1,18 @@
+/*= Windows 10 - Top border of accent color at ESR #358 ======================*/
+@include OS($win10) {
+  :root[sizemode=normal][tabsintitlebar] #navigator-toolbox {
+    border-top: .5px solid rgb(47, 47, 47) !important;
+  }
+  :root[sizemode=normal][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
+    border-top-color: rgb(57, 57, 57) !important;
+  }
+  @media (-moz-windows-accent-color-in-titlebar) {
+    :root[sizemode=normal][tabsintitlebar] #navigator-toolbox {
+      border-top-color: -moz-accent-color !important;
+    }
+  }
+}
+
 /*= Windows 7, 8 - Tab Bar Background *****************************************/
 @include OS($win7, $win8) {
   /* Header Color */
