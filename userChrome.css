@@ -1142,11 +1142,7 @@
 
       :host,
       :root,
-      button,
-      select,
-      input,
-      menulist,
-      radio {
+      dialog {
         --in-content-primary-button-text-color: var(--in-content-page-color) !important;
         --in-content-primary-button-background: var(--blue-60) !important;
         --in-content-primary-button-background-hover: var(--blue-50) !important;
@@ -1176,6 +1172,14 @@
         --panel-banner-item-info-icon-bgcolor: var(--blue-30) !important;
         --lwt-brighttext-url-color: var(--blue-30) !important;
         /* Original: as primary bgcolor */
+      }
+
+      @supports -moz-bool-pref("userChrome.decoration.download_panel") {
+        :root[lwtheme-mozlightdark][lwthemetextcolor="bright"] #downloadsListBox,
+        :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] #downloadsListBox {
+          --button-primary-bgcolor: var(--blue-30);
+          --button-primary-hover-bgcolor: var(--blue-20);
+        }
       }
     }
   }

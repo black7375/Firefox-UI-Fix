@@ -1,7 +1,8 @@
 @include Dark {
   @import "dark_blue_color";
 
-  :host, :root, button, select, input, menulist, radio {
+  :host, :root, dialog {
+    // button, select, input, menulist, radio
     @include DarkBlueContent;
   }
 
@@ -18,5 +19,12 @@
     --panel-banner-item-info-icon-bgcolor: var(--blue-30) !important;
 
     --lwt-brighttext-url-color: var(--blue-30) !important; /* Original: as primary bgcolor */
+  }
+
+  @include Option("userChrome.decoration.download_panel") {
+    #{selector.nest(built-in-dark-theme(), "#downloadsListBox")} {
+      --button-primary-bgcolor: var(--blue-30);
+      --button-primary-hover-bgcolor: var(--blue-20);
+    }
   }
 }
