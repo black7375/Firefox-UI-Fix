@@ -616,6 +616,73 @@ check_install_types() {
   fi
 }
 
+#== Custom Install =============================================================
+customFiles=(
+  user-overrides.js
+  userChrome-overrides.css
+  userContent-overrides.css
+)
+
+customFileExist=""
+check_custom_files() {
+  paths_filter customFiles
+
+  if [ "${#customFiles[@]}" -gt 0 ]; then
+    customFileExist="true"
+    lepton_ok_message "Check custom file detected"
+
+    for customFile in "${customFiles[@]}"; do
+      echo "- ${customFile}"
+    done
+  fi
+}
+
+copy_custom_files() {
+  if [ "${customFileExist}" == "true" ]; then
+    # If Release or Network mode, Local is passed (Already copied)
+    if [ "${leptonInstallType}" -ne "Local" ]; then
+      for profilePath in "${firefoxProfilePaths[@]}"; do
+        for customFile in "${customFiles[@]}"; do
+          if [ "${customFiles}" == "user-overrides.js" ]; then
+            autocp "${customFile}" "${profilePath}/user-overrides.js"
+          else
+            autocp "${customFile}" "${profilePath}/chrome"
+          fi
+        done
+      done
+    fi
+
+    lepton_ok_message "End custom file copy"
+  fi
+}
+
+customFileApplied=""
+apply_custom_files() {
+  for profilePath in "${firefoxProfilePaths[@]}"; do
+    for customFile in "${customFiles[@]}"; do
+      local targetFile="${customFile//-overrides/}"
+      if [ "${customFiles}" == "user-overrides.js" ]; then
+        if [ -f "${profilePath}/user-overrides.js" ]; then
+          customFileApplied="true"
+          cat "${profilePath}/user-overrides.js" >> "${profilePath}/${targetFile}"
+        elif [ -f "${profilePath}/chrome/user-overrides.js" ]; then
+          customFileApplied="true"
+          cat "${profilePath}/chrome/user-overrides.js" >> "${profilePath}/${targetFile}"
+        fi
+      else
+        if [ -f "${profilePath}/chrome/${customFile}" ]; then
+          customFileApplied="true"
+          cat "${profilePath}/chrome/${customFile}" >> "${profilePath}/chrome/${targetFile}"
+        fi
+      fi
+    done
+  done
+
+  if [ "${customFileApplied}" == "true" ]; then
+    lepton_ok_message "Custom file applied"
+  fi
+}
+
 #== Install Helpers ============================================================
 chromeDuplicate=""
 check_chrome_exist() {
@@ -673,10 +740,14 @@ copy_lepton() {
 #== Each Install ===============================================================
 install_local() {
   copy_lepton "${currentDir}" "user.js"
+  copy_custom_files
+  apply_custom_files
 }
 
 install_release() {
   copy_lepton "chrome" "user.js"
+  copy_custom_files
+  apply_custom_files
 }
 
 install_network() {
@@ -685,6 +756,8 @@ install_network() {
 
   clone_lepton
   copy_lepton
+  copy_custom_files
+  apply_custom_files
 
   clean_lepton
   check_chrome_restore
@@ -752,6 +825,9 @@ update_profile() {
       done
     fi
   done
+
+  apply_custom_files
+
   clean_lepton
   check_chrome_restore
 }
@@ -784,6 +860,8 @@ install_lepton() {
   check_profile_ini
   update_profile_paths
   write_lepton_info
+
+  check_custom_files
 
   # Install Mode
   if [ "${updateMode}" == true ]; then
