@@ -58,6 +58,7 @@ The following code will cause extension panels fail to open and trying to open t
   display: flex;
 }
 ```
+Info: `#nav-bar` is [`toolbar`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/toolbar).
 
 ## Internals
 ### CSS Loading Order
@@ -108,7 +109,8 @@ Onething bypass method is to declare [`var()`](https://developer.mozilla.org/en-
 - [Video Player Twoline UI](https://github.com/black7375/Firefox-UI-Fix/blob/cbf14cd55a9edada7ab2f5f1b626608fb9fe38a2/src/contents/_video_player.scss#L68-L171): It is pretty difficult when the condition becomes complicated.
 
 ### XUL
-Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and binded with C++ for performance like a treeview of bookmarks.
+Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and binded with C++ for performance like a treeview of bookmarks.  
+XUL's [box model](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/The_Box_Model) and [DOM](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/Document_Object_Model) are different from HTML.
 
 There ar few appropriate documents, so we have to read the source code and work. (Ex. [1](https://github.com/mozilla/gecko-dev/blob/master/layout/style/nsCSSAnonBoxList.h), [2](https://github.com/mozilla/gecko-dev/blob/master/layout/xul/tree/nsITreeView.idl))
 
@@ -117,3 +119,6 @@ Available CSS features are also restricted.
 Example of legacy documents that will help.
 - [UDN: ::-moz-tree-cell](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS/::-moz-tree-cell)
 - [UDN: ::-moz-tree-cell-text](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS/::-moz-tree-cell-text)
+
+Another case.  
+Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`] is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
