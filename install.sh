@@ -716,8 +716,20 @@ update_profile() {
 
         local LEPTONGITPATH="${Path}/chrome/.git"
         if [ "${Type}" == "Git" ]; then
+          local gitDirty=""
+
+          if [[ $(git diff --stat) != '' ]]; then
+            gitDirty="true"
+            git --git-dir "${LEPTONGITPATH}" stash
+          fi
+
           git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
           git --git-dir "${LEPTONGITPATH}" pull --no-edit
+
+          if [ "${customFileExist}" == "true" ]; then
+            git --git-dir "${LEPTONGITPATH}" stash pop
+          fi
+
         elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
           check_chrome_exist
           clone_lepton
