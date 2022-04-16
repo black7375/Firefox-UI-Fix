@@ -640,7 +640,7 @@ check_custom_files() {
 copy_custom_files() {
   if [ "${customFileExist}" == "true" ]; then
     # If Release or Network mode, Local is passed (Already copied)
-    if [ "${leptonInstallType}" -ne "Local" ]; then
+    if [ "${leptonInstallType}" != "Local" ]; then
       for profilePath in "${firefoxProfilePaths[@]}"; do
         for customFile in "${customFiles[@]}"; do
           if [ "${customFiles}" == "user-overrides.js" ]; then
