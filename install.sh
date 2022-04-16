@@ -643,10 +643,10 @@ copy_custom_files() {
     if [ "${leptonInstallType}" != "Local" ]; then
       for profilePath in "${firefoxProfilePaths[@]}"; do
         for customFile in "${customFiles[@]}"; do
-          if [ "${customFiles}" == "user-overrides.js" ]; then
-            autocp "${customFile}" "${profilePath}/user-overrides.js"
+          if [ "${customFile}" == "user-overrides.js" ]; then
+            autocp "${customFile}" "${profilePath}/${customFile}"
           else
-            autocp "${customFile}" "${profilePath}/chrome"
+            autocp "${customFile}" "${profilePath}/chrome/${customFile}"
           fi
         done
       done
@@ -661,7 +661,7 @@ apply_custom_files() {
   for profilePath in "${firefoxProfilePaths[@]}"; do
     for customFile in "${customFiles[@]}"; do
       local targetFile="${customFile//-overrides/}"
-      if [ "${customFiles}" == "user-overrides.js" ]; then
+      if [ "${customFile}" == "user-overrides.js" ]; then
         if [ -f "${profilePath}/user-overrides.js" ]; then
           customFileApplied="true"
           cat "${profilePath}/user-overrides.js" >> "${profilePath}/${targetFile}"
