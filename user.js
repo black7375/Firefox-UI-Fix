@@ -59,6 +59,8 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.compatibility.navbar_top_border",    true);
 // user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
 
+// user_pref("userChrome.compatiblity.os.linux_non_native_titlebar_button", true);
+
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
 // user_pref("userChrome.decoration.disable_panel_animate",    true);
