@@ -735,9 +735,20 @@ function Update-Profile() {
         $local:Path   = $LEPTONINFO["${section}"]["Path"]
 
         $local:LEPTONGITPATH="${Path}\chrome\.git"
-        if ( "${Type}" -eq "Git" ){
+        if ( "${Type}" -eq "Git" ) {
+          $local:gitDirty = $false
+
+          if ( "$(git diff --stat)" -ne '' ) {
+            $local:gitDirty = $true
+            git --git-dir "${LEPTONGITPATH}" checkout stash
+          }
+
           git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
           git --git-dir "${LEPTONGITPATH}" pull --no-edit
+
+          if ( "${gitDirty}" -eq $true ) {
+            git --git-dir "${LEPTONGITPATH}" checkout stash pop
+          }
         }
         elseif ( "${Type}" -eq "Local" -or "${Type}" -eq "Release" ) {
           Check-ChromeExist
