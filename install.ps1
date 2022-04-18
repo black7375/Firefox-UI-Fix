@@ -111,6 +111,8 @@ function Check-Git() {
 }
 
 #== PATH / File ================================================================
+$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+
 $currentDir = (Get-Location).path
 
 function Filter-Path() {
@@ -683,17 +685,17 @@ function Apply-CustomFiles() {
       if ( "${customFile}" -eq "user-overrides.js" ) {
         if ( Test-Path -Path "${profilePath}\user-overrides.js" -PathType leaf ) {
           $global:customFileApplied = $true
-          Get-Content -Path "${profilePath}\user-overrides.js" >> "${profilePath}\${targetFile}"
+          Get-Content -Path "${profilePath}\user-overrides.js" | Out-File -FilePath "${profilePath}\${targetFile}" -Append
         }
         elseif ( Test-Path -Path "${profilePath}\chrome\user-overrides.js" -PathType leaf ) {
           $global:customFileApplied = $true
-          Get-Content -Path "${profilePath}\chrome\user-overrides.js" >> "${profilePath}\${targetFile}"
+          Get-Content -Path "${profilePath}\chrome\user-overrides.js" | Out-File -FilePath "${profilePath}\${targetFile}" -Append
         }
       }
       else {
-        if ( Test-Path -Path "${profilePath}\${customFile}" -PathType leaf ) {
+        if ( Test-Path -Path "${profilePath}\chrome\${customFile}" -PathType leaf ) {
           $global:customFileApplied = $true
-          Get-Content -Path "${profilePath}\chrome\${customFile}" >> "${profilePath}\chrome\${targetFile}"
+          Get-Content -Path "${profilePath}\chrome\${customFile}" | Out-File -FilePath "${profilePath}\chrome\${targetFile}" -Append
         }
       }
     }
