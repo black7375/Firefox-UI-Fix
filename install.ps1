@@ -693,7 +693,7 @@ function Apply-CustomFiles() {
       else {
         if ( Test-Path -Path "${profilePath}\${customFile}" -PathType leaf ) {
           $global:customFileApplied = $true
-          Get-Content -Path "${profilePath}\chrome\${customFile}" >> "${profilePath}\${targetFile}"
+          Get-Content -Path "${profilePath}\chrome\${customFile}" >> "${profilePath}\chrome\${targetFile}"
         }
       }
     }
