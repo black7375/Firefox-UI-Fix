@@ -634,6 +634,76 @@ function Check-InstallTypes() {
   }
 }
 
+#== Custom Install =============================================================
+$customFiles = @(
+  "user-overrides.js",
+  "userChrome-overrides.css",
+  "userContent-overrides.css"
+)
+
+$customFileExist = $false
+function Check-CustomFiles() {
+  $global:customFiles = Filter-Path $customFiles
+
+  if ( $global:customFiles.Length -gt 0 ) {
+    $global:customFileExist = $true
+    Lepton-OKMessage "Check custom file detected"
+
+    foreach ( $customFile in $global:customFiles ) {
+      Write-Host "- ${customFile}"
+    }
+  }
+}
+
+function Copy-CustomFiles() {
+  if ( "${customFileExist}" -eq $true ) {
+    # If Release or Network mode, Local is passed (Already copied)
+    if ( "${leptonInstallType}" -ne "Local" ) {
+      foreach ( $profilePath in $global:firefoxProfilePaths ) {
+        foreach ( $customFile in $global:customFiles ) {
+          if ( "${customFile}" -eq "user-overrides.js" ) {
+            Copy-Auto "${customFile}" "${profilePath}\${customFile}"
+          }
+          else {
+            Copy-Auto "${customFile}" "${profilePath}\chrome\${customFile}"
+          }
+        }
+      }
+    }
+
+    Lepton-OKMessage "End custom file copy"
+  }
+}
+
+$customFileApplied = $false
+function Apply-CustomFiles() {
+  foreach ( $profilePath in $global:firefoxProfilePaths ) {
+    foreach ( $customFile in  $global:customFiles ) {
+      $local:targetFile = $customFile.Replace("-overrides", "")
+      if ( "${customFile}" -eq "user-overrides.js" ) {
+        if ( Test-Path -Path "${profilePath}\user-overrides.js" -PathType leaf ) {
+          $global:customFileApplied = $true
+          Get-Content -Path "${profilePath}\user-overrides.js" >> "${profilePath}\${targetFile}"
+        }
+        elseif ( Test-Path -Path "${profilePath}\chrome\user-overrides.js" -PathType leaf ) {
+          $global:customFileApplied = $true
+          Get-Content -Path "${profilePath}\chrome\user-overrides.js" >> "${profilePath}\${targetFile}"
+        }
+      }
+      else {
+        if ( Test-Path -Path "${profilePath}\${customFile}" -PathType leaf ) {
+          $global:customFileApplied = $true
+          Get-Content -Path "${profilePath}\chrome\${customFile}" >> "${profilePath}\${targetFile}"
+        }
+      }
+    }
+  }
+
+  if ( "${customFileApplied}" -eq $true ) {
+    Lepton-OKMessage "Custom file applied"
+  }
+}
+
 #== Install Helpers ============================================================
 $chromeDuplicate = $false
 function Check-ChromeExist() {
@@ -692,10 +762,14 @@ function Copy-Lepton() {
 #== Each Install ===============================================================
 function Install-Local() {
   Copy-Lepton "${currentDir}" "user.js"
+  Copy-CustomFiles
+  Apply-CustomFiles
 }
 
 function Install-Release() {
   Copy-Lepton "chrome" "user.js"
+  Copy-CustomFiles
+  Apply-CustomFiles
 }
 
 function Install-Network() {
@@ -704,6 +778,8 @@ function Install-Network() {
 
   Clone-Lepton
   Copy-Lepton
+  Copy-CustomFiles
+  Apply-CustomFiles
 
   Clean-Lepton
   Check-ChromeRestore
@@ -773,6 +849,9 @@ function Update-Profile() {
       }
     }
   }
+
+  Apply-CustomFiles
+
   Clean-Lepton
   Check-ChromeRestore
 }
@@ -794,6 +873,8 @@ function Install-Lepton {
   Check-ProfileIni
   Update-ProfilePaths
   Write-LeptonInfo
+
+  Check-CustomFiles
 
   if ( $updateMode ) {
     Update-Profile
