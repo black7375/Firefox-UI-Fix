@@ -669,17 +669,15 @@ apply_custom_files() {
           customFileApplied="true"
           cat "${profilePath}/chrome/user-overrides.js" >> "${profilePath}/${targetFile}"
         fi
-      else
-        if [ -f "${profilePath}/chrome/${customFile}" ]; then
-          customFileApplied="true"
-          cat "${profilePath}/chrome/${customFile}" >> "${profilePath}/chrome/${targetFile}"
-        fi
+      elif [ -f "${profilePath}/chrome/${customFile}" ]; then
+        customFileApplied="true"
+        cat "${profilePath}/chrome/${customFile}" >> "${profilePath}/chrome/${targetFile}"
       fi
     done
   done
 
   if [ "${customFileApplied}" == "true" ]; then
-    lepton_ok_message "Custom file applied"
+    lepton_ok_message "End custom file applied"
   fi
 }
 

@@ -692,17 +692,15 @@ function Apply-CustomFiles() {
           Get-Content -Path "${profilePath}\chrome\user-overrides.js" | Out-File -FilePath "${profilePath}\${targetFile}" -Append
         }
       }
-      else {
-        if ( Test-Path -Path "${profilePath}\chrome\${customFile}" -PathType leaf ) {
-          $global:customFileApplied = $true
-          Get-Content -Path "${profilePath}\chrome\${customFile}" | Out-File -FilePath "${profilePath}\chrome\${targetFile}" -Append
-        }
+      elseif ( Test-Path -Path "${profilePath}\chrome\${customFile}" -PathType leaf ) {
+        $global:customFileApplied = $true
+        Get-Content -Path "${profilePath}\chrome\${customFile}" | Out-File -FilePath "${profilePath}\chrome\${targetFile}" -Append
       }
     }
   }
 
   if ( "${customFileApplied}" -eq $true ) {
-    Lepton-OKMessage "Custom file applied"
+    Lepton-OKMessage "End custom file applied"
   }
 }
 
