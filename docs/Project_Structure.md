@@ -90,12 +90,6 @@ CSS settings are relatively simple.
 - `userChrome-overrides.css` at `<Firefox_Profile>/chrome/`
 - `userContent-overrides.css` at `<Firefox_Profile>/chrome/`
 
-Then, activate the following options:
-- `userChrome.overrides` to `true`
-- `userContent.overrides` to `true`
-
-It is now loading, and there is no need to manage the version control to the `userChrome.css` and `userContents.css` file.
-
 `user-overrides.js` needs to use a shell script and has some priorities.
 - `<Firefox_Profile>/user-overrides.js`
 - `./user-overrides.js` (Will be copied `<Firefox_Profile>/chrome/`)
