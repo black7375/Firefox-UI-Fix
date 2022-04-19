@@ -797,7 +797,7 @@ update_profile() {
           git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
           git --git-dir "${LEPTONGITPATH}" pull --no-edit
 
-          if [ "${customFileExist}" == "true" ]; then
+          if [ "${gitDirty}" == "true" ]; then
             git --git-dir "${LEPTONGITPATH}" stash pop
           fi
 
