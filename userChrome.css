@@ -273,21 +273,23 @@
     }
 
     /*= Linux - Titlebar button at lwtheme =====================================*/
-    .titlebar-button:-moz-lwtheme {
-      appearance: auto !important;
-    }
+    @supports not -moz-bool-pref("userChrome.compatiblity.os.linux_non_native_titlebar_button") {
+      .titlebar-button:-moz-lwtheme {
+        appearance: auto !important;
+      }
 
-    .titlebar-min:-moz-lwtheme,
-    .titlebar-max:-moz-lwtheme,
-    .titlebar-restore:-moz-lwtheme,
-    .titlebar-close:-moz-lwtheme {
-      list-style-image: none !important;
-    }
+      .titlebar-min:-moz-lwtheme,
+      .titlebar-max:-moz-lwtheme,
+      .titlebar-restore:-moz-lwtheme,
+      .titlebar-close:-moz-lwtheme {
+        list-style-image: none !important;
+      }
 
-    .titlebar-button:-moz-lwtheme:hover,
-    .titlebar-button:-moz-lwtheme:hover:active {
-      background-color: unset !important;
-      color: unset !important;
+      .titlebar-button:-moz-lwtheme:hover,
+      .titlebar-button:-moz-lwtheme:hover:active {
+        background-color: unset !important;
+        color: unset !important;
+      }
     }
   }
   /*= Linux - Light System Default Theme's Selected Tab ========================*/
@@ -3959,9 +3961,11 @@
 /*= Selected Tab - Color like toolbar ========================================*/
 @supports -moz-bool-pref("userChrome.tab.color_like_toolbar") {
   :root:not(:-moz-lwtheme) {
-    /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
+    /* Fix for windows's system default theme. Using --toolbar-bgcolor, --toolbar-bgimage fallback */
     --tab-selected-bgcolor: unset !important;
     /* Original: rgb(255,255,255); */
+    --tab-selected-bgimage: unset !important;
+    /* Nightly 101 */
   }
 
   #tabbrowser-tabs:not([movingtab])

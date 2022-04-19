@@ -121,19 +121,21 @@
   }
 
   /*= Linux - Titlebar button at lwtheme =====================================*/
-  .titlebar-button:-moz-lwtheme {
-    appearance: auto !important;
-  }
-  .titlebar-min:-moz-lwtheme,
-  .titlebar-max:-moz-lwtheme,
-  .titlebar-restore:-moz-lwtheme,
-  .titlebar-close:-moz-lwtheme {
-    list-style-image: none !important;
-  }
-  .titlebar-button:-moz-lwtheme:hover,
-  .titlebar-button:-moz-lwtheme:hover:active {
-    background-color: unset !important;
-    color: unset !important;
+  @include NotOption("userChrome.compatiblity.os.linux_non_native_titlebar_button") {
+    .titlebar-button:-moz-lwtheme {
+      appearance: auto !important;
+    }
+    .titlebar-min:-moz-lwtheme,
+    .titlebar-max:-moz-lwtheme,
+    .titlebar-restore:-moz-lwtheme,
+    .titlebar-close:-moz-lwtheme {
+      list-style-image: none !important;
+    }
+    .titlebar-button:-moz-lwtheme:hover,
+    .titlebar-button:-moz-lwtheme:hover:active {
+      background-color: unset !important;
+      color: unset !important;
+    }
   }
 }
 
