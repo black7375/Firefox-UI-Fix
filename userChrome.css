@@ -3961,9 +3961,11 @@
 /*= Selected Tab - Color like toolbar ========================================*/
 @supports -moz-bool-pref("userChrome.tab.color_like_toolbar") {
   :root:not(:-moz-lwtheme) {
-    /* Fix for windows's system default theme. Using --toolbar-bgcolor fallback */
+    /* Fix for windows's system default theme. Using --toolbar-bgcolor, --toolbar-bgimage fallback */
     --tab-selected-bgcolor: unset !important;
     /* Original: rgb(255,255,255); */
+    --tab-selected-bgimage: unset !important;
+    /* Nightly 101 */
   }
 
   #tabbrowser-tabs:not([movingtab])
