@@ -18,10 +18,11 @@ The overall structure of this project.
 root
 |- __tests__/: Mixin spec test
 |- icons/: Icons, illustrations
+|- css/: Build result of SCSS Files
 |- docs/: Development Documents
 |- src/: Source files
-|- src/userChrome.scss: Entry of SCSS for Browser UI
-|- src/userContent.scss: Entry of SCSS for Web pages
+|- src/leptonChrome.scss: Entry of SCSS for Browser UI
+|- src/leptonContent.scss: Entry of SCSS for Web pages
 |- .gitattributes: Exclude at `Download Zip`
 |- .github: Issue/PR Template, Github Actions
 |- .prettierignore: Exclude coding style
@@ -31,8 +32,8 @@ root
 |- package.json: Build setup, package dependency
 |- LEPTON: Meta infos (branch, version)
 |- user.js: about:config settings
-|- userChrome.css: Build result of src/userChrome.scss (Don't modify directly!!)
-|- userContent.css: Build result of src/userContent.scss (Don't modify directly!!)
+|- userChrome.css: Entry of css for Browser UI (Don't modify directly!!)
+|- userContent.css: Entry of css for Web pages (Don't modify directly!!)
 |- yarn.lock: Auto generated dependency (Don't modify directly!!)
 ```
 
