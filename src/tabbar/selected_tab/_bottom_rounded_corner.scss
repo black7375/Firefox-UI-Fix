@@ -46,12 +46,12 @@
 
 tab[visuallyselected] > stack::before {
   left: var(--tab-corner-position) !important;
-  background-image: url("./icons/tab-bottom-corner-left.svg");
+  background-image: url("../icons/tab-bottom-corner-left.svg");
 }
 tab[visuallyselected] > stack::after {
   left: auto;
   right: var(--tab-corner-position);
-  background-image: url("./icons/tab-bottom-corner-right.svg");
+  background-image: url("../icons/tab-bottom-corner-right.svg");
 }
 
 @include OS($linux) {
