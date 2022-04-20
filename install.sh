@@ -774,6 +774,21 @@ install_profile() {
 }
 
 #** Update *********************************************************************
+file_stash() {
+  # use as: local gitDirty="$(file_stash GIT_PATH)"
+  gitDir=$1
+  if [[ $(git diff --stat) != '' ]]; then
+    git --git-dir "${gitDir}" stash
+  fi
+}
+file_restore() {
+  local gitDir=$1
+  local gitDirty=$2
+  if [ -n "${gitDirty}" ]; then
+    git --git-dir "${gitDir}" --quiet stash pop
+  fi
+}
+
 update_profile() {
   check_git
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
@@ -787,20 +802,12 @@ update_profile() {
 
         local LEPTONGITPATH="${Path}/chrome/.git"
         if [ "${Type}" == "Git" ]; then
-          local gitDirty=""
-
-          if [[ $(git diff --stat) != '' ]]; then
-            gitDirty="true"
-            git --git-dir "${LEPTONGITPATH}" stash
-          fi
+          local gitDirty="$(file_stash ${LEPTONGITPATH})"
 
           git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
           git --git-dir "${LEPTONGITPATH}" pull --no-edit
 
-          if [ "${gitDirty}" == "true" ]; then
-            git --git-dir "${LEPTONGITPATH}" stash pop
-          fi
-
+          file_restore "${LEPTONGITPATH}" "${gitDirty}"
         elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
           check_chrome_exist
           clone_lepton
