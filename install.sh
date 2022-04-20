@@ -789,7 +789,7 @@ install_profile() {
 file_stash() {
   # use as: local gitDirty="$(file_stash GIT_PATH)"
   gitDir=$1
-  if [[ $(git diff --stat) != '' ]]; then
+  if [[ $(git --git-dir "${gitDir}" diff --stat) != '' ]]; then
     git --git-dir "${gitDir}" stash
   fi
 }
