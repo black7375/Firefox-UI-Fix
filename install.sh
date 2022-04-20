@@ -657,21 +657,31 @@ copy_custom_files() {
 }
 
 customFileApplied=""
+apply_custom_file() {
+  local targetFile=$1
+  local customFile=$2
+  local otherCustom=$3
+
+  if [ -f "${customFile}" ]; then
+    customFileApplied="true"
+
+    # Apply without duplication
+    if ! grep -Fq "$(echo $(cat ${customFile}))" <(echo "$(echo $(cat ${targetFile}))"); then
+      cat "${customFile}" >> "${targetFile}"
+    fi
+  elif [ -n "${otherCustom}" ]; then
+    apply_custom_file "${targetFile}" "${otherCustom}"
+  fi
+}
+
 apply_custom_files() {
   for profilePath in "${firefoxProfilePaths[@]}"; do
     for customFile in "${customFiles[@]}"; do
       local targetFile="${customFile//-overrides/}"
       if [ "${customFile}" == "user-overrides.js" ]; then
-        if [ -f "${profilePath}/user-overrides.js" ]; then
-          customFileApplied="true"
-          cat "${profilePath}/user-overrides.js" >> "${profilePath}/${targetFile}"
-        elif [ -f "${profilePath}/chrome/user-overrides.js" ]; then
-          customFileApplied="true"
-          cat "${profilePath}/chrome/user-overrides.js" >> "${profilePath}/${targetFile}"
-        fi
-      elif [ -f "${profilePath}/chrome/${customFile}" ]; then
-        customFileApplied="true"
-        cat "${profilePath}/chrome/${customFile}" >> "${profilePath}/chrome/${targetFile}"
+        apply_custom_file "${profilePath}/${targetFile}" "${profilePath}/user-overrides.js" "${profilePath}/chrome/user-overrides.js"
+      else
+        apply_custom_file "${profilePath}/chrome/${targetFile}" "${profilePath}/chrome/${customFile}"
       fi
     done
   done
@@ -739,12 +749,14 @@ copy_lepton() {
 install_local() {
   copy_lepton "${currentDir}" "user.js"
   copy_custom_files
+
   apply_custom_files
 }
 
 install_release() {
   copy_lepton "chrome" "user.js"
   copy_custom_files
+
   apply_custom_files
 }
 
@@ -755,10 +767,10 @@ install_network() {
   clone_lepton
   copy_lepton
   copy_custom_files
-  apply_custom_files
 
   clean_lepton
   check_chrome_restore
+  apply_custom_files
 }
 
 install_profile() {
@@ -824,6 +836,9 @@ update_profile() {
             local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
             git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
           fi
+
+          clean_lepton
+          check_chrome_restore
         else
           lepton_error_message "Unable to find update type, ${Type} at ${section}"
         fi
@@ -832,9 +847,6 @@ update_profile() {
   done
 
   apply_custom_files
-
-  clean_lepton
-  check_chrome_restore
 }
 
 #** Main ***********************************************************************
