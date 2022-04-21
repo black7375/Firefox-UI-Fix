@@ -622,16 +622,17 @@ customFiles=(
   userChrome-overrides.css
   userContent-overrides.css
 )
+localCustomFiles=("${customFiles[@]}")
 
 customFileExist=""
 check_custom_files() {
-  paths_filter customFiles
+  paths_filter localCustomFiles
 
-  if [ "${#customFiles[@]}" -gt 0 ]; then
+  if [ "${#localCustomFiles[@]}" -gt 0 ]; then
     customFileExist="true"
     lepton_ok_message "Check custom file detected"
 
-    for customFile in "${customFiles[@]}"; do
+    for customFile in "${localCustomFiles[@]}"; do
       echo "- ${customFile}"
     done
   fi
@@ -642,7 +643,7 @@ copy_custom_files() {
     # If Release or Network mode, Local is passed (Already copied)
     if [ "${leptonInstallType}" != "Local" ]; then
       for profilePath in "${firefoxProfilePaths[@]}"; do
-        for customFile in "${customFiles[@]}"; do
+        for customFile in "${localCustomFiles[@]}"; do
           if [ "${customFile}" == "user-overrides.js" ]; then
             autocp "${customFile}" "${profilePath}/${customFile}"
           else

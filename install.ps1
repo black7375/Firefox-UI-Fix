@@ -642,16 +642,17 @@ $customFiles = @(
   "userChrome-overrides.css",
   "userContent-overrides.css"
 )
+$localCustomFiles = $customFiles.Clone()
 
 $customFileExist = $false
 function Check-CustomFiles() {
-  $global:customFiles = Filter-Path $customFiles
+  $global:localCustomFiles = Filter-Path $localCustomFiles
 
-  if ( $global:customFiles.Length -gt 0 ) {
+  if ( $global:localCustomFiles.Length -gt 0 ) {
     $global:customFileExist = $true
     Lepton-OKMessage "Check custom file detected"
 
-    foreach ( $customFile in $global:customFiles ) {
+    foreach ( $customFile in $global:localCustomFiles ) {
       Write-Host "- ${customFile}"
     }
   }
@@ -662,7 +663,7 @@ function Copy-CustomFiles() {
     # If Release or Network mode, Local is passed (Already copied)
     if ( "${leptonInstallType}" -ne "Local" ) {
       foreach ( $profilePath in $global:firefoxProfilePaths ) {
-        foreach ( $customFile in $global:customFiles ) {
+        foreach ( $customFile in $global:localCustomFiles ) {
           if ( "${customFile}" -eq "user-overrides.js" ) {
             Copy-Auto "${customFile}" "${profilePath}\${customFile}"
           }
