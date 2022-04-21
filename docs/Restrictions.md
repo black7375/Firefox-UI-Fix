@@ -121,4 +121,4 @@ Example of legacy documents that will help.
 - [UDN: ::-moz-tree-cell-text](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS/::-moz-tree-cell-text)
 
 Another case.  
-Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`] is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
+Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute) is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
