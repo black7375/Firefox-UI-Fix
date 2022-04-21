@@ -667,7 +667,7 @@ apply_custom_file() {
     customFileApplied="true"
 
     # Apply without duplication
-    if ! grep -Fq "$(echo $(cat ${customFile}))" <(echo "$(echo $(cat ${targetFile}))"); then
+    if ! grep -Fq "$(echo $(cat "${customFile}"))" <(echo "$(echo $(cat "${targetFile}"))"); then
       cat "${customFile}" >> "${targetFile}"
     fi
   elif [ -n "${otherCustom}" ]; then

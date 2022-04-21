@@ -691,9 +691,9 @@ function Apply-CustomFile() {
 
   if ( Test-Path -Path "${customFile}" -PathType leaf ) {
     $global:customFileApplied = $true
-    
+
     # Apply without duplication
-    if ( -not (Write-Output "$(Write-Output $(Get-Content -Path ${targetFile}))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path ${customFile}))" -SimpleMatch -Quiet) ) {
+    if ( -not (Write-Output "$(Write-Output $(Get-Content -Path "${targetFile}"))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path "${customFile}"))" -SimpleMatch -Quiet) ) {
       Get-Content -Path "${customFile}" | Out-File -FilePath "${targetFile}" -Append
     }
     elseif ( Test-Path -Path "${profilePath}\chrome\${customFile}" -PathType leaf ) {
