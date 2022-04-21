@@ -49,13 +49,13 @@ https://github.com/black7375/Firefox-UI-Fix#readme
 
 param(
   [Alias("u")]
-  [Switch]$updateMode,
+  [switch]$updateMode,
   [Alias("f")]
   [string]$profileDir,
   [Alias("p")]
   [string]$profileName,
   [Alias("h")]
-  [Switch]$help = $false
+  [switch]$help = $false
 )
 
 #** Helper Utils ***************************************************************
@@ -678,23 +678,38 @@ function Copy-CustomFiles() {
 }
 
 $customFileApplied = $false
+function Apply-CustomFile() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $targetFile,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $customFile,
+    [Parameter(Position=2)]
+    [string] $otherCustom
+  )
+
+  if ( Test-Path -Path "${customFile}" -PathType leaf ) {
+    $global:customFileApplied = $true
+    
+    # Apply without duplication
+    if ( -not (Write-Output "$(Write-Output $(Get-Content -Path ${targetFile}))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path ${customFile}))" -SimpleMatch -Quiet) ) {
+      Get-Content -Path "${customFile}" | Out-File -FilePath "${targetFile}" -Append
+    }
+    elseif ( Test-Path -Path "${profilePath}\chrome\${customFile}" -PathType leaf ) {
+      Apply-CustomFile "${targetFile}" "${otherCustom}"
+    }
+  }
+}
+
 function Apply-CustomFiles() {
   foreach ( $profilePath in $global:firefoxProfilePaths ) {
     foreach ( $customFile in  $global:customFiles ) {
       $local:targetFile = $customFile.Replace("-overrides", "")
       if ( "${customFile}" -eq "user-overrides.js" ) {
-        if ( Test-Path -Path "${profilePath}\user-overrides.js" -PathType leaf ) {
-          $global:customFileApplied = $true
-          Get-Content -Path "${profilePath}\user-overrides.js" | Out-File -FilePath "${profilePath}\${targetFile}" -Append
-        }
-        elseif ( Test-Path -Path "${profilePath}\chrome\user-overrides.js" -PathType leaf ) {
-          $global:customFileApplied = $true
-          Get-Content -Path "${profilePath}\chrome\user-overrides.js" | Out-File -FilePath "${profilePath}\${targetFile}" -Append
-        }
+        Apply-CustomFile "${profilePath}\${targetFile}" "${profilePath}\user-overrides.js" "${profilePath}\chrome\user-overrides.js"
       }
-      elseif ( Test-Path -Path "${profilePath}\chrome\${customFile}" -PathType leaf ) {
-        $global:customFileApplied = $true
-        Get-Content -Path "${profilePath}\chrome\${customFile}" | Out-File -FilePath "${profilePath}\chrome\${targetFile}" -Append
+      else {
+        Apply-CustomFile "${profilePath}\chrome\${targetFile}" "${profilePath}\chrome\${customFile}"
       }
     }
   }
@@ -763,12 +778,14 @@ function Copy-Lepton() {
 function Install-Local() {
   Copy-Lepton "${currentDir}" "user.js"
   Copy-CustomFiles
+
   Apply-CustomFiles
 }
 
 function Install-Release() {
   Copy-Lepton "chrome" "user.js"
   Copy-CustomFiles
+
   Apply-CustomFiles
 }
 
@@ -779,10 +796,11 @@ function Install-Network() {
   Clone-Lepton
   Copy-Lepton
   Copy-CustomFiles
-  Apply-CustomFiles
 
   Clean-Lepton
   Check-ChromeRestore
+
+  Apply-CustomFiles
 }
 
 function Install-Profile() {
@@ -798,6 +816,31 @@ function Install-Profile() {
 }
 
 #** Update *********************************************************************
+function Stash-File() {
+  Param (
+    [Parameter(Position=0)]
+    [string] $gitDir = ".git"
+  )
+
+  if ( "$(git --git-dir "${gitDir}" diff --stat)" -ne '' ) {
+    git --git-dir "${gitDir}" checkout stash
+    return $true
+  }
+  return $false
+}
+function Restore-File() {
+  Param (
+    [Parameter(Position=0)]
+    [string] $gitDir = ".git",
+    [Parameter(Position=1)]
+    [switch] $gitDirty = $false
+  )
+
+  if ( "${gitDirty}" -eq $true ) {
+    git --git-dir "${gitDir}" checkout stash pop
+  }
+}
+
 function Update-Profile() {
   Check-Git
   foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
@@ -812,19 +855,12 @@ function Update-Profile() {
 
         $local:LEPTONGITPATH="${Path}\chrome\.git"
         if ( "${Type}" -eq "Git" ) {
-          $local:gitDirty = $false
-
-          if ( "$(git diff --stat)" -ne '' ) {
-            $local:gitDirty = $true
-            git --git-dir "${LEPTONGITPATH}" checkout stash
-          }
+          $local:gitDirty = $(Stash-File "${LEPTONGITPATH}")
 
           git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
           git --git-dir "${LEPTONGITPATH}" pull --no-edit
 
-          if ( "${gitDirty}" -eq $true ) {
-            git --git-dir "${LEPTONGITPATH}" checkout stash pop
-          }
+          Restore-File "${LEPTONGITPATH}" $gitDirty
         }
         elseif ( "${Type}" -eq "Local" -or "${Type}" -eq "Release" ) {
           Check-ChromeExist
@@ -842,6 +878,9 @@ function Update-Profile() {
             $local:Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
             git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
           }
+
+          Clean-Lepton
+          Check-ChromeRestore
         }
         else {
           Lepton-ErrorMessage "Unable to find update type, ${Type} at ${section}"
@@ -851,9 +890,6 @@ function Update-Profile() {
   }
 
   Apply-CustomFiles
-
-  Clean-Lepton
-  Check-ChromeRestore
 }
 
 #** Main ***********************************************************************
