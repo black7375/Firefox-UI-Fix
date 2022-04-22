@@ -712,7 +712,7 @@ apply_custom_file() {
       if [[ "${targetPath}"  == *"user.js" ]]; then
         \cp -f "${profilePath}/chrome/user.js" "${targetPath}"
       else
-        git --git-dir "${gitDir}" checkout HEAD -- "${targetPath}"
+        git --git-dir "${gitDir}" --work-tree "${profilePath}/chrome" checkout HEAD -- "${targetPath}"
       fi
     fi
     if [ "${customAppend}" == "true" ]; then
@@ -842,17 +842,16 @@ install_profile() {
 
 #** Update *********************************************************************
 file_stash() {
-  # use as: local gitDirty="$(file_stash GIT_PATH)"
-  gitDir=$1
-  if [[ $(git --git-dir "${gitDir}" diff --stat) != '' ]]; then
-    git --git-dir "${gitDir}" stash
+  profilePath=$1
+  if [[ $(git --git-dir "${profilePath}/.git" --work-tree "${profilePath}/chrome" diff --stat) != '' ]]; then
+    git --git-dir "${profilePath}/chrome/.git" --work-tree "${profilePath}/chrome" stash
   fi
 }
 file_restore() {
-  local gitDir=$1
+  local profilePath=$1
   local gitDirty=$2
   if [ -n "${gitDirty}" ]; then
-    git --git-dir "${gitDir}" stash pop --quiet
+    git --git-dir "${profilePath}/chrome/.git" --work-tree "${profilePath}/chrome" stash pop --quiet
   fi
 }
 
@@ -871,10 +870,10 @@ update_profile() {
         if [ "${Type}" == "Git" ]; then
           local gitDirty="$(file_stash ${LEPTONGITPATH})"
 
-          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
-          git --git-dir "${LEPTONGITPATH}" pull --no-edit
+          git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" checkout "${Branch}"
+          git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" pull --no-edit
 
-          file_restore "${LEPTONGITPATH}" "${gitDirty}"
+          file_restore "${Path}" "${gitDirty}"
         elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
           check_chrome_exist
           clone_lepton
@@ -885,11 +884,11 @@ update_profile() {
           if [ -z "${Branch}" ]; then
             Branch="${leptonBranch}"
           fi
-          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+          git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" checkout "${Branch}"
 
           if [ "${Type}" == "Release" ]; then
             local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
-            git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
+            git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" checkout "tags/${Ver}"
           fi
 
           clean_lepton
