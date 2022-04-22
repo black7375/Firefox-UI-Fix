@@ -99,8 +99,8 @@ function Install-Choco() {
 }
 
 function Check-Git() {
-  if( -Not (Get-Command git) ) {
-    if ( -Not (Get-Command choco)) {
+  if ( -Not (Get-Command git -errorAction SilentlyContinue) ) {
+    if ( -Not (Get-Command choco -errorAction SilentlyContinue) ) {
       Install-Choco
     }
     choco install git -y
