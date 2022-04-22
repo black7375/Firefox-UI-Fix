@@ -712,7 +712,7 @@ apply_custom_file() {
       if [[ "${targetPath}"  == *"user.js" ]]; then
         \cp -f "${profilePath}/chrome/user.js" "${targetPath}"
       else
-        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetPath}"
+        git --git-dir "${gitDir}" checkout HEAD -- "${targetPath}"
       fi
     fi
     if [ "${customAppend}" == "true" ]; then
@@ -852,7 +852,7 @@ file_restore() {
   local gitDir=$1
   local gitDirty=$2
   if [ -n "${gitDirty}" ]; then
-    git --git-dir "${gitDir}" --quiet stash pop
+    git --git-dir "${gitDir}" stash pop --quiet
   fi
 }
 

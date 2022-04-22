@@ -740,7 +740,7 @@ function Apply-CustomFile() {
         Copy-Item -Path "${customFile}" -Destination "${targetPath}" -Force
       }
       else {
-        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetPath}"
+        git --git-dir "${gitDir}" checkout HEAD -- "${targetPath}"
       }
     }
     if ( "${customAppend}" -eq $true ) {
@@ -894,7 +894,7 @@ function Restore-File() {
   )
 
   if ( "${gitDirty}" -eq $true ) {
-    git --git-dir "${gitDir}" checkout stash pop
+    git --git-dir "${gitDir}" checkout stash pop --quiet
   }
 }
 
