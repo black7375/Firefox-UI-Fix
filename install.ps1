@@ -92,10 +92,14 @@ function Verify-PowerShellVersion {
 #== Required Tools =============================================================
 function Install-Choco() {
   # https://chocolatey.org/install
+  # https://docs.chocolatey.org/en-us/choco/setup#non-administrative-install
+  $InstallDir='C:\ProgramData\chocoportable'
+  $env:ChocolateyInstall="$InstallDir"
+
   Set-ExecutionPolicy Bypass -Scope Process -Force
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-  $env:Path += ";C:\ProgramData\chocolatey"
+  $env:Path += ";C:\ProgramData\chocoportable'"
 }
 
 function Check-Git() {
@@ -103,7 +107,7 @@ function Check-Git() {
     if ( -Not (Get-Command choco -errorAction SilentlyContinue) ) {
       Install-Choco
     }
-    choco install git -y
+    choco install git.commandline -y
     $env:Path += ";C:\Program Files\Git\bin"
   }
 
