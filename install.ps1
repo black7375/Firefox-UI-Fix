@@ -704,35 +704,26 @@ function Apply-CustomFile() {
       $local:menuReset="Reset- Reset to pure lepton theme without custom"
 
       Write-Host "Select custom method"
-      while ( $true ) {
-        $local:selected = $false
+      while ( "${customMethod}" -eq "" ) {
         $local:applyMethod = Menu @("${menuAppend}", "${menuOverwrite}", "${menuNone}", "${menuReset}")
         switch ( $applyMethod ) {
           "${menuAppend}" {
             $global:customMethod = "Append"
             $global:customAppend = $true
-            $selected = $true
           }
           "${menuOverwrite}" {
             $global:customMethod = "Overwrite"
             $global:customReset  = $true
             $global:customAppend = $true
-            $selected = $true
           }
           "${menuNone}" {
             $global:customMethod = "None"
-            $selected = $true
           }
           "${menuReset}" {
             $global:customMethod = "Reset"
             $global:customReset  = $true
-            $selected = $true
           }
           default { Write-Host "Invalid option, reselect please." }
-        }
-
-        if ( $selected -eq $true ) {
-          break
         }
       }
 
