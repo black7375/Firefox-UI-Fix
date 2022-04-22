@@ -718,7 +718,7 @@ $customFileApplied = $false
 function Apply-CustomFile() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
-    [string] $gitDir,
+    [string] $profilePath,
     [Parameter(Mandatory=$true, Position=1)]
     [string] $targetFile,
     [Parameter(Mandatory=$true, Position=2)]
@@ -727,6 +727,7 @@ function Apply-CustomFile() {
     [string] $otherCustom = ""
   )
 
+  $local:gitDir = "${profilePath}\chrome\.git"
   if ( Test-Path -Path "${customFile}" -PathType leaf ) {
     $global:customFileApplied = $true
 
@@ -735,7 +736,12 @@ function Apply-CustomFile() {
     }
 
     if ( "${customReset}" -eq $true ) {
-      git --git-dir "${gitDir}" reset --hard HEAD
+      if ( "${targetFile}" -like "*user.js" ) {
+        Copy-Item -Path "${customFile}" -Destination "${targetFile}" -Force
+      }
+      else {
+        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetFile}"
+      }
     }
     if ( "${customAppend}" -eq $true ) {
       # Apply without duplication
@@ -745,23 +751,22 @@ function Apply-CustomFile() {
     }
   }
   elseif ( "${otherCustom}" -ne "" ) {
-    Apply-CustomFile "${gitDir}" "${targetFile}" "${otherCustom}"
+    Apply-CustomFile "${profilePath}" "${targetFile}" "${otherCustom}"
   }
 }
 
 function Apply-CustomFiles() {
   foreach ( $profilePath in $global:firefoxProfilePaths ) {
-    $local:LEPTONGITPATH="${profilePath}\chrome\.git"
     foreach ( $customFile in  $global:customFiles ) {
       $local:targetFile = $customFile.Replace("-overrides", "")
       if ( "${customFile}" -eq "user-overrides.js" ) {
         $local:targetPath = "${profilePath}\${targetFile}"
         $local:customPath = "${profilePath}\user-overrides.js"
         $local:otherCustomPath = "${profilePath}\chrome\user-overrides.js"
-        Apply-CustomFile "${LEPTONGITPATH}" "${targetPath}" "${customPath}" "${otherCustomPath}"
+        Apply-CustomFile "${profilePath}" "${targetPath}" "${customPath}" "${otherCustomPath}"
       }
       else {
-        Apply-CustomFile "${LEPTONGITPATH}" "${profilePath}\chrome\${targetFile}" "${profilePath}\chrome\${customFile}"
+        Apply-CustomFile "${profilePath}" "${profilePath}\chrome\${targetFile}" "${profilePath}\chrome\${customFile}"
       }
     }
   }

@@ -695,11 +695,12 @@ set_custom_method() {
 
 customFileApplied=""
 apply_custom_file() {
-  local gitDir=$1
+  local profilePath=$1
   local targetFile=$2
   local customFile=$3
   local otherCustom=$4
 
+  local gitDir="${profilePath}/chrome/.git"
   if [ -f "${customFile}" ]; then
     customFileApplied="true"
 
@@ -708,7 +709,11 @@ apply_custom_file() {
     fi
 
     if [ "${customReset}" == "true" ]; then
-      git --git-dir "${gitDir}" reset --hard HEAD
+      if [[ "${targetFile}"  == *"user.js" ]]; then
+        \cp -f "${profilePath}/chrome/user.js" "${targetFile}"
+      else
+        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetFile}"
+      fi
     fi
     if [ "${customAppend}" == "true" ]; then
       # Apply without duplication
@@ -717,22 +722,21 @@ apply_custom_file() {
       fi
     fi
   elif [ -n "${otherCustom}" ]; then
-    apply_custom_file "${gitDir}" "${targetFile}" "${otherCustom}"
+    apply_custom_file "${profilePath}" "${targetFile}" "${otherCustom}"
   fi
 }
 
 apply_custom_files() {
   for profilePath in "${firefoxProfilePaths[@]}"; do
-    local LEPTONGITPATH="${profilePath}/chrome/.git"
     for customFile in "${customFiles[@]}"; do
       local targetFile="${customFile//-overrides/}"
       if [ "${customFile}" == "user-overrides.js" ]; then
         local targetPath="${profilePath}/${targetFile}"
         local customPath="${profilePath}/user-overrides.js"
         local otherCustomPath="${profilePath}/chrome/user-overrides.js"
-        apply_custom_file "${LEPTONGITPATH}" "${targetPath}" "${customPath}" "${otherCustomPath}"
+        apply_custom_file "${profilePath}" "${targetPath}" "${customPath}" "${otherCustomPath}"
       else
-        apply_custom_file "${LEPTONGITPATH}" "${profilePath}/chrome/${targetFile}" "${profilePath}/chrome/${customFile}"
+        apply_custom_file "${profilePath}" "${profilePath}/chrome/${targetFile}" "${profilePath}/chrome/${customFile}"
       fi
     done
   done
