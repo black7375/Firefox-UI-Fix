@@ -686,7 +686,7 @@ function Apply-CustomFile() {
     [Parameter(Mandatory=$true, Position=1)]
     [string] $customFile,
     [Parameter(Position=2)]
-    [string] $otherCustom
+    [string] $otherCustom = ""
   )
 
   if ( Test-Path -Path "${customFile}" -PathType leaf ) {
@@ -696,9 +696,9 @@ function Apply-CustomFile() {
     if ( -not (Write-Output "$(Write-Output $(Get-Content -Path "${targetFile}"))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path "${customFile}"))" -SimpleMatch -Quiet) ) {
       Get-Content -Path "${customFile}" | Out-File -FilePath "${targetFile}" -Append
     }
-    elseif ( Test-Path -Path "${profilePath}\chrome\${customFile}" -PathType leaf ) {
-      Apply-CustomFile "${targetFile}" "${otherCustom}"
-    }
+  }
+  elseif ( "${otherCustom}" -ne "" ) {
+    Apply-CustomFile "${targetFile}" "${otherCustom}"
   }
 }
 
