@@ -727,7 +727,8 @@ function Apply-CustomFile() {
     [string] $otherCustomPath = ""
   )
 
-  $local:gitDir = "${profilePath}\chrome\.git"
+  $local:leptonDir = "${profilePath}\chrome"
+  $local:gitDir    = "${leptonDir}\.git"
   if ( Test-Path -Path "${customPath}" -PathType leaf ) {
     $global:customFileApplied = $true
 
@@ -737,10 +738,10 @@ function Apply-CustomFile() {
 
     if ( "${customReset}" -eq $true ) {
       if ( "${targetPath}" -like "*user.js" ) {
-        Copy-Item -Path "${customFile}" -Destination "${targetPath}" -Force
+        Copy-Item -Path "${leptonDir}\user.js" -Destination "${targetPath}" -Force
       }
       else {
-        git --git-dir "${gitDir}" checkout HEAD -- "${targetPath}"
+        git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout HEAD -- "${targetPath}"
       }
     }
     if ( "${customAppend}" -eq $true ) {
@@ -875,26 +876,30 @@ function Install-Profile() {
 #** Update *********************************************************************
 function Stash-File() {
   Param (
-    [Parameter(Position=0)]
-    [string] $gitDir = ".git"
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $leptonDir,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $gitDir
   )
 
-  if ( "$(git --git-dir "${gitDir}" diff --stat)" -ne '' ) {
-    git --git-dir "${gitDir}" checkout stash
+  if ( "$(git --git-dir "${gitDir}" --work-tree "${leptonDir}" diff --stat)" -ne '' ) {
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout stash
     return $true
   }
   return $false
 }
 function Restore-File() {
   Param (
-    [Parameter(Position=0)]
-    [string] $gitDir = ".git",
-    [Parameter(Position=1)]
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $leptonDir,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $gitDir,
+    [Parameter(Position=2)]
     [switch] $gitDirty = $false
   )
 
   if ( "${gitDirty}" -eq $true ) {
-    git --git-dir "${gitDir}" checkout stash pop --quiet
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout stash pop --quiet
   }
 }
 
@@ -910,14 +915,15 @@ function Update-Profile() {
         $local:Branch = $LEPTONINFO["${section}"]["Branch"]
         $local:Path   = $LEPTONINFO["${section}"]["Path"]
 
-        $local:LEPTONGITPATH="${Path}\chrome\.git"
+        $local:leptonDir = "${Path}\chrome"
+        $local:gitDir    = "${leptonDir}\.git"
         if ( "${Type}" -eq "Git" ) {
-          $local:gitDirty = $(Stash-File "${LEPTONGITPATH}")
+          $local:gitDirty = $(Stash-File "${leptonDir}" "${gitDir}")
 
-          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
-          git --git-dir "${LEPTONGITPATH}" pull --no-edit
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" pull --no-edit
 
-          Restore-File "${LEPTONGITPATH}" $gitDirty
+          Restore-File "${leptonDir}" "${gitDir}" $gitDirty
         }
         elseif ( "${Type}" -eq "Local" -or "${Type}" -eq "Release" ) {
           Check-ChromeExist
@@ -929,11 +935,11 @@ function Update-Profile() {
           if ( "${Branch}" -eq $null ) {
             $Branch = "${leptonBranch}"
           }
-          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
 
           if ( "${Type}" -eq "Release" ) {
-            $local:Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
-            git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
+            $local:Ver=$(git --git-dir "${gitDir}" describe --tags --abbrev=0)
+            git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "tags/${Ver}"
           }
 
           Clean-Lepton

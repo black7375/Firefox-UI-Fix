@@ -843,16 +843,18 @@ install_profile() {
 
 #** Update *********************************************************************
 file_stash() {
-  local profilePath=$1
-  if [[ $(git --git-dir "${profilePath}/.git" --work-tree "${profilePath}/chrome" diff --stat) != '' ]]; then
-    git --git-dir "${profilePath}/chrome/.git" --work-tree "${profilePath}/chrome" stash
+  local leptonDir=$1
+  local gitDir=$2
+  if [[ $(git --git-dir "${gitDir}" --work-tree "${leptonDir}" diff --stat) != '' ]]; then
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash
   fi
 }
 file_restore() {
-  local profilePath=$1
-  local gitDirty=$2
+  local leptonDir=$1
+  local gitDir=$2
+  local gitDirty=$3
   if [ -n "${gitDirty}" ]; then
-    git --git-dir "${profilePath}/chrome/.git" --work-tree "${profilePath}/chrome" stash pop --quiet
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash pop --quiet
   fi
 }
 
@@ -870,12 +872,12 @@ update_profile() {
         local leptonDir="${Path}/chrome"
         local gitDir="${leptonDir}/.git"
         if [ "${Type}" == "Git" ]; then
-          local gitDirty="$(file_stash ${gitDir})"
+          local gitDirty=$(file_stash "${leptonDir}" "${gitDir}")
 
           git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
           git --git-dir "${gitDir}" --work-tree "${leptonDir}" pull --no-edit
 
-          file_restore "${Path}" "${gitDirty}"
+          file_restore "${leptonDir}" "${gitDir}" "${gitDirty}"
         elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
           check_chrome_exist
           clone_lepton
