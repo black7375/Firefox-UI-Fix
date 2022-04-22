@@ -658,31 +658,77 @@ copy_custom_files() {
 }
 
 customFileApplied=""
+customMethod=""
+customReset=""
+customAppend=""
 apply_custom_file() {
-  local targetFile=$1
-  local customFile=$2
-  local otherCustom=$3
+  local gitDir=$1
+  local targetFile=$2
+  local customFile=$3
+  local otherCustom=$4
 
   if [ -f "${customFile}" ]; then
     customFileApplied="true"
 
-    # Apply without duplication
-    if ! grep -Fq "$(echo $(cat "${customFile}"))" <(echo "$(echo $(cat "${targetFile}"))"); then
-      cat "${customFile}" >> "${targetFile}"
+    if [ -z "${customMethod}" ]; then
+      local menuAppend="Append - Maintain changes in existing files and apply custom"
+      local menuOverwrite="Overwrite - After initializing the change, apply only custom"
+      local menuNone="None - Maintain changes in existing files"
+      local menuReset="Reset- Reset to pure lepton theme without custom"
+
+      echo "Select custom method"
+      select applyMethod in "${menuAppend}" "${menuOverwrite}" "${menuNone}" "${menuReset}"; do
+        case "${applyMethod}" in
+          "${menuAppend}")
+            customMethod="Append"
+            customAppend="true"
+            break;;
+          "${menuOverwrite}")
+            customMethod="Overwrite"
+            customReset="true"
+            customAppend="true"
+            break;;
+          "${menuNone}")
+            customMethod="None"
+            break;;
+          "${menuReset}")
+            customMethod="Reset"
+            customReset="true"
+            break;;
+          *)
+            echo "Invalid option, reselect please.";;
+         esac
+      done
+
+      lepton_ok_message "Selected ${customMethod}"
+    fi
+
+    if [ "${customReset}" == "true" ]; then
+      git --git-dir "${gitDir}" reset --hard HEAD
+    fi
+    if [ "${customAppend}" == "true" ]; then
+      # Apply without duplication
+      if ! grep -Fq "$(echo $(cat "${customFile}"))" <(echo "$(echo $(cat "${targetFile}"))"); then
+        cat "${customFile}" >> "${targetFile}"
+      fi
     fi
   elif [ -n "${otherCustom}" ]; then
-    apply_custom_file "${targetFile}" "${otherCustom}"
+    apply_custom_file "${gitDir}" "${targetFile}" "${otherCustom}"
   fi
 }
 
 apply_custom_files() {
   for profilePath in "${firefoxProfilePaths[@]}"; do
+    local LEPTONGITPATH="${profilePath}/chrome/.git"
     for customFile in "${customFiles[@]}"; do
       local targetFile="${customFile//-overrides/}"
       if [ "${customFile}" == "user-overrides.js" ]; then
-        apply_custom_file "${profilePath}/${targetFile}" "${profilePath}/user-overrides.js" "${profilePath}/chrome/user-overrides.js"
+        local targetPath="${profilePath}/${targetFile}"
+        local customPath="${profilePath}/user-overrides.js"
+        local otherCustomPath="${profilePath}/chrome/user-overrides.js"
+        apply_custom_file "${LEPTONGITPATH}" "${targetPath}" "${customPath}" "${otherCustomPath}"
       else
-        apply_custom_file "${profilePath}/chrome/${targetFile}" "${profilePath}/chrome/${customFile}"
+        apply_custom_file "${LEPTONGITPATH}" "${profilePath}/chrome/${targetFile}" "${profilePath}/chrome/${customFile}"
       fi
     done
   done

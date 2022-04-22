@@ -679,38 +679,94 @@ function Copy-CustomFiles() {
 }
 
 $customFileApplied = $false
+$customMethod = ""
+$customReset  = $false
+$customAppend = $false
 function Apply-CustomFile() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
-    [string] $targetFile,
+    [string] $gitDir,
     [Parameter(Mandatory=$true, Position=1)]
+    [string] $targetFile,
+    [Parameter(Mandatory=$true, Position=2)]
     [string] $customFile,
-    [Parameter(Position=2)]
+    [Parameter(Position=3)]
     [string] $otherCustom = ""
   )
 
   if ( Test-Path -Path "${customFile}" -PathType leaf ) {
     $global:customFileApplied = $true
 
-    # Apply without duplication
-    if ( -not (Write-Output "$(Write-Output $(Get-Content -Path "${targetFile}"))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path "${customFile}"))" -SimpleMatch -Quiet) ) {
-      Get-Content -Path "${customFile}" | Out-File -FilePath "${targetFile}" -Append
+    if ( "${customMethod}" -eq "" ) {
+      $local:menuAppend="Append - Maintain changes in existing files and apply custom"
+      $local:menuOverwrite="Overwrite - After initializing the change, apply only custom"
+      $local:menuNone="None - Maintain changes in existing files"
+      $local:menuReset="Reset- Reset to pure lepton theme without custom"
+
+      Write-Host "Select custom method"
+      while ( $true ) {
+        $local:selected = $false
+        $local:applyMethod = Menu @("${menuAppend}", "${menuOverwrite}", "${menuNone}", "${menuReset}")
+        switch ( $applyMethod ) {
+          "${menuAppend}" {
+            $global:customMethod = "Append"
+            $global:customAppend = $true
+            $selected = $true
+          }
+          "${menuOverwrite}" {
+            $global:customMethod = "Overwrite"
+            $global:customReset  = $true
+            $global:customAppend = $true
+            $selected = $true
+          }
+          "${menuNone}" {
+            $global:customMethod = "None"
+            $selected = $true
+          }
+          "${menuReset}" {
+            $global:customMethod = "Reset"
+            $global:customReset  = $true
+            $selected = $true
+          }
+          default { Write-Host "Invalid option, reselect please." }
+        }
+
+        if ( $selected -eq $true ) {
+          break
+        }
+      }
+
+      Lepton-OKMessage "Selected ${customMethod}"
+    }
+
+    if ( "${customReset}" -eq $true ) {
+      git --git-dir "${gitDir}" reset --hard HEAD
+    }
+    if ( "${customAppend}" -eq $true ) {
+      # Apply without duplication
+      if ( -not (Write-Output "$(Write-Output $(Get-Content -Path "${targetFile}"))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path "${customFile}"))" -SimpleMatch -Quiet) ) {
+        Get-Content -Path "${customFile}" | Out-File -FilePath "${targetFile}" -Append
+      }
     }
   }
   elseif ( "${otherCustom}" -ne "" ) {
-    Apply-CustomFile "${targetFile}" "${otherCustom}"
+    Apply-CustomFile "${gitDir}" "${targetFile}" "${otherCustom}"
   }
 }
 
 function Apply-CustomFiles() {
   foreach ( $profilePath in $global:firefoxProfilePaths ) {
+    $local:LEPTONGITPATH="${profilePath}\chrome\.git"
     foreach ( $customFile in  $global:customFiles ) {
       $local:targetFile = $customFile.Replace("-overrides", "")
       if ( "${customFile}" -eq "user-overrides.js" ) {
-        Apply-CustomFile "${profilePath}\${targetFile}" "${profilePath}\user-overrides.js" "${profilePath}\chrome\user-overrides.js"
+        $local:targetPath = "${profilePath}\${targetFile}"
+        $local:customPath = "${profilePath}\user-overrides.js"
+        $local:otherCustomPath = "${profilePath}\chrome\user-overrides.js"
+        Apply-CustomFile "${LEPTONGITPATH}" "${targetPath}" "${customPath}" "${otherCustomPath}"
       }
       else {
-        Apply-CustomFile "${profilePath}\chrome\${targetFile}" "${profilePath}\chrome\${customFile}"
+        Apply-CustomFile "${LEPTONGITPATH}" "${profilePath}\chrome\${targetFile}" "${profilePath}\chrome\${customFile}"
       }
     }
   }
