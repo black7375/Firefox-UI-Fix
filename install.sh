@@ -696,33 +696,33 @@ set_custom_method() {
 customFileApplied=""
 apply_custom_file() {
   local profilePath=$1
-  local targetFile=$2
-  local customFile=$3
-  local otherCustom=$4
+  local targetPath=$2
+  local customPath=$3
+  local otherCustomPath=$4
 
   local gitDir="${profilePath}/chrome/.git"
-  if [ -f "${customFile}" ]; then
-    customFileApplied="true"
+  if [ -f "${customPath}" ]; then
+    customPathApplied="true"
 
     if [ -z "${customMethod}" ]; then
       set_custom_method
     fi
 
     if [ "${customReset}" == "true" ]; then
-      if [[ "${targetFile}"  == *"user.js" ]]; then
-        \cp -f "${profilePath}/chrome/user.js" "${targetFile}"
+      if [[ "${targetPath}"  == *"user.js" ]]; then
+        \cp -f "${profilePath}/chrome/user.js" "${targetPath}"
       else
-        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetFile}"
+        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetPath}"
       fi
     fi
     if [ "${customAppend}" == "true" ]; then
       # Apply without duplication
-      if ! grep -Fq "$(echo $(cat "${customFile}"))" <(echo "$(echo $(cat "${targetFile}"))"); then
-        cat "${customFile}" >> "${targetFile}"
+      if ! grep -Fq "$(echo $(cat "${customPath}"))" <(echo "$(echo $(cat "${targetPath}"))"); then
+        cat "${customPath}" >> "${targetPath}"
       fi
     fi
-  elif [ -n "${otherCustom}" ]; then
-    apply_custom_file "${profilePath}" "${targetFile}" "${otherCustom}"
+  elif [ -n "${otherCustomPath}" ]; then
+    apply_custom_file "${profilePath}" "${targetPath}" "${otherCustomPath}"
   fi
 }
 

@@ -720,15 +720,15 @@ function Apply-CustomFile() {
     [Parameter(Mandatory=$true, Position=0)]
     [string] $profilePath,
     [Parameter(Mandatory=$true, Position=1)]
-    [string] $targetFile,
+    [string] $targetPath,
     [Parameter(Mandatory=$true, Position=2)]
-    [string] $customFile,
+    [string] $customPath,
     [Parameter(Position=3)]
-    [string] $otherCustom = ""
+    [string] $otherCustomPath = ""
   )
 
   $local:gitDir = "${profilePath}\chrome\.git"
-  if ( Test-Path -Path "${customFile}" -PathType leaf ) {
+  if ( Test-Path -Path "${customPath}" -PathType leaf ) {
     $global:customFileApplied = $true
 
     if ( "${customMethod}" -eq "" ) {
@@ -736,22 +736,22 @@ function Apply-CustomFile() {
     }
 
     if ( "${customReset}" -eq $true ) {
-      if ( "${targetFile}" -like "*user.js" ) {
-        Copy-Item -Path "${customFile}" -Destination "${targetFile}" -Force
+      if ( "${targetPath}" -like "*user.js" ) {
+        Copy-Item -Path "${customFile}" -Destination "${targetPath}" -Force
       }
       else {
-        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetFile}"
+        git --git-dir "${gitDir}" --quiet checkout HEAD -- "${targetPath}"
       }
     }
     if ( "${customAppend}" -eq $true ) {
       # Apply without duplication
-      if ( -not (Write-Output "$(Write-Output $(Get-Content -Path "${targetFile}"))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path "${customFile}"))" -SimpleMatch -Quiet) ) {
-        Get-Content -Path "${customFile}" | Out-File -FilePath "${targetFile}" -Append
+      if ( -not (Write-Output "$(Write-Output $(Get-Content -Path "${targetPath}"))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path "${customPath}"))" -SimpleMatch -Quiet) ) {
+        Get-Content -Path "${customPath}" | Out-File -FilePath "${targetPath}" -Append
       }
     }
   }
-  elseif ( "${otherCustom}" -ne "" ) {
-    Apply-CustomFile "${profilePath}" "${targetFile}" "${otherCustom}"
+  elseif ( "${otherCustomPath}" -ne "" ) {
+    Apply-CustomFile "${profilePath}" "${targetPath}" "${otherCustomPath}"
   }
 }
 
