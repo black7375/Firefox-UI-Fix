@@ -657,10 +657,43 @@ copy_custom_files() {
   fi
 }
 
-customFileApplied=""
 customMethod=""
 customReset=""
 customAppend=""
+set_custom_method() {
+  local menuAppend="Append - Maintain changes in existing files and apply custom"
+  local menuOverwrite="Overwrite - After initializing the change, apply only custom"
+  local menuNone="None - Maintain changes in existing files"
+  local menuReset="Reset- Reset to pure lepton theme without custom"
+
+  echo "Select custom method"
+  select applyMethod in "${menuAppend}" "${menuOverwrite}" "${menuNone}" "${menuReset}"; do
+    case "${applyMethod}" in
+      "${menuAppend}")
+        customMethod="Append"
+        customAppend="true"
+        break;;
+      "${menuOverwrite}")
+        customMethod="Overwrite"
+        customReset="true"
+        customAppend="true"
+        break;;
+      "${menuNone}")
+        customMethod="None"
+        break;;
+      "${menuReset}")
+        customMethod="Reset"
+        customReset="true"
+        break;;
+      *)
+        echo "Invalid option, reselect please.";;
+     esac
+  done
+
+  lepton_ok_message "Selected ${customMethod}"
+}
+
+customFileApplied=""
 apply_custom_file() {
   local gitDir=$1
   local targetFile=$2
@@ -671,36 +704,7 @@ apply_custom_file() {
     customFileApplied="true"
 
     if [ -z "${customMethod}" ]; then
-      local menuAppend="Append - Maintain changes in existing files and apply custom"
-      local menuOverwrite="Overwrite - After initializing the change, apply only custom"
-      local menuNone="None - Maintain changes in existing files"
-      local menuReset="Reset- Reset to pure lepton theme without custom"
-
-      echo "Select custom method"
-      select applyMethod in "${menuAppend}" "${menuOverwrite}" "${menuNone}" "${menuReset}"; do
-        case "${applyMethod}" in
-          "${menuAppend}")
-            customMethod="Append"
-            customAppend="true"
-            break;;
-          "${menuOverwrite}")
-            customMethod="Overwrite"
-            customReset="true"
-            customAppend="true"
-            break;;
-          "${menuNone}")
-            customMethod="None"
-            break;;
-          "${menuReset}")
-            customMethod="Reset"
-            customReset="true"
-            break;;
-          *)
-            echo "Invalid option, reselect please.";;
-         esac
-      done
-
-      lepton_ok_message "Selected ${customMethod}"
+      set_custom_method
     fi
 
     if [ "${customReset}" == "true" ]; then

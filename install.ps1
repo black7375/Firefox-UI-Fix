@@ -678,10 +678,43 @@ function Copy-CustomFiles() {
   }
 }
 
-$customFileApplied = $false
 $customMethod = ""
 $customReset  = $false
 $customAppend = $false
+function Set-CustomMethod() {
+  $local:menuAppend="Append - Maintain changes in existing files and apply custom"
+  $local:menuOverwrite="Overwrite - After initializing the change, apply only custom"
+  $local:menuNone="None - Maintain changes in existing files"
+  $local:menuReset="Reset- Reset to pure lepton theme without custom"
+
+  Write-Host "Select custom method"
+  while ( "${customMethod}" -eq "" ) {
+    $local:applyMethod = Menu @("${menuAppend}", "${menuOverwrite}", "${menuNone}", "${menuReset}")
+    switch ( $applyMethod ) {
+      "${menuAppend}" {
+        $global:customMethod = "Append"
+        $global:customAppend = $true
+      }
+      "${menuOverwrite}" {
+        $global:customMethod = "Overwrite"
+        $global:customReset  = $true
+        $global:customAppend = $true
+      }
+      "${menuNone}" {
+        $global:customMethod = "None"
+      }
+      "${menuReset}" {
+        $global:customMethod = "Reset"
+        $global:customReset  = $true
+      }
+      default { Write-Host "Invalid option, reselect please." }
+    }
+  }
+
+  Lepton-OKMessage "Selected ${customMethod}"
+}
+
+$customFileApplied = $false
 function Apply-CustomFile() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
@@ -698,36 +731,7 @@ function Apply-CustomFile() {
     $global:customFileApplied = $true
 
     if ( "${customMethod}" -eq "" ) {
-      $local:menuAppend="Append - Maintain changes in existing files and apply custom"
-      $local:menuOverwrite="Overwrite - After initializing the change, apply only custom"
-      $local:menuNone="None - Maintain changes in existing files"
-      $local:menuReset="Reset- Reset to pure lepton theme without custom"
-
-      Write-Host "Select custom method"
-      while ( "${customMethod}" -eq "" ) {
-        $local:applyMethod = Menu @("${menuAppend}", "${menuOverwrite}", "${menuNone}", "${menuReset}")
-        switch ( $applyMethod ) {
-          "${menuAppend}" {
-            $global:customMethod = "Append"
-            $global:customAppend = $true
-          }
-          "${menuOverwrite}" {
-            $global:customMethod = "Overwrite"
-            $global:customReset  = $true
-            $global:customAppend = $true
-          }
-          "${menuNone}" {
-            $global:customMethod = "None"
-          }
-          "${menuReset}" {
-            $global:customMethod = "Reset"
-            $global:customReset  = $true
-          }
-          default { Write-Host "Invalid option, reselect please." }
-        }
-      }
-
-      Lepton-OKMessage "Selected ${customMethod}"
+      Set-CustomMethod
     }
 
     if ( "${customReset}" -eq $true ) {
