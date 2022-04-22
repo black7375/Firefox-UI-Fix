@@ -700,7 +700,8 @@ apply_custom_file() {
   local customPath=$3
   local otherCustomPath=$4
 
-  local gitDir="${profilePath}/chrome/.git"
+  local leptonDir="${profilePath}/chrome"
+  local gitDir="${leptonDir}/.git"
   if [ -f "${customPath}" ]; then
     customPathApplied="true"
 
@@ -710,9 +711,9 @@ apply_custom_file() {
 
     if [ "${customReset}" == "true" ]; then
       if [[ "${targetPath}"  == *"user.js" ]]; then
-        \cp -f "${profilePath}/chrome/user.js" "${targetPath}"
+        \cp -f "${leptonDir}/user.js" "${targetPath}"
       else
-        git --git-dir "${gitDir}" --work-tree "${profilePath}/chrome" checkout HEAD -- "${targetPath}"
+        git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout HEAD -- "${targetPath}"
       fi
     fi
     if [ "${customAppend}" == "true" ]; then
@@ -842,7 +843,7 @@ install_profile() {
 
 #** Update *********************************************************************
 file_stash() {
-  profilePath=$1
+  local profilePath=$1
   if [[ $(git --git-dir "${profilePath}/.git" --work-tree "${profilePath}/chrome" diff --stat) != '' ]]; then
     git --git-dir "${profilePath}/chrome/.git" --work-tree "${profilePath}/chrome" stash
   fi
@@ -866,12 +867,13 @@ update_profile() {
         local Branch=$(get_ini_value "${LEPTONINFOPATH}" "Branch" "${section}")
         local Path=$(  get_ini_value "${LEPTONINFOPATH}" "Path"   "${section}")
 
-        local LEPTONGITPATH="${Path}/chrome/.git"
+        local leptonDir="${Path}/chrome"
+        local gitDir="${leptonDir}/.git"
         if [ "${Type}" == "Git" ]; then
-          local gitDirty="$(file_stash ${LEPTONGITPATH})"
+          local gitDirty="$(file_stash ${gitDir})"
 
-          git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" checkout "${Branch}"
-          git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" pull --no-edit
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" pull --no-edit
 
           file_restore "${Path}" "${gitDirty}"
         elif [ "${Type}" == "Local" ] || [ "${Type}" == "Release" ]; then
@@ -884,11 +886,11 @@ update_profile() {
           if [ -z "${Branch}" ]; then
             Branch="${leptonBranch}"
           fi
-          git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" checkout "${Branch}"
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
 
           if [ "${Type}" == "Release" ]; then
             local Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
-            git --git-dir "${LEPTONGITPATH}" --work-tree "${Path}/chrome" checkout "tags/${Ver}"
+            git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "tags/${Ver}"
           fi
 
           clean_lepton
