@@ -99,7 +99,8 @@ function Install-Choco() {
   Set-ExecutionPolicy Bypass -Scope Process -Force
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-  $env:Path += ";C:\ProgramData\chocoportable"
+  $env:Path += ";C:\ProgramData\chocoportable" # Adimin: ";C:\ProgramData\chocolatey"
+  refreshenv
 }
 
 function Check-Git() {
@@ -108,7 +109,8 @@ function Check-Git() {
       Install-Choco
     }
     choco install git.commandline -y
-    $env:Path += ";C:\Program Files\Git\bin"
+    $env:Path += ";C:\tools\git\bin" # Adimin: ";C:\Program Files\Git\bin"
+    refreshenv
   }
 
   Lepton-OKMessage "Required - git"
