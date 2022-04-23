@@ -18,10 +18,11 @@ The overall structure of this project.
 root
 |- __tests__/: Mixin spec test
 |- icons/: Icons, illustrations
+|- css/: Build result of SCSS Files
 |- docs/: Development Documents
 |- src/: Source files
-|- src/userChrome.scss: Entry of SCSS for Browser UI
-|- src/userContent.scss: Entry of SCSS for Web pages
+|- src/leptonChrome.scss: Entry of SCSS for Browser UI
+|- src/leptonContent.scss: Entry of SCSS for Web pages
 |- .gitattributes: Exclude at `Download Zip`
 |- .github: Issue/PR Template, Github Actions
 |- .prettierignore: Exclude coding style
@@ -31,8 +32,8 @@ root
 |- package.json: Build setup, package dependency
 |- LEPTON: Meta infos (branch, version)
 |- user.js: about:config settings
-|- userChrome.css: Build result of src/userChrome.scss (Don't modify directly!!)
-|- userContent.css: Build result of src/userContent.scss (Don't modify directly!!)
+|- userChrome.css: Entry of css for Browser UI (Don't modify directly!!)
+|- userContent.css: Entry of css for Web pages (Don't modify directly!!)
 |- yarn.lock: Auto generated dependency (Don't modify directly!!)
 ```
 
@@ -43,7 +44,8 @@ Most of them are made in SVG.
 Except for illustrations, there must be an `fill="context-fill" fill-opacity="context-fill-opacity"` property to dynamically determine color and transparency.
 
 Icons are mainly [FirefoxUX/photon-icons](https://github.com/FirefoxUX/photon-icons)
-or [microsoft/fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
+or [microsoft/fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).  
+Although not yet used, [tabler/tabler-icons](https://github.com/tabler/tabler-icons) and [feathericons/feather](https://github.com/feathericons/feather) can also be referred to.
 
 You can see more in the issue, [Unify icon design langauge #213](https://github.com/black7375/Firefox-UI-Fix/issues/213).
 
@@ -88,12 +90,6 @@ Inspired by [arkenfox](https://github.com/arkenfox/user.js/wiki/3.1-Overrides).
 CSS settings are relatively simple.
 - `userChrome-overrides.css` at `<Firefox_Profile>/chrome/`
 - `userContent-overrides.css` at `<Firefox_Profile>/chrome/`
-
-Then, activate the following options:
-- `userChrome.overrides` to `true`
-- `userContent.overrides` to `true`
-
-It is now loading, and there is no need to manage the version control to the `userChrome.css` and `userContents.css` file.
 
 `user-overrides.js` needs to use a shell script and has some priorities.
 - `<Firefox_Profile>/user-overrides.js`

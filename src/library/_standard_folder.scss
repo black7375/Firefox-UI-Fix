@@ -9,7 +9,7 @@
   #editBMPanel_folderMenuList .folder-icon:not([id]),
   /* Download Popup */
   .downloadIconShow > .button-box > .button-icon {
-  list-style-image: url("./icons/folder.svg") !important;
+  list-style-image: url("../icons/folder.svg") !important;
 }
 
 /* Standard Folder - Open */
@@ -17,5 +17,5 @@
   .bookmark-item[container="true"]:not([query="true"], [tagContainer], [dayContainer])[open="true"],
 :-moz-any(#bookmarks-view, #historyTree, #editBMPanel_folderTree, #placesList, #placeContent)
   treechildren::-moz-tree-image(title, container, open) {
-  list-style-image: url("./icons/folder-open.svg") !important;
+  list-style-image: url("../icons/folder-open.svg") !important;
 }

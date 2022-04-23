@@ -39,7 +39,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   :not(menu, #ContentSelectDropdown)
     > menupopup
     > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
-    list-style-image: var(--menuitem-image, url("./icons/blank.svg")) !important;
+    list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
   }
 }
 
@@ -197,7 +197,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
     menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
-    list-style-image: var(--menuitem-image, url("./icons/blank.svg"));
+    list-style-image: var(--menuitem-image, url("../icons/blank.svg"));
   }
  */
 }

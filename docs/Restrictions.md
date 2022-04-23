@@ -11,6 +11,8 @@
   * [DOM structure cannot be modified](#dom-structure-cannot-be-modified)
   * [Shadow DOM](#shadow-dom)
   * [XUL](#xul)
+  * [Namespace](#namespace)
+  * [Import](#import)
 
 <!-- markdown-toc end -->
 
@@ -121,4 +123,73 @@ Example of legacy documents that will help.
 - [UDN: ::-moz-tree-cell-text](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS/::-moz-tree-cell-text)
 
 Another case.  
-Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`] is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
+Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute) is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
+
+### Namespace
+In older codes, the following [namespace](https://developer.mozilla.org/en-US/docs/Web/CSS/@namespace) is commonly seen:
+
+```css
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+```
+
+However, it is [only applicable to XUL](https://www.userchrome.org/adding-style-recipes-userchrome-css.html#namespaces), so it is recommended to use with `prefix`.
+```css
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/* Use */
+xul|search-textbox {
+  border: 2px solid red !important;
+}
+html|input {
+  border: 2px solid green !important;
+}
+```
+
+If you want to limit the coverage to some pages, you can use [`@-moz-document`](https://developer.mozilla.org/en-US/docs/Web/CSS/@document):
+```css
+/* Main browser UI */
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+  /* Your CSS */
+}
+
+/* Library UI */
+@-moz-document url("chrome://browser/content/places/places.xhtml") {
+  /* Your CSS */
+}
+
+/* PageInfo UI */
+@-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml") {
+  /* Your CSS */
+}
+```
+
+### Import
+There are a few caveats when you [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) the CSS.  
+It's because of specification definition, not Firefox design, but to prevent some mistakes.
+
+`@import` rule is not a [nested statement](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#nested_statements). Therefore, it cannot be used inside [conditional group at-rules](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule#conditional_group_rules).
+
+```css
+/* Precede */
+@import url("YourFile.css"); /* Works */
+
+/* Nested */
+@supports -moz-bool-pref("userChrome.test.pref") {
+  @import url("AnotherFile.css"); /* Not Works */
+}
+```
+
+Any [`@namespace`](https://developer.mozilla.org/en-US/docs/Web/CSS/@namespace) rules must follow all `@charset` and @import rules, and precede all other at-rules and style declarations in a style sheet.
+
+```css
+/* Before - Namespace */
+@import url("YourFile.css"); /* Works */
+
+/* Declare - Namespace */
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/* After - Namespace */
+@import url("YourFile.css"); /* Not Works */
+```
