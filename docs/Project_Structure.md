@@ -88,10 +88,10 @@ Path=<Full PATH>
 Inspired by [arkenfox](https://github.com/arkenfox/user.js/wiki/3.1-Overrides).
 
 CSS settings are relatively simple.
-- `userChrome-overrides.css` at `<Firefox_Profile>/chrome/`
-- `userContent-overrides.css` at `<Firefox_Profile>/chrome/`
+- `userChrome-overrides.css` at `<FIREFOX_PROFILE>/chrome/`
+- `userContent-overrides.css` at `<FIREFOX_PROFILE>/chrome/`
 
 `user-overrides.js` needs to use a shell script and has some priorities.
-- `<Firefox_Profile>/user-overrides.js`
-- `./user-overrides.js` (Will be copied `<Firefox_Profile>/chrome/`)
-- `<Firefox_Profile>/chrome/user-overrides.js`
+- `<FIREFOX_PROFILE>/user-overrides.js`
+- `./user-overrides.js` (Will be copied `<FIREFOX_PROFILE>/chrome/`)
+- `<FIREFOX_PROFILE>/chrome/user-overrides.js`
