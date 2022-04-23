@@ -12,6 +12,7 @@
   * [Shadow DOM](#shadow-dom)
   * [XUL](#xul)
   * [Namespace](#namespace)
+  * [Import](#import)
 
 <!-- markdown-toc end -->
 
@@ -161,4 +162,34 @@ If you want to limit the coverage to some pages, you can use [`@-moz-document`](
 @-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml") {
   /* Your CSS */
 }
+```
+
+### Import
+There are a few caveats when you [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) the CSS.  
+It's because of specification definition, not Firefox design, but to prevent some mistakes.
+
+`@import` rule is not a [nested statement](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#nested_statements). Therefore, it cannot be used inside [conditional group at-rules](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule#conditional_group_rules).
+
+```css
+/* Precede */
+@import url("YourFile.css"); /* Works */
+
+/* Nested */
+@supports -moz-bool-pref("userChrome.test.pref") {
+  @import url("AnotherFile.css"); /* Not Works */
+}
+```
+
+Any [`@namespace`](https://developer.mozilla.org/en-US/docs/Web/CSS/@namespace) rules must follow all `@charset` and @import rules, and precede all other at-rules and style declarations in a style sheet.
+
+```css
+/* Before - Namespace */
+@import url("YourFile.css"); /* Works */
+
+/* Declare - Namespace */
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/* After - Namespace */
+@import url("YourFile.css"); /* Not Works */
 ```
