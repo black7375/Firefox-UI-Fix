@@ -543,7 +543,7 @@ video {
     /* Basic */
     .Page-content,
     .SecondaryHero,
-    body,
+    body:not(.developer-hub):not(.statistics),
     main[aria-label="Content"] {
       color: var(--in-content-page-color) !important;
       background: var(--in-content-page-background) !important;
@@ -752,17 +752,33 @@ video {
     }
 
     /* /developers/ */
-    .DevHub-Navigation {
+    .DevHub-Navigation,
+    .DevHub-submit-addon,
+    .DevHub-get-involved,
+    .DevHub-MyAddons > * {
       background: var(--in-content-page-background) !important;
+      color: var(--in-content-page-color) !important;
+    }
+    .DevHub-Footer {
+        background: var(--in-content-box-background) !important;
+        color: var(--in-content-page-color) !important;
     }
     .DevHub-Navigation.scheme-light ul li a,
-    .DevHub-content-copy h2,
-    .content p {
+    .DevHub-Footer-sections-header,
+    .DevHub-Footer-section h4,
+    .DevHub-Footer-section p,
+    .DevHub-content-copy h2 {
       color: var(--in-content-page-color) !important;
     }
     .DevHub-callout-box {
       background: var(--in-content-box-background) !important;
       color: var(--in-content-page-color) !important;
+    }
+    .DevHub-Banner a,
+    .DevHub-Footer a,
+    .DevHub-MyAddons-list a,
+    .DevHub-MyAddons-item-buttons-all {
+      color: var(--in-content-link-color) !important;
     }
   }
 
