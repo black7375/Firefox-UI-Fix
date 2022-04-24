@@ -25,7 +25,7 @@ This reduces the amount of I/O needed to load the application.
 Chrome content, modules, non-binary components, and many other elements are packaged in an omni.jar file for each base directory.
 
 - `actors/`: [JSActors](https://firefox-source-docs.mozilla.org/dom/ipc/jsactors.html) related files.
-- `chrome.manifest`: The [chrome manifest] file.
+- `chrome.manifest`: The [chrome manifest](https://udn.realityripple.com/docs/Mozilla/Chrome_Registration) file.
 - `chrome/`: User interface files for the application
 - `components/`: XPCOM components the application relies upon.
 - `defaults/`: Default preference files.
