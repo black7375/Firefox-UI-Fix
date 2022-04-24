@@ -93,7 +93,7 @@ This is a rough guideline. (Not forced)
 ### Basics
 `userChrome.css` file is for browser UI, `userContent.css` file is for web contents.
 
-Unlike [User config](./Preference.md#user-config), they are located in `<Firefox_Profile>/chrome/`.
+Unlike [User config](./Preference.md#user-config), they are located in `<FIREFPX_PROFILE>/chrome/`.
 
 Start Guide:
 - [What is userChrome.css? What can it do?](https://www.userchrome.org/what-is-userchrome-css.html)
