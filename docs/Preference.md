@@ -160,7 +160,7 @@ pref("general.config.obscure_value", 0);
 
 **Restrictions**
 
-Please refer to [Doc: Restrictions.md](./Restrictions.md#option)
+Please refer to [Doc: Restrictions.md](./Restrictions.md#supports)'s `@support`.
 
 **Example**
 

@@ -11,9 +11,9 @@
   * [DOM structure cannot be modified](#dom-structure-cannot-be-modified)
   * [Shadow DOM](#shadow-dom)
   * [XUL](#xul)
+  * [Supports](#supports)
   * [Namespace](#namespace)
   * [Import](#import)
-  * [Option](#option)
 
 <!-- markdown-toc end -->
 
@@ -132,6 +132,18 @@ Example of legacy documents that will help.
 Another case.  
 Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute) is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
 
+### Supports
+[`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) change in CSS is not detected in real time. (Only start time)  
+
+So a restart is required, and if the mozilla need real time changes, are using `@media` to handle it.
+
+If project only use pure CSS, we cannot add `@media rules`.
+
+- [Bug 1267890 - Support detecting bool preferences in chrome stylesheets](https://bugzilla.mozilla.org/show_bug.cgi?id=1267890)
+- [Bug 1698132 - Improve caching behaviour of -moz-bool-pref](https://bugzilla.mozilla.org/show_bug.cgi?id=1698132)
+
+This restriction is also related to the [Doc: Preference.md](./Preference.md#using-with-user-custom-css).
+
 ### Namespace
 In older codes, the following [namespace](https://developer.mozilla.org/en-US/docs/Web/CSS/@namespace) is commonly seen:
 
@@ -200,14 +212,3 @@ Any [`@namespace`](https://developer.mozilla.org/en-US/docs/Web/CSS/@namespace) 
 /* After - Namespace */
 @import url("YourFile.css"); /* Not Works */
 ```
-
-### Option
-`@supports` change in CSS is not detected in real time. (Only start time)  
-See [Doc: Preference.md](./Preference.md#using-with-user-custom-css) for how to use.
-
-So a restart is required, and if the mozilla need real time changes, are using `@media` to handle it.
-
-If project only use pure CSS, we cannot add `@media rules`.
-
-- [Bug 1267890 - Support detecting bool preferences in chrome stylesheets](https://bugzilla.mozilla.org/show_bug.cgi?id=1267890)
-- [Bug 1698132 - Improve caching behaviour of -moz-bool-pref](https://bugzilla.mozilla.org/show_bug.cgi?id=1698132)
