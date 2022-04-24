@@ -110,6 +110,12 @@ Onething bypass method is to declare [`var()`](https://developer.mozilla.org/en-
 - [Audio, Video Player UI](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L5-L47)
 - [Video Player Twoline UI](https://github.com/black7375/Firefox-UI-Fix/blob/cbf14cd55a9edada7ab2f5f1b626608fb9fe38a2/src/contents/_video_player.scss#L68-L171): It is pretty difficult when the condition becomes complicated.
 
+Another limitation of shadow dom in user style is that you cannot use shadow dom related selectors like [`:host`](https://developer.mozilla.org/en-US/docs/Web/CSS/:host_function) and [`::part(https://developer.mozilla.org/en-US/docs/Web/CSS/::part)`].
+
+- [Using ::part() selector in userchrome.css?](https://www.reddit.com/r/FirefoxCSS/comments/d2sukj/using_part_selector_in_userchromecss/)
+- [Can't change some shadow-dom properties](https://www.reddit.com/r/FirefoxCSS/comments/rebn3s/cant_change_some_shadowdom_properties/)
+- [Bugzilla: Shadow parts should work in user-origin stylesheets.](https://bugzilla.mozilla.org/show_bug.cgi?id=1575507)
+
 ### XUL
 Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and binded with C++ for performance like a treeview of bookmarks.  
 XUL's [box model](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/The_Box_Model) and [DOM](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/Document_Object_Model) are different from HTML.
