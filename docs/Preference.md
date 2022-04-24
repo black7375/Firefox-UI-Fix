@@ -160,14 +160,7 @@ pref("general.config.obscure_value", 0);
 
 **Restrictions**
 
-`@supports` change in CSS is not detected in real time. (Only start time)
-
-So a restart is required, and if the mozilla need real time changes, are using `@media` to handle it.
-
-If project only use pure CSS, we cannot add `@media rules`.
-
-- [Bug 1267890 - Support detecting bool preferences in chrome stylesheets](https://bugzilla.mozilla.org/show_bug.cgi?id=1267890)
-- [Bug 1698132 - Improve caching behaviour of -moz-bool-pref](https://bugzilla.mozilla.org/show_bug.cgi?id=1698132)
+Please refer to [Doc: Restrictions.md](./Restrictions.md#option)
 
 **Example**
 

@@ -13,6 +13,7 @@
   * [XUL](#xul)
   * [Namespace](#namespace)
   * [Import](#import)
+  * [Option](#option)
 
 <!-- markdown-toc end -->
 
@@ -199,3 +200,14 @@ Any [`@namespace`](https://developer.mozilla.org/en-US/docs/Web/CSS/@namespace) 
 /* After - Namespace */
 @import url("YourFile.css"); /* Not Works */
 ```
+
+### Option
+`@supports` change in CSS is not detected in real time. (Only start time)  
+See [Doc: Preference.md](./Preference.md#using-with-user-custom-css) for how to use.
+
+So a restart is required, and if the mozilla need real time changes, are using `@media` to handle it.
+
+If project only use pure CSS, we cannot add `@media rules`.
+
+- [Bug 1267890 - Support detecting bool preferences in chrome stylesheets](https://bugzilla.mozilla.org/show_bug.cgi?id=1267890)
+- [Bug 1698132 - Improve caching behaviour of -moz-bool-pref](https://bugzilla.mozilla.org/show_bug.cgi?id=1698132)
