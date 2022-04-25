@@ -115,7 +115,7 @@ Another limitation of shadow dom in user style is that you cannot use shadow dom
 
 - [Using ::part() selector in userchrome.css?](https://www.reddit.com/r/FirefoxCSS/comments/d2sukj/using_part_selector_in_userchromecss/)
 - [Can't change some shadow-dom properties](https://www.reddit.com/r/FirefoxCSS/comments/rebn3s/cant_change_some_shadowdom_properties/)
-- [Bugzilla: Shadow parts should work in user-origin stylesheets.](https://bugzilla.mozilla.org/show_bug.cgi?id=1575507)
+- [Bug 1575507 - Shadow parts should work in user-origin stylesheets.](https://bugzilla.mozilla.org/show_bug.cgi?id=1575507)
 
 ### XUL
 Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and binded with C++ for performance like a treeview of bookmarks.  
