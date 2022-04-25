@@ -889,7 +889,7 @@ function Stash-File() {
   )
 
   if ( "$(git --git-dir "${gitDir}" --work-tree "${leptonDir}" diff --stat)" -ne '' ) {
-    git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout stash
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash
     return $true
   }
   return $false
@@ -905,7 +905,7 @@ function Restore-File() {
   )
 
   if ( "${gitDirty}" -eq $true ) {
-    git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout stash pop --quiet
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash pop --quiet
   }
 }
 
