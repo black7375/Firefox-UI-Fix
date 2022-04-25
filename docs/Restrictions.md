@@ -133,7 +133,7 @@ Another case.
 Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute) is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
 
 ### Supports
-[`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) change in CSS is not detected in real time. (Only start time)  
+[`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) change in CSS is not detected in real time. (Caching after checking only once)  
 
 So a restart is required, and if the mozilla need real time changes, are using `@media` to handle it.
 
