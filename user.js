@@ -68,13 +68,13 @@ user_pref("userChrome.rounding.square_tab",            true);
 
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
 
-// user_pref("userChrome.rounding.square_button",             true);
-// user_pref("userChrome.rounding.square_panel",              true);
-// user_pref("userChrome.rounding.square_panelitem",          true);
-// user_pref("userChrome.rounding.square_menupopup",          true);
-// user_pref("userChrome.rounding.square_menuitem",           true);
-// user_pref("userChrome.rounding.square_field",              true);
-// user_pref("userChrome.rounding.square_checklabel",         true);
+// user_pref("userChrome.rounding.square_button",              true);
+// user_pref("userChrome.rounding.square_panel",               true);
+// user_pref("userChrome.rounding.square_panelitem",           true);
+// user_pref("userChrome.rounding.square_menupopup",           true);
+// user_pref("userChrome.rounding.square_menuitem",            true);
+// user_pref("userChrome.rounding.square_field",               true);
+// user_pref("userChrome.rounding.square_checklabel",          true);
 
 // user_pref("userChrome.padding.first_tab",                   true);
 // user_pref("userChrome.padding.drag_space",                  true);
