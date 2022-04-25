@@ -50,18 +50,5 @@
     }
   }
 
-  @include test("multiple") {
-    @include assert {
-      @include output {
-        @include option.Option("userChrome.tab.photon", "userChrome.padding.photon") {
-          @include example;
-        }
-      }
-      @include expect {
-        @supports -moz-bool-pref("userChrome.tab.photon") or -moz-bool-pref("userChrome.padding.photon") {
-          @include example;
-        }
-      }
-    }
-  }
+  // Need multiple test
 }

@@ -21,7 +21,7 @@
 
 /*= pictureInPictureToggleContextMenu ========================================*/
 #pictureInPictureToggleContextMenu > menuitem[oncommand="PictureInPicture.hideToggle();"] {
-  --menuitem-image: url("./icons/eye-hide.svg");
+  --menuitem-image: url("../icons/eye-hide.svg");
 }
 
 /*= pageActionContextMenu ====================================================*/
@@ -34,7 +34,7 @@
 
 /*= customizationPanelItemContextMenu ========================================*/
 #customizationPanelItemContextMenuUnpin {
-  --menuitem-image: url("./icons/unpin-tab.svg");
+  --menuitem-image: url("../icons/unpin-tab.svg");
 }
 .customize-context-removeFromPanel {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -66,7 +66,7 @@
   --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
 }
 .downloadUnblockMenuItem {
-  --menuitem-image: url("./icons/checkmark-circle.svg");
+  --menuitem-image: url("../icons/checkmark-circle.svg");
 }
 .downloadUseSystemDefaultMenuItem {
   --menuitem-image: url("chrome://browser/skin/open.svg");
@@ -75,30 +75,33 @@
   /* checkbox */
 }
 .downloadShowMenuItem {
-  --menuitem-image: url("./icons/folder.svg");
+  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  @include Option("userChrome.icon.library") {
+    --menuitem-image: url("../icons/folder.svg");
+  }
 }
 
 #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
-  --menuitem-image: url("./icons/link-square.svg");
+  --menuitem-image: url("../icons/link-square.svg");
 }
 #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
-  --menuitem-image: url("./icons/link.svg");
+  --menuitem-image: url("../icons/link.svg");
 }
 
 .downloadDeleteFileMenuItem {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 .downloadRemoveFromHistoryMenuItem {
-  --menuitem-image: url("./icons/eraser.svg");
+  --menuitem-image: url("../icons/eraser.svg");
 }
 #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
 #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
-  --menuitem-image: url("./icons/broom.svg");
+  --menuitem-image: url("../icons/broom.svg");
 }
 
 /*= SyncedTabsSidebarContext =================================================*/
 #syncedTabsOpenSelected {
-  --menuitem-image: url("./icons/link-square.svg");
+  --menuitem-image: url("../icons/link-square.svg");
 }
 #syncedTabsOpenSelectedInTab {
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
@@ -114,11 +117,11 @@
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #syncedTabsCopySelected {
-  --menuitem-image: url("./icons/link.svg");
+  --menuitem-image: url("../icons/link.svg");
 }
 
 #syncedTabsOpenAllInTabs {
-  --menuitem-image: url("./icons/movetowindow-16.svg");
+  --menuitem-image: url("../icons/movetowindow-16.svg");
 }
 #syncedTabsManageDevices {
   --menuitem-image: url("chrome://global/skin/icons/settings.svg");
@@ -129,13 +132,13 @@
 
 /*= SyncedTabsSidebarTabsFilterContext =======================================*/
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_undo"] {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("../icons/undo.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_copy"] {
-  --menuitem-image: url("./icons/edit-copy.svg");
+  --menuitem-image: url("../icons/edit-copy.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_paste"] {
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
@@ -145,7 +148,7 @@
 }
 
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_selectAll"] {
-  --menuitem-image: url("./icons/select-all-on.svg");
+  --menuitem-image: url("../icons/select-all-on.svg");
 }
 
 #syncedTabsRefreshFilter {
@@ -154,7 +157,7 @@
 
 /*= urlbar-input-container ===================================================*/
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_undo"] {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("../icons/undo.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"] {
 }
@@ -163,7 +166,7 @@
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_copy"] {
-  --menuitem-image: url("./icons/edit-copy.svg");
+  --menuitem-image: url("../icons/edit-copy.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_paste"] {
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
@@ -174,13 +177,13 @@
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_selectAll"] {
-  --menuitem-image: url("./icons/select-all-on.svg");
+  --menuitem-image: url("../icons/select-all-on.svg");
 }
 
 /*= textbox-contextmenu ======================================================*/
 /* Browser's Searchbar, Libray's Searchbar, Page Info */
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("../icons/undo.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
 }
@@ -189,7 +192,7 @@
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-copy"] {
-  --menuitem-image: url("./icons/edit-copy.svg");
+  --menuitem-image: url("../icons/edit-copy.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
@@ -198,7 +201,7 @@
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-select-all"] {
-  --menuitem-image: url("./icons/select-all-on.svg");
+  --menuitem-image: url("../icons/select-all-on.svg");
 }
 
 /* Only searchbar */
@@ -236,7 +239,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
 
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   > .sync-menuitem.sendtab-target[clientType=""] {
-  --menuitem-image: url("./icons/send-to-device.svg");
+  --menuitem-image: url("../icons/send-to-device.svg");
 }
 
 menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)

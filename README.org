@@ -12,9 +12,18 @@
   - [[#why-proton][WHY Proton?]]
   - [[#why-not-proton][WHY Not Proton?]]
   - [[#padding-comparisons][Padding Comparisons]]
+  - [[#contributors][Contributors]]
   - [[#faq][FAQ]]
 :END:
 
+-----
+
+🔔🔔 A project redesign is in progress. #351
+
+It's built with SCSS and all configured as options. \\
+It's in beta testing, and I'am looking forward to hearing from you.
+
+-----
 
 ** Introduction
   [[https://wiki.mozilla.org/Firefox/Proton][Proton]] is Firefox's new design, starting from Firefox 89. \\
@@ -32,6 +41,8 @@
   [[https://user-images.githubusercontent.com/25581533/120091976-41ea4e00-c0ff-11eb-88ca-a204cfcebe72.png]]
 
   (Lepton's Photon styled design :arrow_up:)
+
+  @@html:<details>@@@@html:<summary>@@ *Feature List (Click)* @@html:</summary>@@
 
   - *Color*
     - Default light/dark theme contrast enhancement
@@ -94,6 +105,8 @@
     - Activate calculator at address bar
     - Mouse pointer for each context
 
+@@html:</details>@@
+
 ** Installation Guide
 
    *Script Installation (experimental)*
@@ -103,7 +116,7 @@
    bash -c "$(curl -fsSL https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.sh)"
    #+END_SRC
 
-   Windows users: Run with powershell
+Windows users: Run with powershell ([[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution#windows-7-powershell-script-not-works][Does not work at Win7?]])
    #+BEGIN_SRC powershell
    Powershell -c "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iwr https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.ps1 -useb | iex"
    #+END_SRC
@@ -164,6 +177,15 @@
   - Photon (Quantum)
   - Proton
   - Lepton
+
+
+** Contributors
+
+Thanks to all contributors to this project for providing help and developing features!
+
+[[https://github.com/black7375/Firefox-UI-Fix/graphs/contributors][@@html:<img src="https://contrib.rocks/image?repo=black7375/Firefox-UI-Fix"/>@@]]
+
+A list of all contributors can be found in [[./CREDITS][CREDITS]].
 
 ** FAQ
 

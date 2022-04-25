@@ -29,6 +29,9 @@
 
 @include Option("userChrome.theme.proton_color") {
   @import "theme/proton_color";
+  @include Option("userChrome.theme.proton_color.dark_blue_accent") {
+    @import "theme/dark_blue_accent";
+  }
 }
 @include Option("userChrome.theme.fully_color") {
   @import "theme/fully_color";
@@ -46,6 +49,9 @@
 
 /** Decoration ****************************************************************/
 @import "decoration/index";
+
+/** Rounding ******************************************************************/
+@import "rounding/index";
 
 /** Reduce Padding ************************************************************/
 @import "padding/index";
@@ -73,14 +79,14 @@
 
 /** Panel - Icons *************************************************************/
 @include Option("userChrome.icon.panel") {
-  @import "panel/icon_padding";
+  @import "icons/layout_panel";
   @import "icons/panel";
 }
 
 /** Menu - Icons Layout *******************************************************/
 @include Option("userChrome.icon.menu") {
-  @import "menu/icons_layout";
-  @import "menu/bookmark_layout";
+  @import "icons/layout_menu";
+  @import "icons/layout_bookmark_menu";
 
   @include Option("userChrome.icon.context_menu") {
     @import "icons/context_menu";
