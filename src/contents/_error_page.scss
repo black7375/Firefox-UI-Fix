@@ -40,12 +40,12 @@
   url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
 {
   #errorPageContainer {
-    background-image: url("./icons/error-connection-failure.svg");
+    background-image: url("../icons/error-connection-failure.svg");
   }
 }
 @-moz-document url-prefix("about:neterror?e=dnsNotFound") {
   #errorPageContainer {
-    background-image: url("./icons/error-server-not-found.svg");
+    background-image: url("../icons/error-server-not-found.svg");
   }
 }
 @-moz-document url-prefix("about:neterror?e=malformedURI") {
@@ -56,7 +56,7 @@
 @-moz-document url-prefix("about:neterror?e=clockSkewError"),
   url-prefix("about:neterror?e=nssFailure") {
   #errorPageContainer {
-    background-image: url("./icons/blue-berror.svg");
+    background-image: url("../icons/blue-berror.svg");
     background-size: 18.5em;
   }
 }
@@ -64,7 +64,7 @@
 @-moz-document url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml")
 {
   .description-wrapper {
-    background-image: url("./icons/error-session-restore.svg");
+    background-image: url("../icons/error-session-restore.svg");
   }
 }
 
@@ -98,7 +98,7 @@
 {
   @media (min-width: 970px) {
     .title {
-      background-image: url("./icons/welcome-back.svg") !important;
+      background-image: url("../icons/welcome-back.svg") !important;
     }
   }
 }

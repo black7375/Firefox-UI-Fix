@@ -49,13 +49,13 @@ https://github.com/black7375/Firefox-UI-Fix#readme
 
 param(
   [Alias("u")]
-  [Switch]$updateMode,
+  [switch]$updateMode,
   [Alias("f")]
   [string]$profileDir,
   [Alias("p")]
   [string]$profileName,
   [Alias("h")]
-  [Switch]$help = $false
+  [switch]$help = $false
 )
 
 #** Helper Utils ***************************************************************
@@ -92,25 +92,33 @@ function Verify-PowerShellVersion {
 #== Required Tools =============================================================
 function Install-Choco() {
   # https://chocolatey.org/install
+  # https://docs.chocolatey.org/en-us/choco/setup#non-administrative-install
+  $InstallDir='C:\ProgramData\chocoportable'
+  $env:ChocolateyInstall="$InstallDir"
+
   Set-ExecutionPolicy Bypass -Scope Process -Force
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-  $env:Path += ";C:\ProgramData\chocolatey"
+  $env:Path += ";C:\ProgramData\chocoportable" # Adimin: ";C:\ProgramData\chocolatey"
+  refreshenv
 }
 
 function Check-Git() {
-  if( -Not (Get-Command git) ) {
-    if ( -Not (Get-Command choco)) {
+  if ( -Not (Get-Command git -errorAction SilentlyContinue) ) {
+    if ( -Not (Get-Command choco -errorAction SilentlyContinue) ) {
       Install-Choco
     }
-    choco install git -y
-    $env:Path += ";C:\Program Files\Git\bin"
+    choco install git.commandline -y
+    $env:Path += ";C:\tools\git\bin" # Adimin: ";C:\Program Files\Git\bin"
+    refreshenv
   }
 
   Lepton-OKMessage "Required - git"
 }
 
 #== PATH / File ================================================================
+$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+
 $currentDir = (Get-Location).path
 
 function Filter-Path() {
@@ -634,6 +642,147 @@ function Check-InstallTypes() {
   }
 }
 
+#== Custom Install =============================================================
+$customFiles = @(
+  "user-overrides.js",
+  "userChrome-overrides.css",
+  "userContent-overrides.css"
+)
+$localCustomFiles = $customFiles.Clone()
+
+$customFileExist = $false
+function Check-CustomFiles() {
+  $global:localCustomFiles = Filter-Path $localCustomFiles
+
+  if ( $global:localCustomFiles.Length -gt 0 ) {
+    $global:customFileExist = $true
+    Lepton-OKMessage "Check custom file detected"
+
+    foreach ( $customFile in $global:localCustomFiles ) {
+      Write-Host "- ${customFile}"
+    }
+  }
+}
+
+function Copy-CustomFiles() {
+  if ( "${customFileExist}" -eq $true ) {
+    # If Release or Network mode, Local is passed (Already copied)
+    if ( "${leptonInstallType}" -ne "Local" ) {
+      foreach ( $profilePath in $global:firefoxProfilePaths ) {
+        foreach ( $customFile in $global:localCustomFiles ) {
+          if ( "${customFile}" -eq "user-overrides.js" ) {
+            Copy-Auto "${customFile}" "${profilePath}\${customFile}"
+          }
+          else {
+            Copy-Auto "${customFile}" "${profilePath}\chrome\${customFile}"
+          }
+        }
+      }
+    }
+
+    Lepton-OKMessage "End custom file copy"
+  }
+}
+
+$customMethod = ""
+$customReset  = $false
+$customAppend = $false
+function Set-CustomMethod() {
+  $local:menuAppend="Append - Maintain changes in existing files and apply custom"
+  $local:menuOverwrite="Overwrite - After initializing the change, apply only custom"
+  $local:menuNone="None - Maintain changes in existing files"
+  $local:menuReset="Reset- Reset to pure lepton theme without custom"
+
+  Write-Host "Select custom method"
+  while ( "${customMethod}" -eq "" ) {
+    $local:applyMethod = Menu @("${menuAppend}", "${menuOverwrite}", "${menuNone}", "${menuReset}")
+    switch ( $applyMethod ) {
+      "${menuAppend}" {
+        $global:customMethod = "Append"
+        $global:customAppend = $true
+      }
+      "${menuOverwrite}" {
+        $global:customMethod = "Overwrite"
+        $global:customReset  = $true
+        $global:customAppend = $true
+      }
+      "${menuNone}" {
+        $global:customMethod = "None"
+      }
+      "${menuReset}" {
+        $global:customMethod = "Reset"
+        $global:customReset  = $true
+      }
+      default { Write-Host "Invalid option, reselect please." }
+    }
+  }
+
+  Lepton-OKMessage "Selected ${customMethod}"
+}
+
+$customFileApplied = $false
+function Apply-CustomFile() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $profilePath,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $targetPath,
+    [Parameter(Mandatory=$true, Position=2)]
+    [string] $customPath,
+    [Parameter(Position=3)]
+    [string] $otherCustomPath = ""
+  )
+
+  $local:leptonDir = "${profilePath}\chrome"
+  $local:gitDir    = "${leptonDir}\.git"
+  if ( Test-Path -Path "${customPath}" -PathType leaf ) {
+    $global:customFileApplied = $true
+
+    if ( "${customMethod}" -eq "" ) {
+      Set-CustomMethod
+    }
+
+    if ( "${customReset}" -eq $true ) {
+      if ( "${targetPath}" -like "*user.js" ) {
+        Copy-Item -Path "${leptonDir}\user.js" -Destination "${targetPath}" -Force
+      }
+      else {
+        git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout HEAD -- "${targetPath}"
+      }
+    }
+    if ( "${customAppend}" -eq $true ) {
+      # Apply without duplication
+      if ( -not (Write-Output "$(Write-Output $(Get-Content -Path "${targetPath}"))" | Select-String -Pattern "$(Write-Output $(Get-Content -Path "${customPath}"))" -SimpleMatch -Quiet) ) {
+        Get-Content -Path "${customPath}" | Out-File -FilePath "${targetPath}" -Append
+      }
+    }
+  }
+  elseif ( "${otherCustomPath}" -ne "" ) {
+    Apply-CustomFile "${profilePath}" "${targetPath}" "${otherCustomPath}"
+  }
+}
+
+function Apply-CustomFiles() {
+  foreach ( $profilePath in $global:firefoxProfilePaths ) {
+    foreach ( $customFile in  $global:customFiles ) {
+      $local:targetFile = $customFile.Replace("-overrides", "")
+      if ( "${customFile}" -eq "user-overrides.js" ) {
+        $local:targetPath = "${profilePath}\${targetFile}"
+        $local:customPath = "${profilePath}\user-overrides.js"
+        $local:otherCustomPath = "${profilePath}\chrome\user-overrides.js"
+        Apply-CustomFile "${profilePath}" "${targetPath}" "${customPath}" "${otherCustomPath}"
+      }
+      else {
+        Apply-CustomFile "${profilePath}" "${profilePath}\chrome\${targetFile}" "${profilePath}\chrome\${customFile}"
+      }
+    }
+  }
+
+  if ( "${customFileApplied}" -eq $true ) {
+    Lepton-OKMessage "End custom file applied"
+  }
+}
+
 #== Install Helpers ============================================================
 $chromeDuplicate = $false
 function Check-ChromeExist() {
@@ -692,10 +841,16 @@ function Copy-Lepton() {
 #== Each Install ===============================================================
 function Install-Local() {
   Copy-Lepton "${currentDir}" "user.js"
+  Copy-CustomFiles
+
+  Apply-CustomFiles
 }
 
 function Install-Release() {
   Copy-Lepton "chrome" "user.js"
+  Copy-CustomFiles
+
+  Apply-CustomFiles
 }
 
 function Install-Network() {
@@ -704,9 +859,12 @@ function Install-Network() {
 
   Clone-Lepton
   Copy-Lepton
+  Copy-CustomFiles
 
   Clean-Lepton
   Check-ChromeRestore
+
+  Apply-CustomFiles
 }
 
 function Install-Profile() {
@@ -722,6 +880,35 @@ function Install-Profile() {
 }
 
 #** Update *********************************************************************
+function Stash-File() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $leptonDir,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $gitDir
+  )
+
+  if ( "$(git --git-dir "${gitDir}" --work-tree "${leptonDir}" diff --stat)" -ne '' ) {
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash --quiet
+    return $true
+  }
+  return $false
+}
+function Restore-File() {
+  Param (
+    [Parameter(Mandatory=$true, Position=0)]
+    [string] $leptonDir,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string] $gitDir,
+    [Parameter(Position=2)]
+    [string] $gitDirty = "$false"
+  )
+
+  if ( "${gitDirty}" -eq $true ) {
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash pop --quiet
+  }
+}
+
 function Update-Profile() {
   Check-Git
   foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
@@ -734,10 +921,15 @@ function Update-Profile() {
         $local:Branch = $LEPTONINFO["${section}"]["Branch"]
         $local:Path   = $LEPTONINFO["${section}"]["Path"]
 
-        $local:LEPTONGITPATH="${Path}\chrome\.git"
-        if ( "${Type}" -eq "Git" ){
-          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
-          git --git-dir "${LEPTONGITPATH}" pull --no-edit
+        $local:leptonDir = "${Path}\chrome"
+        $local:gitDir    = "${leptonDir}\.git"
+        if ( "${Type}" -eq "Git" ) {
+          $local:gitDirty = $(Stash-File "${leptonDir}" "${gitDir}")
+
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" pull --no-edit
+
+          Restore-File "${leptonDir}" "${gitDir}" "$gitDirty"
         }
         elseif ( "${Type}" -eq "Local" -or "${Type}" -eq "Release" ) {
           Check-ChromeExist
@@ -749,12 +941,15 @@ function Update-Profile() {
           if ( "${Branch}" -eq $null ) {
             $Branch = "${leptonBranch}"
           }
-          git --git-dir "${LEPTONGITPATH}" checkout "${Branch}"
+          git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
 
           if ( "${Type}" -eq "Release" ) {
-            $local:Ver=$(git --git-dir "${LEPTONINFOFILE}" describe --tags --abbrev=0)
-            git --git-dir "${LEPTONGITPATH}" checkout "tags/${Ver}"
+            $local:Ver=$(git --git-dir "${gitDir}" describe --tags --abbrev=0)
+            git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "tags/${Ver}"
           }
+
+          Clean-Lepton
+          Check-ChromeRestore
         }
         else {
           Lepton-ErrorMessage "Unable to find update type, ${Type} at ${section}"
@@ -762,8 +957,8 @@ function Update-Profile() {
       }
     }
   }
-  Clean-Lepton
-  Check-ChromeRestore
+
+  Apply-CustomFiles
 }
 
 #** Main ***********************************************************************
@@ -783,6 +978,8 @@ function Install-Lepton {
   Check-ProfileIni
   Update-ProfilePaths
   Write-LeptonInfo
+
+  Check-CustomFiles
 
   if ( $updateMode ) {
     Update-Profile

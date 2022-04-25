@@ -46,12 +46,12 @@
 
 tab[visuallyselected] > stack::before {
   left: var(--tab-corner-position) !important;
-  background-image: url("./icons/tab-bottom-corner-left.svg");
+  background-image: url("../icons/tab-bottom-corner-left.svg");
 }
 tab[visuallyselected] > stack::after {
   left: auto;
   right: var(--tab-corner-position);
-  background-image: url("./icons/tab-bottom-corner-right.svg");
+  background-image: url("../icons/tab-bottom-corner-right.svg");
 }
 
 @include OS($linux) {
@@ -68,5 +68,19 @@ tab[visuallyselected] > stack::after {
   :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
   :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
     stroke: transparent !important;
+  }
+}
+
+@include NotOption("userChrome.tab.color_like_toolbar") {
+  :root:not([customizing="true"]) tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"]) tab[visuallyselected] > stack::after {
+    /* Based on tab background
+     background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
+
+    defaults
+    background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+    background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
+     */
+    fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor))) !important;
   }
 }

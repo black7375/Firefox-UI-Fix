@@ -45,7 +45,7 @@
 #goOfflineMenuitem {
 }
 #menu_FileQuitItem {
-  --menuitem-image: url("./icons/quit.svg");
+  --menuitem-image: url("../icons/quit.svg");
 }
 
 /* Mange Containers */
@@ -55,7 +55,7 @@
 
 /*= menu_EditPopup ===========================================================*/
 #menu_undo {
-  --menuitem-image: url("chrome://global/skin/icons/undo.svg");
+  --menuitem-image: url("../icons/undo.svg");
 }
 #menu_redo {
 }
@@ -64,7 +64,7 @@
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
 }
 #menu_copy {
-  --menuitem-image: url("./icons/edit-copy.svg");
+  --menuitem-image: url("../icons/edit-copy.svg");
 }
 #menu_paste {
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
@@ -74,7 +74,7 @@
 }
 
 #menu_selectAll {
-  --menuitem-image: url("./icons/select-all-on.svg");
+  --menuitem-image: url("../icons/select-all-on.svg");
 }
 
 #menu_find {
@@ -92,17 +92,17 @@
 
 /*= menu_viewPopup ===========================================================*/
 #viewToolbarsMenu {
-  --menuitem-image: url("./icons/toolbar.svg");
+  --menuitem-image: url("../icons/toolbar.svg");
 }
 #viewSidebarMenuMenu {
   --menuitem-image: url("chrome://browser/skin/sidebars.svg");
 }
 
 #viewFullZoomMenu {
-  --menuitem-image: url("./icons/screenshot.svg");
+  --menuitem-image: url("../icons/screenshot.svg");
 }
 #pageStyleMenu {
-  --menuitem-image: url("./icons/document-css.svg");
+  --menuitem-image: url("../icons/document-css.svg");
 }
 #repair-text-encoding {
   --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
@@ -118,7 +118,7 @@
 }
 
 #documentDirection-swap {
-  --menuitem-image: url("./icons/text-direction-horizontal-ltr.svg");
+  --menuitem-image: url("../icons/text-direction-horizontal-ltr.svg");
 }
 
 /* view-menu-popup sub menu */
@@ -134,7 +134,7 @@
   --menuitem-image: url("chrome://browser/skin/subtract-circle-fill.svg");
 }
 #menu_zoomReset {
-  --menuitem-image: url("./icons/resize.svg");
+  --menuitem-image: url("../icons/resize.svg");
 }
 
 /*= goPopup ==================================================================*/
@@ -149,7 +149,7 @@
   --menuitem-image: url("chrome://browser/skin/sync.svg");
 }
 #historyRestoreLastSession {
-  --menuitem-image: url("./icons/restore-session.svg");
+  --menuitem-image: url("../icons/restore-session.svg");
 }
 #hiddenTabsMenu {
 }
@@ -162,10 +162,10 @@
 
 /* sub menu */
 #historyUndoPopup .restoreallitem {
-  --menuitem-image: url("./icons/movetowindow-16.svg");
+  --menuitem-image: url("../icons/movetowindow-16.svg");
 }
 #historyUndoWindowPopup .restoreallitem {
-  --menuitem-image: url("./icons/restore-session.svg");
+  --menuitem-image: url("../icons/restore-session.svg");
 }
 
 /*= bookmarksMenuPopup =======================================================*/
@@ -203,16 +203,17 @@
 #sync-unverifieditem {
 }
 #sync-syncnowitem {
+  --menuitem-image: url("chrome://browser/skin/sync.svg");
 }
 #sync-reauthitem {
 }
 
 #webDeveloperMenu, /* Legacy */
   #browserToolsMenu {
-  --menuitem-image: url("./icons/developer.svg");
+  --menuitem-image: url("../icons/developer.svg");
 }
 #menu_pageInfo {
-  --menuitem-image: url("./icons/document-endnote.svg");
+  --menuitem-image: url("../icons/document-endnote.svg");
 }
 
 /* menuWebDeveloperPopup sub menu */
@@ -221,16 +222,16 @@
 #menu_devToolbox {
 }
 #menu_taskManager {
-  --menuitem-image: url("./icons/performance.svg");
+  --menuitem-image: url("../icons/performance.svg");
 }
 #menu_devtools_remotedebugging {
-  --menuitem-image: url("./icons/bug.svg");
+  --menuitem-image: url("../icons/bug.svg");
 }
 #menu_browserToolbox {
-  --menuitem-image: url("./icons/window-dev-tools.svg");
+  --menuitem-image: url("../icons/window-dev-tools.svg");
 }
 #menu_browserContentToolbox {
-  --menuitem-image: url("./icons/command-frames.svg");
+  --menuitem-image: url("../icons/command-frames.svg");
 }
 #menu_browserConsole {
   --menuitem-image: url("chrome://devtools/skin/images/command-console.svg");
@@ -240,7 +241,7 @@
 #menu_eyedropper {
 }
 #menu_pageSource {
-  --menuitem-image: url("./icons/document-search.svg");
+  --menuitem-image: url("../icons/document-search.svg");
 }
 #extensionsForDevelopers {
   --menuitem-image: url("chrome://devtools/skin/images/debugging-addons.svg");
@@ -251,7 +252,7 @@
   --menuitem-image: url("chrome://global/skin/icons/help.svg");
 }
 #feedbackPage {
-  --menuitem-image: url("./icons/send.svg");
+  --menuitem-image: url("../icons/send.svg");
 }
 #helpSafeMode {
   --menuitem-image: url("chrome://devtools/skin/images/debugging-workers.svg");

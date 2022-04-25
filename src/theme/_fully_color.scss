@@ -1,5 +1,5 @@
 /*== Menu Color ==============================================================*/
-html#main-window menupopup {
+html#main-window menupopup:not(.in-menulist) {
   /* is same as toolbar color https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/windows/global/global.css#L17-L67 */
   --menu-color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
   --menu-background-color: var(--arrowpanel-background, var(--in-content-button-background)) !important;
