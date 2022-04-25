@@ -901,7 +901,7 @@ function Restore-File() {
     [Parameter(Mandatory=$true, Position=1)]
     [string] $gitDir,
     [Parameter(Position=2)]
-    [switch] $gitDirty = $false
+    [string] $gitDirty = "$false"
   )
 
   if ( "${gitDirty}" -eq $true ) {
