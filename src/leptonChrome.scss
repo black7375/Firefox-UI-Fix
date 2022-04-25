@@ -79,14 +79,14 @@
 
 /** Panel - Icons *************************************************************/
 @include Option("userChrome.icon.panel") {
-  @import "panel/icon_padding";
+  @import "icons/layout_panel";
   @import "icons/panel";
 }
 
 /** Menu - Icons Layout *******************************************************/
 @include Option("userChrome.icon.menu") {
-  @import "menu/icons_layout";
-  @import "menu/bookmark_layout";
+  @import "icons/layout_menu";
+  @import "icons/layout_bookmark_menu";
 
   @include Option("userChrome.icon.context_menu") {
     @import "icons/context_menu";
