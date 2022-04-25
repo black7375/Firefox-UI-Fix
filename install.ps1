@@ -889,7 +889,7 @@ function Stash-File() {
   )
 
   if ( "$(git --git-dir "${gitDir}" --work-tree "${leptonDir}" diff --stat)" -ne '' ) {
-    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash
+    git --git-dir "${gitDir}" --work-tree "${leptonDir}" stash --quiet
     return $true
   }
   return $false
@@ -929,7 +929,7 @@ function Update-Profile() {
           git --git-dir "${gitDir}" --work-tree "${leptonDir}" checkout "${Branch}"
           git --git-dir "${gitDir}" --work-tree "${leptonDir}" pull --no-edit
 
-          Restore-File "${leptonDir}" "${gitDir}" $gitDirty
+          Restore-File "${leptonDir}" "${gitDir}" "$gitDirty"
         }
         elseif ( "${Type}" -eq "Local" -or "${Type}" -eq "Release" ) {
           Check-ChromeExist
