@@ -87,7 +87,7 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   }
   :not(menu, #ContentSelectDropdown, #context-navigation)
     > menupopup
-    > menuitem[type="checkbox"][checked="false"]
+    > menuitem[type="checkbox"]:not([checked="true"])
     > .menu-iconic-left {
     padding-inline-start: var(--context-menu-text-padding);
   }
