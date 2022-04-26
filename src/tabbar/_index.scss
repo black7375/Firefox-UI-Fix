@@ -16,6 +16,12 @@
   #titlebar {
     -moz-appearance: none !important;
   }
+  @include OS($win) {
+    // Prevent sideeffect #370
+    :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox {
+      padding-top: 8px; // Don't use margin-top for reserved fullscreen animation
+    }
+  }
 }
 
 @include Option("userChrome.tab.on_bottom") {
