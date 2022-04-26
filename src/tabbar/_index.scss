@@ -11,6 +11,11 @@
   #tab-notification-deck-template {
     flex-basis: 100%;
   }
+
+  /* -moz-default-appearance: -moz-window-titlebar */
+  #titlebar {
+    -moz-appearance: none !important;
+  }
 }
 
 @include Option("userChrome.tab.on_bottom") {
