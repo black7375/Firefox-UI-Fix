@@ -1,0 +1,37 @@
+ #tabbrowser-tabs:not([movingtab])
+  > #tabbrowser-arrowscrollbox
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[multiselected]:not([selected]):-moz-lwtheme {
+  background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)),
+    linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+}
+
+.tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
+  background: color-mix(in srgb, currentColor 65%, transparent);
+  opacity: 0.3;
+}
+#TabsToolbar[brighttext]
+  .tab-background[multiselected="true"]:not([selected="true"])
+  > .tab-loading-burst:not([bursting]) {
+  opacity: 0.15;
+}
+
+
+@include Option("userChrome.tab.connect_to_window") {
+  .tab-background[multiselected=true] {
+    outline: none !important;
+  }
+}
+@include NotOption("userChrome.tab.connect_to_window") {
+  /* Backport from FF 99 */
+  .tab-background[multiselected=true] {
+    outline: 1px solid color-mix(in srgb, var(--focus-outline-color, currentColor) 40%, transparent);
+    outline-offset: -1px;
+  }
+
+  .tab-background[multiselected=true][selected=true] {
+    outline-width: 2px;
+    outline-offset: -2px;
+  }
+}

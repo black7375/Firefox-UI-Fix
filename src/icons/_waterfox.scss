@@ -1,0 +1,14 @@
+@include Option("userChrome.icon.panel") {
+  #appMenu-restart-button {
+    list-style-image: url("../icons/refresh-cw.svg") !important;
+  }
+}
+@include Option("userChrome.icon.menu") {
+  #menu_FileRestartItem {
+    --menuitem-image: url("../icons/refresh-cw.svg");
+  }
+
+  menuitem.privatetab-icon {
+    --menuitem-image: url("../icons/private-favicon.svg");
+  }
+}

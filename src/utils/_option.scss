@@ -1,0 +1,13 @@
+@use "each";
+
+@mixin Option($optionNames...) {
+  @include each.AtEach("supports", $optionNames, "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
+    @content;
+  }
+}
+
+@mixin NotOption($optionNames...) {
+  @include each.AtEach("supports", $optionNames, "not -moz-bool-pref", ("seperator": " or ", "quoted": true)) {
+    @content;
+  }
+}

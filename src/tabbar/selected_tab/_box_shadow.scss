@@ -1,0 +1,57 @@
+#TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab[visuallyselected="true"]:not(:focus)
+  > .tab-stack
+  > .tab-background:-moz-lwtheme {
+  /* Origina: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
+       Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
+  box-shadow: 0 0 1px var(--toolbar-color) !important;
+}
+#TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab[multiselected]:not([visuallyselected])
+  > .tab-stack
+  > .tab-background:-moz-lwtheme {
+  box-shadow: 0 0 1px color-mix(in srgb, var(--toolbar-color) 80%, transparent) !important;
+}
+
+/* Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
+#TabsToolbar:not([brighttext])
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  > .tab-stack
+  > .tab-background {
+  box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))),
+    0 0 4px rgba(128, 128, 142, 0.5) !important;
+}
+
+#TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  > .tab-stack
+  > .tab-background:-moz-lwtheme {
+  box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))) !important;
+}
+
+/* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
+   around the tab to help themes that are dependent on tab_line to show the selected tab. */
+:root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
+  #TabsToolbar:not([brighttext])
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  > .tab-stack
+  > .tab-background:-moz-lwtheme {
+  box-shadow: 0 0 0 1px
+      var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))),
+    0 0 4px rgba(128, 128, 142, 0.5) !important;
+}
+
+:root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  #TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  > .tab-stack
+  > .tab-background:-moz-lwtheme {
+  box-shadow: 0 0 0 1px
+    var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))) !important;
+}

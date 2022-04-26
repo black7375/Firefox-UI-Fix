@@ -1,0 +1,86 @@
+#tabbrowser-tabs {
+  --tab-corner-rounding: 3px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
+  --tab-corner-padding: 0px;
+  --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+}
+
+:root:not([customizing="true"]) tab[visuallyselected] > stack::before,
+:root:not([customizing="true"]) tab[visuallyselected] > stack::after {
+  content: "" !important;
+
+  /* Box */
+  display: block !important;
+  position: absolute !important;
+  z-index: 1 !important;
+
+  /* Shape */
+  width: var(--tab-corner-rounding) !important;
+  height: 100% !important;
+
+  /* Color */
+  fill: var(--toolbar-bgcolor) !important;
+  stroke: var(
+    --tab-line-color,
+    var(--tabs-border-color, rgba(128, 128, 142, 0.9))
+  ) !important;
+  -moz-context-properties: fill, stroke !important;
+
+  /* Image */
+  background-size: var(--tab-corner-rounding);
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+}
+:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  #TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  tab[visuallyselected]
+  > stack:-moz-lwtheme::before,
+:root:not([customizing="true"]):is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  #TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  tab[visuallyselected]
+  > stack:-moz-lwtheme::after {
+  /* As Selected Tab - Box Shadow */
+  stroke: var(--toolbar-color) !important;
+}
+
+tab[visuallyselected] > stack::before {
+  left: var(--tab-corner-position) !important;
+  background-image: url("../icons/tab-bottom-corner-left.svg");
+}
+tab[visuallyselected] > stack::after {
+  left: auto;
+  right: var(--tab-corner-position);
+  background-image: url("../icons/tab-bottom-corner-right.svg");
+}
+
+@include OS($linux) {
+  /* Fill color for GTK */
+  :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::after {
+    /* As GTK Toolbar's background-color + backround-image
+       * --toolbar-non-lwt-bgcolor: -moz-dialog;
+       * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
+       */
+    fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
+    stroke: transparent !important;
+  }
+  :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"]):not([lwtheme="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
+    stroke: transparent !important;
+  }
+}
+
+@include NotOption("userChrome.tab.color_like_toolbar") {
+  :root:not([customizing="true"]) tab[visuallyselected] > stack::before,
+  :root:not([customizing="true"]) tab[visuallyselected] > stack::after {
+    /* Based on tab background
+     background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
+
+    defaults
+    background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+    background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
+     */
+    fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor))) !important;
+  }
+}

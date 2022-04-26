@@ -33,8 +33,8 @@ It's in beta testing, and I'am looking forward to hearing from you.
   That's why this project was born, and Lepton to denote light theme layer.
 
   /Disclaimer:/ It works on *Firefox 89* and above!!
-  | *Wiki*      |                               |      | |
-  | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Screenshots][Screenshots]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution][Compatibility Issues Solution]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Tips][Tips]] |
+  | *Wiki*             |             |         |                               |      |
+  | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Screenshots][Screenshots]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options][Options]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution][Compatibility Issues Solution]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Tips][Tips]] |
 
   [[https://user-images.githubusercontent.com/25581533/119774062-20942280-beb1-11eb-80aa-c18dd52f18d7.png]]
 
@@ -73,7 +73,7 @@ It's in beta testing, and I'am looking forward to hearing from you.
     - Unselect:
       - Divide Line: React to hover like chrome
     - Unloaded:
-      - Dimmed: Looks like inactive 
+      - Dimmed: Looks like inactive
     - Clipped:
       - Clearer Text: Adjusted clipped gradation
       - Closed Button: Visible on hover
@@ -114,7 +114,7 @@ It's in beta testing, and I'am looking forward to hearing from you.
    bash -c "$(curl -fsSL https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.sh)"
    #+END_SRC
 
-   Windows users: Run with powershell
+Windows users: Run with powershell ([[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution#windows-7-powershell-script-not-works][Does not work at Win7?]])
    #+BEGIN_SRC powershell
    Powershell -c "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iwr https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.ps1 -useb | iex"
    #+END_SRC

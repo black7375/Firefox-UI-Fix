@@ -1,0 +1,146 @@
+/*= Page Info ================================================================*/
+@-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml")
+{
+  :root {
+    --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
+  }
+
+  #viewGroup > radio {
+    border-radius: 8px !important;
+    padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
+    margin: 4px !important;
+  }
+  #viewGroup > radio:hover {
+    background-color: var(--in-content-button-background-hover) !important; /* #E0E8F6; */
+  }
+  #viewGroup > radio[selected="true"] {
+    color: var(--in-content-button-text-color) !important; /* SelectedItemText */
+    background-color: var(--in-content-button-background-active) !important; /* #C1D2EE; */
+  }
+  #viewGroup > radio {
+    color: var(--in-content-deemphasized-text) !important; /* FieldText */
+  }
+
+  #viewGroup > radio {
+    list-style-image: none !important;
+    background-image: var(--viewgroup-image) !important;
+    background-repeat: no-repeat;
+    background-position: top var(--in-content-button-vertical-padding) center;
+    background-size: 32px !important;
+
+    -moz-context-properties: fill !important;
+    fill: currentColor !important;
+  }
+  #generalTab {
+    --viewgroup-image: url(chrome://global/skin/icons/page-portrait.svg);
+  }
+  #mediaTab {
+    --viewgroup-image: url(chrome://browser/skin/canvas.svg);
+  }
+  #permTab {
+    --viewgroup-image: url(chrome://browser/skin/permissions.svg);
+  }
+  #securityTab {
+    --viewgroup-image: url(chrome://global/skin/icons/security.svg);
+  }
+
+  #viewGroup > radio > .radio-label-box {
+    /* Overwrite */
+    margin: 0 !important;
+    padding: 0 6px !important;
+  }
+  @include OS($mac) {
+    #viewGroup > radio > .radio-label-box {
+      padding-top: 32px !important; /* as -moz-image-region: rect(0px, 32px, 32px, 0px); */
+    }
+  }
+
+  #mainDeck input {
+    color: var(--in-content-page-color) !important;
+  }
+
+  #permList {
+    -moz-appearance: none !important;
+    color: var(--in-content-page-color) !important;
+    background-color: var(--in-content-box-background) !important;
+  }
+  .permission:hover {
+    color: var(--in-content-text-color) !important;
+    background-color: var(--in-content-button-background-hover) !important;
+  }
+  .permission radio[disabled] {
+    color: var(--in-content-deemphasized-text) !important;
+  }
+
+  treecols {
+    -moz-appearance: none !important;
+    background: var(--in-content-table-header-background) !important;
+    color: var(--in-content-table-header-color) !important;
+  }
+  treecols > treecol,
+  treecols > treecolpicker.treecol-image {
+    -moz-appearance: none !important;
+    color: var(--in-content-table-header-color) !important;
+    background: var(--in-content-table-header-background) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
+    padding: 4px !important;
+    border-spacing: 0;
+
+    text-align: center !important;
+  }
+
+  tree,
+  treechildren::-moz-tree-row {
+    -moz-appearance: none !important;
+    color: var(--in-content-text-color) !important;
+    background-color: var(--in-content-table-background) !important;
+    border: 1px solid var(--in-content-table-border-color) !important;
+  }
+
+  treechildren::-moz-tree-row(odd) {
+    background-color: var(--in-content-box-background-odd) !important;
+  }
+
+  treechildren::-moz-tree-row(hover) {
+    color: var(--in-content-item-hover-text) !important;
+    background-color: var(--in-content-item-hover) !important;
+  }
+  treechildren::-moz-tree-row(selected) {
+    background-color: var(--in-content-item-selected) !important;
+  }
+
+  treechildren::-moz-tree-cell {
+    border-inline: 1px solid var(--in-content-table-border-color) !important;
+    border-spacing: 0 !important;
+    padding: 4px !important;
+    margin: 0 !important;
+  }
+  treechildren::-moz-tree-cell-text(hover) {
+    color: var(--in-content-item-hover-text) !important;
+  }
+  treechildren::-moz-tree-cell-text(selected) {
+    font-weight: 600 !important;
+    color: var(--in-content-item-selected-text) !important;
+  }
+
+  #imagecontainerbox {
+    background-color: var(--in-content-box-background) !important;
+  }
+
+  #metatree,
+  #imagetree,
+  #imagecontainerbox,
+  #permList {
+    border-radius: 4px !important;
+  }
+  #metatree,
+  #imagetree {
+    overflow: hidden !important;
+  }
+
+  #topBar,
+  #imagecontainerbox,
+  #permList {
+    border-color: var(--in-content-table-border-color) !important;
+  }
+}

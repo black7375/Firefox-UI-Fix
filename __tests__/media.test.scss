@@ -1,0 +1,72 @@
+@use 'true' as *;
+@use "example" as *;
+@use "../src/utils/media";
+
+// TODO: Need more tests..
+@include test-module("Create each media at once [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        $input: "hover: hover" "max-width: 1024px";
+        @include media.each($input...) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (hover: hover), (max-width: 1024px) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("beyond") {
+    @include assert {
+      @include output {
+        $input: "hover: hover" "max-width: 1024px";
+        @include example_tag {
+          @include media.each($input...) {
+            font-size: 16px;
+          }
+        }
+      }
+      @include expect {
+        @media (hover: hover), (max-width: 1024px) {
+          @include example_tag {
+            @include example_property;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("null") {
+    @include assert {
+      @include output {
+        $input: ();
+        @include example_tag {
+          @include media.each($input) {
+            @include example_property;
+          }
+        }
+      }
+      @include expect {
+      }
+    }
+  }
+
+  @include test("null element") {
+    @include assert {
+      @include output {
+        $input: (null);
+        @include example_tag {
+          @include media.each($input) {
+            @include example_property;
+          }
+        }
+      }
+      @include expect {
+      }
+    }
+  }
+}

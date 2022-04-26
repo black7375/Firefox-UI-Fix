@@ -1,0 +1,232 @@
+/*= abouts' common ===========================================================*/
+@-moz-document url-prefix("about:plugins"),
+               url-prefix("about:cache"),
+               url-prefix("about:checkerboard"),
+               url-prefix("about:sync-log"),
+               url-prefix("about:memory"),
+               regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+  /* Base */
+  html,
+  body {
+    font: message-box !important;
+    appearance: none !important;
+    background-color: var(--in-content-page-background) !important;
+    color: var(--in-content-page-color) !important;
+  }
+  body {
+    font-size: 15px !important;
+    font-weight: normal !important;
+    margin: 0 !important;
+  }
+
+  h1 {
+    line-height: 1.2 !important;
+  }
+  h2 {
+    line-height: 1.4em !important;
+  }
+
+  /* Link */
+  a {
+    color: var(--in-content-link-color) !important;
+  }
+  a:hover,
+  .text-link:hover {
+    color: var(--in-content-link-color-hover) !important;
+    text-decoration: underline !important;
+  }
+  a:visited {
+    color: var(--in-content-link-color-visited) !important;
+  }
+  a:hover:active,
+  .text-link:hover:active {
+    color: var(--in-content-link-color-active) !important;
+  }
+  a:-moz-focusring,
+  .text-link:-moz-focusring {
+    outline: 2px solid var(--in-content-focus-outline-color) !important;
+    outline-offset: 1px !important;
+    border-radius: 4px !important;
+  }
+
+  /* Button */
+  button {
+    font: inherit;
+  }
+  button,
+  select,
+  input[type="color"] {
+    appearance: none !important;
+    min-height: 32px !important;
+    color: var(--in-content-button-text-color, inherit) !important;
+    border: 1px solid transparent !important; /* shows up in high-contrast mode */
+    border-radius: var(--in-content-button-border-radius) !important;
+    background-color: var(--in-content-button-background) !important;
+    font-weight: 400 !important;
+    padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
+    text-decoration: none !important;
+    margin: 4px 8px !important;
+    /* Ensure font-size isn't overridden by widget styling (e.g. in forms.css) */
+    font-size: 1em !important;
+  }
+  button {
+    font-weight: 600 !important;
+    /* Use the same margin of other elements for the alignment */
+    margin-inline: 4px !important;
+    min-width: 6.3em !important;
+  }
+  /* Medium and small buttons get sized to 7/14 and 6/12px padding (when adding
+     * the 1px border): */
+  button.medium {
+    --in-content-button-vertical-padding: 6px;
+    --in-content-button-horizontal-padding: 13px;
+    min-height: 28px !important;
+    font-size: 0.95em !important;
+  }
+  button.small {
+    --in-content-button-vertical-padding: 5px;
+    --in-content-button-horizontal-padding: 11px;
+    min-height: 24px !important;
+    font-size: 0.9em !important;
+  }
+  ::-moz-focus-inner {
+    border: none !important;
+  }
+  button:-moz-focusring {
+    box-shadow: none !important;
+    outline: 2px solid var(--in-content-focus-outline-color) !important;
+    outline-offset: 2px !important;
+  }
+  button:enabled:hover,
+  input[type="color"]:hover {
+    background-color: var(--in-content-button-background-hover) !important;
+    color: var(--in-content-button-text-color-hover) !important;
+    border-color: transparent !important;
+  }
+  button:enabled:hover:active,
+  input[type="color"]:enabled:hover:active {
+    background-color: var(--in-content-button-background-active) !important;
+  }
+  button:disabled,
+  input[type="color"]:disabled {
+    opacity: 0.4 !important;
+  }
+  button[autofocus],
+  button[type="submit"],
+  button.primary {
+    background-color: var(--in-content-primary-button-background) !important;
+    color: var(--in-content-primary-button-text-color) !important;
+  }
+  button[autofocus]:enabled:hover,
+  button[type="submit"]:enabled:hover,
+  button.primary:enabled:hover {
+    background-color: var(--in-content-primary-button-background-hover) !important;
+    color: var(--in-content-primary-button-text-color-hover) !important;
+  }
+  button[autofocus]:enabled:hover:active,
+  button[type="submit"]:enabled:hover:active,
+  button.primary:enabled:hover:active {
+    background-color: var(--in-content-primary-button-background-active) !important;
+  }
+
+  /* Checkbox */
+  input[type="checkbox"] {
+    margin-block: 2px !important;
+  }
+  input[type="checkbox"] {
+    appearance: none !important;
+    height: 16px !important;
+    width: 16px !important;
+    border: 1px solid var(--checkbox-border-color) !important;
+    background-color: var(--checkbox-unchecked-bgcolor) !important;
+    border-radius: 2px !important;
+    margin-inline: 0 6px !important;
+    flex-shrink: 0 !important; /* avoid shrinking inside flex container */
+  }
+  input[type="checkbox"]:enabled:hover {
+    background-color: var(--checkbox-unchecked-hover-bgcolor) !important;
+  }
+  input[type="checkbox"]:enabled:hover:active {
+    background-color: var(--checkbox-unchecked-active-bgcolor) !important;
+  }
+  input[type="checkbox"]:checked {
+    border-color: var(--checkbox-checked-border-color) !important;
+    background-color: var(--checkbox-checked-bgcolor) !important;
+    background-image: url("chrome://global/skin/icons/check.svg") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    -moz-context-properties: fill !important;
+    fill: currentColor !important;
+    color: var(--checkbox-checked-color) !important;
+    /* Style the button also when printing with "Print Backgrounds" unchecked */
+    color-adjust: exact !important;
+  }
+  input[type="checkbox"]:enabled:checked:hover {
+    background-color: var(--checkbox-checked-hover-bgcolor) !important;
+  }
+  input[type="checkbox"]:enabled:checked:hover:active {
+    background-color: var(--checkbox-checked-active-bgcolor) !important;
+  }
+
+  /* Textarea */
+  input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+  textarea {
+    appearance: none !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    border-radius: 4px !important;
+    color: inherit !important;
+    background-color: var(--in-content-box-background) !important;
+  }
+  input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+  textarea {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    padding: 8px !important;
+    margin: 2px 4px !important;
+  }
+  input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):focus,
+  textarea:focus,
+  search-textbox[focused],
+  tree:focus-visible,
+  richlistbox:focus-visible {
+    border-color: transparent !important;
+    outline: 2px solid var(--in-content-focus-outline-color) !important;
+    outline-offset: -1px !important; /* Prevents antialising around the corners */
+  }
+  input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):-moz-ui-invalid,
+  textarea:-moz-ui-invalid {
+    border-color: transparent !important;
+    outline: 2px solid var(--in-content-border-invalid) !important;
+    outline-offset: -1px !important; /* Prevents antialising around the corners */
+  }
+  input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):disabled,
+  textarea:disabled,
+  search-textbox[disabled="true"] {
+    opacity: 0.4 !important;
+  }
+
+  /* Table */
+  table {
+    width: 100% !important;
+  }
+}
+
+@-moz-document url-prefix("about:plugins"),
+               url-prefix("about:cache"),
+               url-prefix("about:checkerboard") {
+  table {
+    border: 1px solid var(--in-content-table-border-color) !important;
+    border-radius: 0 !important;
+  }
+}
+@-moz-document url-prefix("about:cache"),
+               url-prefix("about:checkerboard") {
+  th,
+  td {
+    border: 1px solid var(--in-content-table-border-color) !important;
+  }
+  th {
+    background-color: var(--in-content-table-header-background) !important;
+    color: var(--in-content-table-header-color) !important;
+  }
+}

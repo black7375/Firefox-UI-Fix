@@ -1,0 +1,181 @@
+/*= Support.org ============================================================*/
+@-moz-document url-prefix("https://support.mozilla.org")
+{
+  /* Basic */
+  :root {
+    --color-blue-06: var(--in-content-link-color) !important;
+    --color-blue-07: var(--in-content-link-color-hover) !important;
+    --color-blue-09: var(--in-content-link-color-active) !important;
+
+    --page-bg: var(--in-content-page-background) !important;
+    --color-white: var(--in-content-page-background) !important;
+    --color-shade-bg: var(--in-content-page-background) !important;
+    --color-marketing-gray-02: var(--card-outline-color) !important;
+    --color-inverse-bg: var(--in-content-page-color) !important;
+    --color-inverse: var(--in-content-page-background) !important;
+    --color-text: var(--in-content-page-color) !important;
+    --color-moz-text: var(--in-content-page-color) !important;
+    --color-moz-heading: var(--in-content-page-color) !important;
+    --color-text-light: var(--in-content-deemphasized-text) !important;
+    --color-link: var(--in-content-link-color) !important;
+    --color-success: var(--green-70) !important;
+    --color-warning: var(--yellow-80) !important;
+    --color-error: var(--red-60) !important;
+    --color-error-hover: var(--red-50) !important;
+    --color-moz-heading: #fff;
+    --color-moz-inverse-bg: var(red) !important;
+    --focus-shadow: 0 0 0 4px color-mix(in srgb, var(--in-content-primary-button-background) 30%, transparent),
+      0 0 0 2px var(--in-content-primary-button-background-active);
+  }
+  .warning {
+    --color-link: rgb(55, 255, 255) !important;
+  }
+
+  body,
+  #main-content,
+  #instant-search-content,
+  #mzp-c-menu-panel-help,
+  .mzp-c-navigation,
+  .kbox-container {
+    color: var(--in-content-page-color) !important;
+    background: var(--in-content-page-background) !important;
+  }
+
+  #editor {
+    border: 2px solid var(--in-content-border-color) !important;
+  }
+  .CodeMirror-linenumbers {
+    background: var(--in-content-table-background);
+  }
+  .CodeMirror-lines {
+    color: var(--in-content-deemphasized-text) !important;
+    background: var(--in-content-page-background) !important;
+  }
+  .CodeMirror-scroll {
+    background: var(--in-content-page-background) !important;
+  }
+
+  /* Text */
+  .mzp-c-menu-category .mzp-c-menu-title,
+  .mzp-c-menu-item .mzp-c-menu-item-link,
+  .mzp-c-menu-item .mzp-c-menu-item-link > *,
+  .mzp-c-menu-item .mzp-c-menu-item-list a,
+  #doc-content .menu,
+  .document--content .menu,
+  .forum--entry-content .menu,
+  .tag-name a {
+    color: var(--in-content-page-color) !important;
+  }
+
+  .ts-select-trigger,
+  input[type="date"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="time"],
+  input[type="url"],
+  select,
+  textarea,
+  #doc-content .button,
+  #doc-content .key,
+  .document--content .button,
+  .document--content .key,
+  .forum--entry-content .button,
+  .forum--entry-content .key {
+    color: var(--in-content-deemphasized-text) !important;
+  }
+
+  .tag-list a {
+    color: var(--color-marketing-gray-10) !important;
+  }
+  .tag-list a:hover,
+  .sidebar-nav a:hover {
+    color: var(--color-link) !important;
+  }
+  .tag-list li {
+    background: var(--in-content-page-color) !important;
+  }
+  .tag-list li:hover {
+    background: var(--in-content-deemphasized-text) !important;
+  }
+
+  #remaining-characters {
+    color: var(--in-content-page-color) !important;
+  }
+
+  /* Background */
+  .sidebar-nav.topics,
+  .sidebar-nav.topics > li {
+    background: var(--in-content-page-background) !important;
+  }
+  .mzp-c-menu-panel {
+    color: var(--in-content-page-color) !important;
+    background: var(--in-content-page-background) !important;
+  }
+  .mzp-c-menu-list-list,
+  .mzp-c-menu-list-list:hover {
+    color: var(--in-content-page-color) !important;
+    background: var(--in-content-box-background) !important;
+  }
+  .mzp-c-menu-list-item:focus,
+  .mzp-c-menu-list-item:hover {
+    background: var(--in-content-button-background-hover) !important;
+  }
+  .cm-bold {
+    color: var(--in-content-page-color) !important;
+  }
+
+  /* Fill */
+  .sumo-nav--logo,
+  .sumo-nav--search-button,
+  .sumo-nav--toggle-button,
+  .card:not(.is-inverse) .card--icon-sm,
+  .mzp-c-menu-item-icon,
+  .mzp-c-menu-button-close,
+  .topic-article--icon,
+  .card--topic > .card--icon,
+  .mzp-c-details .is-summary button::before,
+  details .is-summary button::before,
+  summary::before,
+  .icon-button > button,
+  .search-button {
+    filter: invert(95%) !important;
+  }
+  button.markup-toolbar-button {
+    /*using 0.5 because in middle*/
+    filter: invert(0.5) !important;
+  }
+
+  /* Others */
+  .support-callouts > .card.is-inverse {
+    background: #20133a !important;
+  }
+  .support-callouts > .card.is-inverse :is(h1, h2, h3, h4, h5, h6, li, p) {
+    color: var(--in-content-page-color) !important;
+  }
+
+  .sumo-button.secondary-button {
+    border-color: transparent !important;
+  }
+  .mzp-c-menu-panel {
+    border-color: var(--in-content-button-background-hover) !important;
+  }
+  .mzp-c-menu-item:is(:focus, :hover, :active) .mzp-c-menu-item-link .mzp-c-menu-item-title {
+    border-color: var(--in-content-page-color) !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    .mzp-c-menu-panel {
+      box-shadow: 0 16px 16px -16px rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+  .card--product,
+  .card--topic,
+  .card--article {
+    box-shadow: 0 5px 10px -3px rgba(249, 249, 250, 0.12), 0 3px 16px 2px rgba(91, 91, 102, 0.12),
+      0 8px 12px 1px rgba(82, 82, 94, 0.04) !important;
+  }
+}

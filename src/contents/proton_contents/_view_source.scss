@@ -1,0 +1,59 @@
+@-moz-document url-prefix("view-source") {
+  :root {
+    background-color: var(--in-content-page-background) !important; /* Original: white */
+    color: var(--in-content-page-color) !important; /* Original: black */
+
+    /* Colors */
+    --view-source-green: var(--green-80);
+    --view-source-purple: #800080; /* Like alphenglow */
+  }
+  @include Dark {
+    :root {
+      --view-source-green: var(--green-60);
+      --view-source-purple: #c68aff;
+    }
+  }
+
+  pre[id]::before,
+  span[id]::before {
+    color: color-mix(
+      in srgb,
+      var(--in-content-page-color) 70%,
+      var(--in-content-page-background)
+    ) !important; /* Original: #ccc */
+  }
+  .highlight .start-tag,
+  .highlight .end-tag {
+    color: var(--view-source-purple) !important; /* Original: purple */
+  }
+  .highlight .comment {
+    color: var(--view-source-green) !important; /* Original: green */
+  }
+  .highlight .cdata {
+    color: var(--in-content-border-invalid) !important; /* Original: #CC0066 */
+  }
+  .highlight .doctype {
+    color: #4682b4 !important; /* Original: steelblue */
+  }
+  .highlight .pi {
+    color: orchid !important; /* Original: orchid */
+  }
+  .highlight .entity {
+    color: #ff4500 !important; /* Original: #FF4500 */
+  }
+  .highlight .attribute-name {
+    color: var(--view-source-green) !important; /* Original: black */
+  }
+  .highlight .attribute-value {
+    color: var(--in-content-link-color) !important; /* Original: blue */
+  }
+  .highlight .markupdeclaration {
+    color: #4682b4 !important; /* Original: steelblue */
+  }
+  .highlight .error,
+  .highlight
+    .error
+    > :-moz-any(.start-tag, .end-tag, .comment, .cdata, .doctype, .pi, .entity, .attribute-name, .attribute-value) {
+    color: var(--in-content-error-text-color) !important; /* Original: red */
+  }
+}

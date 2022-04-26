@@ -1,0 +1,45 @@
+/*= Menubar - Icons ==========================================================*/
+#organizeButton,
+#viewMenu,
+#maintenanceButton,
+#back-button,
+#forward-button,
+#clearDownloadsButton {
+  fill: currentColor !important;
+  -moz-context-properties: fill !important;
+}
+
+/* Add */
+#organizeButton {
+  list-style-image: url("chrome://global/skin/icons/settings.svg") !important;
+}
+#viewMenu {
+  list-style-image: url("../icons/sort.svg") !important;
+}
+#maintenanceButton {
+  list-style-image: url("../icons/import-export.svg") !important;
+}
+
+#clearDownloadsButton {
+  list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
+}
+#clearDownloadsButton > .toolbarbutton-icon {
+  display: -moz-inline-box !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 2px;
+}
+
+/* Replace */
+#back-button {
+  list-style-image: url("chrome://browser/skin/back.svg") !important;
+}
+#forward-button {
+  list-style-image: url("chrome://browser/skin/forward.svg") !important;
+}
+
+#back-button:-moz-locale-dir(rtl) > .toolbarbutton-icon,
+#forward-button:-moz-locale-dir(rtl) > .toolbarbutton-icon {
+  transform: scaleX(-1) !important;
+}

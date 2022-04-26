@@ -1,0 +1,125 @@
+@mixin separatorShape() {
+  /* Box Model */
+  content: "";
+  display: block;
+  position: absolute;
+
+  /* Position */
+  top: 50%;
+
+  /* Bar shape */
+  width: 1px;
+  height: 20px;
+
+  /* Bar Color */
+  opacity: 0;
+  background-color: var(--toolbarseparator-color);
+
+  @include Option("userChrome.compatibility.dynamic_separator") {
+    background-color: var(--tabs-border-color);
+  }
+}
+
+@include Option("userChrome.tab.newtab_button_like_tab") {
+  #tabbrowser-arrowscrollbox {
+    position: absolute;
+  }
+
+  .tab-background::before,
+  #tabs-newtab-button::before {
+    @include separatorShape;
+
+    /* More position */
+    transform: translateX(-2.5px) translateY(calc(-50% + 1px));
+  }
+}
+
+@include NotOption("userChrome.tab.newtab_button_like_tab") {
+  .tab-background::before,
+  #tabbrowser-arrowscrollbox:not([overflowing])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+    .tab-background::after {
+    @include separatorShape;
+  }
+
+  .tab-background::before {
+    transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
+  }
+  .tabbrowser-tab[last-visible-tab] .tab-background::after {
+    right: 0;
+    transform: translateX(1.5px) translateY(calc(-50% + 1px)) !important;
+  }
+}
+
+.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
+  opacity: var(--tab-separator-opacity);
+}
+@include Option("userChrome.tab.newtab_button_like_tab") {
+  #tabs-newtab-button:not(:hover, [open])::before {
+    opacity: var(--tab-separator-opacity);
+  }
+}
+@include NotOption("userChrome.tab.newtab_button_like_tab") {
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
+  #tabbrowser-arrowscrollbox:not([overflowing])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+    .tab-background::after {
+    opacity: var(--tab-separator-opacity);
+  }
+}
+
+#navigator-toolbox:not([movingtab])
+  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
+  .tab-background::before,
+#navigator-toolbox:not([movingtab])
+  #tabbrowser-arrowscrollbox[overflowing]
+  tab.tabbrowser-tab[first-visible-unpinned-tab]
+  .tab-background::before {
+  opacity: 0 !important;
+}
+@include Option("userChrome.tab.newtab_button_like_tab") {
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    + .tabbrowser-tab
+    .tab-background::before,
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    ~ .tabbrowser-tab[afterhovered]
+    .tab-background::before,
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+    ~ #tabs-newtab-button::before {
+    opacity: 0 !important;
+  }
+}
+@include NotOption("userChrome.tab.newtab_button_like_tab") {
+  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    + .tabbrowser-tab:not([visuallyselected])
+    .tab-background::before {
+    opacity: 0 !important;
+  }
+}
+
+/* Animate */
+@include Animate {
+  .tab-background::before {
+    transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+  }
+  @include Option("userChrome.tab.newtab_button_like_tab") {
+    #tabs-newtab-button::before {
+      transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+    }
+  }
+  @include NotOption("userChrome.tab.newtab_button_like_tab") {
+    #tabbrowser-arrowscrollbox:not([overflowing])
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+      .tab-background::after {
+      transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+    }
+  }
+}
+
+/* Latest Tab & New tab margin */
+#tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
+  margin-inline-end: 1px !important;
+}

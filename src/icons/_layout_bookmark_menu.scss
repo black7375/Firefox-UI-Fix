@@ -1,0 +1,93 @@
+/*= Bookmark Menu - Layout ===================================================*/
+/* #goPopup(Legacy of historyMenuPoup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
+   * #BMB_bookmarksPopup: looks like arrow panel
+   */
+
+/* Empty Menu */
+menupopup menupopup[emptyplacesresult] .menu-text,
+#PersonalToolbar menupopup[emptyplacesresult] .menu-text {
+  margin-inline-start: 0 !important;
+}
+
+/* Bookmark Popup - As Arrow Panel */
+#BMB_bookmarksPopup,
+#PersonalToolbar {
+  --context-menu-background-padding: var(--arrowpanel-menuitem-padding-inline);
+}
+
+/* Windows 7, 8 */
+@include OS($win7, $win8) {
+  /* Global Menu */
+  menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
+    padding-inline-start: 0 !important;
+  }
+
+  /* Bookmark Popup - None icon menu */
+  #BMB_bookmarksPopup,
+  #PersonalToolbar {
+    --arrowpanel-menuicon-padding: 9px;
+  }
+  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
+  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+    margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
+    background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+  }
+  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
+    padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding) + 2px) !important;
+  }
+  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+    padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
+  }
+}
+
+/* Windows */
+@include OS($win10) {
+  /* Bookmark Popup - None icon menu */
+  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
+  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+    margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
+    padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
+    background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+  }
+}
+
+/* Linux */
+@include OS($linux) {
+  /* Global Menu */
+  menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
+    padding-inline-start: var(--context-menu-background-padding) !important;
+  }
+
+  /* Bookmark Popup - Iconic menu */
+  #BMB_bookmarksPopup .menu-iconic-text,
+  #PersonalToolbar menupopup[placespopup="true"] .bookmark-item .menu-iconic-text {
+    padding-inline-start: 1px !important;
+  }
+  /* Bookmark Popup - None icon menu */
+  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
+  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+    padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+  }
+}
+
+@include OS($mac) {
+  /* Bookmark Popup - As Arrow Panel */
+  #PersonalToolbar menupopup menuitem,
+  #PersonalToolbar menupopup menu {
+    padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
+  }
+
+  /* Bookmark Popup - None icon menu */
+  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
+    padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
+  }
+}

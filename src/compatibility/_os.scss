@@ -1,0 +1,165 @@
+/*= Windows 10 - Top border of accent color at ESR #358 ======================*/
+@include OS($win10) {
+  :root[sizemode=normal][tabsintitlebar] #navigator-toolbox {
+    border-top: .5px solid rgb(47, 47, 47) !important;
+  }
+  :root[sizemode=normal][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
+    border-top-color: rgb(57, 57, 57) !important;
+  }
+  @media (-moz-windows-accent-color-in-titlebar) {
+    :root[sizemode=normal][tabsintitlebar] #navigator-toolbox {
+      border-top-color: -moz-accent-color !important;
+    }
+  }
+}
+
+/*= Windows 7, 8 - Tab Bar Background *****************************************/
+@include OS($win7, $win8) {
+  /* Header Color */
+  :root:not([lwtheme-image]):-moz-lwtheme {
+    background-color: var(--lwt-accent-color) !important;
+  }
+}
+@include OS($win7) {
+  #TabsToolbar:-moz-lwtheme {
+    color: var(--lwt-text-color) !important;
+  }
+
+  /* Remove Aero */
+  #TabsToolbar {
+    /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
+    background-image: unset !important;
+  }
+}
+@include OS($win8) {
+  #navigator-toolbox:-moz-lwtheme {
+    color: var(--lwt-text-color) !important;
+  }
+}
+
+/*= Windows 7, 8 - Menu Active Color =========================================*/
+@include OS($win7, $win8) {
+  menupopup > menu,
+  menupopup > menuitem,
+  #context-navigation > menuitem {
+    border: 1px solid transparent; /* Need reduce 2px at menu */
+  }
+
+  #main-menubar > menu[open="true"],
+  #main-menubar > menu[_moz-menuactive="true"] {
+    background-color: -moz-menuhover !important; /* Make to original */
+  }
+  :root:-moz-lwtheme #main-menubar > menu[open="true"],
+  :root:-moz-lwtheme #main-menubar > menu[_moz-menuactive="true"] {
+    color: inherit !important; /* Original: -moz-menubarhovertext */
+    background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
+  }
+
+  menulist > menupopup > menuitem[_moz-menuactive="true"],
+  menulist > menupopup > menu[_moz-menuactive="true"] {
+    background-color: highlight !important;
+    color: highlighttext !important;
+  }
+
+  #PlacesToolbar menu,
+  #PlacesToolbar menuitem,
+  #BMB_bookmarksPopup menu,
+  #BMB_bookmarksPopup menuitem {
+    border: none !important; /* Remove border */
+  }
+  #PlacesToolbar menu:not([disabled], :active)[_moz-menuactive="true"],
+  #PlacesToolbar menuitem:not([disabled], :active)[_moz-menuactive="true"],
+  #BMB_bookmarksPopup menu:not([disabled], :active)[_moz-menuactive="true"],
+  #BMB_bookmarksPopup menuitem:not([disabled], :active)[_moz-menuactive="true"] {
+    background-color: var(--button-hover-bgcolor) !important;
+  }
+}
+
+@include OS($win7) {
+  menu[_moz-menuactive="true"],
+  menuitem[_moz-menuactive="true"] {
+    background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
+    border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
+  }
+  menu[_moz-menuactive="true"][disabled="disabled"],
+  menuitem[_moz-menuactive="true"][disabled="true"] {
+    background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
+    border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
+  }
+
+  /* Remove text shadow */
+  :root:-moz-lwtheme #toolbar-menubar {
+    text-shadow: unset !important;
+    /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
+  }
+
+  /* Remove Color */
+  :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
+    background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
+    color: unset !important; /* Original: black */
+  }
+}
+@include OS($win8) {
+  menu[_moz-menuactive="true"],
+  menuitem[_moz-menuactive="true"] {
+    background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
+    border-color: color-mix(in srgb, -moz-menuhover 80%, transparent) !important;
+  }
+  menu[_moz-menuactive="true"][disabled="disabled"],
+  menuitem[_moz-menuactive="true"][disabled="true"] {
+    background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
+    border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
+  }
+}
+
+@include OS($linux) {
+  /*= Linux - Global Menubar Active Color ====================================*/
+  #main-menubar > menu[open="true"],
+  #main-menubar > menu[_moz-menuactive="true"] {
+    color: inherit !important; /* Original: -moz-menubarhovertext */
+    background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
+  }
+
+  /*= Linux - Titlebar button at lwtheme =====================================*/
+  @include NotOption("userChrome.compatiblity.os.linux_non_native_titlebar_button") {
+    .titlebar-button:-moz-lwtheme {
+      appearance: auto !important;
+    }
+    .titlebar-min:-moz-lwtheme,
+    .titlebar-max:-moz-lwtheme,
+    .titlebar-restore:-moz-lwtheme,
+    .titlebar-close:-moz-lwtheme {
+      list-style-image: none !important;
+    }
+    .titlebar-button:-moz-lwtheme:hover,
+    .titlebar-button:-moz-lwtheme:hover:active {
+      background-color: unset !important;
+      color: unset !important;
+    }
+  }
+}
+
+/*= Linux - Light System Default Theme's Selected Tab ========================*/
+@include OS($linux) {
+  @include Light {
+    /* Because of
+      #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background {
+        border: 1px solid var(--tab-line-color, rgba(128,128,142,0.9));
+        box-shadow: 0 0 4px rgba(128,128,142,0.5);
+      }
+     */
+    #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background:not(:-moz-lwtheme) {
+      box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
+    }
+    #TabsToolbar:not([brighttext])
+      #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background:not(:-moz-lwtheme) {
+      box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+:root {
+  --menu-padding: 0.35em; /* Win7, 8: 0px */
+}
+:root[uidensity="compact"] {
+  --menu-padding: 0.25em;
+}
+:root[uidensity="touch"] {
+  --menu-padding: 0.5em;
+}
+@include Option("userChrome.padding.menu_compact") {
+  :root {
+    --menu-padding: 2px;
+  }
+  :root[uidensity=compact] {
+    --menu-padding: 0px;
+  }
+}
+
+menupopup:not(.in-menulist) > menuitem,
+menupopup > menu {
+  /* Original: 0.5em */
+  padding-block: var(--menu-padding) !important;
+}
+
+#ContentSelectDropdown > menupopup > menucaption,
+#ContentSelectDropdown > menupopup > menuitem {
+  padding-block: 0 !important;
+}
+
+@include OS($mac) {
+  :root:not([uidensity="touch"]) .menu-text,
+  :root:not([uidensity="touch"]) .menu-iconic-text {
+    padding-inline-end: 0 !important; /* Original: 2px */
+  }
+  :root:not([uidensity="touch"]) .menupopup-arrowscrollbox {
+    padding-block: 1px !important; /* Original: 4px*/
+  }
+  :root:not([uidensity="touch"]) #context-navigation:not([hidden]) {
+    padding: 0 0 1px !important; /* Original: 0 0 4px*/
+  }
+  :root:not([uidensity="touch"]) .menu-right {
+    margin-right: 6px !important; /* Original: 12px */
+  }
+}
+
+@include OS($win7, $win8) {
+  /* Remove border */
+  menupopup > menuitem,
+  menupopup > menu {
+    padding-block: calc(var(--menu-padding) - 2px) !important;
+  }
+
+  /* Make to original */
+  :root:not([uidensity="touch"]) #context-navigation:not([hidden]) {
+    padding: 0 0 4px !important;
+  }
+}
+
+@include OS($linux) {
+  menupopup > menu {
+    padding-inline-start: 0.5em;
+  }
+}
+
+/* Arrow Icon Align to Right */
+.bookmark-item.subviewbutton > .menu-right {
+  margin-inline-end: 0 !important;
+}
+

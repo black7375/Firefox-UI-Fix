@@ -1,0 +1,17 @@
+.tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
+  display: -moz-box !important;
+  -moz-box-ordinal-group: 0 !important;
+
+  /* Looks like hover */
+  width: 24px !important;
+  height: 24px !important;
+  margin-inline: -4px !important; /* (24px - 16px) / 2 */
+}
+.tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
+  width: 0 !important;
+  position: absolute;
+  bottom: 8px;
+}
+.tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
+  display: none !important;
+}

@@ -1,0 +1,62 @@
+#tabs-newtab-button {
+  /* Original:
+    margin: 0 0 var(--tabs-navbar-shadow-size) !important
+    => Can't ovrride style. Therefore, we should approach it by bypass.
+    */
+  --tabs-navbar-shadow-size: -1px; /* Original: 1px */
+  --tabs-navbar-original-shadow-size: 1px;
+  --tab-corner-rounding: 4px; /* Hardcorded */
+
+  /* Size */
+  -moz-box-align: stretch !important;
+  padding-top: var(--tab-block-margin) !important;
+
+  /* Corner Rounding Image */
+  --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
+  background-image: url("../icons/tab-bottom-corner-left.svg"), url("../icons/tab-bottom-corner-right.svg");
+  background-repeat: no-repeat;
+  background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
+    right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
+  background-size: var(--tab-corner-rounding);
+
+  /* Corner Rounding Color */
+  fill: transparent !important;
+  -moz-context-properties: fill !important;
+}
+
+/* Corner Rounding Color */
+#tabs-newtab-button:hover {
+  fill: var(--toolbarbutton-hover-background) !important;
+}
+#tabs-newtab-button:hover:active {
+  fill: var(--toolbarbutton-active-background) !important;
+}
+@media (-moz-windows-accent-color-in-titlebar) {
+  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+  :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
+    fill: color-mix(
+      in srgb,
+      -moz-accent-color-foreground 10%,
+      transparent
+    ) !important; /* Hardcorded for compatibility */
+  }
+  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+  :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
+    fill: color-mix(
+      in srgb,
+      -moz-accent-color-foreground 15%,
+      transparent
+    ) !important; /* Hardcorded for compatibility */
+  }
+}
+
+/* '+'Icon */
+#tabs-newtab-button .toolbarbutton-icon {
+  border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
+
+  padding: calc(var(--toolbarbutton-inner-padding) - (var(--tab-block-margin) / 4)) var(--toolbarbutton-inner-padding)
+    calc(var(--toolbarbutton-inner-padding) + (var(--tab-block-margin) / 4) + var(--tabs-navbar-original-shadow-size)) !important;
+  -moz-context-properties: fill, fill-opacity;
+  fill: var(--toolbarbutton-icon-fill);
+  fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+}

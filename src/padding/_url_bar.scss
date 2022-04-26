@@ -1,0 +1,24 @@
+:root:not([uidensity="touch"]) #urlbar-container,
+:root:not([uidensity="touch"]) #search-container {
+  padding-block: 3px !important; /* Original: 4px */
+  margin-inline: 5px !important; /* Original: 5px */
+}
+:root:not([uidensity="compact"]) #urlbar-container,
+:root:not([uidensity="compact"]) #search-container {
+  padding-block: 2px !important;
+}
+
+/* spread menu */
+:root:not([uidensity]) .urlbarView-row {
+  padding-block: 1px !important; /* Original: 2px */
+}
+:root[uidensity="compact"] .urlbarView-row {
+  padding-block: 0px !important;
+}
+
+:root:not([uidensity]) #urlbar .search-one-offs:not([hidden]) {
+  padding-block: 8px !important; /* Original: 10px */
+}
+:root[uidensity="compact"] #urlbar .search-one-offs:not([hidden]) {
+  padding-block: 2px !important;
+}

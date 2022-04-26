@@ -1,0 +1,192 @@
+@-moz-document url("about:home"), url("about:newtab") {
+  /** Activity Stream - Search Focus Border: like URL *************************/
+  @include Option("userContent.page.field_border") {
+    /* At DarkMode, Color */
+    body[style*="--newtab-background-color:rgba(28, 27, 34, 1);"],
+    body[style*="--newtab-background-color:rgba(42, 42, 46, 1);"],
+    body[style*="--newtab-background-color: rgba(42, 42, 46, 1);"],
+    body[style*="--newtab-background-color: rgba(43, 42, 51, 1);"],
+    body[style*="--newtab-background-color: rgb(43, 42, 51);"] {
+      /* inner */
+      --newtab-focus-border: rgba(
+        0,
+        221,
+        255,
+        0.5
+      ) !important; /* Original: #B5D3FF, Better color-mix(in srgb, #B5D3FF 70%, transparent) */
+      --newtab-focus-border-selected: var(--newtab-focus-border) !important; /* Original: #B5D3FF */
+
+      /* For Nightly */
+      --newtab-primary-action-background: var(--newtab-focus-border) !important;
+
+      @include Option("userContent.page.proton_color") {
+        @include Option("userContent.page.proton_color.dark_blue_accent") {
+          --newtab-focus-border: var(--in-content-focus-outline-color) !important;
+        }
+      }
+    }
+  }
+
+  /** Activity Stream - Web Site Icon: full size ******************************/
+  @include Option("userContent.newTab.full_icon") {
+    .top-site-outer .tile {
+      overflow: hidden;
+    }
+
+    .top-site-outer .tile .icon-wrapper {
+      width: 100% !important; /* Original: 48px */
+      height: 100% !important; /* Original: 48px */
+    }
+  }
+
+  /** Activity Stream - Animate ***********************************************/
+  @include Option("userContent.newTab.animate") {
+    @include Animate {
+      :root {
+        --animation-easing-function: cubic-bezier(0.07, 0.95, 0, 1);
+      }
+
+      /* Background */
+      .top-site-outer,
+      #searchSubmit,
+      button.icon,
+      button.close-button {
+        transition: background 1.5s var(--animation-easing-function);
+      }
+      .top-site-outer:hover,
+      #searchSubmit:hover,
+      button.icon:hover,
+      button.close-button:hover {
+        transition: background 0.5s var(--animation-easing-function);
+      }
+
+      /* Search Bar */
+      .search-inner-wrapper input {
+        transition: 1s var(--animation-easing-function);
+        transition-property: border-color, box-shadow;
+      }
+      .search-wrapper .search-inner-wrapper:active input,
+      .search-wrapper input:focus {
+        transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
+      }
+      @include Option("userContent.page.field_border") {
+        .search-wrapper .search-inner-wrapper:hover input {
+          border-color: var(--newtab-primary-action-background) !important;
+          transition: border-color 0.5s var(--animation-easing-function);
+        }
+      }
+    }
+  }
+
+  /** Activity Stream - Pocket order to last **********************************/
+  @include Option("userContent.newTab.pocket_to_last") {
+    .body-wrapper.on {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .body-wrapper.on > .discovery-stream.ds-layout {
+      flex-basis: 100%;
+    }
+
+    .body-wrapper.on > .collapsible-section[data-section-id="topstories"],
+    .home-section > #pocket-section,
+    .home-section > .divider,
+    .home-section > div:not(.section) {
+      order: 2;
+    }
+  }
+
+  /** Activity Stream - Home Search Bar looks like proton *********************/
+  @include Option("userContent.newTab.animate") {
+    /* Dropdown Colors */
+    #root {
+      --newtab-search-background-color: rgba(255, 255, 255, 1); /* Same as light theme's --panel-background */
+
+      /* Set search dropdown background */
+      --newtab-search-dropdown-header-color: var(--newtab-search-background-color) !important;
+      --newtab-search-dropdown-color: var(--newtab-search-background-color) !important;
+      --newtab-element-hover-color: color-mix(in srgb, currentColor 9%, transparent) !important;
+    }
+
+    @include Dark {
+      #root {
+        /* Default Dark Mode */
+        --newtab-search-background-color: rgba(66, 65, 77, 1); /* Same as dark theme's --panel-background */
+      }
+    }
+    .activity-stream[lwt-sidebar]:not([style*="--newtab-background-color: rgba(43, 42, 51, 1);"]) #root {
+      /* Light weight theme */
+      --newtab-search-background-color: var(--lwt-sidebar-background-color);
+    }
+
+    /* Padding */
+    #searchSuggestionTable {
+      border-radius: 4px !important;
+      -moz-window-shadow: cliprounded;
+    }
+
+    .contentSearchSuggestionTable .contentSearchOneOffItem {
+      width: 32px !important;
+      height: 32px !important;
+
+      /* Margin */
+      margin-block: 5px !important;
+      margin-inline-start: 5px !important;
+      margin-inline-end: 8px !important;
+
+      /* Border */
+      border-radius: 4px !important;
+      border-image: none !important; /* Original: linear-gradient(transparent 18%, var(--newtab-border-secondary-color) 18%, var(--newtab-border-secondary-color) 82%, transparent 82%) 1; */
+      border-inline-end: none !important; /* Original: 1px solid; */
+    }
+
+    #contentSearchSettingsButton::before {
+      content: url("chrome://global/skin/icons/settings.svg") !important;
+      display: -moz-inline-box;
+
+      /* Color */
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+
+      /* Align */
+      margin-inline-end: 5px;
+      vertical-align: -25%;
+    }
+
+    /* Pointer */
+    .contentSearchSuggestionTable .contentSearchOneOffItem,
+    #contentSearchSettingsButton {
+      cursor: pointer;
+    }
+
+    /*- Fix Color For Nightly ------------------------------------------------*/
+    .contentSearchSuggestionTable,
+    .contentSearchHeaderRow,
+    .contentSearchHeader,
+    .contentSearchSuggestionsContainer {
+      color: var(--newtab-text-primary-color) !important;
+      background: var(--newtab-search-background-color) !important;
+    }
+
+    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected,
+    .contentSearchSuggestionTable .contentSearchSettingsButton:hover {
+      color: var(--newtab-text-primary-color) !important;
+    }
+
+    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected,
+    .contentSearchSuggestionTable .contentSearchSettingsButton:hover,
+    .contentSearchSuggestionTable .contentSearchOneOffItem.selected {
+      background: var(--newtab-element-hover-color) !important;
+    }
+
+    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected:active,
+    .contentSearchSuggestionTable .contentSearchOneOffItem:active {
+      background: var(--newtab-element-active-color) !important;
+    }
+
+    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected .historyIcon {
+      fill: var(--newtab-icon-secondary-color) !important;
+    }
+  }
+}

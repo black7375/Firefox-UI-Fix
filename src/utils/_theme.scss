@@ -1,0 +1,41 @@
+@use "sass:selector";
+
+//== Privated Variables ========================================================
+$_lwTheme: ":-moz-lwtheme";
+
+$_lightdark: "[lwtheme-mozlightdark]"; // Legacy - FF v96
+$_lightText: '[lwthemetextcolor="bright"]';
+$_darkText:  ":not(#{$_lightText})";
+
+$_sysDark: "[lwt-default-theme-in-dark-mode]";
+$_lightStyle: '[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"]';
+$_darkStyle: '[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]';
+
+//== Mixin =====================================================================
+@function built-in-default-theme() {
+  $oldDefault: selector.append(":root", $_lightdark);
+  $newDefault: selector.append(":root", ":is(#{$_lightStyle}, #{$_darkStyle})");
+
+  @return "#{$oldDefault}, #{$newDefault}";
+}
+
+@function system-default-theme() {
+  $sysLight: selector.append(":root", ":not(#{$_lwTheme})");
+  $sysDark: selector.append(":root", $_sysDark);
+
+  @return "#{$sysLight}, #{$sysDark}";
+}
+
+@function built-in-light-theme() {
+  $oldLight: selector.append(":root", $_lightdark, $_darkText);
+  $newLight: selector.append(":root", $_lightStyle);
+
+  @return "#{$oldLight}, #{$newLight}";
+}
+
+@function built-in-dark-theme() {
+  $oldDark: selector.append(":root", $_lightdark, $_lightText);
+  $newDark: selector.append(":root", $_darkStyle);
+
+  @return "#{$oldDark}, #{$newDark}";
+}

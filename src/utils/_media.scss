@@ -1,0 +1,7 @@
+@use "each";
+
+@mixin each($list...) {
+  @include each.AtEach("media", $list) {
+    @content;
+  }
+}

@@ -1,0 +1,99 @@
+/*= Padding ==================================================================*/
+:root {
+  --arrowpanel-menuicon-padding: 8px;
+  --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-padding) * 2 + var(var(--arrowpanel-menuitem-padding-inline))) !important;
+  --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
+  --arrowpanel-menuimageblank-padding-block: calc(var(--arrowpanel-menuitem-padding-block) - 2px) !important;
+}
+.subviewbutton > .toolbarbutton-icon {
+  width: 16px;
+}
+
+@include Option("userChrome.icon.panel_photon", "userChrome.icon.panel_sparse") {
+  :root {
+    /* Global */
+    --arrowpanel-menuicon-paddingx2: calc(var(--arrowpanel-menuicon-padding) * 2);
+
+    /* General Panel */
+    --arrowpanel-menublank-padding: calc(var(--arrowpanel-menuicon-paddingx2) + 8px) !important;
+    --arrowpanel-menuimageblank-padding: calc(var(--arrowpanel-menuitem-padding-inline) - 2px) !important;
+
+    /* Blank Menu Left Padding */
+    --arrowpanel-menuimageblank-padding-horizontal: calc(
+      var(--arrowpanel-menuicon-paddingx2) + var(--arrowpanel-menuitem-padding-inline)
+    );
+    --arrowpanel-menuitemblank-padding: calc(var(--arrowpanel-menuitem-padding-block) + 1px);
+  }
+}
+
+#downloadsHistory .button-text,
+.subviewbutton > .toolbarbutton-text {
+  padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
+}
+.toolbaritem-combined-buttons > .subviewbutton:not(.subviewbutton-iconic) > .toolbarbutton-text {
+  padding-inline-start: 0 !important;
+}
+#panelMenu_bookmarksMenu .subviewbutton[disabled="true"] .toolbarbutton-text,
+#appMenu_historyMenu .subviewbutton[disabled="true"] .toolbarbutton-text {
+  padding-inline-start: var(--arrowpanel-menublank-padding) !important;
+}
+#appMenu-proton-update-banner .toolbarbutton-text {
+  margin-inline-start: 0 !important;
+}
+
+#appMenu-multiView .subviewbutton::before,
+#appMenu-proton-update-banner::before {
+  display: -moz-inline-box;
+  margin-inline-end: var(--arrowpanel-menuicon-padding);
+  width: 16px;
+  height: 16px;
+}
+#appMenu-proton-update-banner {
+  margin-bottom: 2px !important;
+}
+#appMenu-proton-update-banner::before {
+  margin-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
+}
+#appMenu-fxa-status2,
+#appMenu-zoom-controls2 {
+  align-items: center;
+  padding-top: var(--arrowpanel-menuimageblank-padding-block) !important;
+  padding-bottom: var(--arrowpanel-menuimageblank-padding-block) !important;
+}
+#appMenu-zoom-controls2::before {
+  margin-inline-end: 0 !important;
+}
+#appMenu-zoomReduce-button2,
+#appMenu-zoomReset-button2,
+#appMenu-zoomEnlarge-button2,
+#appMenu-fullscreen-button2 {
+  --arrowpanel-menuitem-padding-block: 0px;
+}
+
+.subviewbutton[type="checkbox"]:not([checked="true"]) > .toolbarbutton-text {
+  margin-left: 16px !important;
+}
+
+/* Icons Color */
+#appMenu-multiView .subviewbutton::before,
+#appMenu-proton-update-banner::before,
+#downloadsHistory .button-icon,
+.subviewbutton > image {
+  fill: currentColor !important;
+  fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
+  -moz-context-properties: fill !important;
+}
+#appMenu-zoomReduce-button2 > .toolbarbutton-icon,
+#appMenu-zoomEnlarge-button2 > .toolbarbutton-icon {
+  stroke: var(--zoom-controls-bgcolor, var(--button-bgcolor, ButtonFace)) !important;
+  -moz-context-properties: fill, stroke !important;
+}
+#appMenu-zoomReduce-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon,
+#appMenu-zoomEnlarge-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon {
+  stroke: var(--button-hover-bgcolor) !important;
+}
+
+.subviewbutton[disabled="true"] > image {
+  /* Ghost icons when disabled */
+  opacity: 0.4;
+}

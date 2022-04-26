@@ -1,0 +1,79 @@
+/*= Tab Bar - Distribution padding, radius ===================================*/
+@import "tab_padding";
+
+/*= Tab Bar - Reduce Width, Show more tabs ===================================*/
+@include Option("userChrome.padding.first_tab") {
+  @import "first_tab";
+}
+
+@include Option("userChrome.padding.tabbar_width") {
+  @import "tabbar_width";
+}
+
+/*= Tab Bar - Reduce Height, Show more contents ==============================*/
+@include Option("userChrome.padding.drag_space") {
+  @import "drag_space";
+}
+
+@include Option("userChrome.padding.tabbar_height") {
+  @import "tabbar_height";
+}
+
+/*= Tool Bar - Button Padding ================================================*/
+@include Option("userChrome.padding.toolbar_button") {
+  @import "toolbar_button";
+}
+
+/*= Nav Bar - Reduce Width ===================================================*/
+@include Option("userChrome.padding.navbar_width") {
+  @import "nav_bar";
+}
+
+/*= URL Bar - Reduce Padding =================================================*/
+@include Option("userChrome.padding.urlbar") {
+  @import "url_bar";
+}
+@include Option("userChrome.padding.urlView_expanding") {
+  @import "urlview_expanding";
+}
+@include Option("userChrome.padding.urlView_result") {
+  @import "urlview_result";
+}
+
+/*= BookMark Bar - Reduce Height =============================================*/
+@include Option("userChrome.padding.bookmarkbar") {
+  @import "bookmark_bar";
+}
+
+/*= Info Bar - Reduce Padding ================================================*/
+@include Option("userChrome.padding.infobar") {
+  @import "info_bar";
+}
+
+/*= Menu - Reduce Padding ====================================================*/
+@include Option("userChrome.padding.menu") {
+  @import "menu";
+}
+
+/*= Bookmark Menu - Reduce Padding ===========================================*/
+@include Option("userChrome.padding.bookmark_menu") {
+  @import "bookmark_menu";
+}
+
+/*= Global Menu - Set Padding ================================================*/
+@include Option("userChrome.padding.global_menubar") {
+  @import "global_menubar";
+}
+
+/*= Panel - Reduce padding ===================================================*/
+@include Option("userChrome.padding.panel") {
+  @import "panel";
+}
+@include Option("userChrome.padding.panel_header") {
+  @import "panel_header";
+}
+
+/*= Popup Panel - Reduce padding =============================================*/
+@include Option("userChrome.padding.popup_panel") {
+  @import "popup_panel";
+}

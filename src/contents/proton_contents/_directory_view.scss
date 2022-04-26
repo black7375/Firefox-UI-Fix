@@ -1,0 +1,13 @@
+@-moz-document url-prefix("about:sync-log"),
+               regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+  body {
+    background-color: var(--in-content-box-background) !important;
+    margin: 4em auto !important; /* Override to default */
+  }
+  thead a {
+    color: var(--in-content-page-color) !important;
+  }
+  td ::before {
+    vertical-align: top !important;
+  }
+}

@@ -1,0 +1,126 @@
+@use 'true' as *;
+@use "example" as *;
+@use "../src/utils/color_scheme";
+
+@include test-module("Color scheme is dark [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Dark {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("simple reversed") {
+    @include assert {
+      @include output {
+        @include example_tag {
+          @include color_scheme.Dark {
+            @include example_property;
+          }
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+          @include example_tag {
+            @include example_property;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Color scheme is light [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Light {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("simple reversed") {
+    @include assert {
+      @include output {
+        @include example_tag {
+          @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+            @include example_property;
+          }
+        }
+      }
+      @include expect {
+        @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+          @include example_tag {
+            @include example_property;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Color contrast [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Contrast {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (prefers-contrast) {
+          @include example;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Color not contrast [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.NotContrast {
+          @include example;
+        }
+      }
+      @include expect {
+        @media not all and (prefers-contrast) {
+          @include example;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Animate, not reduced motion [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Animate {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (prefers-reduced-motion: no-preference) {
+          @include example;
+        }
+      }
+    }
+  }
+}

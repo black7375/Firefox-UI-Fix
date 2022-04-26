@@ -1,0 +1,252 @@
+/*= Mac - Default like color =================================================*/
+@include OS($mac) {
+  #{system-default-theme()} {
+    /* Colors */
+    --mac-text-color: -moz-dialogtext;
+    --mac-disabled-color: GrayText;
+    --mac-bgcolor: Window;
+    --mac-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog);
+    --mac-field-bgcolor: Window;
+    --mac-panel-bgcolor: Menu;
+    --mac-sidebar-bgcolor: -moz-mac-source-list;
+    --mac-sidebar-hover-bgcolor: color-mix(in srgb, ButtonFace 60%, var(--mac-sidebar-bgcolor));
+    --mac-hover-bgcolor: Window;
+    --mac-disabled-bgcolor: transparent;
+    --mac-primary-button-color: -moz-accent-color-foreground; /* or -moz-mac-menutextselect */
+    --mac-accent-color: -moz-accent-color; /* or LinkText */
+    --mac-accent-content-color: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-accent-color);
+    --mac-accent-hover-color: color-mix(
+      in srgb,
+      rgb(0, 0, 0) 10%,
+      -moz-accent-color
+    ); /* or -moz-mac-menuselect, Highlight */
+    --mac-accent-active-color: color-mix(in srgb, rgb(0, 0, 0) 20%, -moz-accent-color); /* or ActiveBorder */
+
+    /* Text, Icon Color */
+    --menu-color: var(--mac-text-color) !important;
+    --lwt-text-color: var(--mac-text-color) !important;
+    --button-color: var(--mac-text-color) !important;
+    --input-color: var(--mac-text-color) !important;
+    --toolbar-color: var(--mac-text-color) !important;
+    --toolbar-non-lwt-textcolor: var(--mac-text-color) !important;
+    --toolbarbutton-icon-fill: var(--mac-text-color) !important;
+    --toolbar-field-focus-color: var(--mac-text-color) !important;
+    --urlbar-popup-action-color: var(--mac-text-color) !important;
+    --toolbar-field-color: var(--mac-text-color) !important;
+    --autocomplete-popup-highlight-color: var(--mac-text-color) !important;
+    --tab-icon-overlay-fill: var(--mac-text-color) !important;
+    --panel-banner-item-color: var(--mac-text-color) !important;
+    --arrowpanel-color: var(--mac-text-color) !important;
+    --autocomplete-popup-color: var(--mac-text-color) !important;
+    --panel-shortcut-color: var(--mac-text-color) !important;
+    --panel-description-color: var(--mac-text-color) !important;
+
+    /* Text Disabled Color */
+    --menu-disabled-color: var(--mac-disabled-color) !important;
+    --button-active-bgcolor: var(--mac-disabled-color) !important;
+    --checkbox-unchecked-active-bgcolor: var(--mac-disabled-color) !important;
+    --panel-disabled-color: var(--mac-disabled-color) !important;
+    --download-progress-paused-color: var(--mac-disabled-color) !important;
+
+    /* Background Color */
+    --lwt-accent-color: var(--mac-bgcolor) !important;
+    --menu-background-color: var(--mac-bgcolor) !important;
+    --autocomplete-popup-background: var(--mac-bgcolor) !important;
+
+    /* Selected Background Color */
+    --toolbar-bgcolor: var(--mac-selected-bgcolor) !important;
+    --toolbar-non-lwt-bgcolor: var(--mac-selected-bgcolor) !important;
+
+    /* Field Backround Color */
+    --input-bgcolor: var(--mac-field-bgcolor) !important;
+    --toolbar-field-background-color: var(--mac-field-bgcolor) !important;
+    --tab-icon-overlay-stroke: var(--mac-field-bgcolor) !important;
+
+    /* Panel Backround Color */
+    --arrowpanel-background: var(--mac-panel-bgcolor) !important;
+
+    /* Hover Background Color  */
+    --menuitem-hover-background-color: var(--mac-hover-bgcolor) !important;
+    --toolbarbutton-hover-background: var(--mac-hover-bgcolor) !important;
+    --panel-banner-item-hover-bgcolor: var(--mac-hover-bgcolor) !important;
+
+    --button-bgcolor: var(--mac-hover-bgcolor) !important;
+    --checkbox-unchecked-bgcolor: var(--mac-hover-bgcolor) !important;
+    --panel-banner-item-background-color: var(--mac-hover-bgcolor) !important;
+    --urlbar-box-bgcolor: var(--mac-hover-bgcolor) !important;
+    --urlbar-box-focus-bgcolor: var(--mac-hover-bgcolor) !important;
+    --panel-banner-item-active-bgcolor: var(--mac-hover-bgcolor) !important;
+    --toolbarbutton-active-background: var(--mac-hover-bgcolor) !important;
+    --urlbar-box-active-bgcolor: var(--mac-hover-bgcolor) !important;
+    --autocomplete-popup-highlight-background: var(--mac-hover-bgcolor) !important;
+
+    --button-hover-bgcolor: var(--mac-hover-bgcolor) !important;
+    --checkbox-unchecked-hover-bgcolor: var(--mac-hover-bgcolor) !important;
+    --urlbar-box-hover-bgcolor: var(--mac-hover-bgcolor) !important;
+    --autocomplete-popup-hover-background: var(--mac-hover-bgcolor) !important;
+
+    /* Disabled Background Color */
+    --menuitem-disabled-hover-background-color: var(--mac-disabled-bgcolor) !important;
+
+    /* Border Color */
+    /*
+      --menu-border-color: var(--mac-bgcolor) !important;
+      --toolbar-field-border-color: var(--mac-bgcolor) !important;
+      --arrowpanel-border-color: var(--mac-bgcolor) !important;
+      --chrome-content-separator-color: var(--mac-bgcolor) !important;
+      --toolbarseparator-color: var(--mac-bgcolor) !important;
+      --panel-separator-color: var(--mac-bgcolor) !important;
+     */
+
+    /* Button Border Color */
+    /*
+      --tab-line-color: var(---mac-bgcolor) !important;
+      --checkbox-border-color: var(--mac-bgcolor) !important;
+      --input-border-color: var(--mac-bgcolor) !important;
+      --autocomplete-popup-separator-color: var(--mac-bgcolor) !important;
+     */
+
+    /* Accent Color Forground */
+    --button-primary-color: var(--mac-primary-button-color) !important;
+    --checkbox-checked-color: var(--mac-primary-button-color) !important;
+
+    /* Accent Color */
+    --button-primary-bgcolor: var(--mac-accent-color) !important;
+    --focus-outline-color: var(--mac-accent-color) !important;
+    --checkbox-checked-bgcolor: var(--mac-accent-color) !important;
+
+    /* Accent Content Color */
+    --toolbarbutton-icon-fill-attention: var(--mac-accent-content-color) !important;
+    --urlbar-popup-url-color: var(--mac-accent-content-color) !important;
+    --download-progress-fill-color: var(--mac-accent-content-color) !important;
+
+    /* Accent Hover Color */
+    --button-primary-hover-bgcolor: var(--mac-accent-hover-color) !important;
+    --checkbox-checked-hover-bgcolor: var(--mac-accent-hover-color) !important;
+
+    /* Accent Hover Active Color */
+    --button-primary-active-bgcolor: var(--mac-accent-active-color) !important;
+    --checkbox-checked-active-bgcolor: var(--mac-accent-active-color) !important;
+
+    /* Error Color */
+    /*
+      --error-text-color: var(--win-error-color) !important;
+      --input-error-border-color: var(--win-error-color) !important;
+     */
+
+    /* Others */
+    --tab-selected-bgcolor: unset !important;
+    --tabs-border-color: transparent !important;
+    --checkbox-checked-border-color: transparent !important;
+
+    /* Other Defaults */
+    --arrowpanel-dimmed: color-mix(in srgb, currentColor 12%, transparent) !important;
+    --arrowpanel-dimmed-further: color-mix(in srgb, currentColor 20%, transparent) !important;
+    --arrowpanel-dimmed-even-further: color-mix(in srgb, currentColor 27%, transparent) !important;
+
+    --download-progress-flare-color: rgba(255, 255, 255, 0.75) !important;
+
+    --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
+  }
+  @include Dark {
+    :root:not(:-moz-lwtheme),
+    :root[lwt-default-theme-in-dark-mode] {
+      --mac-field-bgcolor: Field;
+      --mac-panel-bgcolor: -moz-CellHighlight;
+      --mac-hover-bgcolor: ButtonFace;
+
+      --toolbar-field-focus-background-color: var(--mac-bgcolor) !important;
+      --toolbar-field-background-color: var(--mac-sidebar-bgcolor) !important;
+    }
+  }
+  /*- Proton Tab Selected ----------------------------------------------------*/
+  @include NotOption("userChrome.tab.color_like_toolbar") {
+    #{system-default-theme()} {
+      --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
+    }
+    :root:not(:-moz-lwtheme) {
+      --tab-selected-color: var(--mac-proton-tab-selected-bgcolor) !important;
+    }
+    :root[lwt-default-theme-in-dark-mode] {
+      --lwt-selected-tab-background-color: var(--mac-proton-tab-selected-bgcolor) !important;
+    }
+  }
+
+  /*- Toolbar ----------------------------------------------------------------*/
+  #{selector.nest(system-default-theme(), "#navigator-toolbox")} {
+    background-color: var(--mac-bgcolor) !important;
+  }
+
+  :root:not(:-moz-lwtheme) #titlebar {
+    --mac-hover-bgcolor: ButtonFace;
+  }
+  #{selector.nest(system-default-theme(), "#titlebar")} {
+    --button-hover-bgcolor: var(--mac-hover-bgcolor);
+    --button-active-bgcolor: var(--mac-hover-bgcolor);
+    --toolbarbutton-hover-background: var(--mac-hover-bgcolor);
+    --toolbarbutton-active-background: var(--mac-hover-bgcolor);
+
+    /* Prevent transparent tabbar at fullscreen hover #312 */
+    background: var(--mac-bgcolor);
+  }
+
+  :root[lwt-default-theme-in-dark-mode] #urlbar {
+    --autocomplete-popup-highlight-background: var(--mac-hover-bgcolor) !important;
+    --autocomplete-popup-hover-background: var(--mac-hover-bgcolor) !important;
+  }
+
+  /*- Sidebar ----------------------------------------------------------------*/
+  #sidebar-box:not([lwt-sidebar]) {
+    appearance: none !important;
+  }
+  #{selector.nest(system-default-theme(), "#sidebar-box")} {
+    --sidebar-background-color: var(--mac-sidebar-bgcolor) !important;
+    --sidebar-text-color: var(--mac-text-color) !important;
+    /* --sidebar-border-color: var(--win-sidebar-border-color) !important; */
+  }
+  @include Dark {
+    .sidebar-panel[style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
+      body[lwt-sidebar][style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
+      .sidebar-panel[style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"], /* Nightly */
+      body[lwt-sidebar][style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"] {
+      /* Only darkmode has more: --newtab-background-color-secondary: rgba(66, 65, 77, 1); */
+      --lwt-sidebar-background-color: transparent !important;
+      --lwt-sidebar-text-color: var(--mac-text-color) !important;
+    }
+  }
+
+  :root[lwt-default-theme-in-dark-mode] #sidebarMenu-popup {
+    --button-hover-bgcolor: var(--mac-sidebar-hover-bgcolor);
+    --button-active-bgcolor: var(--mac-sidebar-hover-bgcolor);
+  }
+
+  /*- Others -----------------------------------------------------------------*/
+  /* For Overwrite */
+  @include Dark {
+    :root[lwt-default-theme-in-dark-mode][lwthemetextcolor="bright"] {
+      --toolbar-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
+    }
+  }
+
+  /* Hard Coded */
+  @include Option("userChrome.tab.color_like_toolbar") {
+    :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode] /* Legacy */
+      #tabbrowser-tabs:not([movingtab])
+      > #tabbrowser-arrowscrollbox
+      > .tabbrowser-tab
+      > .tab-stack
+      > .tab-background[selected="true"],
+    :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][lwt-default-theme-in-dark-mode]
+      #tabbrowser-tabs:not([movingtab])
+      > #tabbrowser-arrowscrollbox
+      > .tabbrowser-tab
+      > .tab-stack
+      > .tab-background[selected="true"] {
+      background: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
+    }
+  }
+
+  #{selector.append(system-default-theme(), ":not([customizing=true]) tab[visuallyselected] > stack", "::before, ::after")} {
+    fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
+  }
+}

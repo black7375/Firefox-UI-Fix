@@ -1,0 +1,87 @@
+/* Titlebar Space */
+.titlebar-spacer[type="pre-tabs"] {
+  width: 30px !important; /* Original: 40px */
+}
+.titlebar-spacer[type="post-tabs"] {
+  width: 25px !important; /* Original: 40px */
+}
+
+/* Tabbar Buttons */
+:root {
+  --newtab-button-minus-width-padding: 2px;
+  --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
+}
+#new-tab-button > .toolbarbutton-icon,
+#alltabs-button > .toolbarbutton-badge-stack {
+  /* Original: calc(2 * var(--toolbarbutton-inner-padding) + 16px) */
+  width: calc(2 * var(--newtab-button-width-padding) + 16px) !important;
+
+  /* Original: --toolbarbutton-inner-padding */
+  padding-left: var(--newtab-button-width-padding) !important;
+  padding-right: var(--newtab-button-width-padding) !important;
+}
+
+@include NotOption("userChrome.tab.photon_like_padding") {
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+    > #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 1px !important;
+  }
+}
+@include Option("userChrome.tab.photon_like_padding") {
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+    > #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 0 !important;
+  }
+}
+
+:root:not([uidensity="touch"]) #tabbrowser-arrowscrollbox {
+  --scrollbtn-inner-padding: 1px;
+  --scrollbtn-outer-padding: 3px;
+}
+#scrollbutton-up {
+  padding-left: var(--scrollbtn-inner-padding, 4px) !important; /* Original: 4px */
+  padding-right: var(--scrollbtn-outer-padding, 4px) !important;
+}
+#scrollbutton-down {
+  padding-left: var(--scrollbtn-outer-padding, 4px) !important; /* Original: 4px */
+  padding-right: var(--scrollbtn-inner-padding, 4px) !important;
+}
+
+:root:not([uidensity="touch"]) #new-tab-button,
+#alltabs-button {
+  --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
+}
+
+/* Tab - Max Size */
+@include NotOption("userChrome.tab.photon_like_padding") {
+  :root {
+    --tab-max-width: 240px;
+  }
+}
+@include Option("userChrome.tab.photon_like_padding") {
+  :root {
+    --tab-max-width: 225px;
+  }
+}
+.tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
+  max-width: var(--tab-max-width) !important; /* Original: 225px */
+}
+
+/* neighbouring tabs should "pinch" together */
+@include NotOption("userChrome.tab.photon_like_padding") {
+  @include Option("userChrome.tab.lepton_like_padding") {
+    .tabbrowser-tab {
+      padding-inline: 1px !important;
+    }
+  }
+  .tabbrowser-tab:not([last-visible-tab]) {
+    margin-inline-end: -0.5px !important;
+  }
+}
+@include Option("userChrome.tab.photon_like_padding") {
+  .tabbrowser-tab {
+    padding-inline: 0 !important;
+  }
+}

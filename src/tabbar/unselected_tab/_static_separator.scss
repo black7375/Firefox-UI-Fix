@@ -1,0 +1,40 @@
+.tabbrowser-tab[first-visible-tab="true"] .tab-background::before,
+.tab-background::after {
+  content: "";
+}
+
+.tab-background::before,
+.tab-background::after {
+  /* Box Model */
+  display: block;
+  position: absolute;
+
+  /* Position */
+  top: 50%;
+  transform:  translateY(calc(-50% + 1px)) !important;
+
+  /* Bar shape */
+  width: 0px;
+  height: 100%;
+
+  /* Bar Color */
+  opacity: 0.3;
+  border-right: 1px solid var(--lwt-background-tab-separator-color, currentColor) !important;
+}
+.tab-background::after {
+  right: 0;
+}
+
+.tabbrowser-tab[visuallyselected] .tab-background::before,
+.tabbrowser-tab[visuallyselected] .tab-background::after,
+.tabbrowser-tab[beforeselected-visible] .tab-background::after {
+  opacity: 0;
+}
+
+/* Animate */
+@include Animate {
+  .tab-background::before,
+  .tab-background::after {
+    transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+  }
+}

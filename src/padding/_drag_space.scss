@@ -1,0 +1,12 @@
+/* for Extra Drag Space */
+:root {
+  --space-above-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
+}
+
+:root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
+  height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+}
+:root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+:root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+  padding-top: var(--space-above-tabbar) !important;
+}

@@ -1,0 +1,31 @@
+@use 'true' as *;
+@use "../src/utils/list";
+
+// TODO: Need more tests..
+$simpleList: (ab cd efgh ijk);
+$dupList: (ab cd efgh efgh efgh ijk);
+
+@include test-module("Remove at list [fn]") {
+  @include test("simple") {
+    @include assert-equal(
+      list.remove($simpleList, "cd"),
+      (ab efgh ijk)
+    );
+  }
+
+  @include test("duplicate") {
+    @include assert-equal(
+      list.remove($dupList, "efgh"),
+      (ab cd ijk)
+    );
+  }
+}
+
+@include test-module("Convert to str [fn]") {
+  @include test("simple") {
+    @include assert-equal(
+      list.to-string($simpleList),
+      (((null ab) cd) efgh) ijk
+    );
+  }
+}

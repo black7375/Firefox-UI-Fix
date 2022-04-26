@@ -1,0 +1,51 @@
+#protections-popup-main-header-label {
+  height: unset !important; /* Original: 37.6px */
+}
+
+#identity-popup,
+#permission-popup,
+#protections-popup {
+  --vertical-section-padding: 0.8em; /* Original: 0.9em */
+}
+
+.protections-popup-footer-button,
+.protections-popup-category {
+  min-height: 24px; /* Original: 32px */
+  height: unset !important;
+}
+
+/** Popup panel - Compact mode  */
+/* Footer Button Height */
+:root[uidensity="compact"] .panel-footer.panel-footer-menulike > button {
+  padding: 3px 8px !important;
+}
+/* Footer Button Height */
+:root[uidensity="compact"] #protections-popup-trackersView-settings-button {
+  margin: 4px 8px 0 !important;
+}
+/* not cut off for Protection popup Footer on windows */
+:root[uidensity="compact"] #protections-popup-multiView #protections-popup-footer {
+  padding: 3px 0 10px !important;
+}
+/* Button and disabled category in Protection popup */
+:root[uidensity="compact"] #protections-popup-multiView .protections-popup-footer-button,
+:root[uidensity="compact"] #protections-popup-multiView .protections-popup-category {
+  height: 20px !important;
+  min-height: 20px !important;
+}
+/* Footer Button in Tracking Content Panel */
+:root[uidensity="compact"] #protections-popup-multiView .panel-footer.panel-footer-menulike {
+  margin: 0 0 3px !important;
+}
+/* Identity popup header padding */
+:root[uidensity="compact"] #identity-popup-multiView #identity-popup-mainView-panel-header {
+  padding: 2px 5px !important;
+}
+/* Text When There is no trackers */
+:root[uidensity="compact"] #protections-popup-no-trackers-found-description {
+  margin: 2em 4em !important;
+}
+/* Download Item margin */
+:root[uidensity="compact"] #downloadsListBox {
+  margin: 0 !important;
+}

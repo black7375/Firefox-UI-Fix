@@ -1,0 +1,96 @@
+/* Makes the favicons always visible (also on hover) */
+.tab-icon-image:not([pinned]) {
+  opacity: 1 !important;
+}
+
+/* Makes the speaker icon to always appear if the tab is playing (not only on hover) */
+.tab-icon-overlay:not([crashed]),
+.tab-icon-overlay[pinned][crashed][selected] {
+  /* Position */
+  top: 0 !important;
+  inset-inline-end: -9px !important;
+  z-index: 1 !important;
+  transform: translateX(-0.5px) translateY(-6px);
+
+  /* Shape */
+  padding: 1.5px !important;
+  border-radius: 10px !important;
+  width: 17px !important;
+  height: 17px !important;
+}
+.tab-icon-overlay:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
+  /* Color */
+  color: currentColor !important;
+  stroke: transparent !important;
+  background: transparent !important;
+  fill-opacity: 0.8 !important;
+  opacity: 1 !important;
+}
+.tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
+  transform: translateX(4px);
+}
+
+/* Animate */
+@include Animate {
+  .tab-icon-overlay:not([crashed]),
+  .tab-icon-overlay[pinned][crashed][selected] {
+    transition: 0.1s var(--animation-easing-function);
+  }
+
+  .tab-label-container > .tab-label {
+    transition: transform 0.25s var(--animation-easing-function);
+  }
+}
+
+/* None exist favicon - Size bigger */
+@include NotOption("userChrome.tab.always_show_tab_icon") {
+  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
+    transform: translateX(-0.5px) translateY(-1px);
+    inset-inline-end: 0 !important;
+    margin-inline-end: 0 !important;
+    padding: 0 !important;
+  }
+  .tabbrowser-tab:not([image]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
+    opacity: 0 !important; /* Favicon hidden */
+  }
+  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+    .tab-label {
+    transform: translateX(3px);
+  }
+}
+
+/* Busy - Show */
+.tab-throbber[busy],
+.tab-icon-pending[busy] {
+  opacity: 1 !important;
+}
+
+/* Busy - Overlay Position */
+.tabbrowser-tab:not([pinned])[busy] .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
+  transform: translateX(-0.5px) translateY(-6px);
+}
+.tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed])[busy] {
+  inset-inline-end: -9px !important;
+  margin-inline-end: 9.5px !important;
+  padding: 1.5px !important;
+}
+
+/* Hover */
+.tab-icon-overlay:not([crashed])[soundplaying]:hover,
+.tab-icon-overlay:not([crashed])[muted]:hover,
+.tab-icon-overlay:not([crashed])[activemedia-blocked]:hover {
+  color: var(--toolbar-bgcolor, white) !important;
+  stroke: var(--lwt-tab-text, var(--toolbar-color)) !important;
+  background-color: var(--lwt-tab-text, var(--toolbar-color)) !important;
+  fill-opacity: 0.95 !important;
+}
+
+#TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[soundplaying]:hover,
+#TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[muted]:hover,
+#TabsToolbar[brighttext] .tab-icon-overlay:not([crashed])[activemedia-blocked]:hover {
+  color: var(--toolbar-bgcolor, black) !important;
+}
+
+.tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]):hover {
+  padding: 0 !important;
+}

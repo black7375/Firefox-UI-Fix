@@ -1,0 +1,14 @@
+@mixin example_tag() {
+  body {
+    @content;
+  }
+}
+@mixin example_property() {
+  font-size: 16px;
+}
+
+@mixin example() {
+  @include example_tag {
+    @include example_property;
+  }
+}

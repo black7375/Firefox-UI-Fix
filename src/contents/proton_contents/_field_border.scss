@@ -1,0 +1,12 @@
+@-moz-document url-prefix("about:") {
+  xul|search-textbox:hover {
+    border-color: var(--in-content-focus-outline-color) !important;
+    transition: border-color 0.5s var(--animation-easing-function);
+  }
+}
+@-moz-document url-prefix("about:config") {
+  #about-config-search:hover {
+    border-color: var(--in-content-focus-outline-color) !important;
+    transition: border-color 0.5s var(--animation-easing-function);
+  }
+}

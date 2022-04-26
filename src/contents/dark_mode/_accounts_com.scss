@@ -1,0 +1,149 @@
+/*= Accounts.com ===========================================================*/
+@-moz-document url-prefix("https://accounts.firefox.com")
+{
+  /* Basic */
+  body {
+    color: var(--in-content-page-color) !important;
+    background: var(--in-content-page-background) !important;
+  }
+  .button.primary-button,
+  .button[type="submit"]:not(.secondary-button),
+  .settings-button.primary-button,
+  .settings-button[type="submit"]:not(.secondary-button),
+  button.primary-button,
+  button[type="submit"]:not(.secondary-button) {
+    color: var(--in-content-primary-button-text-color) !important;
+    background: var(--in-content-primary-button-background) !important;
+  }
+
+  /* Text */
+  header h1,
+  .info,
+  .info a,
+  .prefillEmail,
+  .faint a:hover,
+  .cta-neutral:hover {
+    color: var(--in-content-page-color) !important;
+  }
+  #main-content.panel a,
+  .links a,
+  .link-blue,
+  .text-blue-500 {
+    color: var(--in-content-link-color) !important;
+  }
+  .link-blue:hover {
+    color: var(--in-content-link-color-hover) !important;
+  }
+
+  .signed-in-email-message,
+  .verification-email-message,
+  .verification-message,
+  .verification-recovery-code-message,
+  .verification-totp-message,
+  .input-row input[type="email"],
+  .input-row input[type="number"],
+  .input-row input[type="password"],
+  .input-row input[type="tel"],
+  .input-row input[type="text"],
+  .input-row input::placeholder,
+  .firefox-family-services > ul > .firefox-service,
+  .faint,
+  .faint a,
+  .text-grey-400 {
+    color: var(--in-content-deemphasized-text) !important;
+  }
+
+  /* Background */
+  .flex .flex-wrap {
+    background: var(--in-content-page-background);
+  }
+  .password-row .show-password-label {
+    background-color: unset !important;
+  }
+  #main-content,
+  .modal,
+  .firefox-family-services,
+  .input-row input[type="email"],
+  .input-row input[type="number"],
+  .input-row input[type="password"],
+  .input-row input[type="tel"],
+  .input-row input[type="text"],
+  header,
+  .bg-white:not(nav) {
+    background: var(--in-content-box-background) !important;
+  }
+  #suggest-sync,
+  .cta-neutral {
+    background: var(--in-content-button-background) !important;
+  }
+  .cta-neutral:hover,
+  .bg-grey-50:hover,
+  .hover\:bg-grey-100:hover {
+    background: var(--in-content-button-background-hover) !important;
+  }
+  .text-blue-500 .cta-neutral,
+  .text-blue-500 .bg-grey-50,
+  .text-blue-500 .hover\:bg-grey-100 {
+    background: var(--in-content-button-background) !important;
+  }
+  .hover\:bg-grey-200:hover {
+    background: var(--in-content-button-background-active) !important;
+  }
+  .button.primary-button:hover:enabled,
+  .button[type="submit"]:not(.secondary-button):hover:enabled,
+  .settings-button.primary-button:hover:enabled,
+  .settings-button[type="submit"]:not(.secondary-button):hover:enabled,
+  button.primary-button:hover:enabled,
+  button[type="submit"]:not(.secondary-button):hover:enabled {
+    background: var(--in-content-primary-button-background-hover) !important;
+  }
+  .tooltip,
+  .tooltip::before {
+    background: var(--in-content-danger-button-background) !important;
+  }
+
+  /* Fill */
+  .dismiss,
+  #about-mozilla,
+  .show-password-label,
+  footer a[data-testid="link-mozilla"] {
+    filter: invert(95%) !important;
+  }
+  header button svg,
+  header .rounded svg,
+  #service svg {
+    filter: brightness(15) !important;
+  }
+  button.relative,
+  #fxa-settings nav svg {
+    filter: brightness(2) !important;
+  }
+
+  /* Others */
+  .input-row input[type="email"],
+  .input-row input[type="number"],
+  .input-row input[type="password"],
+  .input-row input[type="tel"],
+  .input-row input[type="text"],
+  .unit-row-hr .border-grey-100 {
+    border-color: var(--in-content-border-color) !important;
+  }
+  .input-row input[type="email"]:hover,
+  .input-row input[type="number"]:hover,
+  .input-row input[type="password"]:hover,
+  .input-row input[type="tel"]:hover,
+  .input-row input[type="text"]:hover {
+    border-color: var(--in-content-border-hover) !important;
+  }
+  #main-content {
+    box-shadow: 0 12px 18px 2px rgba(249, 249, 250, 0.12), 0 6px 22px 4px rgba(91, 91, 102, 0.12),
+      0 6px 10px -4px rgba(82, 82, 94, 0.04) !important;
+  }
+  .input-row input[type="email"]:focus,
+  .input-row input[type="number"]:focus,
+  .input-row input[type="password"]:focus,
+  .input-row input[type="tel"]:focus,
+  .input-row input[type="text"]:focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--in-content-primary-button-background-hover) 80%, transparent) !important;
+  }
+}

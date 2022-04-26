@@ -1,0 +1,52 @@
+/*= Delete Cert ==============================================================*/
+@-moz-document url("chrome://pippki/content/deletecert.xhtml")
+{
+  #certlist {
+    border: 1px solid var(--in-content-table-border-color) !important;
+    border-radius: 4px !important;
+  }
+}
+
+/*= Cert Exeption Dialog =====================================================*/
+@-moz-document url("chrome://pippki/content/exceptionDialog.xhtml")
+{
+  #locationTextBox {
+    appearance: none !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    border-radius: 4px !important;
+    color: inherit !important;
+    background-color: var(--in-content-box-background) !important;
+
+    font-family: inherit !important;
+    font-size: inherit !important;
+    padding: 8px !important;
+    margin: 2px 4px !important;
+  }
+  #locationTextBox:focus {
+    border-color: transparent !important;
+    outline: 2px solid var(--in-content-focus-outline-color) !important;
+    outline-offset: -1px !important; /* Prevents antialising around the corners */
+  }
+  #locationTextBox:-moz-ui-invalid {
+    border-color: transparent !important;
+    outline: 2px solid var(--in-content-border-invalid) !important;
+    outline-offset: -1px !important; /* Prevents antialising around the corners */
+  }
+  #locationTextBox:disabled {
+    opacity: 0.4 !important;
+  }
+
+  #exceptiondialog:first-child > hbox > vbox:not([flex="1"]) {
+    width: 48px !important;
+    height: 48px !important;
+    background-image: url("chrome://global/skin/icons/warning.svg") !important;
+    background-size: 48px !important;
+    background-repeat: no-repeat !important;
+
+    -moz-context-properties: fill !important;
+    fill: currentColor !important;
+  }
+  #exceptiondialog:first-child > hbox > vbox > image {
+    display: none !important;
+  }
+}

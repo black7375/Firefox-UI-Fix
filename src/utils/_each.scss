@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "sass:list";
+@use "list" as list-utils;
+
+$_defaultOption: (
+  "seperator": ", ",
+  "quoted": false
+);
+
+@mixin AtEach($name, $list, $prefix: null, $option: $_defaultOption) {
+  $option: map.merge($_defaultOption, $option);
+  $seperator: map.get($option, "seperator");
+  $quoted: map.get($option, "quoted");
+  $quoted: if($quoted, "\"", null);
+
+  $listL: list.length($list);
+  @if $listL >= 1 {
+    $first: list.nth($list, 1);
+    @if $first != null and $first != () {
+      $blocks: "#{$prefix}(#{$quoted}#{$first}#{$quoted})";
+      @if $listL > 1 {
+        @for $i from 2 through ($listL) {
+          $nextBlock: list.nth($list, $i);
+          $nextBlock: "#{$seperator}#{$prefix}(#{$quoted}#{$nextBlock}#{$quoted})";
+          $blocks: "#{$blocks}#{$nextBlock}";
+        }
+      }
+      @#{$name} #{"#{$blocks}"} {
+        @content;
+      }
+    }
+  }
+}

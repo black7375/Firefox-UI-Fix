@@ -1,0 +1,31 @@
+@use "utils/os" as *;
+@use "utils/option" as *;
+@use "utils/color_scheme" as *;
+
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/** Video player **************************************************************/
+@import "contents/video_player";
+
+/** Activity Stream ***********************************************************/
+@import "contents/activity_stream";
+
+/** Error Page - Restore illustrations ****************************************/
+@include Option("userContent.page.illustration") {
+  @import "contents/error_page";
+}
+
+/** Fully Dark Mode ***********************************************************/
+/*= Fully Dark Mode - Dark Mode Colors =======================================*/
+@include Option("userContent.page.proton_color") {
+  @import "contents/proton_color";
+}
+@include Option("userContent.page.dark_mode") {
+  @import "contents/dark_mode";
+}
+
+/** Fully Proton Mode *********************************************************/
+@include Option("userContent.page.proton") {
+  @import "contents/proton_contents";
+}

@@ -1,0 +1,26 @@
+#tabbrowser-tabs[closebuttons="activetab"] {
+  --inline-tab-padding: 7px !important; /* Original: 8px */
+}
+#tabbrowser-tabs[overflow="true"] {
+  --inline-tab-padding: 6px !important; /* Original: 8px */
+}
+
+.tab-content[pinned] {
+  --inline-tab-padding: 10px; /* Prevent overflow pinned tab's divide line not aligned */
+  padding-inline: var(--inline-tab-padding) !important;
+}
+:root[uidensity="compact"] .tab-content[pinned] {
+  --inline-tab-padding: 8px;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
+#tabbrowser-tabs[closebuttons="activetab"]
+  .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(ltr):not([pinned]) {
+  mask-image: linear-gradient(to right, black 70%, transparent) !important;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="rtl"]:not([pinned]),
+#tabbrowser-tabs[closebuttons="activetab"]
+  .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(rtl):not([pinned]) {
+  mask-image: linear-gradient(to left, black 70%, transparent) !important;
+}

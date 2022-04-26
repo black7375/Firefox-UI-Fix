@@ -1,0 +1,159 @@
+/*= Default Colors - Hard Coded ==============================================*/
+/* Based on chrome://global/skin/in-content/common.css */
+:host,
+:root {
+  --in-content-page-color: rgb(21, 20, 26);
+  --in-content-page-background: #fff;
+  --in-content-text-color: var(--in-content-page-color);
+  --in-content-deemphasized-text: rgb(91, 91, 102);
+  --in-content-box-background: #fff;
+  --in-content-box-background-odd: rgba(12, 12, 13, 0.05); /* grey 90 a05 */
+  --in-content-box-border-color: color-mix(in srgb, currentColor 41%, transparent);
+  --in-content-box-info-background: #f0f0f4;
+  --in-content-item-hover: color-mix(in srgb, var(--in-content-primary-button-background) 20%, transparent);
+  --in-content-item-hover-text: var(--in-content-page-color);
+  --in-content-item-selected: var(--in-content-primary-button-background);
+  --in-content-item-selected-text: var(--in-content-primary-button-text-color);
+  --in-content-icon-color: rgb(91, 91, 102);
+  --in-content-accent-color: #0a84ff;
+  --in-content-accent-color-active: #0060df;
+  --in-content-border-hover: var(--grey-90-a50);
+  --in-content-border-invalid: var(--red-50);
+  --in-content-border-color: #d7d7db;
+  --in-content-error-text-color: #c50042;
+  --in-content-link-color: var(--blue-60);
+  --in-content-link-color-hover: var(--blue-70);
+  --in-content-link-color-active: var(--blue-80);
+  --in-content-link-color-visited: var(--blue-60);
+  /* button background states are also used for checkboxes and radiobuttons */
+  --in-content-button-text-color: var(--in-content-text-color);
+  --in-content-button-text-color-hover: var(--in-content-text-color);
+  --in-content-button-background: rgba(207, 207, 216, 0.33);
+  --in-content-button-background-hover: rgba(207, 207, 216, 0.66);
+  --in-content-button-background-active: rgb(207, 207, 216);
+  --in-content-primary-button-text-color: rgb(251, 251, 254);
+  --in-content-primary-button-text-color-hover: var(--in-content-primary-button-text-color);
+  --in-content-primary-button-background: #0061e0;
+  --in-content-primary-button-background-hover: #0250bb;
+  --in-content-primary-button-background-active: #053e94;
+  --in-content-danger-button-background: #e22850;
+  --in-content-danger-button-background-hover: #c50042;
+  --in-content-danger-button-background-active: #810220;
+  --in-content-focus-outline-color: var(--in-content-primary-button-background);
+
+  /* Note: 1px smaller than we want because we have a 1px transparent border. */
+  /* Once proton ships, these can probably stop being variables. */
+  --in-content-button-border-radius: 4px;
+  --in-content-button-horizontal-padding: 15px;
+  --in-content-button-vertical-padding: 7px;
+
+  --in-content-table-background: #f8f8fa;
+  --in-content-table-border-color: var(--in-content-box-border-color); /* Legacy: #d1d1d1; rgba(249, 249, 250, 0.2) */
+  --in-content-table-border-dark-color: var(--in-content-table-border-color);
+  --in-content-table-header-background: var(
+    --in-content-primary-button-background
+  ); /* Legacy: #0a84ff; rgb(5, 64, 150); */
+  --in-content-table-header-color: var(
+    --in-content-primary-button-text-color
+  ); /* Legacy: #ffffff; var(--in-content-page-color); */
+  --in-content-sidebar-width: 240px;
+
+  --dialog-warning-text-color: var(--red-60);
+
+  --checkbox-border-color: var(--in-content-box-border-color);
+  --checkbox-unchecked-bgcolor: var(--in-content-button-background);
+  --checkbox-unchecked-hover-bgcolor: var(--in-content-button-background-hover);
+  --checkbox-unchecked-active-bgcolor: var(--in-content-button-background-active);
+  --checkbox-checked-bgcolor: var(--in-content-primary-button-background);
+  --checkbox-checked-color: var(--in-content-primary-button-text-color);
+  --checkbox-checked-border-color: transparent;
+  --checkbox-checked-hover-bgcolor: var(--in-content-primary-button-background-hover);
+  --checkbox-checked-active-bgcolor: var(--in-content-primary-button-background-active);
+  --blue-40: #45a1ff;
+  --blue-50: #0a84ff;
+  --blue-60: #0060df;
+  --blue-70: #003eaa;
+  --blue-80: #002275;
+  --grey-30: #d7d7db;
+  --grey-60: #4a4a4f;
+  --grey-90-a10: rgba(12, 12, 13, 0.1);
+  --grey-90-a20: rgba(12, 12, 13, 0.2);
+  --grey-90-a30: rgba(12, 12, 13, 0.3);
+  --grey-90-a50: rgba(12, 12, 13, 0.5);
+  --grey-90-a60: rgba(12, 12, 13, 0.6);
+  --green-50: #30e60b;
+  --green-60: #12bc00;
+  --green-70: #058b00;
+  --green-80: #006504;
+  --green-90: #003706;
+  --orange-50: #ff9400;
+  --red-40: #ff4f5e;
+  --red-50: #ff0039;
+  --red-60: #d70022;
+  --red-70: #a4000f;
+  --red-80: #5a0002;
+  --red-90: #3e0200;
+  --yellow-50: #ffe900;
+  --yellow-60: #d7b600;
+  --yellow-60-a30: rgba(215, 182, 0, 0.3);
+  --yellow-70: #a47f00;
+  --yellow-80: #715100;
+  --yellow-90: #3e2800;
+
+  --shadow-10: 0 1px 4px var(--grey-90-a10);
+  --shadow-30: 0 4px 16px var(--grey-90-a10);
+
+  --card-padding: 16px;
+  --card-shadow: var(--shadow-10);
+  --card-outline-color: var(--grey-30);
+  --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
+}
+
+@include Dark {
+  :host,
+  :root {
+    /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
+    --in-content-page-background: rgb(28, 27, 34);
+    --in-content-page-color: rgb(251, 251, 254);
+    --in-content-deemphasized-text: rgb(191, 191, 201);
+
+    --in-content-box-background: rgb(35, 34, 43);
+    --in-content-box-background-odd: rgba(249, 249, 250, 0.05);
+    --in-content-box-info-background: rgba(249, 249, 250, 0.15);
+
+    --in-content-border-color: rgba(249, 249, 250, 0.2);
+    --in-content-border-hover: rgba(249, 249, 250, 0.3);
+    --in-content-border-invalid: rgb(255, 132, 139);
+
+    --in-content-error-text-color: #ff9aa2;
+
+    --in-content-button-background: rgb(43, 42, 51);
+    --in-content-button-background-hover: rgb(82, 82, 94);
+    --in-content-button-background-active: rgb(91, 91, 102);
+    --in-content-icon-color: rgb(251, 251, 254);
+
+    --in-content-primary-button-text-color: rgb(43, 42, 51);
+    --in-content-primary-button-background: rgb(0, 221, 255);
+    --in-content-primary-button-background-hover: rgb(128, 235, 255);
+    --in-content-primary-button-background-active: rgb(170, 242, 255);
+
+    --in-content-danger-button-background: #ff848b;
+    --in-content-danger-button-background-hover: #ffbdc5;
+    --in-content-danger-button-background-active: #ffdfe7;
+
+    --in-content-table-background: rgb(35, 34, 43);
+    --in-content-table-border-dark-color: var(--in-content-box-border-color);
+
+    --in-content-accent-color: var(--in-content-primary-button-background);
+    --in-content-accent-color-active: var(--in-content-primary-button-background-hover);
+    --in-content-link-color: var(--in-content-primary-button-background);
+    --in-content-link-color-hover: var(--in-content-primary-button-background-hover);
+    --in-content-link-color-active: var(--in-content-primary-button-background-active);
+    --in-content-link-color-visited: var(--in-content-link-color);
+
+    --card-outline-color: var(--grey-60);
+
+    --dialog-warning-text-color: var(--red-40);
+  }
+}
+

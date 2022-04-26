@@ -1,0 +1,460 @@
+/*= Panel - Main =============================================================*/
+#appMenu-proton-addon-banners > .addon-banner-item > .toolbarbutton-icon {
+  display: -moz-inline-box !important;
+  margin-inline-start: var(--arrowpanel-menuicon-padding);
+  -moz-box-ordinal-group: 0 !important;
+}
+
+#appMenu-proton-update-banner::before {
+  content: url("../icons/whatsnew.svg");
+}
+#appMenu-fxa-status2::before {
+  /* Don't exist img tag */
+  content: url("chrome://browser/skin/fxa/avatar-empty.svg");
+}
+#appMenu-fxa-status2:is([fxastatus="signedin"], [fxastatus="unverified"], [fxastatus="login-failed"])::before {
+  display: none;
+}
+#appMenu-fxa-status2:is([fxastatus="signedin"], [fxastatus="unverified"], [fxastatus="login-failed"])
+  #appMenu-fxa-label2::before {
+  /* url("https://profile.accounts.firefox.com/v1/avatar/a") */
+  content: "";
+  border-radius: 50% !important;
+  background-size: 16px !important;
+  background-image: var(--avatar-image-url) !important;
+}
+
+@include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
+  #appMenu-new-tab-button2 {
+    list-style-image: url("chrome://browser/skin/new-tab.svg");
+  }
+}
+@include Option("userChrome.icon.panel_photon") {
+  #appMenu-save-file-button2,
+  #appMenu-find-button2,
+  #appMenu-more-button2 {
+    padding-top: var(--arrowpanel-menuitemblank-padding) !important;
+    padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
+  }
+  #appMenu-zoom-controls2 {
+    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+  }
+}
+@include Option("userChrome.icon.panel_sparse") {
+  #appMenu-new-tab-button2,           /* Seperate */
+  #appMenu-passwords-button,          /* Seperate */
+  #appMenu-extensions-themes-button,
+  #appMenu-save-file-button2,         /* Seperate */
+  #appMenu-find-button2,
+  #appMenu-more-button2,              /* Seperate */
+  #appMenu-help-button2,
+  #appMenu-quit-button2               /* Seperate */ {
+    padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
+    padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
+  }
+  #appMenu-zoom-controls2 {
+    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+  }
+}
+#appMenu-new-window-button2 {
+  list-style-image: url("chrome://browser/skin/window.svg");
+}
+#appMenu-new-private-window-button2 {
+  list-style-image: url("chrome://browser/skin/privateBrowsing.svg");
+}
+
+#appMenu-bookmarks-button {
+  list-style-image: url("chrome://browser/skin/bookmark.svg");
+}
+#appMenu-history-button {
+  list-style-image: url("chrome://browser/skin/history.svg");
+}
+#appMenu-downloads-button {
+  list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
+}
+@include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
+  #appMenu-passwords-button {
+    list-style-image: url("chrome://browser/skin/login.svg");
+  }
+  #appMenu-extensions-themes-button {
+    list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+  }
+}
+
+#appMenu-print-button2 {
+  list-style-image: url("chrome://global/skin/icons/print.svg");
+}
+@include Option("userChrome.icon.panel_full") {
+  #appMenu-save-file-button2 {
+    list-style-image: url("chrome://browser/skin/save.svg");
+  }
+  #appMenu-find-button2 {
+    list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+  }
+  #appMenu-zoom-controls2::before {
+    content: url("../icons/screenshot.svg");
+  }
+}
+
+#appMenu-settings-button {
+  list-style-image: url("chrome://global/skin/icons/settings.svg");
+}
+@include Option("userChrome.icon.panel_full") {
+  #appMenu-more-button2 {
+    list-style-image: url("chrome://browser/skin/ion.svg");
+  }
+}
+@include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
+  #appMenu-help-button2 {
+    list-style-image: url("chrome://global/skin/icons/help.svg");
+  }
+
+  #appMenu-quit-button2 {
+    list-style-image: url("../icons/quit.svg");
+  }
+}
+
+/*= Panel - Account ==========================================================*/
+#PanelUI-fxa-menu-connect-device-button .toolbarbutton-icon,
+#PanelUI-fxa-menu-account-signout-button .toolbarbutton-icon {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Default */
+#fxa-manage-account-button::before {
+  content: "";
+  display: -moz-inline-box;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50%;
+  background-size: 32px;
+  background-image: var(--avatar-image-url);
+  margin-inline-end: var(--arrowpanel-menuicon-padding);
+
+  @include Option("userChrome.icon.account_image_to_right") {
+    -moz-box-ordinal-group: 2 !important;
+  }
+}
+@include Option("userChrome.icon.account_label_to_right") {
+  #fxa-menu-header-title, #fxa-menu-header-description {
+    text-align: right;
+  }
+}
+
+.syncNowBtn {
+  visibility: visible !important;
+  -moz-box-ordinal-group: 1 !important;
+  margin-inline-end: var(--arrowpanel-menuicon-padding);
+}
+#PanelUI-fxa-menu-setup-sync-button {
+  list-style-image: url("chrome://browser/skin/sync.svg");
+}
+
+#PanelUI-fxa-menu-connect-device-button {
+  list-style-image: url("chrome://browser/skin/fxa/add-device.svg");
+}
+#PanelUI-fxa-menu-sendtab-button {
+  list-style-image: url("../icons/send-to-device.svg");
+}
+#PanelUI-fxa-menu-sync-prefs-button {
+  list-style-image: url("chrome://global/skin/icons/settings.svg");
+}
+#PanelUI-fxa-menu-account-signout-button {
+  list-style-image: url("../icons/sign-out.svg");
+}
+#PanelUI-remotetabs-view-managedevices::before {
+  /* Box */
+  content: "";
+  padding-inline-end: 16px;
+  padding-block: 1px;
+  margin-inline-end: var(--arrowpanel-menuicon-padding);
+
+  /* Color */
+  fill: currentColor;
+  fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+  -moz-context-properties: fill;
+
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-image: url("chrome://global/skin/icons/settings.svg");
+}
+
+.PanelUI-remotetabs-notabsforclient-label {
+  margin-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
+  padding-inline-start: var(--arrowpanel-menublank-padding) !important;
+}
+
+/* Change Separator */
+#PanelUI-fxa-menu::before {
+  content: "";
+  display: -moz-box;
+  border-bottom: 1px solid var(--panel-separator-color);
+  margin: var(--panel-separator-margin);
+  padding: 0;
+}
+#PanelUI-fxa-menu > :first-child {
+  -moz-box-ordinal-group: 0;
+}
+#PanelUI-sign-out-separator {
+  display: none;
+}
+.pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""], /* Legacy */
+  .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
+  list-style-image: url("../icons/send-to-device.svg");
+}
+.pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]), /* Legacy */
+  .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]) {
+  list-style-image: url("chrome://global/skin/icons/settings.svg");
+}
+
+/*= Panel - Bookmark =========================================================*/
+#panelMenuBookmarkThisPage {
+  list-style-image: url("chrome://browser/skin/bookmark-hollow.svg");
+}
+panelMenuBookmarkThisPage[starred] {
+  list-style-image: url("chrome://browser/skin/bookmark.svg");
+}
+
+#panelMenu_searchBookmarks {
+  list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+}
+#panelMenu_viewBookmarksToolbar {
+  list-style-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+}
+
+#panelMenu_showAllBookmarks {
+  list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
+}
+
+/*= Panel - History ==========================================================*/
+#appMenuRecentlyClosedTabs {
+  list-style-image: url("chrome://browser/skin/tab.svg");
+}
+#appMenuRecentlyClosedWindows {
+  list-style-image: url("chrome://browser/skin/window.svg");
+}
+#appMenuRestoreSession {
+  list-style-image: url("../icons/restore-session.svg");
+}
+#appMenuClearRecentHistory {
+  list-style-image: url("chrome://browser/skin/forget.svg");
+}
+
+#PanelUI-historyMore {
+  list-style-image: url("chrome://browser/skin/history.svg");
+}
+
+#appMenu-library-recentlyClosedTabs {
+  list-style-image: url("../icons/movetowindow-16.svg");
+}
+#appMenu-library-recentlyClosedWindows {
+  list-style-image: url("../icons/restore-session.svg");
+}
+
+/*= Panel - More tools =======================================================*/
+#appmenu-moreTools-button {
+  list-style-image: url("chrome://browser/skin/customize.svg");
+}
+
+/* Web Developer Tools */
+#appmenu-developer-tools-view .subviewbutton:nth-child(1),
+#PanelUI-developer-tools-view .subviewbutton:nth-child(1) {
+  list-style-image: url("../icons/developer.svg");
+}
+/* Task Manager */
+#appmenu-developer-tools-view .subviewbutton:nth-child(2),
+#PanelUI-developer-tools-view .subviewbutton:nth-child(2) {
+  list-style-image: url("../icons/performance.svg");
+}
+/* Remote Debugging - Edge bug.svg */
+#appmenu-developer-tools-view .subviewbutton:nth-child(3),
+#PanelUI-developer-tools-view .subviewbutton:nth-child(3) {
+  list-style-image: url("../icons/bug.svg");
+}
+/* Browser Toolbox - Edge webdeveloper.svg */
+#appmenu-developer-tools-view .subviewbutton:nth-child(4),
+#PanelUI-developer-tools-view .subviewbutton:nth-child(4) {
+  list-style-image: url("../icons/window-dev-tools.svg");
+}
+/* Browser Content Toolbaox -  */
+#appmenu-developer-tools-view .subviewbutton:nth-child(5),
+#PanelUI-developer-tools-view .subviewbutton:nth-child(5) {
+  list-style-image: url("../icons/command-frames.svg");
+}
+/* Browser Console */
+#appmenu-developer-tools-view .subviewbutton:nth-last-child(5),
+#PanelUI-developer-tools-view .subviewbutton:nth-last-child(5) {
+  list-style-image: url("chrome://devtools/skin/images/command-console.svg");
+}
+/* Responsive Design Mode */
+#appmenu-developer-tools-view .subviewbutton:nth-last-child(4),
+#PanelUI-developer-tools-view .subviewbutton:nth-last-child(4) {
+  list-style-image: url("../icons/command-responsivemode.svg");
+}
+/* Eyedropper */
+#appmenu-developer-tools-view .subviewbutton:nth-last-child(3),
+#PanelUI-developer-tools-view .subviewbutton:nth-last-child(3) {
+  list-style-image: url("chrome://devtools/skin/images/command-eyedropper.svg");
+}
+/* Page Source - Edge file-search.svg */
+#appmenu-developer-tools-view .subviewbutton:nth-last-child(2),
+#PanelUI-developer-tools-view .subviewbutton:nth-last-child(2) {
+  list-style-image: url("../icons/document-search.svg");
+}
+/* Extensions for Devel */
+#appmenu-developer-tools-view .subviewbutton:nth-last-child(1),
+#PanelUI-developer-tools-view .subviewbutton:nth-last-child(1) {
+  list-style-image: url("chrome://devtools/skin/images/debugging-addons.svg");
+}
+#appmenu-developer-tools-view .subviewbutton:last-child {
+  margin-bottom: 6px !important;
+}
+
+/*= Panel - Help =============================================================*/
+#appMenu_menu_openHelp {
+  list-style-image: url("chrome://global/skin/icons/help.svg");
+}
+#appMenu_feedbackPage {
+  list-style-image: url("../icons/send.svg");
+}
+#appMenu_helpSafeMode {
+  list-style-image: url("chrome://devtools/skin/images/debugging-workers.svg");
+}
+#appMenu_troubleShooting {
+  list-style-image: url("chrome://global/skin/icons/more.svg");
+}
+#appMenu_help_reportSiteIssue {
+  list-style-image: url("chrome://global/skin/icons/lightbulb.svg");
+}
+#appMenu_menu_HelpPopup_reportPhishingtoolmenu {
+  list-style-image: url("chrome://global/skin/icons/warning.svg");
+}
+#appMenu_aboutName {
+  list-style-image: url("chrome://global/skin/icons/info.svg");
+}
+
+/*= Panel - Library ==========================================================*/
+#appMenu-library-bookmarks-button {
+  list-style-image: url("chrome://browser/skin/bookmark.svg");
+}
+#appMenu-library-history-button {
+  list-style-image: url("chrome://browser/skin/history.svg");
+}
+#appMenu-library-downloads-button {
+  list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
+}
+
+/*= Panel - Downloads ========================================================*/
+#downloadsHistory {
+  list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
+}
+#downloadsHistory .box-inherit.button-box {
+  display: -moz-inline-box !important;
+}
+
+/*= Toolbar - Overflow Menu ==================================================*/
+#overflowMenu-customize-button {
+  list-style-image: url("chrome://browser/skin/customize.svg");
+}
+
+/*= Tabbar - All Tab Menu ====================================================*/
+#allTabsMenu-undoCloseTab {
+  list-style-image: url("../icons/undo.svg");
+}
+#allTabsMenu-searchTabs {
+  list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+}
+#allTabsMenu-containerTabsButton {
+  list-style-image: url("../icons/container-openin-16.svg");
+}
+
+#allTabsMenu-hiddenTabsButton {
+  list-style-image: url("../icons/password-hide.svg");
+}
+
+#allTabsMenu-containerTabsView .subviewbutton:last-child {
+  list-style-image: url("chrome://global/skin/icons/settings.svg");
+}
+
+/*= BMB_bookmarksPopup =======================================================*/
+#BMB_viewBookmarksSidebar {
+}
+#BMB_bookmarksShowAllTop,
+#BMB_bookmarksShowAll {
+  --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
+}
+#BMB_bookmarksToolbar {
+  --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+}
+
+@include OS($mac) {
+  #BMB_bookmarksShowAllTop {
+    list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg") !important;
+  }
+  #BMB_bookmarksShowAllTop > .menu-iconic-left {
+    display: -moz-box !important;
+  }
+}
+
+/*= protections-popup ========================================================*/
+#protections-popup-settings-button > .protections-popup-settings-icon,
+#protections-popup-show-report-button > .protections-popup-show-report-icon {
+  -moz-context-properties: fill;
+  fill: currentColor;
+  margin-inline-end: 1em;
+}
+
+#protections-popup-settings-button > .protections-popup-settings-icon,
+#protections-popup-multiView .panel-subview-footer-button {
+  list-style-image: url("chrome://global/skin/icons/settings.svg");
+}
+
+#protections-popup-show-report-button > .protections-popup-show-report-icon {
+  /* chrome://browser/skin/controlcenter/dashboard.svg */
+  list-style-image: url("../icons/dashboard.svg");
+}
+
+/*= identity-popup ===========================================================*/
+#identity-popup-clear-sitedata-button,
+#identity-popup-more-info {
+  padding-inline: 5px !important;
+}
+
+#identity-popup-securityView-body {
+  margin-inline-start: 32px !important; /* Original: 10px */
+}
+
+#identity-popup-clear-sitedata-button {
+  list-style-image: url("../icons/broom.svg");
+}
+
+/*= sidebarMenu-popup ========================================================*/
+#identity-popup-more-info {
+  list-style-image: url("chrome://global/skin/icons/info.svg");
+}
+
+#sidebar-switcher-bookmarks {
+  list-style-image: url("chrome://browser/skin/bookmark.svg");
+}
+
+#sidebar-switcher-history {
+  list-style-image: url("chrome://browser/skin/history.svg");
+}
+
+#sidebar-switcher-tabs {
+  list-style-image: url("chrome://browser/skin/tab.svg");
+}
+
+#sidebar-reverse-position {
+  list-style-image: url("chrome://browser/skin/sidebars-right.svg");
+}
+#sidebar-box[positionend="true"] #sidebar-reverse-position {
+  /* Can't apply this. shadow dom */
+  list-style-image: url("chrome://browser/skin/sidebars.svg");
+}
+
+#sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
+  list-style-image: url("chrome://global/skin/icons/close.svg");
+}

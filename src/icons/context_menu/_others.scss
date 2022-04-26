@@ -1,0 +1,248 @@
+/*= blockedPopupOptions ======================================================*/
+#blockedPopupAllowSite {
+  --menuitem-image: url("chrome://global/skin/icons/check.svg");
+}
+#blockedPopupOptions > menuitem[oncommand="gPopupBlockerObserver.editPopupSettings();"] {
+  --menuitem-image: url("chrome://global/skin/icons/edit.svg");
+}
+#blockedPopupDontShowMessage {
+  /* checkbox */
+  --menuitem-image: url("chrome://global/skin/icons/blocked.svg");
+}
+
+/*= autohide-context =========================================================*/
+#autohide-context > menuitem[data-l10n-id="full-screen-autohide"] {
+  /* checkbox */
+}
+
+#autohide-context > menuitem[data-l10n-id="full-screen-exit"] {
+  --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
+}
+
+/*= pictureInPictureToggleContextMenu ========================================*/
+#pictureInPictureToggleContextMenu > menuitem[oncommand="PictureInPicture.hideToggle();"] {
+  --menuitem-image: url("../icons/eye-hide.svg");
+}
+
+/*= pageActionContextMenu ====================================================*/
+.pageActionContextMenuItem.extensionPinned.extensionUnpinned.manageExtensionItem {
+  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+}
+.pageActionContextMenuItem.extensionPinned.extensionUnpinned.removeExtensionItem {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+
+/*= customizationPanelItemContextMenu ========================================*/
+#customizationPanelItemContextMenuUnpin {
+  --menuitem-image: url("../icons/unpin-tab.svg");
+}
+.customize-context-removeFromPanel {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+
+/*= customizationPaletteItemContextMenu ======================================*/
+.customize-context-addToToolbar {
+  --menuitem-image: url("chrome://devtools/skin/images/dock-bottom.svg");
+}
+.customize-context-addToPanel {
+  --menuitem-image: url("chrome://browser/skin/menu.svg");
+}
+
+/*= customizationPanelContextMenu ============================================*/
+#customizationPanelContextMenu > menuitem[command="cmd_CustomizeToolbars"] {
+  --menuitem-image: url("chrome://browser/skin/customize.svg");
+}
+
+/*= downloads-button-autohide-panel ==========================================*/
+#downloads-button-autohide-checkbox {
+  /* checkbox */
+}
+
+/*= downloadsContextMenu =====================================================*/
+.downloadPauseMenuItem {
+  --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
+}
+.downloadResumeMenuItem {
+  --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
+}
+.downloadUnblockMenuItem {
+  --menuitem-image: url("../icons/checkmark-circle.svg");
+}
+.downloadUseSystemDefaultMenuItem {
+  --menuitem-image: url("chrome://browser/skin/open.svg");
+}
+.downloadAlwaysUseSystemDefaultMenuItem {
+  /* checkbox */
+}
+.downloadShowMenuItem {
+  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  @include Option("userChrome.icon.library") {
+    --menuitem-image: url("../icons/folder.svg");
+  }
+}
+
+#downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
+  --menuitem-image: url("../icons/link-square.svg");
+}
+#downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
+  --menuitem-image: url("../icons/link.svg");
+}
+
+.downloadDeleteFileMenuItem {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+.downloadRemoveFromHistoryMenuItem {
+  --menuitem-image: url("../icons/eraser.svg");
+}
+#downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
+#downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
+  --menuitem-image: url("../icons/broom.svg");
+}
+
+/*= SyncedTabsSidebarContext =================================================*/
+#syncedTabsOpenSelected {
+  --menuitem-image: url("../icons/link-square.svg");
+}
+#syncedTabsOpenSelectedInTab {
+  --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+}
+#syncedTabsOpenSelectedInWindow {
+  --menuitem-image: url("chrome://browser/skin/window.svg");
+}
+#syncedTabsOpenSelectedInPrivateWindow {
+  --menuitem-image: url("chrome://browser/skin/privateBrowsing.svg");
+}
+
+#syncedTabsBookmarkSelected {
+  --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+}
+#syncedTabsCopySelected {
+  --menuitem-image: url("../icons/link.svg");
+}
+
+#syncedTabsOpenAllInTabs {
+  --menuitem-image: url("../icons/movetowindow-16.svg");
+}
+#syncedTabsManageDevices {
+  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+}
+#syncedTabsRefresh {
+  --menuitem-image: url("chrome://browser/skin/sync.svg");
+}
+
+/*= SyncedTabsSidebarTabsFilterContext =======================================*/
+#SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_undo"] {
+  --menuitem-image: url("../icons/undo.svg");
+}
+#SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
+  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+}
+#SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_copy"] {
+  --menuitem-image: url("../icons/edit-copy.svg");
+}
+#SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_paste"] {
+  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+}
+#SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_delete"] {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+
+#SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_selectAll"] {
+  --menuitem-image: url("../icons/select-all-on.svg");
+}
+
+#syncedTabsRefreshFilter {
+  --menuitem-image: url("chrome://browser/skin/sync.svg");
+}
+
+/*= urlbar-input-container ===================================================*/
+#urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_undo"] {
+  --menuitem-image: url("../icons/undo.svg");
+}
+#urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"] {
+}
+
+#urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_cut"] {
+  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+}
+#urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_copy"] {
+  --menuitem-image: url("../icons/edit-copy.svg");
+}
+#urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_paste"] {
+  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+}
+#paste-and-go {
+}
+#urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_delete"] {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+#urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_selectAll"] {
+  --menuitem-image: url("../icons/select-all-on.svg");
+}
+
+/*= textbox-contextmenu ======================================================*/
+/* Browser's Searchbar, Libray's Searchbar, Page Info */
+.textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
+  --menuitem-image: url("../icons/undo.svg");
+}
+.textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
+}
+
+.textbox-contextmenu > menuitem[data-l10n-id="text-action-cut"] {
+  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+}
+.textbox-contextmenu > menuitem[data-l10n-id="text-action-copy"] {
+  --menuitem-image: url("../icons/edit-copy.svg");
+}
+.textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
+  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+}
+.textbox-contextmenu > menuitem[data-l10n-id="text-action-delete"] {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+.textbox-contextmenu > menuitem[data-l10n-id="text-action-select-all"] {
+  --menuitem-image: url("../icons/select-all-on.svg");
+}
+
+/* Only searchbar */
+menuitem.searchbar-paste-and-search {
+}
+menuitem.searchbar-clear-history {
+  --menuitem-image: url("chrome://browser/skin/forget.svg");
+}
+
+/*= context_sendTabToDevicePopupMenu =========================================*/
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="phone"] {
+  --menuitem-image: url("chrome://browser/skin/device-phone.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="tablet"] {
+  --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="desktop"] {
+  --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="tv"] {
+  --menuitem-image: url("chrome://browser/skin/device-tv.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType="vr"] {
+  --menuitem-image: url("chrome://browser/skin/device-vr.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target[clientType=""] {
+  --menuitem-image: url("../icons/send-to-device.svg");
+}
+
+menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
+  > .sync-menuitem.sendtab-target:not([clientType]) {
+  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+}

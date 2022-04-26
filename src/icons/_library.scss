@@ -1,0 +1,66 @@
+/*= organizeButtonPopup ======================================================*/
+#newbookmark {
+  --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+}
+#newfolder {
+  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  @include Option("userChrome.icon.library") {
+    --menuitem-image: url("../icons/folder.svg");
+  }
+}
+#newseparator {
+  --menuitem-image: url("../icons/vertical-line.svg");
+}
+
+#orgUndo {
+  --menuitem-image: url("../icons/undo.svg");
+}
+#orgRedo {
+}
+
+#orgCut {
+  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+}
+#orgCopy {
+  --menuitem-image: url("../icons/edit-copy.svg");
+}
+#orgPaste {
+  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+}
+#orgDelete {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+
+#orgSelectAll {
+  --menuitem-image: url("../icons/select-all-on.svg");
+}
+
+#orgClose {
+  --menuitem-image: url("chrome://global/skin/icons/close.svg");
+}
+
+/*= viewMenuPopup ============================================================*/
+#viewColumns {
+  --menuitem-image: url("chrome://global/skin/icons/columnpicker.svg");
+}
+#viewSort {
+  --menuitem-image: url("../icons/text-sort-ascending.svg");
+}
+
+/*= maintenanceButtonPopup ===================================================*/
+#backupBookmarks {
+  --menuitem-image: url("chrome://devtools/skin/images/datastore.svg");
+}
+#fileRestoreMenu {
+}
+
+#fileImport {
+  --menuitem-image: url("chrome://browser/skin/save.svg");
+}
+#fileExport {
+  --menuitem-image: url("chrome://browser/skin/open.svg");
+}
+
+#browserImport {
+  --menuitem-image: url("chrome://browser/skin/import.svg");
+}

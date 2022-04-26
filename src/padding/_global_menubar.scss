@@ -1,0 +1,29 @@
+/* Vertical Align - Center & Height: 100%  */
+#main-menubar {
+  -moz-box-flex: 1 !important;
+}
+
+/* Rounding */
+#main-menubar > menu {
+  border-radius: 4px;
+}
+
+/* Menubar item padding */
+:root {
+  --global-menubar-padding: 2px;
+}
+:root[uidensity="compact"] {
+  --global-menubar-padding: 1px;
+}
+:root[uidensity="touch"] {
+  --global-menubar-padding: 4px;
+}
+#main-menubar > menu {
+  padding-block: var(--global-menubar-padding) !important;
+}
+
+/* Reduce items */
+#main-menubar > menu > menupopup menuitem,
+#main-menubar > menu > menupopup menu {
+  padding-block: var(--bookmark-menu-padding) !important;
+}

@@ -5,7 +5,7 @@
 # `./icons/` to `chrome://browser/skin/lepton/`
 replace_icon_path() {
   file=$1
-  sed -i "s/\.\/icons\//chrome:\/\/browser\/skin\/lepton\//g" "${file}"
+  sed -i "s/\.\.\/icons\//chrome:\/\/browser\/skin\/lepton\//g" "${file}"
 }
-replace_icon_path userChrome.css
-replace_icon_path userContent.css
+replace_icon_path css/leptonChrome.css
+replace_icon_path css/leptonContent.css

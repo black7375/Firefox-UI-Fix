@@ -1,0 +1,80 @@
+/* Toolbar Height */
+@include Option("userChrome.tab.lepton_like_padding") {
+  :root:not([uidensity]) #TabsToolbar {
+    --tab-min-height: 36px;
+  }
+  :root[uidensity="compact"] #TabsToolbar {
+    --tab-min-height: 32px;
+  }
+  :root[uidensity="touch"] #TabsToolbar {
+    --tab-min-height: 41px;
+  }
+}
+@include Option("userChrome.tab.photon_like_padding") {
+  :root:not([uidensity]) #TabsToolbar {
+    --tab-min-height: 32px;
+  }
+  :root[uidensity="compact"] #TabsToolbar {
+    --tab-min-height: 29px;
+  }
+  :root[uidensity="touch"] #TabsToolbar {
+    --tab-min-height: 41px;
+  }
+
+  /* Top Margin */
+  .tab-background,
+  .tab-content {
+    margin-top: 0 !important;
+  }
+}
+@include NotOption("userChrome.tab.lepton_like_padding") {
+  @include NotOption("userChrome.tab.photon_like_padding") {
+    :root:not([uidensity]) #TabsToolbar {
+      --tab-min-height: 36px; /* 38px -> 36px */
+    }
+    :root[uidensity="compact"] #TabsToolbar {
+      --tab-min-height: 29px; /* 36px -> 29px */
+    }
+  }
+}
+@include Option("userChrome.tab.connect_to_window") {
+  #TabsToolbar {
+    --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important; /* Prevent overflow pinned tab bottom margin */
+  }
+
+  :root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
+  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
+  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
+    max-height: var(--tab-min-height) !important; /* Force apply height */
+  }
+  :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+    height: var(--tab-min-height) !important;
+  }
+}
+
+/* Scroll Button - Size Fix */
+:root #tabbrowser-arrowscrollbox {
+  --scrollbtn-vertical-padding: 3px;
+  --scrollbtn-vertical-border: 2px;
+  --scrollbtn-border-radius: 7px;
+}
+#scrollbutton-up,
+#scrollbutton-down {
+  /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
+  /* https://github.com/mozilla/gecko-dev/blob/71b1259afd1cdaf41871ae675c2dadb967ea5b34/browser/themes/shared/toolbarbuttons.inc.css#L142 */
+  padding-top: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
+  padding-bottom: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
+
+  /* Original: 4px */
+  border-top-width: var(--scrollbtn-vertical-border, 4px) !important;
+  border-bottom-width: var(--scrollbtn-vertical-border, 4px) !important;
+  /* Original: calc(var(--tab-border-radius) + 4px) = 8px */
+  border-radius: var(--scrollbtn-border-radius, calc(var(--tab-border-radius) + 4px)) !important;
+}
+
+:root[tabsintitlebar]:not([uidensity="compact"]) #toolbar-menubar[autohide="true"] {
+  height: calc(
+    var(--tab-min-height) - var(--tabs-navbar-shadow-size) - 2px
+  ); /* Compact: 28px, Normal: 33px, Touch: 38px */
+}

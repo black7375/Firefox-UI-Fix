@@ -1,0 +1,98 @@
+@use 'true' as *;
+@use "example" as *;
+@use "../src/utils/each";
+
+@include test-module("Create each at rules [mix]") {
+  @include test("prefix single") {
+    @include assert {
+      @include output {
+        @include each.AtEach("-moz-document", "about:home", "url") {
+          @include example;
+        }
+      }
+      @include expect {
+        @-moz-document url(about:home) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("prefix multiple") {
+    @include assert {
+      @include output {
+        $input: "about:home" "about:newtab";
+        @include each.AtEach("-moz-document", $input, "url") {
+          @include example;
+        }
+      }
+      @include expect {
+        @-moz-document url(about:home), url(about:newtab) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("null prefix single") {
+    @include assert {
+      @include output {
+        @include each.AtEach("media", "max-width: 1024px") {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (max-width: 1024px) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("null prefix multiple") {
+    @include assert {
+      @include output {
+        $input: "hover: hover" "max-width: 1024px";
+        @include each.AtEach("media", $input) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (hover: hover), (max-width: 1024px) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("prefix custom option") {
+    @include assert {
+      @include output {
+        @include each.AtEach("supports", "userChrome.tab.photon", "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("userChrome.tab.photon") {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("prefix custom option multiple") {
+    @include assert {
+      @include output {
+        $input: "userChrome.tab.photon" "userChrome.padding.photon";
+        @include each.AtEach("supports", $input, "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("userChrome.tab.photon") or -moz-bool-pref("userChrome.padding.photon") {
+          @include example;
+        }
+      }
+    }
+  }
+}

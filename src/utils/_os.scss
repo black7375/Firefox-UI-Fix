@@ -1,0 +1,66 @@
+@use "sass:list";
+@use "sass:map";
+@use "list" as list-utils;
+@use "media";
+
+//== Args ======================================================================
+$win:    "win";
+$mac:    "mac";
+$linux:  "linux";
+
+$win7:   "win7";
+$win8:   "win8";
+$win10:  "win10";
+$bigsur: "bigsur";
+
+//== Privated Variables ========================================================
+$_win-template: "-moz-os-version: windows-" "-moz-platform: windows-";
+$_win-media: (
+  #{$win7}:  "win7",
+  #{$win8}:  "win8",
+  #{$win10}: "win10",
+);
+@each $_win-key in map.keys($_win-media) {
+  $_win-value: map.get($_win-media, $_win-key);
+
+  $result-template: ();
+  @for $i from 1 through list.length($_win-template) {
+    $result-value: list.nth($_win-template, $i) + $_win-value;
+    $result-template: list.append($result-template, $result-value);
+  }
+  $_win-media: map.set($_win-media, $_win-key, $result-template);
+}
+
+$_others-media: (
+  #{$linux}: "-moz-gtk-csd-available",
+  #{$bigsur}: "-moz-mac-big-sur-theme: 0",
+);
+$_os-media: map.merge(
+  $_win-media, $_others-media
+);
+
+//== Mixin =====================================================================
+@mixin OS($osNames...) {
+  @if list.index($osNames, $win) {
+    $osNames: list-utils.remove($osNames, $win);
+    $osNames: list.join($osNames, map.keys($_win-media));
+  }
+
+  $osMedias: ();
+  @each $osName in $osNames {
+    $osMedia: map.get($_os-media, $osName);
+    @if $osMedia != null {
+      $osMedias: list.join($osMedias, $osMedia);
+    }
+  }
+
+  @include media.each($osMedias...) {
+    @content;
+  }
+
+  @if list.index($osNames, $mac) {
+    @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+      @content;
+    }
+  }
+}

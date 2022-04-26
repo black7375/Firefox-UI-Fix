@@ -1,0 +1,23 @@
+/*= Other Folder - Inbox Icon ================================================*/
+/* on Menus */
+#PlacesToolbar #OtherBookmarks,
+  #BMB_bookmarksPopup #BMB_unsortedBookmarks,
+  #bookmarksMenuPopup #menu_unsortedBookmarks,
+  /* Other Bookmarks -- in Sidebar, Library, Add/Edit Bookmark dialog */
+  :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, OrganizerQuery_UnfiledBookmarks),
+  :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, queryFolder_unfiled_____),
+  #editBMPanel_unfiledRootItem,
+  #editBMPanel_folderMenuList[selectedGuid="unfiled_____"] {
+  list-style-image: url("../icons/mail-inbox-all.svg") !important;
+}
+
+/* Other Folder - Open */
+#PlacesToolbar #OtherBookmarks[open="true"],
+#BMB_bookmarksPopup #BMB_unsortedBookmarks[open="true"],
+#bookmarksMenuPopup #menu_unsortedBookmarks[open="true"],
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, open, OrganizerQuery_UnfiledBookmarks),
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, open, queryFolder_unfiled_____) {
+  list-style-image: url("../icons/mail-inbox.svg") !important;
+}

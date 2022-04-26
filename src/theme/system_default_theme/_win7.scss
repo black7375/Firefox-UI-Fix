@@ -1,0 +1,31 @@
+/*= Windows7 - Aero Based Theme ==============================================*/
+@include OS($win7) {
+  #TabsToolbar:not(:-moz-lwtheme) {
+    --background-color: rgb(229, 229, 235);
+    --toolbarseparator-color: transparent;
+  }
+  #TabsToolbar:not(:-moz-lwtheme)
+    .tabbrowser-tab
+    > .tab-stack
+    > .tab-background:not([selected="true"], [multiselected]) {
+    color: var(--background-color);
+    background-color: color-mix(in srgb, currentColor 60%, transparent);
+  }
+  #TabsToolbar:not(:-moz-lwtheme)
+    .tabbrowser-tab:hover
+    > .tab-stack
+    > .tab-background:not([selected="true"], [multiselected]) {
+    background-color: color-mix(
+      in srgb,
+      currentColor 85%,
+      transparent
+    ) !important; /* Original: color-mix(in srgb, currentColor 11%, transparent) */
+  }
+  #scrollbutton-up:not(:-moz-lwtheme),
+  #scrollbutton-down:not(:-moz-lwtheme),
+  #alltabs-button:not(:-moz-lwtheme) > .toolbarbutton-badge-stack,
+  #TabsToolbar:not(:-moz-lwtheme) .toolbarbutton-1 > .toolbarbutton-icon {
+    color: var(--background-color) !important;
+    background-color: color-mix(in srgb, currentColor 50%, transparent);
+  }
+}

@@ -1,0 +1,54 @@
+@use 'true' as *;
+@use "example" as *;
+@use "../src/utils/option";
+
+@include test-module("If exist pref [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("userChrome.tab.photon") {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("multiple") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon", "userChrome.padding.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("userChrome.tab.photon") or -moz-bool-pref("userChrome.padding.photon") {
+          @include example;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("If not exist pref [mx]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include option.NotOption("userChrome.tab.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports not -moz-bool-pref("userChrome.tab.photon") {
+          @include example;
+        }
+      }
+    }
+  }
+
+  // Need multiple test
+}

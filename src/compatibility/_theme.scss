@@ -1,0 +1,93 @@
+/*= Hotfix #98 ===============================================================*/
+/* Hidden Tab Panel Padding */
+#allTabsMenu-hiddenTabsView .all-tabs-item {
+  margin-inline: 8px;
+  border-radius: 4px;
+}
+
+/*= Remote Tabs Panel's Bottom Padding =======================================*/
+#PanelUI-remotetabs #PanelUI-remotetabs-main {
+  margin-bottom: 6px;
+}
+
+/*= Identity Popup Icon Crop =================================================*/
+.identity-popup-security-connection.identity-button {
+  padding-block: 1px !important;
+}
+
+/*= Zoom in button's plus icon horizontal rate ===============================*/
+#customization-palette-container #zoom-in-button > .toolbarbutton-icon,
+#customization-panel-container #zoom-in-button > .toolbarbutton-icon,
+#widget-overflow-mainView #zoom-in-button > .toolbarbutton-icon {
+  padding-inline-start: 0px !important;
+}
+
+/*= Icon Fill Color ==========================================================*/
+:root:-moz-lwtheme {
+  /* Auto create --lwt-toolbarbutton-icon-fill-attention, fix for nightly default theme
+       Default Color: rgb(0,97,224) -> rgb(0, 120, 215) for more light
+     */
+  --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, rgb(0, 120, 215));
+}
+
+/*= First visible tab margin at maximized #332 ===============================*/
+:root[tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar {
+  margin-left: -1px;
+}
+
+/*= Disabled menu background color ===========================================*/
+menuitem[disabled="true"],
+menu[disabled="true"] {
+  background-color: transparent !important;
+}
+
+/*= Remove Tab Border ========================================================*/
+@include Option("userChrome.tab.connect_to_window") {
+  /* TARGET: original, photon */
+  /* Light Theme */
+  #TabsToolbar:not([brighttext])
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background {
+    border: unset !important; /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+  }
+
+  /* Dark Theme */
+  #TabsToolbar[brighttext]
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background:-moz-lwtheme {
+    border: unset !important; /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
+  }
+}
+
+/*= Light Weight Theme =======================================================*/
+/* Header Image */
+:root[lwtheme-image] {
+  background-image: var(--lwt-header-image) !important; /* Original: var(--lwt-header-image) */
+  background-repeat: no-repeat !important;
+  background-position: right top !important;
+}
+@media (min-width: 2500px) {
+  :root[lwtheme-image] {
+    background-size: contain;
+
+    @include Option("userChrome.compatibility.covered_header_image") {
+      background-size: cover;
+    }
+  }
+}
+:root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+  background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
+  background-repeat: var(--lwt-background-tiling) !important;
+  background-position: var(--lwt-background-alignment) !important;
+  background-color: unset !important; /* Original:  var(--lwt-accent-color) */
+}
+
+/* Navbar Border */
+#navigator-toolbox:-moz-lwtheme {
+  --tabs-border-color: rgba(0, 0, 0, 0.3); /* Legacy: v96 */
+  --lwt-tabs-border-color: rgba(0, 0, 0, 0.3);
+}

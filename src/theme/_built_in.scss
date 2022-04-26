@@ -1,0 +1,16 @@
+// lwtheme-mozlightdark: Legacy - v96
+
+/*= Lightmode - Color darker =================================================*/
+#{built-in-light-theme()} {
+  --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
+}
+@include OS($win10, $mac) {
+  #{selector.nest(built-in-light-theme(), "#navigator-toolbox")} {
+    background-color: var(--lwt-accent-color) !important;
+  }
+}
+
+/*= Darkmode - Color lighter =================================================*/
+#{built-in-dark-theme()} {
+  --toolbar-bgcolor: rgba(43, 42, 51, 5) !important; /* Original: rgba(43, 42, 51, 1) */
+}

@@ -1,0 +1,12 @@
+/*= Theme - Compatibility ====================================================*/
+@include Option("userChrome.compatibility.theme") {
+  @import "theme";
+}
+
+/*= OS - Compatibility =======================================================*/
+@include Option("userChrome.compatibility.os") {
+  @import "os";
+}
+
+/*= Others - Compatibility ===================================================*/
+@import "others";

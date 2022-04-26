@@ -1,0 +1,30 @@
+{
+  "name": "Lepton",
+  "version": "5.0.0",
+  "description": "I respect proton UI and aim to improve it. ",
+  "author": "alstjr7375 <alstjr7375@daum.net>",
+  "license": "MPL 2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/black7375/Firefox-UI-Fix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/black7375/Firefox-UI-Fix/issues"
+  },
+  "homepage": "https://github.com/black7375/Firefox-UI-Fix#readme",
+  "scripts": {
+    "build": "sass --no-source-map src/leptonChrome.scss css/leptonChrome.css && sass --no-source-map src/leptonContent.scss css/leptonContent.css && prettier --write css/leptonChrome.css css/leptonContent.css",
+    "format": "prettier --write .",
+    "test": "jest",
+    "validate": "csstree-validator css/leptonChrome.css; csstree-validator css/leptonContent.css"
+  },
+  "devDependencies": {
+    "csstree-validator": "^3.0.0",
+    "fast-glob": "^3.2.11",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.1",
+    "sass": "^1.49.0",
+    "sass-true": "^6.1.0"
+  }
+}

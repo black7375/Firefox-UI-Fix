@@ -1,0 +1,80 @@
+#tabbrowser-tabs[closebuttons="activetab"]
+  > #tabbrowser-arrowscrollbox
+  > .tabbrowser-tab:not([pinned])
+  > .tab-stack
+  > .tab-content
+  > .tab-close-button:not([selected="true"]) {
+  display: -moz-inline-box !important;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
+  visibility: collapse !important;
+  opacity: 0;
+}
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
+  visibility: visible !important;
+  opacity: 1;
+}
+@include Option("userChrome.tab.close_button_at_hover.always") {
+  .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
+    visibility: collapse !important;
+    opacity: 0;
+  }
+  .tabbrowser-tab:hover .tab-close-button {
+    visibility: visible !important;
+    opacity: 1;
+  }
+}
+
+/* Animate */
+@include Animate {
+  /* Fade out */
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
+    transition: opacity 0.1s var(--animation-easing-function) !important;
+  }
+
+  /* Fade in */
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
+    transition: opacity 0.25s var(--animation-easing-function) !important;
+  }
+
+  @include Option("userChrome.tab.close_button_at_hover.always") {
+    /* Fade out */
+    .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
+      transition: opacity 0.1s var(--animation-easing-function) !important;
+    }
+
+    /* Fade in */
+    .tabbrowser-tab:hover .tab-close-button {
+      transition: opacity 0.25s var(--animation-easing-function) !important;
+    }
+  }
+}
+
+/* Closed Button's icon thicker */
+.tabbrowser-tab .tab-content > .close-icon {
+  list-style-image: url("../icons/dismiss-filled.svg") !important;
+}
+
+/* Closed Button's icon larger */
+.tab-close-button {
+  padding: 6px !important; /* Original: 7px */
+}
+.tabbrowser-tab:not(:hover, [pinned]) > .tab-stack > .tab-content > .tab-close-button {
+  padding-inline-start: 1px !important; /* Original: 0px */
+  width: 19px !important; /* Original: 17px */
+}
+
+/* Closed Button's padding reduce */
+#tabbrowser-tabs[closebuttons="activetab"] .tab-content > .tab-close-button {
+  margin-inline-end: calc(
+    (var(--inline-tab-padding) / -2) + 2px
+  ) !important; /* Original: calc(var(--inline-tab-padding) / -2)*/
+  padding: 4px !important; /* Original: 7px */
+  width: 20px !important; /* Original: 24px */
+  height: 20px !important; /* Original: 24px */
+}
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not(:hover) > .tab-stack > .tab-content > .tab-close-button {
+  padding-inline-start: 3px !important; /* Original: 0px */
+  width: 19px !important; /* Redefine from 19px !important, Original: 17px = (width - padding)  */
+}

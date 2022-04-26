@@ -1,0 +1,192 @@
+@use 'true' as *;
+@use "example" as *;
+@use "sass:selector";
+@use "../src/utils/theme";
+
+@include test-module("System Default Theme Selector [fn]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        #{theme.system-default-theme()} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root:not(:-moz-lwtheme), :root[lwt-default-theme-in-dark-mode] {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("append selector") {
+    @include assert {
+      @include output {
+        #{selector.append(theme.system-default-theme(), "[inFullscreen=true]")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root:not(:-moz-lwtheme)[inFullscreen=true], :root[lwt-default-theme-in-dark-mode][inFullscreen=true] {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("nested selector") {
+    @include assert {
+      @include output {
+        #{selector.nest(theme.system-default-theme(), "#navigator-toolbox")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root:not(:-moz-lwtheme) #navigator-toolbox, :root[lwt-default-theme-in-dark-mode] #navigator-toolbox {
+          @include example_property;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Built-In Default Theme Selector [fn]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        #{theme.built-in-default-theme()} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark], :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("append selector") {
+    @include assert {
+      @include output {
+        #{selector.append(theme.built-in-default-theme(), "[inFullscreen=true]")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark][inFullscreen=true], :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])[inFullscreen=true] {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("nested selector") {
+    @include assert {
+      @include output {
+        #{selector.nest(theme.built-in-default-theme(), "#navigator-toolbox")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark] #navigator-toolbox, :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) #navigator-toolbox {
+          @include example_property;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Built-In Light Theme Selector [fn]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        #{theme.built-in-light-theme()} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright]), :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("append selector") {
+    @include assert {
+      @include output {
+        #{selector.append(theme.built-in-light-theme(), "[inFullscreen=true]")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright])[inFullscreen=true], :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][inFullscreen=true] {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("nested selector") {
+    @include assert {
+      @include output {
+        #{selector.nest(theme.built-in-light-theme(), "#navigator-toolbox")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright]) #navigator-toolbox, :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox {
+          @include example_property;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Built-In Dark Theme Selector [fn]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        #{theme.built-in-dark-theme()} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark][lwthemetextcolor=bright], :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("append selector") {
+    @include assert {
+      @include output {
+        #{selector.append(theme.built-in-dark-theme(), "[inFullscreen=true]")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark][lwthemetextcolor=bright][inFullscreen=true], :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][inFullscreen=true] {
+          @include example_property;
+        }
+      }
+    }
+  }
+
+  @include test("nested selector") {
+    @include assert {
+      @include output {
+        #{selector.nest(theme.built-in-dark-theme(), "#navigator-toolbox")} {
+          @include example_property;
+        }
+      }
+      @include expect {
+        :root[lwtheme-mozlightdark][lwthemetextcolor=bright] #navigator-toolbox, :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] #navigator-toolbox {
+          @include example_property;
+        }
+      }
+    }
+  }
+}
