@@ -3,11 +3,13 @@ See the above repository for updates as well as full license text. */
 
 /*= Tabbar - Move to bottom ==================================================*/
 #titlebar{
-  order: 2;
+  order: 2; /* When userChrome.fullscreen.overlap */
+  -moz-box-ordinal-group: 2;
   --tabs-navbar-shadow-size: 0px;
 }
 #tab-notification-deck {
-  order: 2;
+  order: 2; /* When userChrome.fullscreen.overlap */
+  -moz-box-ordinal-group: 2;
 }
 
 #TabsToolbar .titlebar-spacer {
@@ -16,7 +18,8 @@ See the above repository for updates as well as full license text. */
 
 @include Option("userChrome.tab.on_bottom.above_bookmark") {
   #PersonalToolbar {
-    order: 2;
+    order: 2; /* When userChrome.fullscreen.overlap */
+    -moz-box-ordinal-group: 2;
   }
 }
 @include NotOption("userChrome.tab.on_bottom.above_bookmark") {
