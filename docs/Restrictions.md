@@ -63,6 +63,8 @@ The following code will cause extension panels fail to open and trying to open t
 ```
 Info: `#nav-bar` is [`toolbar`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/toolbar).
 
+Another `display: flex`'s side effect examples. [#368](https://github.com/black7375/Firefox-UI-Fix/issues/368) [#372](https://github.com/black7375/Firefox-UI-Fix/issues/372)
+
 ## Internals
 ### CSS Loading Order
 User CSS(`userChrome.css`, `userContent.css`) is usually loaded first.
