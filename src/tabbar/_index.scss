@@ -1,19 +1,20 @@
 /*= Tabs on Bottom ===========================================================*/
 @include Option("userChrome.tab.on_bottom", "userChrome.fullscreen.overlap") {
-  #navigator-toolbox {
+  /* Don't use display: flex at not fullscreen!! side effect #372 */
+  :root[sizemode="fullscreen"] #navigator-toolbox {
     display: flex !important; /* Needed for content to take up entire height, compatibility with tabs on bottom */
     flex-wrap: wrap;
   }
-  #titlebar,
-  #nav-bar,
-  #PersonalToolbar,
-  #tab-notification-deck,
-  #tab-notification-deck-template {
+  :root[sizemode="fullscreen"] #titlebar,
+  :root[sizemode="fullscreen"] #nav-bar,
+  :root[sizemode="fullscreen"] #PersonalToolbar,
+  :root[sizemode="fullscreen"] #tab-notification-deck,
+  :root[sizemode="fullscreen"] #tab-notification-deck-template {
     flex-basis: 100%;
   }
 
   /* -moz-default-appearance: -moz-window-titlebar */
-  #titlebar {
+  :root[sizemode="fullscreen"] #titlebar {
     -moz-appearance: none !important;
   }
 }
