@@ -1,88 +1,43 @@
-@include Option("userChrome.tab.close_button_at_hover_pinned") {
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
-    --pinned-hover-delay: 2s;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected] .tab-close-button,
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-image,
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-throbber,
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-pending {
-    display: -moz-box !important;
-    visibility: collapse !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-close-button {
-    -moz-box-ordinal-group: 0 !important;
-    transform: translateX(-1px) translateY(-1.5px);
-    visibility: visible !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected] .tab-icon-stack {
-    width: 16px !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-stack {
-    width: 0px !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected] .tab-icon-overlay {
-    transform: translateX(0px) translateY(0px);
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-overlay {
-    transform: translateX(-16px) translateY(-2.25px);
-  }
-  
-  /* Animate */
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-close-button {
-    transition: visibility 0.25s var(--animation-easing-function) var(--pinned-hover-delay) !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-image,
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-throbber,
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-pending {
-    transition: visibility 0s var(--pinned-hover-delay) !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-stack {
-    transition: width 0s var(--pinned-hover-delay) !important;
-  }
-  #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-overlay {
-    transition: transform 0s var(--pinned-hover-delay) !important;
-  }
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
+  --pinned-hover-delay: 2s;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected] .tab-close-button,
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-image,
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-throbber,
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-pending {
+  display: -moz-box !important;
+  visibility: collapse !important;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-close-button {
+  -moz-box-ordinal-group: 0 !important;
+  transform: translateX(-1px) translateY(-1.5px);
+  visibility: visible !important;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected] .tab-icon-stack {
+  width: 16px !important;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-stack {
+  width: 0px !important;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected] .tab-icon-overlay {
+  transform: translateX(0px) translateY(0px);
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-overlay {
+  transform: translateX(-16px) translateY(-2.25px);
+}
 
-  @include Option("userChrome.tab.close_button_at_hover_pinned.always") {
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] .tab-close-button,
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-image,
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-throbber,
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-pending {
-      display: -moz-box !important;
-      visibility: collapse !important;
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-close-button {
-      -moz-box-ordinal-group: 0 !important;
-      transform: translateX(-1px) translateY(-1.5px);
-      visibility: visible !important;
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] .tab-icon-stack {
-      width: 16px !important;
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-stack {
-      width: 0px !important;
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] .tab-icon-overlay {
-      transform: translateX(0px) translateY(0px);
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-overlay {
-      transform: translateX(-16px) translateY(-2.25px);
-    }
-
-    /* Animate */
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-close-button {
-      transition: visibility 0.25s var(--animation-easing-function) var(--pinned-hover-delay) !important;
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-image,
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-throbber,
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-pending {
-      transition: visibility 0s var(--pinned-hover-delay) !important;
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-stack {
-      transition: width 0s var(--pinned-hover-delay) !important;
-    }
-    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:hover .tab-icon-overlay {
-      transition: transform 0s var(--pinned-hover-delay) !important;
-    }
-  }
+/* Animate */
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-close-button {
+  transition: visibility 0.25s var(--animation-easing-function) var(--pinned-hover-delay) !important;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-image,
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-throbber,
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-pending {
+  transition: visibility 0s var(--pinned-hover-delay) !important;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-stack {
+  transition: width 0s var(--pinned-hover-delay) !important;
+}
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned][visuallyselected]:hover .tab-icon-overlay {
+  transition: transform 0s var(--pinned-hover-delay) !important;
 }
