@@ -1,16 +1,16 @@
 @mixin pinnedCloseButtonShow($prefix: "") {
-  #{$prefix} .tab-close-button {
+  #{$prefix}:not([busy]) .tab-close-button {
     display: -moz-box !important;
     -moz-box-ordinal-group: 0 !important;
 
     /* Looks like hover */
     width: 24px !important;
     height: 24px !important;
-    margin-inline: -4px !important; /* (24px - 16px) / 2 */
+    margin-inline: -1px !important;
   }
 }
 @mixin pinnedIconStackLayout($prefix: "") {
-  #{$prefix} .tab-icon-stack {
+  #{$prefix}:not([busy]) .tab-icon-stack {
     width: 0 !important;
     position: absolute;
     bottom: 8px;
@@ -23,18 +23,18 @@
 }
 
 .tabbrowser-tab[pinned] {
-  @include pinnedCloseButtonShow("&[visuallyselected]:not([busy]):hover");
-  @include pinnedIconStackLayout("&[visuallyselected]:not([busy]):hover");
-  @include pinnedIconHide("&[visuallyselected]:hover");
+  @include pinnedCloseButtonShow("&[visuallyselected]:not([style*='transform: translateX']):hover");
+  @include pinnedIconStackLayout("&[visuallyselected]:not([style*='transform: translateX']):hover");
+  @include pinnedIconHide("&[visuallyselected]:not([style*='transform: translateX']):hover");
 
   @include Option("userChrome.tab.close_button_at_pinned.always") {
-    @include pinnedCloseButtonShow("&[visuallyselected]:not([busy])");
-    @include pinnedIconStackLayout("&[visuallyselected]:not([busy])");
+    @include pinnedCloseButtonShow("&[visuallyselected]");
+    @include pinnedIconStackLayout("&[visuallyselected]");
     @include pinnedIconHide("&[visuallyselected]");
   }
   @include Option("userChrome.tab.close_button_at_pinned.background") {
-    @include pinnedCloseButtonShow("&:not([busy]):hover");
-    @include pinnedIconStackLayout("&:not([busy]):hover");
-    @include pinnedIconHide("&:hover");
+    @include pinnedCloseButtonShow("&:not([style*='transform: translateX']):hover");
+    @include pinnedIconStackLayout("&:not([style*='transform: translateX']):hover");
+    @include pinnedIconHide("&:not([style*='transform: translateX']):hover");
   }
 }
