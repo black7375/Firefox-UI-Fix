@@ -4690,13 +4690,25 @@
 }
 /** Clipped tabs - Show close button at pinned tab ****************************/
 @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
+  #tabbrowser-tabs {
+    --uc-close-button-size: 24px;
+    --uc-close-button-padding: 6px;
+    --uc-close-button-margin: calc((var(--uc-close-button-size) - 16px) / -2);
+  }
+
+  #tabbrowser-tabs[closebuttons="activetab"] {
+    --uc-close-button-size: 20px;
+    --uc-close-button-padding: 4px;
+  }
+
   .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
     display: -moz-box !important;
     -moz-box-ordinal-group: 0 !important;
     /* Looks like hover */
-    width: 24px !important;
-    height: 24px !important;
-    margin-inline: -1px !important;
+    width: var(--uc-close-button-size) !important;
+    height: var(--uc-close-button-size) !important;
+    padding: var(--uc-close-button-padding) !important;
+    margin-inline: var(--uc-close-button-margin) !important;
   }
   .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
     width: 0 !important;
@@ -4711,9 +4723,10 @@
       display: -moz-box !important;
       -moz-box-ordinal-group: 0 !important;
       /* Looks like hover */
-      width: 24px !important;
-      height: 24px !important;
-      margin-inline: -1px !important;
+      width: var(--uc-close-button-size) !important;
+      height: var(--uc-close-button-size) !important;
+      padding: var(--uc-close-button-padding) !important;
+      margin-inline: var(--uc-close-button-margin) !important;
     }
     .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
       width: 0 !important;
@@ -4729,9 +4742,10 @@
       display: -moz-box !important;
       -moz-box-ordinal-group: 0 !important;
       /* Looks like hover */
-      width: 24px !important;
-      height: 24px !important;
-      margin-inline: -1px !important;
+      width: var(--uc-close-button-size) !important;
+      height: var(--uc-close-button-size) !important;
+      padding: var(--uc-close-button-padding) !important;
+      margin-inline: var(--uc-close-button-margin) !important;
     }
     .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
       width: 0 !important;
