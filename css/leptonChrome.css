@@ -6002,6 +6002,12 @@
       --menuitem-image: none;
       /* Prevent Image Inheritance */
     }
+
+    @supports not -moz-bool-pref("userChrome.padding.global_menubar") {
+      #main-menubar > menu {
+        padding-block: 2px !important;
+      }
+    }
   }
   /* Padding - Windows */
   @media (-moz-os-version: windows-win7),

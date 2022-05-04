@@ -77,6 +77,12 @@ menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
   #main-menubar > menu > menupopup {
     --menuitem-image: none; /* Prevent Image Inheritance */
   }
+
+  @include NotOption("userChrome.padding.global_menubar") {
+    #main-menubar > menu {
+      padding-block: 2px !important;;
+    }
+  }
 }
 
 /* Padding - Windows */
