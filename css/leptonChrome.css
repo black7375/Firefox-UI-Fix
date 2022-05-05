@@ -5133,6 +5133,13 @@
       visibility: unset !important;
       /* Makes the bookmarks toolbar visible if enabled */
     }
+
+    @media (-moz-gtk-csd-available) {
+      /* Fix transparent backgorund */
+      :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
+        appearance: auto !important;
+      }
+    }
   }
 }
 /** Library - Icons Replace ***************************************************/

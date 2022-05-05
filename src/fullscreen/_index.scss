@@ -11,3 +11,10 @@
 :root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
   visibility: unset !important; /* Makes the bookmarks toolbar visible if enabled */
 }
+
+@include OS($linux) {
+  /* Fix transparent backgorund */
+  :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
+    appearance: auto !important;
+  }
+}
