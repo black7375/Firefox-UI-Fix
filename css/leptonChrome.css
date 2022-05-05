@@ -3173,6 +3173,12 @@
     :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
       height: calc(var(--tab-min-height) + var(--space-above-tabbar) - var(--tabs-navbar-shadow-size));
     }
+
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"] {
+        height: calc(var(--tab-min-height) + var(--space-above-tabbar) - var(--tabs-navbar-shadow-size));
+      }
+    }
   }
   @media (-moz-os-version: windows-win7),
     (-moz-platform: windows-win7),
@@ -3181,6 +3187,12 @@
     (-moz-gtk-csd-available) {
     :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
       height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+    }
+
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"] {
+        height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+      }
     }
   }
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -3195,6 +3207,13 @@
     :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
       padding-top: calc(var(--space-above-tabbar) + 4px) !important;
     }
+
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[sizemode="maximized"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+      :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+        padding-top: calc(var(--space-above-tabbar) + 4px) !important;
+      }
+    }
   }
   @media (-moz-os-version: windows-win8),
     (-moz-platform: windows-win8),
@@ -3205,6 +3224,13 @@
     :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
     :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
       padding-top: var(--space-above-tabbar) !important;
+    }
+
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[sizemode="maximized"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+      :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+        padding-top: var(--space-above-tabbar) !important;
+      }
     }
   }
 }

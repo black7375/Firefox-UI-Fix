@@ -8,12 +8,23 @@
   :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
     @content;
   }
+  @include Option("userChrome.padding.drag_space.maximized") {
+    :root[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"] {
+      @content;
+    }
+  }
 }
 @mixin dragSpacePadding {
   /* Add extra space to titlebar for dragging */
   :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
   :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
     @content;
+  }
+  @include Option("userChrome.padding.drag_space.maximized") {
+    :root[sizemode="maximized"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+    :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+      @content;
+    }
   }
 }
 
