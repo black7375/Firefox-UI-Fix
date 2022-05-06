@@ -28,7 +28,12 @@
 .tabbrowser-tab[visuallyselected] .tab-background::before,
 .tabbrowser-tab[visuallyselected] .tab-background::after,
 .tabbrowser-tab[beforeselected-visible] .tab-background::after {
-  opacity: 0;
+  @include Option("userChrome.tab.static_separator.selected_accent") {
+    --lwt-background-tab-separator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
+  }
+  @include NotOption("userChrome.tab.static_separator.selected_accent") {
+    opacity: 0;
+  }
 }
 
 /* Animate */

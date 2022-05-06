@@ -4522,10 +4522,19 @@
     right: 0;
   }
 
-  .tabbrowser-tab[visuallyselected] .tab-background::before,
-  .tabbrowser-tab[visuallyselected] .tab-background::after,
-  .tabbrowser-tab[beforeselected-visible] .tab-background::after {
-    opacity: 0;
+  @supports -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
+    .tabbrowser-tab[visuallyselected] .tab-background::before,
+    .tabbrowser-tab[visuallyselected] .tab-background::after,
+    .tabbrowser-tab[beforeselected-visible] .tab-background::after {
+      --lwt-background-tab-separator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
+    .tabbrowser-tab[visuallyselected] .tab-background::before,
+    .tabbrowser-tab[visuallyselected] .tab-background::after,
+    .tabbrowser-tab[beforeselected-visible] .tab-background::after {
+      opacity: 0;
+    }
   }
 
   /* Animate */
