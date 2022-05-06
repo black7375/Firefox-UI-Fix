@@ -4329,28 +4329,6 @@
     margin: unset !important;
   }
 }
-/*= Selected Tab - Photon like contextline ===================================*/
-@supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
-    display: -moz-box !important;
-    -moz-box-ordinal-group: 0 !important;
-    /* Looks like hover */
-    width: 24px !important;
-    height: 24px !important;
-    margin-inline: -4px !important;
-    /* (24px - 16px) / 2 */
-  }
-
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
-    width: 0 !important;
-    position: absolute;
-    bottom: 8px;
-  }
-
-  .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
-    display: none !important;
-  }
-}
 /*= Unselected Tab - Divide line =============================================*/
 /*= Unselected Tab - Dynamic Separator =======================================*/
 @supports -moz-bool-pref("userChrome.tab.dynamic_separtor") {
@@ -4775,6 +4753,75 @@
     /* Original: 0px */
     width: 19px !important;
     /* Redefine from 19px !important, Original: 17px = (width - padding)  */
+  }
+}
+/** Clipped tabs - Show close button at pinned tab ****************************/
+@supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
+  #tabbrowser-tabs {
+    --uc-close-button-size: 24px;
+    --uc-close-button-padding: 6px;
+    --uc-close-button-margin: calc((var(--uc-close-button-size) - 16px) / -2);
+  }
+
+  #tabbrowser-tabs[closebuttons="activetab"] {
+    --uc-close-button-size: 20px;
+    --uc-close-button-padding: 4px;
+  }
+
+  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
+    display: -moz-box !important;
+    -moz-box-ordinal-group: 0 !important;
+    /* Looks like hover */
+    width: var(--uc-close-button-size) !important;
+    height: var(--uc-close-button-size) !important;
+    padding: var(--uc-close-button-padding) !important;
+    margin-inline: var(--uc-close-button-margin) !important;
+  }
+  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
+    width: 0 !important;
+    position: absolute;
+    bottom: 8px;
+  }
+  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover .tab-icon-image {
+    display: none !important;
+  }
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.always") {
+    .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
+      display: -moz-box !important;
+      -moz-box-ordinal-group: 0 !important;
+      /* Looks like hover */
+      width: var(--uc-close-button-size) !important;
+      height: var(--uc-close-button-size) !important;
+      padding: var(--uc-close-button-padding) !important;
+      margin-inline: var(--uc-close-button-margin) !important;
+    }
+    .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
+      width: 0 !important;
+      position: absolute;
+      bottom: 8px;
+    }
+    .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
+      display: none !important;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.background") {
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
+      display: -moz-box !important;
+      -moz-box-ordinal-group: 0 !important;
+      /* Looks like hover */
+      width: var(--uc-close-button-size) !important;
+      height: var(--uc-close-button-size) !important;
+      padding: var(--uc-close-button-padding) !important;
+      margin-inline: var(--uc-close-button-margin) !important;
+    }
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
+      width: 0 !important;
+      position: absolute;
+      bottom: 8px;
+    }
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover .tab-icon-image {
+      display: none !important;
+    }
   }
 }
 /** Clipped tabs - Always show tab icon ***************************************/
