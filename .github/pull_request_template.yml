@@ -1,0 +1,44 @@
+name: Pull Request Template
+description: Pull Request's template
+title: ""
+
+body:
+  - type: textarea
+    id: describe-the-pr
+    attributes:
+      label: Describe the PR
+      description: A clear and consise description of what the PR is.
+      placeholder: Tell us what you did!
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, and screenshots to help explain your commit.
+      placeholder: Drag or paste images or videos to upload
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: pr-type
+    attributes:
+      label: PR Type?
+      description: You may select more than one.
+      options:
+        - label: "`Add:` Add feature or enhanced."
+        - label: "`Fix:` Bug fix or change default values."
+        - label: "`Clean:` Refactoring or code quality improvement."
+        - label: "`Doc:` Update docs."
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the commit here.
+      placeholder: Anything to write down or refer to is fine
+    validations:
+      required: false
