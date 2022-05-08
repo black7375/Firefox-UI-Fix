@@ -5210,18 +5210,19 @@
       /* Makes the UI take up the entire width */
     }
 
-    :root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
-    :root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
-      visibility: unset !important;
-      /* Makes the bookmarks toolbar visible if enabled */
-    }
-
     @media (-moz-gtk-csd-available) {
       /* Fix transparent backgorund */
       :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
         appearance: auto !important;
       }
     }
+  }
+}
+@supports -moz-bool-pref("userChrome.fullscreen.show_bookmarkbar") {
+  :root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
+  :root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
+    visibility: unset !important;
+    /* Makes the bookmarks toolbar visible if enabled */
   }
 }
 /** Library - Icons Replace ***************************************************/
