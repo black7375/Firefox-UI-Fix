@@ -77,24 +77,18 @@
   /*= Remove Tab Border ========================================================*/
   @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
     /* TARGET: original, photon */
-    /* Light Theme */
+    #TabsToolbar[brighttext]
+      #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background:-moz-lwtheme,
     #TabsToolbar:not([brighttext])
       #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
       > .tab-stack
       > .tab-background {
-      border: unset !important;
       /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
-    }
-
-    /* Dark Theme */
-    #TabsToolbar[brighttext]
-      #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-      > .tab-stack
-      > .tab-background:-moz-lwtheme {
       border: unset !important;
-      /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
     }
   }
   /*= Light Weight Theme =======================================================*/
@@ -105,7 +99,6 @@
     background-repeat: no-repeat !important;
     background-position: right top !important;
   }
-
   @media (min-width: 2500px) {
     :root[lwtheme-image] {
       background-size: contain;
