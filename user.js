@@ -82,6 +82,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.padding.drag_space.maximized",        true);
 
 // user_pref("userChrome.padding.menu_compact",                true);
+// user_pref("userChrome.padding.bookmark_menu.compact",       true);
 // user_pref("userChrome.padding.urlView_expanding",           true);
 // user_pref("userChrome.padding.urlView_result",              true);
 // user_pref("userChrome.padding.panel_header",                true);
