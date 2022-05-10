@@ -2721,7 +2721,6 @@
     #downloadsListBox .download-state[exists] .downloadDetails {
       color: var(--button-primary-bgcolor);
     }
-
     #downloadsListBox .download-state[exists] .downloadDetails.downloadDetailsHover {
       color: var(--button-primary-hover-bgcolor);
     }
@@ -2731,7 +2730,6 @@
       text-decoration: line-through;
       text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
     }
-
     #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
       filter: grayscale(100%) !important;
     }
@@ -2768,7 +2766,6 @@
        */
       transition: background-color 0.5s var(--animation-easing-function) !important;
     }
-
     .subviewbutton:hover {
       transition: background-color 0.1s var(--animation-easing-function) !important;
     }
@@ -2779,21 +2776,17 @@
       transition: -moz-box-flex 0.2s var(--animation-easing-function),
         margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
       transition: -moz-box-flex 0.2s var(--animation-easing-function),
         margin-inline-start 0.2s var(--animation-easing-function) !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tab-content::before,
     #tabbrowser-tabs:not([movingtab]) .tab-content::after {
       transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tab-content .tab-label-container {
       transition: width 0.3s var(--animation-easing-function) !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
       transition: all 0.3s var(--animation-easing-function) !important;
     }
@@ -2804,7 +2797,6 @@
       transition: border-color 1s var(--animation-easing-function),
         background-color 1.5s var(--animation-easing-function) !important;
     }
-
     #urlbar-background:hover,
     #searchbar:hover {
       transition: border-color 0.5s var(--animation-easing-function),
@@ -2819,7 +2811,6 @@
     #page-action-buttons > .urlbar-page-action {
       transition: background-color 2.5s var(--animation-easing-function) !important;
     }
-
     #tracking-protection-icon-container:hover,
     #identity-icon-box:hover,
     #identity-permission-box:hover,
@@ -2829,14 +2820,13 @@
     }
 
     /*- Border - Other Fields --------------------------------------------------*/
-    #search-box:hover,
-    xul|search-textbox.tabsFilter:hover,
-    #editBMPanel_namePicker:hover,
-    #editBMPanel_tagsField:hover,
-    .findbar-container .findbar-textbox:hover {
+    #search-box,
+    xul|search-textbox.tabsFilter,
+    #editBMPanel_namePicker,
+    #editBMPanel_tagsField,
+    .findbar-container .findbar-textbox {
       transition: border-color 1s var(--animation-easing-function) !important;
     }
-
     #search-box:hover,
     xul|search-textbox.tabsFilter:hover,
     #editBMPanel_namePicker:hover,
@@ -2856,7 +2846,6 @@
         transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
           visibility 0s linear !important;
       }
-
       #sidebar-box[hidden="true"] {
         display: -moz-box !important;
         margin-inline-start: -18em;
@@ -2871,7 +2860,6 @@
       transition: margin-top 1s ease;
       transform-origin: top;
     }
-
     #navigator-toolbox[inFullscreen="true"] {
       /* Full screen enter */
       animation-duration: 1s;
@@ -2880,7 +2868,6 @@
       /* Full screen navbar not hover */
       transition: margin-top 1.3s var(--animation-easing-function) 50ms;
     }
-
     #navigator-toolbox[inFullscreen="true"]:hover {
       margin-top: 0 !important;
     }
@@ -2918,15 +2905,12 @@
       #template-container .item.client .item-twisty-container {
         transition: transform 0.1s var(--animation-easing-function) !important;
       }
-
       #template-container .item.client.closed .item-twisty-container {
         transform: rotate(-90deg);
         background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
       }
-
       #template-container .item.client.closed .item-twisty-container:dir(rtl) {
         transform: rotate(90deg);
-        background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
       }
     }
     /*- Arrow - Edit Bookmark Popup --------------------------------------------*/
@@ -2938,7 +2922,6 @@
     #editBookmarkPanelRows .expander-up {
       list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
     }
-
     #editBookmarkPanelRows .expander-up .button-icon {
       transform: rotate(180deg);
     }
