@@ -4822,6 +4822,12 @@
       display: none !important;
     }
   }
+
+  #tabbrowser-tabs[closebuttons="activetab"]
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy])
+    .tab-close-button {
+    margin-inline-end: var(--uc-close-button-margin) !important;
+  }
 }
 /** Clipped tabs - Always show tab icon ***************************************/
 @supports -moz-bool-pref("userChrome.tab.always_show_tab_icon") {
