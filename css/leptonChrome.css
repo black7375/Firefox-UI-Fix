@@ -90,6 +90,16 @@
       /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
       border: unset !important;
     }
+
+    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
+    .tab-background[selected]:-moz-lwtheme {
+      outline-color: transparent !important;
+    }
+
+    .keyboard-focused-tab > .tab-stack > .tab-background,
+    .tabbrowser-tab:focus:not([aria-activedescendant]) > .tab-stack > .tab-background {
+      outline: var(--focus-outline) !important;
+    }
   }
   /*= Light Weight Theme =======================================================*/
   /* Header Image */

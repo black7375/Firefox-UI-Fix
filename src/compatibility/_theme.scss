@@ -70,6 +70,16 @@ menu {
     // Dark Theme
     "[brighttext]" ":-moz-lwtheme"
   );
+
+  #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
+  .tab-background[selected]:-moz-lwtheme {
+    // Nightly 102: outline: 1px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor));
+    outline-color: transparent !important;
+  }
+  .keyboard-focused-tab > .tab-stack > .tab-background,
+  .tabbrowser-tab:focus:not([aria-activedescendant]) > .tab-stack > .tab-background {
+    outline: var(--focus-outline) !important;
+  }
 }
 
 /*= Light Weight Theme =======================================================*/
