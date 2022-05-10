@@ -106,8 +106,6 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);
 
-// user_pref("userChrome.fullscreen.show_bookmarkbar",         true); // Sideeffect show #383
-
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);
 
@@ -158,6 +156,7 @@ user_pref("userChrome.tab.container",             true);
 user_pref("userChrome.tab.crashed",               true);
 
 user_pref("userChrome.fullscreen.overlap",        true);
+user_pref("userChrome.fullscreen.show_bookmarkbar", true);
 
 user_pref("userChrome.icon.library",              true);
 user_pref("userChrome.icon.panel",                true);
