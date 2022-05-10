@@ -77,24 +77,18 @@
   /*= Remove Tab Border ========================================================*/
   @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
     /* TARGET: original, photon */
-    /* Light Theme */
+    #TabsToolbar[brighttext]
+      #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background:-moz-lwtheme,
     #TabsToolbar:not([brighttext])
       #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
       > .tab-stack
       > .tab-background {
-      border: unset !important;
       /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
-    }
-
-    /* Dark Theme */
-    #TabsToolbar[brighttext]
-      #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-      > .tab-stack
-      > .tab-background:-moz-lwtheme {
       border: unset !important;
-      /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
     }
   }
   /*= Light Weight Theme =======================================================*/
@@ -105,7 +99,6 @@
     background-repeat: no-repeat !important;
     background-position: right top !important;
   }
-
   @media (min-width: 2500px) {
     :root[lwtheme-image] {
       background-size: contain;
@@ -138,11 +131,9 @@
     :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
       border-top: 0.5px solid #2f2f2f !important;
     }
-
     :root[sizemode="normal"][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
       border-top-color: #393939 !important;
     }
-
     @media (-moz-windows-accent-color-in-titlebar) {
       :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
         border-top-color: -moz-accent-color !important;
@@ -160,18 +151,19 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    #TabsToolbar:-moz-lwtheme {
-      color: var(--lwt-text-color) !important;
-    }
-
-    /* Remove Aero */
     #TabsToolbar {
+      /* Remove Aero */
       /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
       background-image: unset !important;
+    }
+    #TabsToolbar:-moz-lwtheme {
+      /* background textcolor */
+      color: var(--lwt-text-color) !important;
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
     #navigator-toolbox:-moz-lwtheme {
+      /* background textcolor */
       color: var(--lwt-text-color) !important;
     }
   }
@@ -214,7 +206,6 @@
       border: none !important;
       /* Remove border */
     }
-
     #PlacesToolbar menu:not([disabled], :active)[_moz-menuactive="true"],
     #PlacesToolbar menuitem:not([disabled], :active)[_moz-menuactive="true"],
     #BMB_bookmarksPopup menu:not([disabled], :active)[_moz-menuactive="true"],
