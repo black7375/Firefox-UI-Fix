@@ -2822,18 +2822,18 @@
     }
 
     /*- Border - Other Fields --------------------------------------------------*/
+    #search-box,
+    xul|search-textbox.tabsFilter,
+    #editBMPanel_namePicker,
+    #editBMPanel_tagsField,
+    .findbar-container .findbar-textbox {
+      transition: border-color 1s var(--animation-easing-function) !important;
+    }
     #search-box:hover,
     xul|search-textbox.tabsFilter:hover,
     #editBMPanel_namePicker:hover,
     #editBMPanel_tagsField:hover,
     .findbar-container .findbar-textbox:hover {
-      transition: border-color 1s var(--animation-easing-function) !important;
-    }
-    #search-box:hover:hover,
-    xul|search-textbox.tabsFilter:hover:hover,
-    #editBMPanel_namePicker:hover:hover,
-    #editBMPanel_tagsField:hover:hover,
-    .findbar-container .findbar-textbox:hover:hover {
       transition: border-color 0.5s var(--animation-easing-function) !important;
     }
 
@@ -2913,7 +2913,6 @@
       }
       #template-container .item.client.closed .item-twisty-container:dir(rtl) {
         transform: rotate(90deg);
-        background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
       }
     }
     /*- Arrow - Edit Bookmark Popup --------------------------------------------*/

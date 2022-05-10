@@ -78,11 +78,11 @@
 }
 
 /*- Border - Other Fields --------------------------------------------------*/
-#search-box:hover,
-xul|search-textbox.tabsFilter:hover,
-#editBMPanel_namePicker:hover,
-#editBMPanel_tagsField:hover,
-.findbar-container .findbar-textbox:hover {
+#search-box,
+xul|search-textbox.tabsFilter,
+#editBMPanel_namePicker,
+#editBMPanel_tagsField,
+.findbar-container .findbar-textbox {
   transition: border-color 1s var(--animation-easing-function) !important;
   &:hover {
     transition: border-color 0.5s var(--animation-easing-function) !important;
@@ -179,7 +179,6 @@ xul|search-textbox.tabsFilter:hover,
 
       &:dir(rtl) {
         transform: rotate(90deg);
-        background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
       }
     }
   }
