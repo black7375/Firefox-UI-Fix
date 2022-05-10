@@ -131,11 +131,9 @@
     :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
       border-top: 0.5px solid #2f2f2f !important;
     }
-
     :root[sizemode="normal"][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
       border-top-color: #393939 !important;
     }
-
     @media (-moz-windows-accent-color-in-titlebar) {
       :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
         border-top-color: -moz-accent-color !important;
@@ -153,18 +151,19 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    #TabsToolbar:-moz-lwtheme {
-      color: var(--lwt-text-color) !important;
-    }
-
-    /* Remove Aero */
     #TabsToolbar {
+      /* Remove Aero */
       /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
       background-image: unset !important;
+    }
+    #TabsToolbar:-moz-lwtheme {
+      /* background textcolor */
+      color: var(--lwt-text-color) !important;
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
     #navigator-toolbox:-moz-lwtheme {
+      /* background textcolor */
       color: var(--lwt-text-color) !important;
     }
   }
@@ -207,7 +206,6 @@
       border: none !important;
       /* Remove border */
     }
-
     #PlacesToolbar menu:not([disabled], :active)[_moz-menuactive="true"],
     #PlacesToolbar menuitem:not([disabled], :active)[_moz-menuactive="true"],
     #BMB_bookmarksPopup menu:not([disabled], :active)[_moz-menuactive="true"],
