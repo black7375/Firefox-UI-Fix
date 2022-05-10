@@ -2360,7 +2360,6 @@
           --organizer-toolbar-field-focus-box-shadow: unset;
           --organizer-pane-field-border-color: ThreeDShadow;
         }
-
         @media not all and (prefers-contrast) {
           :root {
             --organizer-color: var(--in-content-page-color);
@@ -2389,7 +2388,6 @@
             --organizer-toolbar-field-focus-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.23);
             --organizer-pane-field-border-color: color-mix(in srgb, currentColor 41%, transparent);
           }
-
           @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
             :root {
               --organizer-color: rgb(251, 251, 254);
@@ -2405,6 +2403,7 @@
             }
           }
         }
+
         /*- Toolbar & Menus ------------------------------------------------------*/
         #placesToolbar {
           appearance: none !important;
@@ -2414,22 +2413,18 @@
           padding: 4px !important;
           padding-inline-end: 6px !important;
         }
-
         #placesToolbar > toolbarbutton {
           appearance: none !important;
           padding: 5px !important;
           border-radius: 4px !important;
         }
-
         #placesToolbar > toolbarbutton[disabled] {
           opacity: 0.6 !important;
         }
-
         #placesToolbar > toolbarbutton:not([disabled]):hover {
           background-color: var(--organizer-hover-background) !important;
           color: var(--organizer-hover-color) !important;
         }
-
         #placesToolbar > toolbarbutton:not([disabled]):hover:active {
           background-color: var(--organizer-selected-background) !important;
         }
@@ -2444,7 +2439,6 @@
         #placesMenu {
           margin-inline-start: 6px !important;
         }
-
         #placesMenu > menu {
           appearance: none !important;
           color: var(--organizer-color) !important;
@@ -2453,19 +2447,16 @@
           padding-inline-start: 5px !important;
           margin-inline-end: 2px !important;
         }
-
         #placesMenu > menu[_moz-menuactive="true"],
         #placesMenu > menu:hover {
           background-color: var(--organizer-hover-background) !important;
           color: var(--organizer-hover-color) !important;
         }
-
         #placesMenu > menu:hover:active,
         #placesMenu > menu[open] {
           background-color: var(--organizer-selected-background) !important;
           color: var(--organizer-selected-color) !important;
         }
-
         #placesMenu > menu > .menubar-text {
           margin-block: 0 !important;
           /* override menu.css */
@@ -2556,7 +2547,6 @@
           background-color: var(--organizer-hover-background) !important;
           color: var(--organizer-color) !important;
         }
-
         treecol:not([hideheader="true"], [sortable="false"]):hover:active,
         treecolpicker:hover:active {
           background-color: var(--organizer-selected-background) !important;
@@ -2587,38 +2577,31 @@
         treechildren::-moz-tree-row {
           background-color: transparent !important;
         }
-
         treechildren::-moz-tree-row(hover) {
           background-color: var(--organizer-hover-background) !important;
         }
-
         treechildren::-moz-tree-row(selected) {
           background-color: var(--organizer-selected-background) !important;
           color: var(--organizer-selected-color) !important;
           border: 1px solid transparent !important;
         }
-
         treechildren::-moz-tree-image(hover),
         treechildren::-moz-tree-twisty(hover),
         treechildren::-moz-tree-cell-text(hover) {
           color: var(--organizer-hover-color) !important;
         }
-
         treechildren::-moz-tree-image(selected),
         treechildren::-moz-tree-twisty(selected),
         treechildren::-moz-tree-cell-text(selected) {
           color: var(--organizer-selected-color) !important;
         }
-
         treechildren::-moz-tree-separator {
           height: 1px !important;
           border-color: var(--organizer-separator-color) !important;
         }
-
         treechildren::-moz-tree-separator(hover) {
           border-color: var(--organizer-hover-color) !important;
         }
-
         treechildren::-moz-tree-separator(selected) {
           border-color: var(--organizer-selected-color) !important;
         }
@@ -2642,36 +2625,34 @@
           border-radius: 4px !important;
           color: var(--organizer-color) !important;
           background-color: var(--organizer-content-background) !important;
-          list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
           -moz-context-properties: fill !important;
           fill: currentColor !important;
         }
-
         #editBookmarkPanelRows .expander-up:hover,
         #editBookmarkPanelRows .expander-down:hover {
           background-color: var(--organizer-hover-background) !important;
           color: var(--organizer-hover-color) !important;
         }
-
         #editBookmarkPanelRows .expander-up:hover:active,
         #editBookmarkPanelRows .expander-down:hover:active {
           background-color: var(--organizer-selected-background) !important;
           color: var(--organizer-selected-color) !important;
         }
-
         #editBookmarkPanelRows .expander-up:focus-visible,
         #editBookmarkPanelRows .expander-down:focus-visible {
           outline: 2px solid var(--organizer-outline-color) !important;
           outline-offset: -1px !important;
         }
+        #editBookmarkPanelRows .expander-up > .button-box,
+        #editBookmarkPanelRows .expander-down > .button-box {
+          padding: 0 !important;
+        }
 
         #editBookmarkPanelRows .expander-up {
           list-style-image: url("chrome://global/skin/icons/arrow-up-12.svg");
         }
-
-        #editBookmarkPanelRows .expander-up > .button-box,
-        #editBookmarkPanelRows .expander-down > .button-box {
-          padding: 0 !important;
+        #editBookmarkPanelRows .expander-down {
+          list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
         }
 
         #places input {
@@ -2682,12 +2663,10 @@
           min-height: 20px !important;
           padding-inline: 4px !important;
         }
-
         #places input:focus {
           outline: 2px solid var(--organizer-outline-color) !important;
           outline-offset: -1px !important;
         }
-
         #places input:not(:read-write):focus {
           outline: none !important;
         }
@@ -2704,16 +2683,13 @@
           border: 1px solid var(--organizer-border-color) !important;
           border-radius: 4px !important;
         }
-
         #editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
           border: 1px solid transparent !important;
         }
-
         #editBMPanel_tagsSelectorRow > richlistbox > richlistitem:hover {
           background-color: var(--organizer-hover-background) !important;
           color: var(--organizer-hover-color) !important;
         }
-
         #editBMPanel_tagsSelectorRow > richlistbox > richlistitem[selected] {
           background-color: var(--organizer-selected-background) !important;
           color: var(--organizer-selected-color) !important;
