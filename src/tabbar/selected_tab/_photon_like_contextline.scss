@@ -18,8 +18,10 @@
 .tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
   /* Photon like color
      Default: var(--tab-line-color, rgb(10, 132, 255))
-     Automatic: color-mix(in srgb, var(--button-primary-bgcolor) 80%, transparent) */
-  background-color: var(--tab-line-color, rgb(10, 132, 255)) !important;
+     Automatic: color-mix(in srgb, var(--button-primary-bgcolor) 80%, transparent)
+
+     FF v96+ replace by var(--lwt-tab-line-color) */
+  background-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255))) !important;
 }
 
 .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {

@@ -170,7 +170,7 @@ html|input {
 If you want to limit the coverage to some pages, you can use [`@-moz-document`](https://developer.mozilla.org/en-US/docs/Web/CSS/@document):
 ```css
 /* Main browser UI */
-@-moz-document url(chrome://browser/content/browser.xhtml) {
+@-moz-document url("chrome://browser/content/browser.xhtml") {
   /* Your CSS */
 }
 

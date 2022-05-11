@@ -16,10 +16,12 @@
 }
 
 /*= Zoom in button's plus icon horizontal rate ===============================*/
-#customization-palette-container #zoom-in-button > .toolbarbutton-icon,
-#customization-panel-container #zoom-in-button > .toolbarbutton-icon,
-#widget-overflow-mainView #zoom-in-button > .toolbarbutton-icon {
-  padding-inline-start: 0px !important;
+#customization-palette-container,
+#customization-panel-container,
+#widget-overflow-mainView {
+  #zoom-in-button > .toolbarbutton-icon {
+    padding-inline-start: 0px !important;
+  }
 }
 
 /*= Icon Fill Color ==========================================================*/
@@ -36,30 +38,47 @@
 }
 
 /*= Disabled menu background color ===========================================*/
-menuitem[disabled="true"],
-menu[disabled="true"] {
-  background-color: transparent !important;
+menuitem,
+menu {
+  &[disabled="true"] {
+    background-color: transparent !important;
+  }
 }
 
 /*= Remove Tab Border ========================================================*/
+@mixin _theme_removeTabBorder($options...) {
+  %noneBorder {
+    /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+    border: unset !important;
+  }
+  @each $prefix, $postfix in $options {
+    #TabsToolbar#{$prefix}
+    #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background#{$postfix} {
+      @extend %noneBorder;
+    }
+  }
+}
+
 @include Option("userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
-  /* Light Theme */
-  #TabsToolbar:not([brighttext])
-    #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-    > .tab-stack
-    > .tab-background {
-    border: unset !important; /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
-  }
+  @include _theme_removeTabBorder(
+    // Light Theme
+    ":not([brighttext])",
+    // Dark Theme
+    "[brighttext]" ":-moz-lwtheme"
+  );
 
-  /* Dark Theme */
-  #TabsToolbar[brighttext]
-    #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-    > .tab-stack
-    > .tab-background:-moz-lwtheme {
-    border: unset !important; /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
+  #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
+  .tab-background[selected]:-moz-lwtheme {
+    // Nightly 102: outline: 1px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor));
+    outline-color: transparent !important;
+  }
+  .keyboard-focused-tab > .tab-stack > .tab-background,
+  .tabbrowser-tab:focus:not([aria-activedescendant]) > .tab-stack > .tab-background {
+    outline: var(--focus-outline) !important;
   }
 }
 
@@ -69,21 +88,23 @@ menu[disabled="true"] {
   background-image: var(--lwt-header-image) !important; /* Original: var(--lwt-header-image) */
   background-repeat: no-repeat !important;
   background-position: right top !important;
-}
-@media (min-width: 2500px) {
-  :root[lwtheme-image] {
+
+  // For high-resolution screen's image ratio
+  @media (min-width: 2500px) {
     background-size: contain;
 
     @include Option("userChrome.compatibility.covered_header_image") {
       background-size: cover;
     }
   }
-}
-:root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
-  background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
-  background-repeat: var(--lwt-background-tiling) !important;
-  background-position: var(--lwt-background-alignment) !important;
-  background-color: unset !important; /* Original:  var(--lwt-accent-color) */
+
+  // lwtheme compatibility
+  #navigator-toolbox:-moz-lwtheme {
+    background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
+    background-repeat: var(--lwt-background-tiling) !important;
+    background-position: var(--lwt-background-alignment) !important;
+    background-color: unset !important; /* Original:  var(--lwt-accent-color) */
+  }
 }
 
 /* Navbar Border */

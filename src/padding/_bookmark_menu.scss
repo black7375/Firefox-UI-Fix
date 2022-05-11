@@ -4,10 +4,24 @@
 :root[uidensity="compact"] {
   --bookmark-menu-padding: 1.5px;
 }
+@include Option("userChrome.padding.menu_compact") {
+  :root {
+    --bookmark-menu-padding: 2px;
+  }
+  :root[uidensity=compact] {
+    --bookmark-menu-padding: 0px;
+  }
+}
 
-:root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
 :root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
 :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .bookmark-item,
 :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .openintabs-menuitem {
   padding-block: var(--bookmark-menu-padding) !important;
+}
+
+@include Option("userChrome.padding.menu_compact", "userChrome.padding.bookmark_menu.compact") {
+  :root:not([uidensity="touch"]) #BMB_bookmarksPopup .bookmark-item,
+  :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .bookmark-item {
+    min-height: unset !important; /* Original: 24px */
+  }
 }
