@@ -1,14 +1,17 @@
 /*= Windows 10 - Top border of accent color at ESR #358 ======================*/
 @include OS($win10) {
-  :root[sizemode=normal][tabsintitlebar] #navigator-toolbox {
-    border-top: .5px solid rgb(47, 47, 47) !important;
-  }
-  :root[sizemode=normal][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
-    border-top-color: rgb(57, 57, 57) !important;
-  }
-  @media (-moz-windows-accent-color-in-titlebar) {
-    :root[sizemode=normal][tabsintitlebar] #navigator-toolbox {
-      border-top-color: -moz-accent-color !important;
+  :root[sizemode=normal][tabsintitlebar] {
+    #navigator-toolbox {
+      border-top: .5px solid rgb(47, 47, 47) !important;
+    }
+    &:-moz-window-inactive #navigator-toolbox {
+      border-top-color: rgb(57, 57, 57) !important;
+    }
+
+    @media (-moz-windows-accent-color-in-titlebar) {
+      #navigator-toolbox {
+        border-top-color: -moz-accent-color !important;
+      }
     }
   }
 }
@@ -20,20 +23,25 @@
     background-color: var(--lwt-accent-color) !important;
   }
 }
-@include OS($win7) {
-  #TabsToolbar:-moz-lwtheme {
-    color: var(--lwt-text-color) !important;
-  }
 
-  /* Remove Aero */
+@mixin _os_winTabBarTextColor {
+  /* background textcolor */
+  color: var(--lwt-text-color) !important;
+}
+@include OS($win7) {
   #TabsToolbar {
+    &:-moz-lwtheme {
+      @include _os_winTabBarTextColor;
+    }
+
+    /* Remove Aero */
     /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
     background-image: unset !important;
   }
 }
 @include OS($win8) {
   #navigator-toolbox:-moz-lwtheme {
-    color: var(--lwt-text-color) !important;
+    @include _os_winTabBarTextColor;
   }
 }
 
@@ -66,26 +74,27 @@
   #BMB_bookmarksPopup menu,
   #BMB_bookmarksPopup menuitem {
     border: none !important; /* Remove border */
-  }
-  #PlacesToolbar menu:not([disabled], :active)[_moz-menuactive="true"],
-  #PlacesToolbar menuitem:not([disabled], :active)[_moz-menuactive="true"],
-  #BMB_bookmarksPopup menu:not([disabled], :active)[_moz-menuactive="true"],
-  #BMB_bookmarksPopup menuitem:not([disabled], :active)[_moz-menuactive="true"] {
-    background-color: var(--button-hover-bgcolor) !important;
+
+    &:not([disabled], :active)[_moz-menuactive="true"] {
+      background-color: var(--button-hover-bgcolor) !important;
+    }
   }
 }
 
-@include OS($win7) {
+@mixin _os_menuEmulate($bgRate, $bdRate) {
   menu[_moz-menuactive="true"],
   menuitem[_moz-menuactive="true"] {
-    background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
-    border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
+    background-color: color-mix(in srgb, -moz-menuhover $bgRate, transparent) !important;
+    border-color: color-mix(in srgb, -moz-menuhover $bdRate, transparent) !important;
   }
   menu[_moz-menuactive="true"][disabled="disabled"],
   menuitem[_moz-menuactive="true"][disabled="true"] {
-    background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
-    border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
+    background-color: color-mix(in srgb, currentColor $bgRate, transparent) !important;
+    border-color: color-mix(in srgb, currentColor $bdRate, transparent) !important;
   }
+}
+@include OS($win7) {
+  @include _os_menuEmulate(5%, 60%);
 
   /* Remove text shadow */
   :root:-moz-lwtheme #toolbar-menubar {
@@ -100,16 +109,7 @@
   }
 }
 @include OS($win8) {
-  menu[_moz-menuactive="true"],
-  menuitem[_moz-menuactive="true"] {
-    background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
-    border-color: color-mix(in srgb, -moz-menuhover 80%, transparent) !important;
-  }
-  menu[_moz-menuactive="true"][disabled="disabled"],
-  menuitem[_moz-menuactive="true"][disabled="true"] {
-    background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
-    border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
-  }
+  @include _os_menuEmulate(17%, 80%);
 }
 
 @include OS($linux) {
@@ -140,6 +140,15 @@
 }
 
 /*= Linux - Light System Default Theme's Selected Tab ========================*/
+$_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
+@mixin _os_linuxDefaultThemeSelectedTab {
+  #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background:not(:-moz-lwtheme) {
+    @content;
+  }
+}
 @include OS($linux) {
   @include Light {
     /* Because of
@@ -148,18 +157,13 @@
         box-shadow: 0 0 4px rgba(128,128,142,0.5);
       }
      */
-    #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-      > .tab-stack
-      > .tab-background:not(:-moz-lwtheme) {
-      box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
+    @include _os_linuxDefaultThemeSelectedTab {
+      box-shadow: $_os_linuxDefaultShadow !important;
     }
-    #TabsToolbar:not([brighttext])
-      #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-      > .tab-stack
-      > .tab-background:not(:-moz-lwtheme) {
-      box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
+    #TabsToolbar:not([brighttext]) {
+      @include _os_linuxDefaultThemeSelectedTab {
+        box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), $_os_linuxDefaultShadow !important;
+      }
     }
   }
 }

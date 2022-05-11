@@ -1,20 +1,16 @@
 /*- Background Color -------------------------------------------------------*/
-button,
-toolbarbutton,
-stack,
-vbox,
-.toolbarbutton-icon,
-#tabs-newtab-button > .toolbarbutton-icon {
-  transition: background-color 1s var(--animation-easing-function) !important;
+@mixin _animate_bgColor($duration, $presudo: "") {
+  button#{$presudo},
+  toolbarbutton#{$presudo},
+  stack#{$presudo},
+  vbox#{$presudo},
+  .toolbarbutton-icon#{$presudo},
+  #tabs-newtab-button#{$presudo} > .toolbarbutton-icon {
+    transition: background-color $duration var(--animation-easing-function) !important;
+  }
 }
-button:hover,
-toolbarbutton:hover,
-stack:hover,
-vbox:hover,
-.toolbarbutton-icon:hover,
-#tabs-newtab-button:hover > .toolbarbutton-icon {
-  transition: background-color 0.25s var(--animation-easing-function) !important;
-}
+@include _animate_bgColor(1s);
+@include _animate_bgColor(0.25s, ":hover");
 @include OS($linux) {
   .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
     transition: background-image 0.25s var(--animation-easing-function) !important;
@@ -26,41 +22,47 @@ vbox:hover,
      menu, menuitem is not apply.
    */
   transition: background-color 0.5s var(--animation-easing-function) !important;
-}
-.subviewbutton:hover {
-  transition: background-color 0.1s var(--animation-easing-function) !important;
+  &:hover {
+    transition: background-color 0.1s var(--animation-easing-function) !important;
+  }
 }
 
 /*- Pinned Tab -------------------------------------------------------------*/
-#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab:not([collapsed]) {
-  /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
-  transition: -moz-box-flex 0.2s var(--animation-easing-function),
-    margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
-}
-#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
-  transition: -moz-box-flex 0.2s var(--animation-easing-function),
-    margin-inline-start 0.2s var(--animation-easing-function) !important;
-}
+#tabbrowser-tabs:not([movingtab]) {
+  .tabbrowser-tab {
+    &:not([collapsed]) {
+      /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
+      transition: -moz-box-flex 0.2s var(--animation-easing-function),
+        margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
+    }
+    &[pinned] {
+      transition: -moz-box-flex 0.2s var(--animation-easing-function),
+        margin-inline-start 0.2s var(--animation-easing-function) !important;
 
-#tabbrowser-tabs:not([movingtab]) .tab-content::before,
-#tabbrowser-tabs:not([movingtab]) .tab-content::after {
-  transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
-}
-#tabbrowser-tabs:not([movingtab]) .tab-content .tab-label-container {
-  transition: width 0.3s var(--animation-easing-function) !important;
-}
-#tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
-  transition: all 0.3s var(--animation-easing-function) !important;
+    }
+  }
+
+  .tab-content {
+    &::before,
+    &::after {
+      transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
+    }
+    .tab-label-container {
+      transition: width 0.3s var(--animation-easing-function) !important;
+    }
+    .tab-icon-image {
+      transition: all 0.3s var(--animation-easing-function) !important;
+    }
+  }
 }
 
 /*- URL / Search Bar -------------------------------------------------------*/
 #urlbar-background,
 #searchbar {
   transition: border-color 1s var(--animation-easing-function), background-color 1.5s var(--animation-easing-function) !important;
-}
-#urlbar-background:hover,
-#searchbar:hover {
-  transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
+  &:hover {
+    transition: border-color 0.5s var(--animation-easing-function), background-color 1s var(--animation-easing-function) !important;
+  }
 }
 
 /* Buttons in URL bar */
@@ -70,29 +72,21 @@ vbox:hover,
 #notification-popup-box,
 #page-action-buttons > .urlbar-page-action {
   transition: background-color 2.5s var(--animation-easing-function) !important;
-}
-#tracking-protection-icon-container:hover,
-#identity-icon-box:hover,
-#identity-permission-box:hover,
-#notification-popup-box:hover,
-#page-action-buttons > .urlbar-page-action:hover {
-  transition: background-color 1.25s var(--animation-easing-function) !important;
+  &:hover {
+    transition: background-color 1.25s var(--animation-easing-function) !important;
+  }
 }
 
 /*- Border - Other Fields --------------------------------------------------*/
-#search-box:hover,
-xul|search-textbox.tabsFilter:hover,
-#editBMPanel_namePicker:hover,
-#editBMPanel_tagsField:hover,
-.findbar-container .findbar-textbox:hover {
+#search-box,
+xul|search-textbox.tabsFilter,
+#editBMPanel_namePicker,
+#editBMPanel_tagsField,
+.findbar-container .findbar-textbox {
   transition: border-color 1s var(--animation-easing-function) !important;
-}
-#search-box:hover,
-xul|search-textbox.tabsFilter:hover,
-#editBMPanel_namePicker:hover,
-#editBMPanel_tagsField:hover,
-.findbar-container .findbar-textbox:hover {
-  transition: border-color 0.5s var(--animation-easing-function) !important;
+  &:hover {
+    transition: border-color 0.5s var(--animation-easing-function) !important;
+  }
 }
 
 /*- Sidebar ----------------------------------------------------------------*/
@@ -106,13 +100,14 @@ xul|search-textbox.tabsFilter:hover,
     /* Animation */
     transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
       visibility 0s linear !important;
-  }
-  #sidebar-box[hidden="true"] {
-    display: -moz-box !important;
-    margin-inline-start: -18em;
-    opacity: 0;
-    visibility: collapse;
-    transition-delay: 0s, 0s, 0.25s !important;
+
+    &[hidden="true"] {
+      display: -moz-box !important;
+      margin-inline-start: -18em;
+      opacity: 0;
+      visibility: collapse;
+      transition-delay: 0s, 0s, 0.25s !important;
+    }
   }
 }
 
@@ -121,19 +116,23 @@ xul|search-textbox.tabsFilter:hover,
   /* Full screen out */
   transition: margin-top 1s ease;
   transform-origin: top;
-}
-#navigator-toolbox[inFullscreen="true"] {
-  /* Full screen enter */
-  animation-duration: 1s;
-  animation-name: fullscreen;
-  animation-timing-function: ease;
 
-  /* Full screen navbar not hover */
-  transition: margin-top 0.3s var(--animation-easing-function) 50ms;
-}
-#navigator-toolbox[inFullscreen="true"]:hover {
-  transition-duration: 1.5s;
-  transition-delay: 0.1s;
+  &[inFullscreen="true"] {
+    /* Full screen enter */
+    animation-duration: 1s;
+    animation-name: fullscreen;
+    animation-timing-function: ease;
+
+    /* Full screen navbar not hover */
+    // transition: margin-top 0.3s var(--animation-easing-function) 50ms;
+    transition: margin-top 1.3s var(--animation-easing-function) 50ms;
+    &:hover {
+    // Full screen navbar hover
+    // transition-duration: 1.5s; // Not works, because !important
+    // transition-delay: 0.5s;
+      margin-top: 0 !important;
+    }
+  }
 }
 
 @keyframes fullscreen {
@@ -169,18 +168,19 @@ xul|search-textbox.tabsFilter:hover,
 @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
 {
   /* treechildren::-moz-tree-twisty: Can't apply */
-  #template-container .item.client .item-twisty-container {
-    transition: transform 0.1s var(--animation-easing-function) !important;
-  }
+  #template-container .item.client {
+    .item-twisty-container {
+      transition: transform 0.1s var(--animation-easing-function) !important;
+    }
 
-  #template-container .item.client.closed .item-twisty-container {
-    transform: rotate(-90deg);
-    background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
-  }
+    &.closed .item-twisty-container {
+      transform: rotate(-90deg);
+      background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
 
-  #template-container .item.client.closed .item-twisty-container:dir(rtl) {
-    transform: rotate(90deg);
-    background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+      &:dir(rtl) {
+        transform: rotate(90deg);
+      }
+    }
   }
 }
 
@@ -191,7 +191,7 @@ xul|search-textbox.tabsFilter:hover,
 }
 #editBookmarkPanelRows .expander-up {
   list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
-}
-#editBookmarkPanelRows .expander-up .button-icon {
-  transform: rotate(180deg);
+  .button-icon {
+    transform: rotate(180deg);
+  }
 }

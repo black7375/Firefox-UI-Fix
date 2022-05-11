@@ -66,11 +66,7 @@
 @import "panel/index";
 
 /** Fullscreen - Overlap toolbar **********************************************/
-@include Option("userChrome.fullscreen.overlap") {
-  @include Option("browser.fullscreen.autohide") {
-    @import "fullscreen/index";
-  }
-}
+@import "fullscreen/index";
 
 /** Library - Icons Replace ***************************************************/
 @include Option("userChrome.icon.library") {
@@ -92,7 +88,7 @@
     @import "icons/context_menu";
   }
   @include Option("userChrome.icon.global_menubar") {
-    @import "icons/main_menubar";
+    @import "icons/global_menubar";
   }
   @include Option("userChrome.icon.global_menu") {
     @import "icons/global_menu";

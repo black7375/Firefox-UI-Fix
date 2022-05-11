@@ -50,6 +50,7 @@
   .tabbrowser-tab[pinned][visuallyselected]:not([busy]):hover .tab-content::before {
     opacity: 0;
   }
+  // Don't hide at userChrome.tab.close_button_at_pinned.background
 }
 
 /* Pinned Tab - Titlechanged Indicator override */

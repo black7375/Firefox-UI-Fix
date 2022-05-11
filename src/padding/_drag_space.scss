@@ -1,12 +1,57 @@
 /* for Extra Drag Space */
+// https://searchfox.org/mozilla-esr78/search?q=--space-above-tabbar&path=&case=false&regexp=false
 :root {
   --space-above-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
 }
 
-:root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
-  height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+@mixin dragSpaceHeight {
+  :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
+    @content;
+  }
+  @include Option("userChrome.padding.drag_space.maximized") {
+    :root[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"] {
+      @content;
+    }
+  }
 }
-:root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
-:root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
-  padding-top: var(--space-above-tabbar) !important;
+@mixin dragSpacePadding {
+  /* Add extra space to titlebar for dragging */
+  :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+  :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+    @content;
+  }
+  @include Option("userChrome.padding.drag_space.maximized") {
+    :root[sizemode="maximized"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+    :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+      @content;
+    }
+  }
+}
+
+@include OS($win10) {
+  @include dragSpaceHeight {
+    height: calc(var(--tab-min-height) + var(--space-above-tabbar) - var(--tabs-navbar-shadow-size));
+  }
+}
+@include OS($win7, $win8, $linux) {
+  @include dragSpaceHeight {
+    height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+  }
+}
+
+@include OS($mac) {
+  #TabsToolbar > .toolbar-items {
+    padding-top: var(--space-above-tabbar) !important;
+  }
+}
+@include OS($win7) {
+  /* Add 4px extra margin on top of the tabs toolbar on Windows 7. */
+  @include dragSpacePadding {
+    padding-top: calc(var(--space-above-tabbar) + 4px) !important;
+  }
+}
+@include OS($win8, $win10, $linux) {
+  @include dragSpacePadding {
+    padding-top: var(--space-above-tabbar) !important;
+  }
 }
