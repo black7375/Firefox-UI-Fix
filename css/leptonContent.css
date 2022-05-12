@@ -2042,10 +2042,10 @@
       @supports -moz-bool-pref("widget.macos.native-context-menus") {
         :not(menu, #ContentSelectDropdown)
           > menupopup
-          > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+          > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
         :not(menu, #ContentSelectDropdown)
           > menupopup
-          > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
+          > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
           list-style-image: var(--menuitem-image) !important;
         }
       }
@@ -2142,10 +2142,9 @@
         #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
           padding-inline-end: var(--context-menu-background-padding) !important;
         }
-
-        /* text position */
         #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]) > .menu-text,
         #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) > .menu-text {
+          /* text position */
           padding-inline-start: var(--context-menu-mac-padding) !important;
         }
 
