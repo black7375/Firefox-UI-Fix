@@ -2704,23 +2704,16 @@
           appearance: none !important;
           width: 16px !important;
           height: 16px !important;
-          padding: 0 !important;
           border: 1px solid var(--in-content-box-border-color) !important;
           border-radius: 100% !important;
+          padding: 0 !important;
+          margin-inline: 0 6px !important;
           margin-block: 2px !important;
           /* extend the vertical clicktarget */
-          margin-inline: 0 6px !important;
           background-color: var(--in-content-button-background) !important;
           background-position: center !important;
           flex-shrink: 0 !important;
           /* avoid shrinking inside flex container */
-        }
-        menuitem[type="radio"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
-          background-color: var(--in-content-button-background-hover) !important;
-          color: var(--in-content-button-text-color-hover) !important;
-        }
-        menuitem[type="radio"]:not([disabled="true"]):hover:active > .menu-iconic-left > .menu-iconic-icon {
-          background-color: var(--in-content-button-background-active) !important;
         }
         menuitem[type="radio"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
           -moz-context-properties: fill !important;
@@ -2731,6 +2724,13 @@
           border-color: transparent !important;
           /* Style the button also when printing with "Print Backgrounds" unchecked */
           color-adjust: exact !important;
+        }
+        menuitem[type="radio"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
+          background-color: var(--in-content-button-background-hover) !important;
+          color: var(--in-content-button-text-color-hover) !important;
+        }
+        menuitem[type="radio"]:not([disabled="true"]):hover:active > .menu-iconic-left > .menu-iconic-icon {
+          background-color: var(--in-content-button-background-active) !important;
         }
         menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover > .menu-iconic-left > .menu-iconic-icon {
           background-color: var(--in-content-primary-button-background-hover) !important;
@@ -2761,25 +2761,29 @@
           margin: 0px 2px !important;
         }
         menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
-          margin-inline-end: 2px !important;
-        }
-        menuitem[type="checkbox"] > .menu-iconic-text {
-          margin: 1px 0 !important;
-        }
-        menuitem[type="checkbox"][disabled="true"] {
-          opacity: 0.4 !important;
-        }
-        menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
           appearance: none !important;
-          color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
-          background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
+          width: 16px !important;
+          height: 16px !important;
           border: 1px solid currentColor !important;
           border-radius: 2px !important;
+          color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
+          background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
           margin-inline-end: 6px !important;
+          /* or 2px */
+          margin-block: 2px !important;
+          /* From common.css */
         }
-        menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
-          height: 16px !important;
-          width: 16px !important;
+        menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
+          -moz-context-properties: fill !important;
+          fill: currentColor !important;
+          color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+          border-color: var(--checkbox-checked-border-color, transparent) !important;
+          background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
+          background-image: url("chrome://global/skin/icons/check.svg") !important;
+          background-position: center !important;
+          background-repeat: no-repeat !important;
+          /* Style the button also when printing with "Print Backgrounds" unchecked */
+          color-adjust: exact !important;
         }
         menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
           background-color: var(
@@ -2792,18 +2796,6 @@
             --checkbox-unchecked-active-bgcolor,
             color-mix(in srgb, -moz-accent-color 8%, Field)
           ) !important;
-        }
-        menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
-          border-color: var(--checkbox-checked-border-color, transparent) !important;
-          background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
-          background-image: url("chrome://global/skin/icons/check.svg") !important;
-          background-position: center !important;
-          background-repeat: no-repeat !important;
-          -moz-context-properties: fill !important;
-          fill: currentColor !important;
-          color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
-          /* Style the button also when printing with "Print Backgrounds" unchecked */
-          color-adjust: exact !important;
         }
         menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
           background-color: var(
@@ -2842,9 +2834,11 @@
             fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
           }
         }
-        menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
-          /* From common.css */
-          margin-block: 2px !important;
+        menuitem[type="checkbox"] > .menu-iconic-text {
+          margin: 1px 0 !important;
+        }
+        menuitem[type="checkbox"][disabled="true"] {
+          opacity: 0.4 !important;
         }
 
         /*- Menu Separtor --------------------------------------------------------*/
@@ -2854,8 +2848,8 @@
           min-height: 0;
           border-top: 1px solid var(--in-content-box-border-color, ThreeDDarkShadow);
           border-bottom: none;
-          margin: var(--panel-separator-margin, 6px);
           padding: 0;
+          margin: var(--panel-separator-margin, 6px);
         }
       }
     }
