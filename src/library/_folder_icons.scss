@@ -1,0 +1,131 @@
+/*= Standard Folder - More Visible ===========================================*/
+/* on Toolbar and Menus */
+:-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu) .bookmark-item[container="true"]:not([query="true"], [tagContainer], [dayContainer]),
+/* in Sidebar, Library, Add/Edit Bookmark dialog */
+/* https://github.com/rillian/firefox/blob/1f88437d263f56bdede4f20f69ba9c7b62f57001/layout/style/nsCSSAnonBoxList.h#L85-L98 */
+/* Need to overide!!, can not use :not() */
+:-moz-any(#bookmarks-view, #historyTree, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, container),
+#editBMPanel_folderMenuList:not([selectedGuid="toolbar_____"], [selectedGuid="menu________"]),
+#editBMPanel_folderMenuList .folder-icon:not([id]),
+/* Download Popup */
+.downloadIconShow > .button-box > .button-icon {
+  list-style-image: url("../icons/folder.svg") !important;
+}
+
+/* Standard Folder - Open */
+:-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
+  .bookmark-item[container="true"]:not([query="true"], [tagContainer], [dayContainer])[open="true"],
+:-moz-any(#bookmarks-view, #historyTree, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(title, container, open) {
+  list-style-image: url("../icons/folder-open.svg") !important;
+}
+
+/*= Other Folder - Inbox Icon ================================================*/
+/* on Menus */
+#PlacesToolbar #OtherBookmarks,
+  #BMB_bookmarksPopup #BMB_unsortedBookmarks,
+  #bookmarksMenuPopup #menu_unsortedBookmarks,
+  /* Other Bookmarks -- in Sidebar, Library, Add/Edit Bookmark dialog */
+  :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, OrganizerQuery_UnfiledBookmarks),
+  :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, queryFolder_unfiled_____),
+  #editBMPanel_unfiledRootItem,
+  #editBMPanel_folderMenuList[selectedGuid="unfiled_____"] {
+  list-style-image: url("../icons/mail-inbox-all.svg") !important;
+}
+
+/* Other Folder - Open */
+#PlacesToolbar #OtherBookmarks[open="true"],
+#BMB_bookmarksPopup #BMB_unsortedBookmarks[open="true"],
+#bookmarksMenuPopup #menu_unsortedBookmarks[open="true"],
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, open, OrganizerQuery_UnfiledBookmarks),
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, open, queryFolder_unfiled_____) {
+  list-style-image: url("../icons/mail-inbox.svg") !important;
+}
+
+/*= Default Icon - Override ===================================================*/
+/* https://github.com/mozilla/gecko-dev/blob/master/browser/themes/shared/places/tree-icons.css */
+
+/* Query */
+:-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query) {
+  list-style-image: url("chrome://browser/skin/places/folder-smart.svg") !important;
+}
+
+/* History */
+:-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query, dayContainer),
+:-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_history____v) {
+  list-style-image: url("chrome://browser/skin/history.svg") !important;
+}
+
+/* Downloads */
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_downloads__v) {
+  list-style-image: url("chrome://browser/skin/downloads/downloads.svg") !important;
+}
+
+/* Tag */
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
+  list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+}
+
+/* Boomark */
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
+  list-style-image: url("chrome://browser/skin/bookmark.svg") !important;
+}
+
+/* Bookmark Toolbar */
+#BMB_bookmarksPopup #BMB_bookmarksToolbar,       /* Original: Default folder icon */
+#bookmarksMenuPopup #bookmarksToolbarFolderMenu, /* Original: Default folder icon */
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
+  list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+}
+
+/* Bookmark Menu */
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, queryFolder_menu________) {
+  list-style-image: url("chrome://browser/skin/places/bookmarksMenu.svg") !important;
+}
+
+/*= Default Icon - Open ======================================================*/
+/* Query */
+:-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
+  .bookmark-item[container="true"][query="true"]:not([tagContainer])[open="true"]
+  > .menu-iconic-left
+  > .menu-iconic-icon {
+  transform: rotate(15deg) !important;
+}
+
+/* History */
+:-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query, open, dayContainer),
+:-moz-any(#historyTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(query, open, OrganizerQuery_history____v) {
+  list-style-image: url("../icons/history-reverse.svg") !important;
+}
+
+/* Tag */
+:-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
+  .bookmark-item[container="true"][tagContainer="true"][open="true"],
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, open, tagContainer),
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, open, OrganizerQuery_tags_______v) {
+  list-style-image: url("../icons/tag-open.svg") !important;
+}
+
+/* Boomark */
+:-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, open, OrganizerQuery_allbms_____v) {
+  list-style-image: url("chrome://browser/skin/bookmark-hollow.svg") !important;
+}
+
+/* Bookmark Toolbar */
+#BMB_bookmarksPopup #BMB_bookmarksToolbar[open="true"],
+#bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
+  list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+}
+
+/* Bookmark Menu */
+:-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
+  treechildren::-moz-tree-image(container, open, queryFolder_menu________) {
+  list-style-image: url("../icons/bookmarksMenu-open.svg") !important; /* or bookmarksMenu-open2.svg" */
+}
