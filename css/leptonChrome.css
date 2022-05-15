@@ -1338,7 +1338,6 @@
     border: none !important;
     clip-path: inset(0 round var(--panel-border-radius));
   }
-
   #PopupAutoComplete > richlistbox {
     border-radius: var(--panel-border-radius) !important;
     background-color: var(--panel-bgcolor) !important;
@@ -1356,7 +1355,6 @@
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="login"] > .ac-site-icon {
     fill: GrayText !important;
   }
-
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"] {
     --panel-border-color: var(--panel-bgcolor);
     color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
@@ -1366,7 +1364,6 @@
     border-color: var(--panel-border-color) !important;
     /* Original: rgba(38,38,38,.15) */
   }
-
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"]:hover,
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"][selected] {
     background-color: var(--arrowpanel-dimmed-further, rgba(204, 204, 204, 0.5)) !important;
