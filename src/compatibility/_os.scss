@@ -86,11 +86,11 @@
   menuitem[_moz-menuactive="true"] {
     background-color: color-mix(in srgb, -moz-menuhover $bgRate, transparent) !important;
     border-color: color-mix(in srgb, -moz-menuhover $bdRate, transparent) !important;
-  }
-  menu[_moz-menuactive="true"][disabled="disabled"],
-  menuitem[_moz-menuactive="true"][disabled="true"] {
-    background-color: color-mix(in srgb, currentColor $bgRate, transparent) !important;
-    border-color: color-mix(in srgb, currentColor $bdRate, transparent) !important;
+
+    &[disabled="true"] {
+      background-color: color-mix(in srgb, currentColor $bgRate, transparent) !important;
+      border-color: color-mix(in srgb, currentColor $bdRate, transparent) !important;
+    }
   }
 }
 @include OS($win7) {
