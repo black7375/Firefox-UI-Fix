@@ -1601,12 +1601,12 @@
       appearance: none !important;
       width: 16px !important;
       height: 16px !important;
-      padding: 0 !important;
       border: 1px solid var(--in-content-box-border-color) !important;
       border-radius: 100% !important;
+      padding: 0 !important;
+      margin-inline: 0 6px !important;
       margin-block: 2px !important;
       /* extend the vertical clicktarget */
-      margin-inline: 0 6px !important;
       background-color: var(--in-content-button-background) !important;
       background-position: center !important;
       flex-shrink: 0 !important;
@@ -1617,7 +1617,6 @@
       background-color: var(--in-content-button-background-hover) !important;
       color: var(--in-content-button-text-color-hover) !important;
     }
-
     xul|radio:not([disabled="true"]):hover:active > xul|*.radio-check {
       background-color: var(--in-content-button-background-active) !important;
     }
@@ -1637,7 +1636,6 @@
       background-color: var(--in-content-primary-button-background-hover) !important;
       color: var(--in-content-primary-button-text-color-hover) !important;
     }
-
     xul|radio:not([disabled="true"])[selected]:hover:active > xul|*.radio-check {
       background-color: var(--in-content-primary-button-background-active) !important;
     }
@@ -1652,11 +1650,6 @@
     xul|radio[disabled="true"],
     xul|label[disabled="true"] {
       color: inherit !important;
-    }
-
-    xul|checkbox[disabled="true"],
-    xul|radio[disabled="true"],
-    xul|label[disabled="true"] {
       opacity: 0.5 !important;
     }
 
@@ -1682,26 +1675,25 @@
 
     .checkbox-check {
       appearance: none !important;
-      color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
-      background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
+      width: 16px !important;
+      height: 16px !important;
       border: 1px solid currentColor !important;
       border-radius: 2px !important;
+      color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
+      background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
       margin-inline-end: 6px !important;
+      /* or 2px */
+      margin-block: 2px !important;
+      /* From common.css */
     }
 
-    .checkbox-check {
-      height: 16px !important;
-      width: 16px !important;
-    }
-
-    checkbox:not([disabled="true"]):hover > .checkbox-check {
+    checkbox:not([disabled="true"]):hover > .checkbox-check > .checkbox-check {
       background-color: var(
         --checkbox-unchecked-hover-bgcolor,
         color-mix(in srgb, -moz-accent-color 4%, Field)
       ) !important;
     }
-
-    checkbox:not([disabled="true"]):hover:active > .checkbox-check {
+    checkbox:not([disabled="true"]):hover > .checkbox-check:active > .checkbox-check {
       background-color: var(
         --checkbox-unchecked-active-bgcolor,
         color-mix(in srgb, -moz-accent-color 8%, Field)
@@ -1709,14 +1701,14 @@
     }
 
     .checkbox-check[checked] {
+      -moz-context-properties: fill !important;
+      fill: currentColor !important;
+      color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
       border-color: var(--checkbox-checked-border-color, transparent) !important;
       background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
       background-image: url("chrome://global/skin/icons/check.svg") !important;
       background-position: center !important;
       background-repeat: no-repeat !important;
-      -moz-context-properties: fill !important;
-      fill: currentColor !important;
-      color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
       /* Style the button also when printing with "Print Backgrounds" unchecked */
       color-adjust: exact !important;
     }
@@ -1727,7 +1719,6 @@
         color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
       ) !important;
     }
-
     checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked] {
       background-color: var(
         --checkbox-checked-active-bgcolor,
@@ -1758,10 +1749,6 @@
       }
     }
     /* From common.css */
-    xul|*.checkbox-check {
-      margin-block: 2px !important;
-    }
-
     xul|richlistitem > xul|*.checkbox-check {
       margin: 3px 6px !important;
     }
