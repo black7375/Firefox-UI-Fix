@@ -143,6 +143,9 @@
   xul|*.radio-check {
     @include Proton.RadioIcon;
   }
+  xul|*.radio-check[selected] {
+    @include Proton.RadioCheckedIcon;
+  }
 
   xul|radio:not([disabled="true"]):hover {
     > xul|*.radio-check {
@@ -151,10 +154,6 @@
     &:active > xul|*.radio-check {
       @include Proton.RadioIconActive;
     }
-  }
-
-  xul|*.radio-check[selected] {
-    @include Proton.RadioCheckedIcon;
   }
 
   xul|radio:not([disabled="true"])[selected]:hover {
@@ -183,35 +182,21 @@
     @include Proton.CheckboxGlobal;
   }
 
-  .checkbox-icon[src] {
-    margin-inline-end: 2px !important;
-  }
-  .checkbox-label {
-    @include Proton.ChexboxLabel;
-  }
-
-  checkbox[disabled="true"] {
-    @include Proton.DisabledChexbox;
-  }
-
   .checkbox-check {
     @include Proton.CheckboxIcon;
   }
+  .checkbox-check[checked] {
+    @include Proton.CheckboxCheckedIcon;
+  }
 
-  checkbox:not([disabled="true"]):hover > .checkbox-check {
+  checkbox:not([disabled="true"]):hover {
     > .checkbox-check {
       @include Proton.CheckboxIconHover;
     }
     &:active > .checkbox-check {
       @include Proton.CheckboxIconActive;
     }
-  }
 
-  .checkbox-check[checked] {
-    @include Proton.CheckboxCheckedIcon;
-  }
-
-  checkbox:not([disabled="true"]):hover {
     > .checkbox-check[checked] {
       @include Proton.CheckboxCheckedIconHover;
     }
@@ -235,8 +220,21 @@
 
     checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked],
     checkbox:not([disabled="true"]):hover > .checkbox-check[checked] {
-      @include Proton.CheckboxCheckedIconHoverContrast;
+      > .checkbox-check[checked] {
+        @include Proton.CheckboxCheckedIconHoverContrast;
+      }
     }
+  }
+
+  .checkbox-icon[src] {
+    margin-inline-end: 2px !important;
+  }
+  .checkbox-label {
+    @include Proton.ChexboxLabel;
+  }
+
+  checkbox[disabled="true"] {
+    @include Proton.DisabledChexbox;
   }
 
   /* From common.css */
