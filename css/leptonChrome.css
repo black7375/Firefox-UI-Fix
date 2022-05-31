@@ -1509,15 +1509,13 @@
       margin-inline: 4px !important;
       min-width: 6.3em !important;
     }
-
-    /* Medium and small buttons get sized to 7/14 and 6/12px padding (when adding
-       * the 1px border): */
     button.medium {
+      /* Medium and small buttons get sized to 7/14 and 6/12px padding (when adding
+       * the 1px border): */
       padding: 6px 13px !important;
       min-height: 28px !important;
       font-size: 0.95em !important;
     }
-
     button.small {
       padding: 5px 11px !important;
       min-height: 24px !important;
@@ -1527,15 +1525,6 @@
     /* Remove margin added by button.css */
     xul|button > .button-box > .button-text {
       margin: 0 !important;
-    }
-
-    button:-moz-focusring,
-    xul|menulist:-moz-focusring,
-    xul|checkbox:-moz-focusring > .checkbox-check,
-    xul|radio[focused="true"]:-moz-focusring {
-      box-shadow: none !important;
-      outline: 2px solid var(--in-content-focus-outline-color) !important;
-      outline-offset: 2px !important;
     }
 
     button:not([disabled="true"]):hover {
@@ -1591,6 +1580,15 @@
         color: var(--in-content-primary-button-text-color) !important;
       }
     }
+    button:-moz-focusring,
+    xul|menulist:-moz-focusring,
+    xul|checkbox:-moz-focusring > .checkbox-check,
+    xul|radio[focused="true"]:-moz-focusring {
+      box-shadow: none !important;
+      outline: 2px solid var(--in-content-focus-outline-color) !important;
+      outline-offset: 2px !important;
+    }
+
     /*- Radio Button -----------------------------------------------------------*/
     xul|radio {
       /* margin-inline-start: 0 !important; */
@@ -1763,25 +1761,20 @@
       padding-inline: 12px 8px !important;
       margin: 5px 2px 3px !important;
     }
-
     xul|menulist[size="medium"] {
       padding-block: 6px !important;
       padding-inline: 16px 10px !important;
     }
-
     xul|menulist[size="large"] {
       padding-block: 8px !important;
       padding-inline: 16px 12px !important;
     }
-
     xul|menulist:hover {
       background-color: var(--button-hover-bgcolor, color-mix(in srgb, currentColor 10%, ButtonFace)) !important;
     }
-
     xul|menulist:hover:active {
       background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 20%, ButtonFace)) !important;
     }
-
     xul|menulist:-moz-focusring {
       outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
       outline-offset: var(--focus-outline-offset, 2px) !important;
@@ -1799,11 +1792,10 @@
       width: 12px !important;
       height: 12px !important;
     }
-
-    /* dropmarker::part(icon)
-     * ::part is not apply chrome
-     */
     dropmarker[exportparts="icon: dropmarker-icon"] {
+      /* dropmarker::part(icon)
+       * ::part is not apply chrome
+       */
       list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
       -moz-context-properties: fill !important;
       fill: currentColor !important;
@@ -1844,13 +1836,11 @@
       color: var(--in-content-item-hover-text) !important;
       background-color: var(--in-content-item-hover) !important;
     }
-
     xul|menulist > xul|menupopup > xul|menu:not([disabled="true"])[selected="true"],
     xul|menulist > xul|menupopup > xul|menuitem:not([disabled="true"])[selected="true"] {
       color: var(--in-content-item-selected-text) !important;
       background-color: var(--in-content-item-selected) !important;
     }
-
     xul|menulist > xul|menupopup > xul|menu[disabled="true"],
     xul|menulist > xul|menupopup > xul|menuitem[disabled="true"] {
       color: #999 !important;
