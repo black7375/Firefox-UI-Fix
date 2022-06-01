@@ -15,6 +15,40 @@ menupopup menupopup[emptyplacesresult] .menu-text,
   --context-menu-background-padding: var(--arrowpanel-menuitem-padding-inline);
 }
 
+//-- Mixin ---------------------------------------------------------------------
+$_menuitemSelector: "menuitem:not(.menuitem-iconic, [disabled=\"true\"])";
+$_menuSelector: "menu:not(.menu-iconic)";
+$_bookmarkPopupSelector: "menupopup:is(#BMB_bookmarksPopup)";
+$_bookmarkToolbarSelector: "#PersonalToolbar menupopup[placespopup=\"true\"]";
+
+$_bookmarkPopupMenuSelctor: selector.nest(
+  $_bookmarkPopupSelector,
+  "#{$_menuitemSelector}, #{$_menuSelector}"
+);
+$_bookmarkToolbarMenuSelector: selector.nest(
+  $_bookmarkToolbarSelector,
+  "#{$_menuitemSelector}, #{$_menuSelector}"
+);
+
+@mixin _layoutBookmarkMenu() {
+  #{$_bookmarkPopupMenuSelctor},
+  #{$_bookmarkToolbarMenuSelector} {
+    @content;
+  }
+}
+@mixin _layoutBookmarkPopup() {
+  #{$_bookmarkPopupMenuSelctor} {
+    @content;
+  }
+}
+@mixin _layoutBookmarkToolbar() {
+  #{$_bookmarkToolbarMenuSelector} {
+    @content;
+  }
+}
+
+//------------------------------------------------------------------------------
+
 /* Windows 7, 8 */
 @include OS($win7, $win8) {
   /* Global Menu */
@@ -27,19 +61,14 @@ menupopup menupopup[emptyplacesresult] .menu-text,
   #PersonalToolbar {
     --arrowpanel-menuicon-padding: 9px;
   }
-  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  @include _layoutBookmarkMenu() {
     margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
     background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
   }
-  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
+  @include _layoutBookmarkPopup() {
     padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding) + 2px) !important;
   }
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  @include _layoutBookmarkToolbar() {
     padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
   }
 }
@@ -47,10 +76,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 /* Windows */
 @include OS($win10) {
   /* Bookmark Popup - None icon menu */
-  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  @include _layoutBookmarkMenu() {
     margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
     padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
     background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
@@ -70,10 +96,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
     padding-inline-start: 1px !important;
   }
   /* Bookmark Popup - None icon menu */
-  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  @include _layoutBookmarkMenu() {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
   }
 }
@@ -86,8 +109,7 @@ menupopup menupopup[emptyplacesresult] .menu-text,
   }
 
   /* Bookmark Popup - None icon menu */
-  menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
+  @include _layoutBookmarkPopup() {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
   }
 }
