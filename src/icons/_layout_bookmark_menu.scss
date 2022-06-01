@@ -16,33 +16,36 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 }
 
 //-- Mixin ---------------------------------------------------------------------
-$_menuitemSelector: "menuitem:not(.menuitem-iconic, [disabled=\"true\"])";
-$_menuSelector: "menu:not(.menu-iconic)";
-$_bookmarkPopupSelector: "menupopup:is(#BMB_bookmarksPopup)";
-$_bookmarkToolbarSelector: "#PersonalToolbar menupopup[placespopup=\"true\"]";
+// Items
+$_bookmarkMenuitem: "menuitem:not(.menuitem-iconic, [disabled=\"true\"])";
+$_bookmarkMenu: "menu:not(.menu-iconic)";
 
-$_bookmarkPopupMenuSelctor: selector.nest(
-  $_bookmarkPopupSelector,
-  "#{$_menuitemSelector}, #{$_menuSelector}"
+// Components
+$_bookmarkPopup: "menupopup:is(#BMB_bookmarksPopup)";
+$_bookmarkToolbar: "#PersonalToolbar menupopup[placespopup=\"true\"]";
+
+$_bookmarkPopupMenus: selector.nest(
+  $_bookmarkPopup,
+  "#{$_bookmarkMenuitem}, #{$_bookmarkMenu}"
 );
-$_bookmarkToolbarMenuSelector: selector.nest(
-  $_bookmarkToolbarSelector,
-  "#{$_menuitemSelector}, #{$_menuSelector}"
+$_bookmarkToolbarMenus: selector.nest(
+  $_bookmarkToolbar,
+  "#{$_bookmarkMenuitem}, #{$_bookmarkMenu}"
 );
 
 @mixin _layoutBookmarkMenu() {
-  #{$_bookmarkPopupMenuSelctor},
-  #{$_bookmarkToolbarMenuSelector} {
+  #{$_bookmarkPopupMenus},
+  #{$_bookmarkToolbarMenus} {
     @content;
   }
 }
 @mixin _layoutBookmarkPopup() {
-  #{$_bookmarkPopupMenuSelctor} {
+  #{$_bookmarkPopupMenus} {
     @content;
   }
 }
 @mixin _layoutBookmarkToolbar() {
-  #{$_bookmarkToolbarMenuSelector} {
+  #{$_bookmarkToolbarMenus} {
     @content;
   }
 }
