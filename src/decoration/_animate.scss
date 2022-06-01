@@ -1,4 +1,5 @@
 /*- Background Color -------------------------------------------------------*/
+//-- Mixin ---------------------------------------------------------------------
 @mixin _animate_bgColor($duration, $presudo: "") {
   button#{$presudo},
   toolbarbutton#{$presudo},
@@ -9,6 +10,9 @@
     transition: background-color $duration var(--animation-easing-function) !important;
   }
 }
+
+//------------------------------------------------------------------------------
+
 @include _animate_bgColor(1s);
 @include _animate_bgColor(0.25s, ":hover");
 @include OS($linux) {

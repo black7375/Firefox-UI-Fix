@@ -8,6 +8,7 @@
   --uc-close-button-padding: 4px;
 }
 
+//-- Mixin ---------------------------------------------------------------------
 @mixin pinnedCloseButtonShow($prefix: "") {
   #{$prefix}:not([busy]) .tab-close-button {
     display: -moz-box !important;
@@ -32,6 +33,8 @@
     display: none !important;
   }
 }
+
+//------------------------------------------------------------------------------
 
 .tabbrowser-tab[pinned] {
   @include pinnedCloseButtonShow("&[visuallyselected]:not([style*='transform: translateX']):hover");

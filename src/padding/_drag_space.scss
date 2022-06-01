@@ -4,7 +4,8 @@
   --space-above-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
 }
 
-@mixin dragSpaceHeight {
+//-- Mixin ---------------------------------------------------------------------
+@mixin _dragSpaceHeight {
   :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
     @content;
   }
@@ -14,7 +15,7 @@
     }
   }
 }
-@mixin dragSpacePadding {
+@mixin _dragSpacePadding {
   /* Add extra space to titlebar for dragging */
   :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
   :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
@@ -28,13 +29,15 @@
   }
 }
 
+//------------------------------------------------------------------------------
+
 @include OS($win10) {
-  @include dragSpaceHeight {
+  @include _dragSpaceHeight {
     height: calc(var(--tab-min-height) + var(--space-above-tabbar) - var(--tabs-navbar-shadow-size));
   }
 }
 @include OS($win7, $win8, $linux) {
-  @include dragSpaceHeight {
+  @include _dragSpaceHeight {
     height: calc(var(--tab-min-height) + var(--space-above-tabbar));
   }
 }
@@ -46,12 +49,12 @@
 }
 @include OS($win7) {
   /* Add 4px extra margin on top of the tabs toolbar on Windows 7. */
-  @include dragSpacePadding {
+  @include _dragSpacePadding {
     padding-top: calc(var(--space-above-tabbar) + 4px) !important;
   }
 }
 @include OS($win8, $win10, $linux) {
-  @include dragSpacePadding {
+  @include _dragSpacePadding {
     padding-top: var(--space-above-tabbar) !important;
   }
 }

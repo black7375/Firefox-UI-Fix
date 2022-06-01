@@ -4,6 +4,7 @@ menupopup menu:not([type="checkbox"], [type="radio"]),
   -moz-appearance: none !important; /* Linux: menulist */
 }
 
+//-- Mixin ---------------------------------------------------------------------
 @function _library_iconTargetSelector($target: "menu") {
   // .menu-iconic, .menuitem-iconic: Alreay exist, not target.
   // .in-menulist: Not a range because it is a select menu of web content.
@@ -31,6 +32,8 @@ $_library_menuSelector: _library_iconTargetSelector("menu");
     @content;
   }
 }
+
+//------------------------------------------------------------------------------
 
 @include _library_contextMenu {
   /* Color */
