@@ -5982,13 +5982,13 @@
   /* Icon */
   :not(menu, #ContentSelectDropdown)
     > menupopup
-    > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
   :not(menu, #ContentSelectDropdown)
     > menupopup
     > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #main-menubar > menu,
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-    menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
@@ -6009,10 +6009,10 @@
   @supports -moz-bool-pref("widget.macos.native-context-menus") {
     :not(menu, #ContentSelectDropdown)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
     :not(menu, #ContentSelectDropdown)
       > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
+      > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
       list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
     }
   }
@@ -6024,8 +6024,14 @@
 
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup
+    > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-    menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+    menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
@@ -6044,17 +6050,14 @@
       padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
       padding-inline-end: 3px;
     }
-
     #main-menubar > menu:first-child {
       background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
       padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
     }
-
     #main-menubar > menu > menupopup {
       --menuitem-image: none;
       /* Prevent Image Inheritance */
     }
-
     @supports not -moz-bool-pref("userChrome.padding.global_menubar") {
       #main-menubar > menu {
         padding-block: 2px !important;
@@ -6096,12 +6099,12 @@
     (-moz-platform: windows-win8) {
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-      menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+      menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
@@ -6125,12 +6128,12 @@
 
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-      menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+      menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
@@ -6162,17 +6165,17 @@
     /* context menu width */
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
     #blockedPopupDontShowMessage {
       padding-inline-end: var(--context-menu-background-padding) !important;
     }
 
     /* text position */
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem > .menu-text,
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu > menu-text {
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu > .menu-text {
       padding-inline-start: var(--context-menu-mac-padding) !important;
     }
 
@@ -6184,10 +6187,7 @@
 
     /* Global Menu */
     /* Disabled. some icons not appear
-     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-       menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
-     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type=checkbox], [checked=true]), menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [type=checkbox], [checked=true]) {
        list-style-image: var(--menuitem-image, url("../icons/blank.svg"));
      }
     */
