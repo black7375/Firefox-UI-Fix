@@ -75,8 +75,8 @@ menupopup menu:not([type="checkbox"], [type="radio"]),
   background-image: var(--menuitem-image);
 }
 
-/* For native context menus on macOS */
-@supports -moz-bool-pref("widget.macos.native-context-menus") {
+/* For native context menus */
+@include Option("widget.macos.native-context-menus", "widget.gtk.native-context-menus") {
   #{$_nestedPopupIconMenus} {
     list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
   }
