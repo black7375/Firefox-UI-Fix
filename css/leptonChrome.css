@@ -5980,13 +5980,13 @@
   }
 
   /* Icon */
+  #main-menubar > menu,
   :not(menu, #ContentSelectDropdown)
     > menupopup
     > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
   :not(menu, #ContentSelectDropdown)
     > menupopup
     > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  #main-menubar > menu,
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [type="checkbox"], [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)

@@ -1,9 +1,3 @@
-menupopup menuitem:not([type="checkbox"], [type="radio"]),
-menupopup menu:not([type="checkbox"], [type="radio"]),
-#main-menubar > menu {
-  -moz-appearance: none !important; /* Linux: menulist */
-}
-
 //-- Mixin ---------------------------------------------------------------------
 // Items
 $_iconNoneCommon: ".in-menulist, [type=\"checkbox\"], [checked=\"true\"]";
@@ -34,27 +28,43 @@ $_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu";
 $_sendTabMenuitem: "menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem";
 $_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage";
 
+$_layoutCommonMenus: (
+  $_iconMenuPopupMenus,
+  $_libraryMenuitem,
+  $_libraryMenu,
+  $_sendTabMenuitem,
+  $_otherIconMenu
+);
+@mixin _layoutInitIconMenus() {
+  #{$_globalMenus},
+  #{$_nestedPopupIconMenus},
+  #{$_layoutCommonMenus} {
+    @content;
+  }
+}
+@mixin _layoutInitPaddingMenus() {
+  #{selector.nest($_nestedPopupPadding, "menuitem:not(.menuitem-iconic), menu:not(.menu-iconic)")},
+  #{$_nestedPopupPaddingMenus},
+  #{$_layoutCommonMenus} {
+    @content;
+  }
+}
 @mixin _layoutIconMenus() {
   #{$_nestedPopupPaddingMenus},
-  #{$_iconMenuPopupMenus},
-  #{$_libraryMenuitem},
-  #{$_libraryMenu},
-  #{$_sendTabMenuitem},
-  #{$_otherIconMenu} {
+  #{$_layoutCommonMenus} {
     @content;
   }
 }
 
 //------------------------------------------------------------------------------
+menupopup menuitem:not([type="checkbox"], [type="radio"]),
+menupopup menu:not([type="checkbox"], [type="radio"]),
+#{$_globalMenus} {
+  -moz-appearance: none !important; /* Linux: menulist */
+}
 
 /* Icon */
-#{$_nestedPopupIconMenus},
-#{$_globalMenus},
-#{$_iconMenuPopupMenus},
-#{$_libraryMenuitem},
-#{$_libraryMenu},
-#{$_sendTabMenuitem},
-#{$_otherIconMenu} {
+@include _layoutInitIconMenus {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
@@ -77,13 +87,7 @@ $_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage";
   --context-menu-background-padding-default: 5px;
   --context-menu-background-padding: var(--context-menu-background-padding-default);
 }
-#{selector.nest($_nestedPopupPadding, "menuitem:not(.menuitem-iconic), menu:not(.menu-iconic)")},
-#{$_nestedPopupPaddingMenus},
-#{$_iconMenuPopupMenus},
-#{$_libraryMenuitem},
-#{$_libraryMenu},
-#{$_sendTabMenuitem},
-#{$_otherIconMenu} {
+@include _layoutInitPaddingMenus {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
