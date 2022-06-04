@@ -6668,6 +6668,7 @@
 
     #spell-check-enabled {
       /* checkbox */
+      --menuitem-image: url("../icons/text-proofing-tools.svg");
     }
 
     #spell-add-dictionaries-main {
@@ -6902,6 +6903,10 @@
     }
 
     .downloadAlwaysUseSystemDefaultMenuItem {
+      /* checkbox */
+    }
+
+    .downloadAlwaysOpenSimilarFilesMenuItem {
       /* checkbox */
     }
 
@@ -7162,6 +7167,10 @@
       --menuitem-image: url("chrome://browser/skin/import.svg");
     }
 
+    #goOfflineMenuitem {
+      /* checkbox */
+    }
+
     #menu_FileQuitItem {
       --menuitem-image: url("../icons/quit.svg");
     }
@@ -7226,11 +7235,16 @@
     }
 
     #fullScreenItem {
+      /* checkbox */
       --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
     }
 
     #menu_readerModeItem {
       --menuitem-image: url("chrome://browser/skin/reader-mode.svg");
+    }
+
+    #menu_showAllTabs {
+      --menuitem-image: url("../icons/tab.svg");
     }
 
     #documentDirection-swap {
@@ -7335,6 +7349,7 @@
 
     /* menuWebDeveloperPopup sub menu */
     #menu_devToolbox {
+      /* checkbox */
       --menuitem-image: url("../icons/developer.svg");
     }
 
@@ -7359,10 +7374,12 @@
     }
 
     #menu_responsiveUI {
+      /* checkbox */
       --menuitem-image: url("../icons/command-responsivemode.svg");
     }
 
     #menu_eyedropper {
+      /* checkbox */
       --menuitem-image: url("chrome://devtools/skin/images/command-eyedropper.svg");
     }
 
