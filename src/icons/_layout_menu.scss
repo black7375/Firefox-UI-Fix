@@ -1,6 +1,6 @@
 //-- Mixin ---------------------------------------------------------------------
 // Items
-$_iconNoneCommon: ".in-menulist, [type=\"checkbox\"], [checked=\"true\"]";
+$_iconNoneCommon: ".in-menulist, [checked=\"true\"]";
 $_iconMenuitem: "menuitem:not(.menuitem-iconic, .bookmark-item, #{$_iconNoneCommon})";
 $_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
 
@@ -57,8 +57,10 @@ $_layoutCommonMenus: (
 }
 
 //------------------------------------------------------------------------------
-menupopup menuitem:not([type="checkbox"], [type="radio"]),
-menupopup menu:not([type="checkbox"], [type="radio"]),
+#{selector.append(
+   "menupopup menuitem, menupopup menu",
+   ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
+)},
 #{$_globalMenus} {
   -moz-appearance: none !important; /* Linux: menulist */
 }
@@ -113,18 +115,18 @@ menupopup menu:not([type="checkbox"], [type="radio"]),
 }
 
 /* Padding - Windows */
-@include OS($win) {
-  /* Checkbox */
-  :root {
-    --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
-  }
-  :not(menu, #ContentSelectDropdown, #context-navigation)
-    > menupopup
-    > menuitem[type="checkbox"]:not([checked="true"])
-    > .menu-iconic-left {
-    padding-inline-start: var(--context-menu-text-padding);
-  }
-}
+// @include OS($win) {
+//   /* Checkbox */
+//   :root {
+//     --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
+//   }
+//   :not(menu, #ContentSelectDropdown, #context-navigation)
+//     > menupopup
+//     > menuitem[type="checkbox"]:not([checked="true"])
+//     > .menu-iconic-left {
+//     padding-inline-start: var(--context-menu-text-padding);
+//   }
+// }
 
 @include OS($win7) {
   :root {
@@ -185,7 +187,7 @@ menupopup menu:not([type="checkbox"], [type="radio"]),
   }
 
   /* Checkbox menuitem, None iconic menu */
-  #{selector.nest($_nestedPopupPadding, "menuitem[type=\"checkbox\"], menu:not(.menu-iconic)")} {
+  #{selector.nest($_nestedPopupPadding, "menuitem[checked=\"true\"], menu:not(.menu-iconic)")} {
     padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
   }
 
