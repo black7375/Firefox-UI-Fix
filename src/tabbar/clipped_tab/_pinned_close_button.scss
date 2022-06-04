@@ -1,0 +1,57 @@
+#tabbrowser-tabs {
+  --uc-close-button-size: 24px;
+  --uc-close-button-padding: 6px;
+  --uc-close-button-margin: calc((var(--uc-close-button-size) - 16px) / -2);
+}
+#tabbrowser-tabs[closebuttons="activetab"] {
+  --uc-close-button-size: 20px;
+  --uc-close-button-padding: 4px;
+}
+
+//-- Mixin ---------------------------------------------------------------------
+@mixin pinnedCloseButtonShow($prefix: "") {
+  #{$prefix}:not([busy]) .tab-close-button {
+    display: -moz-box !important;
+    -moz-box-ordinal-group: 0 !important;
+
+    /* Looks like hover */
+    width: var(--uc-close-button-size) !important;
+    height: var(--uc-close-button-size) !important;
+    padding: var(--uc-close-button-padding) !important;
+    margin-inline: var(--uc-close-button-margin) !important;
+  }
+}
+@mixin pinnedIconStackLayout($prefix: "") {
+  #{$prefix}:not([busy]) .tab-icon-stack {
+    width: 0 !important;
+    position: absolute;
+    bottom: 8px;
+  }
+}
+@mixin pinnedIconHide($prefix: "") {
+  #{$prefix} .tab-icon-image {
+    display: none !important;
+  }
+}
+
+//------------------------------------------------------------------------------
+
+.tabbrowser-tab[pinned] {
+  @include pinnedCloseButtonShow("&[visuallyselected]:not([style*='transform: translateX']):hover");
+  @include pinnedIconStackLayout("&[visuallyselected]:not([style*='transform: translateX']):hover");
+  @include pinnedIconHide("&[visuallyselected]:not([style*='transform: translateX']):hover");
+
+  @include Option("userChrome.tab.close_button_at_pinned.always") {
+    @include pinnedCloseButtonShow("&[visuallyselected]");
+    @include pinnedIconStackLayout("&[visuallyselected]");
+    @include pinnedIconHide("&[visuallyselected]");
+  }
+  @include Option("userChrome.tab.close_button_at_pinned.background") {
+    @include pinnedCloseButtonShow("&:not([style*='transform: translateX']):hover");
+    @include pinnedIconStackLayout("&:not([style*='transform: translateX']):hover");
+    @include pinnedIconHide("&:not([style*='transform: translateX']):hover");
+  }
+}
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
+  margin-inline-end: var(--uc-close-button-margin) !important;
+}

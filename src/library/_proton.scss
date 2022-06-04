@@ -21,10 +21,8 @@
   --organizer-toolbar-field-focus-border-color: var(--organizer-outline-color);
   --organizer-toolbar-field-focus-box-shadow: unset;
   --organizer-pane-field-border-color: ThreeDShadow;
-}
 
-@include NotContrast {
-  :root {
+  @include NotContrast {
     --organizer-color: var(--in-content-page-color);
     --organizer-deemphasized-color: var(--in-content-deemphasized-text);
 
@@ -51,10 +49,8 @@
     );
     --organizer-toolbar-field-focus-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.23);
     --organizer-pane-field-border-color: color-mix(in srgb, currentColor 41%, transparent);
-  }
 
-  @include Dark {
-    :root {
+    @include Dark {
       --organizer-color: rgb(251, 251, 254);
       --organizer-deemphasized-color: rgb(191, 191, 201);
 
@@ -80,25 +76,23 @@
   border-bottom: 1px solid var(--organizer-border-color) !important;
   padding: 4px !important;
   padding-inline-end: 6px !important;
-}
 
-#placesToolbar > toolbarbutton {
-  appearance: none !important;
-  padding: 5px !important;
-  border-radius: 4px !important;
-}
+  > toolbarbutton {
+    appearance: none !important;
+    padding: 5px !important;
+    border-radius: 4px !important;
 
-#placesToolbar > toolbarbutton[disabled] {
-  opacity: 0.6 !important;
-}
-
-#placesToolbar > toolbarbutton:not([disabled]):hover {
-  background-color: var(--organizer-hover-background) !important;
-  color: var(--organizer-hover-color) !important;
-}
-
-#placesToolbar > toolbarbutton:not([disabled]):hover:active {
-  background-color: var(--organizer-selected-background) !important;
+    &[disabled] {
+      opacity: 0.6 !important;
+    }
+    &:not([disabled]):hover {
+      background-color: var(--organizer-hover-background) !important;
+      color: var(--organizer-hover-color) !important;
+      &:active {
+        background-color: var(--organizer-selected-background) !important;
+      }
+    }
+  }
 }
 
 #placesToolbar > toolbarbutton > .toolbarbutton-icon,
@@ -110,32 +104,30 @@
 
 #placesMenu {
   margin-inline-start: 6px !important;
-}
 
-#placesMenu > menu {
-  appearance: none !important;
-  color: var(--organizer-color) !important;
-  border-radius: 4px !important;
-  padding-block: 5px !important;
-  padding-inline-start: 5px !important;
-  margin-inline-end: 2px !important;
-}
+  > menu {
+    appearance: none !important;
+    color: var(--organizer-color) !important;
+    border-radius: 4px !important;
+    padding-block: 5px !important;
+    padding-inline-start: 5px !important;
+    margin-inline-end: 2px !important;
 
-#placesMenu > menu[_moz-menuactive="true"],
-#placesMenu > menu:hover {
-  background-color: var(--organizer-hover-background) !important;
-  color: var(--organizer-hover-color) !important;
-}
-
-#placesMenu > menu:hover:active,
-#placesMenu > menu[open] {
-  background-color: var(--organizer-selected-background) !important;
-  color: var(--organizer-selected-color) !important;
-}
-
-#placesMenu > menu > .menubar-text {
-  margin-block: 0 !important; /* override menu.css */
-  padding-inline-end: 4px !important;
+    &[_moz-menuactive="true"],
+    &:hover {
+      background-color: var(--organizer-hover-background) !important;
+      color: var(--organizer-hover-color) !important;
+    }
+    &:hover:active,
+    &[open] {
+      background-color: var(--organizer-selected-background) !important;
+      color: var(--organizer-selected-color) !important;
+    }
+    > .menubar-text {
+      margin-block: 0 !important; /* override menu.css */
+      padding-inline-end: 4px !important;
+    }
+  }
 }
 
 /*- Search Bar & Input ---------------------------------------------------*/
@@ -221,11 +213,10 @@ treecol:not([hideheader="true"], [sortable="false"]):hover,
 treecolpicker:hover {
   background-color: var(--organizer-hover-background) !important;
   color: var(--organizer-color) !important;
-}
 
-treecol:not([hideheader="true"], [sortable="false"]):hover:active,
-treecolpicker:hover:active {
-  background-color: var(--organizer-selected-background) !important;
+  &:active {
+    background-color: var(--organizer-selected-background) !important;
+  }
 }
 
 treecol:not([hideheader="true"], :first-child),
@@ -250,43 +241,40 @@ treecol[sortDirection]:not([hideheader="true"]) > xul|*.treecol-sortdirection {
   height: 18px !important;
 }
 
-treechildren::-moz-tree-row {
-  background-color: transparent !important;
-}
+treechildren {
+  &::-moz-tree-row {
+    background-color: transparent !important;
+  }
+  &::-moz-tree-row(hover) {
+    background-color: var(--organizer-hover-background) !important;
+  }
+  &::-moz-tree-row(selected) {
+    background-color: var(--organizer-selected-background) !important;
+    color: var(--organizer-selected-color) !important;
+    border: 1px solid transparent !important;
+  }
 
-treechildren::-moz-tree-row(hover) {
-  background-color: var(--organizer-hover-background) !important;
-}
+  &::-moz-tree-image(hover),
+  &::-moz-tree-twisty(hover),
+  &::-moz-tree-cell-text(hover) {
+    color: var(--organizer-hover-color) !important;
+  }
+  &::-moz-tree-image(selected),
+  &::-moz-tree-twisty(selected),
+  &::-moz-tree-cell-text(selected) {
+    color: var(--organizer-selected-color) !important;
+  }
 
-treechildren::-moz-tree-row(selected) {
-  background-color: var(--organizer-selected-background) !important;
-  color: var(--organizer-selected-color) !important;
-  border: 1px solid transparent !important;
-}
-
-treechildren::-moz-tree-image(hover),
-treechildren::-moz-tree-twisty(hover),
-treechildren::-moz-tree-cell-text(hover) {
-  color: var(--organizer-hover-color) !important;
-}
-
-treechildren::-moz-tree-image(selected),
-treechildren::-moz-tree-twisty(selected),
-treechildren::-moz-tree-cell-text(selected) {
-  color: var(--organizer-selected-color) !important;
-}
-
-treechildren::-moz-tree-separator {
-  height: 1px !important;
-  border-color: var(--organizer-separator-color) !important;
-}
-
-treechildren::-moz-tree-separator(hover) {
-  border-color: var(--organizer-hover-color) !important;
-}
-
-treechildren::-moz-tree-separator(selected) {
-  border-color: var(--organizer-selected-color) !important;
+  &::-moz-tree-separator {
+    height: 1px !important;
+    border-color: var(--organizer-separator-color) !important;
+  }
+  &::-moz-tree-separator(hover) {
+    border-color: var(--organizer-hover-color) !important;
+  }
+  &::-moz-tree-separator(selected) {
+    border-color: var(--organizer-selected-color) !important;
+  }
 }
 
 /*- Info Box -------------------------------------------------------------*/
@@ -308,36 +296,35 @@ treechildren::-moz-tree-separator(selected) {
   border-radius: 4px !important;
   color: var(--organizer-color) !important;
   background-color: var(--organizer-content-background) !important;
-  list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
   -moz-context-properties: fill !important;
   fill: currentColor !important;
+
+  &:hover {
+    background-color: var(--organizer-hover-background) !important;
+    color: var(--organizer-hover-color) !important;
+
+    &:active {
+      background-color: var(--organizer-selected-background) !important;
+      color: var(--organizer-selected-color) !important;
+    }
+  }
+  &:focus-visible {
+    outline: 2px solid var(--organizer-outline-color) !important;
+    outline-offset: -1px !important;
+  }
+
+  > .button-box {
+    padding: 0 !important;
+  }
 }
 
-#editBookmarkPanelRows .expander-up:hover,
-#editBookmarkPanelRows .expander-down:hover {
-  background-color: var(--organizer-hover-background) !important;
-  color: var(--organizer-hover-color) !important;
-}
-
-#editBookmarkPanelRows .expander-up:hover:active,
-#editBookmarkPanelRows .expander-down:hover:active {
-  background-color: var(--organizer-selected-background) !important;
-  color: var(--organizer-selected-color) !important;
-}
-
-#editBookmarkPanelRows .expander-up:focus-visible,
-#editBookmarkPanelRows .expander-down:focus-visible {
-  outline: 2px solid var(--organizer-outline-color) !important;
-  outline-offset: -1px !important;
-}
-
-#editBookmarkPanelRows .expander-up {
-  list-style-image: url("chrome://global/skin/icons/arrow-up-12.svg");
-}
-
-#editBookmarkPanelRows .expander-up > .button-box,
-#editBookmarkPanelRows .expander-down > .button-box {
-  padding: 0 !important;
+#editBookmarkPanelRows {
+  .expander-up {
+    list-style-image: url("chrome://global/skin/icons/arrow-up-12.svg");
+  }
+  .expander-down {
+    list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
+  }
 }
 
 #places input {
@@ -347,15 +334,14 @@ treechildren::-moz-tree-separator(selected) {
   color: var(--organizer-color) !important;
   min-height: 20px !important;
   padding-inline: 4px !important;
-}
 
-#places input:focus {
-  outline: 2px solid var(--organizer-outline-color) !important;
-  outline-offset: -1px !important;
-}
-
-#places input:not(:read-write):focus {
-  outline: none !important;
+  &:focus {
+    outline: 2px solid var(--organizer-outline-color) !important;
+    outline-offset: -1px !important;
+  }
+  &:not(:read-write):focus {
+    outline: none !important;
+  }
 }
 
 .caption-label {
@@ -369,18 +355,17 @@ treechildren::-moz-tree-separator(selected) {
   background-color: var(--organizer-content-background) !important;
   border: 1px solid var(--organizer-border-color) !important;
   border-radius: 4px !important;
-}
 
-#editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
-  border: 1px solid transparent !important;
-}
+  > richlistitem {
+    border: 1px solid transparent !important;
 
-#editBMPanel_tagsSelectorRow > richlistbox > richlistitem:hover {
-  background-color: var(--organizer-hover-background) !important;
-  color: var(--organizer-hover-color) !important;
-}
-
-#editBMPanel_tagsSelectorRow > richlistbox > richlistitem[selected] {
-  background-color: var(--organizer-selected-background) !important;
-  color: var(--organizer-selected-color) !important;
+    &:hover {
+      background-color: var(--organizer-hover-background) !important;
+      color: var(--organizer-hover-color) !important;
+    }
+    &[selected] {
+      background-color: var(--organizer-selected-background) !important;
+      color: var(--organizer-selected-color) !important;
+    }
+  }
 }

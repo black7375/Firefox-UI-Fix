@@ -309,16 +309,17 @@
 /*= Windows10 - Titlebar accent color ========================================*/
 @media (-moz-windows-accent-color-in-titlebar) {
   /* Tab Bar */
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
-  :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
-    color: -moz-accent-color-foreground;
-    background-color: -moz-accent-color;
-  }
+  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+  :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
+    .titlebar-color {
+      color: -moz-accent-color-foreground;
+      background-color: -moz-accent-color;
+    }
 
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
-  :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
-    --toolbarbutton-icon-fill: currentColor;
-    --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
-    --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+    .toolbar-items {
+      --toolbarbutton-icon-fill: currentColor;
+      --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
+      --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+    }
   }
 }

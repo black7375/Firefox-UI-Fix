@@ -36,6 +36,7 @@ user_pref("userChrome.tab.lepton_like_padding",        true); // Original
 
 user_pref("userChrome.tab.dynamic_separtor",           true); // Original, Proton
 // user_pref("userChrome.tab.static_separator",        true); // Photon
+// user_pref("userChrome.tab.static_separator.selected_accent", true); // Just option
 
 user_pref("userChrome.tab.newtab_button_like_tab",     true); // Original
 // user_pref("userChrome.tab.newtab_button_smaller",   true); // Photon
@@ -78,8 +79,10 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 
 // user_pref("userChrome.padding.first_tab",                   true);
 // user_pref("userChrome.padding.drag_space",                  true);
+// user_pref("userChrome.padding.drag_space.maximized",        true);
 
 // user_pref("userChrome.padding.menu_compact",                true);
+// user_pref("userChrome.padding.bookmark_menu.compact",       true);
 // user_pref("userChrome.padding.urlView_expanding",           true);
 // user_pref("userChrome.padding.urlView_result",              true);
 // user_pref("userChrome.padding.panel_header",                true);
@@ -93,6 +96,8 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.on_bottom.menubar_on_top",        true); // Need on_bottom
 // user_pref("userChrome.tab.always_show_tab_icon",            true);
 // user_pref("userChrome.tab.close_button_at_pinned",          true);
+// user_pref("userChrome.tab.close_button_at_pinned.always",   true);
+// user_pref("userChrome.tab.close_button_at_pinned.background", true);
 // user_pref("userChrome.tab.close_button_at_hover.always",    true); // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
 // user_pref("userChrome.tab.centered_label",                  true);
@@ -151,6 +156,7 @@ user_pref("userChrome.tab.container",             true);
 user_pref("userChrome.tab.crashed",               true);
 
 user_pref("userChrome.fullscreen.overlap",        true);
+user_pref("userChrome.fullscreen.show_bookmarkbar", true);
 
 user_pref("userChrome.icon.library",              true);
 user_pref("userChrome.icon.panel",                true);

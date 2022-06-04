@@ -1,16 +1,18 @@
 /* Accent Color for downloaded item */
 #downloadsListBox .download-state[exists] .downloadDetails {
   color: var(--button-primary-bgcolor);
-}
-#downloadsListBox .download-state[exists] .downloadDetails.downloadDetailsHover {
-  color: var(--button-primary-hover-bgcolor);
+  &.downloadDetailsHover {
+    color: var(--button-primary-hover-bgcolor);
+  }
 }
 
 /* File moved or missing */
-#downloadsListBox .download-state:not([exists], [state="0"]) .downloadTarget {
-  text-decoration: line-through;
-  text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
-}
-#downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
-  filter: grayscale(100%) !important;
+#downloadsListBox .download-state:not([exists], [state="0"]) {
+  .downloadTarget {
+    text-decoration: line-through;
+    text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
+  }
+  .downloadTypeIcon {
+    filter: grayscale(100%) !important;
+  }
 }

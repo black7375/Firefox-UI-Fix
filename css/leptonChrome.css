@@ -77,24 +77,28 @@
   /*= Remove Tab Border ========================================================*/
   @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
     /* TARGET: original, photon */
-    /* Light Theme */
+    #TabsToolbar[brighttext]
+      #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      > .tab-stack
+      > .tab-background:-moz-lwtheme,
     #TabsToolbar:not([brighttext])
       #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
       > .tab-stack
       > .tab-background {
-      border: unset !important;
       /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+      border: unset !important;
     }
 
-    /* Dark Theme */
-    #TabsToolbar[brighttext]
-      #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-      > .tab-stack
-      > .tab-background:-moz-lwtheme {
-      border: unset !important;
-      /* Nigtly 96: 1px solid var(--tab-line-color, rgba(128,128,142,0.9)) */
+    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
+    .tab-background[selected]:-moz-lwtheme {
+      outline-color: transparent !important;
+    }
+
+    .keyboard-focused-tab > .tab-stack > .tab-background,
+    .tabbrowser-tab:focus:not([aria-activedescendant]) > .tab-stack > .tab-background {
+      outline: var(--focus-outline) !important;
     }
   }
   /*= Light Weight Theme =======================================================*/
@@ -105,7 +109,6 @@
     background-repeat: no-repeat !important;
     background-position: right top !important;
   }
-
   @media (min-width: 2500px) {
     :root[lwtheme-image] {
       background-size: contain;
@@ -138,11 +141,9 @@
     :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
       border-top: 0.5px solid #2f2f2f !important;
     }
-
     :root[sizemode="normal"][tabsintitlebar]:-moz-window-inactive #navigator-toolbox {
       border-top-color: #393939 !important;
     }
-
     @media (-moz-windows-accent-color-in-titlebar) {
       :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
         border-top-color: -moz-accent-color !important;
@@ -160,18 +161,19 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    #TabsToolbar:-moz-lwtheme {
-      color: var(--lwt-text-color) !important;
-    }
-
-    /* Remove Aero */
     #TabsToolbar {
+      /* Remove Aero */
       /* Original: radial-gradient(eclipse at bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 80%, transparent) */
       background-image: unset !important;
+    }
+    #TabsToolbar:-moz-lwtheme {
+      /* background textcolor */
+      color: var(--lwt-text-color) !important;
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
     #navigator-toolbox:-moz-lwtheme {
+      /* background textcolor */
       color: var(--lwt-text-color) !important;
     }
   }
@@ -214,7 +216,6 @@
       border: none !important;
       /* Remove border */
     }
-
     #PlacesToolbar menu:not([disabled], :active)[_moz-menuactive="true"],
     #PlacesToolbar menuitem:not([disabled], :active)[_moz-menuactive="true"],
     #BMB_bookmarksPopup menu:not([disabled], :active)[_moz-menuactive="true"],
@@ -228,8 +229,7 @@
       background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
     }
-
-    menu[_moz-menuactive="true"][disabled="disabled"],
+    menu[_moz-menuactive="true"][disabled="true"],
     menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
@@ -255,8 +255,7 @@
       background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 80%, transparent) !important;
     }
-
-    menu[_moz-menuactive="true"][disabled="disabled"],
+    menu[_moz-menuactive="true"][disabled="true"],
     menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
@@ -693,7 +692,6 @@
       color: -moz-accent-color-foreground;
       background-color: -moz-accent-color;
     }
-
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
       --toolbarbutton-icon-fill: currentColor;
@@ -1337,7 +1335,6 @@
     border: none !important;
     clip-path: inset(0 round var(--panel-border-radius));
   }
-
   #PopupAutoComplete > richlistbox {
     border-radius: var(--panel-border-radius) !important;
     background-color: var(--panel-bgcolor) !important;
@@ -1355,7 +1352,6 @@
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="login"] > .ac-site-icon {
     fill: GrayText !important;
   }
-
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"] {
     --panel-border-color: var(--panel-bgcolor);
     color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
@@ -1365,7 +1361,6 @@
     border-color: var(--panel-border-color) !important;
     /* Original: rgba(38,38,38,.15) */
   }
-
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"]:hover,
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"][selected] {
     background-color: var(--arrowpanel-dimmed-further, rgba(204, 204, 204, 0.5)) !important;
@@ -1447,7 +1442,6 @@
     #alertSettings > .button-box > .box-inherit {
       margin: -4px 4px 3px 0 !important;
     }
-
     #alertSettings > .button-box > .box-inherit > .button-icon {
       padding: 1px;
     }
@@ -1515,15 +1509,13 @@
       margin-inline: 4px !important;
       min-width: 6.3em !important;
     }
-
-    /* Medium and small buttons get sized to 7/14 and 6/12px padding (when adding
-       * the 1px border): */
     button.medium {
+      /* Medium and small buttons get sized to 7/14 and 6/12px padding (when adding
+       * the 1px border): */
       padding: 6px 13px !important;
       min-height: 28px !important;
       font-size: 0.95em !important;
     }
-
     button.small {
       padding: 5px 11px !important;
       min-height: 24px !important;
@@ -1533,15 +1525,6 @@
     /* Remove margin added by button.css */
     xul|button > .button-box > .button-text {
       margin: 0 !important;
-    }
-
-    button:-moz-focusring,
-    xul|menulist:-moz-focusring,
-    xul|checkbox:-moz-focusring > .checkbox-check,
-    xul|radio[focused="true"]:-moz-focusring {
-      box-shadow: none !important;
-      outline: 2px solid var(--in-content-focus-outline-color) !important;
-      outline-offset: 2px !important;
     }
 
     button:not([disabled="true"]):hover {
@@ -1597,6 +1580,15 @@
         color: var(--in-content-primary-button-text-color) !important;
       }
     }
+    button:-moz-focusring,
+    xul|menulist:-moz-focusring,
+    xul|checkbox:-moz-focusring > .checkbox-check,
+    xul|radio[focused="true"]:-moz-focusring {
+      box-shadow: none !important;
+      outline: 2px solid var(--in-content-focus-outline-color) !important;
+      outline-offset: 2px !important;
+    }
+
     /*- Radio Button -----------------------------------------------------------*/
     xul|radio {
       /* margin-inline-start: 0 !important; */
@@ -1607,25 +1599,16 @@
       appearance: none !important;
       width: 16px !important;
       height: 16px !important;
-      padding: 0 !important;
       border: 1px solid var(--in-content-box-border-color) !important;
       border-radius: 100% !important;
+      padding: 0 !important;
+      margin-inline: 0 6px !important;
       margin-block: 2px !important;
       /* extend the vertical clicktarget */
-      margin-inline: 0 6px !important;
       background-color: var(--in-content-button-background) !important;
       background-position: center !important;
       flex-shrink: 0 !important;
       /* avoid shrinking inside flex container */
-    }
-
-    xul|radio:not([disabled="true"]):hover > xul|*.radio-check {
-      background-color: var(--in-content-button-background-hover) !important;
-      color: var(--in-content-button-text-color-hover) !important;
-    }
-
-    xul|radio:not([disabled="true"]):hover:active > xul|*.radio-check {
-      background-color: var(--in-content-button-background-active) !important;
     }
 
     xul|*.radio-check[selected] {
@@ -1639,11 +1622,18 @@
       color-adjust: exact !important;
     }
 
+    xul|radio:not([disabled="true"]):hover > xul|*.radio-check {
+      background-color: var(--in-content-button-background-hover) !important;
+      color: var(--in-content-button-text-color-hover) !important;
+    }
+    xul|radio:not([disabled="true"]):hover:active > xul|*.radio-check {
+      background-color: var(--in-content-button-background-active) !important;
+    }
+
     xul|radio:not([disabled="true"])[selected]:hover > xul|*.radio-check {
       background-color: var(--in-content-primary-button-background-hover) !important;
       color: var(--in-content-primary-button-text-color-hover) !important;
     }
-
     xul|radio:not([disabled="true"])[selected]:hover:active > xul|*.radio-check {
       background-color: var(--in-content-primary-button-background-active) !important;
     }
@@ -1658,11 +1648,6 @@
     xul|radio[disabled="true"],
     xul|label[disabled="true"] {
       color: inherit !important;
-    }
-
-    xul|checkbox[disabled="true"],
-    xul|radio[disabled="true"],
-    xul|label[disabled="true"] {
       opacity: 0.5 !important;
     }
 
@@ -1674,30 +1659,31 @@
       margin: 4px 2px !important;
     }
 
-    .checkbox-icon[src] {
-      margin-inline-end: 2px !important;
-    }
-
-    .checkbox-label {
-      margin: 1px 0 !important;
-    }
-
-    checkbox[disabled="true"] {
-      opacity: 0.4 !important;
-    }
-
     .checkbox-check {
       appearance: none !important;
-      color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
-      background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
+      width: 16px !important;
+      height: 16px !important;
       border: 1px solid currentColor !important;
       border-radius: 2px !important;
+      color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
+      background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
       margin-inline-end: 6px !important;
+      /* or 2px */
+      margin-block: 2px !important;
+      /* From common.css */
     }
 
-    .checkbox-check {
-      height: 16px !important;
-      width: 16px !important;
+    .checkbox-check[checked] {
+      -moz-context-properties: fill !important;
+      fill: currentColor !important;
+      color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+      border-color: var(--checkbox-checked-border-color, transparent) !important;
+      background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
+      background-image: url("chrome://global/skin/icons/check.svg") !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      /* Style the button also when printing with "Print Backgrounds" unchecked */
+      color-adjust: exact !important;
     }
 
     checkbox:not([disabled="true"]):hover > .checkbox-check {
@@ -1706,34 +1692,18 @@
         color-mix(in srgb, -moz-accent-color 4%, Field)
       ) !important;
     }
-
     checkbox:not([disabled="true"]):hover:active > .checkbox-check {
       background-color: var(
         --checkbox-unchecked-active-bgcolor,
         color-mix(in srgb, -moz-accent-color 8%, Field)
       ) !important;
     }
-
-    .checkbox-check[checked] {
-      border-color: var(--checkbox-checked-border-color, transparent) !important;
-      background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
-      background-image: url("chrome://global/skin/icons/check.svg") !important;
-      background-position: center !important;
-      background-repeat: no-repeat !important;
-      -moz-context-properties: fill !important;
-      fill: currentColor !important;
-      color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
-      /* Style the button also when printing with "Print Backgrounds" unchecked */
-      color-adjust: exact !important;
-    }
-
     checkbox:not([disabled="true"]):hover > .checkbox-check[checked] {
       background-color: var(
         --checkbox-checked-hover-bgcolor,
         color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
       ) !important;
     }
-
     checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked] {
       background-color: var(
         --checkbox-checked-active-bgcolor,
@@ -1757,17 +1727,25 @@
         fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
       }
 
-      checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked],
-      checkbox:not([disabled="true"]):hover > .checkbox-check[checked] {
+      checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked] > .checkbox-check[checked],
+      checkbox:not([disabled="true"]):hover > .checkbox-check[checked] > .checkbox-check[checked] {
         color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
         fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
       }
     }
-    /* From common.css */
-    xul|*.checkbox-check {
-      margin-block: 2px !important;
+    .checkbox-icon[src] {
+      margin-inline-end: 2px !important;
     }
 
+    .checkbox-label {
+      margin: 1px 0 !important;
+    }
+
+    checkbox[disabled="true"] {
+      opacity: 0.4 !important;
+    }
+
+    /* From common.css */
     xul|richlistitem > xul|*.checkbox-check {
       margin: 3px 6px !important;
     }
@@ -1783,25 +1761,20 @@
       padding-inline: 12px 8px !important;
       margin: 5px 2px 3px !important;
     }
-
     xul|menulist[size="medium"] {
       padding-block: 6px !important;
       padding-inline: 16px 10px !important;
     }
-
     xul|menulist[size="large"] {
       padding-block: 8px !important;
       padding-inline: 16px 12px !important;
     }
-
     xul|menulist:hover {
       background-color: var(--button-hover-bgcolor, color-mix(in srgb, currentColor 10%, ButtonFace)) !important;
     }
-
     xul|menulist:hover:active {
       background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 20%, ButtonFace)) !important;
     }
-
     xul|menulist:-moz-focusring {
       outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
       outline-offset: var(--focus-outline-offset, 2px) !important;
@@ -1819,11 +1792,10 @@
       width: 12px !important;
       height: 12px !important;
     }
-
-    /* dropmarker::part(icon)
-     * ::part is not apply chrome
-     */
     dropmarker[exportparts="icon: dropmarker-icon"] {
+      /* dropmarker::part(icon)
+       * ::part is not apply chrome
+       */
       list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
       -moz-context-properties: fill !important;
       fill: currentColor !important;
@@ -1864,13 +1836,11 @@
       color: var(--in-content-item-hover-text) !important;
       background-color: var(--in-content-item-hover) !important;
     }
-
     xul|menulist > xul|menupopup > xul|menu:not([disabled="true"])[selected="true"],
     xul|menulist > xul|menupopup > xul|menuitem:not([disabled="true"])[selected="true"] {
       color: var(--in-content-item-selected-text) !important;
       background-color: var(--in-content-item-selected) !important;
     }
-
     xul|menulist > xul|menupopup > xul|menu[disabled="true"],
     xul|menulist > xul|menupopup > xul|menuitem[disabled="true"] {
       color: #999 !important;
@@ -2078,21 +2048,18 @@
       padding: 8px !important;
       margin: 2px 4px !important;
     }
-
     #locationTextBox:focus {
       border-color: transparent !important;
       outline: 2px solid var(--in-content-focus-outline-color) !important;
       outline-offset: -1px !important;
       /* Prevents antialising around the corners */
     }
-
     #locationTextBox:-moz-ui-invalid {
       border-color: transparent !important;
       outline: 2px solid var(--in-content-border-invalid) !important;
       outline-offset: -1px !important;
       /* Prevents antialising around the corners */
     }
-
     #locationTextBox:disabled {
       opacity: 0.4 !important;
     }
@@ -2106,7 +2073,6 @@
       -moz-context-properties: fill !important;
       fill: currentColor !important;
     }
-
     #exceptiondialog:first-child > hbox > vbox > image {
       display: none !important;
     }
@@ -2122,26 +2088,6 @@
       border-radius: 8px !important;
       padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
       margin: 4px !important;
-    }
-
-    #viewGroup > radio:hover {
-      background-color: var(--in-content-button-background-hover) !important;
-      /* #E0E8F6; */
-    }
-
-    #viewGroup > radio[selected="true"] {
-      color: var(--in-content-button-text-color) !important;
-      /* SelectedItemText */
-      background-color: var(--in-content-button-background-active) !important;
-      /* #C1D2EE; */
-    }
-
-    #viewGroup > radio {
-      color: var(--in-content-deemphasized-text) !important;
-      /* FieldText */
-    }
-
-    #viewGroup > radio {
       list-style-image: none !important;
       background-image: var(--viewgroup-image) !important;
       background-repeat: no-repeat;
@@ -2149,6 +2095,18 @@
       background-size: 32px !important;
       -moz-context-properties: fill !important;
       fill: currentColor !important;
+      color: var(--in-content-deemphasized-text) !important;
+      /* FieldText */
+    }
+    #viewGroup > radio:hover {
+      background-color: var(--in-content-button-background-hover) !important;
+      /* #E0E8F6; */
+    }
+    #viewGroup > radio[selected="true"] {
+      color: var(--in-content-button-text-color) !important;
+      /* SelectedItemText */
+      background-color: var(--in-content-button-background-active) !important;
+      /* #C1D2EE; */
     }
 
     #generalTab {
@@ -2172,13 +2130,13 @@
       margin: 0 !important;
       padding: 0 6px !important;
     }
-
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
       #viewGroup > radio > .radio-label-box {
         padding-top: 32px !important;
         /* as -moz-image-region: rect(0px, 32px, 32px, 0px); */
       }
     }
+
     #mainDeck input {
       color: var(--in-content-page-color) !important;
     }
@@ -2203,7 +2161,6 @@
       background: var(--in-content-table-header-background) !important;
       color: var(--in-content-table-header-color) !important;
     }
-
     treecols > treecol,
     treecols > treecolpicker.treecol-image {
       -moz-appearance: none !important;
@@ -2226,27 +2183,22 @@
     treechildren::-moz-tree-row(odd) {
       background-color: var(--in-content-box-background-odd) !important;
     }
-
     treechildren::-moz-tree-row(hover) {
       color: var(--in-content-item-hover-text) !important;
       background-color: var(--in-content-item-hover) !important;
     }
-
     treechildren::-moz-tree-row(selected) {
       background-color: var(--in-content-item-selected) !important;
     }
-
     treechildren::-moz-tree-cell {
       border-inline: 1px solid var(--in-content-table-border-color) !important;
       border-spacing: 0 !important;
       padding: 4px !important;
       margin: 0 !important;
     }
-
     treechildren::-moz-tree-cell-text(hover) {
       color: var(--in-content-item-hover-text) !important;
     }
-
     treechildren::-moz-tree-cell-text(selected) {
       font-weight: 600 !important;
       color: var(--in-content-item-selected-text) !important;
@@ -2298,7 +2250,6 @@
         --organizer-toolbar-field-focus-box-shadow: unset;
         --organizer-pane-field-border-color: ThreeDShadow;
       }
-
       @media not all and (prefers-contrast) {
         :root {
           --organizer-color: var(--in-content-page-color);
@@ -2327,7 +2278,6 @@
           --organizer-toolbar-field-focus-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.23);
           --organizer-pane-field-border-color: color-mix(in srgb, currentColor 41%, transparent);
         }
-
         @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
           :root {
             --organizer-color: rgb(251, 251, 254);
@@ -2343,6 +2293,7 @@
           }
         }
       }
+
       /*- Toolbar & Menus ------------------------------------------------------*/
       #placesToolbar {
         appearance: none !important;
@@ -2352,22 +2303,18 @@
         padding: 4px !important;
         padding-inline-end: 6px !important;
       }
-
       #placesToolbar > toolbarbutton {
         appearance: none !important;
         padding: 5px !important;
         border-radius: 4px !important;
       }
-
       #placesToolbar > toolbarbutton[disabled] {
         opacity: 0.6 !important;
       }
-
       #placesToolbar > toolbarbutton:not([disabled]):hover {
         background-color: var(--organizer-hover-background) !important;
         color: var(--organizer-hover-color) !important;
       }
-
       #placesToolbar > toolbarbutton:not([disabled]):hover:active {
         background-color: var(--organizer-selected-background) !important;
       }
@@ -2382,7 +2329,6 @@
       #placesMenu {
         margin-inline-start: 6px !important;
       }
-
       #placesMenu > menu {
         appearance: none !important;
         color: var(--organizer-color) !important;
@@ -2391,19 +2337,16 @@
         padding-inline-start: 5px !important;
         margin-inline-end: 2px !important;
       }
-
       #placesMenu > menu[_moz-menuactive="true"],
       #placesMenu > menu:hover {
         background-color: var(--organizer-hover-background) !important;
         color: var(--organizer-hover-color) !important;
       }
-
       #placesMenu > menu:hover:active,
       #placesMenu > menu[open] {
         background-color: var(--organizer-selected-background) !important;
         color: var(--organizer-selected-color) !important;
       }
-
       #placesMenu > menu > .menubar-text {
         margin-block: 0 !important;
         /* override menu.css */
@@ -2494,7 +2437,6 @@
         background-color: var(--organizer-hover-background) !important;
         color: var(--organizer-color) !important;
       }
-
       treecol:not([hideheader="true"], [sortable="false"]):hover:active,
       treecolpicker:hover:active {
         background-color: var(--organizer-selected-background) !important;
@@ -2525,38 +2467,31 @@
       treechildren::-moz-tree-row {
         background-color: transparent !important;
       }
-
       treechildren::-moz-tree-row(hover) {
         background-color: var(--organizer-hover-background) !important;
       }
-
       treechildren::-moz-tree-row(selected) {
         background-color: var(--organizer-selected-background) !important;
         color: var(--organizer-selected-color) !important;
         border: 1px solid transparent !important;
       }
-
       treechildren::-moz-tree-image(hover),
       treechildren::-moz-tree-twisty(hover),
       treechildren::-moz-tree-cell-text(hover) {
         color: var(--organizer-hover-color) !important;
       }
-
       treechildren::-moz-tree-image(selected),
       treechildren::-moz-tree-twisty(selected),
       treechildren::-moz-tree-cell-text(selected) {
         color: var(--organizer-selected-color) !important;
       }
-
       treechildren::-moz-tree-separator {
         height: 1px !important;
         border-color: var(--organizer-separator-color) !important;
       }
-
       treechildren::-moz-tree-separator(hover) {
         border-color: var(--organizer-hover-color) !important;
       }
-
       treechildren::-moz-tree-separator(selected) {
         border-color: var(--organizer-selected-color) !important;
       }
@@ -2580,36 +2515,34 @@
         border-radius: 4px !important;
         color: var(--organizer-color) !important;
         background-color: var(--organizer-content-background) !important;
-        list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
         -moz-context-properties: fill !important;
         fill: currentColor !important;
       }
-
       #editBookmarkPanelRows .expander-up:hover,
       #editBookmarkPanelRows .expander-down:hover {
         background-color: var(--organizer-hover-background) !important;
         color: var(--organizer-hover-color) !important;
       }
-
       #editBookmarkPanelRows .expander-up:hover:active,
       #editBookmarkPanelRows .expander-down:hover:active {
         background-color: var(--organizer-selected-background) !important;
         color: var(--organizer-selected-color) !important;
       }
-
       #editBookmarkPanelRows .expander-up:focus-visible,
       #editBookmarkPanelRows .expander-down:focus-visible {
         outline: 2px solid var(--organizer-outline-color) !important;
         outline-offset: -1px !important;
       }
+      #editBookmarkPanelRows .expander-up > .button-box,
+      #editBookmarkPanelRows .expander-down > .button-box {
+        padding: 0 !important;
+      }
 
       #editBookmarkPanelRows .expander-up {
         list-style-image: url("chrome://global/skin/icons/arrow-up-12.svg");
       }
-
-      #editBookmarkPanelRows .expander-up > .button-box,
-      #editBookmarkPanelRows .expander-down > .button-box {
-        padding: 0 !important;
+      #editBookmarkPanelRows .expander-down {
+        list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
       }
 
       #places input {
@@ -2620,12 +2553,10 @@
         min-height: 20px !important;
         padding-inline: 4px !important;
       }
-
       #places input:focus {
         outline: 2px solid var(--organizer-outline-color) !important;
         outline-offset: -1px !important;
       }
-
       #places input:not(:read-write):focus {
         outline: none !important;
       }
@@ -2642,16 +2573,13 @@
         border: 1px solid var(--organizer-border-color) !important;
         border-radius: 4px !important;
       }
-
       #editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
         border: 1px solid transparent !important;
       }
-
       #editBMPanel_tagsSelectorRow > richlistbox > richlistitem:hover {
         background-color: var(--organizer-hover-background) !important;
         color: var(--organizer-hover-color) !important;
       }
-
       #editBMPanel_tagsSelectorRow > richlistbox > richlistitem[selected] {
         background-color: var(--organizer-selected-background) !important;
         color: var(--organizer-selected-color) !important;
@@ -2730,7 +2658,6 @@
     #downloadsListBox .download-state[exists] .downloadDetails {
       color: var(--button-primary-bgcolor);
     }
-
     #downloadsListBox .download-state[exists] .downloadDetails.downloadDetailsHover {
       color: var(--button-primary-hover-bgcolor);
     }
@@ -2740,7 +2667,6 @@
       text-decoration: line-through;
       text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
     }
-
     #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
       filter: grayscale(100%) !important;
     }
@@ -2777,7 +2703,6 @@
        */
       transition: background-color 0.5s var(--animation-easing-function) !important;
     }
-
     .subviewbutton:hover {
       transition: background-color 0.1s var(--animation-easing-function) !important;
     }
@@ -2788,21 +2713,17 @@
       transition: -moz-box-flex 0.2s var(--animation-easing-function),
         margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
       transition: -moz-box-flex 0.2s var(--animation-easing-function),
         margin-inline-start 0.2s var(--animation-easing-function) !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tab-content::before,
     #tabbrowser-tabs:not([movingtab]) .tab-content::after {
       transition: width 0.2s var(--animation-easing-function), transform 0.2s var(--animation-easing-function) !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tab-content .tab-label-container {
       transition: width 0.3s var(--animation-easing-function) !important;
     }
-
     #tabbrowser-tabs:not([movingtab]) .tab-content .tab-icon-image {
       transition: all 0.3s var(--animation-easing-function) !important;
     }
@@ -2813,7 +2734,6 @@
       transition: border-color 1s var(--animation-easing-function),
         background-color 1.5s var(--animation-easing-function) !important;
     }
-
     #urlbar-background:hover,
     #searchbar:hover {
       transition: border-color 0.5s var(--animation-easing-function),
@@ -2828,7 +2748,6 @@
     #page-action-buttons > .urlbar-page-action {
       transition: background-color 2.5s var(--animation-easing-function) !important;
     }
-
     #tracking-protection-icon-container:hover,
     #identity-icon-box:hover,
     #identity-permission-box:hover,
@@ -2838,14 +2757,13 @@
     }
 
     /*- Border - Other Fields --------------------------------------------------*/
-    #search-box:hover,
-    xul|search-textbox.tabsFilter:hover,
-    #editBMPanel_namePicker:hover,
-    #editBMPanel_tagsField:hover,
-    .findbar-container .findbar-textbox:hover {
+    #search-box,
+    xul|search-textbox.tabsFilter,
+    #editBMPanel_namePicker,
+    #editBMPanel_tagsField,
+    .findbar-container .findbar-textbox {
       transition: border-color 1s var(--animation-easing-function) !important;
     }
-
     #search-box:hover,
     xul|search-textbox.tabsFilter:hover,
     #editBMPanel_namePicker:hover,
@@ -2865,7 +2783,6 @@
         transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
           visibility 0s linear !important;
       }
-
       #sidebar-box[hidden="true"] {
         display: -moz-box !important;
         margin-inline-start: -18em;
@@ -2880,19 +2797,16 @@
       transition: margin-top 1s ease;
       transform-origin: top;
     }
-
     #navigator-toolbox[inFullscreen="true"] {
       /* Full screen enter */
       animation-duration: 1s;
       animation-name: fullscreen;
       animation-timing-function: ease;
       /* Full screen navbar not hover */
-      transition: margin-top 0.3s var(--animation-easing-function) 50ms;
+      transition: margin-top 1.3s var(--animation-easing-function) 50ms;
     }
-
     #navigator-toolbox[inFullscreen="true"]:hover {
-      transition-duration: 1.5s;
-      transition-delay: 0.1s;
+      margin-top: 0 !important;
     }
 
     @keyframes fullscreen {
@@ -2928,15 +2842,12 @@
       #template-container .item.client .item-twisty-container {
         transition: transform 0.1s var(--animation-easing-function) !important;
       }
-
       #template-container .item.client.closed .item-twisty-container {
         transform: rotate(-90deg);
         background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
       }
-
       #template-container .item.client.closed .item-twisty-container:dir(rtl) {
         transform: rotate(90deg);
-        background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
       }
     }
     /*- Arrow - Edit Bookmark Popup --------------------------------------------*/
@@ -2948,7 +2859,6 @@
     #editBookmarkPanelRows .expander-up {
       list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
     }
-
     #editBookmarkPanelRows .expander-up .button-icon {
       transform: rotate(180deg);
     }
@@ -3169,13 +3079,69 @@
     /* If the option is not specified, it is equivalent to 0px. */
   }
 
-  :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
-    height: calc(var(--tab-min-height) + var(--space-above-tabbar));
-  }
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+    :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
+      height: calc(var(--tab-min-height) + var(--space-above-tabbar) - var(--tabs-navbar-shadow-size));
+    }
 
-  :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
-  :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
-    padding-top: var(--space-above-tabbar) !important;
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"] {
+        height: calc(var(--tab-min-height) + var(--space-above-tabbar) - var(--tabs-navbar-shadow-size));
+      }
+    }
+  }
+  @media (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-gtk-csd-available) {
+    :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
+      height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+    }
+
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"] {
+        height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+      }
+    }
+  }
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    #TabsToolbar > .toolbar-items {
+      padding-top: var(--space-above-tabbar) !important;
+    }
+  }
+  @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
+    /* Add 4px extra margin on top of the tabs toolbar on Windows 7. */
+    /* Add extra space to titlebar for dragging */
+    :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+    :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+      padding-top: calc(var(--space-above-tabbar) + 4px) !important;
+    }
+
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[sizemode="maximized"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+      :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+        padding-top: calc(var(--space-above-tabbar) + 4px) !important;
+      }
+    }
+  }
+  @media (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win10),
+    (-moz-platform: windows-win10),
+    (-moz-gtk-csd-available) {
+    /* Add extra space to titlebar for dragging */
+    :root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+    :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+      padding-top: var(--space-above-tabbar) !important;
+    }
+
+    @supports -moz-bool-pref("userChrome.padding.drag_space.maximized") {
+      :root[sizemode="maximized"][chromehidden~="menubar"] #TabsToolbar > .toolbar-items,
+      :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar > .toolbar-items {
+        padding-top: var(--space-above-tabbar) !important;
+      }
+    }
   }
 }
 @supports -moz-bool-pref("userChrome.padding.tabbar_height") {
@@ -3501,11 +3467,27 @@
     --bookmark-menu-padding: 1.5px;
   }
 
-  :root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
+  @supports -moz-bool-pref("userChrome.padding.menu_compact") {
+    :root {
+      --bookmark-menu-padding: 2px;
+    }
+
+    :root[uidensity="compact"] {
+      --bookmark-menu-padding: 0px;
+    }
+  }
   :root:not([uidensity="touch"]) #BMB_bookmarksPopup .subviewbutton,
   :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .bookmark-item,
   :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .openintabs-menuitem {
     padding-block: var(--bookmark-menu-padding) !important;
+  }
+
+  @supports -moz-bool-pref("userChrome.padding.menu_compact") or -moz-bool-pref("userChrome.padding.bookmark_menu.compact") {
+    :root:not([uidensity="touch"]) #BMB_bookmarksPopup .bookmark-item,
+    :root:not([uidensity="touch"]) #PlacesToolbar menupopup[placespopup] .bookmark-item {
+      min-height: unset !important;
+      /* Original: 24px */
+    }
   }
 }
 /*= Global Menu - Set Padding ================================================*/
@@ -4205,8 +4187,10 @@
   .tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
     /* Photon like color
        Default: var(--tab-line-color, rgb(10, 132, 255))
-       Automatic: color-mix(in srgb, var(--button-primary-bgcolor) 80%, transparent) */
-    background-color: var(--tab-line-color, #0a84ff) !important;
+       Automatic: color-mix(in srgb, var(--button-primary-bgcolor) 80%, transparent)
+
+       FF v96+ replace by var(--lwt-tab-line-color) */
+    background-color: var(--tab-line-color, var(--lwt-tab-line-color, #0a84ff)) !important;
   }
 
   .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
@@ -4269,28 +4253,6 @@
   /* Container Tab */
   .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
     margin: unset !important;
-  }
-}
-/*= Selected Tab - Photon like contextline ===================================*/
-@supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
-    display: -moz-box !important;
-    -moz-box-ordinal-group: 0 !important;
-    /* Looks like hover */
-    width: 24px !important;
-    height: 24px !important;
-    margin-inline: -4px !important;
-    /* (24px - 16px) / 2 */
-  }
-
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
-    width: 0 !important;
-    position: absolute;
-    bottom: 8px;
-  }
-
-  .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
-    display: none !important;
   }
 }
 /*= Unselected Tab - Divide line =============================================*/
@@ -4464,10 +4426,19 @@
     right: 0;
   }
 
-  .tabbrowser-tab[visuallyselected] .tab-background::before,
-  .tabbrowser-tab[visuallyselected] .tab-background::after,
-  .tabbrowser-tab[beforeselected-visible] .tab-background::after {
-    opacity: 0;
+  @supports -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
+    .tabbrowser-tab[visuallyselected] .tab-background::before,
+    .tabbrowser-tab[visuallyselected] .tab-background::after,
+    .tabbrowser-tab[beforeselected-visible] .tab-background::after {
+      --lwt-background-tab-separator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
+    .tabbrowser-tab[visuallyselected] .tab-background::before,
+    .tabbrowser-tab[visuallyselected] .tab-background::after,
+    .tabbrowser-tab[beforeselected-visible] .tab-background::after {
+      opacity: 0;
+    }
   }
 
   /* Animate */
@@ -4708,6 +4679,81 @@
     /* Original: 0px */
     width: 19px !important;
     /* Redefine from 19px !important, Original: 17px = (width - padding)  */
+  }
+}
+/** Clipped tabs - Show close button at pinned tab ****************************/
+@supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
+  #tabbrowser-tabs {
+    --uc-close-button-size: 24px;
+    --uc-close-button-padding: 6px;
+    --uc-close-button-margin: calc((var(--uc-close-button-size) - 16px) / -2);
+  }
+
+  #tabbrowser-tabs[closebuttons="activetab"] {
+    --uc-close-button-size: 20px;
+    --uc-close-button-padding: 4px;
+  }
+
+  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
+    display: -moz-box !important;
+    -moz-box-ordinal-group: 0 !important;
+    /* Looks like hover */
+    width: var(--uc-close-button-size) !important;
+    height: var(--uc-close-button-size) !important;
+    padding: var(--uc-close-button-padding) !important;
+    margin-inline: var(--uc-close-button-margin) !important;
+  }
+  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
+    width: 0 !important;
+    position: absolute;
+    bottom: 8px;
+  }
+  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover .tab-icon-image {
+    display: none !important;
+  }
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.always") {
+    .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
+      display: -moz-box !important;
+      -moz-box-ordinal-group: 0 !important;
+      /* Looks like hover */
+      width: var(--uc-close-button-size) !important;
+      height: var(--uc-close-button-size) !important;
+      padding: var(--uc-close-button-padding) !important;
+      margin-inline: var(--uc-close-button-margin) !important;
+    }
+    .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
+      width: 0 !important;
+      position: absolute;
+      bottom: 8px;
+    }
+    .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
+      display: none !important;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.background") {
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
+      display: -moz-box !important;
+      -moz-box-ordinal-group: 0 !important;
+      /* Looks like hover */
+      width: var(--uc-close-button-size) !important;
+      height: var(--uc-close-button-size) !important;
+      padding: var(--uc-close-button-padding) !important;
+      margin-inline: var(--uc-close-button-margin) !important;
+    }
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
+      width: 0 !important;
+      position: absolute;
+      bottom: 8px;
+    }
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover .tab-icon-image {
+      display: none !important;
+    }
+  }
+
+  #tabbrowser-tabs[closebuttons="activetab"]
+    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy])
+    .tab-close-button {
+    margin-inline-end: var(--uc-close-button-margin) !important;
   }
 }
 /** Clipped tabs - Always show tab icon ***************************************/
@@ -5096,11 +5142,19 @@
       /* Makes the UI take up the entire width */
     }
 
-    :root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
-    :root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
-      visibility: unset !important;
-      /* Makes the bookmarks toolbar visible if enabled */
+    @media (-moz-gtk-csd-available) {
+      /* Fix transparent backgorund */
+      :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
+        appearance: auto !important;
+      }
     }
+  }
+}
+@supports -moz-bool-pref("userChrome.fullscreen.show_bookmarkbar") {
+  :root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
+  :root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
+    visibility: unset !important;
+    /* Makes the bookmarks toolbar visible if enabled */
   }
 }
 /** Library - Icons Replace ***************************************************/
@@ -5918,25 +5972,23 @@
 }
 /** Menu - Icons Layout *******************************************************/
 @supports -moz-bool-pref("userChrome.icon.menu") {
-  menupopup menuitem:not([type="checkbox"], [type="radio"]),
-  menupopup menu:not([type="checkbox"], [type="radio"]),
+  menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
+  menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]),
   #main-menubar > menu {
     -moz-appearance: none !important;
     /* Linux: menulist */
   }
 
   /* Icon */
-  :not(menu, #ContentSelectDropdown)
-    > menupopup
-    > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  :not(menu, #ContentSelectDropdown)
-    > menupopup
-    > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
   #main-menubar > menu,
+  :not(menu, #ContentSelectDropdown)
+    > menupopup
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+  :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-    menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-    menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
@@ -5951,14 +6003,12 @@
     background-image: var(--menuitem-image);
   }
 
-  /* For native context menus on macOS */
-  @supports -moz-bool-pref("widget.macos.native-context-menus") {
+  /* For native context menus */
+  @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
     :not(menu, #ContentSelectDropdown)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
-    :not(menu, #ContentSelectDropdown)
-      > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+    :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
       list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
     }
   }
@@ -5970,10 +6020,16 @@
 
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup
+    > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-    menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+    menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-    menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+    menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
@@ -5990,36 +6046,21 @@
       padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
       padding-inline-end: 3px;
     }
-
     #main-menubar > menu:first-child {
       background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
       padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
     }
-
     #main-menubar > menu > menupopup {
       --menuitem-image: none;
       /* Prevent Image Inheritance */
     }
+    @supports not -moz-bool-pref("userChrome.padding.global_menubar") {
+      #main-menubar > menu {
+        padding-block: 2px !important;
+      }
+    }
   }
   /* Padding - Windows */
-  @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
-    (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8),
-    (-moz-os-version: windows-win10),
-    (-moz-platform: windows-win10) {
-    /* Checkbox */
-    :root {
-      --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
-    }
-
-    :not(menu, #ContentSelectDropdown, #context-navigation)
-      > menupopup
-      > menuitem[type="checkbox"]:not([checked="true"])
-      > .menu-iconic-left {
-      padding-inline-start: var(--context-menu-text-padding);
-    }
-  }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
     :root {
       --context-menu-background-padding-default: 2px;
@@ -6036,14 +6077,14 @@
     (-moz-platform: windows-win8) {
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-      menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+      menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-      menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+      menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
@@ -6065,14 +6106,14 @@
 
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-      menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
+      menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-      menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+      menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
@@ -6102,32 +6143,29 @@
     /* context menu width */
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
-      > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist),
+      > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     #blockedPopupDontShowMessage {
       padding-inline-end: var(--context-menu-background-padding) !important;
     }
 
     /* text position */
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem > .menu-text,
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu > menu-text {
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu > .menu-text {
       padding-inline-start: var(--context-menu-mac-padding) !important;
     }
 
     /* Checkbox menuitem, None iconic menu */
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"],
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[checked="true"],
     :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic) {
       padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
     }
 
     /* Global Menu */
     /* Disabled. some icons not appear
-     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-       menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"], .bookmark-item),
-     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
-       menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked=true]), menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [checked=true]) {
        list-style-image: var(--menuitem-image, url("../icons/blank.svg"));
      }
     */
@@ -6665,7 +6703,7 @@
       /* iconic */
     }
 
-    @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
       #context-back {
         --menuitem-image: url("chrome://browser/skin/back.svg");
       }
@@ -7454,11 +7492,9 @@
     /* This button needs to align with the tree above it. */
     margin-inline-start: 4px;
   }
-
   #editBMPanel_newFolderButton:hover {
     background-color: var(--button-hover-bgcolor);
   }
-
   #editBMPanel_newFolderButton:hover:active {
     background-color: var(--button-active-bgcolor);
   }

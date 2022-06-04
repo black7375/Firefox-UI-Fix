@@ -8,6 +8,11 @@
   @import "clipped_tab/show_close_button_at_hover";
 }
 
+/** Clipped tabs - Show close button at pinned tab ****************************/
+@include Option("userChrome.tab.close_button_at_pinned") {
+  @import "clipped_tab/pinned_close_button";
+}
+
 /** Clipped tabs - Always show tab icon ***************************************/
 @include Option("userChrome.tab.always_show_tab_icon") {
   @import "clipped_tab/always_show_tab_icon";

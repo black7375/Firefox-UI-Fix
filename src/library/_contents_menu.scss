@@ -4,10 +4,38 @@ menupopup menu:not([type="checkbox"], [type="radio"]),
   -moz-appearance: none !important; /* Linux: menulist */
 }
 
-#placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-#placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+//-- Mixin ---------------------------------------------------------------------
+@function _library_iconTargetSelector($target: "menu") {
+  // .menu-iconic, .menuitem-iconic: Alreay exist, not target.
+  // .in-menulist: Not a range because it is a select menu of web content.
+  // [type="checkbox"], [checked="true"]: There should be a check mark instead of an icon.
+  @return "#{$target}:not(.#{$target}-iconic, .in-menulist, [type=\"checkbox\"], [checked=\"true\"])";
+}
+$_library_menuitemSelector: _library_iconTargetSelector("menuitem");
+$_library_menuSelector: _library_iconTargetSelector("menu");
+
+@mixin _library_contextMenu {
+  #placesContext #{$_library_menuitemSelector},
+  #placesContext #{$_library_menuSelector},
+  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
+  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+    @content;
+  }
+}
+@mixin _library_nativeContextMenu {
+  :not(menu, #ContentSelectDropdown)
+    > menupopup
+    > #{$_library_menuitemSelector},
+  :not(menu, #ContentSelectDropdown)
+    > menupopup
+    > #{$_library_menuSelector} {
+    @content;
+  }
+}
+
+//------------------------------------------------------------------------------
+
+@include _library_contextMenu {
   /* Color */
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
@@ -18,14 +46,9 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
   background-image: var(--menuitem-image);
 }
 
-/* For native context menus on macOS */
-@supports -moz-bool-pref("widget.macos.native-context-menus") {
-  :not(menu, #ContentSelectDropdown)
-    > menupopup
-    > menuitem:not(.menuitem-iconic, [type="checkbox"], [checked="true"], .in-menulist),
-  :not(menu, #ContentSelectDropdown)
-    > menupopup
-    > menu:not(.menu-iconic, [type="checkbox"], [checked="true"], .in-menulist) {
+/* For native context menus */
+@include NativeMenu {
+  @include _library_nativeContextMenu {
     list-style-image: var(--menuitem-image) !important;
   }
 }
@@ -35,10 +58,7 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
   --context-menu-background-padding-default: 5px;
   --context-menu-background-padding: var(--context-menu-background-padding-default);
 }
-#placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-#placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+@include _library_contextMenu {
   background-position: left var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
@@ -68,10 +88,7 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
   }
 }
 @include OS($win7, $win8) {
-  #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+  @include _library_contextMenu {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
   }
@@ -85,10 +102,7 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
     );
   }
 
-  #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+  @include _library_contextMenu {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
   }
@@ -109,15 +123,14 @@ menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
   }
 
   /* context menu width */
-  #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-  #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+  #placesContext #{$_library_menuitemSelector},
+  #placesContext #{$_library_menuSelector} {
     padding-inline-end: var(--context-menu-background-padding) !important;
-  }
 
-  /* text position */
-  #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]) > .menu-text,
-  #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) > .menu-text {
-    padding-inline-start: var(--context-menu-mac-padding) !important;
+    > .menu-text {
+      /* text position */
+      padding-inline-start: var(--context-menu-mac-padding) !important;
+    }
   }
 
   /* Checkbox menuitem, None iconic menu */

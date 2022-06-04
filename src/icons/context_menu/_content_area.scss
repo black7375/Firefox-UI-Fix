@@ -239,7 +239,7 @@
   /* iconic */
 }
 
-@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include NativeMenu {
   #context-back {
     --menuitem-image: url("chrome://browser/skin/back.svg");
   }
