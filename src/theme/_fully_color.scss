@@ -66,6 +66,28 @@ html#main-window menupopup:not(.in-menulist) {
   }
 }
 
+/*== Info Bar Color ==========================================================*/
+.container.infobar {
+  background-color: var(--urlbar-box-bgcolor);
+}
+.notification-button {
+  background-color: var(--button-bgcolor);
+
+  &:hover {
+    background-color: var(--button-hover-bgcolor);
+  }
+  &:hover:active {
+    background-color: var(--button-active-bgcolor);
+  }
+}
+
+html|button.ghost-button:not(.semi-transparent):enabled:hover {
+  background-color: var(--button-hover-bgcolor) !important;
+}
+html|button.ghost-button:not(.semi-transparent):enabled:hover:active {
+  background-color: var(--in-content-button-background-active) !important;
+}
+
 /*== Bookmark Popup Color ====================================================*/
 #editBMPanel_folderTree:-moz-lwtheme,
 #editBMPanel_tagsSelector:-moz-lwtheme {
