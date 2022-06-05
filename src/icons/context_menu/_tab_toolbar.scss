@@ -85,11 +85,17 @@
 .customize-context-moveToPanel {
   --menuitem-image: url("chrome://browser/skin/pin-12.svg");
 }
-.toolbar-context-autohide-downloads-button {
-  --menuitem-image: url("../icons/password-hide.svg");
+#toolbar-context-autohide-downloads-button {
+  /* checkbox */
+  --menuitem-image: url("../icons/eye-tracking-off.svg");
 }
 .customize-context-removeFromToolbar {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+
+#toolbar-context-always-open-downloads-panel {
+  /* checkbox */
+  --menuitem-image: url("../icons/drawer-arrow-download.svg");
 }
 #toolbar-context-openANewTab {
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
