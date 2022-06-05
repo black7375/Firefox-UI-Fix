@@ -128,3 +128,11 @@
 menuitem.viewCustomizeToolbar {
   --menuitem-image: url("chrome://browser/skin/customize.svg");
 }
+
+.fullscreen-context-autohide {
+  /* checkbox */
+  --menuitem-image: url("../icons/eye-tracking-off.svg");
+}
+#toolbar-context-menu > menuitem[data-l10n-id="full-screen-exit"] {
+  --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
+}
