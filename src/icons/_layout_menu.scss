@@ -7,7 +7,7 @@ $_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
 // Components
 $_nestedPopupIcon: ":not(menu, #ContentSelectDropdown) > menupopup >";
 $_nestedPopupPadding: ":not(menu, #ContentSelectDropdown, #context-navigation) > menupopup >";
-$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)";
+$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)";
 
 $_nestedPopupIconMenus: selector.nest(
   $_nestedPopupIcon,
@@ -192,9 +192,7 @@ $_layoutCommonMenus: (
   }
 
   /* Global Menu */
-  /* Disabled. some icons not appear
-  #{$_iconMenuPopupMenus} {
-    list-style-image: var(--menuitem-image, url("../icons/blank.svg"));
+  #{selector.nest($_iconMenuPopup, "menuitem:not(.menuitem-iconic, .bookmark-item), menu:not(.menu-iconic)")} {
+    list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
   }
- */
 }

@@ -32,6 +32,9 @@
 #menu_sendLink {
   --menuitem-image: url("chrome://browser/skin/mail.svg");
 }
+menu.share-tab-url-item {
+  --menuitem-image: url("chrome://browser/skin/share.svg");
+}
 
 #menu_printPreview {
 }
@@ -111,6 +114,12 @@
   --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
 }
 
+#enterFullScreenItem {
+  --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
+}
+#exitFullScreenItem {
+  --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
+}
 #fullScreenItem {
   /* checkbox */
   --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
@@ -140,6 +149,10 @@
 }
 #menu_zoomReset {
   --menuitem-image: url("../icons/resize.svg");
+}
+
+#toggle_zoom {
+  --menuitem-image: url("../icons/screenshot.svg");
 }
 
 /*= goPopup ==================================================================*/
@@ -257,6 +270,16 @@
 }
 #extensionsForDevelopers {
   --menuitem-image: url("chrome://devtools/skin/images/debugging-addons.svg");
+}
+
+/*= windowPopup ==============================================================*/
+#windowPopup > menuitem {
+  &[command="minimizeWindow"] {
+    --menuitem-image: url("../icons/arrow-between-down.svg");
+  }
+  &[command="zoomWindow"] {
+    --menuitem-image: url("../icons/auto-fit-width.svg");
+  }
 }
 
 /*= menu_HelpPopup ===========================================================*/
