@@ -6909,8 +6909,7 @@
     .pageActionContextMenuItem.extensionPinned.extensionUnpinned.manageExtensionItem {
       --menuitem-image: url("chrome://global/skin/icons/settings.svg");
     }
-
-    .pageActionContextMenuItem.extensionPinned.extensionUnpinned.removeExtensionItem {
+    .pageActionContextMenuItem.extensionPinned.extensionUnpinned .removeExtensionItem {
       --menuitem-image: url("chrome://global/skin/icons/delete.svg");
     }
 
@@ -6982,7 +6981,6 @@
     #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
       --menuitem-image: url("../icons/link-square.svg");
     }
-
     #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
       --menuitem-image: url("../icons/link.svg");
     }
@@ -7123,38 +7121,25 @@
     }
 
     /*= context_sendTabToDevicePopupMenu =========================================*/
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-      > .sync-menuitem.sendtab-target[clientType="phone"] {
+    .sync-menuitem.sendtab-target[clientType="phone"] {
       --menuitem-image: url("chrome://browser/skin/device-phone.svg");
     }
-
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-      > .sync-menuitem.sendtab-target[clientType="tablet"] {
+    .sync-menuitem.sendtab-target[clientType="tablet"] {
       --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
     }
-
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-      > .sync-menuitem.sendtab-target[clientType="desktop"] {
+    .sync-menuitem.sendtab-target[clientType="desktop"] {
       --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
     }
-
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-      > .sync-menuitem.sendtab-target[clientType="tv"] {
+    .sync-menuitem.sendtab-target[clientType="tv"] {
       --menuitem-image: url("chrome://browser/skin/device-tv.svg");
     }
-
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-      > .sync-menuitem.sendtab-target[clientType="vr"] {
+    .sync-menuitem.sendtab-target[clientType="vr"] {
       --menuitem-image: url("chrome://browser/skin/device-vr.svg");
     }
-
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-      > .sync-menuitem.sendtab-target[clientType=""] {
+    .sync-menuitem.sendtab-target[clientType=""] {
       --menuitem-image: url("../icons/send-to-device.svg");
     }
-
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-      > .sync-menuitem.sendtab-target:not([clientType]) {
+    .sync-menuitem.sendtab-target:not([clientType]) {
       --menuitem-image: url("chrome://global/skin/icons/settings.svg");
     }
   }
