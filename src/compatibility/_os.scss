@@ -24,10 +24,14 @@
   }
 }
 
+//-- Mixin ---------------------------------------------------------------------
 @mixin _os_winTabBarTextColor {
   /* background textcolor */
   color: var(--lwt-text-color) !important;
 }
+
+//------------------------------------------------------------------------------
+
 @include OS($win7) {
   #TabsToolbar {
     &:-moz-lwtheme {
@@ -81,18 +85,22 @@
   }
 }
 
+//-- Mixin ---------------------------------------------------------------------
 @mixin _os_menuEmulate($bgRate, $bdRate) {
   menu[_moz-menuactive="true"],
   menuitem[_moz-menuactive="true"] {
     background-color: color-mix(in srgb, -moz-menuhover $bgRate, transparent) !important;
     border-color: color-mix(in srgb, -moz-menuhover $bdRate, transparent) !important;
-  }
-  menu[_moz-menuactive="true"][disabled="disabled"],
-  menuitem[_moz-menuactive="true"][disabled="true"] {
-    background-color: color-mix(in srgb, currentColor $bgRate, transparent) !important;
-    border-color: color-mix(in srgb, currentColor $bdRate, transparent) !important;
+
+    &[disabled="true"] {
+      background-color: color-mix(in srgb, currentColor $bgRate, transparent) !important;
+      border-color: color-mix(in srgb, currentColor $bdRate, transparent) !important;
+    }
   }
 }
+
+//------------------------------------------------------------------------------
+
 @include OS($win7) {
   @include _os_menuEmulate(5%, 60%);
 
@@ -140,6 +148,7 @@
 }
 
 /*= Linux - Light System Default Theme's Selected Tab ========================*/
+//-- Mixin ---------------------------------------------------------------------
 $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 @mixin _os_linuxDefaultThemeSelectedTab {
   #tabbrowser-tabs:not([noshadowfortests])
@@ -149,6 +158,9 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
     @content;
   }
 }
+
+//------------------------------------------------------------------------------
+
 @include OS($linux) {
   @include Light {
     /* Because of

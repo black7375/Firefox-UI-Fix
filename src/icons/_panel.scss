@@ -278,7 +278,7 @@ panelMenuBookmarkThisPage[starred] {
 #PanelUI-developer-tools-view .subviewbutton:nth-child(4) {
   list-style-image: url("../icons/window-dev-tools.svg");
 }
-/* Browser Content Toolbaox -  */
+/* Browser Content Toolbox */
 #appmenu-developer-tools-view .subviewbutton:nth-child(5),
 #PanelUI-developer-tools-view .subviewbutton:nth-child(5) {
   list-style-image: url("../icons/command-frames.svg");
@@ -371,7 +371,7 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 #allTabsMenu-hiddenTabsButton {
-  list-style-image: url("../icons/password-hide.svg");
+  list-style-image: url("../icons/eye-hide.svg")
 }
 
 #allTabsMenu-containerTabsView .subviewbutton:last-child {
@@ -395,6 +395,17 @@ panelMenuBookmarkThisPage[starred] {
   }
   #BMB_bookmarksShowAllTop > .menu-iconic-left {
     display: -moz-box !important;
+  }
+}
+
+
+/* BMB_bookmarksToolbarPopup */
+#BMB_viewBookmarksToolbar {
+  &[data-l10n-args='{"isVisible":true}'] {
+    --menuitem-image: url("../icons/eye-hide.svg")
+  }
+  &[data-l10n-args='{"isVisible":false}'] {
+    --menuitem-image: url("../icons/eye-show.svg")
   }
 }
 

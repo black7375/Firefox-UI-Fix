@@ -4,6 +4,7 @@
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
 }
 #menu_newUserContext {
+  --menuitem-image: url("../icons/container-openin-16.svg");
 }
 #menu_newNavigator {
   --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -43,6 +44,8 @@
 }
 
 #goOfflineMenuitem {
+  /* checkbox */
+  --menuitem-image: url("../icons/plug-disconnected.svg");
 }
 #menu_FileQuitItem {
   --menuitem-image: url("../icons/quit.svg");
@@ -109,12 +112,14 @@
 }
 
 #fullScreenItem {
+  /* checkbox */
   --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
 }
 #menu_readerModeItem {
   --menuitem-image: url("chrome://browser/skin/reader-mode.svg");
 }
 #menu_showAllTabs {
+  --menuitem-image: url("../icons/tab.svg");
 }
 
 #documentDirection-swap {
@@ -152,6 +157,7 @@
   --menuitem-image: url("../icons/restore-session.svg");
 }
 #hiddenTabsMenu {
+  --menuitem-image: url("../icons/eye-hide.svg")
 }
 #historyUndoMenu {
   --menuitem-image: url("chrome://browser/skin/tab.svg");
@@ -209,7 +215,7 @@
 }
 
 #webDeveloperMenu, /* Legacy */
-  #browserToolsMenu {
+#browserToolsMenu {
   --menuitem-image: url("../icons/developer.svg");
 }
 #menu_pageInfo {
@@ -220,6 +226,8 @@
 #enableDeveloperTools {
 }
 #menu_devToolbox {
+  /* checkbox */
+  --menuitem-image: url("../icons/developer.svg");
 }
 #menu_taskManager {
   --menuitem-image: url("../icons/performance.svg");
@@ -237,8 +245,12 @@
   --menuitem-image: url("chrome://devtools/skin/images/command-console.svg");
 }
 #menu_responsiveUI {
+  /* checkbox */
+  --menuitem-image: url("../icons/command-responsivemode.svg");
 }
 #menu_eyedropper {
+  /* checkbox */
+  --menuitem-image: url("chrome://devtools/skin/images/command-eyedropper.svg");
 }
 #menu_pageSource {
   --menuitem-image: url("../icons/document-search.svg");

@@ -13,6 +13,7 @@
 /*= autohide-context =========================================================*/
 #autohide-context > menuitem[data-l10n-id="full-screen-autohide"] {
   /* checkbox */
+  --menuitem-image: url("../icons/eye-tracking-off.svg");
 }
 
 #autohide-context > menuitem[data-l10n-id="full-screen-exit"] {
@@ -25,11 +26,13 @@
 }
 
 /*= pageActionContextMenu ====================================================*/
-.pageActionContextMenuItem.extensionPinned.extensionUnpinned.manageExtensionItem {
-  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
-}
-.pageActionContextMenuItem.extensionPinned.extensionUnpinned.removeExtensionItem {
-  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+.pageActionContextMenuItem.extensionPinned.extensionUnpinned {
+  &.manageExtensionItem {
+    --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+  }
+  .removeExtensionItem {
+    --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+  }
 }
 
 /*= customizationPanelItemContextMenu ========================================*/
@@ -56,6 +59,7 @@
 /*= downloads-button-autohide-panel ==========================================*/
 #downloads-button-autohide-checkbox {
   /* checkbox */
+  --menuitem-image: url("../icons/eye-tracking-off.svg");
 }
 
 /*= downloadsContextMenu =====================================================*/
@@ -73,6 +77,11 @@
 }
 .downloadAlwaysUseSystemDefaultMenuItem {
   /* checkbox */
+  --menuitem-image: url("../icons/folder-globe.svg");
+}
+.downloadAlwaysOpenSimilarFilesMenuItem {
+  /* checkbox */
+  --menuitem-image: url("../icons/fluid.svg");
 }
 .downloadShowMenuItem {
   --menuitem-image: url("chrome://global/skin/icons/folder.svg");
@@ -81,11 +90,13 @@
   }
 }
 
-#downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
-  --menuitem-image: url("../icons/link-square.svg");
-}
-#downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
-  --menuitem-image: url("../icons/link.svg");
+#downloadsContextMenu > menuitem {
+  &[command="downloadsCmd_openReferrer"] {
+    --menuitem-image: url("../icons/link-square.svg");
+  }
+  &[command="downloadsCmd_copyLocation"] {
+    --menuitem-image: url("../icons/link.svg");
+  }
 }
 
 .downloadDeleteFileMenuItem {
@@ -94,9 +105,11 @@
 .downloadRemoveFromHistoryMenuItem {
   --menuitem-image: url("../icons/eraser.svg");
 }
-#downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
-#downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
-  --menuitem-image: url("../icons/broom.svg");
+#downloadsContextMenu > menuitem {
+  &[command="downloadsCmd_clearList"],
+  &[command="downloadsCmd_clearDownloads"] {
+    --menuitem-image: url("../icons/broom.svg");
+  }
 }
 
 /*= SyncedTabsSidebarContext =================================================*/
@@ -212,37 +225,26 @@ menuitem.searchbar-clear-history {
 }
 
 /*= context_sendTabToDevicePopupMenu =========================================*/
-menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-  > .sync-menuitem.sendtab-target[clientType="phone"] {
-  --menuitem-image: url("chrome://browser/skin/device-phone.svg");
-}
-
-menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-  > .sync-menuitem.sendtab-target[clientType="tablet"] {
-  --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
-}
-
-menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-  > .sync-menuitem.sendtab-target[clientType="desktop"] {
-  --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
-}
-
-menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-  > .sync-menuitem.sendtab-target[clientType="tv"] {
-  --menuitem-image: url("chrome://browser/skin/device-tv.svg");
-}
-
-menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-  > .sync-menuitem.sendtab-target[clientType="vr"] {
-  --menuitem-image: url("chrome://browser/skin/device-vr.svg");
-}
-
-menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-  > .sync-menuitem.sendtab-target[clientType=""] {
-  --menuitem-image: url("../icons/send-to-device.svg");
-}
-
-menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup)
-  > .sync-menuitem.sendtab-target:not([clientType]) {
-  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+.sync-menuitem.sendtab-target {
+  &[clientType="phone"] {
+    --menuitem-image: url("chrome://browser/skin/device-phone.svg");
+  }
+  &[clientType="tablet"] {
+    --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
+  }
+  &[clientType="desktop"] {
+    --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
+  }
+  &[clientType="tv"] {
+    --menuitem-image: url("chrome://browser/skin/device-tv.svg");
+  }
+  &[clientType="vr"] {
+    --menuitem-image: url("chrome://browser/skin/device-vr.svg");
+  }
+  &[clientType=""] {
+    --menuitem-image: url("../icons/send-to-device.svg");
+  }
+  &:not([clientType]) {
+    --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+  }
 }

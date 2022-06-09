@@ -4,12 +4,12 @@
 }
 #context-viewsource-wrapLongLines {
   /* checkbox */
-  /* --menuitem-image: url("../icons/arrow-sort-down-lines.svg"); */
+  --menuitem-image: url("../icons/arrow-sort-down-lines.svg");
 }
 
 #context-viewsource-highlightSyntax {
   /* checkbox */
-  /* --menuitem-image: url("../icons/code.svg"); */
+  --menuitem-image: url("../icons/code.svg");
 }
 
 #spell-no-suggestions {
@@ -77,7 +77,7 @@
 }
 #context-media-loop {
   /* checkbox */
-  /* --menuitem-image: url("../icons/arrow-repeat-all.svg"); */
+  --menuitem-image: url("../icons/arrow-repeat-all.svg");
 }
 #context-leave-dom-fullscreen {
   --menuitem-image: url("chrome://global/skin/media/fullscreenExitButton.svg");
@@ -97,7 +97,7 @@
 }
 #context-video-pictureinpicture {
   /* checkbox */
-  /* --menuitem-image: url("chrome://global/skin/media/picture-in-picture-open.svg"); */
+  --menuitem-image: url("chrome://global/skin/media/picture-in-picture-open.svg");
 }
 
 #context-reloadimage {
@@ -209,6 +209,7 @@
 
 #spell-check-enabled {
   /* checkbox */
+  --menuitem-image: url("../icons/text-proofing-tools.svg");
 }
 #spell-add-dictionaries-main {
   --menuitem-image: url("../icons/book-add.svg");
@@ -239,7 +240,7 @@
   /* iconic */
 }
 
-@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+@include NativeMenu {
   #context-back {
     --menuitem-image: url("chrome://browser/skin/back.svg");
   }

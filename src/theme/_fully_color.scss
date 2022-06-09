@@ -40,10 +40,11 @@ html#main-window menupopup:not(.in-menulist) {
       */
   }
 
-  /* Fallback background */
+  /* Fallback background - Set to Legacy. It will be removed Next update
   menupopup:not(.cui-widget-panel.cui-widget-panelview, [placespopup="true"]) {
     background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
   }
+  */
 }
 
 /* Default theme color preservation */
@@ -64,6 +65,28 @@ html#main-window menupopup:not(.in-menulist) {
     --panel-color: var(--menu-color) !important;
     --panel-background: var(--menu-background-color) !important;
   }
+}
+
+/*== Info Bar Color ==========================================================*/
+.container.infobar {
+  background-color: var(--urlbar-box-bgcolor);
+}
+.notification-button {
+  background-color: var(--button-bgcolor);
+
+  &:hover {
+    background-color: var(--button-hover-bgcolor);
+  }
+  &:hover:active {
+    background-color: var(--button-active-bgcolor);
+  }
+}
+
+html|button.ghost-button:not(.semi-transparent):enabled:hover {
+  background-color: var(--button-hover-bgcolor) !important;
+}
+html|button.ghost-button:not(.semi-transparent):enabled:hover:active {
+  background-color: var(--in-content-button-background-active) !important;
 }
 
 /*== Bookmark Popup Color ====================================================*/
@@ -151,34 +174,36 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
   background: transparent !important;
   border: none !important;
   clip-path: inset(0 round var(--panel-border-radius));
-}
 
-#PopupAutoComplete > richlistbox {
-  border-radius: var(--panel-border-radius) !important;
-  background-color: var(--panel-bgcolor) !important; /* Original: Field */
-  color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FiledText */
+  > richlistbox {
+    border-radius: var(--panel-border-radius) !important;
+    background-color: var(--panel-bgcolor) !important; /* Original: Field */
+    color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FiledText */
+  }
 }
 .autocomplete-richlistitem:hover {
   background-color: var(--arrowpanel-dimmed) !important;
 }
 
-#PopupAutoComplete > richlistbox > richlistitem[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
-#PopupAutoComplete > richlistbox > richlistitem[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,
-#PopupAutoComplete > richlistbox > richlistitem[originaltype="login"] > .ac-site-icon {
-  fill: GrayText !important;
-}
+#PopupAutoComplete > richlistbox > richlistitem {
+  &[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
+  &[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,
+  &[originaltype="login"] > .ac-site-icon {
+    fill: GrayText !important;
+  }
 
-#PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"] {
-  --panel-border-color: var(--panel-bgcolor);
-  color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FieldText */
-  background-color: var(--arrowpanel-dimmed, hsla(0, 0%, 80%, 0.35)) !important; /* Original: hsla(0,0%,80%,.35) */
-  border-color: var(--panel-border-color) !important; /* Original: rgba(38,38,38,.15) */
-}
+  &[originaltype="loginsFooter"] {
+    --panel-border-color: var(--panel-bgcolor);
+    color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: FieldText */
+    background-color: var(--arrowpanel-dimmed, hsla(0, 0%, 80%, 0.35)) !important; /* Original: hsla(0,0%,80%,.35) */
+    border-color: var(--panel-border-color) !important; /* Original: rgba(38,38,38,.15) */
+  }
 
-#PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"]:hover,
-#PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"][selected] {
-  background-color: var(
-    --arrowpanel-dimmed-further,
-    hsla(0, 0%, 80%, 0.5)
-  ) !important; /* Original: hsla(0,0%,80%,.5), match arrowpanel-dimmed-further */
+  &[originaltype="loginsFooter"]:hover,
+  &[originaltype="loginsFooter"][selected] {
+    background-color: var(
+      --arrowpanel-dimmed-further,
+      hsla(0, 0%, 80%, 0.5)
+    ) !important; /* Original: hsla(0,0%,80%,.5), match arrowpanel-dimmed-further */
+  }
 }
