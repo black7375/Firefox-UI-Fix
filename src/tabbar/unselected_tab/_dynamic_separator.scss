@@ -1,4 +1,5 @@
-@mixin separatorShape() {
+//-- Mixin ---------------------------------------------------------------------
+@mixin _dynamicSeparatorShape() {
   /* Box Model */
   content: "";
   display: block;
@@ -20,6 +21,8 @@
   }
 }
 
+//------------------------------------------------------------------------------
+
 @include Option("userChrome.tab.newtab_button_like_tab") {
   #tabbrowser-arrowscrollbox {
     position: absolute;
@@ -27,7 +30,7 @@
 
   .tab-background::before,
   #tabs-newtab-button::before {
-    @include separatorShape;
+    @include _dynamicSeparatorShape;
 
     /* More position */
     transform: translateX(-2.5px) translateY(calc(-50% + 1px));
@@ -39,7 +42,7 @@
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
     .tab-background::after {
-    @include separatorShape;
+    @include _dynamicSeparatorShape;
   }
 
   .tab-background::before {

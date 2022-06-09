@@ -40,7 +40,7 @@
 }
 
 #context_sendTabToDevice:is([disabled="true"]) + #context_shareTabURL, /* Legacy */
-  #context_sendTabToDevice:is([disabled="true"]) + menuitem.share-tab-url-item {
+#context_sendTabToDevice:is([disabled="true"]) + menuitem.share-tab-url-item {
   /* At windows */
   --menuitem-image: url("../icons/share.svg");
 }
@@ -85,11 +85,17 @@
 .customize-context-moveToPanel {
   --menuitem-image: url("chrome://browser/skin/pin-12.svg");
 }
-.toolbar-context-autohide-downloads-button {
-  --menuitem-image: url("../icons/password-hide.svg");
+#toolbar-context-autohide-downloads-button {
+  /* checkbox */
+  --menuitem-image: url("../icons/eye-tracking-off.svg");
 }
 .customize-context-removeFromToolbar {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+
+#toolbar-context-always-open-downloads-panel {
+  /* checkbox */
+  --menuitem-image: url("../icons/drawer-arrow-download.svg");
 }
 #toolbar-context-openANewTab {
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
@@ -112,7 +118,7 @@
 
 #toggle_toolbar-menubar {
   /* checkbox */
-  /* --menuitem-image: url("../icons/calendar-agenda.svg"); */
+  --menuitem-image: url("../icons/calendar-agenda.svg");
 }
 #toggle_PersonalToolbar {
   /* Also placeContext */
@@ -121,4 +127,12 @@
 
 menuitem.viewCustomizeToolbar {
   --menuitem-image: url("chrome://browser/skin/customize.svg");
+}
+
+.fullscreen-context-autohide {
+  /* checkbox */
+  --menuitem-image: url("../icons/eye-tracking-off.svg");
+}
+#toolbar-context-menu > menuitem[data-l10n-id="full-screen-exit"] {
+  --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
 }

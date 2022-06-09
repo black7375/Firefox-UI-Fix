@@ -1,173 +1,102 @@
+$iconSelector: "> .menu-iconic-left > .menu-iconic-icon";
+$checkedIconSelector: "> .menu-iconic-left[checked=\"true\"] > .menu-iconic-icon";
+
 /*- Radio Button ---------------------------------------------------------*/
 menuitem[type="radio"] {
-  /* margin-inline-start: 0 !important; */
-  appearance: none !important;
-}
+  @include Proton.RadioGlobal;
 
-menuitem[type="radio"] > .menu-iconic-left > .menu-iconic-icon {
-  appearance: none !important;
-  width: 16px !important;
-  height: 16px !important;
-  padding: 0 !important;
-  border: 1px solid var(--in-content-box-border-color) !important;
-  border-radius: 100% !important;
-  margin-block: 2px !important; /* extend the vertical clicktarget */
-  margin-inline: 0 6px !important;
-  background-color: var(--in-content-button-background) !important;
-  background-position: center !important;
-  flex-shrink: 0 !important; /* avoid shrinking inside flex container */
-}
+  #{$iconSelector} {
+    @include Proton.RadioIcon;
+  }
+  #{$checkedIconSelector} {
+    @include Proton.RadioCheckedIcon;
+  }
 
-menuitem[type="radio"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
-  background-color: var(--in-content-button-background-hover) !important;
-  color: var(--in-content-button-text-color-hover) !important;
-}
+  &:not([disabled="true"]):hover {
+    #{$iconSelector} {
+      @include Proton.RadioIconHover;
+    }
+    &:active #{$iconSelector} {
+      @include Proton.RadioIconActive;
+    }
+  }
 
-menuitem[type="radio"]:not([disabled="true"]):hover:active > .menu-iconic-left > .menu-iconic-icon {
-  background-color: var(--in-content-button-background-active) !important;
-}
+  &:not([disabled="true"])[checked="true"]:hover {
+    #{$iconSelector} {
+      @include Proton.RadioCheckedIconHover;
+    }
+    &:active #{$iconSelector} {
+      @include Proton.RadioCheckedIconActive;
+    }
+  }
 
-menuitem[type="radio"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
-  -moz-context-properties: fill !important;
-  fill: currentColor !important;
-  color: var(--in-content-primary-button-text-color) !important;
-  background-color: var(--in-content-primary-button-background) !important;
-  background-image: url("chrome://global/skin/icons/radio.svg") !important;
-  border-color: transparent !important;
-
-  /* Style the button also when printing with "Print Backgrounds" unchecked */
-  color-adjust: exact !important;
-}
-
-menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover > .menu-iconic-left > .menu-iconic-icon {
-  background-color: var(--in-content-primary-button-background-hover) !important;
-  color: var(--in-content-primary-button-text-color-hover) !important;
-}
-
-menuitem[type="radio"]:not([disabled="true"])[checked="true"]:hover:active > .menu-iconic-left > .menu-iconic-icon {
-  background-color: var(--in-content-primary-button-background-active) !important;
-}
-
-menuitem[type="radio"] > .menu-iconic-text {
-  margin-inline: 0 8px !important;
-  padding-inline-start: 0 !important;
+  > .menu-iconic-text {
+    @include Proton.RadioLabel;
+  }
 }
 
 /* Disabled checkboxes, radios and labels */
 menuitem[type="radio"][disabled="true"],
 menuitem[type="checkbox"][disabled="true"] {
-  color: inherit !important;
-}
-
-menuitem[type="radio"][disabled="true"],
-menuitem[type="checkbox"][disabled="true"] {
-  opacity: 0.5 !important;
+  @include Proton.DisabledMenuItem;
 }
 
 /*- Check Box ------------------------------------------------------------*/
 /* From checkbox.css */
 menuitem[type="checkbox"] {
-  appearance: none !important;
-  -moz-box-align: center !important;
-  margin: 0px 2px !important;
-}
+  @include Proton.CheckboxGlobal(true);
 
-menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
-  margin-inline-end: 2px !important;
-}
-menuitem[type="checkbox"] > .menu-iconic-text {
-  margin: 1px 0 !important;
-}
-
-menuitem[type="checkbox"][disabled="true"] {
- opacity: 0.4 !important;
-}
-
-menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
-  appearance: none !important;
-  color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
-  background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
-  border: 1px solid currentColor !important;
-  border-radius: 2px !important;
-  margin-inline-end: 6px !important;
-}
-
-menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
-  height: 16px !important;
-  width: 16px !important;
-}
-
-menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
-  background-color: var(
-    --checkbox-unchecked-hover-bgcolor,
-    color-mix(in srgb, -moz-accent-color 4%, Field)
-  ) !important;
-}
-
-menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left > .menu-iconic-icon {
-  background-color: var(
-    --checkbox-unchecked-active-bgcolor,
-    color-mix(in srgb, -moz-accent-color 8%, Field)
-  ) !important;
-}
-
-menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
-  border-color: var(--checkbox-checked-border-color, transparent) !important;
-  background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
-  background-image: url("chrome://global/skin/icons/check.svg") !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  -moz-context-properties: fill !important;
-  fill: currentColor !important;
-  color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
-  /* Style the button also when printing with "Print Backgrounds" unchecked */
-  color-adjust: exact !important;
-}
-
-menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
-  background-color: var(
-    --checkbox-checked-hover-bgcolor,
-    color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
-  ) !important;
-}
-
-menuitem[type="checkbox"]:not([disabled="true"]):hover:active
-  > .menu-iconic-left[checked="true"]
-  > .menu-iconic-icon {
-  background-color: var(
-    --checkbox-checked-active-bgcolor,
-    color-mix(in srgb, currentColor 25%, -moz-accent-color)
-  ) !important;
-}
-
-menuitem[type="checkbox"]:focus > .menu-iconic-left > .menu-iconic-icon {
-  outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
-  outline-offset: var(--focus-outline-offset, 2px) !important;
-}
-
-@include Contrast {
-  menuitem[type="checkbox"]:not([disabled="true"]) > .menu-iconic-left > .menu-iconic-icon {
-    /* color will set the border-color on the check due to how HCM works for in-content pages. */
-    color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
+  #{$iconSelector} {
+    @include Proton.CheckboxIcon;
+  }
+  #{$checkedIconSelector} {
+    @include Proton.CheckboxCheckedIcon;
   }
 
-  menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] {
-   color: var(--checkbox-checked-border-color, currentColor) !important;
-   fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+  &:not([disabled="true"]):hover {
+    #{$iconSelector} {
+      @include Proton.CheckboxIconHover;
+    }
+    &:active #{$iconSelector} {
+      @include Proton.CheckboxIconActive;
+    }
+
+    #{$checkedIconSelector} {
+      @include Proton.CheckboxCheckedIconHover;
+    }
+    &:active #{$checkedIconSelector} {
+      @include Proton.CheckboxCheckedIconActive;
+    }
   }
 
-  menuitem[type="checkbox"]:not([disabled="true"]):hover:active
-    > .menu-iconic-left[checked="true"]
-    > .menu-iconic-icon,
-  menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
-    color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
-    fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+  &:focus #{$iconSelector} {
+    @include Proton.CheckboxFocusRing;
   }
-}
 
-/* From common.css */
-menuitem[type="checkbox"] > .menu-iconic-left > .menu-iconic-icon {
-  margin-block: 2px !important;
+  @include Contrast {
+    &:not([disabled="true"]) #{$iconSelector} {
+      @include Proton.CheckboxIconHoverContrast;
+    }
+
+    > .menu-iconic-left[checked="true"] {
+      @include Proton.CheckboxCheckedIconContrast;
+    }
+
+    &:not([disabled="true"]):hover:active,
+    &:not([disabled="true"]):hover {
+      #{$checkedIconSelector} {
+        @include Proton.CheckboxCheckedIconHoverContrast;
+      }
+    }
+  }
+
+  > .menu-iconic-text {
+    @include Proton.ChexboxLabel;
+  }
+
+  &[disabled="true"] {
+    @include Proton.DisabledChexbox;
+  }
 }
 
 /*- Menu Separtor --------------------------------------------------------*/
@@ -175,8 +104,10 @@ menuseparator {
   appearance: none !important;
   min-width: 2px;
   min-height: 0;
+
   border-top: 1px solid var(--in-content-box-border-color, ThreeDDarkShadow);
   border-bottom: none;
-  margin: var(--panel-separator-margin, 6px);
+
   padding: 0;
+  margin: var(--panel-separator-margin, 6px);
 }

@@ -21,32 +21,35 @@
     font-size: inherit !important;
     padding: 8px !important;
     margin: 2px 4px !important;
-  }
-  #locationTextBox:focus {
-    border-color: transparent !important;
-    outline: 2px solid var(--in-content-focus-outline-color) !important;
-    outline-offset: -1px !important; /* Prevents antialising around the corners */
-  }
-  #locationTextBox:-moz-ui-invalid {
-    border-color: transparent !important;
-    outline: 2px solid var(--in-content-border-invalid) !important;
-    outline-offset: -1px !important; /* Prevents antialising around the corners */
-  }
-  #locationTextBox:disabled {
-    opacity: 0.4 !important;
+
+    &:focus {
+      border-color: transparent !important;
+      outline: 2px solid var(--in-content-focus-outline-color) !important;
+      outline-offset: -1px !important; /* Prevents antialising around the corners */
+    }
+    &:-moz-ui-invalid {
+      border-color: transparent !important;
+      outline: 2px solid var(--in-content-border-invalid) !important;
+      outline-offset: -1px !important; /* Prevents antialising around the corners */
+    }
+    &:disabled {
+      opacity: 0.4 !important;
+    }
   }
 
-  #exceptiondialog:first-child > hbox > vbox:not([flex="1"]) {
-    width: 48px !important;
-    height: 48px !important;
-    background-image: url("chrome://global/skin/icons/warning.svg") !important;
-    background-size: 48px !important;
-    background-repeat: no-repeat !important;
-
-    -moz-context-properties: fill !important;
-    fill: currentColor !important;
-  }
-  #exceptiondialog:first-child > hbox > vbox > image {
-    display: none !important;
+  #exceptiondialog:first-child > hbox > vbox {
+    &:not([flex="1"]) {
+      width: 48px !important;
+      height: 48px !important;
+      background-image: url("chrome://global/skin/icons/warning.svg") !important;
+      background-size: 48px !important;
+      background-repeat: no-repeat !important;
+  
+      -moz-context-properties: fill !important;
+      fill: currentColor !important;
+    }
+    > image {
+      display: none !important;
+    }
   }
 }

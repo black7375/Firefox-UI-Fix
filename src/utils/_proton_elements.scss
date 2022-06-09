@@ -1,0 +1,157 @@
+//== Radio Button ==============================================================
+@mixin RadioGlobal {
+  /* margin-inline-start: 0 !important; */
+  appearance: none !important;
+}
+
+@mixin RadioIcon {
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+
+  border: 1px solid var(--in-content-box-border-color) !important;
+  border-radius: 100% !important;
+
+  padding: 0 !important;
+  margin-inline: 0 6px !important;
+  margin-block: 2px !important; /* extend the vertical clicktarget */
+
+  background-color: var(--in-content-button-background) !important;
+  background-position: center !important;
+
+  flex-shrink: 0 !important; /* avoid shrinking inside flex container */
+}
+
+@mixin RadioCheckedIcon {
+  -moz-context-properties: fill !important;
+  fill: currentColor !important;
+  color: var(--in-content-primary-button-text-color) !important;
+
+  background-color: var(--in-content-primary-button-background) !important;
+  background-image: url("chrome://global/skin/icons/radio.svg") !important;
+  border-color: transparent !important;
+
+  /* Style the button also when printing with "Print Backgrounds" unchecked */
+  color-adjust: exact !important;
+}
+
+@mixin RadioIconHover {
+  background-color: var(--in-content-button-background-hover) !important;
+  color: var(--in-content-button-text-color-hover) !important;
+}
+
+@mixin RadioIconActive {
+  background-color: var(--in-content-button-background-active) !important;
+}
+
+@mixin RadioCheckedIconHover {
+  background-color: var(--in-content-primary-button-background-hover) !important;
+  color: var(--in-content-primary-button-text-color-hover) !important;
+}
+
+@mixin RadioCheckedIconActive {
+  background-color: var(--in-content-primary-button-background-active) !important;
+}
+
+@mixin RadioLabel {
+  margin-inline: 0 8px !important;
+  padding-inline-start: 0 !important;
+}
+
+@mixin DisabledMenuItem {
+  color: inherit !important;
+  opacity: 0.5 !important;
+}
+
+//== Check Box =================================================================
+@mixin CheckboxGlobal($content: false) {
+  appearance: none !important;
+  -moz-box-align: center !important;
+  margin: if($content, 0px, 4px) 2px !important;
+}
+
+@mixin CheckboxIcon {
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+
+  border: 1px solid currentColor !important;
+  border-radius: 2px !important;
+
+  color: var(--checkbox-border-color, ThreeDDarkShadow) !important;
+  background-color: var(--checkbox-unchecked-bgcolor, Field) !important;
+
+  margin-inline-end: 6px !important; /* or 2px */
+  margin-block: 2px !important; /* From common.css */
+}
+
+@mixin CheckboxCheckedIcon {
+  -moz-context-properties: fill !important;
+  fill: currentColor !important;
+  color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+  border-color: var(--checkbox-checked-border-color, transparent) !important;
+
+  background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
+  background-image: url("chrome://global/skin/icons/check.svg") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+
+  /* Style the button also when printing with "Print Backgrounds" unchecked */
+  color-adjust: exact !important;
+}
+
+@mixin CheckboxIconHover {
+  background-color: var(
+    --checkbox-unchecked-hover-bgcolor,
+    color-mix(in srgb, -moz-accent-color 4%, Field)
+  ) !important;
+}
+
+@mixin CheckboxIconActive {
+  background-color: var(
+    --checkbox-unchecked-active-bgcolor,
+    color-mix(in srgb, -moz-accent-color 8%, Field)
+  ) !important;
+}
+
+@mixin CheckboxCheckedIconHover {
+  background-color: var(
+    --checkbox-checked-hover-bgcolor,
+    color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
+  ) !important;
+}
+
+@mixin CheckboxCheckedIconActive {
+  background-color: var(
+    --checkbox-checked-active-bgcolor,
+    color-mix(in srgb, currentColor 25%, -moz-accent-color)
+  ) !important;
+}
+
+@mixin CheckboxIconHoverContrast {
+  /* color will set the border-color on the check due to how HCM works for in-content pages. */
+  color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
+}
+
+@mixin CheckboxCheckedIconContrast {
+  color: var(--checkbox-checked-border-color, currentColor) !important;
+  fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+}
+
+@mixin CheckboxCheckedIconHoverContrast {
+  color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+  fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+}
+
+@mixin CheckboxFocusRing {
+  outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+  outline-offset: var(--focus-outline-offset, 2px) !important;
+}
+
+@mixin ChexboxLabel {
+  margin: 1px 0 !important;
+}
+
+@mixin DisabledChexbox {
+  opacity: 0.4 !important;
+}
