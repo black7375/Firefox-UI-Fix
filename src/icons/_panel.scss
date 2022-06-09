@@ -398,6 +398,17 @@ panelMenuBookmarkThisPage[starred] {
   }
 }
 
+
+/* BMB_bookmarksToolbarPopup */
+#BMB_viewBookmarksToolbar {
+  &[data-l10n-args='{"isVisible":true}'] {
+    --menuitem-image: url("../icons/eye-hide.svg")
+  }
+  &[data-l10n-args='{"isVisible":false}'] {
+    --menuitem-image: url("../icons/eye-show.svg")
+  }
+}
+
 /*= protections-popup ========================================================*/
 #protections-popup-settings-button > .protections-popup-settings-icon,
 #protections-popup-show-report-button > .protections-popup-show-report-icon {

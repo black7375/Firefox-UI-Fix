@@ -5936,6 +5936,14 @@
       display: -moz-box !important;
     }
   }
+  /* BMB_bookmarksToolbarPopup */
+  #BMB_viewBookmarksToolbar[data-l10n-args='{"isVisible":true}'] {
+    --menuitem-image: url("../icons/eye-hide.svg");
+  }
+  #BMB_viewBookmarksToolbar[data-l10n-args='{"isVisible":false}'] {
+    --menuitem-image: url("../icons/eye-show.svg");
+  }
+
   /*= protections-popup ========================================================*/
   #protections-popup-settings-button > .protections-popup-settings-icon,
   #protections-popup-show-report-button > .protections-popup-show-report-icon {
@@ -6022,7 +6030,8 @@
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
   .openintabs-menuitem,
-  #blockedPopupDontShowMessage {
+  #blockedPopupDontShowMessage,
+  #BMB_viewBookmarksToolbar {
     /* Color */
     -moz-context-properties: fill, fill-opacity !important;
     fill: currentColor !important;
@@ -6063,7 +6072,8 @@
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
   .openintabs-menuitem,
-  #blockedPopupDontShowMessage {
+  #blockedPopupDontShowMessage,
+  #BMB_viewBookmarksToolbar {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
   }
@@ -6118,7 +6128,8 @@
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
     .openintabs-menuitem,
-    #blockedPopupDontShowMessage {
+    #blockedPopupDontShowMessage,
+    #BMB_viewBookmarksToolbar {
       background-position: left var(--context-menu-background-padding) center !important;
       padding-inline-start: 0 !important;
     }
@@ -6147,7 +6158,8 @@
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup) > menuitem,
     .openintabs-menuitem,
-    #blockedPopupDontShowMessage {
+    #blockedPopupDontShowMessage,
+    #BMB_viewBookmarksToolbar {
       padding-inline-start: var(--menu-background-padding-default) !important;
       margin-left: 0 !important;
     }
