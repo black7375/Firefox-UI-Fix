@@ -68,11 +68,6 @@
     margin-left: -1px;
   }
 
-  /*= Titlebar Container Size at photon-style compact maximized #384 ===========*/
-  :root[tabsintitlebar][sizemode="maximized"] #titlebar {
-    appearance: unset !important;
-  }
-
   /*= Disabled menu background color ===========================================*/
   menuitem[disabled="true"],
   menu[disabled="true"] {
@@ -319,6 +314,19 @@
         > .tab-background:not(:-moz-lwtheme) {
         box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
       }
+    }
+  }
+  /*= Titlebar Container Size at maximized #384 ================================*/
+  @media (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win10),
+    (-moz-platform: windows-win10) {
+    :root[tabsintitlebar][sizemode="maximized"] #titlebar {
+      /* -moz-default-appearance: -moz-window-titlebar */
+      appearance: none !important;
+      padding-top: 8px;
     }
   }
 }
