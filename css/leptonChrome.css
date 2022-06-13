@@ -6377,6 +6377,12 @@
       --menuitem-image: url("../icons/share.svg");
     }
 
+    @supports -moz-bool-pref("userChrome.icon.context_menu.share") {
+      #context_shareTabURL,
+      menuitem.share-tab-url-item {
+        --menuitem-image: url("../icons/share.svg");
+      }
+    }
     #context_reopenInContainer {
       --menuitem-image: url("../icons/container-openin-16.svg");
     }
