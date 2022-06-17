@@ -7,12 +7,15 @@
     --controlBar-height: 40px;
     /* Original: 40px, Replace to this value */
   }
-
   #controlsContainer .touch {
     --button-size: 48px !important;
     /* Original: 40px */
     --controlBar-height: 52px;
     /* Original: 52px */
+  }
+  #controlsContainer .controlBar {
+    height: var(--controlBar-height) !important;
+    /* Original: 40px */
   }
 
   .videocontrols[inDOMFullscreen] #controlsContainer {
@@ -25,19 +28,12 @@
     --controlBar-height: 64px;
     /* Original: 40px */
   }
-
   .videocontrols[inDOMFullscreen] #controlsContainer .touch {
     --button-size: 72px !important;
     /* Original: 40px */
     --controlBar-height: 64px;
     /* Original: 52px */
   }
-
-  #controlsContainer .controlBar {
-    height: var(--controlBar-height) !important;
-    /* Original: 40px */
-  }
-
   .videocontrols[inDOMFullscreen] #controlsContainer .controlBar {
     padding-bottom: 8px !important;
   }
@@ -56,18 +52,17 @@
     box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2), 0 8px 12px 1px var(--box-shadow3);
     /* Or: 0 2px 15px rgba(0,0,0,.1); */
   }
-
-  video {
-    --duration-color: #eee;
-    --media-background: linear-gradient(transparent, rgba(26, 26, 26, 0.85));
-  }
-
   @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
     audio {
       --box-shadow1: rgba(249, 249, 250, 0.12);
       --box-shadow2: rgba(91, 91, 102, 0.12);
       --box-shadow3: rgba(82, 82, 94, 0.04);
     }
+  }
+
+  video {
+    --duration-color: #eee;
+    --media-background: linear-gradient(transparent, rgba(26, 26, 26, 0.85));
   }
   @media (prefers-contrast) {
     video {
@@ -77,10 +72,10 @@
       /* Like Original */
     }
   }
+
   #controlsContainer .controlBar {
     background: var(--media-background) !important;
   }
-
   #controlsContainer .duration {
     color: var(--duration-color) !important;
     /* Original: #929292 */
@@ -161,7 +156,6 @@
       padding-inline: var(--controlBar-padding-inline) !important;
       /* Original: 9px */
     }
-
     #controlsContainer .scrubberStack {
       /* Vertical */
       order: var(--scrubberStack-order);
@@ -172,7 +166,6 @@
       width: var(--scrubberStack-twoline-width, var(--scrubberStack-width));
       margin-inline: var(--scrubberStack-margin-inline) !important;
     }
-
     #controlsContainer .positionDurationBox {
       flex-grow: var(--positionDurationBox-flex-grow);
       margin-left: var(--positionDurationBox-margin-left);
@@ -192,7 +185,6 @@
   #controlsContainer .fullscreenButton {
     background-image: url("../icons/enter-fullscreen.svg") !important;
   }
-
   #controlsContainer .fullscreenButton[fullscreened] {
     background-image: url("../icons/exit-fullscreen.svg") !important;
   }
@@ -209,11 +201,9 @@
     cursor: pointer;
     opacity: 0.65 !important;
   }
-
   #controlsContainer .controlsSpacerStack:hover > .clickToPlay {
     opacity: 0.85 !important;
   }
-
   #controlsContainer .controlsSpacerStack:hover > .clickToPlay:hover {
     opacity: 1 !important;
     fill: #48a0f7 !important;
@@ -228,13 +218,11 @@
       transition: transform 350ms ease;
       opacity: 1 !important;
     }
-
     #controlsContainer .controlBar[hidden] {
       transform: translateY(100%);
       transition: transform 350ms ease-in-out, opacity 1s ease 100ms !important;
       opacity: 0 !important;
     }
-
     #controlsContainer .controlBar[hidden] .progressBar,
     #controlsContainer .controlBar[hidden] .bufferBar {
       display: unset !important;
