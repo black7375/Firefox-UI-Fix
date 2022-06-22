@@ -791,6 +791,8 @@
       }
 
       /* Text */
+      input,
+      textarea,
       .AutoSearchInput-query,
       .AutoSearchInput-suggestions-list,
       .Page-content h1,
@@ -799,6 +801,7 @@
       .Home-SubjectShelf-link:link,
       .Home-SubjectShelf-link:visited,
       .DropdownMenuItem-link a,
+      .DropdownMenuItem-link button,
       .Select,
       .Badge,
       .Notice-generic,
@@ -824,6 +827,7 @@
       .SearchResult:hover .SearchResult-link,
       .Home-SubjectShelf-link:is(:active, :focus, :hover),
       .DropdownMenuItem-link a:is(:active, :focus, :hover),
+      .DropdownMenuItem-link button:is(:active, :focus, :hover),
       .AddonMeta .MetadataCard-title a:is(:active, :hover),
       .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:is(:active, :hover),
       .AddonMeta .MetadataCard-content a:is(:active, :hover),
@@ -914,6 +918,8 @@
         background: linear-gradient(rgba(255, 255, 255, 0), var(--in-content-table-background)) !important;
       }
 
+      input,
+      textarea,
       .AutoSearchInput-query,
       .AutoSearchInput-suggestions-list,
       .SecondaryHero-module,
@@ -984,15 +990,29 @@
         box-shadow: 0 0 2px var(--in-content-border-color) !important;
       }
 
+      input,
+      textarea {
+        border-color: var(--in-content-box-border-color) !important;
+      }
+
+      .UserProfileEdit input:disabled,
+      .UserProfileEdit textarea:disabled {
+        background-color: var(--in-content-box-background-odd) !important;
+      }
+
       .AutoSearchInput-query {
         border: 1px solid var(--in-content-table-background) !important;
       }
 
-      .AutoSearchInput-query:is(:hover, :focus) {
+      .AutoSearchInput-query:is(:hover, :focus),
+      .UserProfileEditNotifications .UserProfileEditNotification-input:checked ~ .UserProfileEditNotification-checkbox {
         border-color: var(--in-content-primary-button-background) !important;
       }
 
-      .AutoSearchInput-query:focus {
+      .UserProfileEdit input:focus,
+      .UserProfileEdit textarea:focus,
+      .AutoSearchInput-query:focus,
+      .UserProfileEditNotifications .UserProfileEditNotification-input:focus ~ .UserProfileEditNotification-checkbox {
         box-shadow: inset 0 0 0 1px var(--in-content-primary-button-background),
           0 0 0 1px var(--in-content-primary-button-background), 0 0 0 4px rgba(0, 211, 255, 0.3) !important;
       }
