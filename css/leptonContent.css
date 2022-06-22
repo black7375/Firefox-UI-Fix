@@ -840,6 +840,7 @@
       .AddonTitle a,
       .TooltipMenu-opener,
       .LanguageTools .Card-contents a,
+      .Button--primary,
       .blog-entry-read-more-link,
       .blogpost-nav-next.blogpost-nav-no-prev:hover p,
       .blogpost-content-wrapper p a,
@@ -881,12 +882,14 @@
       }
 
       /* Background */
-      .Button--action {
+      .Button--action,
+      .DevHub-Navigation ul li.DevHub-Navigation-Register .Button {
         color: var(--in-content-primary-button-text-color) !important;
         background: var(--in-content-primary-button-background) !important;
       }
 
       .Select,
+      .Button--primary,
       .Button--neutral,
       .Button--neutral:link,
       .Notice-button,
@@ -894,6 +897,7 @@
         background-color: var(--in-content-button-background) !important;
       }
 
+      .Button--primary:hover,
       .Button--neutral.Button--micro:not(.Button--disabled):hover,
       .Button--neutral:not(.Button--disabled):hover,
       .Notice-button:hover {
@@ -901,7 +905,8 @@
       }
 
       .Button--action.Button--micro:not(.Button--disabled):hover,
-      .Button--action:not(.Button--disabled):hover {
+      .Button--action:not(.Button--disabled):hover,
+      .DevHub-Navigation ul li.DevHub-Navigation-Register .Button:hover {
         background: var(--in-content-primary-button-background-hover) !important;
       }
 
@@ -1010,6 +1015,12 @@
       }
 
       /* /developers/ */
+      .DevHub-Navigation-Logo > .Logo {
+        -moz-context-properties: fill !important;
+        fill: var(--in-content-primary-button-background) !important;
+        background-image: url("../icons/addons-logo.svg") !important;
+      }
+
       .DevHub-Navigation,
       .DevHub-submit-addon,
       .DevHub-get-involved,
@@ -1032,10 +1043,17 @@
         color: var(--in-content-page-color) !important;
       }
 
+      .DevHub-content-copy p,
+      .DevHub-callout-box p {
+        color: var(--in-content-deemphasized-text) !important;
+      }
+
       .DevHub-Banner a,
       .DevHub-Footer a,
       .DevHub-MyAddons-list a,
-      .DevHub-MyAddons-item-buttons-all {
+      .DevHub-MyAddons-item-buttons-all,
+      .DevHub-content-copy a,
+      .DevHub-callout-box a {
         color: var(--in-content-link-color) !important;
       }
     }
