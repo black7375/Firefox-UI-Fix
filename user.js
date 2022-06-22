@@ -108,7 +108,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);
-// user_pref("userChrome.icon.context_menu.share",             true);
+// user_pref("userChrome.icon.context_menu.full",             true);
 
 // -- User Content -------------------------------------------------------------
 // user_pref("userContent.player.ui.twoline",                  true);

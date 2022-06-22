@@ -6377,7 +6377,7 @@
       --menuitem-image: url("../icons/share.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.icon.context_menu.share") {
+    @supports -moz-bool-pref("userChrome.icon.context_menu.full") {
       #context_shareTabURL,
       menuitem.share-tab-url-item {
         --menuitem-image: url("../icons/share.svg");
@@ -7087,6 +7087,12 @@
       --menuitem-image: url("../icons/undo.svg");
     }
 
+    @supports -moz-bool-pref("userChrome.icon.context_menu.full") {
+      #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"] {
+        --menuitem-image: url("../icons/redo.svg");
+      }
+    }
+
     #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_cut"] {
       --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
     }
@@ -7111,6 +7117,12 @@
     /* Browser's Searchbar, Libray's Searchbar, Page Info */
     .textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
       --menuitem-image: url("../icons/undo.svg");
+    }
+
+    @supports -moz-bool-pref("userChrome.icon.context_menu.full") {
+      .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
+        --menuitem-image: url("../icons/redo.svg");
+      }
     }
 
     .textbox-contextmenu > menuitem[data-l10n-id="text-action-cut"] {
