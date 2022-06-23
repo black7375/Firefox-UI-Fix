@@ -4,7 +4,7 @@
   /* Basic */
   .Page-content,
   .SecondaryHero,
-  body:not(.developer-hub):not(.statistics),
+  body,
   main[aria-label="Content"] {
     color: var(--in-content-page-color) !important;
     background: var(--in-content-page-background) !important;
@@ -104,7 +104,8 @@
 
   /* Background */
   .Button--action,
-  .DevHub-Navigation ul li.DevHub-Navigation-Register .Button {
+  .DevHub-Navigation ul li.DevHub-Navigation-Register .Button,
+  .DevHub-MyAddons-item-buttons-submit .Button {
     color: var(--in-content-primary-button-text-color) !important;
     background: var(--in-content-primary-button-background) !important;
   }
@@ -124,7 +125,8 @@
   }
   .Button--action.Button--micro:not(.Button--disabled):hover,
   .Button--action:not(.Button--disabled):hover,
-  .DevHub-Navigation ul li.DevHub-Navigation-Register .Button:hover {
+  .DevHub-Navigation ul li.DevHub-Navigation-Register .Button:hover,
+  .DevHub-MyAddons-item-buttons-submit .Button:hover {
     background: var(--in-content-primary-button-background-hover) !important;
   }
   .ShowMoreCard-contents::after {
@@ -250,9 +252,12 @@
     background: var(--in-content-page-background) !important;
     color: var(--in-content-page-color) !important;
   }
-  .DevHub-Footer,
-  .DevHub-callout-box {
+  .DevHub-Footer {
     background: var(--in-content-box-background) !important;
+    color: var(--in-content-page-color) !important;
+  }
+  .DevHub-callout-box {
+    background: var(--in-content-box-background-odd) !important;
     color: var(--in-content-page-color) !important;
   }
 
@@ -274,5 +279,204 @@
   .DevHub-content-copy a,
   .DevHub-callout-box a {
     color: var(--in-content-link-color) !important;
+  }
+
+  body:is(.developer-hub, .statistics) {
+    #main-wrapper,
+    .menu-nav > ul > li > ul::after,
+    .menu-nav > ul > li:hover::after,
+    .menu-nav > ul > li > ul,
+    .menu-nav > ul > li > ul a,
+    .menu-nav em,
+    .primary, .secondary,
+    .dashboard .listing .item {
+      background: var(--in-content-page-background) !important;
+      color: var(--in-content-page-color) !important;
+    }
+
+    /* Elements */
+    .menu-nav > ul > li > ul a:hover {
+      background: var(--in-content-box-background-odd) !important;
+    }
+
+    .menu-nav > ul > li > ul::after,
+    .menu-nav > ul > li > ul {
+      box-shadow: 0 0 3px var(--in-content-border-color) !important;
+    }
+
+    /* .developer-hub */
+    #footer {
+      background: linear-gradient(
+        to bottom,var(--in-content-page-background) 0,
+        var(--in-content-page-background) 123px,
+        #0c99d5 123px,
+        #0c99d5 200px,
+        var(--in-content-page-background) 200px,
+        rgba(12,153,213,0) 400px
+      ) !important;
+    }
+
+    /* Text */
+    /* .developer-hub */ #homepage h2,
+    /* .developer-hub */ header h2,
+    .primary h2,
+    h1,
+    hgroup h2.addon,
+    hgroup h2.collection,
+    h3,
+    .dashboard .listing .item,
+    .dashboard .listing .item:hover h5,
+    .island.criteria li,
+    .two-up div {
+      color: var(--in-content-page-color) !important;
+    }
+    .item-actions h5, .item-actions > ul, .item-actions > ul > li,
+    .dashboard .listing .item .item-actions a,
+    .edit-media-details,
+    .island.criteria li a.inactive {
+      color: var(--in-content-deemphasized-text) !important;
+    }
+
+    section[role="main"] a,
+    header a,
+    .more-info,
+    .primary a,
+    .secondary a,
+    .submission-type-tabs a,
+    .dashboard .listing .item:hover a,
+    .dashboard .listing .item:hover .item-actions a,
+    #create-addon a,
+    .html-support {
+      color: var(--in-content-link-color) !important;
+    }
+    .dashboard .listing .item:hover a {
+      color: var(--in-content-link-color-hover) !important;
+    }
+
+    .dashboard .listing .item .item-info .downloads,
+    .dashboard .listing .item .item-info .price,
+    .dashboard .listing .item .item-info .users {
+      color: var(--green-60) !important;
+    }
+
+    .status-admin-disabled b,
+    .status-disabled b,
+    .status-incomplete b,
+    .status-purgatory b {
+      color: var(--red-60) !important;
+    }
+
+    .submission-type-tabs a.active,
+    .island.criteria li.selected a {
+      color: var(--orange-50) !important;
+    }
+
+    /* Background */
+    .secondary .addon-status,
+    .devhub-form .item,
+    #icons_default {
+      border-color: var(--in-content-border-color) !important;
+      background: var(--in-content-box-background) !important;
+    }
+
+    .highlight,
+    .listing-footer, .tab-wrapper .fm-control {
+      color: var(--in-content-page-color) !important;
+      background: var(--in-content-box-info-background) !important;
+    }
+
+    .submission-type-tabs a,
+    #head-chart {
+      background: var(--in-content-page-background) !important;
+    }
+    #head-chart {
+      rect {
+        fill: var(--in-content-page-background) !important;
+      }
+      text{
+        fill: var(--in-content-deemphasized-text) !important;
+      }
+      .highcharts-legend .highcharts-legend-item:hover text {
+        fill: var(--in-content-page-color) !important;
+        paint-order: stroke !important;
+        stroke: var(--in-content-page-color) !important;
+        stroke-width: 0.4px !important;
+        stroke-linecap: butt !important;
+        stroke-linejoin: miter !important;
+      }
+      .highcharts-legend .highcharts-legend-item path[stroke="#CCC"] ~ text {
+        fill: #CCC !important;
+      }
+    }
+
+    #icons_default li a:hover,
+    #side-nav .active a,
+    .addon-submission-process .tip,
+    .devhub-form .tip,
+    a.remove,
+    span.remove,
+    ul.errorlist li span.tip {
+      background-color: var(--in-content-box-info-background) !important;
+    }
+    a.remove:hover, span.tip:hover {
+      background-color: var(--in-content-primary-button-background-hover) !important;
+    }
+
+    /* Border */
+    .submission-type-tabs a,
+    .devhub-sidebar div.item,
+    .devhub-form .listing-footer {
+      border-color: var(--in-content-border-color) !important;
+    }
+
+    #background-wrapper,
+    #main-wrapper {
+      border-color: var(--in-content-page-background) !important;
+    }
+
+    .item-actions a.more-actions:hover:after,
+    .item-actions button.link.more-actions:hover:after,
+    #change-locale::after {
+      border-top-color: var(--in-content-link-color) !important;
+    }
+
+    /* Othres */
+    #promos .view-button a,
+    #upload-file-finish.button,
+    #upload-file-widget .button.prominent,
+    .button,
+    .cta a.button:link,
+    .cta a.button:visited,
+    .linux .button.linux,
+    .mac .button.mac,
+    .other .button.bsd,
+    .other .button.solaris,
+    .sidebar a.button,
+    .sidebar button,
+    .theme .choices button,
+    .theme-queue a.button,
+    .theme-queue button,
+    .windows .button.windows,
+    a.button:link,
+    a.button:visited,
+    a.delete-button.delete-addon,
+    button,
+    button.button,
+    input:not(.upvotes):not(.downvotes)[type="submit"] {
+      color: var(--in-content-primary-button-text-color) !important;
+      background: var(--in-content-primary-button-background) !important;
+      &:is(.selected, :focus, :hover) {
+        background: var(--in-content-primary-button-background-hover) !important;
+      }
+    }
+
+    .edit_with_prefix span,
+    .edit_with_suffix span {
+      border-color: var(--in-content-box-border-color) !important;
+      background-color: var(--in-content-box-background-odd) !important;
+      color: var(--in-content-deemphasized-text) !important;
+      padding-block: 3px !important;
+      cursor: not-allowed;
+    }
   }
 }
