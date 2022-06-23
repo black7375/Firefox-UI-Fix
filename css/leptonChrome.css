@@ -6377,7 +6377,7 @@
       --menuitem-image: url("../icons/share.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.icon.context_menu.full") {
+    @supports -moz-bool-pref("userChrome.icon.menu.full") {
       #context_shareTabURL,
       menuitem.share-tab-url-item {
         --menuitem-image: url("../icons/share.svg");
@@ -6697,6 +6697,12 @@
 
     #context-undo {
       --menuitem-image: url("../icons/undo.svg");
+    }
+
+    @supports -moz-bool-pref("userChrome.icon.menu.full") {
+      #context-redo {
+        --menuitem-image: url("../icons/redo.svg");
+      }
     }
 
     #context-cut {
@@ -7087,7 +7093,7 @@
       --menuitem-image: url("../icons/undo.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.icon.context_menu.full") {
+    @supports -moz-bool-pref("userChrome.icon.menu.full") {
       #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"] {
         --menuitem-image: url("../icons/redo.svg");
       }
@@ -7119,7 +7125,7 @@
       --menuitem-image: url("../icons/undo.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.icon.context_menu.full") {
+    @supports -moz-bool-pref("userChrome.icon.menu.full") {
       .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
         --menuitem-image: url("../icons/redo.svg");
       }
@@ -7259,6 +7265,12 @@
     /*= menu_EditPopup ===========================================================*/
     #menu_undo {
       --menuitem-image: url("../icons/undo.svg");
+    }
+
+    @supports -moz-bool-pref("userChrome.icon.menu.full") {
+      #menu_redo {
+        --menuitem-image: url("../icons/redo.svg");
+      }
     }
 
     #menu_cut {

@@ -173,7 +173,7 @@
   --menuitem-image: url("../icons/undo.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"] {
-  @include Option("userChrome.icon.context_menu.full") {
+  @include Option("userChrome.icon.menu.full") {
     --menuitem-image: url("../icons/redo.svg");
   }
 }
@@ -202,7 +202,7 @@
   --menuitem-image: url("../icons/undo.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
-  @include Option("userChrome.icon.context_menu.full") {
+  @include Option("userChrome.icon.menu.full") {
     --menuitem-image: url("../icons/redo.svg");
   }
 }
