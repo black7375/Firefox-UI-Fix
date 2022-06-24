@@ -13,6 +13,7 @@
   /* Text */
   input,
   textarea,
+  select,
   .AutoSearchInput-query,
   .AutoSearchInput-suggestions-list,
   .Page-content h1,
@@ -109,6 +110,7 @@
     color: var(--in-content-primary-button-text-color) !important;
     background: var(--in-content-primary-button-background) !important;
   }
+  select,
   .Select,
   .Button--primary,
   .Button--neutral,
@@ -199,7 +201,8 @@
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     border-color: var(--in-content-box-border-color) !important;
   }
   .UserProfileEdit input:disabled,
@@ -295,7 +298,10 @@
     }
 
     /* Elements */
-    .menu-nav > ul > li > ul a:hover {
+    .menu-nav > ul > li > ul a:hover,
+    .install-note,
+    .modal,
+    .popup {
       background: var(--in-content-box-background-odd) !important;
     }
 
@@ -324,8 +330,12 @@
     hgroup h2.addon,
     hgroup h2.collection,
     h3,
+    .results h4,
     .dashboard .listing .item,
     .dashboard .listing .item:hover h5,
+    .secondary .addon-status,
+    .secondary .addon-status .addon-details li.addon-listed-status,
+    #refine-results h5,
     .island.criteria li,
     .two-up div {
       color: var(--in-content-page-color) !important;
@@ -333,6 +343,11 @@
     .item-actions h5, .item-actions > ul, .item-actions > ul > li,
     .dashboard .listing .item .item-actions a,
     .edit-media-details,
+    .devhub-form table th,
+    #recent-activity .listing .item .timestamp,
+    #upload-file .upload-status #uploadstatus,
+    #addon-validator-suite,
+    #addon-validator-suite .msg > *,
     .island.criteria li a.inactive {
       color: var(--in-content-deemphasized-text) !important;
     }
@@ -343,8 +358,11 @@
     .primary a,
     .secondary a,
     .submission-type-tabs a,
+    .popup a,
     .dashboard .listing .item:hover a,
     .dashboard .listing .item:hover .item-actions a,
+    #upload-status-results.status-pass strong,
+    #addon-validator-suite a,
     #create-addon a,
     .html-support {
       color: var(--in-content-link-color) !important;
@@ -374,7 +392,12 @@
     /* Background */
     .secondary .addon-status,
     .devhub-form .item,
-    #icons_default {
+    #icons_default,
+    .listing .item,
+    .object-lead,
+    #addon-validator-suite .results .tier-results,
+    #addon-validator-suite .suite,
+    #addon-validator-suite .suite-container {
       border-color: var(--in-content-border-color) !important;
       background: var(--in-content-box-background) !important;
     }
@@ -411,6 +434,7 @@
 
     #icons_default li a:hover,
     #side-nav .active a,
+    span.tip,
     .addon-submission-process .tip,
     .devhub-form .tip,
     a.remove,
@@ -424,6 +448,7 @@
 
     /* Border */
     .submission-type-tabs a,
+    .devhub-sidebar,
     .devhub-sidebar div.item,
     .devhub-form .listing-footer {
       border-color: var(--in-content-border-color) !important;
@@ -438,6 +463,27 @@
     .item-actions button.link.more-actions:hover:after,
     #change-locale::after {
       border-top-color: var(--in-content-link-color) !important;
+    }
+
+    install-note::after, .popup::after {
+      border-bottom-color: var(--in-content-box-background) !important;
+    }
+    .install-note::before, .popup::before {
+      border-bottom-color: grey !important;
+    }
+
+    #refine-results, .other-categories,
+    .versions .primary > .warning {
+      border-color: transparent !important;
+    }
+
+    .results {
+      border-color: var(--in-content-box-background-odd) !important;
+      background: transparent !important;
+    }
+    .results-inner {
+      border-color: var(--in-content-border-color) !important;
+      background: var(--in-content-border-color) !important;
     }
 
     /* Othres */
@@ -477,6 +523,23 @@
       color: var(--in-content-deemphasized-text) !important;
       padding-block: 3px !important;
       cursor: not-allowed;
+    }
+
+    .devhub-form .item_wrapper input[type="email"] {
+      appearance: none !important;
+      padding: 2px 5px;
+      border: 1px solid;
+    }
+
+    #addon-validator-suite .suite-summary {
+      color: var(--in-content-deemphasized-text) !important;
+      background: var(--in-content-button-background) !important;
+      border-top-color: var(--in-content-border-color) !important;;
+    }
+    #addon-validator-suite .context {
+      border-color: var(--in-content-box-border-color) !important;
+      background-color: var(--in-content-button-background) !important;
+      background: var(--in-content-table-background) !important;
     }
   }
 }
