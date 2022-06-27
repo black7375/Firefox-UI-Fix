@@ -4,18 +4,8 @@
 @mixin _library_contextMenu {
   #placesContext #{$_iconMenuitem},
   #placesContext #{$_iconMenu},
-  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
-    @content;
-  }
-}
-@mixin _library_nativeContextMenu {
-  :not(menu, #ContentSelectDropdown)
-    > menupopup
-    > #{$_iconMenuitem},
-  :not(menu, #ContentSelectDropdown)
-    > menupopup
-    > #{$_iconMenu} {
+  #{$_libraryMenuitem},
+  #{$_libraryMenu} {
     @content;
   }
 }
@@ -31,7 +21,7 @@
 }
 
 /* For native context menus */
-@include _library_nativeContextMenu {
+#{$_nestedPopupIconMenus} {
   @include _layout_icon_native_menus;
 }
 

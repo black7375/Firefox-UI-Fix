@@ -2,29 +2,6 @@
 
 //-- Mixin ---------------------------------------------------------------------
 // Components
-$_nestedPopupIcon: ":not(menu, #ContentSelectDropdown) > menupopup >";
-$_nestedPopupPadding: ":not(menu, #ContentSelectDropdown, #context-navigation) > menupopup >";
-$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)";
-
-$_nestedPopupIconMenus: selector.nest(
-  $_nestedPopupIcon,
-  "#{$_iconMenuitem}, #{$_iconMenu}"
-);
-$_nestedPopupPaddingMenus: selector.nest(
-  $_nestedPopupPadding,
-  "#{$_iconMenuitem}, #{$_iconMenu}"
-);
-$_iconMenuPopupMenus: selector.nest(
-  $_iconMenuPopup,
-  "#{$_iconMenuitem}, #{$_iconMenu}"
-);
-
-$_globalMenus: "#main-menubar > menu";
-$_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem";
-$_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu";
-$_sendTabMenuitem: "menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup) > menuitem";
-$_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar";
-
 $_layoutCommonMenus: (
   $_iconMenuPopupMenus,
   $_libraryMenuitem,
@@ -54,6 +31,7 @@ $_layoutCommonMenus: (
 }
 
 //------------------------------------------------------------------------------
+
 #{$_initialMenus},
 #{$_globalMenus} {
   @include _initial_menus;
