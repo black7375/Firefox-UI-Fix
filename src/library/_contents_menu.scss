@@ -1,18 +1,9 @@
 @import "../icons/layout_menu_common";
 
 //-- Mixin ---------------------------------------------------------------------
-@function _library_iconTargetSelector($target: "menu") {
-  // .menu-iconic, .menuitem-iconic: Alreay exist, not target.
-  // .in-menulist: Not a range because it is a select menu of web content.
-  // [type="checkbox"], [checked="true"]: There should be a check mark instead of an icon.
-  @return "#{$target}:not(.#{$target}-iconic, .in-menulist, [type=\"checkbox\"], [checked=\"true\"])";
-}
-$_library_menuitemSelector: _library_iconTargetSelector("menuitem");
-$_library_menuSelector: _library_iconTargetSelector("menu");
-
 @mixin _library_contextMenu {
-  #placesContext #{$_library_menuitemSelector},
-  #placesContext #{$_library_menuSelector},
+  #placesContext #{$_iconMenuitem},
+  #placesContext #{$_iconMenu},
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
   menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
     @content;
@@ -21,10 +12,10 @@ $_library_menuSelector: _library_iconTargetSelector("menu");
 @mixin _library_nativeContextMenu {
   :not(menu, #ContentSelectDropdown)
     > menupopup
-    > #{$_library_menuitemSelector},
+    > #{$_iconMenuitem},
   :not(menu, #ContentSelectDropdown)
     > menupopup
-    > #{$_library_menuSelector} {
+    > #{$_iconMenu} {
     @content;
   }
 }
@@ -51,19 +42,6 @@ $_library_menuSelector: _library_iconTargetSelector("menu");
 }
 
 /* Padding - Windows */
-@include OS($win) {
-  /* Checkbox */
-  :root {
-    --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
-  }
-  :not(menu, #ContentSelectDropdown, #context-navigation)
-    > menupopup
-    > menuitem[type="checkbox"][checked="false"]
-    > .menu-iconic-left {
-    padding-inline-start: var(--context-menu-text-padding);
-  }
-}
-
 @include _layout_root_win7_8;
 @include OS($win7, $win8) {
   @include _library_contextMenu {
@@ -88,8 +66,8 @@ $_library_menuSelector: _library_iconTargetSelector("menu");
   @include _layout_root_mac;
 
   /* context menu width */
-  #placesContext #{$_library_menuitemSelector},
-  #placesContext #{$_library_menuSelector} {
+  #placesContext #{$_iconMenuitem},
+  #placesContext #{$_iconMenu} {
     @include _layout_init_mac_width;
 
     > .menu-text {
@@ -99,7 +77,7 @@ $_library_menuSelector: _library_iconTargetSelector("menu");
   }
 
   /* Checkbox menuitem, None iconic menu */
-  #placesContext menuitem[type="checkbox"],
+  #placesContext menuitem[checked="true"],
   #placesContext menu:not(.menu-iconic) {
     @include _layout_init_mac_others;
   }

@@ -2319,8 +2319,8 @@
         /* Linux: menulist */
       }
 
-      #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-      #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+      #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+      #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
       menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
         /* Color */
@@ -2336,10 +2336,8 @@
       @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
         :not(menu, #ContentSelectDropdown)
           > menupopup
-          > menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-        :not(menu, #ContentSelectDropdown)
-          > menupopup
-          > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
           list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
         }
       }
@@ -2350,8 +2348,8 @@
         --context-menu-background-padding: var(--context-menu-background-padding-default);
       }
 
-      #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-      #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+      #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+      #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
       menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
         background-position: left var(--context-menu-background-padding) center !important;
@@ -2359,26 +2357,6 @@
       }
 
       /* Padding - Windows */
-      @media (-moz-os-version: windows-win7),
-        (-moz-platform: windows-win7),
-        (-moz-os-version: windows-win8),
-        (-moz-platform: windows-win8),
-        (-moz-os-version: windows-win10),
-        (-moz-platform: windows-win10) {
-        /* Checkbox */
-        :root {
-          --context-menu-text-padding: calc(
-            var(--menu-padding) + var(--context-menu-background-padding-default) + 16px
-          );
-        }
-
-        :not(menu, #ContentSelectDropdown, #context-navigation)
-          > menupopup
-          > menuitem[type="checkbox"][checked="false"]
-          > .menu-iconic-left {
-          padding-inline-start: var(--context-menu-text-padding);
-        }
-      }
       @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
         :root {
           --context-menu-background-padding-default: 2px;
@@ -2393,8 +2371,8 @@
         (-moz-platform: windows-win7),
         (-moz-os-version: windows-win8),
         (-moz-platform: windows-win8) {
-        #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-        #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
         menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
         menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
           background-position: left var(--context-menu-background-padding) center !important;
@@ -2411,8 +2389,8 @@
           );
         }
 
-        #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-        #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
+        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
         menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
         menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
           padding-inline-start: var(--menu-background-padding-default) !important;
@@ -2433,18 +2411,18 @@
         }
 
         /* context menu width */
-        #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]),
-        #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
+        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
           padding-inline-end: var(--context-menu-background-padding) !important;
         }
-        #placesContext menuitem:not(.menuitem-iconic, .in-menulist, [type="checkbox"], [checked="true"]) > .menu-text,
-        #placesContext menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) > .menu-text {
+        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]) > .menu-text,
+        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]) > .menu-text {
           /* text position */
           padding-inline-start: var(--context-menu-mac-padding) !important;
         }
 
         /* Checkbox menuitem, None iconic menu */
-        #placesContext menuitem[type="checkbox"],
+        #placesContext menuitem[checked="true"],
         #placesContext menu:not(.menu-iconic) {
           padding-inline-start: calc(
             var(--context-menu-background-padding) + var(--context-menu-mac-padding)

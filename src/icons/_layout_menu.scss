@@ -1,11 +1,6 @@
 @import "./layout_menu_common";
 
 //-- Mixin ---------------------------------------------------------------------
-// Items
-$_iconNoneCommon: ".in-menulist, [checked=\"true\"]";
-$_iconMenuitem: "menuitem:not(.menuitem-iconic, .bookmark-item, #{$_iconNoneCommon})";
-$_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
-
 // Components
 $_nestedPopupIcon: ":not(menu, #ContentSelectDropdown) > menupopup >";
 $_nestedPopupPadding: ":not(menu, #ContentSelectDropdown, #context-navigation) > menupopup >";
@@ -101,19 +96,6 @@ $_layoutCommonMenus: (
 }
 
 /* Padding - Windows */
-// @include OS($win) {
-//   /* Checkbox */
-//   :root {
-//     --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
-//   }
-//   :not(menu, #ContentSelectDropdown, #context-navigation)
-//     > menupopup
-//     > menuitem[type="checkbox"]:not([checked="true"])
-//     > .menu-iconic-left {
-//     padding-inline-start: var(--context-menu-text-padding);
-//   }
-// }
-
 @include _layout_root_win7_8;
 @include OS($win7, $win8) {
   @include _layoutIconMenus {

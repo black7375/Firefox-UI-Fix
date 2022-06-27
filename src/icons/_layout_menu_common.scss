@@ -1,3 +1,14 @@
+//-- Variables -----------------------------------------------------------------
+// Items
+// .menu-iconic, .menuitem-iconic: Alreay exist, not target.
+// .in-menulist: Not a range because it is a select menu of web content.
+// [checked="true"]: There should be a check mark instead of an icon.
+$_iconNoneCommon: ".in-menulist, [checked=\"true\"]";
+$_iconMenuitem: "menuitem:not(.menuitem-iconic, .bookmark-item, #{$_iconNoneCommon})";
+$_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
+
+//-- Mixin ---------------------------------------------------------------------
+// Init Menu
 $_initialMenus: selector.append(
   "menupopup menuitem, menupopup menu",
   ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
@@ -89,3 +100,17 @@ $_initialMenus: selector.append(
 @mixin _layout_init_mac_others() {
   padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
 }
+
+// Checkbox
+// @include OS($win) {
+//   /* Checkbox */
+//   :root {
+//     --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
+//   }
+//   :not(menu, #ContentSelectDropdown, #context-navigation)
+//     > menupopup
+//     > menuitem[type="checkbox"]:not([checked="true"])
+//     > .menu-iconic-left {
+//     padding-inline-start: var(--context-menu-text-padding);
+//   }
+// }
