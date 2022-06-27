@@ -775,6 +775,7 @@
       /* Text */
       input,
       textarea,
+      select,
       .AutoSearchInput-query,
       .AutoSearchInput-suggestions-list,
       .Page-content h1,
@@ -875,6 +876,7 @@
         background: var(--in-content-primary-button-background) !important;
       }
 
+      select,
       .Select,
       .Button--primary,
       .Button--neutral,
@@ -975,7 +977,8 @@
       }
 
       input,
-      textarea {
+      textarea,
+      select {
         border-color: var(--in-content-box-border-color) !important;
       }
 
@@ -1086,7 +1089,10 @@
         background: var(--in-content-page-background) !important;
         color: var(--in-content-page-color) !important;
       }
-      body:is(.developer-hub, .statistics) .menu-nav > ul > li > ul a:hover {
+      body:is(.developer-hub, .statistics) .menu-nav > ul > li > ul a:hover,
+      body:is(.developer-hub, .statistics) .install-note,
+      body:is(.developer-hub, .statistics) .modal,
+      body:is(.developer-hub, .statistics) .popup {
         background: var(--in-content-box-background-odd) !important;
       }
       body:is(.developer-hub, .statistics) .menu-nav > ul > li > ul::after,
@@ -1111,8 +1117,12 @@
       body:is(.developer-hub, .statistics) hgroup h2.addon,
       body:is(.developer-hub, .statistics) hgroup h2.collection,
       body:is(.developer-hub, .statistics) h3,
+      body:is(.developer-hub, .statistics) .results h4,
       body:is(.developer-hub, .statistics) .dashboard .listing .item,
       body:is(.developer-hub, .statistics) .dashboard .listing .item:hover h5,
+      body:is(.developer-hub, .statistics) .secondary .addon-status,
+      body:is(.developer-hub, .statistics) .secondary .addon-status .addon-details li.addon-listed-status,
+      body:is(.developer-hub, .statistics) #refine-results h5,
       body:is(.developer-hub, .statistics) .island.criteria li,
       body:is(.developer-hub, .statistics) .two-up div {
         color: var(--in-content-page-color) !important;
@@ -1122,6 +1132,11 @@
       body:is(.developer-hub, .statistics) .item-actions > ul > li,
       body:is(.developer-hub, .statistics) .dashboard .listing .item .item-actions a,
       body:is(.developer-hub, .statistics) .edit-media-details,
+      body:is(.developer-hub, .statistics) .devhub-form table th,
+      body:is(.developer-hub, .statistics) #recent-activity .listing .item .timestamp,
+      body:is(.developer-hub, .statistics) #upload-file .upload-status #uploadstatus,
+      body:is(.developer-hub, .statistics) #addon-validator-suite,
+      body:is(.developer-hub, .statistics) #addon-validator-suite .msg > *,
       body:is(.developer-hub, .statistics) .island.criteria li a.inactive {
         color: var(--in-content-deemphasized-text) !important;
       }
@@ -1131,8 +1146,11 @@
       body:is(.developer-hub, .statistics) .primary a,
       body:is(.developer-hub, .statistics) .secondary a,
       body:is(.developer-hub, .statistics) .submission-type-tabs a,
+      body:is(.developer-hub, .statistics) .popup a,
       body:is(.developer-hub, .statistics) .dashboard .listing .item:hover a,
       body:is(.developer-hub, .statistics) .dashboard .listing .item:hover .item-actions a,
+      body:is(.developer-hub, .statistics) #upload-status-results.status-pass strong,
+      body:is(.developer-hub, .statistics) #addon-validator-suite a,
       body:is(.developer-hub, .statistics) #create-addon a,
       body:is(.developer-hub, .statistics) .html-support {
         color: var(--in-content-link-color) !important;
@@ -1157,7 +1175,12 @@
       }
       body:is(.developer-hub, .statistics) .secondary .addon-status,
       body:is(.developer-hub, .statistics) .devhub-form .item,
-      body:is(.developer-hub, .statistics) #icons_default {
+      body:is(.developer-hub, .statistics) #icons_default,
+      body:is(.developer-hub, .statistics) .listing .item,
+      body:is(.developer-hub, .statistics) .object-lead,
+      body:is(.developer-hub, .statistics) #addon-validator-suite .results .tier-results,
+      body:is(.developer-hub, .statistics) #addon-validator-suite .suite,
+      body:is(.developer-hub, .statistics) #addon-validator-suite .suite-container {
         border-color: var(--in-content-border-color) !important;
         background: var(--in-content-box-background) !important;
       }
@@ -1195,6 +1218,7 @@
       }
       body:is(.developer-hub, .statistics) #icons_default li a:hover,
       body:is(.developer-hub, .statistics) #side-nav .active a,
+      body:is(.developer-hub, .statistics) span.tip,
       body:is(.developer-hub, .statistics) .addon-submission-process .tip,
       body:is(.developer-hub, .statistics) .devhub-form .tip,
       body:is(.developer-hub, .statistics) a.remove,
@@ -1207,6 +1231,7 @@
         background-color: var(--in-content-primary-button-background-hover) !important;
       }
       body:is(.developer-hub, .statistics) .submission-type-tabs a,
+      body:is(.developer-hub, .statistics) .devhub-sidebar,
       body:is(.developer-hub, .statistics) .devhub-sidebar div.item,
       body:is(.developer-hub, .statistics) .devhub-form .listing-footer {
         border-color: var(--in-content-border-color) !important;
@@ -1219,6 +1244,27 @@
       body:is(.developer-hub, .statistics) .item-actions button.link.more-actions:hover:after,
       body:is(.developer-hub, .statistics) #change-locale::after {
         border-top-color: var(--in-content-link-color) !important;
+      }
+      body:is(.developer-hub, .statistics) install-note::after,
+      body:is(.developer-hub, .statistics) .popup::after {
+        border-bottom-color: var(--in-content-box-background) !important;
+      }
+      body:is(.developer-hub, .statistics) .install-note::before,
+      body:is(.developer-hub, .statistics) .popup::before {
+        border-bottom-color: grey !important;
+      }
+      body:is(.developer-hub, .statistics) #refine-results,
+      body:is(.developer-hub, .statistics) .other-categories,
+      body:is(.developer-hub, .statistics) .versions .primary > .warning {
+        border-color: transparent !important;
+      }
+      body:is(.developer-hub, .statistics) .results {
+        border-color: var(--in-content-box-background-odd) !important;
+        background: transparent !important;
+      }
+      body:is(.developer-hub, .statistics) .results-inner {
+        border-color: var(--in-content-border-color) !important;
+        background: var(--in-content-border-color) !important;
       }
       body:is(.developer-hub, .statistics) #promos .view-button a,
       body:is(.developer-hub, .statistics) #upload-file-finish.button,
@@ -1277,6 +1323,21 @@
         color: var(--in-content-deemphasized-text) !important;
         padding-block: 3px !important;
         cursor: not-allowed;
+      }
+      body:is(.developer-hub, .statistics) .devhub-form .item_wrapper input[type="email"] {
+        appearance: none !important;
+        padding: 2px 5px;
+        border: 1px solid;
+      }
+      body:is(.developer-hub, .statistics) #addon-validator-suite .suite-summary {
+        color: var(--in-content-deemphasized-text) !important;
+        background: var(--in-content-button-background) !important;
+        border-top-color: var(--in-content-border-color) !important;
+      }
+      body:is(.developer-hub, .statistics) #addon-validator-suite .context {
+        border-color: var(--in-content-box-border-color) !important;
+        background-color: var(--in-content-button-background) !important;
+        background: var(--in-content-table-background) !important;
       }
     }
     /*= Support.org ============================================================*/
@@ -1914,13 +1975,9 @@
   @supports -moz-bool-pref("userContent.page.field_border") {
     @media (prefers-reduced-motion: no-preference) {
       @-moz-document url-prefix("about:") {
+        html|input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(#newtab-search-text):hover,
+        html|textarea:hover,
         xul|search-textbox:hover {
-          border-color: var(--in-content-focus-outline-color) !important;
-          transition: border-color 0.5s var(--animation-easing-function);
-        }
-      }
-      @-moz-document url-prefix("about:config") {
-        #about-config-search:hover {
           border-color: var(--in-content-focus-outline-color) !important;
           transition: border-color 0.5s var(--animation-easing-function);
         }
@@ -2411,6 +2468,10 @@
         --menuitem-image: url("chrome://browser/skin/new-tab.svg");
       }
 
+      #placesContext_open\:newcontainertab {
+        --menuitem-image: url("../icons/container-openin-16.svg");
+      }
+
       #placesContext_open\:newwindow {
         --menuitem-image: url("chrome://browser/skin/window.svg");
       }
@@ -2456,10 +2517,12 @@
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
 
+      #placesContext_showInFolder,
       #placesContext_new\:folder {
         --menuitem-image: url("chrome://global/skin/icons/folder.svg");
       }
       @supports -moz-bool-pref("userChrome.icon.library") {
+        #placesContext_showInFolder,
         #placesContext_new\:folder {
           --menuitem-image: url("../icons/folder.svg");
         }
