@@ -2313,9 +2313,8 @@
     }
     /*= Context Menu ===========================================================*/
     @supports -moz-bool-pref("userChrome.icon.context_menu") {
-      menupopup menuitem:not([type="checkbox"], [type="radio"]),
-      menupopup menu:not([type="checkbox"], [type="radio"]),
-      #main-menubar > menu {
+      menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
+      menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) {
         -moz-appearance: none !important;
         /* Linux: menulist */
       }
@@ -2341,9 +2340,10 @@
         :not(menu, #ContentSelectDropdown)
           > menupopup
           > menu:not(.menu-iconic, .in-menulist, [type="checkbox"], [checked="true"]) {
-          list-style-image: var(--menuitem-image) !important;
+          list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
         }
       }
+
       /* Padding */
       :root {
         --context-menu-background-padding-default: 5px;

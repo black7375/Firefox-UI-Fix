@@ -1,8 +1,4 @@
-menupopup menuitem:not([type="checkbox"], [type="radio"]),
-menupopup menu:not([type="checkbox"], [type="radio"]),
-#main-menubar > menu {
-  -moz-appearance: none !important; /* Linux: menulist */
-}
+@import "../icons/layout_menu_common";
 
 //-- Mixin ---------------------------------------------------------------------
 @function _library_iconTargetSelector($target: "menu") {
@@ -35,32 +31,23 @@ $_library_menuSelector: _library_iconTargetSelector("menu");
 
 //------------------------------------------------------------------------------
 
-@include _library_contextMenu {
-  /* Color */
-  -moz-context-properties: fill, fill-opacity !important;
-  fill: currentColor !important;
+#{$_initialMenus} {
+  @include _initial_menus;
+}
 
-  /* Layout */
-  background-size: 16px !important;
-  background-repeat: no-repeat !important;
-  background-image: var(--menuitem-image);
+@include _library_contextMenu {
+  @include _layout_icon_menus;
 }
 
 /* For native context menus */
-@include NativeMenu {
-  @include _library_nativeContextMenu {
-    list-style-image: var(--menuitem-image) !important;
-  }
+@include _library_nativeContextMenu {
+  @include _layout_icon_native_menus;
 }
 
 /* Padding */
-:root {
-  --context-menu-background-padding-default: 5px;
-  --context-menu-background-padding: var(--context-menu-background-padding-default);
-}
+@include _layout_root_padding;
 @include _library_contextMenu {
-  background-position: left var(--context-menu-background-padding) center !important;
-  padding-inline-start: var(--context-menu-background-padding) !important;
+  @include _layout_init_padding;
 }
 
 /* Padding - Windows */
@@ -77,66 +64,44 @@ $_library_menuSelector: _library_iconTargetSelector("menu");
   }
 }
 
-@include OS($win7) {
-  :root {
-    --context-menu-background-padding-default: 2px;
-  }
-}
-@include OS($win8) {
-  :root {
-    --context-menu-background-padding-default: 3px;
-  }
-}
+@include _layout_root_win7_8;
 @include OS($win7, $win8) {
   @include _library_contextMenu {
-    background-position: left var(--context-menu-background-padding) center !important;
-    padding-inline-start: 0 !important;
+    @include _layout_init_win7_8();
   }
 }
 @include OS($win10) {
-  :root {
-    --context-menu-background-padding: 1em;
-    --context-menu-text-padding: 24px; /* 16px + 8px */
-    --menu-background-padding-default: calc(
-      var(--context-menu-background-padding) + var(--context-menu-text-padding)
-    );
-  }
+  @include _layout_root_win10;
 
   @include _library_contextMenu {
-    padding-inline-start: var(--menu-background-padding-default) !important;
-    margin-left: 0 !important;
+    @include _layout_init_win10;
   }
 }
 
 /* Padding - Linux */
 @include OS($linux) {
-  :root {
-    --context-menu-background-padding-default: 6px;
-  }
+  @include _layout_root_linux;
 }
 
 /* Padding - Mac */
 @include OS($mac) {
-  :root {
-    --context-menu-background-padding-default: 10px;
-    --context-menu-mac-padding: 21px;
-  }
+  @include _layout_root_mac;
 
   /* context menu width */
   #placesContext #{$_library_menuitemSelector},
   #placesContext #{$_library_menuSelector} {
-    padding-inline-end: var(--context-menu-background-padding) !important;
+    @include _layout_init_mac_width;
 
     > .menu-text {
       /* text position */
-      padding-inline-start: var(--context-menu-mac-padding) !important;
+      @include _layout_init_mac_text;
     }
   }
 
   /* Checkbox menuitem, None iconic menu */
   #placesContext menuitem[type="checkbox"],
   #placesContext menu:not(.menu-iconic) {
-    padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
+    @include _layout_init_mac_others;
   }
 }
 

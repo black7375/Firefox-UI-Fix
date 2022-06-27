@@ -1,3 +1,5 @@
+@import "./layout_menu_common";
+
 //-- Mixin ---------------------------------------------------------------------
 // Items
 $_iconNoneCommon: ".in-menulist, [checked=\"true\"]";
@@ -57,41 +59,25 @@ $_layoutCommonMenus: (
 }
 
 //------------------------------------------------------------------------------
-#{selector.append(
-   "menupopup menuitem, menupopup menu",
-   ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
-)},
+#{$_initialMenus},
 #{$_globalMenus} {
-  -moz-appearance: none !important; /* Linux: menulist */
+  @include _initial_menus;
 }
 
 /* Icon */
 @include _layoutInitIconMenus {
-  /* Color */
-  -moz-context-properties: fill, fill-opacity !important;
-  fill: currentColor !important;
-
-  /* Layout */
-  background-size: 16px !important;
-  background-repeat: no-repeat !important;
-  background-image: var(--menuitem-image);
+  @include _layout_icon_menus;
 }
 
 /* For native context menus */
-@include NativeMenu {
-  #{$_nestedPopupIconMenus} {
-    list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
-  }
+#{$_nestedPopupIconMenus} {
+  @include _layout_icon_native_menus;
 }
 
 /* Padding */
-:root {
-  --context-menu-background-padding-default: 5px;
-  --context-menu-background-padding: var(--context-menu-background-padding-default);
-}
+@include _layout_root_padding;
 @include _layoutInitPaddingMenus {
-  background-position: left var(--context-menu-background-padding) center !important;
-  padding-inline-start: var(--context-menu-background-padding) !important;
+  @include _layout_init_padding;
 }
 
 /* Menubar */
@@ -128,67 +114,47 @@ $_layoutCommonMenus: (
 //   }
 // }
 
-@include OS($win7) {
-  :root {
-    --context-menu-background-padding-default: 2px;
-  }
-}
-@include OS($win8) {
-  :root {
-    --context-menu-background-padding-default: 3px;
-  }
-}
+@include _layout_root_win7_8;
 @include OS($win7, $win8) {
   @include _layoutIconMenus {
-    background-position: left var(--context-menu-background-padding) center !important;
-    padding-inline-start: 0 !important;
+    @include _layout_init_win7_8();
   }
 }
 @include OS($win10) {
-  :root {
-    --context-menu-background-padding: 1em;
-    --context-menu-text-padding: 24px; /* 16px + 8px */
-    --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
-  }
+  @include _layout_root_win10;
 
   @include _layoutIconMenus {
-    padding-inline-start: var(--menu-background-padding-default) !important;
-    margin-left: 0 !important;
+    @include _layout_init_win10;
   }
 }
 
 /* Padding - Linux */
 @include OS($linux) {
-  :root {
-    --context-menu-background-padding-default: 6px;
-  }
+  @include _layout_root_linux;
 
   #{$_globalMenus} > .menubar-text {
-    padding-inline-start: 3px;
+    @include _layout_init_linux;
   }
 }
 
 /* Padding - Mac */
 @include OS($mac) {
-  :root {
-    --context-menu-background-padding-default: 10px;
-    --context-menu-mac-padding: 21px;
-  }
+  @include _layout_root_mac;
 
   /* context menu width */
   #{$_nestedPopupPaddingMenus},
   #blockedPopupDontShowMessage {
-    padding-inline-end: var(--context-menu-background-padding) !important;
+    @include _layout_init_mac_width;
   }
 
   /* text position */
   #{selector.nest($_nestedPopupPadding, "menuitem > .menu-text, menu > .menu-text")} {
-    padding-inline-start: var(--context-menu-mac-padding) !important;
+    @include _layout_init_mac_text;
   }
 
   /* Checkbox menuitem, None iconic menu */
   #{selector.nest($_nestedPopupPadding, "menuitem[checked=\"true\"], menu:not(.menu-iconic)")} {
-    padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
+    @include _layout_init_mac_others;
   }
 
   /* Global Menu */
