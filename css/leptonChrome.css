@@ -6806,6 +6806,62 @@
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
     }
+    /*= downloadsContextMenu =====================================================*/
+    .downloadPauseMenuItem {
+      --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
+    }
+
+    .downloadResumeMenuItem {
+      --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
+    }
+
+    .downloadUnblockMenuItem {
+      --menuitem-image: url("../icons/checkmark-circle.svg");
+    }
+
+    .downloadUseSystemDefaultMenuItem {
+      --menuitem-image: url("chrome://browser/skin/open.svg");
+    }
+
+    .downloadAlwaysUseSystemDefaultMenuItem {
+      /* checkbox */
+      --menuitem-image: url("../icons/folder-globe.svg");
+    }
+
+    .downloadAlwaysOpenSimilarFilesMenuItem {
+      /* checkbox */
+      --menuitem-image: url("../icons/fluid.svg");
+    }
+
+    .downloadShowMenuItem {
+      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      .downloadShowMenuItem {
+        --menuitem-image: url("../icons/folder.svg");
+      }
+    }
+
+    #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
+      --menuitem-image: url("../icons/link-square.svg");
+    }
+    #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
+      --menuitem-image: url("../icons/link.svg");
+    }
+
+    .downloadDeleteFileMenuItem {
+      --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+    }
+
+    .downloadRemoveFromHistoryMenuItem {
+      --menuitem-image: url("../icons/eraser.svg");
+    }
+
+    #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
+    #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
+      --menuitem-image: url("../icons/broom.svg");
+    }
+
     /*= placeContext =============================================================*/
     #placesContext_open {
       --menuitem-image: url("../icons/link-square.svg");
@@ -6971,62 +7027,6 @@
     #downloads-button-autohide-checkbox {
       /* checkbox */
       --menuitem-image: url("../icons/eye-tracking-off.svg");
-    }
-
-    /*= downloadsContextMenu =====================================================*/
-    .downloadPauseMenuItem {
-      --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
-    }
-
-    .downloadResumeMenuItem {
-      --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
-    }
-
-    .downloadUnblockMenuItem {
-      --menuitem-image: url("../icons/checkmark-circle.svg");
-    }
-
-    .downloadUseSystemDefaultMenuItem {
-      --menuitem-image: url("chrome://browser/skin/open.svg");
-    }
-
-    .downloadAlwaysUseSystemDefaultMenuItem {
-      /* checkbox */
-      --menuitem-image: url("../icons/folder-globe.svg");
-    }
-
-    .downloadAlwaysOpenSimilarFilesMenuItem {
-      /* checkbox */
-      --menuitem-image: url("../icons/fluid.svg");
-    }
-
-    .downloadShowMenuItem {
-      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-    }
-    @supports -moz-bool-pref("userChrome.icon.library") {
-      .downloadShowMenuItem {
-        --menuitem-image: url("../icons/folder.svg");
-      }
-    }
-
-    #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
-      --menuitem-image: url("../icons/link-square.svg");
-    }
-    #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
-      --menuitem-image: url("../icons/link.svg");
-    }
-
-    .downloadDeleteFileMenuItem {
-      --menuitem-image: url("chrome://global/skin/icons/delete.svg");
-    }
-
-    .downloadRemoveFromHistoryMenuItem {
-      --menuitem-image: url("../icons/eraser.svg");
-    }
-
-    #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
-    #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
-      --menuitem-image: url("../icons/broom.svg");
     }
 
     /*= SyncedTabsSidebarContext =================================================*/
