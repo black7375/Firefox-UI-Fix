@@ -27,9 +27,11 @@
 }
 
 #downloadsContextMenu > menuitem {
+  &.downloadOpenReferrerMenuItem,
   &[command="downloadsCmd_openReferrer"] {
     --menuitem-image: url("../icons/link-square.svg");
   }
+  &.downloadCopyLocationMenuItem,
   &[command="downloadsCmd_copyLocation"] {
     --menuitem-image: url("../icons/link.svg");
   }

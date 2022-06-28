@@ -1,9 +1,14 @@
 @import "../icons/layout_menu_common";
 
 //-- Mixin ---------------------------------------------------------------------
+$_placesPopupSet: "menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)";
+$_placesPopupSetMenus: selector.nest(
+  $_placesPopupSet,
+  "#{$_iconMenuitem}, #{$_iconMenu}"
+);
+
 @mixin _library_contextMenu {
-  #placesContext #{$_iconMenuitem},
-  #placesContext #{$_iconMenu},
+  #{$_placesPopupSetMenus},
   #{$_libraryMenuitem},
   #{$_libraryMenu} {
     @content;
@@ -56,8 +61,7 @@
   @include _layout_root_mac;
 
   /* context menu width */
-  #placesContext #{$_iconMenuitem},
-  #placesContext #{$_iconMenu} {
+  #{$_placesPopupSetMenus} {
     @include _layout_init_mac_width;
 
     > .menu-text {
@@ -67,12 +71,13 @@
   }
 
   /* Checkbox menuitem, None iconic menu */
-  #placesContext menuitem[checked="true"],
-  #placesContext menu:not(.menu-iconic) {
+  #{$_placesPopupSet} menuitem[checked="true"],
+  #{$_placesPopupSet} menu:not(.menu-iconic) {
     @include _layout_init_mac_others;
   }
 }
 
 /* Icon lists */
+@import "../icons/context_menu/downloads";
 @import "../icons/context_menu/place";
 @import "../icons/library";

@@ -26,8 +26,8 @@ $_iconMenuPopupMenus: selector.nest(
 );
 
 $_globalMenus: "#main-menubar > menu";
-$_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem";
-$_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu";
+$_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > #{$_iconMenuitem}";
+$_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > #{$_iconMenu}";
 $_sendTabMenuitem: "menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup) > menuitem";
 $_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar";
 

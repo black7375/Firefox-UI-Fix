@@ -6034,8 +6034,9 @@
     menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
     > menuitem,
   .openintabs-menuitem,
@@ -6078,8 +6079,9 @@
     menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
     > menuitem,
   .openintabs-menuitem,
@@ -6135,8 +6137,9 @@
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
       > menuitem,
     .openintabs-menuitem,
@@ -6166,8 +6169,9 @@
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
       > menuitem,
     .openintabs-menuitem,
@@ -6842,9 +6846,11 @@
       }
     }
 
+    #downloadsContextMenu > menuitem.downloadOpenReferrerMenuItem,
     #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
       --menuitem-image: url("../icons/link-square.svg");
     }
+    #downloadsContextMenu > menuitem.downloadCopyLocationMenuItem,
     #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
       --menuitem-image: url("../icons/link.svg");
     }

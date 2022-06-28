@@ -540,6 +540,7 @@
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @supports -moz-bool-pref("userContent.page.proton_color") {
   @-moz-document url-prefix("about:"),
+               url-prefix("chrome://browser/content/places/places.xhtml"),
                url-prefix("https://addons.mozilla.org"),
                url-prefix("https://support.mozilla.org"),
                url-prefix("https://accounts.firefox.com"),
@@ -2319,10 +2320,13 @@
         /* Linux: menulist */
       }
 
-      #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-      #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-      menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-      menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+      menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+        menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+      menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+        menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+      menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+        > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+      menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
         /* Color */
         -moz-context-properties: fill, fill-opacity !important;
         fill: currentColor !important;
@@ -2348,10 +2352,13 @@
         --context-menu-background-padding: var(--context-menu-background-padding-default);
       }
 
-      #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-      #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-      menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-      menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+      menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+        menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+      menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+        menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+      menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+        > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+      menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
         background-position: left var(--context-menu-background-padding) center !important;
         padding-inline-start: var(--context-menu-background-padding) !important;
       }
@@ -2371,10 +2378,13 @@
         (-moz-platform: windows-win7),
         (-moz-os-version: windows-win8),
         (-moz-platform: windows-win8) {
-        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
           background-position: left var(--context-menu-background-padding) center !important;
           padding-inline-start: 0 !important;
         }
@@ -2389,10 +2399,13 @@
           );
         }
 
-        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu {
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
           padding-inline-start: var(--menu-background-padding-default) !important;
           margin-left: 0 !important;
         }
@@ -2411,25 +2424,89 @@
         }
 
         /* context menu width */
-        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
           padding-inline-end: var(--context-menu-background-padding) !important;
         }
-        #placesContext menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]) > .menu-text,
-        #placesContext menu:not(.menu-iconic, .in-menulist, [checked="true"]) > .menu-text {
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"])
+          > .menu-text,
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menu:not(.menu-iconic, .in-menulist, [checked="true"])
+          > .menu-text {
           /* text position */
           padding-inline-start: var(--context-menu-mac-padding) !important;
         }
 
         /* Checkbox menuitem, None iconic menu */
-        #placesContext menuitem[checked="true"],
-        #placesContext menu:not(.menu-iconic) {
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu) menuitem[checked="true"],
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu) menu:not(.menu-iconic) {
           padding-inline-start: calc(
             var(--context-menu-background-padding) + var(--context-menu-mac-padding)
           ) !important;
         }
       }
       /* Icon lists */
+      /*= downloadsContextMenu =====================================================*/
+      .downloadPauseMenuItem {
+        --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
+      }
+
+      .downloadResumeMenuItem {
+        --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
+      }
+
+      .downloadUnblockMenuItem {
+        --menuitem-image: url("../icons/checkmark-circle.svg");
+      }
+
+      .downloadUseSystemDefaultMenuItem {
+        --menuitem-image: url("chrome://browser/skin/open.svg");
+      }
+
+      .downloadAlwaysUseSystemDefaultMenuItem {
+        /* checkbox */
+        --menuitem-image: url("../icons/folder-globe.svg");
+      }
+
+      .downloadAlwaysOpenSimilarFilesMenuItem {
+        /* checkbox */
+        --menuitem-image: url("../icons/fluid.svg");
+      }
+
+      .downloadShowMenuItem {
+        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+      }
+      @supports -moz-bool-pref("userChrome.icon.library") {
+        .downloadShowMenuItem {
+          --menuitem-image: url("../icons/folder.svg");
+        }
+      }
+
+      #downloadsContextMenu > menuitem.downloadOpenReferrerMenuItem,
+      #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
+        --menuitem-image: url("../icons/link-square.svg");
+      }
+      #downloadsContextMenu > menuitem.downloadCopyLocationMenuItem,
+      #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
+        --menuitem-image: url("../icons/link.svg");
+      }
+
+      .downloadDeleteFileMenuItem {
+        --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+      }
+
+      .downloadRemoveFromHistoryMenuItem {
+        --menuitem-image: url("../icons/eraser.svg");
+      }
+
+      #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
+      #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
+        --menuitem-image: url("../icons/broom.svg");
+      }
+
       /*= placeContext =============================================================*/
       #placesContext_open {
         --menuitem-image: url("../icons/link-square.svg");
