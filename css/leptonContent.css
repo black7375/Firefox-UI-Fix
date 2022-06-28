@@ -2415,6 +2415,24 @@
         :root {
           --context-menu-background-padding-default: 6px;
         }
+
+        /* Contextmenu Checkbox Unset */
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu) menuitem[type="checkbox"] {
+          margin-inline: 0 !important;
+        }
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menuitem[type="checkbox"]
+          > .menu-iconic-left
+          > .menu-iconic-icon {
+          margin-inline-end: 0 !important;
+        }
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menuitem[type="checkbox"]:not([checked="true"])
+          > .menu-iconic-left
+          > .menu-iconic-icon {
+          border: none !important;
+          background-color: unset !important;
+        }
       }
       /* Padding - Mac */
       @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
