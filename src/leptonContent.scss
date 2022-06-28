@@ -33,5 +33,10 @@
   @import "contents/proton_contents";
 }
 
+/** Menu - Icons Layout *******************************************************/
+@include Option("userChrome.icon.menu") {
+  @import "contents/context_menu";
+}
+
 /** Download Panel ************************************************************/
 @import "contents/downloads";
