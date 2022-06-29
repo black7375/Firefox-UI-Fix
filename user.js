@@ -61,6 +61,7 @@ user_pref("userChrome.rounding.square_tab",            true);
 // user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
 
 // user_pref("userChrome.compatiblity.os.linux_non_native_titlebar_button", true);
+// user_pref("userChrome.compatibility.os.windows_maximized, true");
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
@@ -108,6 +109,7 @@ user_pref("userChrome.rounding.square_tab",            true);
 
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);
+// user_pref("userChrome.icon.menu.full",                      true);
 
 // -- User Content -------------------------------------------------------------
 // user_pref("userContent.player.ui.twoline",                  true);

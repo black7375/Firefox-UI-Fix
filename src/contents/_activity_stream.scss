@@ -31,11 +31,11 @@
   @include Option("userContent.newTab.full_icon") {
     .top-site-outer .tile {
       overflow: hidden;
-    }
 
-    .top-site-outer .tile .icon-wrapper {
-      width: 100% !important; /* Original: 48px */
-      height: 100% !important; /* Original: 48px */
+      .icon-wrapper {
+        width: 100% !important; /* Original: 48px */
+        height: 100% !important; /* Original: 48px */
+      }
     }
   }
 
@@ -52,12 +52,9 @@
       button.icon,
       button.close-button {
         transition: background 1.5s var(--animation-easing-function);
-      }
-      .top-site-outer:hover,
-      #searchSubmit:hover,
-      button.icon:hover,
-      button.close-button:hover {
-        transition: background 0.5s var(--animation-easing-function);
+        &:hover {
+          transition: background 0.5s var(--animation-easing-function);
+        }
       }
 
       /* Search Bar */
@@ -83,10 +80,10 @@
     .body-wrapper.on {
       display: flex;
       flex-wrap: wrap;
-    }
 
-    .body-wrapper.on > .discovery-stream.ds-layout {
-      flex-basis: 100%;
+      > .discovery-stream.ds-layout {
+        flex-basis: 100%;
+      }
     }
 
     .body-wrapper.on > .collapsible-section[data-section-id="topstories"],
@@ -107,14 +104,13 @@
       --newtab-search-dropdown-header-color: var(--newtab-search-background-color) !important;
       --newtab-search-dropdown-color: var(--newtab-search-background-color) !important;
       --newtab-element-hover-color: color-mix(in srgb, currentColor 9%, transparent) !important;
-    }
 
-    @include Dark {
-      #root {
+      @include Dark {
         /* Default Dark Mode */
         --newtab-search-background-color: rgba(66, 65, 77, 1); /* Same as dark theme's --panel-background */
       }
     }
+
     .activity-stream[lwt-sidebar]:not([style*="--newtab-background-color: rgba(43, 42, 51, 1);"]) #root {
       /* Light weight theme */
       --newtab-search-background-color: var(--lwt-sidebar-background-color);
@@ -169,24 +165,26 @@
       background: var(--newtab-search-background-color) !important;
     }
 
-    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected,
-    .contentSearchSuggestionTable .contentSearchSettingsButton:hover {
-      color: var(--newtab-text-primary-color) !important;
-    }
+    .contentSearchSuggestionTable {
+      .contentSearchSuggestionRow.selected,
+      .contentSearchSettingsButton:hover {
+        color: var(--newtab-text-primary-color) !important;
+      }
 
-    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected,
-    .contentSearchSuggestionTable .contentSearchSettingsButton:hover,
-    .contentSearchSuggestionTable .contentSearchOneOffItem.selected {
-      background: var(--newtab-element-hover-color) !important;
-    }
+      .contentSearchSuggestionRow.selected,
+      .contentSearchSettingsButton:hover,
+      .contentSearchOneOffItem.selected {
+        background: var(--newtab-element-hover-color) !important;
+      }
 
-    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected:active,
-    .contentSearchSuggestionTable .contentSearchOneOffItem:active {
-      background: var(--newtab-element-active-color) !important;
-    }
+      .contentSearchSuggestionRow.selected:active,
+      .contentSearchOneOffItem:active {
+        background: var(--newtab-element-active-color) !important;
+      }
 
-    .contentSearchSuggestionTable .contentSearchSuggestionRow.selected .historyIcon {
-      fill: var(--newtab-icon-secondary-color) !important;
+      .contentSearchSuggestionRow.selected .historyIcon {
+        fill: var(--newtab-icon-secondary-color) !important;
+      }
     }
   }
 }

@@ -1,11 +1,7 @@
 @-moz-document url-prefix("about:") {
+  html|input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(#newtab-search-text):hover,
+  html|textarea:hover,
   xul|search-textbox:hover {
-    border-color: var(--in-content-focus-outline-color) !important;
-    transition: border-color 0.5s var(--animation-easing-function);
-  }
-}
-@-moz-document url-prefix("about:config") {
-  #about-config-search:hover {
     border-color: var(--in-content-focus-outline-color) !important;
     transition: border-color 0.5s var(--animation-easing-function);
   }

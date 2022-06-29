@@ -1,0 +1,90 @@
+@import "../icons/layout_menu_common";
+
+//-- Mixin ---------------------------------------------------------------------
+$_placesPopupSet: "menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)";
+$_placesPopupSetMenus: selector.nest(
+  $_placesPopupSet,
+  "#{$_iconMenuitem}, #{$_iconMenu}"
+);
+
+@mixin _library_contextMenu {
+  #{$_placesPopupSetMenus},
+  #{$_libraryMenuitem},
+  #{$_libraryMenu} {
+    @content;
+  }
+}
+
+//------------------------------------------------------------------------------
+
+#{$_initialMenus} {
+  @include _initial_menus;
+}
+
+@include _library_contextMenu {
+  @include _layout_icon_menus;
+}
+
+/* For native context menus */
+#{$_nestedPopupIconMenus} {
+  @include _layout_icon_native_menus;
+}
+
+/* Padding */
+@include _layout_root_padding;
+@include _library_contextMenu {
+  @include _layout_init_padding;
+}
+
+/* Padding - Windows */
+@include _layout_root_win7_8;
+@include OS($win7, $win8) {
+  @include _library_contextMenu {
+    @include _layout_init_win7_8();
+  }
+}
+@include OS($win10) {
+  @include _layout_root_win10;
+
+  @include _library_contextMenu {
+    @include _layout_init_win10;
+  }
+}
+
+/* Padding - Linux */
+@include OS($linux) {
+  @include _layout_root_linux;
+
+  /* Contextmenu Checkbox Unset */
+  #{$_placesPopupSet} menuitem[type="checkbox"] {
+    margin-inline: 0 !important;
+    > .menu-iconic-left > .menu-iconic-icon {
+      margin-inline-end: 0 !important;
+    }
+    &:not([checked="true"]) > .menu-iconic-left > .menu-iconic-icon {
+      border: none !important;
+      background-color: unset !important;
+    }
+  }
+}
+
+/* Padding - Mac */
+@include OS($mac) {
+  @include _layout_root_mac;
+
+  /* context menu width */
+  #{$_placesPopupSetMenus} {
+    @include _layout_init_mac_width;
+
+    > .menu-text {
+      /* text position */
+      @include _layout_init_mac_text;
+    }
+  }
+
+  /* Checkbox menuitem, None iconic menu */
+  #{$_placesPopupSet} menuitem[checked="true"],
+  #{$_placesPopupSet} menu:not(.menu-iconic) {
+    @include _layout_init_mac_others;
+  }
+}

@@ -170,6 +170,9 @@
   --menuitem-image: url("../icons/undo.svg");
 }
 #context-redo {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/redo.svg");
+  }
 }
 
 #context-cut {
