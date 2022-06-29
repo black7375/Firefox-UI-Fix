@@ -317,16 +317,18 @@
     }
   }
   /*= Titlebar Container Size at maximized #384 ================================*/
-  @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
-    (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8),
-    (-moz-os-version: windows-win10),
-    (-moz-platform: windows-win10) {
-    :root[tabsintitlebar][sizemode="maximized"] #titlebar {
-      /* -moz-default-appearance: -moz-window-titlebar */
-      appearance: none !important;
-      padding-top: 8px;
+  @supports -moz-bool-pref("userChrome.compatibility.os.windows_maximized") {
+    @media (-moz-os-version: windows-win7),
+      (-moz-platform: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-platform: windows-win8),
+      (-moz-os-version: windows-win10),
+      (-moz-platform: windows-win10) {
+      :root[tabsintitlebar][sizemode="maximized"] #titlebar {
+        /* -moz-default-appearance: -moz-window-titlebar */
+        appearance: none !important;
+        padding-top: 8px;
+      }
     }
   }
 }

@@ -61,6 +61,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
 
 // user_pref("userChrome.compatiblity.os.linux_non_native_titlebar_button", true);
+// user_pref("userChrome.compatibility.os.windows_maximized, true");
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------

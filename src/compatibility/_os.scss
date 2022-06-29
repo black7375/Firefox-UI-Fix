@@ -181,12 +181,14 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 }
 
 /*= Titlebar Container Size at maximized #384 ================================*/
-@include OS($win) {
-  :root[tabsintitlebar][sizemode="maximized"] #titlebar {
-    /* -moz-default-appearance: -moz-window-titlebar */
-    appearance: none !important;
+@include Option("userChrome.compatibility.os.windows_maximized") {
+  @include OS($win) {
+    :root[tabsintitlebar][sizemode="maximized"] #titlebar {
+      /* -moz-default-appearance: -moz-window-titlebar */
+      appearance: none !important;
 
-    // Prevent sideeffect #370
-    padding-top: 8px; // Don't use margin-top for reserved fullscreen animation
+      // Prevent sideeffect #370
+      padding-top: 8px; // Don't use margin-top for reserved fullscreen animation
+    }
   }
 }
