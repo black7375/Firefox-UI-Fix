@@ -3,6 +3,7 @@
 @use "utils/color_scheme" as *;
 @use "utils/native_menu" as *;
 @use "utils/proton_elements" as Proton;
+@use "sass:selector";
 
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
@@ -30,6 +31,11 @@
 /** Fully Proton Mode *********************************************************/
 @include Option("userContent.page.proton") {
   @import "contents/proton_contents";
+}
+
+/** Menu - Icons Layout *******************************************************/
+@include Option("userChrome.icon.menu") {
+  @import "contents/context_menu";
 }
 
 /** Download Panel ************************************************************/

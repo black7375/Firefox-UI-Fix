@@ -6034,8 +6034,9 @@
     menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
     > menuitem,
   .openintabs-menuitem,
@@ -6059,6 +6060,7 @@
       list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
     }
   }
+
   /* Padding */
   :root {
     --context-menu-background-padding-default: 5px;
@@ -6077,8 +6079,9 @@
     menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
   menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+  menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+  menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
     > menuitem,
   .openintabs-menuitem,
@@ -6134,8 +6137,9 @@
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
       > menuitem,
     .openintabs-menuitem,
@@ -6165,8 +6169,9 @@
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > menuitem,
-    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu,
+    menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+    menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
       > menuitem,
     .openintabs-menuitem,
@@ -6805,6 +6810,64 @@
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
     }
+    /*= downloadsContextMenu =====================================================*/
+    .downloadPauseMenuItem {
+      --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
+    }
+
+    .downloadResumeMenuItem {
+      --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
+    }
+
+    .downloadUnblockMenuItem {
+      --menuitem-image: url("../icons/checkmark-circle.svg");
+    }
+
+    .downloadUseSystemDefaultMenuItem {
+      --menuitem-image: url("chrome://browser/skin/open.svg");
+    }
+
+    .downloadAlwaysUseSystemDefaultMenuItem {
+      /* checkbox */
+      --menuitem-image: url("../icons/folder-globe.svg");
+    }
+
+    .downloadAlwaysOpenSimilarFilesMenuItem {
+      /* checkbox */
+      --menuitem-image: url("../icons/fluid.svg");
+    }
+
+    .downloadShowMenuItem {
+      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      .downloadShowMenuItem {
+        --menuitem-image: url("../icons/folder.svg");
+      }
+    }
+
+    #downloadsContextMenu > menuitem.downloadOpenReferrerMenuItem,
+    #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
+      --menuitem-image: url("../icons/link-square.svg");
+    }
+    #downloadsContextMenu > menuitem.downloadCopyLocationMenuItem,
+    #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
+      --menuitem-image: url("../icons/link.svg");
+    }
+
+    .downloadDeleteFileMenuItem {
+      --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+    }
+
+    .downloadRemoveFromHistoryMenuItem {
+      --menuitem-image: url("../icons/eraser.svg");
+    }
+
+    #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
+    #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
+      --menuitem-image: url("../icons/broom.svg");
+    }
+
     /*= placeContext =============================================================*/
     #placesContext_open {
       --menuitem-image: url("../icons/link-square.svg");
@@ -6819,6 +6882,10 @@
     #placesContext_openContainer\:tabs,
     #placesContext_openLinks\:tabs {
       --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    }
+
+    #placesContext_open\:newcontainertab {
+      --menuitem-image: url("../icons/container-openin-16.svg");
     }
 
     #placesContext_open\:newwindow {
@@ -6866,10 +6933,12 @@
       --menuitem-image: url("chrome://browser/skin/bookmark.svg");
     }
 
+    #placesContext_showInFolder,
     #placesContext_new\:folder {
       --menuitem-image: url("chrome://global/skin/icons/folder.svg");
     }
     @supports -moz-bool-pref("userChrome.icon.library") {
+      #placesContext_showInFolder,
       #placesContext_new\:folder {
         --menuitem-image: url("../icons/folder.svg");
       }
@@ -6964,62 +7033,6 @@
     #downloads-button-autohide-checkbox {
       /* checkbox */
       --menuitem-image: url("../icons/eye-tracking-off.svg");
-    }
-
-    /*= downloadsContextMenu =====================================================*/
-    .downloadPauseMenuItem {
-      --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
-    }
-
-    .downloadResumeMenuItem {
-      --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
-    }
-
-    .downloadUnblockMenuItem {
-      --menuitem-image: url("../icons/checkmark-circle.svg");
-    }
-
-    .downloadUseSystemDefaultMenuItem {
-      --menuitem-image: url("chrome://browser/skin/open.svg");
-    }
-
-    .downloadAlwaysUseSystemDefaultMenuItem {
-      /* checkbox */
-      --menuitem-image: url("../icons/folder-globe.svg");
-    }
-
-    .downloadAlwaysOpenSimilarFilesMenuItem {
-      /* checkbox */
-      --menuitem-image: url("../icons/fluid.svg");
-    }
-
-    .downloadShowMenuItem {
-      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-    }
-    @supports -moz-bool-pref("userChrome.icon.library") {
-      .downloadShowMenuItem {
-        --menuitem-image: url("../icons/folder.svg");
-      }
-    }
-
-    #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
-      --menuitem-image: url("../icons/link-square.svg");
-    }
-    #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
-      --menuitem-image: url("../icons/link.svg");
-    }
-
-    .downloadDeleteFileMenuItem {
-      --menuitem-image: url("chrome://global/skin/icons/delete.svg");
-    }
-
-    .downloadRemoveFromHistoryMenuItem {
-      --menuitem-image: url("../icons/eraser.svg");
-    }
-
-    #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
-    #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
-      --menuitem-image: url("../icons/broom.svg");
     }
 
     /*= SyncedTabsSidebarContext =================================================*/
