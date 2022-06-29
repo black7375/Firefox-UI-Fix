@@ -3,26 +3,28 @@
   #controlsContainer {
     // --button-size: 32px !important; /* Original: 30px */ Disabled for issue #404
     --controlBar-height: 40px; /* Original: 40px, Replace to this value */
+    .touch {
+      --button-size: 48px !important; /* Original: 40px */
+      --controlBar-height: 52px; /* Original: 52px */
+    }
+    .controlBar {
+      height: var(--controlBar-height) !important; /* Original: 40px */
+    }
   }
-  #controlsContainer .touch {
-    --button-size: 48px !important; /* Original: 40px */
-    --controlBar-height: 52px; /* Original: 52px */
-  }
-  .videocontrols[inDOMFullscreen] #controlsContainer {
-    --button-size: 64px !important; /* Original: 30px */
-    --track-size: 6px !important; /* Original: 5px, Touch: 7px */
-    --thumb-size: 15px !important; /* Original: 13px, Touch: 16px */
-    --controlBar-height: 64px; /* Original: 40px */
-  }
-  .videocontrols[inDOMFullscreen] #controlsContainer .touch {
-    --button-size: 72px !important; /* Original: 40px */
-    --controlBar-height: 64px; /* Original: 52px */
-  }
-  #controlsContainer .controlBar {
-    height: var(--controlBar-height) !important; /* Original: 40px */
-  }
-  .videocontrols[inDOMFullscreen] #controlsContainer .controlBar {
-    padding-bottom: 8px !important;
+  .videocontrols[inDOMFullscreen] {
+    #controlsContainer {
+      --button-size: 64px !important; /* Original: 30px */
+      --track-size: 6px !important; /* Original: 5px, Touch: 7px */
+      --thumb-size: 15px !important; /* Original: 13px, Touch: 16px */
+      --controlBar-height: 64px; /* Original: 40px */
+      .touch {
+        --button-size: 72px !important; /* Original: 40px */
+        --controlBar-height: 64px; /* Original: 52px */
+      }
+      .controlBar {
+        padding-bottom: 8px !important;
+      }
+    }
   }
 }
 
@@ -39,30 +41,30 @@
     box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2),
                 0 8px 12px  1px var(--box-shadow3);
     /* Or: 0 2px 15px rgba(0,0,0,.1); */
-  }
-  video {
-    --duration-color: #eee;
-    --media-background: linear-gradient(transparent, rgba(26,26,26,.85));
-  }
 
-  @include Dark {
-    audio {
+    @include Dark {
       --box-shadow1: rgba(249, 249, 250, 0.12);
       --box-shadow2: rgba(91, 91, 102, 0.12);
       --box-shadow3: rgba(82, 82, 94, 0.04);
     }
   }
-  @include Contrast {
-    video {
+  video {
+    --duration-color: #eee;
+    --media-background: linear-gradient(transparent, rgba(26,26,26,.85));
+
+    @include Contrast {
       --duration-color: #929292; /* Like Original */
       --media-background: rgba(26,26,26,.8); /* Like Original */
     }
   }
-  #controlsContainer .controlBar {
-    background: var(--media-background) !important;
-  }
-  #controlsContainer .duration {
-    color: var(--duration-color) !important; /* Original: #929292 */
+
+  #controlsContainer {
+    .controlBar {
+      background: var(--media-background) !important;
+    }
+    .duration {
+      color: var(--duration-color) !important; /* Original: #929292 */
+    }
   }
 
   @include Option("userContent.player.ui.twoline") {
@@ -138,28 +140,30 @@
       transform:scale(1);
     }
 
-    #controlsContainer .controlBar {
-      flex-wrap: var(--controlBar-flex-wrap);
-      justify-content: var(--controlBar-justify-content);
-      align-content: var(--controlBar-align-content);
-      height: calc(var(--controlBar-height) + var(--controlBar-twoline-more-height, var(--thumb-size))) !important;
-      padding-inline: var(--controlBar-padding-inline) !important; /* Original: 9px */
-    }
-    #controlsContainer .scrubberStack {
-      /* Vertical */
-      order: var(--scrubberStack-order);
-      height: var(--scrubberStack-height, var(--thumb-size)) !important;
-      transform: var(--scrubberStack-transform, translateY(calc(var(--thumb-size) / 2)));
+    #controlsContainer {
+      .controlBar {
+        flex-wrap: var(--controlBar-flex-wrap);
+        justify-content: var(--controlBar-justify-content);
+        align-content: var(--controlBar-align-content);
+        height: calc(var(--controlBar-height) + var(--controlBar-twoline-more-height, var(--thumb-size))) !important;
+        padding-inline: var(--controlBar-padding-inline) !important; /* Original: 9px */
+      }
+      .scrubberStack {
+        /* Vertical */
+        order: var(--scrubberStack-order);
+        height: var(--scrubberStack-height, var(--thumb-size)) !important;
+        transform: var(--scrubberStack-transform, translateY(calc(var(--thumb-size) / 2)));
 
-      /* Horizontal */
-      flex-basis: var(--scrubberStack-flex-basis, calc(var(--scrubberStack-width) - 18px)) !important;
-      width: var(--scrubberStack-twoline-width, var(--scrubberStack-width));
-      margin-inline: var(--scrubberStack-margin-inline) !important;
-    }
-    #controlsContainer .positionDurationBox {
-      flex-grow: var(--positionDurationBox-flex-grow);
-      margin-left: var(--positionDurationBox-margin-left);
-      text-align: var(--positionDurationBox-text-align) !important;
+        /* Horizontal */
+        flex-basis: var(--scrubberStack-flex-basis, calc(var(--scrubberStack-width) - 18px)) !important;
+        width: var(--scrubberStack-twoline-width, var(--scrubberStack-width));
+        margin-inline: var(--scrubberStack-margin-inline) !important;
+      }
+      .positionDurationBox {
+        flex-grow: var(--positionDurationBox-flex-grow);
+        margin-left: var(--positionDurationBox-margin-left);
+        text-align: var(--positionDurationBox-text-align) !important;
+      }
     }
 
     #playButton {
@@ -174,9 +178,9 @@
 @include Option("userContent.player.icon") {
   #controlsContainer .fullscreenButton {
     background-image: url("../icons/enter-fullscreen.svg") !important;
-  }
-  #controlsContainer .fullscreenButton[fullscreened] {
-    background-image: url("../icons/exit-fullscreen.svg") !important;
+    &[fullscreened] {
+      background-image: url("../icons/exit-fullscreen.svg") !important;
+    }
   }
 }
 
@@ -189,16 +193,18 @@
 
 /* Click to play UI */
 @include Option("userContent.player.click_to_play") {
-  #controlsContainer .clickToPlay {
-    cursor: pointer;
-    opacity: 0.65 !important;
-  }
-  #controlsContainer .controlsSpacerStack:hover > .clickToPlay {
-    opacity: 0.85 !important;
-  }
-  #controlsContainer .controlsSpacerStack:hover > .clickToPlay:hover {
-    opacity: 1 !important;
-    fill: #48a0f7 !important; /* color as .scrubber */
+  #controlsContainer {
+    .clickToPlay {
+      cursor: pointer;
+      opacity: 0.65 !important;
+    }
+    .controlsSpacerStack:hover > .clickToPlay {
+      opacity: 0.85 !important;
+      &:hover {
+        opacity: 1 !important;
+        fill: #48a0f7 !important; /* color as .scrubber */
+      }
+    }
   }
 }
 
@@ -209,17 +215,18 @@
     #controlsContainer .controlBar {
       transition: transform 350ms ease;
       opacity: 1 !important;
-    }
-    #controlsContainer .controlBar[hidden] {
-      transform: translateY(100%);
-      transition: transform 350ms ease-in-out, opacity 1s ease 100ms !important;
-      opacity: 0 !important;
-    }
-    #controlsContainer .controlBar[hidden] .progressBar,
-    #controlsContainer .controlBar[hidden] .bufferBar {
-      display: unset !important;
-      opacity: 0.55;
-      transition: opacity 150ms ease 50ms;
+      &[hidden] {
+        transform: translateY(100%);
+        transition: transform 350ms ease-in-out, opacity 1s ease 100ms !important;
+        opacity: 0 !important;
+
+        .progressBar,
+        .bufferBar {
+          display: unset !important;
+          opacity: 0.55;
+          transition: opacity 150ms ease 50ms;
+        }
+      }
     }
 
     /* Two line Control Bar */

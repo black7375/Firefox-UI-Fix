@@ -6,11 +6,6 @@
     @import "menubar";
   }
 
-  /*= Context Menu ===========================================================*/
-  @include Option("userChrome.icon.context_menu") {
-    @import "contents_menu";
-  }
-
   @include OS($linux) {
     /*= Layout Fixes =========================================================*/
     menupopup menu {
