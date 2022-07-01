@@ -103,6 +103,8 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
 // user_pref("userChrome.tab.centered_label",                  true);
 
+// user_pref("userChrome.bookmarkbar.centered",                true);
+
 // user_pref("userChrome.panel.remove_strip",                  true);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);

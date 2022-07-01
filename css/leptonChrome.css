@@ -5166,6 +5166,14 @@
     --arrowpanel-menuitem-padding-inline: calc(var(--arrowpanel-menuitem-padding-block) + 8px) !important;
   }
 }
+/** Other UI ******************************************************************/
+/*= Bookmark Bar - Centered ==================================================*/
+@supports -moz-bool-pref("userChrome.bookmarkbar.centered") {
+  #PlacesToolbarItems {
+    display: flex !important;
+    justify-content: safe center !important;
+  }
+}
 /** Fullscreen - Overlap toolbar **********************************************/
 @supports -moz-bool-pref("userChrome.fullscreen.overlap") {
   @supports -moz-bool-pref("browser.fullscreen.autohide") {
