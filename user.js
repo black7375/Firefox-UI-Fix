@@ -28,27 +28,29 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 
 // ** Theme Related Options ****************************************************
 // == Theme Distribution Settings ==============================================
+// The rows that are located continuously must be changed `true`/`false` explicitly because there is a collision.
+// https://github.com/black7375/Firefox-UI-Fix/wiki/Options#important
 user_pref("userChrome.tab.connect_to_window",          true); // Original, Photon
 user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photon
 
-// user_pref("userChrome.tab.lepton_like_padding",     true); // Original
+user_pref("userChrome.tab.lepton_like_padding",       false); // Original
 user_pref("userChrome.tab.photon_like_padding",        true); // Photon
 
-// user_pref("userChrome.tab.dynamic_separtor",        true); // Original, Proton
+user_pref("userChrome.tab.dynamic_separtor",          false); // Original, Proton
 user_pref("userChrome.tab.static_separator",           true); // Photon
-// user_pref("userChrome.tab.static_separator.selected_accent", true); // Just option
+user_pref("userChrome.tab.static_separator.selected_accent", false); // Just option
 
-// user_pref("userChrome.tab.newtab_button_like_tab",  true); // Original
+user_pref("userChrome.tab.newtab_button_like_tab",    false); // Original
 user_pref("userChrome.tab.newtab_button_smaller",      true); // Photon
-// user_pref("userChrome.tab.newtab_button_proton",    true); // Proton
+user_pref("userChrome.tab.newtab_button_proton",      false); // Proton
 
-// user_pref("userChrome.icon.panel_full",             true); // Original, Proton
+user_pref("userChrome.icon.panel_full",               false); // Original, Proton
 user_pref("userChrome.icon.panel_photon",              true); // Photon
-// user_pref("userChrome.icon.panel_sparse",           true); // Just option
+user_pref("userChrome.icon.panel_sparse",             false); // Just option
 
 // Original Only
-// user_pref("userChrome.tab.box_shadow",              true);
-// user_pref("userChrome.tab.bottom_rounded_corner",   true);
+user_pref("userChrome.tab.box_shadow",                false);
+user_pref("userChrome.tab.bottom_rounded_corner",     false);
 
 // Photon Only
 user_pref("userChrome.tab.photon_like_contextline",    true);
