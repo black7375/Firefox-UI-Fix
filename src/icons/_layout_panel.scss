@@ -55,12 +55,14 @@
   margin-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
 }
 #appMenu-fxa-status2,
-#appMenu-zoom-controls2 {
+#appMenu-zoom-controls2, /* Legacy v104 */
+#appMenu-zoom-controls {
   align-items: center;
   padding-top: var(--arrowpanel-menuimageblank-padding-block) !important;
   padding-bottom: var(--arrowpanel-menuimageblank-padding-block) !important;
 }
-#appMenu-zoom-controls2::before {
+#appMenu-zoom-controls2::before, /* Legacy v104 */
+#appMenu-zoom-controls::before {
   margin-inline-end: 0 !important;
 }
 #appMenu-zoomReduce-button2,

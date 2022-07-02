@@ -36,7 +36,8 @@
     padding-top: var(--arrowpanel-menuitemblank-padding) !important;
     padding-bottom: var(--arrowpanel-menuitemblank-padding) !important;
   }
-  #appMenu-zoom-controls2 {
+  #appMenu-zoom-controls2, /* Legacy v104 */
+  #appMenu-zoom-controls {
     padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
   }
 }
@@ -52,7 +53,8 @@
     padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
     padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
   }
-  #appMenu-zoom-controls2 {
+  #appMenu-zoom-controls2, /* Legacy v104 */
+  #appMenu-zoom-controls {
     padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
   }
 }
@@ -91,7 +93,8 @@
   #appMenu-find-button2 {
     list-style-image: url("chrome://global/skin/icons/search-glass.svg");
   }
-  #appMenu-zoom-controls2::before {
+  #appMenu-zoom-controls2::before, /* Legacy v104 */
+  #appMenu-zoom-controls::before {
     content: url("../icons/screenshot.svg");
   }
 }
