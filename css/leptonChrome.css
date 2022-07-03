@@ -3015,14 +3015,19 @@
 }
 @supports -moz-bool-pref("userChrome.padding.tabbar_width") {
   /* Titlebar Space */
-  .titlebar-spacer[type="pre-tabs"] {
-    width: 30px !important;
+  :root {
+    --uc-title-pre-spacer: 30px;
+    /* Original: 40px */
+    --uc-title-post-spacer: 25px;
     /* Original: 40px */
   }
 
+  .titlebar-spacer[type="pre-tabs"] {
+    width: var(--uc-title-pre-spacer) !important;
+  }
+
   .titlebar-spacer[type="post-tabs"] {
-    width: 25px !important;
-    /* Original: 40px */
+    width: var(--uc-title-post-spacer) !important;
   }
 
   /* Tabbar Buttons */
@@ -3822,8 +3827,8 @@
   :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
     --uc-window-control-width: 84px;
     /* 84px is default value of linux */
-    --uc-window-drag-space-pre: 30px;
-    --uc-window-drag-space-post: 25px;
+    --uc-window-drag-space-pre: var(--uc-title-pre-spacer);
+    --uc-window-drag-space-post: var(--uc-title-post-spacer);
   }
 
   :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
@@ -3960,29 +3965,20 @@
 }
 /*= Tab Bar - Oneliner =======================================================*/
 @supports -moz-bool-pref("userChrome.tab.one_line") {
+  :root {
+    --uc-navbar-size: 40vw;
+  }
+
   #navigator-toolbox {
-    display: flex !important;
-    flex-wrap: wrap;
     background-color: var(--toolbar-bgcolor) !important;
   }
 
-  :root {
-    --navbar-size: 40vw;
-  }
-
-  #titlebar,
-  #nav-bar,
-  #PersonalToolbar,
-  #tab-notification-deck-template {
-    flex-basis: 100vw;
-  }
-
   #TabsToolbar {
-    margin-left: var(--navbar-size) !important;
+    margin-left: var(--uc-navbar-size) !important;
   }
 
   #nav-bar {
-    margin-right: calc(100vw - var(--navbar-size)) !important;
+    margin-right: calc(100vw - var(--uc-navbar-size)) !important;
     margin-top: calc(-1 * var(--tab-min-height)) !important;
     height: var(--tab-min-height) !important;
   }
@@ -3992,8 +3988,17 @@
   }
 
   toolbarspring.chromeclass-toolbar-additional,
-  .titlebar-spacer {
+  .titlebar-spacer[type="pre-tabs"] {
     display: none !important;
+  }
+
+  :root:not([sizemode="maximized"]) #nav-bar {
+    padding-inline-start: 40px !important;
+  }
+  @supports -moz-bool-pref("userChrome.padding.tabbar_width") {
+    :root:not([sizemode="maximized"]) #nav-bar {
+      padding-inline-start: var(--uc-title-pre-spacer) !important;
+    }
   }
 }
 /*= Tab Bar - Connect to window ==============================================*/

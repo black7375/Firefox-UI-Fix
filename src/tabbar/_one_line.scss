@@ -1,25 +1,16 @@
+:root {
+  --uc-navbar-size: 40vw;
+}
+
 #navigator-toolbox {
-  display: flex !important;
-  flex-wrap: wrap;
   background-color: var(--toolbar-bgcolor) !important;
 }
 
-:root {
-  --navbar-size: 40vw;
-}
-
-#titlebar,
-#nav-bar,
-#PersonalToolbar,
-#tab-notification-deck-template {
-  flex-basis: 100vw;
-}
-
 #TabsToolbar {
-  margin-left: var(--navbar-size) !important;
+  margin-left: var(--uc-navbar-size) !important;
 }
 #nav-bar {
-  margin-right: calc(100vw - var(--navbar-size)) !important;
+  margin-right: calc(100vw - var(--uc-navbar-size)) !important;
   margin-top: calc(-1 * var(--tab-min-height)) !important;
   height: var(--tab-min-height) !important;
 }
@@ -29,6 +20,13 @@
 }
 
 toolbarspring.chromeclass-toolbar-additional,
-.titlebar-spacer {
+.titlebar-spacer[type="pre-tabs"] {
   display: none !important;
+}
+
+:root:not([sizemode="maximized"]) #nav-bar {
+  padding-inline-start: 40px !important;
+  @include Option("userChrome.padding.tabbar_width") {
+    padding-inline-start: var(--uc-title-pre-spacer) !important;
+  }
 }
