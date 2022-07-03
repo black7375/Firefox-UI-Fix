@@ -1,0 +1,34 @@
+#navigator-toolbox {
+  display: flex !important;
+  flex-wrap: wrap;
+  background-color: var(--toolbar-bgcolor) !important;
+}
+
+:root {
+  --navbar-size: 40vw;
+}
+
+#titlebar,
+#nav-bar,
+#PersonalToolbar,
+#tab-notification-deck-template {
+  flex-basis: 100vw;
+}
+
+#TabsToolbar {
+  margin-left: var(--navbar-size) !important;
+}
+#nav-bar {
+  margin-right: calc(100vw - var(--navbar-size)) !important;
+  margin-top: calc(-1 * var(--tab-min-height)) !important;
+  height: var(--tab-min-height) !important;
+}
+
+#urlbar-container {
+  min-width: 0px !important;
+}
+
+toolbarspring.chromeclass-toolbar-additional,
+.titlebar-spacer {
+  display: none !important;
+}

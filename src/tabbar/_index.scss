@@ -23,6 +23,11 @@
   @import "tabs_on_bottom";
 }
 
+/*= Tab Bar - Oneliner =======================================================*/
+@include Option("userChrome.tab.one_line") {
+  @import "one_line";
+}
+
 /*= Tab Bar - Connect to window ==============================================*/
 @include Option("userChrome.tab.connect_to_window") {
   @import "connect_to_window";
