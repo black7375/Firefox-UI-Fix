@@ -3727,153 +3727,6 @@
       }
     }
   }
-  /*= Windows Control - Move to toolbar ========================================*/
-  :root {
-    --uc-titlebar-padding: 0px;
-  }
-
-  @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
-    (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8),
-    (-moz-os-version: windows-win10),
-    (-moz-platform: windows-win10) {
-    :root[sizemode="maximized"][tabsintitlebar] {
-      --uc-titlebar-padding: 8px;
-    }
-  }
-  #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
-  #TabsToolbar > .titlebar-buttonbox-container {
-    position: fixed;
-    display: block;
-    top: var(--uc-titlebar-padding);
-    right: 0;
-    height: 40px;
-  }
-
-  /* where window controls are on left */
-  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root {
-      --uc-titlebar-padding: 0px !important;
-    }
-
-    .titlebar-buttonbox-container {
-      left: 0;
-      right: unset !important;
-    }
-  }
-  #navigator-toolbox {
-    padding-top: var(--uc-titlebar-padding) !important;
-  }
-
-  :root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {
-    height: 32px;
-  }
-
-  #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
-    opacity: 0;
-  }
-
-  .titlebar-buttonbox-container > .titlebar-buttonbox {
-    height: 100%;
-  }
-  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    .titlebar-buttonbox-container > .titlebar-buttonbox {
-      margin-block: 10px;
-    }
-  }
-
-  /* At Full Screen */
-  :root[sizemode="fullscreen"] #window-controls {
-    position: fixed;
-    display: flex;
-    top: 0;
-    right: 0;
-    height: 40px;
-  }
-
-  :root[uidensity="compact"][sizemode="fullscreen"] #window-controls {
-    height: 32px;
-  }
-
-  @supports -moz-bool-pref("browser.fullscreen.autohide") {
-    :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
-      visibility: hidden;
-    }
-  }
-  /* At Activated Menubar */
-  :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
-    #toolbar-menubar:not([autohide="true"])
-    + #TabsToolbar
-    > .titlebar-buttonbox-container {
-    display: block !important;
-  }
-
-  :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
-    visibility: hidden;
-  }
-
-  /*= Navbar - Padding for window controls =====================================*/
-  /* Customized https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
-  :root {
-    --uc-window-control-width: 0px;
-    /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls */
-    --uc-window-drag-space-pre: 0px;
-    /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
-    --uc-window-drag-space-post: 0px;
-    /* Same as .titlebar-spacer[type="post-tabs"] */
-  }
-
-  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-    --uc-window-control-width: 84px;
-    /* 84px is default value of linux */
-    --uc-window-drag-space-pre: var(--uc-title-pre-spacer);
-    --uc-window-drag-space-post: var(--uc-title-post-spacer);
-  }
-
-  :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
-    --uc-window-drag-space-pre: 0px;
-    /* Remove pre space */
-  }
-
-  #nav-bar {
-    border-inline-start-width: var(--uc-window-drag-space-pre);
-    border-inline-end-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
-    border-inline-style: solid !important;
-    border-inline-color: var(--toolbar-bgcolor);
-  }
-
-  /* Windows */
-  @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
-    (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8) {
-    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-      --uc-window-control-width: 105px;
-    }
-  }
-  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-      --uc-window-control-width: 138px;
-    }
-  }
-  /* Use this pref to check Mac OS where window controls are on left */
-  /* This pref defaults to true on Mac and doesn't actually do anything on other platforms. So if your system has window controls on LEFT side you can set the pref to true */
-  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-      --uc-window-control-width: 72px;
-    }
-
-    :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
-      border-inline-start-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
-      border-inline-end-width: var(--uc-window-drag-space-pre);
-    }
-
-    :root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,
-    :root[sizemode="fullscreen"] #window-controls {
-      right: unset;
-    }
-  }
   /*= Menubar - Always on top ==================================================*/
   @supports -moz-bool-pref("userChrome.tab.on_bottom.menubar_on_top") {
     /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
@@ -3967,18 +3820,14 @@
 @supports -moz-bool-pref("userChrome.tab.one_line") {
   :root {
     --uc-navbar-size: 40vw;
+    --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
   }
 
   #navigator-toolbox {
     background-color: var(--toolbar-bgcolor) !important;
   }
 
-  #TabsToolbar {
-    margin-left: var(--uc-navbar-size) !important;
-  }
-
   #nav-bar {
-    margin-right: calc(100vw - var(--uc-navbar-size)) !important;
     margin-top: calc(-1 * var(--tab-min-height)) !important;
     height: var(--tab-min-height) !important;
   }
@@ -3987,17 +3836,203 @@
     min-width: 0px !important;
   }
 
-  toolbarspring.chromeclass-toolbar-additional,
-  .titlebar-spacer[type="pre-tabs"] {
+  toolbarspring.chromeclass-toolbar-additional {
     display: none !important;
   }
 
-  :root:not([sizemode="maximized"]) #nav-bar {
-    padding-inline-start: 40px !important;
+  @supports not -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
+    #TabsToolbar {
+      margin-inline-start: var(--uc-navbar-size) !important;
+    }
+
+    #nav-bar {
+      margin-inline-end: var(--uc-tabbar-size) !important;
+    }
+
+    .titlebar-spacer[type="pre-tabs"] {
+      display: none !important;
+    }
   }
-  @supports -moz-bool-pref("userChrome.padding.tabbar_width") {
-    :root:not([sizemode="maximized"]) #nav-bar {
-      padding-inline-start: var(--uc-title-pre-spacer) !important;
+  @supports -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
+    #TabsToolbar {
+      margin-inline-end: var(--uc-navbar-size) !important;
+    }
+
+    #nav-bar {
+      margin-inline-start: var(--uc-tabbar-size) !important;
+    }
+
+    .titlebar-spacer[type="post-tabs"] {
+      display: none !important;
+    }
+  }
+}
+/*= Tab Bar - Shared Layout ==================================================*/
+@supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_line") {
+  @supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
+    /*= Windows Control - Move to toolbar ========================================*/
+    /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
+    See the above repository for updates as well as full license text. */
+    :root {
+      --uc-titlebar-padding: 0px;
+    }
+
+    @media (-moz-os-version: windows-win7),
+      (-moz-platform: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-platform: windows-win8),
+      (-moz-os-version: windows-win10),
+      (-moz-platform: windows-win10) {
+      :root[sizemode="maximized"][tabsintitlebar] {
+        --uc-titlebar-padding: 8px;
+      }
+    }
+    #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
+    #TabsToolbar > .titlebar-buttonbox-container {
+      position: fixed;
+      display: block;
+      top: var(--uc-titlebar-padding);
+      right: 0;
+      height: 40px;
+      z-index: 1;
+    }
+
+    /* where window controls are on left */
+    @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+      :root {
+        --uc-titlebar-padding: 0px !important;
+      }
+
+      .titlebar-buttonbox-container {
+        left: 0;
+        right: unset !important;
+      }
+    }
+    #navigator-toolbox {
+      padding-top: var(--uc-titlebar-padding) !important;
+    }
+
+    :root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {
+      height: 32px;
+    }
+
+    #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+      opacity: 0;
+    }
+
+    .titlebar-buttonbox-container > .titlebar-buttonbox {
+      height: 100%;
+    }
+    @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+      .titlebar-buttonbox-container > .titlebar-buttonbox {
+        margin-block: 10px;
+      }
+    }
+
+    /* At Full Screen */
+    :root[sizemode="fullscreen"] #window-controls {
+      position: fixed;
+      display: flex;
+      top: 0;
+      right: 0;
+      height: 40px;
+    }
+
+    :root[uidensity="compact"][sizemode="fullscreen"] #window-controls {
+      height: 32px;
+    }
+
+    @supports -moz-bool-pref("browser.fullscreen.autohide") {
+      :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
+        visibility: hidden;
+      }
+    }
+    /* At Activated Menubar */
+    :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
+      #toolbar-menubar:not([autohide="true"])
+      + #TabsToolbar
+      > .titlebar-buttonbox-container {
+      display: block !important;
+    }
+
+    :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
+      visibility: hidden;
+    }
+  }
+  /*= Navbar - Padding for window controls =====================================*/
+  /* Customized https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
+  :root {
+    --uc-window-control-width: 0px;
+    /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls */
+    --uc-window-drag-space-pre: 0px;
+    /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
+    --uc-window-drag-space-post: 0px;
+    /* Same as .titlebar-spacer[type="post-tabs"] */
+  }
+
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    --uc-window-control-width: 84px;
+    /* 84px is default value of linux */
+    --uc-window-drag-space-pre: var(--uc-title-pre-spacer, 40px);
+    --uc-window-drag-space-post: var(--uc-title-post-spacer, 40px);
+  }
+
+  :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
+    --uc-window-drag-space-pre: 0px;
+    /* Remove pre space */
+  }
+
+  @supports -moz-bool-pref("userChrome.tab.one_line") {
+    @supports not -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
+      :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+        /* Don't need window control */
+        --uc-window-control-width: 0px;
+        --uc-window-drag-space-post: 0px;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
+      :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+        /* Don't need pre spacer */
+        --uc-window-drag-space-pre: 0px;
+      }
+    }
+  }
+  #nav-bar {
+    border-inline-start-width: var(--uc-window-drag-space-pre);
+    border-inline-end-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+    border-inline-style: solid !important;
+    border-inline-color: var(--toolbar-bgcolor);
+  }
+
+  /* Windows */
+  @media (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8) {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+      --uc-window-control-width: 105px;
+    }
+  }
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+      --uc-window-control-width: 138px;
+    }
+  }
+  /* Use this pref to check Mac OS where window controls are on left */
+  /* This pref defaults to true on Mac and doesn't actually do anything on other platforms. So if your system has window controls on LEFT side you can set the pref to true */
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+      --uc-window-control-width: 72px;
+    }
+
+    :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+      border-inline-start-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+      border-inline-end-width: var(--uc-window-drag-space-pre);
+    }
+
+    :root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,
+    :root[sizemode="fullscreen"] #window-controls {
+      right: unset;
     }
   }
 }

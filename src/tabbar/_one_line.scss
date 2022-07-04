@@ -1,16 +1,13 @@
 :root {
   --uc-navbar-size: 40vw;
+  --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
 }
 
 #navigator-toolbox {
   background-color: var(--toolbar-bgcolor) !important;
 }
 
-#TabsToolbar {
-  margin-left: var(--uc-navbar-size) !important;
-}
 #nav-bar {
-  margin-right: calc(100vw - var(--uc-navbar-size)) !important;
   margin-top: calc(-1 * var(--tab-min-height)) !important;
   height: var(--tab-min-height) !important;
 }
@@ -19,14 +16,29 @@
   min-width: 0px !important;
 }
 
-toolbarspring.chromeclass-toolbar-additional,
-.titlebar-spacer[type="pre-tabs"] {
+toolbarspring.chromeclass-toolbar-additional {
   display: none !important;
 }
 
-:root:not([sizemode="maximized"]) #nav-bar {
-  padding-inline-start: 40px !important;
-  @include Option("userChrome.padding.tabbar_width") {
-    padding-inline-start: var(--uc-title-pre-spacer) !important;
+@include NotOption("userChrome.tab.one_line.tabbar_first") {
+  #TabsToolbar {
+    margin-inline-start: var(--uc-navbar-size) !important;
+  }
+  #nav-bar {
+    margin-inline-end: var(--uc-tabbar-size) !important;
+  }
+  .titlebar-spacer[type="pre-tabs"] {
+    display: none !important;
+  }
+}
+@include Option("userChrome.tab.one_line.tabbar_first") {
+  #TabsToolbar {
+    margin-inline-end: var(--uc-navbar-size) !important;
+  }
+  #nav-bar {
+    margin-inline-start: var(--uc-tabbar-size) !important;
+  }
+  .titlebar-spacer[type="post-tabs"] {
+    display: none !important;
   }
 }

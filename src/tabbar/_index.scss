@@ -28,6 +28,11 @@
   @import "one_line";
 }
 
+/*= Tab Bar - Shared Layout ==================================================*/
+@include Option("userChrome.tab.on_bottom", "userChrome.tab.one_line") {
+  @import "layout";
+}
+
 /*= Tab Bar - Connect to window ==============================================*/
 @include Option("userChrome.tab.connect_to_window") {
   @import "connect_to_window";

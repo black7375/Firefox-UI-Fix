@@ -1,0 +1,67 @@
+/*= Navbar - Padding for window controls =====================================*/
+/* Customized https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
+:root {
+  --uc-window-control-width: 0px;   /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls */
+  --uc-window-drag-space-pre: 0px;  /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
+  --uc-window-drag-space-post: 0px; /* Same as .titlebar-spacer[type="post-tabs"] */
+}
+:root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+  --uc-window-control-width: 84px; /* 84px is default value of linux */
+  --uc-window-drag-space-pre: var(--uc-title-pre-spacer, 40px); // 30px
+  --uc-window-drag-space-post: var(--uc-title-post-spacer, 40px); // 25px
+}
+:root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
+  --uc-window-drag-space-pre: 0px; /* Remove pre space */
+}
+@include Option("userChrome.tab.one_line") {
+  @include NotOption("userChrome.tab.one_line.tabbar_first") {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+      /* Don't need window control */
+      --uc-window-control-width: 0px;
+      --uc-window-drag-space-post: 0px;
+    }
+  }
+  @include Option("userChrome.tab.one_line.tabbar_first") {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+      /* Don't need pre spacer */
+      --uc-window-drag-space-pre: 0px;
+    }
+  }
+}
+
+#nav-bar {
+  border-inline-start-width: var(--uc-window-drag-space-pre);
+  border-inline-end-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+
+  border-inline-style: solid !important;
+  border-inline-color: var(--toolbar-bgcolor);
+}
+
+/* Windows */
+@include OS($win7, $win8) {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    --uc-window-control-width: 105px;
+  }
+}
+
+@include OS($win10) {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    --uc-window-control-width: 138px;
+  }
+}
+
+/* Use this pref to check Mac OS where window controls are on left */
+/* This pref defaults to true on Mac and doesn't actually do anything on other platforms. So if your system has window controls on LEFT side you can set the pref to true */
+@include OS($mac) {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    --uc-window-control-width: 72px;
+  }
+  :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+    border-inline-start-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+    border-inline-end-width: var(--uc-window-drag-space-pre);
+  }
+  :root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,
+  :root[sizemode="fullscreen"] #window-controls {
+    right: unset;
+  }
+}
