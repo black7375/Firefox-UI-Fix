@@ -3448,6 +3448,12 @@
   #ContentSelectDropdown > menupopup > menuitem {
     padding-block: 0 !important;
   }
+  @media (-moz-gtk-csd-available) {
+    #ContentSelectDropdown > menupopup > menucaption,
+    #ContentSelectDropdown > menupopup > menuitem {
+      padding-block: var(--menu-padding) !important;
+    }
+  }
 
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root:not([uidensity="touch"]) .menu-text,
