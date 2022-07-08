@@ -105,6 +105,7 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.close_button_at_pinned.background", true);
 // user_pref("userChrome.tab.close_button_at_hover.always",    true); // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
+// user_pref("userChrome.tab.centered_content",                true);
 // user_pref("userChrome.tab.centered_label",                  true);
 
 // user_pref("userChrome.bookmarkbar.centered",                true);

@@ -1,0 +1,7 @@
+/* Based on https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/centered_tab_content.css */
+
+.tab-content:not([pinned])::before {
+  display: -moz-box;
+  content: "";
+  -moz-box-flex: 1;
+}
