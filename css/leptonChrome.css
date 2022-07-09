@@ -4054,6 +4054,13 @@
   .tabbrowser-tab[selected="true"] {
     -moz-window-dragging: drag;
     --tab-max-width: 100%;
+    width: var(--tab-max-width) !important;
+    margin-inline-start: calc(var(--tab-shadow-max-size) * -1) !important;
+  }
+
+  .tabbrowser-tab[selected="true"][pinned="true"] {
+    -moz-box-flex: 100;
+    max-width: var(--tab-max-width) !important;
   }
 
   .tabbrowser-tab[selected="true"] .tab-label-container {
@@ -4081,6 +4088,24 @@
 
   .tab-label-container[pinned] {
     width: unset !important;
+  }
+
+  @supports -moz-bool-pref("browser.tabs.tabmanager.enabled") {
+    :root:not([tabsintitlebar="true"]) #tabbrowser-tabs:not([overflow="true"], [hashiddentabs]) ~ #alltabs-button,
+    :root:not([tabsintitlebar="true"])
+      #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow="true"])
+      ~ #new-tab-button {
+      display: -moz-box !important;
+    }
+  }
+  #tabbrowser-tabs:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox {
+    padding-inline: 12.5px !important;
+  }
+
+  #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+    > #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    --inline-tab-padding: 0 !important;
   }
 }
 /*= Tab Bar - Connect to window ==============================================*/
