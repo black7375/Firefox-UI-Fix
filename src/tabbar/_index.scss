@@ -33,6 +33,11 @@
   @import "layout";
 }
 
+/*= Tab Bar - Show only current tab ==========================================*/
+@include Option("userChrome.tab.as_titlebar") {
+  @import "as_titlebar";
+}
+
 /*= Tab Bar - Connect to window ==============================================*/
 @include Option("userChrome.tab.connect_to_window") {
   @import "connect_to_window";

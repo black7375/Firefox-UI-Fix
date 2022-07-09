@@ -1,0 +1,43 @@
+:root:not([tabsintitlebar="true"]) #tabbrowser-tabs, /* Show only */
+#scrollbutton-up, /* Defaults */
+#scrollbutton-down,
+.titlebar-spacer[type="pre-tabs"],
+spacer[part="overflow-end-indicator"],
+.tabbrowser-tab:not([selected="true"]),
+.tabbrowser-tab[selected="true"] .tab-background,
+.tabbrowser-tab[selected="true"] .tab-stack:is(::before, ::after),
+.tabbrowser-tab[selected="true"] .tab-close-button,
+#tabs-newtab-button {
+  display: none !important;
+}
+
+.tabbrowser-tab[selected="true"] {
+  -moz-window-dragging: drag;
+  --tab-max-width: 100%;
+}
+.tabbrowser-tab[selected="true"] .tab-label-container {
+  margin-inline: 0 !important;
+}
+
+.tab-content {
+  margin-inline: auto;
+  width: 100%;
+}
+
+
+/* Pinned */
+#tabbrowser-tabs {
+  padding-inline: 0 !important; /* Original: var(--tab-overflow-pinned-tabs-width) 0; */
+}
+.tab-throbber,
+.tab-icon-pending,
+.tab-icon-image,
+.tab-sharing-icon-overlay,
+.tab-icon-overlay {
+  &[pinned] {
+    margin-inline-end: 5.5px;
+  }
+}
+.tab-label-container[pinned] {
+  width: unset !important;
+}

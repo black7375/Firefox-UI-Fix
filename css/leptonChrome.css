@@ -4036,6 +4036,53 @@
     }
   }
 }
+/*= Tab Bar - Show only current tab ==========================================*/
+@supports -moz-bool-pref("userChrome.tab.as_titlebar") {
+  :root:not([tabsintitlebar="true"]) #tabbrowser-tabs,
+  #scrollbutton-up,
+  #scrollbutton-down,
+  .titlebar-spacer[type="pre-tabs"],
+  spacer[part="overflow-end-indicator"],
+  .tabbrowser-tab:not([selected="true"]),
+  .tabbrowser-tab[selected="true"] .tab-background,
+  .tabbrowser-tab[selected="true"] .tab-stack:is(::before, ::after),
+  .tabbrowser-tab[selected="true"] .tab-close-button,
+  #tabs-newtab-button {
+    display: none !important;
+  }
+
+  .tabbrowser-tab[selected="true"] {
+    -moz-window-dragging: drag;
+    --tab-max-width: 100%;
+  }
+
+  .tabbrowser-tab[selected="true"] .tab-label-container {
+    margin-inline: 0 !important;
+  }
+
+  .tab-content {
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  /* Pinned */
+  #tabbrowser-tabs {
+    padding-inline: 0 !important;
+    /* Original: var(--tab-overflow-pinned-tabs-width) 0; */
+  }
+
+  .tab-throbber[pinned],
+  .tab-icon-pending[pinned],
+  .tab-icon-image[pinned],
+  .tab-sharing-icon-overlay[pinned],
+  .tab-icon-overlay[pinned] {
+    margin-inline-end: 5.5px;
+  }
+
+  .tab-label-container[pinned] {
+    width: unset !important;
+  }
+}
 /*= Tab Bar - Connect to window ==============================================*/
 @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
   .tab-background {
@@ -4800,36 +4847,20 @@
 }
 /** Clipped tabs - Show close button at pinned tab ****************************/
 @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
-  #tabbrowser-tabs {
-    --uc-close-button-size: 24px;
-    --uc-close-button-padding: 6px;
-    --uc-close-button-margin: calc((var(--uc-close-button-size) - 16px) / -2);
-  }
+  @supports not -moz-bool-pref("userChrome.tab.as_titlebar") {
+    #tabbrowser-tabs {
+      --uc-close-button-size: 24px;
+      --uc-close-button-padding: 6px;
+      --uc-close-button-margin: calc((var(--uc-close-button-size) - 16px) / -2);
+    }
 
-  #tabbrowser-tabs[closebuttons="activetab"] {
-    --uc-close-button-size: 20px;
-    --uc-close-button-padding: 4px;
-  }
+    #tabbrowser-tabs[closebuttons="activetab"] {
+      --uc-close-button-size: 20px;
+      --uc-close-button-padding: 4px;
+    }
 
-  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
-    display: -moz-box !important;
-    -moz-box-ordinal-group: 0 !important;
-    /* Looks like hover */
-    width: var(--uc-close-button-size) !important;
-    height: var(--uc-close-button-size) !important;
-    padding: var(--uc-close-button-padding) !important;
-    margin-inline: var(--uc-close-button-margin) !important;
-  }
-  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
-    width: 0 !important;
-    position: absolute;
-    bottom: 8px;
-  }
-  .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover .tab-icon-image {
-    display: none !important;
-  }
-  @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.always") {
-    .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
+    .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy])
+      .tab-close-button {
       display: -moz-box !important;
       -moz-box-ordinal-group: 0 !important;
       /* Looks like hover */
@@ -4838,39 +4869,58 @@
       padding: var(--uc-close-button-padding) !important;
       margin-inline: var(--uc-close-button-margin) !important;
     }
-    .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
+    .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
       width: 0 !important;
       position: absolute;
       bottom: 8px;
     }
-    .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
+    .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover .tab-icon-image {
       display: none !important;
     }
-  }
-  @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.background") {
-    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
-      display: -moz-box !important;
-      -moz-box-ordinal-group: 0 !important;
-      /* Looks like hover */
-      width: var(--uc-close-button-size) !important;
-      height: var(--uc-close-button-size) !important;
-      padding: var(--uc-close-button-padding) !important;
-      margin-inline: var(--uc-close-button-margin) !important;
+    @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.always") {
+      .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
+        display: -moz-box !important;
+        -moz-box-ordinal-group: 0 !important;
+        /* Looks like hover */
+        width: var(--uc-close-button-size) !important;
+        height: var(--uc-close-button-size) !important;
+        padding: var(--uc-close-button-padding) !important;
+        margin-inline: var(--uc-close-button-margin) !important;
+      }
+      .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-icon-stack {
+        width: 0 !important;
+        position: absolute;
+        bottom: 8px;
+      }
+      .tabbrowser-tab[pinned][visuallyselected] .tab-icon-image {
+        display: none !important;
+      }
     }
-    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
-      width: 0 !important;
-      position: absolute;
-      bottom: 8px;
+    @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.background") {
+      .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
+        display: -moz-box !important;
+        -moz-box-ordinal-group: 0 !important;
+        /* Looks like hover */
+        width: var(--uc-close-button-size) !important;
+        height: var(--uc-close-button-size) !important;
+        padding: var(--uc-close-button-padding) !important;
+        margin-inline: var(--uc-close-button-margin) !important;
+      }
+      .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-icon-stack {
+        width: 0 !important;
+        position: absolute;
+        bottom: 8px;
+      }
+      .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover .tab-icon-image {
+        display: none !important;
+      }
     }
-    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover .tab-icon-image {
-      display: none !important;
-    }
-  }
 
-  #tabbrowser-tabs[closebuttons="activetab"]
-    .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy])
-    .tab-close-button {
-    margin-inline-end: var(--uc-close-button-margin) !important;
+    #tabbrowser-tabs[closebuttons="activetab"]
+      .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy])
+      .tab-close-button {
+      margin-inline-end: var(--uc-close-button-margin) !important;
+    }
   }
 }
 /** Clipped tabs - Always show tab icon ***************************************/
