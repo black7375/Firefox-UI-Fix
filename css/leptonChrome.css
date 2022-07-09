@@ -5154,20 +5154,8 @@
     display: none !important;
   }
 }
-/*= Tab Label - Make to Center ===============================================*/
-@supports -moz-bool-pref("userChrome.tab.centered_label") {
-  /* Based on https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/centered_tab_label.css */
-  .tab-label-container {
-    display: grid;
-    justify-content: safe center;
-    align-items: safe center;
-  }
-
-  .tab-label,
-  .tab-secondary-label {
-    overflow: hidden;
-  }
-
+/*= Tab Centered - Make to Center ============================================*/
+@supports -moz-bool-pref("userChrome.tab.centered_content") or -moz-bool-pref("userChrome.tab.centered_label") {
   .tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),
   .tabbrowser-tab:not(:hover, [pinned]) .tab-label-container:not([textoverflow]) {
     margin-inline-end: 5px;
@@ -5184,8 +5172,32 @@
       .tabbrowser-tab:not([selected]):not(:hover, [pinned])
       .tab-label-container
       label {
-      padding-inline-end: 19px;
+      padding-inline-end: 18px;
     }
+  }
+}
+@supports -moz-bool-pref("userChrome.tab.centered_content") {
+  .tab-icon-stack {
+    -moz-box-flex: 1;
+    justify-content: end;
+  }
+}
+@supports -moz-bool-pref("userChrome.tab.centered_label") {
+  /* Based on https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/centered_tab_label.css */
+  .tab-label-container {
+    display: grid;
+    justify-content: safe center;
+    align-items: safe center;
+  }
+
+  .tab-label,
+  .tab-secondary-label {
+    overflow: hidden;
+  }
+
+  .tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),
+  .tabbrowser-tab:not(:hover, [pinned]) .tab-label-container:not([textoverflow]) {
+    margin-inline-end: 5px;
   }
 }
 /** Url View UI ***************************************************************/
