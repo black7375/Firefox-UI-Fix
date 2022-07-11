@@ -1,0 +1,38 @@
+#sidebar-box {
+  overflow: hidden;
+
+  will-change: min-width, max-width;
+
+  &:hover {
+    min-width: var(--uc-sidebar-hover-width) !important;
+    max-width: var(--uc-sidebar-hover-width) !important;
+  }
+}
+
+:root[inFullscreen="true"] #sidebar-box {
+  margin-inline-start: calc(var(--uc-sidebar-fullscreen-width) + (-1 * var(--uc-sidebar-hover-width))) !important;
+  will-change: margin-inline-start;
+
+  &:hover {
+    margin-inline-start: 0 !important;
+  }
+}
+
+
+@include Animate {
+  #sidebar-box {
+    transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+
+    &:hover {
+      transition-delay: 0ms !important;
+    }
+  }
+
+  :root[inFullscreen="true"] #sidebar-box {
+    transition: margin-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+
+    &:hover {
+      transition-delay: 0ms !important;
+    }
+  }
+}

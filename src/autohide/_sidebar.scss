@@ -1,3 +1,39 @@
 @include Option("userChrome.autohide.sidebar") {
-  @import "sidebar/overlay";
+  #sidebar-box {
+    /* Original
+    min-width: 14em;
+    width: 18em;
+    max-width: 36em;
+   */
+
+    --uc-sidebar-width: 40px;
+    --uc-sidebar-hover-width: 18em;
+    --uc-sidebar-fullscreen-width: 4px;
+    --uc-sidebar-shadow-color: #28282F;
+    --uc-autohide-sidebar-delay: 600ms; /* Wait 0.6s before hiding sidebar */
+
+    z-index: 1000 !important;
+    position: relative !important;
+
+    min-width: var(--uc-sidebar-width) !important;
+    max-width: var(--uc-sidebar-width) !important;
+    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+  }
+
+  :root[inFullscreen="true"] #sidebar-box {
+    min-width: var(--uc-sidebar-hover-width) !important;
+    max-width: var(--uc-sidebar-hover-width) !important;
+  }
+
+  #sidebar-splitter {
+    display: none !important;
+  }
+
+
+  @include Option("userChrome.autohide.sidebar.overlap") {
+    @import "sidebar/overlay";
+  }
+  @include NotOption("userChrome.autohide.sidebar.overlap") {
+    @import "sidebar/static";
+  }
 }

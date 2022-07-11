@@ -5392,12 +5392,13 @@
 @supports -moz-bool-pref("userChrome.autohide.sidebar") {
   #sidebar-box {
     /* Original
-      min-width: 14em;
-      width: 18em;
-      max-width: 36em;
+     min-width: 14em;
+     width: 18em;
+     max-width: 36em;
     */
     --uc-sidebar-width: 40px;
     --uc-sidebar-hover-width: 18em;
+    --uc-sidebar-fullscreen-width: 4px;
     --uc-sidebar-shadow-color: #28282f;
     --uc-autohide-sidebar-delay: 600ms;
     /* Wait 0.6s before hiding sidebar */
@@ -5405,66 +5406,100 @@
     position: relative !important;
     min-width: var(--uc-sidebar-width) !important;
     max-width: var(--uc-sidebar-width) !important;
+    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+  }
+
+  :root[inFullscreen="true"] #sidebar-box {
+    min-width: var(--uc-sidebar-hover-width) !important;
+    max-width: var(--uc-sidebar-hover-width) !important;
   }
 
   #sidebar-splitter {
     display: none !important;
   }
 
-  #sidebar-header,
-  #sidebar {
-    box-shadow: 1px 5px 15px -5px var(--uc-sidebar-shadow-color);
-  }
+  @supports -moz-bool-pref("userChrome.autohide.sidebar.overlap") {
+    #sidebar-header {
+      background-color: var(--sidebar-background-color) !important;
+      color: var(--sidebar-text-color) !important;
+      overflow: hidden;
+    }
 
-  #sidebar-header {
-    background-color: var(--sidebar-background-color) !important;
-    color: var(--sidebar-text-color) !important;
-    overflow: hidden;
-  }
-
-  #sidebar {
-    min-width: var(--uc-sidebar-width) !important;
-    max-width: var(--uc-sidebar-width) !important;
-    will-change: min-width, max-width;
-  }
-
-  #sidebar-box:hover > #sidebar {
-    min-width: var(--uc-sidebar-hover-width) !important;
-    max-width: var(--uc-sidebar-hover-width) !important;
-  }
-
-  :root[inFullscreen="true"] #sidebar-box {
-    min-width: var(--uc-sidebar-hover-width) !important;
-    max-width: var(--uc-sidebar-hover-width) !important;
-    margin-inline-start: calc(-1 * var(--uc-sidebar-hover-width)) !important;
-    transform: translateX(4px) !important;
-    will-change: transform;
-  }
-  :root[inFullscreen="true"] #sidebar-box:hover {
-    transform: translateX(var(--uc-sidebar-hover-width)) !important;
-  }
-  :root[inFullscreen="true"] #sidebar-box #sidebar-header,
-  :root[inFullscreen="true"] #sidebar-box #sidebar {
-    min-width: calc(var(--uc-sidebar-hover-width)) !important;
-    max-width: calc(var(--uc-sidebar-hover-width)) !important;
-    box-shadow: 2px 0 33px var(--uc-sidebar-shadow-color);
-    will-change: unset;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
     #sidebar {
-      transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+      min-width: var(--uc-sidebar-width) !important;
+      max-width: var(--uc-sidebar-width) !important;
+      will-change: min-width, max-width;
     }
 
     #sidebar-box:hover > #sidebar {
-      transition-delay: 0ms !important;
+      min-width: var(--uc-sidebar-hover-width) !important;
+      max-width: var(--uc-sidebar-hover-width) !important;
     }
 
     :root[inFullscreen="true"] #sidebar-box {
-      transition: transform 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+      margin-inline-start: calc(-1 * var(--uc-sidebar-hover-width)) !important;
+      transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
+      will-change: transform;
     }
     :root[inFullscreen="true"] #sidebar-box:hover {
-      transition-delay: 0ms !important;
+      transform: translateX(var(--uc-sidebar-hover-width)) !important;
+    }
+    :root[inFullscreen="true"] #sidebar-box #sidebar-header,
+    :root[inFullscreen="true"] #sidebar-box #sidebar {
+      min-width: calc(var(--uc-sidebar-hover-width)) !important;
+      max-width: calc(var(--uc-sidebar-hover-width)) !important;
+      will-change: unset;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      #sidebar {
+        transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+      }
+
+      #sidebar-box:hover > #sidebar {
+        transition-delay: 0ms !important;
+      }
+
+      :root[inFullscreen="true"] #sidebar-box {
+        transition: transform 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+      }
+      :root[inFullscreen="true"] #sidebar-box:hover {
+        transition-delay: 0ms !important;
+      }
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.autohide.sidebar.overlap") {
+    #sidebar-box {
+      overflow: hidden;
+      will-change: min-width, max-width;
+    }
+    #sidebar-box:hover {
+      min-width: var(--uc-sidebar-hover-width) !important;
+      max-width: var(--uc-sidebar-hover-width) !important;
+    }
+
+    :root[inFullscreen="true"] #sidebar-box {
+      margin-inline-start: calc(var(--uc-sidebar-fullscreen-width) + -1 * var(--uc-sidebar-hover-width)) !important;
+      will-change: margin-inline-start;
+    }
+    :root[inFullscreen="true"] #sidebar-box:hover {
+      margin-inline-start: 0 !important;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      #sidebar-box {
+        transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+      }
+      #sidebar-box:hover {
+        transition-delay: 0ms !important;
+      }
+
+      :root[inFullscreen="true"] #sidebar-box {
+        transition: margin-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+      }
+      :root[inFullscreen="true"] #sidebar-box:hover {
+        transition-delay: 0ms !important;
+      }
     }
   }
 }
