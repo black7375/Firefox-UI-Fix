@@ -5425,14 +5425,12 @@
   #sidebar {
     min-width: var(--uc-sidebar-width) !important;
     max-width: var(--uc-sidebar-width) !important;
-    transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
     will-change: min-width, max-width;
   }
 
   #sidebar-box:hover > #sidebar {
     min-width: var(--uc-sidebar-hover-width) !important;
     max-width: var(--uc-sidebar-hover-width) !important;
-    transition-delay: 0ms !important;
   }
 
   :root[inFullscreen="true"] #sidebar-box {
@@ -5440,20 +5438,34 @@
     max-width: var(--uc-sidebar-hover-width) !important;
     margin-inline-start: calc(-1 * var(--uc-sidebar-hover-width)) !important;
     transform: translateX(4px) !important;
-    transition: transform 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
     will-change: transform;
   }
-
   :root[inFullscreen="true"] #sidebar-box:hover {
     transform: translateX(var(--uc-sidebar-hover-width)) !important;
-    transition-delay: 0ms !important;
   }
-
   :root[inFullscreen="true"] #sidebar-box #sidebar-header,
   :root[inFullscreen="true"] #sidebar-box #sidebar {
     min-width: calc(var(--uc-sidebar-hover-width)) !important;
     max-width: calc(var(--uc-sidebar-hover-width)) !important;
     box-shadow: 2px 0 33px var(--uc-sidebar-shadow-color);
+    will-change: unset;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #sidebar {
+      transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+    }
+
+    #sidebar-box:hover > #sidebar {
+      transition-delay: 0ms !important;
+    }
+
+    :root[inFullscreen="true"] #sidebar-box {
+      transition: transform 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+    }
+    :root[inFullscreen="true"] #sidebar-box:hover {
+      transition-delay: 0ms !important;
+    }
   }
 }
 /** Library - Icons Replace ***************************************************/
