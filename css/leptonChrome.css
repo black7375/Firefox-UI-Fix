@@ -5333,6 +5333,47 @@
     --arrowpanel-menuitem-padding-inline: calc(var(--arrowpanel-menuitem-padding-block) + 8px) !important;
   }
 }
+/** Sidebar UI ****************************************************************/
+@supports -moz-bool-pref("userChrome.sidebar.overlap") or -moz-bool-pref("userChrome.autohide.sidebar") {
+  #sidebar-box {
+    /* Original
+     min-width: 14em;
+     width: 18em;
+     max-width: 36em;
+    */
+    --uc-sidebar-width: 40px;
+    --uc-sidebar-activate-width: 18em;
+    --uc-sidebar-fullscreen-width: 4px;
+    --uc-sidebar-shadow-color: #28282f;
+    --uc-autohide-sidebar-delay: 600ms;
+    /* Wait 0.6s before hiding sidebar */
+    z-index: 1000 !important;
+    position: relative !important;
+    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+  }
+
+  #sidebar-splitter {
+    display: none !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.sidebar.overlap") {
+  @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
+    #sidebar-box {
+      min-width: var(--uc-sidebar-activate-width) !important;
+      max-width: var(--uc-sidebar-activate-width) !important;
+      margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
+      will-change: transform;
+    }
+    #sidebar-box:not([hidden="true"]) {
+      transform: translateX(var(--uc-sidebar-activate-width));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #sidebar-box {
+        transition: transform 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out, visibility 0s linear !important;
+      }
+    }
+  }
+}
 /** Other UI ******************************************************************/
 /*= Bookmark Bar - Centered ==================================================*/
 @supports -moz-bool-pref("userChrome.bookmarkbar.centered") {
@@ -5387,46 +5428,6 @@
     #forward-button[disabled="true"] {
       transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
         margin-left 0.5s ease !important;
-    }
-  }
-}
-@supports -moz-bool-pref("userChrome.sidebar.overlap") or -moz-bool-pref("userChrome.autohide.sidebar") {
-  #sidebar-box {
-    /* Original
-     min-width: 14em;
-     width: 18em;
-     max-width: 36em;
-    */
-    --uc-sidebar-width: 40px;
-    --uc-sidebar-activate-width: 18em;
-    --uc-sidebar-fullscreen-width: 4px;
-    --uc-sidebar-shadow-color: #28282f;
-    --uc-autohide-sidebar-delay: 600ms;
-    /* Wait 0.6s before hiding sidebar */
-    z-index: 1000 !important;
-    position: relative !important;
-    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
-  }
-
-  #sidebar-splitter {
-    display: none !important;
-  }
-}
-@supports -moz-bool-pref("userChrome.sidebar.overlap") {
-  @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
-    #sidebar-box {
-      min-width: var(--uc-sidebar-activate-width) !important;
-      max-width: var(--uc-sidebar-activate-width) !important;
-      margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
-      will-change: transform;
-    }
-    #sidebar-box:not([hidden="true"]) {
-      transform: translateX(var(--uc-sidebar-activate-width));
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      #sidebar-box {
-        transition: transform 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out, visibility 0s linear !important;
-      }
     }
   }
 }

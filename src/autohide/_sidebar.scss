@@ -1,48 +1,4 @@
-@include Option("userChrome.sidebar.overlap", "userChrome.autohide.sidebar") {
-  #sidebar-box {
-    /* Original
-    min-width: 14em;
-    width: 18em;
-    max-width: 36em;
-   */
-
-    --uc-sidebar-width: 40px;
-    --uc-sidebar-activate-width: 18em;
-    --uc-sidebar-fullscreen-width: 4px;
-    --uc-sidebar-shadow-color: #28282F;
-    --uc-autohide-sidebar-delay: 600ms; /* Wait 0.6s before hiding sidebar */
-
-    z-index: 1000 !important;
-    position: relative !important;
-
-    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
-  }
-
-  #sidebar-splitter {
-    display: none !important;
-  }
-}
-
-@include Option("userChrome.sidebar.overlap") {
-  @include NotOption("userChrome.autohide.sidebar") {
-    #sidebar-box {
-      min-width: var(--uc-sidebar-activate-width) !important;
-      max-width: var(--uc-sidebar-activate-width) !important;
-      margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
-
-      will-change: transform;
-
-      &:not([hidden="true"]) {
-        transform: translateX(var(--uc-sidebar-activate-width));
-      }
-
-      @include Animate {
-        transition: transform 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
-                    visibility 0s linear !important;
-      }
-    }
-  }
-}
+// Refer variable `src/sidebar/overlap`
 
 @include Option("userChrome.autohide.sidebar") {
   #sidebar-box {
@@ -56,7 +12,7 @@
   }
 
   @include Option("userChrome.sidebar.overlap") {
-    @import "sidebar/overlay";
+    @import "sidebar/overlap";
   }
   @include NotOption("userChrome.sidebar.overlap") {
     @import "sidebar/static";
