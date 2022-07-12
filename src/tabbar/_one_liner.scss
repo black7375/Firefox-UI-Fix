@@ -20,7 +20,7 @@ toolbarspring.chromeclass-toolbar-additional {
   display: none !important;
 }
 
-@include NotOption("userChrome.tab.one_line.tabbar_first") {
+@include NotOption("userChrome.tab.one_liner.tabbar_first") {
   #TabsToolbar {
     margin-inline-start: var(--uc-navbar-size) !important;
   }
@@ -31,7 +31,7 @@ toolbarspring.chromeclass-toolbar-additional {
     display: none !important;
   }
 }
-@include Option("userChrome.tab.one_line.tabbar_first") {
+@include Option("userChrome.tab.one_liner.tabbar_first") {
   #TabsToolbar {
     margin-inline-end: var(--uc-navbar-size) !important;
   }

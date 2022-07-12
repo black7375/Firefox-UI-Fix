@@ -24,12 +24,12 @@
 }
 
 /*= Tab Bar - Oneliner =======================================================*/
-@include Option("userChrome.tab.one_line") {
-  @import "one_line";
+@include Option("userChrome.tab.one_liner") {
+  @import "one_liner";
 }
 
 /*= Tab Bar - Shared Layout ==================================================*/
-@include Option("userChrome.tab.on_bottom", "userChrome.tab.one_line") {
+@include Option("userChrome.tab.on_bottom", "userChrome.tab.one_liner") {
   @import "layout";
 }
 

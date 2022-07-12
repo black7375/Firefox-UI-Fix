@@ -3818,7 +3818,7 @@
   }
 }
 /*= Tab Bar - Oneliner =======================================================*/
-@supports -moz-bool-pref("userChrome.tab.one_line") {
+@supports -moz-bool-pref("userChrome.tab.one_liner") {
   :root {
     --uc-navbar-size: 40vw;
     --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
@@ -3841,7 +3841,7 @@
     display: none !important;
   }
 
-  @supports not -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
+  @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
     #TabsToolbar {
       margin-inline-start: var(--uc-navbar-size) !important;
     }
@@ -3854,7 +3854,7 @@
       display: none !important;
     }
   }
-  @supports -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
+  @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
     #TabsToolbar {
       margin-inline-end: var(--uc-navbar-size) !important;
     }
@@ -3869,7 +3869,7 @@
   }
 }
 /*= Tab Bar - Shared Layout ==================================================*/
-@supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_line") {
+@supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_liner") {
   @supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_line.tabbar_first") {
     /*= Windows Control - Move to toolbar ========================================*/
     /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
