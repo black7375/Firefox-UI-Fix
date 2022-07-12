@@ -2821,6 +2821,7 @@
         /* Animation */
         transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
           visibility 0s linear !important;
+        will-change: margin-inline-start, opacity, visibility;
       }
       #sidebar-box[hidden="true"] {
         display: -moz-box !important;
@@ -5389,7 +5390,7 @@
     }
   }
 }
-@supports -moz-bool-pref("userChrome.autohide.sidebar") {
+@supports -moz-bool-pref("userChrome.sidebar.overlap") or -moz-bool-pref("userChrome.autohide.sidebar") {
   #sidebar-box {
     /* Original
      min-width: 14em;
@@ -5397,28 +5398,50 @@
      max-width: 36em;
     */
     --uc-sidebar-width: 40px;
-    --uc-sidebar-hover-width: 18em;
+    --uc-sidebar-activate-width: 18em;
     --uc-sidebar-fullscreen-width: 4px;
     --uc-sidebar-shadow-color: #28282f;
     --uc-autohide-sidebar-delay: 600ms;
     /* Wait 0.6s before hiding sidebar */
     z-index: 1000 !important;
     position: relative !important;
-    min-width: var(--uc-sidebar-width) !important;
-    max-width: var(--uc-sidebar-width) !important;
     box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
-  }
-
-  :root[inFullscreen="true"] #sidebar-box {
-    min-width: var(--uc-sidebar-hover-width) !important;
-    max-width: var(--uc-sidebar-hover-width) !important;
   }
 
   #sidebar-splitter {
     display: none !important;
   }
+}
+@supports -moz-bool-pref("userChrome.sidebar.overlap") {
+  @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
+    #sidebar-box {
+      min-width: var(--uc-sidebar-activate-width) !important;
+      max-width: var(--uc-sidebar-activate-width) !important;
+      margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
+      will-change: transform;
+    }
+    #sidebar-box:not([hidden="true"]) {
+      transform: translateX(var(--uc-sidebar-activate-width));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #sidebar-box {
+        transition: transform 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out, visibility 0s linear !important;
+      }
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.autohide.sidebar") {
+  #sidebar-box {
+    min-width: var(--uc-sidebar-width) !important;
+    max-width: var(--uc-sidebar-width) !important;
+  }
 
-  @supports -moz-bool-pref("userChrome.autohide.sidebar.overlap") {
+  :root[inFullscreen="true"] #sidebar-box {
+    min-width: var(--uc-sidebar-activate-width) !important;
+    max-width: var(--uc-sidebar-activate-width) !important;
+  }
+
+  @supports -moz-bool-pref("userChrome.sidebar.overlap") {
     #sidebar-header {
       background-color: var(--sidebar-background-color) !important;
       color: var(--sidebar-text-color) !important;
@@ -5432,22 +5455,22 @@
     }
 
     #sidebar-box:hover > #sidebar {
-      min-width: var(--uc-sidebar-hover-width) !important;
-      max-width: var(--uc-sidebar-hover-width) !important;
+      min-width: var(--uc-sidebar-activate-width) !important;
+      max-width: var(--uc-sidebar-activate-width) !important;
     }
 
     :root[inFullscreen="true"] #sidebar-box {
-      margin-inline-start: calc(-1 * var(--uc-sidebar-hover-width)) !important;
+      margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
       transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
       will-change: transform;
     }
     :root[inFullscreen="true"] #sidebar-box:hover {
-      transform: translateX(var(--uc-sidebar-hover-width)) !important;
+      transform: translateX(var(--uc-sidebar-activate-width)) !important;
     }
     :root[inFullscreen="true"] #sidebar-box #sidebar-header,
     :root[inFullscreen="true"] #sidebar-box #sidebar {
-      min-width: calc(var(--uc-sidebar-hover-width)) !important;
-      max-width: calc(var(--uc-sidebar-hover-width)) !important;
+      min-width: calc(var(--uc-sidebar-activate-width)) !important;
+      max-width: calc(var(--uc-sidebar-activate-width)) !important;
       will-change: unset;
     }
 
@@ -5468,18 +5491,18 @@
       }
     }
   }
-  @supports not -moz-bool-pref("userChrome.autohide.sidebar.overlap") {
+  @supports not -moz-bool-pref("userChrome.sidebar.overlap") {
     #sidebar-box {
       overflow: hidden;
       will-change: min-width, max-width;
     }
     #sidebar-box:hover {
-      min-width: var(--uc-sidebar-hover-width) !important;
-      max-width: var(--uc-sidebar-hover-width) !important;
+      min-width: var(--uc-sidebar-activate-width) !important;
+      max-width: var(--uc-sidebar-activate-width) !important;
     }
 
     :root[inFullscreen="true"] #sidebar-box {
-      margin-inline-start: calc(var(--uc-sidebar-fullscreen-width) + -1 * var(--uc-sidebar-hover-width)) !important;
+      margin-inline-start: calc(var(--uc-sidebar-fullscreen-width) + -1 * var(--uc-sidebar-activate-width)) !important;
       will-change: margin-inline-start;
     }
     :root[inFullscreen="true"] #sidebar-box:hover {

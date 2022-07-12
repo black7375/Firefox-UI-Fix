@@ -72,7 +72,6 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 
 // user_pref("userChrome.autohide.forward_button",             true);
 // user_pref("userChrome.autohide.sidebar",                    true);
-// user_pref("userChrome.autohide.sidebar.overlap",            true);
 
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
@@ -116,6 +115,8 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.panel.remove_strip",                  true);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);
+
+// user_pref("userChrome.sidebar.overlap",                     true);
 
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);

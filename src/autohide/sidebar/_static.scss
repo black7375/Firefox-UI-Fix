@@ -4,13 +4,13 @@
   will-change: min-width, max-width;
 
   &:hover {
-    min-width: var(--uc-sidebar-hover-width) !important;
-    max-width: var(--uc-sidebar-hover-width) !important;
+    min-width: var(--uc-sidebar-activate-width) !important;
+    max-width: var(--uc-sidebar-activate-width) !important;
   }
 }
 
 :root[inFullscreen="true"] #sidebar-box {
-  margin-inline-start: calc(var(--uc-sidebar-fullscreen-width) + (-1 * var(--uc-sidebar-hover-width))) !important;
+  margin-inline-start: calc(var(--uc-sidebar-fullscreen-width) + (-1 * var(--uc-sidebar-activate-width))) !important;
   will-change: margin-inline-start;
 
   &:hover {
