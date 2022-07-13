@@ -116,6 +116,8 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);
 
+// user_pref("userChrome.sidebar.hidden_header",               true);
+// user_pref("userChrome.sidebar.hidden_header.vertical_tab_only", true);
 // user_pref("userChrome.sidebar.overlap",                     true);
 
 // user_pref("userChrome.icon.account_image_to_right",         true);
