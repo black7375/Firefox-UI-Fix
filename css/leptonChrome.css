@@ -5444,6 +5444,59 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+  #PersonalToolbar {
+    --uc-bm-height: calc(21px + (2 * var(--bookmark-block-padding, 4px)));
+    /* 21px = 16px + 1px [ border bottom ] + (2px * 2) [margin block] */
+    --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
+    --uc-autohide-bookmarkbar-delay: 600ms;
+    /* The toolbar is hidden after 0.6s */
+  }
+
+  #PersonalToolbar:not([customizing]) {
+    position: relative;
+    z-index: 1;
+    --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
+    --uc-bg-y: calc((var(--tab-min-height) + var(--uc-navbar-height)) * -1);
+    background-repeat: no-repeat, no-repeat, var(--lwt-background-tiling);
+    background-position: top left, top left, var(--lwt-background-alignment, top left);
+    background-position-y: top, top, var(--uc-bg-y), var(--uc-bg-y), var(--uc-bg-y);
+    background-image: var(--toolbar-bgimage), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
+      var(--lwt-header-image, var(--lwt-additional-images)) !important;
+    border-bottom: 1px solid var(--chrome-content-separator-color) !important;
+    margin-bottom: var(--uc-bm-hide-height);
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme #PersonalToolbar:not([customizing]) {
+    background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
+    background-repeat: var(--lwt-background-tiling) !important;
+    background-position: var(--lwt-background-alignment) !important;
+    /* right top */
+  }
+
+  #nav-bar:focus-within + #PersonalToolbar,
+  #navigator-toolbox:hover #PersonalToolbar:not([customizing]) {
+    z-index: 1001;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #PersonalToolbar:not([customizing]) {
+      transition-property: transform, opacity;
+      transition-duration: 0.25s;
+      transition-timing-function: var(--animation-easing-function);
+      transition-delay: var(--uc-autohide-bookmarkbar-delay);
+    }
+
+    #nav-bar:focus-within + #PersonalToolbar,
+    #navigator-toolbox:hover #PersonalToolbar:not([customizing]) {
+      transition-delay: 0s;
+    }
+  }
+}
 @supports -moz-bool-pref("userChrome.autohide.sidebar") {
   #sidebar-box {
     min-width: var(--uc-sidebar-width) !important;

@@ -2,4 +2,8 @@
   @import "forward_button";
 }
 
+@include Option("userChrome.autohide.bookmarkbar") {
+  @import "bookmarkbar";
+}
+
 @import "sidebar";
