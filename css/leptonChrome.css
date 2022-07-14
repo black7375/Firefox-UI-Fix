@@ -5347,7 +5347,7 @@
     --uc-sidebar-shadow-color: #28282f;
     --uc-autohide-sidebar-delay: 600ms;
     /* Wait 0.6s before hiding sidebar */
-    z-index: 1000 !important;
+    z-index: 1 !important;
     position: relative !important;
     box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
   }
@@ -5455,7 +5455,7 @@
 
   #PersonalToolbar:not([customizing]) {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
     --uc-bg-y: calc((var(--tab-min-height) + var(--uc-navbar-height)) * -1);
     background-repeat: no-repeat, no-repeat, var(--lwt-background-tiling);
@@ -5478,7 +5478,6 @@
 
   #nav-bar:focus-within + #PersonalToolbar,
   #navigator-toolbox:hover #PersonalToolbar:not([customizing]) {
-    z-index: 1001;
     transform: translateY(0%);
     opacity: 1;
   }
