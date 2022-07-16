@@ -1,6 +1,3 @@
-#navigator-toolbox > div {
-  display: contents;
-}
 :root[sessionrestored] :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
   transform: translateY(var(--uc-navbar-hide-height));
 }
@@ -8,44 +5,43 @@
   transform: none !important;
   opacity: 1 !important;
 }
+#navigator-toolbox > div {
+  display: contents;
+}
 
 #nav-bar:not([customizing]) {
-  opacity: 0;
-  transition: transform 400ms ease 1.8s, opacity 400ms ease 1.8s !important;
+  --uc-autohide-navbar-delay: 600ms;
   position: relative;
   z-index: 2;
+
+  opacity: 0;
 }
 #TabsToolbar {
   position: relative;
   z-index: 3;
 }
 
-/* Show when toolbox is focused, like when urlbar has received focus */
-#navigator-toolbox:focus-within > .browser-toolbar {
+#navigator-toolbox:is(:hover, :focus-within) > .browser-toolbar {
   transform: translateY(0);
   opacity: 1;
-  transition-duration: 500ms, 200ms !important;
-  transition-delay: 0s !important;
-}
-
-/* Show when toolbox is hovered */
-#titlebar:hover ~ .browser-toolbar,
-#nav-bar:hover,
-#nav-bar:hover + #PersonalToolbar {
-  transform: translateY(0);
-  opacity: 1;
-  transition-duration: 500ms, 200ms !important;
-  transition-delay: 0s !important;
-}
-
-/* Bookmarks toolbar needs so extra rules */
-#PersonalToolbar {
-  transition: transform 400ms ease 1.8s !important;
-  position: relative;
-  z-index: 1;
 }
 
 /* Move up the content view */
 :root[sessionrestored]:not([inFullscreen]) > body > #browser{
   margin-top: var(--uc-navbar-hide-height);
+}
+
+:root[sessionrestored] #nav-bar:-moz-lwtheme {
+  transition: var(--ext-theme-background-transition);
+}
+
+@include Animate {
+  #nav-bar:not([customizing]) {
+    transition: transform 0.25s var(--animation-easing-function) var(--uc-autohide-navbar-delay),
+                opacity 0.25s var(--animation-easing-function) var(--uc-autohide-navbar-delay),
+                var(--ext-theme-background-transition) !important;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) > .browser-toolbar {
+    transition-delay: 0s !important;
+  }
 }

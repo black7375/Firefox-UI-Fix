@@ -1,14 +1,8 @@
 // Based on https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/autohide_bookmarks_toolbar.css
-
-#PersonalToolbar {
+#PersonalToolbar:not([customizing]) {
   --uc-bm-height: calc(21px + (2 * var(--bookmark-block-padding, 4px))); /* 21px = 16px + 1px [ border bottom ] + (2px * 2) [margin block] */
   --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
   --uc-autohide-bookmarkbar-delay: 600ms; /* The toolbar is hidden after 0.6s */
-}
-
-#PersonalToolbar:not([customizing]) {
-  position: relative;
-  z-index: 2;
 
   // Titlebar + Navbar
   // --uc-bg-y: calc(-2 * (var(--tab-block-margin) + var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)) - var(--tab-min-height) - 16px - var(--bookmark-block-padding));
@@ -36,7 +30,7 @@
   /* right top */
 }
 
-#nav-bar:focus-within + #PersonalToolbar,
+#nav-bar:focus-within + #PersonalToolbar:not([customizing]),
 #navigator-toolbox:hover #PersonalToolbar:not([customizing]) {
   transform: translateY(0%);
   opacity: 1;
@@ -44,12 +38,12 @@
 
 @include Animate {
   #PersonalToolbar:not([customizing]) {
-    transition-property: transform, opacity;
-    transition-duration: 0.25s;
-    transition-timing-function: var(--animation-easing-function);
-    transition-delay: var(--uc-autohide-bookmarkbar-delay);
+    //  --ext-theme-background-transition: background-color 0.1s cubic-bezier(.17,.67,.83,.67);
+    transition: transform 0.25s var(--animation-easing-function) var(--uc-autohide-bookmarkbar-delay),
+                opacity 0.25s var(--animation-easing-function) var(--uc-autohide-bookmarkbar-delay),
+                min-height 170ms ease-out, max-height 170ms ease-out, var(--ext-theme-background-transition) !important;
   }
-  #nav-bar:focus-within + #PersonalToolbar,
+  #nav-bar:focus-within + #PersonalToolbar:not([customizing]),
   #navigator-toolbox:hover #PersonalToolbar:not([customizing]) {
     transition-delay: 0s;
   }

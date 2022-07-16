@@ -5449,19 +5449,72 @@
     --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
   }
+
+  #PersonalToolbar:not([customizing]) {
+    position: relative;
+    z-index: 2;
+  }
+}
+@supports -moz-bool-pref("userChrome.autohide.navbar") {
+  :root[sessionrestored] :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
+    transform: translateY(var(--uc-navbar-hide-height));
+  }
+
+  :root:is([customizing], [chromehidden*="toolbar"])
+    :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  #navigator-toolbox > div {
+    display: contents;
+  }
+
+  #nav-bar:not([customizing]) {
+    --uc-autohide-navbar-delay: 600ms;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+  }
+
+  #TabsToolbar {
+    position: relative;
+    z-index: 3;
+  }
+
+  #navigator-toolbox:is(:hover, :focus-within) > .browser-toolbar {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Move up the content view */
+  :root[sessionrestored]:not([inFullscreen]) > body > #browser {
+    margin-top: var(--uc-navbar-hide-height);
+  }
+
+  :root[sessionrestored] #nav-bar:-moz-lwtheme {
+    transition: var(--ext-theme-background-transition);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #nav-bar:not([customizing]) {
+      transition: transform 0.25s var(--animation-easing-function) var(--uc-autohide-navbar-delay),
+        opacity 0.25s var(--animation-easing-function) var(--uc-autohide-navbar-delay),
+        var(--ext-theme-background-transition) !important;
+    }
+
+    #navigator-toolbox:is(:hover, :focus-within) > .browser-toolbar {
+      transition-delay: 0s !important;
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-  #PersonalToolbar {
+  #PersonalToolbar:not([customizing]) {
     --uc-bm-height: calc(21px + (2 * var(--bookmark-block-padding, 4px)));
     /* 21px = 16px + 1px [ border bottom ] + (2px * 2) [margin block] */
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
     --uc-autohide-bookmarkbar-delay: 600ms;
     /* The toolbar is hidden after 0.6s */
-  }
-
-  #PersonalToolbar:not([customizing]) {
-    position: relative;
-    z-index: 2;
     --uc-bg-y: calc((var(--tab-min-height) + var(--uc-navbar-height)) * -1);
     background-repeat: no-repeat, no-repeat, var(--lwt-background-tiling);
     background-position: top left, top left, var(--lwt-background-alignment, top left);
@@ -5481,7 +5534,7 @@
     /* right top */
   }
 
-  #nav-bar:focus-within + #PersonalToolbar,
+  #nav-bar:focus-within + #PersonalToolbar:not([customizing]),
   #navigator-toolbox:hover #PersonalToolbar:not([customizing]) {
     transform: translateY(0%);
     opacity: 1;
@@ -5489,73 +5542,15 @@
 
   @media (prefers-reduced-motion: no-preference) {
     #PersonalToolbar:not([customizing]) {
-      transition-property: transform, opacity;
-      transition-duration: 0.25s;
-      transition-timing-function: var(--animation-easing-function);
-      transition-delay: var(--uc-autohide-bookmarkbar-delay);
+      transition: transform 0.25s var(--animation-easing-function) var(--uc-autohide-bookmarkbar-delay),
+        opacity 0.25s var(--animation-easing-function) var(--uc-autohide-bookmarkbar-delay), min-height 170ms ease-out,
+        max-height 170ms ease-out, var(--ext-theme-background-transition) !important;
     }
 
-    #nav-bar:focus-within + #PersonalToolbar,
+    #nav-bar:focus-within + #PersonalToolbar:not([customizing]),
     #navigator-toolbox:hover #PersonalToolbar:not([customizing]) {
       transition-delay: 0s;
     }
-  }
-}
-@supports -moz-bool-pref("userChrome.autohide.navbar") {
-  #navigator-toolbox > div {
-    display: contents;
-  }
-
-  :root[sessionrestored] :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
-    transform: translateY(var(--uc-navbar-hide-height));
-  }
-
-  :root:is([customizing], [chromehidden*="toolbar"])
-    :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
-    transform: none !important;
-    opacity: 1 !important;
-  }
-
-  #nav-bar:not([customizing]) {
-    opacity: 0;
-    transition: transform 400ms ease 1.8s, opacity 400ms ease 1.8s !important;
-    position: relative;
-    z-index: 2;
-  }
-
-  #TabsToolbar {
-    position: relative;
-    z-index: 3;
-  }
-
-  /* Show when toolbox is focused, like when urlbar has received focus */
-  #navigator-toolbox:focus-within > .browser-toolbar {
-    transform: translateY(0);
-    opacity: 1;
-    transition-duration: 500ms, 200ms !important;
-    transition-delay: 0s !important;
-  }
-
-  /* Show when toolbox is hovered */
-  #titlebar:hover ~ .browser-toolbar,
-  #nav-bar:hover,
-  #nav-bar:hover + #PersonalToolbar {
-    transform: translateY(0);
-    opacity: 1;
-    transition-duration: 500ms, 200ms !important;
-    transition-delay: 0s !important;
-  }
-
-  /* Bookmarks toolbar needs so extra rules */
-  #PersonalToolbar {
-    transition: transform 400ms ease 1.8s !important;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Move up the content view */
-  :root[sessionrestored]:not([inFullscreen]) > body > #browser {
-    margin-top: var(--uc-navbar-hide-height);
   }
 }
 @supports -moz-bool-pref("userChrome.autohide.sidebar") {
