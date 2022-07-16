@@ -2,6 +2,10 @@
   @import "forward_button";
 }
 
+@import "common";
+@include Option("userChrome.autohide.navbar") {
+  @import "navbar";
+}
 @include Option("userChrome.autohide.bookmarkbar") {
   @import "bookmarkbar";
 }

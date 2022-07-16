@@ -1,0 +1,6 @@
+@include Option("userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar") {
+  :root {
+    --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
+    --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
+  }
+}
