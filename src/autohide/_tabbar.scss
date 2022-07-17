@@ -1,3 +1,12 @@
+:root {
+  --uc-titlebar-height: calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
+  --uc-titlebar-autohide-height: calc(-1 * var(--uc-titlebar-height));
+
+  @include Option("userChrome.autohide.navbar") {
+    --uc-titlebar-autohide-height: calc(-1 * (var(--uc-titlebar-height) + var(--uc-navbar-height)));
+  }
+}
+
 :root:not([customizing]) #navigator-toolbox {
   position: relative;
   z-index: 1;
@@ -10,7 +19,11 @@
 
 :root:not([customizing]) #navigator-toolbox:hover,
 :root:not([customizing]) #titlebar {
-  margin-bottom: calc(0px - 2 * var(--tab-block-margin) - var(--tab-min-height));
+  margin-bottom: var(--uc-titlebar-autohide-height);
+
+  @include Option("userChrome.autohide.navbar") {
+    border-bottom: 1px solid var(--chrome-content-separator-color) !important;
+  }
 }
 
 #TabsToolbar:not([customizing]) {
@@ -29,22 +42,23 @@
 @include Animate {
   #navigator-toolbox,
   #titlebar {
-    transition: margin-bottom 0.25s var(--animation-easing-function) 600ms;
+    transition: margin-bottom 0.25s var(--animation-easing-function) 600ms,
+                background-color 1s var(--animation-easing-function) !important;
   }
 
   #TabsToolbar:not([customizing]) {
-    transition: opacity 0.25s var(--animation-easing-function) 600ms;
+    transition: opacity 0.25s var(--animation-easing-function) 600ms !important;
   }
 
   #navigator-toolbox:hover {
-    transition-delay: 0s;
+    transition-delay: 0s !important;
 
     > #titlebar {
-      transition-delay: 0s;
+      transition-delay: 0s !important;
     }
 
     #TabsToolbar {
-      transition-delay: 0s;
+      transition-delay: 0s !important;
     }
   }
 }
