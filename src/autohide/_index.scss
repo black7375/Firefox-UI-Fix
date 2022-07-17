@@ -3,6 +3,9 @@
 }
 
 @import "common";
+@include Option("userChrome.autohide.tabbar") {
+  @import "tabbar";
+}
 @include Option("userChrome.autohide.navbar") {
   @import "navbar";
 }

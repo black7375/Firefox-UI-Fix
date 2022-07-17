@@ -5455,6 +5455,54 @@
     z-index: 2;
   }
 }
+@supports -moz-bool-pref("userChrome.autohide.tabbar") {
+  :root:not([customizing]) #navigator-toolbox {
+    position: relative;
+    z-index: 1;
+  }
+
+  #navigator-toolbox:not(:hover) > #titlebar {
+    -moz-window-dragging: no-drag !important;
+    pointer-events: none;
+  }
+
+  :root:not([customizing]) #navigator-toolbox:hover,
+  :root:not([customizing]) #titlebar {
+    margin-bottom: calc(0px - 2 * var(--tab-block-margin) - var(--tab-min-height));
+  }
+
+  #TabsToolbar:not([customizing]) {
+    opacity: 0;
+  }
+
+  #navigator-toolbox:hover > #titlebar {
+    margin-bottom: 0px;
+  }
+  #navigator-toolbox:hover #TabsToolbar {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #navigator-toolbox,
+    #titlebar {
+      transition: margin-bottom 0.25s var(--animation-easing-function) 600ms;
+    }
+
+    #TabsToolbar:not([customizing]) {
+      transition: opacity 0.25s var(--animation-easing-function) 600ms;
+    }
+
+    #navigator-toolbox:hover {
+      transition-delay: 0s;
+    }
+    #navigator-toolbox:hover > #titlebar {
+      transition-delay: 0s;
+    }
+    #navigator-toolbox:hover #TabsToolbar {
+      transition-delay: 0s;
+    }
+  }
+}
 @supports -moz-bool-pref("userChrome.autohide.navbar") {
   :root[sessionrestored] :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
     transform: translateY(var(--uc-navbar-hide-height));

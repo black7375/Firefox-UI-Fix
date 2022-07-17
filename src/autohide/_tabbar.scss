@@ -1,0 +1,61 @@
+:root:not([customizing]) #navigator-toolbox {
+  position: relative;
+  z-index: 1;
+}
+
+#navigator-toolbox:not(:hover) > #titlebar {
+  -moz-window-dragging: no-drag !important;
+  pointer-events: none
+}
+
+:root:not([customizing]) #navigator-toolbox:hover,
+:root:not([customizing]) #titlebar {
+  margin-bottom: calc(0px - 2 * var(--tab-block-margin) - var(--tab-min-height));
+}
+
+#TabsToolbar:not([customizing]) {
+  opacity: 0;
+}
+
+#navigator-toolbox:hover {
+  > #titlebar {
+    margin-bottom: 0px;
+  }
+  #TabsToolbar {
+    opacity: 1;
+  }
+}
+
+@include Animate {
+  #navigator-toolbox,
+  #titlebar {
+    transition: margin-bottom 0.25s var(--animation-easing-function) 600ms;
+  }
+
+  #TabsToolbar:not([customizing]) {
+    transition: opacity 0.25s var(--animation-easing-function) 600ms;
+  }
+
+  #navigator-toolbox:hover {
+    transition-delay: 0s;
+
+    > #titlebar {
+      transition-delay: 0s;
+    }
+
+    #TabsToolbar {
+      transition-delay: 0s;
+    }
+  }
+}
+
+// /* These rules make sure that height of tabs toolbar doesn't exceed tab-min-height */
+// #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container{
+//   max-height: var(--tab-min-height);
+// }
+// .tab-label {
+//   line-height: 20px !important;
+// }
+// :root[uidensity="compact"] .tab-label {
+//   line-height: 18px !important;
+// }
