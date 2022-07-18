@@ -1,36 +1,18 @@
-:root {
-  --uc-titlebar-height: calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
-  --uc-titlebar-autohide-height: calc(-1 * var(--uc-titlebar-height));
-
-  @include Option("userChrome.autohide.navbar") {
-    --uc-titlebar-autohide-height: calc(-1 * (var(--uc-titlebar-height) + var(--uc-navbar-height)));
-  }
-}
-
-:root:not([customizing]) #navigator-toolbox {
-  position: relative;
-  z-index: 1;
-}
-
 #navigator-toolbox:not(:hover) > #titlebar {
   -moz-window-dragging: no-drag !important;
   pointer-events: none
 }
 
-:root:not([customizing]) #navigator-toolbox:hover,
 :root:not([customizing]) #titlebar {
-  margin-bottom: var(--uc-titlebar-autohide-height);
-
-  @include Option("userChrome.autohide.navbar") {
-    border-bottom: 1px solid var(--chrome-content-separator-color) !important;
-  }
+  margin-bottom: var(--uc-titlebar-hide-height);
+  will-change: margin-bottom;
 }
-
 #TabsToolbar:not([customizing]) {
   opacity: 0;
+  will-change: opacity;
 }
 
-#navigator-toolbox:hover {
+#navigator-toolbox:is(:hover, :focus-within) {
   > #titlebar {
     margin-bottom: 0px;
   }
@@ -40,36 +22,24 @@
 }
 
 @include Animate {
-  #navigator-toolbox,
-  #titlebar {
-    transition: margin-bottom 0.25s var(--animation-easing-function) 600ms,
+  #titlebar:not([customizing]) {
+    transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                 background-color 1s var(--animation-easing-function) !important;
   }
 
   #TabsToolbar:not([customizing]) {
-    transition: opacity 0.25s var(--animation-easing-function) 600ms !important;
+    transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
   }
 
-  #navigator-toolbox:hover {
+  #navigator-toolbox:is(:hover, :focus-within) {
     transition-delay: 0s !important;
 
-    > #titlebar {
+    > #titlebar:not([customizing]) {
       transition-delay: 0s !important;
     }
 
-    #TabsToolbar {
+    #TabsToolbar:not([customizing]) {
       transition-delay: 0s !important;
     }
   }
 }
-
-// /* These rules make sure that height of tabs toolbar doesn't exceed tab-min-height */
-// #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container{
-//   max-height: var(--tab-min-height);
-// }
-// .tab-label {
-//   line-height: 20px !important;
-// }
-// :root[uidensity="compact"] .tab-label {
-//   line-height: 18px !important;
-// }

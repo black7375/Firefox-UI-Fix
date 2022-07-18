@@ -1,47 +1,21 @@
-:root[sessionrestored] :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
-  transform: translateY(var(--uc-navbar-hide-height));
-}
-:root:is([customizing], [chromehidden*="toolbar"]) :where(#nav-bar, #PersonalToolbar, #tab-notification-deck, .global-notificationbox) {
-  transform: none !important;
-  opacity: 1 !important;
-}
-#navigator-toolbox > div {
-  display: contents;
-}
-
 #nav-bar:not([customizing]) {
-  --uc-autohide-navbar-delay: 600ms;
-  position: relative;
-  z-index: 2;
-
+  margin-bottom: var(--uc-titlebar-hide-height);
   opacity: 0;
-}
-#TabsToolbar {
-  position: relative;
-  z-index: 3;
+  will-change: margin-bottom, opacity;
 }
 
-#navigator-toolbox:is(:hover, :focus-within) > .browser-toolbar {
-  transform: translateY(0);
+#navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
+  margin-bottom: 0;
   opacity: 1;
-}
-
-/* Move up the content view */
-:root[sessionrestored]:not([inFullscreen]) > body > #browser{
-  margin-top: var(--uc-navbar-hide-height);
-}
-
-:root[sessionrestored] #nav-bar:-moz-lwtheme {
-  transition: var(--ext-theme-background-transition);
 }
 
 @include Animate {
   #nav-bar:not([customizing]) {
-    transition: transform 0.25s var(--animation-easing-function) var(--uc-autohide-navbar-delay),
-                opacity 0.25s var(--animation-easing-function) var(--uc-autohide-navbar-delay),
+    transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                 var(--ext-theme-background-transition) !important;
   }
-  #navigator-toolbox:is(:hover, :focus-within) > .browser-toolbar {
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
     transition-delay: 0s !important;
   }
 }
