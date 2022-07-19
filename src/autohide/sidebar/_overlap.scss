@@ -17,13 +17,23 @@
 }
 
 :root[inFullscreen="true"] #sidebar-box {
-  margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
-
-  transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
   will-change: transform;
 
-  &:hover {
-    transform: translateX(var(--uc-sidebar-activate-width)) !important;
+  &:not([positionend="true"]) {
+    margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+    transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
+
+    &:hover {
+      transform: translateX(var(--uc-sidebar-activate-width)) !important;
+    }
+  }
+  &[positionend="true"] {
+    margin-inline-end: var(--uc-sidebar-activate-width-reverse) !important;
+    transform: translateX(calc(var(--uc-sidebar-activate-width) + (-1 * var(--uc-sidebar-fullscreen-width)))) !important;
+
+    &:hover {
+      transform: translateX(0) !important;
+    }
   }
 
   #sidebar-header,

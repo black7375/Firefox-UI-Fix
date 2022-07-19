@@ -5343,6 +5343,7 @@
     */
     --uc-sidebar-width: 40px;
     --uc-sidebar-activate-width: 18em;
+    --uc-sidebar-activate-width-reverse: calc(-1 * var(--uc-sidebar-activate-width));
     --uc-sidebar-fullscreen-width: 4px;
     --uc-sidebar-shadow-color: #28282f;
     --uc-autohide-sidebar-delay: 600ms;
@@ -5351,21 +5352,31 @@
     position: relative !important;
     box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
   }
+  #sidebar-box[positionend="true"] {
+    box-shadow: -1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+  }
 
   #sidebar-splitter {
     display: none !important;
   }
 }
 @supports -moz-bool-pref("userChrome.sidebar.overlap") {
+  #sidebar-box[positionend="true"] {
+    direction: rtl;
+  }
+
   @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
     #sidebar-box {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
-      margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
+      margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
       will-change: transform;
     }
     #sidebar-box:not([hidden="true"]) {
       transform: translateX(var(--uc-sidebar-activate-width));
+    }
+    #sidebar-box[positionend="true"]:not([hidden="true"]) {
+      transform: translateX(var(--uc-sidebar-activate-width-reverse));
     }
     @media (prefers-reduced-motion: no-preference) {
       #sidebar-box {
@@ -5669,12 +5680,23 @@
     }
 
     :root[inFullscreen="true"] #sidebar-box {
-      margin-inline-start: calc(-1 * var(--uc-sidebar-activate-width)) !important;
-      transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
       will-change: transform;
     }
-    :root[inFullscreen="true"] #sidebar-box:hover {
+    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]) {
+      margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+      transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
+    }
+    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]):hover {
       transform: translateX(var(--uc-sidebar-activate-width)) !important;
+    }
+    :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
+      margin-inline-end: var(--uc-sidebar-activate-width-reverse) !important;
+      transform: translateX(
+        calc(var(--uc-sidebar-activate-width) + -1 * var(--uc-sidebar-fullscreen-width))
+      ) !important;
+    }
+    :root[inFullscreen="true"] #sidebar-box[positionend="true"]:hover {
+      transform: translateX(0) !important;
     }
     :root[inFullscreen="true"] #sidebar-box #sidebar-header,
     :root[inFullscreen="true"] #sidebar-box #sidebar {
@@ -5702,6 +5724,9 @@
   }
   @supports not -moz-bool-pref("userChrome.sidebar.overlap") {
     #sidebar-box {
+      --uc-sidebar-fullscreen-margin: calc(
+        var(--uc-sidebar-fullscreen-width) + var(--uc-sidebar-activate-width-reverse)
+      );
       overflow: hidden;
       will-change: min-width, max-width;
     }
@@ -5710,12 +5735,19 @@
       max-width: var(--uc-sidebar-activate-width) !important;
     }
 
-    :root[inFullscreen="true"] #sidebar-box {
-      margin-inline-start: calc(var(--uc-sidebar-fullscreen-width) + -1 * var(--uc-sidebar-activate-width)) !important;
+    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]) {
+      margin-inline-start: var(--uc-sidebar-fullscreen-margin) !important;
       will-change: margin-inline-start;
     }
-    :root[inFullscreen="true"] #sidebar-box:hover {
+    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]):hover {
       margin-inline-start: 0 !important;
+    }
+    :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
+      margin-inline-end: var(--uc-sidebar-fullscreen-margin) !important;
+      will-change: margin-inline-end;
+    }
+    :root[inFullscreen="true"] #sidebar-box[positionend="true"]:hover {
+      margin-inline-end: 0 !important;
     }
 
     @media (prefers-reduced-motion: no-preference) {
@@ -5728,6 +5760,9 @@
 
       :root[inFullscreen="true"] #sidebar-box {
         transition: margin-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+      }
+      :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
+        transition-property: margin-inline-end !important;
       }
       :root[inFullscreen="true"] #sidebar-box:hover {
         transition-delay: 0ms !important;
