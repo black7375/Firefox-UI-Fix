@@ -57,6 +57,7 @@ user_pref("userChrome.tab.photon_like_contextline",   false);
 user_pref("userChrome.rounding.square_tab",           false);
 
 // == Theme Compatibility Settings =============================================
+// user_pref("userChrome.compatibility.accent_color",         true); // Firefox v103 Below
 // user_pref("userChrome.compatibility.covered_header_image", true);
 // user_pref("userChrome.compatibility.panel_cutoff",         true);
 // user_pref("userChrome.compatibility.navbar_top_border",    true);

@@ -12,12 +12,12 @@ body[lwt-sidebar] xul|search-textbox.tabsFilter:hover {
 }
 .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
 body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {
-  border-color: -moz-accent-color !important;
+  border-color: var(--uc-accent-color) !important;
 }
 
 /* Others */
 #editBMPanel_namePicker:hover,
 #editBMPanel_tagsField:hover,
 .findbar-container .findbar-textbox:hover {
-  --input-border-color: color-mix(in srgb, var(--focus-outline-color, -moz-accent-color) 50%, transparent);
+  --input-border-color: color-mix(in srgb, var(--focus-outline-color, var(--uc-accent-color)) 50%, transparent);
 }

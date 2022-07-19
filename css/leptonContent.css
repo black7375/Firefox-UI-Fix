@@ -539,6 +539,20 @@
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @supports -moz-bool-pref("userContent.page.proton_color") {
+  :root {
+    /* Compatibility for accent color
+       https://github.com/mozilla/gecko-dev/commit/4c5f20179e8d3b963dc588efb9dc2c7b49e7bb31
+    */
+    --uc-accent-color: AccentColor;
+    --uc-accent-text-color: AccentColorText;
+  }
+  @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+    :root {
+      --uc-accent-color: -moz-accent-color;
+      --uc-accent-text-color: AccentColorText;
+    }
+  }
+
   @-moz-document url-prefix("about:"),
                url-prefix("chrome://browser/content/places/places.xhtml"),
                url-prefix("https://addons.mozilla.org"),
@@ -751,7 +765,7 @@
     @supports -moz-bool-pref("userContent.page.proton_color.system_accent") {
       :host,
       :root {
-        --in-content-primary-button-text-color: -moz-accent-color-foreground !important;
+        --in-content-primary-button-text-color: var(--uc-accent-text-color) !important;
         --in-content-primary-button-background: Highlight !important;
         --in-content-primary-button-background-hover: color-mix(in srgb, black 10%, Highlight) !important;
         --in-content-primary-button-background-active: color-mix(in srgb, black 20%, Highlight) !important;
@@ -2763,9 +2777,9 @@
         menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
           -moz-context-properties: fill !important;
           fill: currentColor !important;
-          color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+          color: var(--checkbox-checked-color, var(--uc-accent-text-color)) !important;
           border-color: var(--checkbox-checked-border-color, transparent) !important;
-          background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
+          background-color: var(--checkbox-checked-bgcolor, var(--uc-accent-color)) !important;
           background-image: url("chrome://global/skin/icons/check.svg") !important;
           background-position: center !important;
           background-repeat: no-repeat !important;
@@ -2775,19 +2789,19 @@
         menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left > .menu-iconic-icon {
           background-color: var(
             --checkbox-unchecked-hover-bgcolor,
-            color-mix(in srgb, -moz-accent-color 4%, Field)
+            color-mix(in srgb, var(--uc-accent-color) 4%, Field)
           ) !important;
         }
         menuitem[type="checkbox"]:not([disabled="true"]):hover:active > .menu-iconic-left > .menu-iconic-icon {
           background-color: var(
             --checkbox-unchecked-active-bgcolor,
-            color-mix(in srgb, -moz-accent-color 8%, Field)
+            color-mix(in srgb, var(--uc-accent-color) 8%, Field)
           ) !important;
         }
         menuitem[type="checkbox"]:not([disabled="true"]):hover > .menu-iconic-left[checked="true"] > .menu-iconic-icon {
           background-color: var(
             --checkbox-checked-hover-bgcolor,
-            color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
+            color-mix(in srgb, currentColor 12.5%, var(--uc-accent-color))
           ) !important;
         }
         menuitem[type="checkbox"]:not([disabled="true"]):hover:active
@@ -2795,21 +2809,24 @@
           > .menu-iconic-icon {
           background-color: var(
             --checkbox-checked-active-bgcolor,
-            color-mix(in srgb, currentColor 25%, -moz-accent-color)
+            color-mix(in srgb, currentColor 25%, var(--uc-accent-color))
           ) !important;
         }
         menuitem[type="checkbox"]:focus > .menu-iconic-left > .menu-iconic-icon {
-          outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+          outline: 2px solid var(--focus-outline-color, var(--uc-accent-color)) !important;
           outline-offset: var(--focus-outline-offset, 2px) !important;
         }
         @media (prefers-contrast) {
           menuitem[type="checkbox"]:not([disabled="true"]) > .menu-iconic-left > .menu-iconic-icon {
             /* color will set the border-color on the check due to how HCM works for in-content pages. */
-            color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
+            color: var(
+              --checkbox-checked-border-color,
+              color-mix(in srgb, var(--uc-accent-color) 4%, Field)
+            ) !important;
           }
           menuitem[type="checkbox"] > .menu-iconic-left[checked="true"] {
             color: var(--checkbox-checked-border-color, currentColor) !important;
-            fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+            fill: var(--checkbox-checked-color, var(--uc-accent-text-color)) !important;
           }
           menuitem[type="checkbox"]:not([disabled="true"]):hover:active
             > .menu-iconic-left[checked="true"]
@@ -2817,8 +2834,8 @@
           menuitem[type="checkbox"]:not([disabled="true"]):hover
             > .menu-iconic-left[checked="true"]
             > .menu-iconic-icon {
-            color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
-            fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+            color: var(--checkbox-checked-border-color-hover, var(--uc-accent-text-color)) !important;
+            fill: var(--checkbox-checked-border-color-hover, var(--uc-accent-text-color)) !important;
           }
         }
         menuitem[type="checkbox"] > .menu-iconic-text {
