@@ -30,8 +30,8 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 // == Theme Distribution Settings ==============================================
 // The rows that are located continuously must be changed `true`/`false` explicitly because there is a collision.
 // https://github.com/black7375/Firefox-UI-Fix/wiki/Options#important
-user_pref("userChrome.tab.connect_to_window",          true); // Original, Photon
-user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photon
+user_pref("userChrome.tab.connect_to_window",         false); // Original, Photon
+user_pref("userChrome.tab.color_like_toolbar",        false); // Original, Photon
 
 user_pref("userChrome.tab.lepton_like_padding",       false); // Original
 user_pref("userChrome.tab.photon_like_padding",       false); // Photon
