@@ -5452,20 +5452,99 @@
     --uc-titlebar-hide-height: calc(-1 * var(--uc-titlebar-height));
     --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
-    --uc-bm-height: calc(21px + (2 * var(--bookmark-block-padding, 4px)));
-    /* 21px = 16px + 1px [ border bottom ] + (2px * 2) [margin block] */
+    --uc-bm-height: calc(20px + (2 * var(--bookmark-block-padding, 4px)));
+    /* 20px = 16px + (2px * 2) [margin block] */
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
     --uc-autohide-toolbar-delay: 600ms;
   }
 
   #navigator-toolbox {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   #TabsToolbar {
     position: relative;
     z-index: 3;
+  }
+
+  @supports -moz-bool-pref("userChrome.autohide.toolbar_overlap") {
+    #navigator-toolbox {
+      --uc-toolbar-hide-height: calc(-1 * var(--uc-toolbar-height, 0));
+      margin-bottom: var(--uc-toolbar-hide-height) !important;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      @supports -moz-bool-pref("userChrome.decoration.animate") {
+        #navigator-toolbox {
+          transition: margin-top 1s ease,
+            margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+        }
+        #navigator-toolbox:hover {
+          transition-delay: 0s !important;
+        }
+        #navigator-toolbox[inFullscreen="true"] {
+          transition: margin-top 1.3s var(--animation-easing-function) 50ms,
+            margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+        }
+      }
+      @supports not -moz-bool-pref("userChrome.decoration.animate") {
+        #navigator-toolbox {
+          transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+        }
+        #navigator-toolbox:hover {
+          transition-delay: 0s !important;
+        }
+      }
+    }
+    @supports -moz-bool-pref("userChrome.autohide.tabbar") {
+      #navigator-toolbox:hover {
+        --uc-toolbar-height: var(--uc-titlebar-height);
+      }
+      @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+        @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          #navigator-toolbox:hover {
+            --uc-toolbar-height: calc(var(--uc-titlebar-height) + var(--uc-navbar-height));
+          }
+        }
+      }
+      @supports not -moz-bool-pref("userChrome.autohide.navbar") {
+        @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+          #navigator-toolbox:hover {
+            --uc-toolbar-height: calc(var(--uc-titlebar-height) + var(--uc-bm-height));
+          }
+        }
+      }
+      @supports -moz-bool-pref("userChrome.autohide.navbar") {
+        @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+          #navigator-toolbox:hover {
+            --uc-toolbar-height: calc(var(--uc-titlebar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
+          }
+        }
+      }
+    }
+    @supports not -moz-bool-pref("userChrome.autohide.tabbar") {
+      @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+        @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          #navigator-toolbox:hover {
+            --uc-toolbar-height: var(--uc-navbar-height);
+          }
+        }
+      }
+      @supports not -moz-bool-pref("userChrome.autohide.navbar") {
+        @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+          #navigator-toolbox:hover {
+            --uc-toolbar-height: var(--uc-bm-height);
+          }
+        }
+      }
+      @supports -moz-bool-pref("userChrome.autohide.navbar") {
+        @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+          #navigator-toolbox:hover {
+            --uc-toolbar-height: calc(var(--uc-navbar-height) + var(--uc-bm-height));
+          }
+        }
+      }
+    }
   }
 }
 @supports -moz-bool-pref("userChrome.autohide.tabbar") {
