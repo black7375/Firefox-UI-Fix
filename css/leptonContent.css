@@ -549,7 +549,7 @@
   @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
     :root {
       --uc-accent-color: -moz-accent-color;
-      --uc-accent-text-color: AccentColorText;
+      --uc-accent-text-color: -moz-accent-color-foreground;
     }
   }
 
