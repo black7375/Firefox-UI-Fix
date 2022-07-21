@@ -13,15 +13,15 @@
 :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
   --uc-window-drag-space-pre: 0px; /* Remove pre space */
 }
-@include Option("userChrome.tab.one_line") {
-  @include NotOption("userChrome.tab.one_line.tabbar_first") {
+@include Option("userChrome.tab.one_liner") {
+  @include NotOption("userChrome.tab.one_liner.tabbar_first") {
     :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
       /* Don't need window control */
       --uc-window-control-width: 0px;
       --uc-window-drag-space-post: 0px;
     }
   }
-  @include Option("userChrome.tab.one_line.tabbar_first") {
+  @include Option("userChrome.tab.one_liner.tabbar_first") {
     :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
       /* Don't need pre spacer */
       --uc-window-drag-space-pre: 0px;
