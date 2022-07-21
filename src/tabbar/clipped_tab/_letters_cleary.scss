@@ -13,14 +13,23 @@
   --inline-tab-padding: 8px;
 }
 
-#tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
-#tabbrowser-tabs[closebuttons="activetab"]
-  .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(ltr):not([pinned]) {
-  mask-image: linear-gradient(to right, black 70%, transparent) !important;
+// mask-image: linear-gradient(to left, transparent, black var(--tab-label-mask-size));
+.tabbrowser-tab {
+  .tab-label-container {
+    --tab-label-mask-size: 1.8em; /* Original: 2em */
+  }
 }
 
-#tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="rtl"]:not([pinned]),
-#tabbrowser-tabs[closebuttons="activetab"]
-  .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(rtl):not([pinned]) {
-  mask-image: linear-gradient(to left, black 70%, transparent) !important;
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab {
+  .tab-label-container {
+    --tab-label-mask-size: 30%;
+  }
+  &:is([visuallyselected="true"], [multiselected="true"]) .tab-label-container {
+    --tab-label-mask-size: 25%;
+  }
+}
+
+.tabbrowser-tab[visuallyselected=true]:not([labelendaligned]):hover .tab-label-container,
+#tabbrowser-tabs:not([closebuttons=activetab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([visuallyselected=true],[labelendaligned]):hover .tab-label-container {
+  --tab-label-mask-size: 0.9em; /* Original: 1em */
 }
