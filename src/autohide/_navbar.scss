@@ -1,12 +1,18 @@
 #nav-bar:not([customizing]) {
-  margin-bottom: var(--uc-tabbar-hide-height);
   opacity: 0;
   will-change: margin-bottom, opacity;
 }
-
 #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
-  margin-bottom: 0;
   opacity: 1;
+}
+
+@include NotOption("userChrome.tab.one_liner") {
+  #nav-bar:not([customizing]) {
+    margin-bottom: var(--uc-navbar-hide-height);
+  }
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
+    margin-bottom: 0;
+  }
 }
 
 @include Animate {
