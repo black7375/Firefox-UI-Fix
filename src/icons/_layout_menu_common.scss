@@ -10,7 +10,7 @@ $_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
 // Components
 $_nestedPopupIcon: ":not(menu, #ContentSelectDropdown) > menupopup >";
 $_nestedPopupPadding: ":not(menu, #ContentSelectDropdown, #context-navigation) > menupopup >";
-$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)";
+$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)";
 
 $_nestedPopupIconMenus: selector.nest(
   $_nestedPopupIcon,

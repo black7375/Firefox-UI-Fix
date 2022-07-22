@@ -22,6 +22,7 @@
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @include Option("userContent.page.proton_color") {
+  @import "compatibility/accent_color";
   @import "contents/proton_color";
 }
 @include Option("userContent.page.dark_mode") {

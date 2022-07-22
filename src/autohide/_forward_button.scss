@@ -1,0 +1,16 @@
+#forward-button[disabled="true"] {
+  margin-left: -36px !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+@include Animate {
+  #forward-button {
+    transition-property: background-color, opacity, margin-left !important;
+  }
+  #forward-button[disabled="true"] {
+    transition: background-color 1s var(--animation-easing-function),
+                opacity 1s var(--animation-easing-function),
+                margin-left 0.5s ease !important;
+  }
+}

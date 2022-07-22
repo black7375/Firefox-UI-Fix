@@ -1,0 +1,44 @@
+:root {
+  --uc-navbar-size: 40vw;
+  --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
+}
+
+#navigator-toolbox {
+  background-color: var(--toolbar-bgcolor) !important;
+}
+
+#nav-bar {
+  margin-top: var(--uc-tabbar-hide-height) !important;
+  height: var(--uc-tabbar-height) !important;
+}
+
+#urlbar-container {
+  min-width: 0px !important;
+}
+
+toolbarspring.chromeclass-toolbar-additional {
+  display: none !important;
+}
+
+@include NotOption("userChrome.tab.one_liner.tabbar_first") {
+  #TabsToolbar {
+    margin-inline-start: var(--uc-navbar-size) !important;
+  }
+  #nav-bar {
+    margin-inline-end: var(--uc-tabbar-size) !important;
+  }
+  .titlebar-spacer[type="pre-tabs"] {
+    display: none !important;
+  }
+}
+@include Option("userChrome.tab.one_liner.tabbar_first") {
+  #TabsToolbar {
+    margin-inline-end: var(--uc-navbar-size) !important;
+  }
+  #nav-bar {
+    margin-inline-start: var(--uc-tabbar-size) !important;
+  }
+  .titlebar-spacer[type="post-tabs"] {
+    display: none !important;
+  }
+}

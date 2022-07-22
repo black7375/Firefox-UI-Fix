@@ -21,11 +21,11 @@
     --win-shorcut-text-color: #757575;
     --win-error-color: #b31616;
     --win-red-border-color: #ff4343;
-    --win-accent-forground-color: -moz-accent-color-foreground;
-    --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
-    --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
-    --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
-    --win-accent-active-color: -moz-accent-color;
+    --win-accent-forground-color: var(--uc-accent-text-color);
+    --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, var(--uc-accent-color));
+    --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, var(--uc-accent-color));
+    --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, var(--uc-accent-color));
+    --win-accent-active-color: var(--uc-accent-color);
   }
   @include Dark {
     #{system-default-theme()} {
@@ -49,10 +49,10 @@
       --win-shorcut-text-color: #adadad;
       --win-error-color: #ffb900;
       --win-red-border-color: #ff4343;
-      --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, -moz-accent-color);
-      --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
-      --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, -moz-accent-color);
-      --win-accent-active-color: -moz-accent-color;
+      --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, var(--uc-accent-color));
+      --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, var(--uc-accent-color));
+      --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, var(--uc-accent-color));
+      --win-accent-active-color: var(--uc-accent-color);
     }
   }
 
@@ -84,8 +84,7 @@
     --panel-shortcut-color: var(--win-shorcut-text-color) !important;
     --panel-description-color: var(--win-shorcut-text-color) !important;
 
-    /* Title Background, Border Color */
-    --menu-border-color: var(--win-bgcolor) !important;
+    /* Title Background */
     --lwt-accent-color: var(--win-bgcolor) !important;
     --toolbar-field-border-color: var(--win-bgcolor) !important;
     --chrome-content-separator-color: var(--win-bgcolor) !important;
@@ -96,6 +95,9 @@
     --toolbar-non-lwt-bgcolor: var(--win-component-bgcolor) !important;
     --arrowpanel-background: var(--win-component-bgcolor) !important;
     --autocomplete-popup-background: var(--win-component-bgcolor) !important;
+
+    /* Border Color */
+    // --menu-border-color: var(--win-border-color) !important;
 
     /* Seperator */
     --toolbarseparator-color: var(--win-tab-seperator-color) !important;
@@ -249,7 +251,7 @@
       .sidebar-panel[style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"], /* Nightly */
       body[lwt-sidebar][style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"] {
       /* Only darkmode has more: --newtab-background-color-secondary: rgba(66, 65, 77, 1); */
-      --lwt-sidebar-background-color: transparent !important;
+      --lwt-sidebar-background-color: var(--win-sidebar-bgcolor) !important;
       --lwt-sidebar-text-color: var(--win-text-color) !important;
     }
   }
@@ -312,14 +314,14 @@
   :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
     .titlebar-color {
-      color: -moz-accent-color-foreground;
-      background-color: -moz-accent-color;
+      color: var(--uc-accent-text-color);
+      background-color: var(--uc-accent-color);
     }
 
     .toolbar-items {
       --toolbarbutton-icon-fill: currentColor;
-      --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
-      --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+      --toolbarbutton-hover-background: color-mix(in srgb, var(--uc-accent-text-color) 10%, transparent);
+      --toolbarbutton-active-background: color-mix(in srgb, var(var(--uc-accent-text-color)) 15%, transparent);
     }
   }
 }

@@ -1,0 +1,14 @@
+@include NotOption("userChrome.sidebar.hidden_header.vertical_tab_only") {
+  #sidebar-header {
+    display: none !important;
+  }
+}
+
+@include Option("userChrome.sidebar.hidden_header.vertical_tab_only") {
+  #sidebar-box:is(
+    [sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"],
+    [sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]
+  ) #sidebar-header {
+    display: none !important;
+  }
+}
