@@ -3829,8 +3829,8 @@
   }
 
   #nav-bar {
-    margin-top: calc(-1 * var(--tab-min-height)) !important;
-    height: var(--tab-min-height) !important;
+    margin-top: var(--uc-tabbar-hide-height) !important;
+    height: var(--uc-tabbar-height) !important;
   }
 
   #urlbar-container {
@@ -5465,15 +5465,22 @@
 }
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
-  ) {
+  )
+  or -moz-bool-pref("userChrome.tab.one_liner") {
   :root {
-    --uc-titlebar-height: calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
-    --uc-titlebar-hide-height: calc(-1 * var(--uc-titlebar-height));
+    --uc-tabbar-height: calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
+    --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
     --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
     --uc-bm-height: calc(20px + (2 * var(--bookmark-block-padding, 4px)));
     /* 20px = 16px + (2px * 2) [margin block] */
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
+  }
+}
+@supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
+    "userChrome.autohide.bookmarkbar"
+  ) {
+  :root {
     --uc-autohide-toolbar-delay: 600ms;
   }
 
@@ -5517,26 +5524,26 @@
     }
     @supports -moz-bool-pref("userChrome.autohide.tabbar") {
       #navigator-toolbox:hover {
-        --uc-toolbar-height: var(--uc-titlebar-height);
+        --uc-toolbar-height: var(--uc-tabbar-height);
       }
       @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
         @supports -moz-bool-pref("userChrome.autohide.navbar") {
           #navigator-toolbox:hover {
-            --uc-toolbar-height: calc(var(--uc-titlebar-height) + var(--uc-navbar-height));
+            --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
           }
         }
       }
       @supports not -moz-bool-pref("userChrome.autohide.navbar") {
         @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
           #navigator-toolbox:hover {
-            --uc-toolbar-height: calc(var(--uc-titlebar-height) + var(--uc-bm-height));
+            --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-bm-height));
           }
         }
       }
       @supports -moz-bool-pref("userChrome.autohide.navbar") {
         @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
           #navigator-toolbox:hover {
-            --uc-toolbar-height: calc(var(--uc-titlebar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
+            --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
           }
         }
       }
@@ -5573,7 +5580,7 @@
   }
 
   :root:not([customizing]) #titlebar {
-    margin-bottom: var(--uc-titlebar-hide-height);
+    margin-bottom: var(--uc-tabbar-hide-height);
     will-change: margin-bottom;
   }
 
@@ -5612,7 +5619,7 @@
 }
 @supports -moz-bool-pref("userChrome.autohide.navbar") {
   #nav-bar:not([customizing]) {
-    margin-bottom: var(--uc-titlebar-hide-height);
+    margin-bottom: var(--uc-tabbar-hide-height);
     opacity: 0;
     will-change: margin-bottom, opacity;
   }

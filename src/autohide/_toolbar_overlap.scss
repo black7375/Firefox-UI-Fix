@@ -1,0 +1,68 @@
+#navigator-toolbox {
+  --uc-toolbar-hide-height: calc(-1 * var(--uc-toolbar-height, 0));
+  margin-bottom: var(--uc-toolbar-hide-height) !important;
+
+  @include Animate {
+    @include Option("userChrome.decoration.animate") {
+      transition: margin-top 1s ease,
+                  margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+
+      &:hover {
+        transition-delay: 0s !important;
+      }
+
+      &[inFullscreen="true"] {
+        transition: margin-top 1.3s var(--animation-easing-function) 50ms,
+                    margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+      }
+    }
+    @include NotOption("userChrome.decoration.animate") {
+      transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+
+      &:hover {
+        transition-delay: 0s !important;
+      }
+    }
+  }
+
+  &:hover {
+    @include Option("userChrome.autohide.tabbar") {
+      --uc-toolbar-height: var(--uc-tabbar-height);
+
+      @include NotOption("userChrome.autohide.bookmarkbar") {
+        @include Option("userChrome.autohide.navbar") {
+          --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
+        }
+      }
+      @include NotOption("userChrome.autohide.navbar") {
+        @include Option("userChrome.autohide.bookmarkbar") {
+          --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-bm-height));
+        }
+      }
+
+      @include Option("userChrome.autohide.navbar") {
+        @include Option("userChrome.autohide.bookmarkbar") {
+          --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
+        }
+      }
+    }
+    @include NotOption("userChrome.autohide.tabbar") {
+      @include NotOption("userChrome.autohide.bookmarkbar") {
+        @include Option("userChrome.autohide.navbar") {
+          --uc-toolbar-height: var(--uc-navbar-height);
+        }
+      }
+      @include NotOption("userChrome.autohide.navbar") {
+        @include Option("userChrome.autohide.bookmarkbar") {
+          --uc-toolbar-height: var(--uc-bm-height);
+        }
+      }
+
+      @include Option("userChrome.autohide.navbar") {
+        @include Option("userChrome.autohide.bookmarkbar") {
+          --uc-toolbar-height: calc(var(--uc-navbar-height) + var(--uc-bm-height));
+        }
+      }
+    }
+  }
+}
