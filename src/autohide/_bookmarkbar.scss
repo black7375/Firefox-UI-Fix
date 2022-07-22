@@ -1,0 +1,23 @@
+// Based on https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/autohide_bookmarks_toolbar.css
+#PersonalToolbar:not([customizing]) {
+  margin-bottom: var(--uc-bm-hide-height);
+  opacity: 0;
+  will-change: margin-bottom, opacity;
+}
+
+#navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar:not([customizing]) {
+  margin-bottom: 0;
+  opacity: 1;
+}
+
+@include Animate {
+  #PersonalToolbar:not([customizing]) {
+    //  --ext-theme-background-transition: background-color 0.1s cubic-bezier(.17,.67,.83,.67);
+    transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                min-height 170ms ease-out, max-height 170ms ease-out, var(--ext-theme-background-transition) !important;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar:not([customizing]) {
+    transition-delay: 0s !important;
+  }
+}

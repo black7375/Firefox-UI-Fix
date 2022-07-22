@@ -1,0 +1,64 @@
+#sidebar-header {
+  background-color: var(--sidebar-background-color) !important;
+  color: var(--sidebar-text-color) !important;
+  overflow: hidden;
+}
+
+#sidebar {
+  min-width: var(--uc-sidebar-width) !important;
+  max-width: var(--uc-sidebar-width) !important;
+
+  will-change: min-width, max-width;
+}
+
+#sidebar-box:hover > #sidebar {
+  min-width: var(--uc-sidebar-activate-width) !important;
+  max-width: var(--uc-sidebar-activate-width) !important;
+}
+
+:root[inFullscreen="true"] #sidebar-box {
+  will-change: transform;
+
+  &:not([positionend="true"]) {
+    margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+    transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
+
+    &:hover {
+      transform: translateX(var(--uc-sidebar-activate-width)) !important;
+    }
+  }
+  &[positionend="true"] {
+    margin-inline-end: var(--uc-sidebar-activate-width-reverse) !important;
+    transform: translateX(calc(var(--uc-sidebar-activate-width) + (-1 * var(--uc-sidebar-fullscreen-width)))) !important;
+
+    &:hover {
+      transform: translateX(0) !important;
+    }
+  }
+
+  #sidebar-header,
+  #sidebar {
+    min-width: calc(var(--uc-sidebar-activate-width)) !important;
+    max-width: calc(var(--uc-sidebar-activate-width)) !important;
+
+    will-change: unset;
+  }
+}
+
+@include Animate {
+  #sidebar {
+    transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+  }
+
+  #sidebar-box:hover > #sidebar {
+    transition-delay: 0ms !important;
+  }
+
+  :root[inFullscreen="true"] #sidebar-box {
+    transition: transform 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+
+    &:hover {
+      transition-delay: 0ms !important;
+    }
+  }
+}

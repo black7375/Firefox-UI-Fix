@@ -12,15 +12,15 @@
     --mac-sidebar-hover-bgcolor: color-mix(in srgb, ButtonFace 60%, var(--mac-sidebar-bgcolor));
     --mac-hover-bgcolor: Window;
     --mac-disabled-bgcolor: transparent;
-    --mac-primary-button-color: -moz-accent-color-foreground; /* or -moz-mac-menutextselect */
-    --mac-accent-color: -moz-accent-color; /* or LinkText */
-    --mac-accent-content-color: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-accent-color);
+    --mac-primary-button-color: var(--uc-accent-text-color); /* or -moz-mac-menutextselect */
+    --mac-accent-color: var(--uc-accent-color); /* or LinkText */
+    --mac-accent-content-color: color-mix(in srgb, rgb(255, 255, 255) 15%, var(--uc-accent-color));
     --mac-accent-hover-color: color-mix(
       in srgb,
       rgb(0, 0, 0) 10%,
-      -moz-accent-color
+      var(--uc-accent-color)
     ); /* or -moz-mac-menuselect, Highlight */
-    --mac-accent-active-color: color-mix(in srgb, rgb(0, 0, 0) 20%, -moz-accent-color); /* or ActiveBorder */
+    --mac-accent-active-color: color-mix(in srgb, rgb(0, 0, 0) 20%, var(--uc-accent-color)); /* or ActiveBorder */
 
     /* Text, Icon Color */
     --menu-color: var(--mac-text-color) !important;

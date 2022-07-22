@@ -104,6 +104,7 @@ xul|search-textbox.tabsFilter,
     /* Animation */
     transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
       visibility 0s linear !important;
+    will-change: margin-inline-start, opacity, visibility;
 
     &[hidden="true"] {
       display: -moz-box !important;

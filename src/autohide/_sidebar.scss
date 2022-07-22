@@ -1,0 +1,20 @@
+// Refer variable `src/sidebar/overlap`
+
+@include Option("userChrome.autohide.sidebar") {
+  #sidebar-box {
+    min-width: var(--uc-sidebar-width) !important;
+    max-width: var(--uc-sidebar-width) !important;
+  }
+
+  :root[inFullscreen="true"] #sidebar-box {
+    min-width: var(--uc-sidebar-activate-width) !important;
+    max-width: var(--uc-sidebar-activate-width) !important;
+  }
+
+  @include Option("userChrome.sidebar.overlap") {
+    @import "sidebar/overlap";
+  }
+  @include NotOption("userChrome.sidebar.overlap") {
+    @import "sidebar/static";
+  }
+}
