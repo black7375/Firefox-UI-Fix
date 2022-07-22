@@ -826,7 +826,7 @@ function Copy-Lepton() {
   Param (
     [Parameter(Position=0)]
     [string] $chromeDir = "chrome",
-    [Parameter(Position=0)]
+    [Parameter(Position=1)]
     [string] $userJSPath = "${chromeDir}\user.js"
   )
 
