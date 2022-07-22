@@ -1,0 +1,41 @@
+.context-menu-item span[data-l10n-id="newtab-menu-pin"] {
+  --menuitem-image: url("../icons/pin-tab.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-unpin"] {
+  --menuitem-image: url("../icons/unpin-tab.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-edit-topsites"] {
+  --menuitem-image: url("chrome://global/skin/icons/edit.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-bookmark"] {
+  --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-remove-bookmark"] {
+  --menuitem-image: url("chrome://browser/skin/bookmark-hollow.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-save-to-pocket"] {
+  --menuitem-image: url("../icons/pocket-outline.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-open-file"] {
+  --menuitem-image: url("../icons/fluid.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-show-file"] {
+  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+  @include Option("userChrome.icon.library") {
+    --menuitem-image: url("../icons/folder.svg");
+  }
+}
+
+.context-menu-item span[data-l10n-id="newtab-menu-open-new-window"] {
+  --menuitem-image: url("chrome://browser/skin/window.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-open-new-private-window"] {
+  --menuitem-image: url("chrome://browser/skin/privateBrowsing.svg");
+}
+
+.context-menu-item span[data-l10n-id="newtab-menu-dismiss"] {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+.context-menu-item span[data-l10n-id="newtab-menu-delete-history"] {
+  --menuitem-image: url("../icons/eraser.svg");
+}

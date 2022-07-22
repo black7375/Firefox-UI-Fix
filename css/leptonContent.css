@@ -272,6 +272,77 @@
       }
     }
   }
+  /** Activity Stream - Menu Icons ********************************************/
+  @supports -moz-bool-pref("userChrome.icon.context_menu") {
+    .context-menu-list .context-menu-item button {
+      padding-inline-start: 0 !important;
+    }
+
+    .context-menu-list .context-menu-item button span {
+      padding-inline-start: 24px;
+      /* 16p + (4px *  2) */
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+      /* Layout */
+      background-size: 16px;
+      background-repeat: no-repeat;
+      background-image: var(--menuitem-image);
+      background-position: left 4px center;
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-pin"] {
+      --menuitem-image: url("../icons/pin-tab.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-unpin"] {
+      --menuitem-image: url("../icons/unpin-tab.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-edit-topsites"] {
+      --menuitem-image: url("chrome://global/skin/icons/edit.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-bookmark"] {
+      --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-remove-bookmark"] {
+      --menuitem-image: url("chrome://browser/skin/bookmark-hollow.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-save-to-pocket"] {
+      --menuitem-image: url("../icons/pocket-outline.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-open-file"] {
+      --menuitem-image: url("../icons/fluid.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-show-file"] {
+      --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      .context-menu-item span[data-l10n-id="newtab-menu-show-file"] {
+        --menuitem-image: url("../icons/folder.svg");
+      }
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-open-new-window"] {
+      --menuitem-image: url("chrome://browser/skin/window.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-open-new-private-window"] {
+      --menuitem-image: url("chrome://browser/skin/privateBrowsing.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-dismiss"] {
+      --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+    }
+
+    .context-menu-item span[data-l10n-id="newtab-menu-delete-history"] {
+      --menuitem-image: url("../icons/eraser.svg");
+    }
+  }
   /** Activity Stream - Web Site Icon: full size ******************************/
   @supports -moz-bool-pref("userContent.newTab.full_icon") {
     .top-site-outer .tile {
