@@ -32,6 +32,41 @@
   }
 }
 
+
+//-- Mixin ---------------------------------------------------------------------
+@mixin _backgroundImage($imgURL, $important: false) {
+  background-image: url($imgURL) if($important, !important, null);
+  @content;
+}
+
+@mixin _errorContainerImage($imgURL) {
+  #errorPageContainer {
+    @include _backgroundImage($imgURL) {
+      @content;
+    }
+  }
+}
+
+@mixin _errorDescriptionImage($imgURL) {
+  .description-wrapper {
+    @include _backgroundImage($imgURL) {
+      @content;
+    }
+  }
+}
+
+@mixin _errorTitleImage($imgURL) {
+  @media (min-width: 970px) {
+    .title {
+      @include _backgroundImage($imgURL, true) {
+        @content;
+      }
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+
 @-moz-document url-prefix("about:neterror?e=connectionFailure"),
   url-prefix("about:neterror?e=netInterrupt"),
   url-prefix("about:neterror?e=netTimeout"),
@@ -39,66 +74,41 @@
   url-prefix("about:neterror?e=netOffline"),
   url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
 {
-  #errorPageContainer {
-    background-image: url("../icons/error-connection-failure.svg");
-  }
+  @include _errorContainerImage("../icons/error-connection-failure.svg");
 }
 @-moz-document url-prefix("about:neterror?e=dnsNotFound") {
-  #errorPageContainer {
-    background-image: url("../icons/error-server-not-found.svg");
-  }
+  @include _errorContainerImage("../icons/error-server-not-found.svg");
 }
 @-moz-document url-prefix("about:neterror?e=malformedURI") {
-  #errorPageContainer {
-    background-image: url("chrome://browser/skin/illustrations/error-malformed-url.svg");
-  }
+  @include _errorContainerImage("chrome://browser/skin/illustrations/error-malformed-url.svg");
 }
 @-moz-document url-prefix("about:neterror?e=clockSkewError"),
   url-prefix("about:neterror?e=nssFailure") {
-  #errorPageContainer {
-    background-image: url("../icons/blue-berror.svg");
+  @include _errorContainerImage("../icons/blue-berror.svg") {
     background-size: 18.5em;
   }
 }
 
 @-moz-document url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml")
 {
-  .description-wrapper {
-    background-image: url("../icons/error-session-restore.svg");
-  }
+  @include _errorDescriptionImage("../icons/error-session-restore.svg");
 }
 
 @-moz-document url-prefix("about:neterror?e=fileNotFound") {
-  @media (min-width: 970px) {
-    .title {
-      background-image: url("chrome://global/skin/icons/info.svg") !important;
-    }
-  }
+  @include _errorTitleImage("chrome://global/skin/icons/info.svg");
 
   #text-container {
     padding-inline-start: 0;
   }
 }
 @-moz-document url-prefix("about:tabcrashed") {
-  @media (min-width: 970px) {
-    .title {
-      background-image: url("chrome://browser/skin/tab-crashed.svg") !important;
-    }
-  }
+  @include _errorTitleImage("chrome://browser/skin/tab-crashed.svg");
 }
 @-moz-document url("about:robots"), url("chrome://browser/content/aboutRobots.xhtml")
 {
-  @media (min-width: 970px) {
-    .title {
-      background-image: url("chrome://browser/content/aboutRobots-icon.png") !important;
-    }
-  }
+  @include _errorTitleImage("chrome://browser/content/aboutRobots-icon.png");
 }
 @-moz-document url("about:welcomeBack"), url("chrome://browser/content/aboutWelcomeBack.xhtml")
 {
-  @media (min-width: 970px) {
-    .title {
-      background-image: url("../icons/welcome-back.svg") !important;
-    }
-  }
+  @include _errorTitleImage("../icons/welcome-back.svg");
 }

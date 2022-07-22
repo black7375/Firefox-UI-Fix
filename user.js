@@ -28,39 +28,43 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 
 // ** Theme Related Options ****************************************************
 // == Theme Distribution Settings ==============================================
+// The rows that are located continuously must be changed `true`/`false` explicitly because there is a collision.
+// https://github.com/black7375/Firefox-UI-Fix/wiki/Options#important
 user_pref("userChrome.tab.connect_to_window",          true); // Original, Photon
 user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photon
 
 user_pref("userChrome.tab.lepton_like_padding",        true); // Original
-// user_pref("userChrome.tab.photon_like_padding",     true); // Photon
+user_pref("userChrome.tab.photon_like_padding",       false); // Photon
 
 user_pref("userChrome.tab.dynamic_separtor",           true); // Original, Proton
-// user_pref("userChrome.tab.static_separator",        true); // Photon
-// user_pref("userChrome.tab.static_separator.selected_accent", true); // Just option
+user_pref("userChrome.tab.static_separator",          false); // Photon
+user_pref("userChrome.tab.static_separator.selected_accent", false); // Just option
 
 user_pref("userChrome.tab.newtab_button_like_tab",     true); // Original
-// user_pref("userChrome.tab.newtab_button_smaller",   true); // Photon
-// user_pref("userChrome.tab.newtab_button_proton",    true); // Proton
+user_pref("userChrome.tab.newtab_button_smaller",     false); // Photon
+user_pref("userChrome.tab.newtab_button_proton",      false); // Proton
 
 user_pref("userChrome.icon.panel_full",                true); // Original, Proton
-// user_pref("userChrome.icon.panel_photon",           true); // Photon
-// user_pref("userChrome.icon.panel_sparse",           true); // Just option
+user_pref("userChrome.icon.panel_photon",             false); // Photon
+user_pref("userChrome.icon.panel_sparse",             false); // Just option
 
 // Original Only
 user_pref("userChrome.tab.box_shadow",                 true);
 user_pref("userChrome.tab.bottom_rounded_corner",      true);
 
 // Photon Only
-// user_pref("userChrome.tab.photon_like_contextline", true);
-// user_pref("userChrome.rounding.square_tab",         true);
+user_pref("userChrome.tab.photon_like_contextline",   false);
+user_pref("userChrome.rounding.square_tab",           false);
 
 // == Theme Compatibility Settings =============================================
+// user_pref("userChrome.compatibility.accent_color",         true); // Firefox v103 Below
 // user_pref("userChrome.compatibility.covered_header_image", true);
 // user_pref("userChrome.compatibility.panel_cutoff",         true);
 // user_pref("userChrome.compatibility.navbar_top_border",    true);
 // user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
 
 // user_pref("userChrome.compatiblity.os.linux_non_native_titlebar_button", true);
+// user_pref("userChrome.compatibility.os.windows_maximized, true");
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
@@ -68,6 +72,13 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.decoration.disable_sidebar_animate",  true);
 
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
+
+// user_pref("userChrome.autohide.tabbar",                     true);
+// user_pref("userChrome.autohide.navbar",                     true);
+// user_pref("userChrome.autohide.bookmarkbar",                true);
+// user_pref("userChrome.autohide.sidebar",                    true);
+// user_pref("userChrome.autohide.forward_button",             true);
+// user_pref("userChrome.autohide.toolbar_overlap",            true);
 
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
@@ -94,20 +105,31 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 // user_pref("userChrome.tab.on_bottom",                       true);
 // user_pref("userChrome.tab.on_bottom.above_bookmark",        true); // Need on_bottom
 // user_pref("userChrome.tab.on_bottom.menubar_on_top",        true); // Need on_bottom
+// user_pref("userChrome.tab.one_liner",                       true);
+// user_pref("userChrome.tab.one_liner.tabbar_first",          true);
+// user_pref("userChrome.tab.as_titlebar",                     true);
 // user_pref("userChrome.tab.always_show_tab_icon",            true);
 // user_pref("userChrome.tab.close_button_at_pinned",          true);
 // user_pref("userChrome.tab.close_button_at_pinned.always",   true);
 // user_pref("userChrome.tab.close_button_at_pinned.background", true);
 // user_pref("userChrome.tab.close_button_at_hover.always",    true); // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
+// user_pref("userChrome.tab.centered_content",                true);
 // user_pref("userChrome.tab.centered_label",                  true);
+
+// user_pref("userChrome.bookmarkbar.centered",                true);
 
 // user_pref("userChrome.panel.remove_strip",                  true);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);
 
+// user_pref("userChrome.sidebar.hidden_header",               true);
+// user_pref("userChrome.sidebar.hidden_header.vertical_tab_only", true);
+// user_pref("userChrome.sidebar.overlap",                     true);
+
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);
+// user_pref("userChrome.icon.menu.full",                      true);
 
 // -- User Content -------------------------------------------------------------
 // user_pref("userContent.player.ui.twoline",                  true);

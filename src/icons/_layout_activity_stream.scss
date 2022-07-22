@@ -1,0 +1,16 @@
+.context-menu-list .context-menu-item button {
+  padding-inline-start: 0 !important;
+}
+
+.context-menu-list .context-menu-item button span {
+  padding-inline-start: 24px; /* 16p + (4px *  2) */
+
+  -moz-context-properties: fill, fill-opacity !important;
+  fill: currentColor !important;
+
+  /* Layout */
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-image: var(--menuitem-image);
+  background-position: left 4px center;
+}

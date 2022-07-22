@@ -11,6 +11,9 @@
 #placesContext_openLinks\:tabs {
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
 }
+#placesContext_open\:newcontainertab {
+  --menuitem-image: url("../icons/container-openin-16.svg");
+}
 #placesContext_open\:newwindow {
   --menuitem-image: url("chrome://browser/skin/window.svg");
 }
@@ -49,6 +52,7 @@
 #placesContext_new\:bookmark {
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
+#placesContext_showInFolder,
 #placesContext_new\:folder {
   --menuitem-image: url("chrome://global/skin/icons/folder.svg");
   @include Option("userChrome.icon.library") {
@@ -68,7 +72,7 @@
 }
 #show-other-bookmarks_PersonalToolbar {
   /* checkbox */
-  /* --menuitem-image: url("../icons/star-line-horizontal.svg"); */
+  --menuitem-image: url("../icons/star-line-horizontal.svg");
 }
 #placesContext_showAllBookmarks {
   --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");

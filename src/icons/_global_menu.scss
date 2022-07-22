@@ -4,6 +4,7 @@
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
 }
 #menu_newUserContext {
+  --menuitem-image: url("../icons/container-openin-16.svg");
 }
 #menu_newNavigator {
   --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -31,6 +32,9 @@
 #menu_sendLink {
   --menuitem-image: url("chrome://browser/skin/mail.svg");
 }
+menu.share-tab-url-item {
+  --menuitem-image: url("chrome://browser/skin/share.svg");
+}
 
 #menu_printPreview {
 }
@@ -43,6 +47,8 @@
 }
 
 #goOfflineMenuitem {
+  /* checkbox */
+  --menuitem-image: url("../icons/plug-disconnected.svg");
 }
 #menu_FileQuitItem {
   --menuitem-image: url("../icons/quit.svg");
@@ -58,6 +64,9 @@
   --menuitem-image: url("../icons/undo.svg");
 }
 #menu_redo {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/redo.svg");
+  }
 }
 
 #menu_cut {
@@ -108,13 +117,21 @@
   --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
 }
 
+#enterFullScreenItem {
+  --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
+}
+#exitFullScreenItem {
+  --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
+}
 #fullScreenItem {
+  /* checkbox */
   --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
 }
 #menu_readerModeItem {
   --menuitem-image: url("chrome://browser/skin/reader-mode.svg");
 }
 #menu_showAllTabs {
+  --menuitem-image: url("../icons/tab.svg");
 }
 
 #documentDirection-swap {
@@ -137,6 +154,10 @@
   --menuitem-image: url("../icons/resize.svg");
 }
 
+#toggle_zoom {
+  --menuitem-image: url("../icons/screenshot.svg");
+}
+
 /*= goPopup ==================================================================*/
 #menu_showAllHistory {
   --menuitem-image: url("chrome://browser/skin/history.svg");
@@ -152,6 +173,7 @@
   --menuitem-image: url("../icons/restore-session.svg");
 }
 #hiddenTabsMenu {
+  --menuitem-image: url("../icons/eye-hide.svg")
 }
 #historyUndoMenu {
   --menuitem-image: url("chrome://browser/skin/tab.svg");
@@ -209,7 +231,7 @@
 }
 
 #webDeveloperMenu, /* Legacy */
-  #browserToolsMenu {
+#browserToolsMenu {
   --menuitem-image: url("../icons/developer.svg");
 }
 #menu_pageInfo {
@@ -220,6 +242,8 @@
 #enableDeveloperTools {
 }
 #menu_devToolbox {
+  /* checkbox */
+  --menuitem-image: url("../icons/developer.svg");
 }
 #menu_taskManager {
   --menuitem-image: url("../icons/performance.svg");
@@ -237,14 +261,28 @@
   --menuitem-image: url("chrome://devtools/skin/images/command-console.svg");
 }
 #menu_responsiveUI {
+  /* checkbox */
+  --menuitem-image: url("../icons/command-responsivemode.svg");
 }
 #menu_eyedropper {
+  /* checkbox */
+  --menuitem-image: url("chrome://devtools/skin/images/command-eyedropper.svg");
 }
 #menu_pageSource {
   --menuitem-image: url("../icons/document-search.svg");
 }
 #extensionsForDevelopers {
   --menuitem-image: url("chrome://devtools/skin/images/debugging-addons.svg");
+}
+
+/*= windowPopup ==============================================================*/
+#windowPopup > menuitem {
+  &[command="minimizeWindow"] {
+    --menuitem-image: url("../icons/arrow-between-down.svg");
+  }
+  &[command="zoomWindow"] {
+    --menuitem-image: url("../icons/auto-fit-width.svg");
+  }
 }
 
 /*= menu_HelpPopup ===========================================================*/

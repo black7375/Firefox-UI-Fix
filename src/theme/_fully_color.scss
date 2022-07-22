@@ -40,10 +40,11 @@ html#main-window menupopup:not(.in-menulist) {
       */
   }
 
-  /* Fallback background */
+  /* Fallback background - Set to Legacy. It will be removed Next update
   menupopup:not(.cui-widget-panel.cui-widget-panelview, [placespopup="true"]) {
     background-color: var(--lwt-accent-color, var(--in-content-page-background)) !important;
   }
+  */
 }
 
 /* Default theme color preservation */
@@ -64,6 +65,28 @@ html#main-window menupopup:not(.in-menulist) {
     --panel-color: var(--menu-color) !important;
     --panel-background: var(--menu-background-color) !important;
   }
+}
+
+/*== Info Bar Color ==========================================================*/
+.container.infobar {
+  background-color: var(--urlbar-box-bgcolor);
+}
+.notification-button {
+  background-color: var(--button-bgcolor);
+
+  &:hover {
+    background-color: var(--button-hover-bgcolor);
+  }
+  &:hover:active {
+    background-color: var(--button-active-bgcolor);
+  }
+}
+
+html|button.ghost-button:not(.semi-transparent):enabled:hover {
+  background-color: var(--button-hover-bgcolor) !important;
+}
+html|button.ghost-button:not(.semi-transparent):enabled:hover:active {
+  background-color: var(--in-content-button-background-active) !important;
 }
 
 /*== Bookmark Popup Color ====================================================*/
@@ -132,8 +155,8 @@ body[lwt-sidebar] xul|search-textbox.tabsFilter[focused="true"] {
 }
 .sidebar-panel:not([lwt-sidebar]) #search-box[focused="true"],
 body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
-  border-color: -moz-accent-color !important; /* Hard Coded */
-  outline-color: -moz-accent-color !important;
+  border-color: var(--uc-accent-color) !important; /* Hard Coded */
+  outline-color: var(--uc-accent-color) !important;
 }
 
 /*= PopupAutoComplete ========================================================*/

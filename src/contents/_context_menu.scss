@@ -1,0 +1,14 @@
+@-moz-document url("chrome://browser/content/places/places.xhtml"),
+               url("about:downloads") {
+  @import "../icons/layout_menu_contents";
+
+  /*= Context Menu ===========================================================*/
+  @include Option("userChrome.icon.context_menu") {
+    /* Icon lists */
+    @import "../icons/context_menu/downloads";
+    @import "../icons/context_menu/place";
+  }
+  @include Option("userChrome.icon.global_menu") {
+    @import "../icons/library";
+  }
+}

@@ -88,10 +88,10 @@
 @mixin CheckboxCheckedIcon {
   -moz-context-properties: fill !important;
   fill: currentColor !important;
-  color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+  color: var(--checkbox-checked-color, var(--uc-accent-text-color)) !important;
   border-color: var(--checkbox-checked-border-color, transparent) !important;
 
-  background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
+  background-color: var(--checkbox-checked-bgcolor, var(--uc-accent-color)) !important;
   background-image: url("chrome://global/skin/icons/check.svg") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -103,48 +103,48 @@
 @mixin CheckboxIconHover {
   background-color: var(
     --checkbox-unchecked-hover-bgcolor,
-    color-mix(in srgb, -moz-accent-color 4%, Field)
+    color-mix(in srgb, var(--uc-accent-color) 4%, Field)
   ) !important;
 }
 
 @mixin CheckboxIconActive {
   background-color: var(
     --checkbox-unchecked-active-bgcolor,
-    color-mix(in srgb, -moz-accent-color 8%, Field)
+    color-mix(in srgb, var(--uc-accent-color) 8%, Field)
   ) !important;
 }
 
 @mixin CheckboxCheckedIconHover {
   background-color: var(
     --checkbox-checked-hover-bgcolor,
-    color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
+    color-mix(in srgb, currentColor 12.5%, var(--uc-accent-color))
   ) !important;
 }
 
 @mixin CheckboxCheckedIconActive {
   background-color: var(
     --checkbox-checked-active-bgcolor,
-    color-mix(in srgb, currentColor 25%, -moz-accent-color)
+    color-mix(in srgb, currentColor 25%, var(--uc-accent-color))
   ) !important;
 }
 
 @mixin CheckboxIconHoverContrast {
   /* color will set the border-color on the check due to how HCM works for in-content pages. */
-  color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
+  color: var(--checkbox-checked-border-color, color-mix(in srgb, var(--uc-accent-color) 4%, Field)) !important;
 }
 
 @mixin CheckboxCheckedIconContrast {
   color: var(--checkbox-checked-border-color, currentColor) !important;
-  fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+  fill: var(--checkbox-checked-color, var(--uc-accent-text-color)) !important;
 }
 
 @mixin CheckboxCheckedIconHoverContrast {
-  color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
-  fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+  color: var(--checkbox-checked-border-color-hover, var(--uc-accent-text-color)) !important;
+  fill: var(--checkbox-checked-border-color-hover, var(--uc-accent-text-color)) !important;
 }
 
 @mixin CheckboxFocusRing {
-  outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+  outline: 2px solid var(--focus-outline-color, var(--uc-accent-color)) !important;
   outline-offset: var(--focus-outline-offset, 2px) !important;
 }
 

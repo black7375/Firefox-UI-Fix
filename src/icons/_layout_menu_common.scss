@@ -1,0 +1,140 @@
+//-- Variables -----------------------------------------------------------------
+// Items
+// .menu-iconic, .menuitem-iconic: Alreay exist, not target.
+// .in-menulist: Not a range because it is a select menu of web content.
+// [checked="true"]: There should be a check mark instead of an icon.
+$_iconNoneCommon: ".in-menulist, [checked=\"true\"]";
+$_iconMenuitem: "menuitem:not(.menuitem-iconic, .bookmark-item, #{$_iconNoneCommon})";
+$_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
+
+// Components
+$_nestedPopupIcon: ":not(menu, #ContentSelectDropdown) > menupopup >";
+$_nestedPopupPadding: ":not(menu, #ContentSelectDropdown, #context-navigation) > menupopup >";
+$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)";
+
+$_nestedPopupIconMenus: selector.nest(
+  $_nestedPopupIcon,
+  "#{$_iconMenuitem}, #{$_iconMenu}"
+);
+$_nestedPopupPaddingMenus: selector.nest(
+  $_nestedPopupPadding,
+  "#{$_iconMenuitem}, #{$_iconMenu}"
+);
+$_iconMenuPopupMenus: selector.nest(
+  $_iconMenuPopup,
+  "#{$_iconMenuitem}, #{$_iconMenu}"
+);
+
+$_globalMenus: "#main-menubar > menu";
+$_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > #{$_iconMenuitem}";
+$_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > #{$_iconMenu}";
+$_sendTabMenuitem: "menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup) > menuitem";
+$_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar";
+
+//-- Mixin ---------------------------------------------------------------------
+// Init Menu
+$_initialMenus: selector.append(
+  "menupopup menuitem, menupopup menu",
+  ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
+);
+@mixin _initial_menus() {
+  -moz-appearance: none !important; /* Linux: menulist */
+}
+
+// Icon
+@mixin _layout_icon_menus() {
+  /* Color */
+  -moz-context-properties: fill, fill-opacity !important;
+  fill: currentColor !important;
+
+  /* Layout */
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-image: var(--menuitem-image);
+}
+
+@mixin _layout_icon_native_menus() {
+  @include NativeMenu {
+    list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
+  }
+}
+
+// Padding
+@mixin _layout_root_padding() {
+  :root {
+    --context-menu-background-padding-default: 5px;
+    --context-menu-background-padding: var(--context-menu-background-padding-default);
+  }
+}
+@mixin _layout_init_padding() {
+  background-position: left var(--context-menu-background-padding) center !important;
+  padding-inline-start: var(--context-menu-background-padding) !important;
+}
+
+@mixin _layout_root_win7_8() {
+  @include OS($win7) {
+    :root {
+      --context-menu-background-padding-default: 2px;
+    }
+  }
+  @include OS($win8) {
+    :root {
+      --context-menu-background-padding-default: 3px;
+    }
+  }
+}
+@mixin _layout_init_win7_8() {
+  background-position: left var(--context-menu-background-padding) center !important;
+  padding-inline-start: 0 !important;
+}
+
+@mixin _layout_root_win10() {
+  :root {
+    --context-menu-background-padding: 1em;
+    --context-menu-text-padding: 24px; /* 16px + 8px */
+    --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
+  }
+}
+@mixin _layout_init_win10() {
+  padding-inline-start: var(--menu-background-padding-default) !important;
+  margin-left: 0 !important;
+}
+
+@mixin _layout_root_linux() {
+  :root {
+    --context-menu-background-padding-default: 6px;
+  }
+}
+@mixin _layout_init_linux() {
+  padding-inline-start: 3px;
+}
+
+@mixin _layout_root_mac() {
+  :root {
+    --context-menu-background-padding-default: 10px;
+    --context-menu-mac-padding: 21px;
+  }
+}
+@mixin _layout_init_mac_width() {
+  padding-inline-end: var(--context-menu-background-padding) !important;
+}
+@mixin _layout_init_mac_text() {
+  padding-inline-start: var(--context-menu-mac-padding) !important;
+}
+@mixin _layout_init_mac_others() {
+  padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
+}
+
+// Checkbox
+// @include OS($win) {
+//   /* Checkbox */
+//   :root {
+//     --context-menu-text-padding: calc(var(--menu-padding) + var(--context-menu-background-padding-default) + 16px);
+//   }
+//   :not(menu, #ContentSelectDropdown, #context-navigation)
+//     > menupopup
+//     > menuitem[type="checkbox"]:not([checked="true"])
+//     > .menu-iconic-left {
+//     padding-inline-start: var(--context-menu-text-padding);
+//   }
+// }

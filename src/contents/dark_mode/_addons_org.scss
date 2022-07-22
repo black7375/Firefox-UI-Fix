@@ -4,13 +4,16 @@
   /* Basic */
   .Page-content,
   .SecondaryHero,
-  body:not(.developer-hub):not(.statistics),
+  body,
   main[aria-label="Content"] {
     color: var(--in-content-page-color) !important;
     background: var(--in-content-page-background) !important;
   }
 
   /* Text */
+  input,
+  textarea,
+  select,
   .AutoSearchInput-query,
   .AutoSearchInput-suggestions-list,
   .Page-content h1,
@@ -19,6 +22,7 @@
   .Home-SubjectShelf-link:link,
   .Home-SubjectShelf-link:visited,
   .DropdownMenuItem-link a,
+  .DropdownMenuItem-link button,
   .Select,
   .Badge,
   .Notice-generic,
@@ -43,6 +47,7 @@
   .SearchResult:hover .SearchResult-link,
   .Home-SubjectShelf-link:is(:active, :focus, :hover),
   .DropdownMenuItem-link a:is(:active, :focus, :hover),
+  .DropdownMenuItem-link button:is(:active, :focus, :hover),
   .AddonMeta .MetadataCard-title a:is(:active, :hover),
   .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:is(:active, :hover),
   .AddonMeta .MetadataCard-content a:is(:active, :hover),
@@ -59,6 +64,7 @@
   .AddonTitle a,
   .TooltipMenu-opener,
   .LanguageTools .Card-contents a,
+  .Button--primary,
   .blog-entry-read-more-link,
   .blogpost-nav-next.blogpost-nav-no-prev:hover p,
   .blogpost-content-wrapper p a,
@@ -98,29 +104,38 @@
   }
 
   /* Background */
-  .Button--action {
+  .Button--action,
+  .DevHub-Navigation ul li.DevHub-Navigation-Register .Button,
+  .DevHub-MyAddons-item-buttons-submit .Button {
     color: var(--in-content-primary-button-text-color) !important;
     background: var(--in-content-primary-button-background) !important;
   }
+  select,
   .Select,
+  .Button--primary,
   .Button--neutral,
   .Button--neutral:link,
   .Notice-button,
   .AMInstallButton .AMInstallButton-loading-button {
     background-color: var(--in-content-button-background) !important;
   }
+  .Button--primary:hover,
   .Button--neutral.Button--micro:not(.Button--disabled):hover,
   .Button--neutral:not(.Button--disabled):hover,
   .Notice-button:hover {
     background: var(--in-content-button-background-hover) !important;
   }
   .Button--action.Button--micro:not(.Button--disabled):hover,
-  .Button--action:not(.Button--disabled):hover {
+  .Button--action:not(.Button--disabled):hover,
+  .DevHub-Navigation ul li.DevHub-Navigation-Register .Button:hover,
+  .DevHub-MyAddons-item-buttons-submit .Button:hover {
     background: var(--in-content-primary-button-background-hover) !important;
   }
   .ShowMoreCard-contents::after {
     background: linear-gradient(hsla(0, 0%, 100%, 0), var(--in-content-table-background)) !important;
   }
+  input,
+  textarea,
   .AutoSearchInput-query,
   .AutoSearchInput-suggestions-list,
   .SecondaryHero-module,
@@ -185,13 +200,27 @@
     box-shadow: 0 0 2px var(--in-content-border-color) !important;
   }
 
+  input,
+  textarea,
+  select {
+    border-color: var(--in-content-box-border-color) !important;
+  }
+  .UserProfileEdit input:disabled,
+  .UserProfileEdit textarea:disabled {
+    background-color: var(--in-content-box-background-odd) !important;
+  }
+
   .AutoSearchInput-query {
     border: 1px solid var(--in-content-table-background) !important;
   }
-  .AutoSearchInput-query:is(:hover, :focus) {
+  .AutoSearchInput-query:is(:hover, :focus),
+  .UserProfileEditNotifications .UserProfileEditNotification-input:checked ~ .UserProfileEditNotification-checkbox {
     border-color: var(--in-content-primary-button-background) !important;
   }
-  .AutoSearchInput-query:focus {
+  .UserProfileEdit input:focus,
+  .UserProfileEdit textarea:focus,
+  .AutoSearchInput-query:focus,
+  .UserProfileEditNotifications .UserProfileEditNotification-input:focus ~ .UserProfileEditNotification-checkbox {
     box-shadow: inset 0 0 0 1px var(--in-content-primary-button-background),
       0 0 0 1px var(--in-content-primary-button-background), 0 0 0 4px rgba(0, 211, 255, 0.3) !important;
   }
@@ -213,6 +242,12 @@
   }
 
   /* /developers/ */
+  .DevHub-Navigation-Logo > .Logo::before {
+    -moz-context-properties: fill !important;
+    fill: var(--in-content-primary-button-background) !important;
+    background-image: url("../icons/addons-logo.svg") !important;
+  }
+
   .DevHub-Navigation,
   .DevHub-submit-addon,
   .DevHub-get-involved,
@@ -220,9 +255,12 @@
     background: var(--in-content-page-background) !important;
     color: var(--in-content-page-color) !important;
   }
-  .DevHub-Footer,
-  .DevHub-callout-box {
+  .DevHub-Footer {
     background: var(--in-content-box-background) !important;
+    color: var(--in-content-page-color) !important;
+  }
+  .DevHub-callout-box {
+    background: var(--in-content-box-background-odd) !important;
     color: var(--in-content-page-color) !important;
   }
 
@@ -233,10 +271,275 @@
   .DevHub-content-copy h2 {
     color: var(--in-content-page-color) !important;
   }
+  .DevHub-content-copy p,
+  .DevHub-callout-box p {
+    color: var(--in-content-deemphasized-text) !important;
+  }
   .DevHub-Banner a,
   .DevHub-Footer a,
   .DevHub-MyAddons-list a,
-  .DevHub-MyAddons-item-buttons-all {
+  .DevHub-MyAddons-item-buttons-all,
+  .DevHub-content-copy a,
+  .DevHub-callout-box a {
     color: var(--in-content-link-color) !important;
+  }
+
+  body:is(.developer-hub, .statistics) {
+    #main-wrapper,
+    .menu-nav > ul > li > ul::after,
+    .menu-nav > ul > li:hover::after,
+    .menu-nav > ul > li > ul,
+    .menu-nav > ul > li > ul a,
+    .menu-nav em,
+    .primary, .secondary,
+    .dashboard .listing .item {
+      background: var(--in-content-page-background) !important;
+      color: var(--in-content-page-color) !important;
+    }
+
+    /* Elements */
+    .menu-nav > ul > li > ul a:hover,
+    .install-note,
+    .modal,
+    .popup {
+      background: var(--in-content-box-background-odd) !important;
+    }
+
+    .menu-nav > ul > li > ul::after,
+    .menu-nav > ul > li > ul {
+      box-shadow: 0 0 3px var(--in-content-border-color) !important;
+    }
+
+    /* .developer-hub */
+    #footer {
+      background: linear-gradient(
+        to bottom,var(--in-content-page-background) 0,
+        var(--in-content-page-background) 123px,
+        #0c99d5 123px,
+        #0c99d5 200px,
+        var(--in-content-page-background) 200px,
+        rgba(12,153,213,0) 400px
+      ) !important;
+    }
+
+    /* Text */
+    /* .developer-hub */ #homepage h2,
+    /* .developer-hub */ header h2,
+    .primary h2,
+    h1,
+    hgroup h2.addon,
+    hgroup h2.collection,
+    h3,
+    .results h4,
+    .dashboard .listing .item,
+    .dashboard .listing .item:hover h5,
+    .secondary .addon-status,
+    .secondary .addon-status .addon-details li.addon-listed-status,
+    #refine-results h5,
+    .island.criteria li,
+    .two-up div {
+      color: var(--in-content-page-color) !important;
+    }
+    .item-actions h5, .item-actions > ul, .item-actions > ul > li,
+    .dashboard .listing .item .item-actions a,
+    .edit-media-details,
+    .devhub-form table th,
+    #recent-activity .listing .item .timestamp,
+    #upload-file .upload-status #uploadstatus,
+    #addon-validator-suite,
+    #addon-validator-suite .msg > *,
+    .island.criteria li a.inactive {
+      color: var(--in-content-deemphasized-text) !important;
+    }
+
+    section[role="main"] a,
+    header a,
+    .more-info,
+    .primary a,
+    .secondary a,
+    .submission-type-tabs a,
+    .popup a,
+    .dashboard .listing .item:hover a,
+    .dashboard .listing .item:hover .item-actions a,
+    #upload-status-results.status-pass strong,
+    #addon-validator-suite a,
+    #create-addon a,
+    .html-support {
+      color: var(--in-content-link-color) !important;
+    }
+    .dashboard .listing .item:hover a {
+      color: var(--in-content-link-color-hover) !important;
+    }
+
+    .dashboard .listing .item .item-info .downloads,
+    .dashboard .listing .item .item-info .price,
+    .dashboard .listing .item .item-info .users {
+      color: var(--green-60) !important;
+    }
+
+    .status-admin-disabled b,
+    .status-disabled b,
+    .status-incomplete b,
+    .status-purgatory b {
+      color: var(--red-60) !important;
+    }
+
+    .submission-type-tabs a.active,
+    .island.criteria li.selected a {
+      color: var(--orange-50) !important;
+    }
+
+    /* Background */
+    .secondary .addon-status,
+    .devhub-form .item,
+    #icons_default,
+    .listing .item,
+    .object-lead,
+    #addon-validator-suite .results .tier-results,
+    #addon-validator-suite .suite,
+    #addon-validator-suite .suite-container {
+      border-color: var(--in-content-border-color) !important;
+      background: var(--in-content-box-background) !important;
+    }
+
+    .highlight,
+    .listing-footer, .tab-wrapper .fm-control {
+      color: var(--in-content-page-color) !important;
+      background: var(--in-content-box-info-background) !important;
+    }
+
+    .submission-type-tabs a,
+    #head-chart {
+      background: var(--in-content-page-background) !important;
+    }
+    #head-chart {
+      rect {
+        fill: var(--in-content-page-background) !important;
+      }
+      text{
+        fill: var(--in-content-deemphasized-text) !important;
+      }
+      .highcharts-legend .highcharts-legend-item:hover text {
+        fill: var(--in-content-page-color) !important;
+        paint-order: stroke !important;
+        stroke: var(--in-content-page-color) !important;
+        stroke-width: 0.4px !important;
+        stroke-linecap: butt !important;
+        stroke-linejoin: miter !important;
+      }
+      .highcharts-legend .highcharts-legend-item path[stroke="#CCC"] ~ text {
+        fill: #CCC !important;
+      }
+    }
+
+    #icons_default li a:hover,
+    #side-nav .active a,
+    span.tip,
+    .addon-submission-process .tip,
+    .devhub-form .tip,
+    a.remove,
+    span.remove,
+    ul.errorlist li span.tip {
+      background-color: var(--in-content-box-info-background) !important;
+    }
+    a.remove:hover, span.tip:hover {
+      background-color: var(--in-content-primary-button-background-hover) !important;
+    }
+
+    /* Border */
+    .submission-type-tabs a,
+    .devhub-sidebar,
+    .devhub-sidebar div.item,
+    .devhub-form .listing-footer {
+      border-color: var(--in-content-border-color) !important;
+    }
+
+    #background-wrapper,
+    #main-wrapper {
+      border-color: var(--in-content-page-background) !important;
+    }
+
+    .item-actions a.more-actions:hover:after,
+    .item-actions button.link.more-actions:hover:after,
+    #change-locale::after {
+      border-top-color: var(--in-content-link-color) !important;
+    }
+
+    install-note::after, .popup::after {
+      border-bottom-color: var(--in-content-box-background) !important;
+    }
+    .install-note::before, .popup::before {
+      border-bottom-color: grey !important;
+    }
+
+    #refine-results, .other-categories,
+    .versions .primary > .warning {
+      border-color: transparent !important;
+    }
+
+    .results {
+      border-color: var(--in-content-box-background-odd) !important;
+      background: transparent !important;
+    }
+    .results-inner {
+      border-color: var(--in-content-border-color) !important;
+      background: var(--in-content-border-color) !important;
+    }
+
+    /* Othres */
+    #promos .view-button a,
+    #upload-file-finish.button,
+    #upload-file-widget .button.prominent,
+    .button,
+    .cta a.button:link,
+    .cta a.button:visited,
+    .linux .button.linux,
+    .mac .button.mac,
+    .other .button.bsd,
+    .other .button.solaris,
+    .sidebar a.button,
+    .sidebar button,
+    .theme .choices button,
+    .theme-queue a.button,
+    .theme-queue button,
+    .windows .button.windows,
+    a.button:link,
+    a.button:visited,
+    a.delete-button.delete-addon,
+    button,
+    button.button,
+    input:not(.upvotes):not(.downvotes)[type="submit"] {
+      color: var(--in-content-primary-button-text-color) !important;
+      background: var(--in-content-primary-button-background) !important;
+      &:is(.selected, :focus, :hover) {
+        background: var(--in-content-primary-button-background-hover) !important;
+      }
+    }
+
+    .edit_with_prefix span,
+    .edit_with_suffix span {
+      border-color: var(--in-content-box-border-color) !important;
+      background-color: var(--in-content-box-background-odd) !important;
+      color: var(--in-content-deemphasized-text) !important;
+      padding-block: 3px !important;
+      cursor: not-allowed;
+    }
+
+    .devhub-form .item_wrapper input[type="email"] {
+      appearance: none !important;
+      padding: 2px 5px;
+      border: 1px solid;
+    }
+
+    #addon-validator-suite .suite-summary {
+      color: var(--in-content-deemphasized-text) !important;
+      background: var(--in-content-button-background) !important;
+      border-top-color: var(--in-content-border-color) !important;;
+    }
+    #addon-validator-suite .context {
+      border-color: var(--in-content-box-border-color) !important;
+      background-color: var(--in-content-button-background) !important;
+      background: var(--in-content-table-background) !important;
+    }
   }
 }
