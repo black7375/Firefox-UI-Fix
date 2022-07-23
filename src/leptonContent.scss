@@ -1,6 +1,7 @@
 @use "utils/os" as *;
 @use "utils/option" as *;
 @use "utils/color_scheme" as *;
+@use "utils/accent_color" as *;
 @use "utils/native_menu" as *;
 @use "utils/proton_elements" as Proton;
 @use "sass:selector";
@@ -22,7 +23,6 @@
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @include Option("userContent.page.proton_color") {
-  @import "compatibility/accent_color";
   @import "contents/proton_color";
 }
 @include Option("userContent.page.dark_mode") {
