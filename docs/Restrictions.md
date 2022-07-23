@@ -6,6 +6,7 @@
   * [Cross Platform](#cross-platform)
   * [Firefox Version](#firefox-version)
   * [Side Effect](#side-effect)
+  * [`-moz-accent-color` Related](#-moz-accent-color-related)
 - [Internals](#internals)
   * [CSS Loading Order](#css-loading-order)
   * [DOM structure cannot be modified](#dom-structure-cannot-be-modified)
@@ -50,6 +51,17 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
   // Your CSS
 }
 ```
+
+**Main compatibility bugs**
+
+- `-moz-toolbar-prefers-color-scheme` -> `prefers-color-scheme` [#250](https://github.com/black7375/Firefox-UI-Fix/issues/250)
+- `:root[lwtheme-mozlightdark]` is removed [#288](https://github.com/black7375/Firefox-UI-Fix/issues/288)
+- `-moz-os-version` -> `-moz-platform` [#331](https://github.com/black7375/Firefox-UI-Fix/issues/331)
+- Breaking change with `-moz-accent-color`/`-moz-accent-color-foreground` -> `AccentColor`/`AccentColorText` [#433](https://github.com/black7375/Firefox-UI-Fix/issues/433)
+
+### `-moz-accent-color`
+
+I don't know the exact reason, but it can be a problem if it is not applied to [CSS Variable](https://developer.mozilla.org/en-US/docs/Web/CSS/var). [#437](https://github.com/black7375/Firefox-UI-Fix/issues/437)
 
 ### Side Effect
 Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).
