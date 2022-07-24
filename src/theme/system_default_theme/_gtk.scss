@@ -1,7 +1,9 @@
 /*= GTK - URL View url accent color ==========================================*/
 @include OS($linux) {
   :root:not(:-moz-lwtheme) .urlbarView-url {
-    --urlbar-popup-url-color: -moz-accent-color;
+    @include AccentColor {
+      --urlbar-popup-url-color: #{$accentColor};
+    }
   }
 
   /* Nightly Compatibility */

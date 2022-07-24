@@ -57,6 +57,7 @@ user_pref("userChrome.tab.photon_like_contextline",   false);
 user_pref("userChrome.rounding.square_tab",           false);
 
 // == Theme Compatibility Settings =============================================
+// user_pref("userChrome.compatibility.accent_color",         true); // Firefox v103 Below
 // user_pref("userChrome.compatibility.covered_header_image", true);
 // user_pref("userChrome.compatibility.panel_cutoff",         true);
 // user_pref("userChrome.compatibility.navbar_top_border",    true);
@@ -112,6 +113,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);
 // user_pref("userChrome.icon.menu.full",                      true);
+// user_pref("userChrome.icon.global_menu.mac",                true);
 
 // -- User Content -------------------------------------------------------------
 // user_pref("userContent.player.ui.twoline",                  true);

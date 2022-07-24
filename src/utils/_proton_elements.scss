@@ -1,3 +1,5 @@
+@use "accent_color" as *;
+
 //== Radio Button ==============================================================
 @mixin RadioGlobal {
   /* margin-inline-start: 0 !important; */
@@ -88,63 +90,82 @@
 @mixin CheckboxCheckedIcon {
   -moz-context-properties: fill !important;
   fill: currentColor !important;
-  color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
   border-color: var(--checkbox-checked-border-color, transparent) !important;
 
-  background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
   background-image: url("chrome://global/skin/icons/check.svg") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 
   /* Style the button also when printing with "Print Backgrounds" unchecked */
   color-adjust: exact !important;
+
+  @include AccentColor {
+    color: var(--checkbox-checked-color, $accentTextColor) !important;
+    background-color: var(--checkbox-checked-bgcolor, $accentColor) !important;
+  }
 }
 
 @mixin CheckboxIconHover {
-  background-color: var(
-    --checkbox-unchecked-hover-bgcolor,
-    color-mix(in srgb, -moz-accent-color 4%, Field)
-  ) !important;
+  @include AccentColor {
+    background-color: var(
+      --checkbox-unchecked-hover-bgcolor,
+      color-mix(in srgb, $accentColor 4%, Field)
+    ) !important;
+  }
 }
 
 @mixin CheckboxIconActive {
-  background-color: var(
-    --checkbox-unchecked-active-bgcolor,
-    color-mix(in srgb, -moz-accent-color 8%, Field)
-  ) !important;
+  @include AccentColor {
+    background-color: var(
+      --checkbox-unchecked-active-bgcolor,
+      color-mix(in srgb, $accentColor 8%, Field)
+    ) !important;
+  }
 }
 
 @mixin CheckboxCheckedIconHover {
-  background-color: var(
-    --checkbox-checked-hover-bgcolor,
-    color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
-  ) !important;
+  @include AccentColor {
+    background-color: var(
+      --checkbox-checked-hover-bgcolor,
+      color-mix(in srgb, currentColor 12.5%, $accentColor)
+    ) !important;
+  }
 }
 
 @mixin CheckboxCheckedIconActive {
-  background-color: var(
-    --checkbox-checked-active-bgcolor,
-    color-mix(in srgb, currentColor 25%, -moz-accent-color)
-  ) !important;
+  @include AccentColor {
+    background-color: var(
+      --checkbox-checked-active-bgcolor,
+      color-mix(in srgb, currentColor 25%, $accentColor)
+    ) !important;
+  }
 }
 
 @mixin CheckboxIconHoverContrast {
-  /* color will set the border-color on the check due to how HCM works for in-content pages. */
-  color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
+  @include AccentColor {
+    /* color will set the border-color on the check due to how HCM works for in-content pages. */
+    color: var(--checkbox-checked-border-color, color-mix(in srgb, $accentColor 4%, Field)) !important;
+  }
 }
 
 @mixin CheckboxCheckedIconContrast {
   color: var(--checkbox-checked-border-color, currentColor) !important;
-  fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+  @include AccentColor {
+    fill: var(--checkbox-checked-color, $accentTextColor) !important;
+  }
 }
 
 @mixin CheckboxCheckedIconHoverContrast {
-  color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
-  fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+  @include AccentColor {
+    color: var(--checkbox-checked-border-color-hover, $accentTextColor) !important;
+    fill: var(--checkbox-checked-border-color-hover, $accentTextColor) !important;
+  }
 }
 
 @mixin CheckboxFocusRing {
-  outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+  @include AccentColor {
+    outline: 2px solid var(--focus-outline-color, $accentColor) !important;
+  }
   outline-offset: var(--focus-outline-offset, 2px) !important;
 }
 

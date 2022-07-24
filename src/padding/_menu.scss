@@ -25,6 +25,10 @@ menupopup > menu {
 #ContentSelectDropdown > menupopup > menucaption,
 #ContentSelectDropdown > menupopup > menuitem {
   padding-block: 0 !important;
+
+  @include OS($linux) {
+    padding-block: var(--menu-padding) !important;
+  }
 }
 
 @include OS($mac) {
