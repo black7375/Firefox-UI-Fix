@@ -155,8 +155,10 @@ body[lwt-sidebar] xul|search-textbox.tabsFilter[focused="true"] {
 }
 .sidebar-panel:not([lwt-sidebar]) #search-box[focused="true"],
 body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
-  border-color: var(--uc-accent-color) !important; /* Hard Coded */
-  outline-color: var(--uc-accent-color) !important;
+  @include AccentColor {
+    border-color: $accentColor !important; /* Hard Coded */
+    outline-color: $accentColor !important;
+  }
 }
 
 /*= PopupAutoComplete ========================================================*/
