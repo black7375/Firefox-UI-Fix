@@ -1,9 +1,13 @@
 /* Titlebar Space */
+:root {
+  --uc-title-pre-spacer: 30px; /* Original: 40px */
+  --uc-title-post-spacer: 25px; /* Original: 40px */
+}
 .titlebar-spacer[type="pre-tabs"] {
-  width: 30px !important; /* Original: 40px */
+  width: var(--uc-title-pre-spacer) !important;
 }
 .titlebar-spacer[type="post-tabs"] {
-  width: 25px !important; /* Original: 40px */
+  width: var(--uc-title-post-spacer) !important;
 }
 
 /* Tabbar Buttons */

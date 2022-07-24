@@ -23,6 +23,21 @@
   @import "tabs_on_bottom";
 }
 
+/*= Tab Bar - Oneliner =======================================================*/
+@include Option("userChrome.tab.one_liner") {
+  @import "one_liner";
+}
+
+/*= Tab Bar - Shared Layout ==================================================*/
+@include Option("userChrome.tab.on_bottom", "userChrome.tab.one_liner") {
+  @import "layout";
+}
+
+/*= Tab Bar - Show only current tab ==========================================*/
+@include Option("userChrome.tab.as_titlebar") {
+  @import "as_titlebar";
+}
+
 /*= Tab Bar - Connect to window ==============================================*/
 @include Option("userChrome.tab.connect_to_window") {
   @import "connect_to_window";
@@ -63,7 +78,5 @@
   @import "crashed_tab";
 }
 
-/*= Tab Label - Make to Center ===============================================*/
-@include Option("userChrome.tab.centered_label") {
-  @import "centered_label";
-}
+/*= Tab Centered - Make to Center ============================================*/
+@import "centered";

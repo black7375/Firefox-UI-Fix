@@ -1,42 +1,70 @@
 /*= tabContextMenu ===========================================================*/
-#context_openANewTab {
+#context_openANewTab,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_newTab,
+#tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenAlternatePosition {
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+}
+#tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenInWindow {
+  --menuitem-image: url("chrome://browser/skin/window.svg");
+}
+#tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenInPrivateWindow {
+  --menuitem-image: url("chrome://browser/skin/privateBrowsing.svg");
 }
 
 #context_reloadTab,
-#context_reloadSelectedTabs {
+#context_reloadSelectedTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_reloadTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuReloadTab {
   --menuitem-image: url("../icons/reload.svg");
 }
 #context_toggleMuteTab,
-#context_toggleMuteSelectedTabs {
+#context_toggleMuteSelectedTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab-mute,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab {
   --menuitem-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
 }
 #context_toggleMuteTab[muted],
-#context_toggleMuteSelectedTabs[muted] {
+#context_toggleMuteSelectedTabs[muted],
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab-unmute,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab[label="Unmute Tab"] {
   --menuitem-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg");
 }
 #context_pinTab,
-#context_pinSelectedTabs {
+#context_pinSelectedTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_pinTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuPinTab {
   --menuitem-image: url("../icons/pin-tab.svg");
 }
 #context_unpinTab,
-#context_unpinSelectedTabs {
+#context_unpinSelectedTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_unpinTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuPinTab[label="Unpin Tab"] {
   --menuitem-image: url("../icons/unpin-tab.svg");
 }
 #context_duplicateTab,
-#context_duplicateTabs {
+#context_duplicateTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab {
   --menuitem-image: url("../icons/notebook-subsection.svg");
+}
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
 }
 
 #context_bookmarkTab,
-#context_bookmarkSelectedTabs {
+#context_bookmarkSelectedTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_bookmarkTab {
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
-#context_moveTabOptions {
+#context_moveTabOptions,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_moveTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuMoveTab {
   --menuitem-image: url("../icons/arrow-swap.svg");
 }
-#context_sendTabToDevice {
+#context_sendTabToDevice,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_sendTabsToDevice {
   --menuitem-image: url("../icons/send-to-device.svg");
+}
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_topLevel_sendTreeToDevice {
 }
 
 #context_sendTabToDevice:is([disabled="true"]) + #context_shareTabURL, /* Legacy */
@@ -50,19 +78,28 @@
     --menuitem-image: url("../icons/share.svg");
   }
 }
-#context_reopenInContainer {
+#context_reopenInContainer,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_reopenInContainer,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuOpenInContextualTab {
   --menuitem-image: url("../icons/container-openin-16.svg");
 }
-#context_selectAllTabs {
+#context_selectAllTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_selectAllTabs {
   --menuitem-image: url("../icons/tab-multiple.svg");
 }
 
-#context_closeTab {
+#context_closeTab,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_closeTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTab {
   --menuitem-image: url("chrome://global/skin/icons/close.svg");
+}
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTabs {
 }
 #context_closeTabOptions {
 }
-#context_undoCloseTab {
+#context_undoCloseTab,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_undoCloseTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuUndoCloseTab {
   --menuitem-image: url("../icons/undo.svg");
 }
 
