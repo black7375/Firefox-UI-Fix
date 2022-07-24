@@ -12,12 +12,16 @@ body[lwt-sidebar] xul|search-textbox.tabsFilter:hover {
 }
 .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
 body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {
-  border-color: var(--uc-accent-color) !important;
+  @include AccentColor {
+    border-color: $accentColor !important;
+  }
 }
 
 /* Others */
 #editBMPanel_namePicker:hover,
 #editBMPanel_tagsField:hover,
 .findbar-container .findbar-textbox:hover {
-  --input-border-color: color-mix(in srgb, var(--focus-outline-color, var(--uc-accent-color)) 50%, transparent);
+  @include AccentColor {
+    --input-border-color: color-mix(in srgb, var(--focus-outline-color, #{$accentColor}) 50%, transparent);
+  }
 }

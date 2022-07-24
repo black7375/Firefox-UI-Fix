@@ -1,0 +1,62 @@
+@use "true" as *;
+@use "../src/utils/accent_color" as *;
+
+@include test-module("Accent Color Option [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include AccentColor {
+          body {
+            background-color: $accentColor;
+            color: $accentTextColor;
+          }
+        }
+      }
+      @include expect {
+        body {
+          background-color: AccentColor;
+          color: AccentColorText;
+        }
+        @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+          body {
+            background-color: -moz-accent-color;
+            color: -moz-accent-color-foreground;
+          }
+        }
+      }
+    }
+  }
+  @include test("css var") {
+    @include assert {
+      @include output {
+        :root {
+          @include AccentColor {
+            // Don't use like this!!
+            --uc-accent-color: $accentColor;
+            --uc-accent-text-color: $accentTextColor;
+
+            // Use like this
+            --uc-accent-color: #{$accentColor};
+            --uc-accent-text-color: #{$accentTextColor};
+          }
+        }
+      }
+      @include expect {
+        :root {
+          --uc-accent-color: $accentColor;
+          --uc-accent-text-color: $accentTextColor;
+          --uc-accent-color: AccentColor;
+          --uc-accent-text-color: AccentColorText;
+        }
+        @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+          :root {
+            --uc-accent-color: $accentColor;
+            --uc-accent-text-color: $accentTextColor;
+            --uc-accent-color: -moz-accent-color;
+            --uc-accent-text-color: -moz-accent-color-foreground;
+          }
+        }
+      }
+    }
+  }
+}

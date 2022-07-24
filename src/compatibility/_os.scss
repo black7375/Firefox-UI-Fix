@@ -10,7 +10,9 @@
 
     @media (-moz-windows-accent-color-in-titlebar) {
       #navigator-toolbox {
-        border-top-color: var(--uc-accent-color) !important;
+        @include AccentColor {
+          border-top-color: $accentColor !important;
+        }
       }
     }
   }
