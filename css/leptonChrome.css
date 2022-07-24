@@ -146,7 +146,12 @@
     }
     @media (-moz-windows-accent-color-in-titlebar) {
       :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
-        border-top-color: -moz-accent-color !important;
+        border-top-color: AccentColor !important;
+      }
+      @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+        :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
+          border-top-color: -moz-accent-color !important;
+        }
       }
     }
   }
@@ -351,15 +356,30 @@
     /* URL Bar */
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
-      --focus-outline-color: -moz-accent-color !important;
+      --focus-outline-color: AccentColor !important;
     }
 
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
       #urlbar[open]
       > #urlbar-background {
-      border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important;
+      border-color: color-mix(in srgb, AccentColor 50%, transparent) !important;
       /* Like: --toolbar-field-focus-border-color */
+    }
+
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+      :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
+        --focus-outline-color: -moz-accent-color !important;
+      }
+
+      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+      :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+        #urlbar[open]
+        > #urlbar-background {
+        border-color: color-mix(in srgb, -moz-accent-color 50%, transparent) !important;
+        /* Like: --toolbar-field-focus-border-color */
+      }
     }
   }
   /*= Windows7 - Aero Based Theme ==============================================*/
@@ -418,11 +438,20 @@
       --win-shorcut-text-color: #757575;
       --win-error-color: #b31616;
       --win-red-border-color: #ff4343;
-      --win-accent-forground-color: -moz-accent-color-foreground;
-      --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
-      --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
-      --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
-      --win-accent-active-color: -moz-accent-color;
+      --win-accent-forground-color: AccentColorText;
+      --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, AccentColor);
+      --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, AccentColor);
+      --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, AccentColor);
+      --win-accent-active-color: AccentColor;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root:not(:-moz-lwtheme) {
+        --win-accent-forground-color: -moz-accent-color-foreground;
+        --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
+        --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
+        --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
+        --win-accent-active-color: -moz-accent-color;
+      }
     }
 
     @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
@@ -450,10 +479,19 @@
         --win-shorcut-text-color: #adadad;
         --win-error-color: #ffb900;
         --win-red-border-color: #ff4343;
-        --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, -moz-accent-color);
-        --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
-        --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, -moz-accent-color);
-        --win-accent-active-color: -moz-accent-color;
+        --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, AccentColor);
+        --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, AccentColor);
+        --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, AccentColor);
+        --win-accent-active-color: AccentColor;
+      }
+      @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+        :root:not(:-moz-lwtheme),
+        :root[lwt-default-theme-in-dark-mode] {
+          --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, -moz-accent-color);
+          --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
+          --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, -moz-accent-color);
+          --win-accent-active-color: -moz-accent-color;
+        }
       }
     }
     :root:not(:-moz-lwtheme),
@@ -482,8 +520,7 @@
       /* Text Shortcut Color */
       --panel-shortcut-color: var(--win-shorcut-text-color) !important;
       --panel-description-color: var(--win-shorcut-text-color) !important;
-      /* Title Background, Border Color */
-      --menu-border-color: var(--win-bgcolor) !important;
+      /* Title Background */
       --lwt-accent-color: var(--win-bgcolor) !important;
       --toolbar-field-border-color: var(--win-bgcolor) !important;
       --chrome-content-separator-color: var(--win-bgcolor) !important;
@@ -493,6 +530,7 @@
       --toolbar-non-lwt-bgcolor: var(--win-component-bgcolor) !important;
       --arrowpanel-background: var(--win-component-bgcolor) !important;
       --autocomplete-popup-background: var(--win-component-bgcolor) !important;
+      /* Border Color */
       /* Seperator */
       --toolbarseparator-color: var(--win-tab-seperator-color) !important;
       /* Field Backround Color */
@@ -636,7 +674,7 @@
       .sidebar-panel[style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
       body[lwt-sidebar][style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"] {
         /* Only darkmode has more: --newtab-background-color-secondary: rgba(66, 65, 77, 1); */
-        --lwt-sidebar-background-color: transparent !important;
+        --lwt-sidebar-background-color: var(--win-sidebar-bgcolor) !important;
         --lwt-sidebar-text-color: var(--win-text-color) !important;
       }
     }
@@ -704,20 +742,39 @@
     /* Tab Bar */
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
-      color: -moz-accent-color-foreground;
-      background-color: -moz-accent-color;
+      color: AccentColorText;
+      background-color: AccentColor;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+      :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
+        color: -moz-accent-color-foreground;
+        background-color: -moz-accent-color;
+      }
     }
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
       --toolbarbutton-icon-fill: currentColor;
-      --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
-      --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+      --toolbarbutton-hover-background: color-mix(in srgb, AccentColorText 10%, transparent);
+      --toolbarbutton-active-background: color-mix(in srgb, AccentColorText 15%, transparent);
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+      :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
+        --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
+        --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
+      }
     }
   }
   /*= GTK - URL View url accent color ==========================================*/
   @media (-moz-gtk-csd-available) {
     :root:not(:-moz-lwtheme) .urlbarView-url {
-      --urlbar-popup-url-color: -moz-accent-color;
+      --urlbar-popup-url-color: AccentColor;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root:not(:-moz-lwtheme) .urlbarView-url {
+        --urlbar-popup-url-color: -moz-accent-color;
+      }
     }
 
     /* Nightly Compatibility */
@@ -743,14 +800,14 @@
       --mac-sidebar-hover-bgcolor: color-mix(in srgb, ButtonFace 60%, var(--mac-sidebar-bgcolor));
       --mac-hover-bgcolor: Window;
       --mac-disabled-bgcolor: transparent;
-      --mac-primary-button-color: -moz-accent-color-foreground;
+      --mac-primary-button-color: AccentColorText;
       /* or -moz-mac-menutextselect */
-      --mac-accent-color: -moz-accent-color;
+      --mac-accent-color: AccentColor;
       /* or LinkText */
-      --mac-accent-content-color: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-accent-color);
-      --mac-accent-hover-color: color-mix(in srgb, rgb(0, 0, 0) 10%, -moz-accent-color);
+      --mac-accent-content-color: color-mix(in srgb, rgb(255, 255, 255) 15%, AccentColor);
+      --mac-accent-hover-color: color-mix(in srgb, rgb(0, 0, 0) 10%, AccentColor);
       /* or -moz-mac-menuselect, Highlight */
-      --mac-accent-active-color: color-mix(in srgb, rgb(0, 0, 0) 20%, -moz-accent-color);
+      --mac-accent-active-color: color-mix(in srgb, rgb(0, 0, 0) 20%, AccentColor);
       /* or ActiveBorder */
       /* Text, Icon Color */
       --menu-color: var(--mac-text-color) !important;
@@ -856,6 +913,20 @@
       --arrowpanel-dimmed-even-further: color-mix(in srgb, currentColor 27%, transparent) !important;
       --download-progress-flare-color: rgba(255, 255, 255, 0.75) !important;
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root:not(:-moz-lwtheme),
+      :root[lwt-default-theme-in-dark-mode] {
+        --mac-primary-button-color: -moz-accent-color-foreground;
+        /* or -moz-mac-menutextselect */
+        --mac-accent-color: -moz-accent-color;
+        /* or LinkText */
+        --mac-accent-content-color: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-accent-color);
+        --mac-accent-hover-color: color-mix(in srgb, rgb(0, 0, 0) 10%, -moz-accent-color);
+        /* or -moz-mac-menuselect, Highlight */
+        --mac-accent-active-color: color-mix(in srgb, rgb(0, 0, 0) 20%, -moz-accent-color);
+        /* or ActiveBorder */
+      }
     }
 
     @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
@@ -1356,9 +1427,17 @@
 
   .sidebar-panel:not([lwt-sidebar]) #search-box[focused="true"],
   body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
-    border-color: -moz-accent-color !important;
+    border-color: AccentColor !important;
     /* Hard Coded */
-    outline-color: -moz-accent-color !important;
+    outline-color: AccentColor !important;
+  }
+  @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+    .sidebar-panel:not([lwt-sidebar]) #search-box[focused="true"],
+    body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
+      border-color: -moz-accent-color !important;
+      /* Hard Coded */
+      outline-color: -moz-accent-color !important;
+    }
   }
 
   /*= PopupAutoComplete ========================================================*/
@@ -1715,61 +1794,116 @@
     .checkbox-check[checked] {
       -moz-context-properties: fill !important;
       fill: currentColor !important;
-      color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
       border-color: var(--checkbox-checked-border-color, transparent) !important;
-      background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
       background-image: url("chrome://global/skin/icons/check.svg") !important;
       background-position: center !important;
       background-repeat: no-repeat !important;
       /* Style the button also when printing with "Print Backgrounds" unchecked */
       color-adjust: exact !important;
+      color: var(--checkbox-checked-color, AccentColorText) !important;
+      background-color: var(--checkbox-checked-bgcolor, AccentColor) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      .checkbox-check[checked] {
+        color: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+        background-color: var(--checkbox-checked-bgcolor, -moz-accent-color) !important;
+      }
     }
 
     checkbox:not([disabled="true"]):hover > .checkbox-check {
-      background-color: var(
-        --checkbox-unchecked-hover-bgcolor,
-        color-mix(in srgb, -moz-accent-color 4%, Field)
-      ) !important;
+      background-color: var(--checkbox-unchecked-hover-bgcolor, color-mix(in srgb, AccentColor 4%, Field)) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      checkbox:not([disabled="true"]):hover > .checkbox-check {
+        background-color: var(
+          --checkbox-unchecked-hover-bgcolor,
+          color-mix(in srgb, -moz-accent-color 4%, Field)
+        ) !important;
+      }
     }
     checkbox:not([disabled="true"]):hover:active > .checkbox-check {
-      background-color: var(
-        --checkbox-unchecked-active-bgcolor,
-        color-mix(in srgb, -moz-accent-color 8%, Field)
-      ) !important;
+      background-color: var(--checkbox-unchecked-active-bgcolor, color-mix(in srgb, AccentColor 8%, Field)) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      checkbox:not([disabled="true"]):hover:active > .checkbox-check {
+        background-color: var(
+          --checkbox-unchecked-active-bgcolor,
+          color-mix(in srgb, -moz-accent-color 8%, Field)
+        ) !important;
+      }
     }
     checkbox:not([disabled="true"]):hover > .checkbox-check[checked] {
       background-color: var(
         --checkbox-checked-hover-bgcolor,
-        color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
+        color-mix(in srgb, currentColor 12.5%, AccentColor)
       ) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      checkbox:not([disabled="true"]):hover > .checkbox-check[checked] {
+        background-color: var(
+          --checkbox-checked-hover-bgcolor,
+          color-mix(in srgb, currentColor 12.5%, -moz-accent-color)
+        ) !important;
+      }
     }
     checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked] {
       background-color: var(
         --checkbox-checked-active-bgcolor,
-        color-mix(in srgb, currentColor 25%, -moz-accent-color)
+        color-mix(in srgb, currentColor 25%, AccentColor)
       ) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked] {
+        background-color: var(
+          --checkbox-checked-active-bgcolor,
+          color-mix(in srgb, currentColor 25%, -moz-accent-color)
+        ) !important;
+      }
     }
 
     checkbox:-moz-focusring > .checkbox-check {
-      outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+      outline: 2px solid var(--focus-outline-color, AccentColor) !important;
       outline-offset: var(--focus-outline-offset, 2px) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      checkbox:-moz-focusring > .checkbox-check {
+        outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+      }
     }
 
     @media (prefers-contrast) {
       checkbox:not([disabled="true"]):hover > .checkbox-check {
         /* color will set the border-color on the check due to how HCM works for in-content pages. */
-        color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
+        color: var(--checkbox-checked-border-color, color-mix(in srgb, AccentColor 4%, Field)) !important;
+      }
+      @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+        checkbox:not([disabled="true"]):hover > .checkbox-check {
+          /* color will set the border-color on the check due to how HCM works for in-content pages. */
+          color: var(--checkbox-checked-border-color, color-mix(in srgb, -moz-accent-color 4%, Field)) !important;
+        }
       }
 
       .checkbox-check[checked] {
         color: var(--checkbox-checked-border-color, currentColor) !important;
-        fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+        fill: var(--checkbox-checked-color, AccentColorText) !important;
+      }
+      @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+        .checkbox-check[checked] {
+          fill: var(--checkbox-checked-color, -moz-accent-color-foreground) !important;
+        }
       }
 
       checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked] > .checkbox-check[checked],
       checkbox:not([disabled="true"]):hover > .checkbox-check[checked] > .checkbox-check[checked] {
-        color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
-        fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+        color: var(--checkbox-checked-border-color-hover, AccentColorText) !important;
+        fill: var(--checkbox-checked-border-color-hover, AccentColorText) !important;
+      }
+      @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+        checkbox:not([disabled="true"]):hover:active > .checkbox-check[checked] > .checkbox-check[checked],
+        checkbox:not([disabled="true"]):hover > .checkbox-check[checked] > .checkbox-check[checked] {
+          color: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+          fill: var(--checkbox-checked-border-color-hover, -moz-accent-color-foreground) !important;
+        }
       }
     }
     .checkbox-icon[src] {
@@ -1815,8 +1949,13 @@
       background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 20%, ButtonFace)) !important;
     }
     xul|menulist:-moz-focusring {
-      outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+      outline: 2px solid var(--focus-outline-color, AccentColor) !important;
       outline-offset: var(--focus-outline-offset, 2px) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      xul|menulist:-moz-focusring {
+        outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
+      }
     }
 
     #label-box {
@@ -2681,14 +2820,27 @@
 
     .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
     body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {
-      border-color: -moz-accent-color !important;
+      border-color: AccentColor !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
+      body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {
+        border-color: -moz-accent-color !important;
+      }
     }
 
     /* Others */
     #editBMPanel_namePicker:hover,
     #editBMPanel_tagsField:hover,
     .findbar-container .findbar-textbox:hover {
-      --input-border-color: color-mix(in srgb, var(--focus-outline-color, -moz-accent-color) 50%, transparent);
+      --input-border-color: color-mix(in srgb, var(--focus-outline-color, AccentColor) 50%, transparent);
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      #editBMPanel_namePicker:hover,
+      #editBMPanel_tagsField:hover,
+      .findbar-container .findbar-textbox:hover {
+        --input-border-color: color-mix(in srgb, var(--focus-outline-color, -moz-accent-color) 50%, transparent);
+      }
     }
   }
   /*= Downloads Panel ========================================================*/
@@ -3447,6 +3599,12 @@
   #ContentSelectDropdown > menupopup > menucaption,
   #ContentSelectDropdown > menupopup > menuitem {
     padding-block: 0 !important;
+  }
+  @media (-moz-gtk-csd-available) {
+    #ContentSelectDropdown > menupopup > menucaption,
+    #ContentSelectDropdown > menupopup > menuitem {
+      padding-block: var(--menu-padding) !important;
+    }
   }
 
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -4400,7 +4558,11 @@
       .tab-background::before,
     #navigator-toolbox:not([movingtab])
       .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
-      ~ #tabs-newtab-button::before {
+      ~ #tabs-newtab-button::before,
+    #navigator-toolbox:not([movingtab])
+      .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+      ~ #tabbrowser-arrowscrollbox-periphery
+      #tabs-newtab-button::before {
       opacity: 0 !important;
     }
   }
@@ -4529,14 +4691,29 @@
   @media (-moz-windows-accent-color-in-titlebar) {
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
-      fill: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent) !important;
+      fill: color-mix(in srgb, AccentColorText 10%, transparent) !important;
       /* Hardcorded for compatibility */
     }
 
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
-      fill: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent) !important;
+      fill: color-mix(in srgb, AccentColorText 15%, transparent) !important;
       /* Hardcorded for compatibility */
+    }
+
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+      :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
+        fill: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent) !important;
+        /* Hardcorded for compatibility */
+      }
+
+      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+      :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+        #tabs-newtab-button:hover:active {
+        fill: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent) !important;
+        /* Hardcorded for compatibility */
+      }
     }
   }
   /* '+'Icon */
@@ -4611,16 +4788,27 @@
     --inline-tab-padding: 8px;
   }
 
-  #tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="ltr"]:not([pinned]),
-  #tabbrowser-tabs[closebuttons="activetab"]
-    .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(ltr):not([pinned]) {
-    mask-image: linear-gradient(to right, black 70%, transparent) !important;
+  .tabbrowser-tab .tab-label-container {
+    --tab-label-mask-size: 1.8em;
+    /* Original: 2em */
   }
 
-  #tabbrowser-tabs[closebuttons="activetab"] .tab-label-container[textoverflow][labeldirection="rtl"]:not([pinned]),
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab .tab-label-container {
+    --tab-label-mask-size: 30%;
+  }
   #tabbrowser-tabs[closebuttons="activetab"]
-    .tab-label-container[textoverflow]:not([labeldirection]):-moz-locale-dir(rtl):not([pinned]) {
-    mask-image: linear-gradient(to left, black 70%, transparent) !important;
+    .tabbrowser-tab:is([visuallyselected="true"], [multiselected="true"])
+    .tab-label-container {
+    --tab-label-mask-size: 25%;
+  }
+
+  .tabbrowser-tab[visuallyselected="true"]:not([labelendaligned]):hover .tab-label-container,
+  #tabbrowser-tabs:not([closebuttons="activetab"])
+    > #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab:not([visuallyselected="true"], [labelendaligned]):hover
+    .tab-label-container {
+    --tab-label-mask-size: 0.9em;
+    /* Original: 1em */
   }
 }
 /** Clipped tabs - Show close button at hover *********************************/
@@ -6037,9 +6225,9 @@
     > menupopup
     > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
   :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
     menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
     > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -6082,9 +6270,9 @@
   :not(menu, #ContentSelectDropdown, #context-navigation)
     > menupopup
     > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
     menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+  menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
     menu:not(.menu-iconic, .in-menulist, [checked="true"]),
   menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
     > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -6140,9 +6328,9 @@
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
       > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -6172,9 +6360,9 @@
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
       > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup)
+    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -6229,11 +6417,14 @@
     }
 
     /* Global Menu */
-    /* Disabled. some icons not appear
-     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked=true]), menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #menu_HelpPopup) menu:not(.menu-iconic, .in-menulist, [checked=true]) {
-       list-style-image: var(--menuitem-image, url("../icons/blank.svg"));
-     }
-    */
+    @supports -moz-bool-pref("userChrome.icon.global_menu.mac") {
+      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+        menuitem:not(.menuitem-iconic, .bookmark-item),
+      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+        menu:not(.menu-iconic) {
+        list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
+      }
+    }
   }
   /*= Bookmark Menu - Layout ===================================================*/
   /* #goPopup(Legacy of historyMenuPoup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
@@ -7260,6 +7451,10 @@
       --menuitem-image: url("chrome://browser/skin/mail.svg");
     }
 
+    menu.share-tab-url-item {
+      --menuitem-image: url("chrome://browser/skin/share.svg");
+    }
+
     #menu_print {
       --menuitem-image: url("chrome://global/skin/icons/print.svg");
     }
@@ -7342,6 +7537,14 @@
       --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
     }
 
+    #enterFullScreenItem {
+      --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
+    }
+
+    #exitFullScreenItem {
+      --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
+    }
+
     #fullScreenItem {
       /* checkbox */
       --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
@@ -7375,6 +7578,10 @@
 
     #menu_zoomReset {
       --menuitem-image: url("../icons/resize.svg");
+    }
+
+    #toggle_zoom {
+      --menuitem-image: url("../icons/screenshot.svg");
     }
 
     /*= goPopup ==================================================================*/
@@ -7497,6 +7704,14 @@
 
     #extensionsForDevelopers {
       --menuitem-image: url("chrome://devtools/skin/images/debugging-addons.svg");
+    }
+
+    /*= windowPopup ==============================================================*/
+    #windowPopup > menuitem[command="minimizeWindow"] {
+      --menuitem-image: url("../icons/arrow-between-down.svg");
+    }
+    #windowPopup > menuitem[command="zoomWindow"] {
+      --menuitem-image: url("../icons/auto-fit-width.svg");
     }
 
     /*= menu_HelpPopup ===========================================================*/

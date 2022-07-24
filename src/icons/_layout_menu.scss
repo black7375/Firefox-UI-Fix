@@ -118,9 +118,9 @@ $_layoutCommonMenus: (
   }
 
   /* Global Menu */
-  /* Disabled. some icons not appear
-  #{$_iconMenuPopupMenus} {
-    list-style-image: var(--menuitem-image, url("../icons/blank.svg"));
+  @include Option("userChrome.icon.global_menu.mac") {
+    #{selector.nest($_iconMenuPopup, "menuitem:not(.menuitem-iconic, .bookmark-item), menu:not(.menu-iconic)")} {
+      list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
+    }
   }
- */
 }

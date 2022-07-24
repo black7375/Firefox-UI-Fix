@@ -91,7 +91,10 @@
     .tab-background::before,
   #navigator-toolbox:not([movingtab])
     .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
-    ~ #tabs-newtab-button::before {
+    ~ #tabs-newtab-button::before, /* Legacy - v103 */
+  #navigator-toolbox:not([movingtab])
+    .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+    ~ #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button::before {
     opacity: 0 !important;
   }
 }
