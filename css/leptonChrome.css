@@ -6417,11 +6417,13 @@
     }
 
     /* Global Menu */
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
-      menuitem:not(.menuitem-iconic, .bookmark-item),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
-      menu:not(.menu-iconic) {
-      list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
+    @supports -moz-bool-pref("userChrome.icon.global_menu.mac") {
+      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+        menuitem:not(.menuitem-iconic, .bookmark-item),
+      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+        menu:not(.menu-iconic) {
+        list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
+      }
     }
   }
   /*= Bookmark Menu - Layout ===================================================*/
