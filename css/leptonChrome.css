@@ -5657,6 +5657,52 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.autohide.tab") {
+  @supports not -moz-bool-pref("userChrome.autohide.tab.opacity") {
+    @supports not -moz-bool-pref("userChrome.autohide.tab.blur") {
+      .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+        margin-bottom: -64px;
+      }
+    }
+  }
+  @supports -moz-bool-pref("userChrome.autohide.tab.opacity") {
+    .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+      opacity: 0%;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.autohide.tab.blur") {
+    .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+      filter: blur(8px);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+      transition-timing-function: var(--animation-easing-function);
+      transition-duration: 0.2s;
+      transition-delay: 600ms;
+    }
+    .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]):hover {
+      transition-delay: 0s;
+    }
+    @supports not -moz-bool-pref("userChrome.autohide.tab.opacity") {
+      @supports not -moz-bool-pref("userChrome.autohide.tab.blur") {
+        .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+          transition-property: margin-bottom;
+        }
+      }
+    }
+    @supports -moz-bool-pref("userChrome.autohide.tab.opacity") {
+      .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+        transition-property: opacity;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.autohide.tab.blur") {
+      .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+        transition-property: filter;
+      }
+    }
+  }
+}
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
   )

@@ -2,6 +2,10 @@
   @import "forward_button";
 }
 
+@include Option("userChrome.autohide.tab") {
+  @import "tab";
+}
+
 @import "common";
 @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar") {
   @include Option("userChrome.autohide.tabbar", "userChrome.tab.one_liner") {

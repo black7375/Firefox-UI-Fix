@@ -73,6 +73,9 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
 
+// user_pref("userChrome.autohide.tab",                        true);
+// user_pref("userChrome.autohide.tab.opacity",                true);
+// user_pref("userChrome.autohide.tab.blur",                   true);
 // user_pref("userChrome.autohide.tabbar",                     true);
 // user_pref("userChrome.autohide.navbar",                     true);
 // user_pref("userChrome.autohide.bookmarkbar",                true);
