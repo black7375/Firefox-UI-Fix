@@ -59,14 +59,15 @@
 }
 
 /* Tab - Max Size */
-@include NotOption("userChrome.tab.photon_like_padding") {
-  :root {
+:root {
+  @include NotOption("userChrome.tab.photon_like_padding") {
     --tab-max-width: 240px;
   }
-}
-@include Option("userChrome.tab.photon_like_padding") {
-  :root {
+  @include Option("userChrome.tab.photon_like_padding") {
     --tab-max-width: 225px;
+  }
+  @include Option("userChrome.tab.one_liner") {
+    --tab-max-width: 180px;
   }
 }
 .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {

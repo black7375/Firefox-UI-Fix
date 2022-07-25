@@ -3246,6 +3246,12 @@
       --tab-max-width: 225px;
     }
   }
+  @supports -moz-bool-pref("userChrome.tab.one_liner") {
+    :root {
+      --tab-max-width: 180px;
+    }
+  }
+
   .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
     max-width: var(--tab-max-width) !important;
     /* Original: 225px */
