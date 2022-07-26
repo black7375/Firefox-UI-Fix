@@ -16,6 +16,10 @@ See the above repository for updates as well as full license text. */
   display: none;
 }
 
+#TabsToolbar-customization-target > .toolbarbutton-1:last-child {
+  padding-inline-end: var(--toolbar-start-end-padding, 8px);
+}
+
 @include Option("userChrome.tab.on_bottom.above_bookmark") {
   #PersonalToolbar {
     order: 2; /* When userChrome.fullscreen.overlap */
@@ -60,7 +64,6 @@ See the above repository for updates as well as full license text. */
 
   #navigator-toolbox{
     -moz-window-dragging: drag;
-    padding-top: calc(var(--uc-menubar-height) + var(--uc-titlebar-padding)) !important;
   }
   :root[sizemode="fullscreen"] #navigator-toolbox {
     padding-top: 0px !important;

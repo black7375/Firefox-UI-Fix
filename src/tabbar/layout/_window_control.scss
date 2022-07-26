@@ -33,7 +33,7 @@ See the above repository for updates as well as full license text. */
 }
 
 #navigator-toolbox {
-  padding-top: var(--uc-titlebar-padding) !important;
+  padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
 }
 
 :root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {

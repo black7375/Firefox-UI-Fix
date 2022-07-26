@@ -3875,6 +3875,10 @@
     display: none;
   }
 
+  #TabsToolbar-customization-target > .toolbarbutton-1:last-child {
+    padding-inline-end: var(--toolbar-start-end-padding, 8px);
+  }
+
   @supports -moz-bool-pref("userChrome.tab.on_bottom.above_bookmark") {
     #PersonalToolbar {
       order: 2;
@@ -3922,7 +3926,6 @@
 
     #navigator-toolbox {
       -moz-window-dragging: drag;
-      padding-top: calc(var(--uc-menubar-height) + var(--uc-titlebar-padding)) !important;
     }
 
     :root[sizemode="fullscreen"] #navigator-toolbox {
@@ -4074,7 +4077,7 @@
       }
     }
     #navigator-toolbox {
-      padding-top: var(--uc-titlebar-padding) !important;
+      padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
     }
 
     :root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {
@@ -5838,16 +5841,31 @@
       will-change: margin-bottom;
     }
 
-    #TabsToolbar:not([customizing]) {
-      opacity: 0;
-      will-change: opacity;
+    @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+      #TabsToolbar:not([customizing]) {
+        opacity: 0;
+        will-change: opacity;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+      #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
+        opacity: 0;
+        will-change: opacity;
+      }
     }
 
     #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
       margin-bottom: 0px;
     }
-    #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
-      opacity: 1;
+    @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+      #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+        opacity: 1;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+      #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
+        opacity: 1;
+      }
     }
 
     @media (prefers-reduced-motion: no-preference) {
@@ -5856,8 +5874,15 @@
           background-color 1s var(--animation-easing-function) !important;
       }
 
-      #TabsToolbar:not([customizing]) {
-        transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
+      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        #TabsToolbar:not([customizing]) {
+          transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
+          transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
+        }
       }
 
       #navigator-toolbox:is(:hover, :focus-within) {
@@ -5866,8 +5891,17 @@
       #navigator-toolbox:is(:hover, :focus-within) > #titlebar:not([customizing]) {
         transition-delay: 0s !important;
       }
-      #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]) {
-        transition-delay: 0s !important;
+      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]) {
+          transition-delay: 0s !important;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        #navigator-toolbox:is(:hover, :focus-within)
+          #TabsToolbar:not([customizing])
+          > *:not(.titlebar-buttonbox-container) {
+          transition-delay: 0s !important;
+        }
       }
     }
   }

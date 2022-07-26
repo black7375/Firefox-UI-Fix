@@ -1,10 +1,26 @@
+//-- Mixin ---------------------------------------------------------------------
+@mixin _autohide_tabbar() {
+  @include NotOption("userChrome.tab.on_bottom") {
+    @content;
+  }
+  @include Option("userChrome.tab.on_bottom") {
+    > *:not(.titlebar-buttonbox-container) {
+      @content;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+
 :root:not([customizing]) #titlebar {
   margin-bottom: var(--uc-tabbar-hide-height);
   will-change: margin-bottom;
 }
 #TabsToolbar:not([customizing]) {
-  opacity: 0;
-  will-change: opacity;
+  @include _autohide_tabbar {
+    opacity: 0;
+    will-change: opacity;
+  }
 }
 
 #navigator-toolbox:is(:hover, :focus-within) {
@@ -12,7 +28,9 @@
     margin-bottom: 0px;
   }
   #TabsToolbar {
-    opacity: 1;
+    @include _autohide_tabbar {
+      opacity: 1;
+    }
   }
 }
 
@@ -23,7 +41,9 @@
   }
 
   #TabsToolbar:not([customizing]) {
-    transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
+    @include _autohide_tabbar {
+      transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
+    }
   }
 
   #navigator-toolbox:is(:hover, :focus-within) {
@@ -34,7 +54,9 @@
     }
 
     #TabsToolbar:not([customizing]) {
-      transition-delay: 0s !important;
+      @include _autohide_tabbar {
+        transition-delay: 0s !important;
+      }
     }
   }
 }
