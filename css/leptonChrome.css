@@ -3523,44 +3523,44 @@
 /*= Info Bar - Reduce Padding ================================================*/
 @supports -moz-bool-pref("userChrome.padding.infobar") {
   :root:not([uidensity]) #tab-notification-deck {
-    --infobar-message-margin: 0 4px 3px;
-  }
-
-  :root[uidensity="compact"] #tab-notification-deck {
-    --infobar-message-margin: 0 4px 2px;
-  }
-
-  #tab-notification-deck notification-message[message-bar-type="infobar"]:not([style*="margin-top"]) {
-    margin: var(--infobar-message-margin, 0 4px 4px) !important;
-  }
-
-  :root:not([uidensity]) notification-message[message-bar-type="infobar"] {
+    --infobar-message-vertical-margin: 3px;
     --infobar-vertical-margin: 7px;
     --infobar-button-vertical-margin: 3px;
   }
 
-  :root[uidensity="compact"] notification-message[message-bar-type="infobar"] {
+  :root[uidensity="compact"] #tab-notification-deck {
+    --infobar-message-vertical-margin: 2px;
     --infobar-vertical-margin: 6px;
     --infobar-button-vertical-margin: 2px;
   }
 
+  :root[uidensity="touch"] #tab-notification-deck {
+    --infobar-message-vertical-margin: 4px;
+    --infobar-vertical-margin: 8px;
+    --infobar-button-vertical-margin: 4px;
+  }
+
+  #tab-notification-deck notification-message[message-bar-type="infobar"]:not([style*="margin-top"]) {
+    margin: var(--infobar-message-margin, 0 4px var(--infobar-message-vertical-margin)) !important;
+  }
+
   .infobar > .icon {
-    margin-block: var(--infobar-vertical-margin, 8px) !important;
+    margin-block: var(--infobar-vertical-margin) !important;
     /* Original: 8px */
   }
 
   .notification-message {
-    padding-block: var(--infobar-vertical-margin, 8px) !important;
+    padding-block: var(--infobar-vertical-margin) !important;
     /* Original: 8px */
   }
 
   .notification-button-container > .notification-button {
-    margin-block: var(--infobar-button-vertical-margin, 4px) !important;
+    margin-block: var(--infobar-button-vertical-margin) !important;
     /* Original: 4px */
   }
 
   .notification-close {
-    margin: var(--infobar-button-vertical-margin, 4px) 8px !important;
+    margin: var(--infobar-button-vertical-margin) 8px !important;
     /* Original: 4px 8px */
   }
 
@@ -5740,7 +5740,8 @@
 }
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
-  ) {
+  )
+  or -moz-bool-pref("userChrome.autohide.infobar") {
   :root {
     --uc-autohide-toolbar-delay: 600ms;
   }
@@ -5957,6 +5958,43 @@
     }
 
     #navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar:not([customizing]) {
+      transition-delay: 0s !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.autohide.infobar") {
+  #tab-notification-deck:not([customizing]) > .notificationbox-stack {
+    --infobar-height: calc(
+      25px + (var(--infobar-button-vertical-margin, 4px) * 2) + var(--infobar-message-vertical-margin, 8px)
+    );
+  }
+
+  #tab-notification-deck:not([customizing]) > .notificationbox-stack[slot="selected"] > notification-message {
+    --infobar-message-margin: 0 4px calc(-1 * var(--infobar-height));
+    opacity: 0;
+    will-change: margin-bottom, opacity;
+  }
+
+  #navigator-toolbox:is(:hover, :focus-within)
+    #tab-notification-deck:not([customizing])
+    > .notificationbox-stack[slot="selected"]
+    > notification-message {
+    --infobar-message-margin: 0 4px var(--infobar-message-vertical-margin, 8px);
+    margin-bottom: 0;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #tab-notification-deck:not([customizing]) > .notificationbox-stack[slot="selected"] > notification-message {
+      transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+        opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+        var(--ext-theme-background-transition) !important;
+    }
+
+    #navigator-toolbox:is(:hover, :focus-within)
+      #tab-notification-deck:not([customizing])
+      > .notificationbox-stack[slot="selected"]
+      > notification-message {
       transition-delay: 0s !important;
     }
   }
