@@ -46,6 +46,11 @@
 }
 
 /*= Info Bar - Reduce Padding ================================================*/
+@include Option("userChrome.padding.infobar", "userChrome.autohide.infobar") {
+  #tab-notification-deck notification-message[message-bar-type="infobar"]:not([style*="margin-top"]) {
+    margin: var(--infobar-message-margin, 0 4px var(--infobar-message-vertical-margin, 8px)) !important;
+  }
+}
 @include Option("userChrome.padding.infobar") {
   @import "info_bar";
 }

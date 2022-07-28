@@ -11,8 +11,13 @@
 
 #navigator-toolbox:is(:hover, :focus-within) #tab-notification-deck:not([customizing]) > .notificationbox-stack[slot="selected"] > notification-message {
   --infobar-message-margin: 0 4px var(--infobar-message-vertical-margin, 8px);
-  margin-bottom: 0;
   opacity: 1;
+}
+
+@include Option("userChrome.autohide.toolbar_overlap") {
+  #tab-notification-deck:not([customizing]) {
+    height: 0;
+  }
 }
 
 @include Animate {

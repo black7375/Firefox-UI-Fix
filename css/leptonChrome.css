@@ -3521,6 +3521,11 @@
   }
 }
 /*= Info Bar - Reduce Padding ================================================*/
+@supports -moz-bool-pref("userChrome.padding.infobar") or -moz-bool-pref("userChrome.autohide.infobar") {
+  #tab-notification-deck notification-message[message-bar-type="infobar"]:not([style*="margin-top"]) {
+    margin: var(--infobar-message-margin, 0 4px var(--infobar-message-vertical-margin, 8px)) !important;
+  }
+}
 @supports -moz-bool-pref("userChrome.padding.infobar") {
   :root:not([uidensity]) #tab-notification-deck {
     --infobar-message-vertical-margin: 3px;
@@ -3538,10 +3543,6 @@
     --infobar-message-vertical-margin: 4px;
     --infobar-vertical-margin: 8px;
     --infobar-button-vertical-margin: 4px;
-  }
-
-  #tab-notification-deck notification-message[message-bar-type="infobar"]:not([style*="margin-top"]) {
-    margin: var(--infobar-message-margin, 0 4px var(--infobar-message-vertical-margin)) !important;
   }
 
   .infobar > .icon {
@@ -5980,10 +5981,14 @@
     > .notificationbox-stack[slot="selected"]
     > notification-message {
     --infobar-message-margin: 0 4px var(--infobar-message-vertical-margin, 8px);
-    margin-bottom: 0;
     opacity: 1;
   }
 
+  @supports -moz-bool-pref("userChrome.autohide.toolbar_overlap") {
+    #tab-notification-deck:not([customizing]) {
+      height: 0;
+    }
+  }
   @media (prefers-reduced-motion: no-preference) {
     #tab-notification-deck:not([customizing]) > .notificationbox-stack[slot="selected"] > notification-message {
       transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
