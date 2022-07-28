@@ -26,12 +26,12 @@
 
 /*= Nav Bar - Reduce Width ===================================================*/
 @include Option("userChrome.padding.navbar_width") {
-  @import "nav_bar";
+  @import "navbar";
 }
 
 /*= URL Bar - Reduce Padding =================================================*/
 @include Option("userChrome.padding.urlbar") {
-  @import "url_bar";
+  @import "urlbar";
 }
 @include Option("userChrome.padding.urlView_expanding") {
   @import "urlview_expanding";
@@ -42,7 +42,7 @@
 
 /*= BookMark Bar - Reduce Height =============================================*/
 @include Option("userChrome.padding.bookmarkbar") {
-  @import "bookmark_bar";
+  @import "bookmarkbar";
 }
 
 /*= Info Bar - Reduce Padding ================================================*/
@@ -52,7 +52,7 @@
   }
 }
 @include Option("userChrome.padding.infobar") {
-  @import "info_bar";
+  @import "infobar";
 }
 
 /*= Menu - Reduce Padding ====================================================*/
