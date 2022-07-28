@@ -5679,6 +5679,38 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.autohide.page_action") {
+  #page-action-buttons > .urlbar-page-action {
+    margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
+    opacity: 0;
+  }
+
+  #urlbar-container:hover #page-action-buttons > .urlbar-page-action,
+  .urlbar-page-action[open],
+  .urlbar-page-action[open] ~ .urlbar-page-action {
+    margin-inline-end: 0px !important;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #page-action-buttons > .urlbar-page-action {
+      transition: margin-inline-end 50ms var(--animation-easing-function) 900ms,
+        opacity 1.5s var(--animation-easing-function) 600ms !important;
+    }
+    @supports -moz-bool-pref("userChrome.decoration.animate") {
+      #page-action-buttons > .urlbar-page-action {
+        transition: margin-inline-end 50ms var(--animation-easing-function) 900ms,
+          opacity 1.5s var(--animation-easing-function) 600ms, background-color 2.5s var(--animation-easing-function) !important;
+      }
+    }
+
+    #urlbar-container:hover #page-action-buttons > .urlbar-page-action,
+    .urlbar-page-action[open],
+    .urlbar-page-action[open] ~ .urlbar-page-action {
+      transition-delay: 0s !important;
+    }
+  }
+}
 @supports -moz-bool-pref("userChrome.autohide.tab") {
   @supports not -moz-bool-pref("userChrome.autohide.tab.opacity") {
     @supports not -moz-bool-pref("userChrome.autohide.tab.blur") {
