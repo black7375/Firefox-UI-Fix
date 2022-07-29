@@ -4614,7 +4614,7 @@
     position: absolute;
     /* Position */
     top: 50%;
-    transform: translateY(calc(-50% + 1px)) !important;
+    transform: translateY(-50%) !important;
     /* Bar shape */
     width: 0px;
     height: 100%;
@@ -4632,6 +4632,7 @@
     .tabbrowser-tab[visuallyselected] .tab-background::after,
     .tabbrowser-tab[beforeselected-visible] .tab-background::after {
       --lwt-background-tab-separator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
+      opacity: 1;
     }
   }
   @supports not -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
