@@ -11,6 +11,9 @@
   margin-top: var(--uc-tabbar-hide-height) !important;
   height: var(--uc-tabbar-height) !important;
 }
+#nav-bar > * {
+  transform: translateY(calc((var(--uc-tabbar-height) + var(--uc-navbar-hide-height)) / 2));
+}
 
 #urlbar-container {
   min-width: 0px !important;
