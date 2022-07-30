@@ -3,6 +3,13 @@
   margin-bottom: var(--uc-bm-hide-height);
   opacity: 0;
   will-change: margin-bottom, opacity;
+
+  @include Option("userChrome.autohide.toolbar_overlap") {
+    &[collapsed="true"] {
+      visibility: visible !important;
+      max-height: unset !important;
+    }
+  }
 }
 
 #navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar:not([customizing]) {
