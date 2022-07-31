@@ -5822,8 +5822,10 @@
       }
     }
     @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.tab.one_liner") {
-      #navigator-toolbox:hover {
-        --uc-toolbar-height: var(--uc-tabbar-height);
+      @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") {
+        #navigator-toolbox:hover {
+          --uc-toolbar-height: var(--uc-tabbar-height);
+        }
       }
       @supports not -moz-bool-pref("userChrome.autohide.navbar") {
         @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {

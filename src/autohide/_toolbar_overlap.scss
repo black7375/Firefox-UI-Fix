@@ -27,7 +27,9 @@
 
   &:hover {
     @include Option("userChrome.autohide.tabbar", "userChrome.tab.one_liner") {
-      --uc-toolbar-height: var(--uc-tabbar-height);
+      @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar") {
+        --uc-toolbar-height: var(--uc-tabbar-height);
+      }
 
       @include NotOption("userChrome.autohide.navbar") {
         @include Option("userChrome.autohide.bookmarkbar") {
