@@ -6,7 +6,7 @@
   opacity: 1;
 }
 
-@include NotOption("userChrome.tab.one_liner") {
+@include OneLinerBeforeResponsive {
   #nav-bar:not([customizing]) {
     margin-bottom: var(--uc-navbar-hide-height);
   }

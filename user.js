@@ -112,6 +112,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.tab.on_bottom.menubar_on_top",        true); // Need on_bottom
 // user_pref("userChrome.tab.one_liner",                       true);
 // user_pref("userChrome.tab.one_liner.tabbar_first",          true);
+// user_pref("userChrome.tab.one_liner.responsive",            true);
 // user_pref("userChrome.tab.as_titlebar",                     true);
 // user_pref("userChrome.tab.always_show_tab_icon",            true);
 // user_pref("userChrome.tab.close_button_at_pinned",          true);
