@@ -12,24 +12,26 @@
 
 //------------------------------------------------------------------------------
 
-:root:not([customizing]) #titlebar {
-  margin-bottom: var(--uc-tabbar-hide-height);
-  will-change: margin-bottom;
-}
-#TabsToolbar:not([customizing]) {
-  @include _autohide_tabbar {
-    opacity: 0;
-    will-change: opacity;
+@include OneLinerTabbar {
+  :root:not([customizing]) #titlebar {
+    margin-bottom: var(--uc-tabbar-hide-height);
+    will-change: margin-bottom;
   }
-}
-
-#navigator-toolbox:is(:hover, :focus-within) {
-  > #titlebar {
-    margin-bottom: 0px;
-  }
-  #TabsToolbar {
+  #TabsToolbar:not([customizing]) {
     @include _autohide_tabbar {
-      opacity: 1;
+      opacity: 0;
+      will-change: opacity;
+    }
+  }
+
+  #navigator-toolbox:is(:hover, :focus-within) {
+    > #titlebar {
+      margin-bottom: 0px;
+    }
+    #TabsToolbar {
+      @include _autohide_tabbar {
+        opacity: 1;
+      }
     }
   }
 }

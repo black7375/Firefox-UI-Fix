@@ -1,17 +1,12 @@
-#nav-bar:not([customizing]) {
-  opacity: 0;
-  will-change: margin-bottom, opacity;
-}
-#navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
-  opacity: 1;
-}
-
-@include OneLinerBeforeResponsive {
+@include OneLinerNavbar {
   #nav-bar:not([customizing]) {
     margin-bottom: var(--uc-navbar-hide-height);
+    opacity: 0;
+    will-change: margin-bottom, opacity;
   }
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
     margin-bottom: 0;
+    opacity: 1;
   }
 }
 

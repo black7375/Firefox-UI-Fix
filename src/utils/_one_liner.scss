@@ -1,0 +1,49 @@
+@use "option" as *;
+
+@mixin OneLinerContent() {
+  @include NotOption("userChrome.tab.one_liner.responsive") {
+    @content;
+  }
+  @include Option("userChrome.tab.one_liner.responsive") {
+    @media screen and (min-width: 1100px) {
+      @content;
+    }
+  }
+}
+
+@mixin OneLiner() {
+  @include Option("userChrome.tab.one_liner") {
+    @include OneLinerContent {
+      @content;
+    }
+  }
+}
+
+@mixin OneLinerTabbar() {
+  @include NotOption("userChrome.tab.one_liner.responsive") {
+    @content;
+  }
+  @include Option("userChrome.tab.one_liner.responsive") {
+    @media screen and (min-width: 1100px) {
+      @content;
+    }
+    @include Option("userChrome.autohide.tabbar") {
+      @content;
+    }
+  }
+}
+
+@mixin OneLinerNavbar() {
+  @include NotOption("userChrome.tab.one_liner") {
+    @content;
+  }
+  @include Option("userChrome.tab.one_liner") {
+    @include Option("userChrome.tab.one_liner.responsive") {
+      @include Option("userChrome.autohide.navbar") {
+        @media screen and (max-width: 1100px) {
+          @content;
+        }
+      }
+    }
+  }
+}

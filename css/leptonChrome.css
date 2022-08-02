@@ -6131,38 +6131,107 @@
 }
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") {
   @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.tab.one_liner") {
-    :root:not([customizing]) #titlebar {
-      margin-bottom: var(--uc-tabbar-hide-height);
-      will-change: margin-bottom;
-    }
+    @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+      :root:not([customizing]) #titlebar {
+        margin-bottom: var(--uc-tabbar-hide-height);
+        will-change: margin-bottom;
+      }
 
-    @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
-      #TabsToolbar:not([customizing]) {
-        opacity: 0;
-        will-change: opacity;
+      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        #TabsToolbar:not([customizing]) {
+          opacity: 0;
+          will-change: opacity;
+        }
       }
-    }
-    @supports -moz-bool-pref("userChrome.tab.on_bottom") {
-      #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
-        opacity: 0;
-        will-change: opacity;
+      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
+          opacity: 0;
+          will-change: opacity;
+        }
       }
-    }
 
-    #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
-      margin-bottom: 0px;
-    }
-    @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
-      #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
-        opacity: 1;
+      #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
+        margin-bottom: 0px;
+      }
+      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+          opacity: 1;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
+          opacity: 1;
+        }
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.on_bottom") {
-      #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
-        opacity: 1;
-      }
-    }
+    @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+      @media screen and (min-width: 1100px) {
+        :root:not([customizing]) #titlebar {
+          margin-bottom: var(--uc-tabbar-hide-height);
+          will-change: margin-bottom;
+        }
 
+        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+          #TabsToolbar:not([customizing]) {
+            opacity: 0;
+            will-change: opacity;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+          #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
+            opacity: 0;
+            will-change: opacity;
+          }
+        }
+
+        #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
+          margin-bottom: 0px;
+        }
+        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+            opacity: 1;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
+            opacity: 1;
+          }
+        }
+      }
+      @supports -moz-bool-pref("userChrome.autohide.tabbar") {
+        :root:not([customizing]) #titlebar {
+          margin-bottom: var(--uc-tabbar-hide-height);
+          will-change: margin-bottom;
+        }
+
+        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+          #TabsToolbar:not([customizing]) {
+            opacity: 0;
+            will-change: opacity;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+          #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
+            opacity: 0;
+            will-change: opacity;
+          }
+        }
+
+        #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
+          margin-bottom: 0px;
+        }
+        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+            opacity: 1;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
+            opacity: 1;
+          }
+        }
+      }
+    }
     @media (prefers-reduced-motion: no-preference) {
       #titlebar:not([customizing]) {
         transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
@@ -6201,33 +6270,32 @@
     }
   }
   @supports -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref("userChrome.tab.one_liner") {
-    #nav-bar:not([customizing]) {
-      opacity: 0;
-      will-change: margin-bottom, opacity;
-    }
-
-    #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
-      opacity: 1;
-    }
-
     @supports not -moz-bool-pref("userChrome.tab.one_liner") {
       #nav-bar:not([customizing]) {
         margin-bottom: var(--uc-navbar-hide-height);
+        opacity: 0;
+        will-change: margin-bottom, opacity;
       }
 
       #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
         margin-bottom: 0;
+        opacity: 1;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.one_liner") {
       @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
-        @media screen and (max-width: 1100px) {
-          #nav-bar:not([customizing]) {
-            margin-bottom: var(--uc-navbar-hide-height);
-          }
+        @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          @media screen and (max-width: 1100px) {
+            #nav-bar:not([customizing]) {
+              margin-bottom: var(--uc-navbar-hide-height);
+              opacity: 0;
+              will-change: margin-bottom, opacity;
+            }
 
-          #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
-            margin-bottom: 0;
+            #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
+              margin-bottom: 0;
+              opacity: 1;
+            }
           }
         }
       }
