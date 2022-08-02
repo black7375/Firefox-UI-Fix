@@ -20,7 +20,13 @@
 }
 
 #urlbar-container {
-  min-width: 0px !important;
+  min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important; // Original: calc(350px + 24px + 2 * var(--toolbarbutton-inner-padding))
+}
+
+#PersonalToolbar {
+  // for URL Bar
+  position: relative;
+  z-index: -1;
 }
 
 toolbarspring.chromeclass-toolbar-additional {

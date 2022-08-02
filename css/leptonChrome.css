@@ -4019,7 +4019,12 @@
     }
 
     #urlbar-container {
-      min-width: 0px !important;
+      min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
+    }
+
+    #PersonalToolbar {
+      position: relative;
+      z-index: -1;
     }
 
     toolbarspring.chromeclass-toolbar-additional {
@@ -4077,7 +4082,12 @@
       }
 
       #urlbar-container {
-        min-width: 0px !important;
+        min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
+      }
+
+      #PersonalToolbar {
+        position: relative;
+        z-index: -1;
       }
 
       toolbarspring.chromeclass-toolbar-additional {
