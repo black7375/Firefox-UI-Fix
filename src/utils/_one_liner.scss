@@ -19,6 +19,19 @@
   }
 }
 
+@mixin OneLinerOnBottom() {
+  @include NotOption("userChrome.tab.one_liner") {
+    @content;
+  }
+  @include Option("userChrome.tab.one_liner") {
+    @include Option("userChrome.tab.one_liner.responsive") {
+      @media screen and (max-width: 1100px) {
+        @content;
+      }
+    }
+  }
+}
+
 @mixin OneLinerTabbar() {
   @include NotOption("userChrome.tab.one_liner.responsive") {
     @content;

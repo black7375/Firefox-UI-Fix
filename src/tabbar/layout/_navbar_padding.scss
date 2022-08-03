@@ -13,18 +13,45 @@
 :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
   --uc-window-drag-space-pre: 0px; /* Remove pre space */
 }
-@include Option("userChrome.tab.one_liner") {
-  @include NotOption("userChrome.tab.one_liner.tabbar_first") {
-    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-      /* Don't need window control */
-      --uc-window-control-width: 0px;
-      --uc-window-drag-space-post: 0px;
-    }
-  }
+
+//-- Mixin ---------------------------------------------------------------------
+@mixin _remove_spacer_pre() {
+  /* Don't need pre spacer */
+  --uc-window-drag-space-pre: 0px;
+}
+
+@mixin _remove_spacer_post() {
+  /* Don't need window control */
+  --uc-window-control-width: 0px;
+  --uc-window-drag-space-post: 0px;
+}
+
+@mixin _remove_spacer_oneLiner() {
   @include Option("userChrome.tab.one_liner.tabbar_first") {
-    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-      /* Don't need pre spacer */
-      --uc-window-drag-space-pre: 0px;
+    @include _remove_spacer_pre;
+  }
+  @include NotOption("userChrome.tab.one_liner.tabbar_first") {
+    @include _remove_spacer_post;
+  }
+}
+
+//------------------------------------------------------------------------------
+
+@include Option("userChrome.tab.one_liner") {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    @include NotOption("userChrome.tab.one_liner.responsive") {
+      @include _remove_spacer_oneLiner;
+    }
+    @include Option("userChrome.tab.one_liner.responsive") {
+      @media screen and (max-width: 1100px) {
+        @include NotOption("userChrome.tab.on_bottom") {
+          @include _remove_spacer_pre;
+          @include _remove_spacer_post;
+        }
+      }
+      @media screen and (min-width: 1100px) {
+        @include _remove_spacer_oneLiner;
+      }
     }
   }
 }

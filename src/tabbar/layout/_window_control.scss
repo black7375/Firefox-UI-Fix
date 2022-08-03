@@ -6,7 +6,7 @@ See the above repository for updates as well as full license text. */
 }
 
 @include OS($win) {
-  :root[sizemode="maximized"][tabsintitlebar]{
+  :root[sizemode="maximized"][tabsintitlebar] {
     --uc-titlebar-padding: 8px;
   }
 }
@@ -76,4 +76,3 @@ See the above repository for updates as well as full license text. */
 :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
   visibility: hidden;
 }
-

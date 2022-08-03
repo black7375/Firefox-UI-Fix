@@ -20,7 +20,9 @@
 }
 
 @include Option("userChrome.tab.on_bottom") {
-  @import "tabs_on_bottom";
+  @include OneLinerOnBottom {
+    @import "tabs_on_bottom";
+  }
 }
 
 /*= Tab Bar - Oneliner =======================================================*/
@@ -30,9 +32,7 @@
 
 /*= Tab Bar - Shared Layout ==================================================*/
 @include Option("userChrome.tab.on_bottom", "userChrome.tab.one_liner") {
-  @include OneLinerContent {
-    @import "layout";
-  }
+  @import "layout";
 }
 
 /*= Tab Bar - Show only current tab ==========================================*/

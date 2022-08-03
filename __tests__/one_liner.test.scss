@@ -47,6 +47,28 @@
 }
 
 @include test-module("One Liner for Responsive [mix]") {
+  @include test("Tabs on bottom") {
+    @include assert {
+      @include output {
+        @include one_liner.OneLinerOnBottom {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+          @include example;
+        }
+        @supports -moz-bool-pref("userChrome.tab.one_liner") {
+          @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+            @media screen and (max-width: 1100px) {
+              @include example;
+            }
+          }
+        }
+      }
+    }
+  }
+
   @include test("Tab bar") {
     @include assert {
       @include output {
