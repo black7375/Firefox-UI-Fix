@@ -15,9 +15,6 @@
   background-color: unset !important; // var(--toolbar-bgcolor)
   background-image: unset !important; // var(--toolbar-bgimage)
 }
-#nav-bar > * {
-  transform: translateY(calc((var(--uc-tabbar-height) + var(--uc-navbar-hide-height)) / 2));
-}
 
 #urlbar-container {
   min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important; // Original: calc(350px + 24px + 2 * var(--toolbarbutton-inner-padding))
