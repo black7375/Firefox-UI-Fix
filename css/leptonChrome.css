@@ -6529,21 +6529,21 @@
             }
           }
         }
-        @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
-          @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-            #navigator-toolbox:hover {
-              --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
+        @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+            @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+              #navigator-toolbox:hover {
+                --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
+              }
+            }
+            @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+              #navigator-toolbox:hover {
+                --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
+              }
             }
           }
-          @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-            #navigator-toolbox:hover {
-              --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
-            }
-          }
-        }
-        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
-          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
-            @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+            @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
               @media screen and (max-width: 1100px) {
                 @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
                   #navigator-toolbox:hover {
@@ -6570,21 +6570,21 @@
         }
       }
       @supports -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref("userChrome.tabbar.one_liner") {
-        @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
-          @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-            #navigator-toolbox:hover {
-              --uc-toolbar-height: var(--uc-navbar-height);
+        @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+            @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+              #navigator-toolbox:hover {
+                --uc-toolbar-height: var(--uc-navbar-height);
+              }
+            }
+            @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
+              #navigator-toolbox:hover {
+                --uc-toolbar-height: calc(var(--uc-navbar-height) + var(--uc-bm-height));
+              }
             }
           }
-          @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-            #navigator-toolbox:hover {
-              --uc-toolbar-height: calc(var(--uc-navbar-height) + var(--uc-bm-height));
-            }
-          }
-        }
-        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
-          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
-            @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+            @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
               @media screen and (max-width: 1100px) {
                 @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
                   #navigator-toolbox:hover {
@@ -6745,21 +6745,21 @@
     }
   }
   @supports -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref("userChrome.tabbar.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
-      #nav-bar:not([customizing]) {
-        margin-bottom: var(--uc-navbar-hide-height);
-        opacity: 0;
-        will-change: margin-bottom, opacity;
-      }
+    @supports -moz-bool-pref("userChrome.autohide.navbar") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+        #nav-bar:not([customizing]) {
+          margin-bottom: var(--uc-navbar-hide-height);
+          opacity: 0;
+          will-change: margin-bottom, opacity;
+        }
 
-      #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
-        margin-bottom: 0;
-        opacity: 1;
+        #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
+          margin-bottom: 0;
+          opacity: 1;
+        }
       }
-    }
-    @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
-      @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
-        @supports -moz-bool-pref("userChrome.autohide.navbar") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @media screen and (max-width: 1100px) {
             #nav-bar:not([customizing]) {
               margin-bottom: var(--uc-navbar-hide-height);
