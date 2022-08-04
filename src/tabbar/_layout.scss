@@ -1,5 +1,3 @@
-@include Option("userChrome.tab.on_bottom", "userChrome.tab.one_liner.tabbar_first") {
-}
 @include NotOption("userChrome.tab.one_liner") {
   @include Option("userChrome.tab.on_bottom") {
     @import "layout/window_control";

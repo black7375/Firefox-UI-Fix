@@ -1,19 +1,63 @@
 :root {
   --uc-navbar-size: 40vw;
   --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
-}
 
-#navigator-toolbox {
-  background-color: var(--toolbar-bgcolor) !important;
+  --uc-navbar-margin: calc(var(--uc-navbar-size) + var(--uc-navbar-gap, 0px));
 }
 
 #nav-bar {
-  margin-top: var(--uc-tabbar-hide-height) !important;
-  height: var(--uc-tabbar-height) !important;
+  --uc-navbar-double-block: calc(2 *  var(--uc-navbar-block, 0px));
+  height: calc(var(--uc-tabbar-height) - var(--uc-navbar-double-block)) !important;
+  margin-top: calc(var(--uc-tabbar-hide-height) + var(--uc-navbar-double-block)) !important;
+  margin-bottom: var(--uc-navbar-block, 0px) !important;
+  transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
+}
 
-  --lwt-tabs-border-color: transparent; // box-shadow
-  background-color: unset !important; // var(--toolbar-bgcolor)
-  background-image: unset !important; // var(--toolbar-bgimage)
+#titlebar {
+  transform: translateY(var(--uc-navbar-block, 0px));
+}
+#TabsToolbar > .titlebar-buttonbox-container {
+  transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
+}
+
+@include NotOption("userChrome.tab.one_liner.combine_navbar") {
+  :root {
+    --uc-navbar-gap: 10px;
+    --uc-navbar-block: 1.5px; // var(--tab-block-margin) or var(--tabs-navbar-shadow-size)
+
+    &[uidensity="compact"] {
+      --uc-navbar-block: 1px;
+    }
+    &[uidensity="touch"] {
+      --uc-navbar-block: 3px;
+    }
+  }
+
+  #nav-bar {
+    --toolbarbutton-inner-padding: 6px; /* Original: 8px */
+    border-radius: var(--tab-border-radius, 4px);
+  }
+
+  #nav-bar,
+  #nav-bar-customization-target {
+    -moz-box-align: center;
+  }
+
+  #urlbar[breakout] {
+    top: 0px !important; /* Original: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2); */
+  }
+}
+
+@include Option("userChrome.tab.one_liner.combine_navbar") {
+  #navigator-toolbox {
+    background-color: var(--toolbar-bgcolor) !important;
+  }
+
+  #nav-bar {
+    --lwt-tabs-border-color: transparent; // box-shadow
+    background-color: unset !important; // var(--toolbar-bgcolor)
+    background-image: unset !important; // var(--toolbar-bgimage)
+  }
 }
 
 #urlbar-container {
@@ -32,7 +76,7 @@ toolbarspring.chromeclass-toolbar-additional {
 
 @include NotOption("userChrome.tab.one_liner.tabbar_first") {
   #TabsToolbar {
-    margin-inline-start: var(--uc-navbar-size) !important;
+    margin-inline-start: var(--uc-navbar-margin) !important;
   }
   #nav-bar {
     margin-inline-end: var(--uc-tabbar-size) !important;
@@ -43,7 +87,7 @@ toolbarspring.chromeclass-toolbar-additional {
 }
 @include Option("userChrome.tab.one_liner.tabbar_first") {
   #TabsToolbar {
-    margin-inline-end: var(--uc-navbar-size) !important;
+    margin-inline-end: var(--uc-navbar-margin) !important;
   }
   #nav-bar {
     margin-inline-start: var(--uc-tabbar-size) !important;

@@ -4131,20 +4131,64 @@
     :root {
       --uc-navbar-size: 40vw;
       --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
-    }
-
-    #navigator-toolbox {
-      background-color: var(--toolbar-bgcolor) !important;
+      --uc-navbar-margin: calc(var(--uc-navbar-size) + var(--uc-navbar-gap, 0px));
     }
 
     #nav-bar {
-      margin-top: var(--uc-tabbar-hide-height) !important;
-      height: var(--uc-tabbar-height) !important;
-      --lwt-tabs-border-color: transparent;
-      background-color: unset !important;
-      background-image: unset !important;
+      --uc-navbar-double-block: calc(2 * var(--uc-navbar-block, 0px));
+      height: calc(var(--uc-tabbar-height) - var(--uc-navbar-double-block)) !important;
+      margin-top: calc(var(--uc-tabbar-hide-height) + var(--uc-navbar-double-block)) !important;
+      margin-bottom: var(--uc-navbar-block, 0px) !important;
+      transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
     }
 
+    #titlebar {
+      transform: translateY(var(--uc-navbar-block, 0px));
+    }
+
+    #TabsToolbar > .titlebar-buttonbox-container {
+      transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
+    }
+
+    @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+      :root {
+        --uc-navbar-gap: 10px;
+        --uc-navbar-block: 1.5px;
+      }
+      :root[uidensity="compact"] {
+        --uc-navbar-block: 1px;
+      }
+      :root[uidensity="touch"] {
+        --uc-navbar-block: 3px;
+      }
+
+      #nav-bar {
+        --toolbarbutton-inner-padding: 6px;
+        /* Original: 8px */
+        border-radius: var(--tab-border-radius, 4px);
+      }
+
+      #nav-bar,
+      #nav-bar-customization-target {
+        -moz-box-align: center;
+      }
+
+      #urlbar[breakout] {
+        top: 0px !important;
+        /* Original: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2); */
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+      #navigator-toolbox {
+        background-color: var(--toolbar-bgcolor) !important;
+      }
+
+      #nav-bar {
+        --lwt-tabs-border-color: transparent;
+        background-color: unset !important;
+        background-image: unset !important;
+      }
+    }
     #urlbar-container {
       min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
     }
@@ -4160,7 +4204,7 @@
 
     @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
       #TabsToolbar {
-        margin-inline-start: var(--uc-navbar-size) !important;
+        margin-inline-start: var(--uc-navbar-margin) !important;
       }
 
       #nav-bar {
@@ -4173,7 +4217,7 @@
     }
     @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
       #TabsToolbar {
-        margin-inline-end: var(--uc-navbar-size) !important;
+        margin-inline-end: var(--uc-navbar-margin) !important;
       }
 
       #nav-bar {
@@ -4190,20 +4234,64 @@
       :root {
         --uc-navbar-size: 40vw;
         --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
-      }
-
-      #navigator-toolbox {
-        background-color: var(--toolbar-bgcolor) !important;
+        --uc-navbar-margin: calc(var(--uc-navbar-size) + var(--uc-navbar-gap, 0px));
       }
 
       #nav-bar {
-        margin-top: var(--uc-tabbar-hide-height) !important;
-        height: var(--uc-tabbar-height) !important;
-        --lwt-tabs-border-color: transparent;
-        background-color: unset !important;
-        background-image: unset !important;
+        --uc-navbar-double-block: calc(2 * var(--uc-navbar-block, 0px));
+        height: calc(var(--uc-tabbar-height) - var(--uc-navbar-double-block)) !important;
+        margin-top: calc(var(--uc-tabbar-hide-height) + var(--uc-navbar-double-block)) !important;
+        margin-bottom: var(--uc-navbar-block, 0px) !important;
+        transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
       }
 
+      #titlebar {
+        transform: translateY(var(--uc-navbar-block, 0px));
+      }
+
+      #TabsToolbar > .titlebar-buttonbox-container {
+        transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
+      }
+
+      @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+        :root {
+          --uc-navbar-gap: 10px;
+          --uc-navbar-block: 1.5px;
+        }
+        :root[uidensity="compact"] {
+          --uc-navbar-block: 1px;
+        }
+        :root[uidensity="touch"] {
+          --uc-navbar-block: 3px;
+        }
+
+        #nav-bar {
+          --toolbarbutton-inner-padding: 6px;
+          /* Original: 8px */
+          border-radius: var(--tab-border-radius, 4px);
+        }
+
+        #nav-bar,
+        #nav-bar-customization-target {
+          -moz-box-align: center;
+        }
+
+        #urlbar[breakout] {
+          top: 0px !important;
+          /* Original: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2); */
+        }
+      }
+      @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+        #navigator-toolbox {
+          background-color: var(--toolbar-bgcolor) !important;
+        }
+
+        #nav-bar {
+          --lwt-tabs-border-color: transparent;
+          background-color: unset !important;
+          background-image: unset !important;
+        }
+      }
       #urlbar-container {
         min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
       }
@@ -4219,7 +4307,7 @@
 
       @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
         #TabsToolbar {
-          margin-inline-start: var(--uc-navbar-size) !important;
+          margin-inline-start: var(--uc-navbar-margin) !important;
         }
 
         #nav-bar {
@@ -4232,7 +4320,7 @@
       }
       @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
         #TabsToolbar {
-          margin-inline-end: var(--uc-navbar-size) !important;
+          margin-inline-end: var(--uc-navbar-margin) !important;
         }
 
         #nav-bar {
@@ -4248,8 +4336,6 @@
 }
 /*= Tab Bar - Shared Layout ==================================================*/
 @supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_liner") {
-  @supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
-  }
   @supports not -moz-bool-pref("userChrome.tab.one_liner") {
     @supports -moz-bool-pref("userChrome.tab.on_bottom") {
       /*= Windows Control - Move to toolbar ========================================*/
@@ -4631,6 +4717,7 @@
     /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
     --uc-window-drag-space-post: 0px;
     /* Same as .titlebar-spacer[type="post-tabs"] */
+    --uc-widow-control-space: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
   }
 
   :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
@@ -4691,10 +4778,50 @@
     }
   }
   #nav-bar {
-    border-inline-start-width: var(--uc-window-drag-space-pre);
-    border-inline-end-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
     border-inline-style: solid !important;
     border-inline-color: var(--toolbar-bgcolor);
+  }
+  @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+    #nav-bar {
+      border-inline-start-width: var(--uc-window-drag-space-pre);
+      border-inline-end-width: var(--uc-widow-control-space);
+    }
+  }
+  @supports -moz-bool-pref("userChrome.tab.one_liner") {
+    @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+      #nav-bar {
+        border-inline-start-width: var(--uc-window-drag-space-pre);
+        border-inline-end-width: var(--uc-widow-control-space);
+      }
+    }
+    @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        @media screen and (max-width: 1100px) {
+          #nav-bar {
+            border-inline-start-width: var(--uc-window-drag-space-pre);
+            border-inline-end-width: var(--uc-widow-control-space);
+          }
+        }
+      }
+    }
+  }
+  @supports -moz-bool-pref("userChrome.tab.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+      @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @media screen and (min-width: 1100px) {
+          @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+            #nav-bar {
+              margin-inline-start: var(--uc-window-drag-space-pre) !important;
+            }
+          }
+          @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+            #nav-bar {
+              margin-inline-end: var(--uc-widow-control-space) !important;
+            }
+          }
+        }
+      }
+    }
   }
 
   /* Windows */
@@ -4718,9 +4845,47 @@
       --uc-window-control-width: 72px;
     }
 
-    :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
-      border-inline-start-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
-      border-inline-end-width: var(--uc-window-drag-space-pre);
+    @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+      :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+        border-inline-start-width: var(--uc-widow-control-space);
+        border-inline-end-width: var(--uc-window-drag-space-pre);
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.one_liner") {
+      @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+        :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+          border-inline-start-width: var(--uc-widow-control-space);
+          border-inline-end-width: var(--uc-window-drag-space-pre);
+        }
+      }
+      @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+          @media screen and (max-width: 1100px) {
+            :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+              border-inline-start-width: var(--uc-widow-control-space);
+              border-inline-end-width: var(--uc-window-drag-space-pre);
+            }
+          }
+        }
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.one_liner") {
+      @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+        @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+          @media screen and (min-width: 1100px) {
+            @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+              :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+                margin-inline-start: var(--uc-window-drag-space-pre, 0px) !important;
+              }
+            }
+            @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+              :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+                margin-inline-end: var(--uc-widow-control-space, 0px) !important;
+              }
+            }
+          }
+        }
+      }
     }
 
     :root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,

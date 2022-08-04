@@ -4,6 +4,8 @@
   --uc-window-control-width: 0px;   /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls */
   --uc-window-drag-space-pre: 0px;  /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
   --uc-window-drag-space-post: 0px; /* Same as .titlebar-spacer[type="post-tabs"] */
+
+  --uc-widow-control-space: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
 }
 :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
   --uc-window-control-width: 84px; /* 84px is default value of linux */
@@ -35,6 +37,34 @@
   }
 }
 
+@mixin _oneLiner_navBar_borderPadding() {
+  @include NotOption("userChrome.tab.one_liner") {
+    @content;
+  }
+  @include Option("userChrome.tab.one_liner") {
+    @include Option("userChrome.tab.one_liner.combine_navbar") {
+      @content;
+    }
+    @include NotOption("userChrome.tab.one_liner.combine_navbar") {
+      @include Option("userChrome.tab.on_bottom") {
+        @media screen and (max-width: 1100px) {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+@mixin _oneLiner_navBar_marginGap() {
+  @include NotOption("userChrome.tab.one_liner.combine_navbar") {
+    @include Option("userChrome.tab.one_liner.responsive") {
+      @media screen and (min-width: 1100px) {
+        @content;
+      }
+    }
+  }
+}
+
 //------------------------------------------------------------------------------
 
 @include Option("userChrome.tab.one_liner") {
@@ -57,11 +87,24 @@
 }
 
 #nav-bar {
-  border-inline-start-width: var(--uc-window-drag-space-pre);
-  border-inline-end-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
-
   border-inline-style: solid !important;
   border-inline-color: var(--toolbar-bgcolor);
+
+  @include _oneLiner_navBar_borderPadding {
+    border-inline-start-width: var(--uc-window-drag-space-pre);
+    border-inline-end-width: var(--uc-widow-control-space);
+  }
+
+  @include Option("userChrome.tab.one_liner") {
+    @include _oneLiner_navBar_marginGap {
+      @include NotOption("userChrome.tab.one_liner.tabbar_first") {
+        margin-inline-start: var(--uc-window-drag-space-pre) !important;
+      }
+      @include Option("userChrome.tab.one_liner.tabbar_first") {
+        margin-inline-end: var(--uc-widow-control-space) !important;
+      }
+    }
+  }
 }
 
 /* Windows */
@@ -84,8 +127,21 @@
     --uc-window-control-width: 72px;
   }
   :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
-    border-inline-start-width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
-    border-inline-end-width: var(--uc-window-drag-space-pre);
+    @include _oneLiner_navBar_borderPadding {
+      border-inline-start-width: var(--uc-widow-control-space);
+      border-inline-end-width: var(--uc-window-drag-space-pre);
+    }
+
+    @include Option("userChrome.tab.one_liner") {
+      @include _oneLiner_navBar_marginGap {
+        @include NotOption("userChrome.tab.one_liner.tabbar_first") {
+          margin-inline-start: var(--uc-window-drag-space-pre, 0px) !important;
+        }
+        @include Option("userChrome.tab.one_liner.tabbar_first") {
+          margin-inline-end: var(--uc-widow-control-space, 0px) !important;
+        }
+      }
+    }
   }
   :root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,
   :root[sizemode="fullscreen"] #window-controls {
