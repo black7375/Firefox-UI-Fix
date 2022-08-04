@@ -20,7 +20,7 @@
   transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
 }
 
-@include NotOption("userChrome.tab.one_liner.combine_navbar") {
+@include NotOption("userChrome.tabbar.one_liner.combine_navbar") {
   :root {
     --uc-navbar-gap: 10px;
     --uc-navbar-block: 1.5px; // var(--tab-block-margin) or var(--tabs-navbar-shadow-size)
@@ -48,7 +48,7 @@
   }
 }
 
-@include Option("userChrome.tab.one_liner.combine_navbar") {
+@include Option("userChrome.tabbar.one_liner.combine_navbar") {
   #navigator-toolbox {
     background-color: var(--toolbar-bgcolor) !important;
   }
@@ -74,7 +74,7 @@ toolbarspring.chromeclass-toolbar-additional {
   display: none !important;
 }
 
-@include NotOption("userChrome.tab.one_liner.tabbar_first") {
+@include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
   #TabsToolbar {
     margin-inline-start: var(--uc-navbar-margin) !important;
   }
@@ -85,7 +85,7 @@ toolbarspring.chromeclass-toolbar-additional {
     display: none !important;
   }
 }
-@include Option("userChrome.tab.one_liner.tabbar_first") {
+@include Option("userChrome.tabbar.one_liner.tabbar_first") {
   #TabsToolbar {
     margin-inline-end: var(--uc-navbar-margin) !important;
   }

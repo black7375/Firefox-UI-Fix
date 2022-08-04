@@ -1,9 +1,9 @@
 //-- Mixin ---------------------------------------------------------------------
 @mixin _autohide_tabbar() {
-  @include NotOption("userChrome.tab.on_bottom") {
+  @include NotOption("userChrome.tabbar.on_bottom") {
     @content;
   }
-  @include Option("userChrome.tab.on_bottom") {
+  @include Option("userChrome.tabbar.on_bottom") {
     > *:not(.titlebar-buttonbox-container) {
       @content;
     }

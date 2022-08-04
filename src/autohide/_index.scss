@@ -14,10 +14,10 @@
 
 @import "common";
 @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar") {
-  @include Option("userChrome.autohide.tabbar", "userChrome.tab.one_liner") {
+  @include Option("userChrome.autohide.tabbar", "userChrome.tabbar.one_liner") {
     @import "tabbar";
   }
-  @include Option("userChrome.autohide.navbar", "userChrome.tab.one_liner") {
+  @include Option("userChrome.autohide.navbar", "userChrome.tabbar.one_liner") {
     @import "navbar";
   }
 }

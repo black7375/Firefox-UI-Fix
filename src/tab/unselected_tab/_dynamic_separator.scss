@@ -57,8 +57,8 @@
 .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
   opacity: var(--tab-separator-opacity);
 }
-@include Option("userChrome.tab.one_liner") {
-  @include NotOption("userChrome.tab.one_liner.tabbar_first") {
+@include Option("userChrome.tabbar.one_liner") {
+  @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
     @include OneLinerContent {
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-background::before {
         opacity: var(--tab-separator-opacity);

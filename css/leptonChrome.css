@@ -3246,13 +3246,13 @@
       --tab-max-width: 225px;
     }
   }
-  @supports -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       :root {
         --tab-max-width: 180px;
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       @media screen and (min-width: 1100px) {
         :root {
           --tab-max-width: 180px;
@@ -3838,7 +3838,7 @@
 }
 /** Tab Bar UI ****************************************************************/
 /*= Tabs on Bottom ===========================================================*/
-@supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.fullscreen.overlap") {
+@supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.fullscreen.overlap") {
   /* Don't use display: flex at not fullscreen!! side effect #372 */
   :root[sizemode="fullscreen"] #navigator-toolbox {
     display: flex !important;
@@ -3859,8 +3859,8 @@
     -moz-appearance: none !important;
   }
 }
-@supports -moz-bool-pref("userChrome.tab.on_bottom") {
-  @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+@supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+  @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
     /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
     See the above repository for updates as well as full license text. */
     /*= Tabbar - Move to bottom ==================================================*/
@@ -3885,14 +3885,14 @@
       padding-inline-end: var(--toolbar-start-end-padding, 8px);
     }
 
-    @supports -moz-bool-pref("userChrome.tab.on_bottom.above_bookmark") {
+    @supports -moz-bool-pref("userChrome.tabbar.on_bottom.above_bookmark") {
       #PersonalToolbar {
         order: 2;
         /* When userChrome.fullscreen.overlap */
         -moz-box-ordinal-group: 2;
       }
     }
-    @supports not -moz-bool-pref("userChrome.tab.on_bottom.above_bookmark") {
+    @supports not -moz-bool-pref("userChrome.tabbar.on_bottom.above_bookmark") {
       @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
         @supports -moz-bool-pref("userChrome.tab.color_like_toolbar") {
           #navigator-toolbox {
@@ -3903,7 +3903,7 @@
       }
     }
     /*= Menubar - Always on top ==================================================*/
-    @supports -moz-bool-pref("userChrome.tab.on_bottom.menubar_on_top") {
+    @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
       See the above repository for updates as well as full license text. */
       :root {
@@ -3990,8 +3990,8 @@
       }
     }
   }
-  @supports -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       @media screen and (max-width: 1100px) {
         /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
         See the above repository for updates as well as full license text. */
@@ -4017,14 +4017,14 @@
           padding-inline-end: var(--toolbar-start-end-padding, 8px);
         }
 
-        @supports -moz-bool-pref("userChrome.tab.on_bottom.above_bookmark") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom.above_bookmark") {
           #PersonalToolbar {
             order: 2;
             /* When userChrome.fullscreen.overlap */
             -moz-box-ordinal-group: 2;
           }
         }
-        @supports not -moz-bool-pref("userChrome.tab.on_bottom.above_bookmark") {
+        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom.above_bookmark") {
           @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
             @supports -moz-bool-pref("userChrome.tab.color_like_toolbar") {
               #navigator-toolbox {
@@ -4035,7 +4035,7 @@
           }
         }
         /*= Menubar - Always on top ==================================================*/
-        @supports -moz-bool-pref("userChrome.tab.on_bottom.menubar_on_top") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
           /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
           See the above repository for updates as well as full license text. */
           :root {
@@ -4126,8 +4126,8 @@
   }
 }
 /*= Tab Bar - Oneliner =======================================================*/
-@supports -moz-bool-pref("userChrome.tab.one_liner") {
-  @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+@supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+  @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
     :root {
       --uc-navbar-size: 40vw;
       --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
@@ -4150,7 +4150,7 @@
       transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
     }
 
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
       :root {
         --uc-navbar-gap: 10px;
         --uc-navbar-block: 1.5px;
@@ -4178,7 +4178,7 @@
         /* Original: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2); */
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
       #navigator-toolbox {
         background-color: var(--toolbar-bgcolor) !important;
       }
@@ -4202,7 +4202,7 @@
       display: none !important;
     }
 
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
       #TabsToolbar {
         margin-inline-start: var(--uc-navbar-margin) !important;
       }
@@ -4215,7 +4215,7 @@
         display: none !important;
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
       #TabsToolbar {
         margin-inline-end: var(--uc-navbar-margin) !important;
       }
@@ -4229,7 +4229,7 @@
       }
     }
   }
-  @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
     @media screen and (min-width: 1100px) {
       :root {
         --uc-navbar-size: 40vw;
@@ -4253,7 +4253,7 @@
         transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
       }
 
-      @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
         :root {
           --uc-navbar-gap: 10px;
           --uc-navbar-block: 1.5px;
@@ -4281,7 +4281,7 @@
           /* Original: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2); */
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
         #navigator-toolbox {
           background-color: var(--toolbar-bgcolor) !important;
         }
@@ -4305,7 +4305,7 @@
         display: none !important;
       }
 
-      @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         #TabsToolbar {
           margin-inline-start: var(--uc-navbar-margin) !important;
         }
@@ -4318,7 +4318,7 @@
           display: none !important;
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         #TabsToolbar {
           margin-inline-end: var(--uc-navbar-margin) !important;
         }
@@ -4335,9 +4335,9 @@
   }
 }
 /*= Tab Bar - Shared Layout ==================================================*/
-@supports -moz-bool-pref("userChrome.tab.on_bottom") or -moz-bool-pref("userChrome.tab.one_liner") {
-  @supports not -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+@supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.tabbar.one_liner") {
+  @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
       /*= Windows Control - Move to toolbar ========================================*/
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
       See the above repository for updates as well as full license text. */
@@ -4428,9 +4428,9 @@
       }
     }
   }
-  @supports -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
-      @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         /*= Windows Control - Move to toolbar ========================================*/
         /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
         See the above repository for updates as well as full license text. */
@@ -4521,8 +4521,8 @@
         }
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
-      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         @media screen and (max-width: 1100px) {
           /*= Windows Control - Move to toolbar ========================================*/
           /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
@@ -4614,7 +4614,7 @@
           }
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         @media screen and (min-width: 1100px) {
           /*= Windows Control - Move to toolbar ========================================*/
           /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
@@ -4732,15 +4732,15 @@
     /* Remove pre space */
   }
 
-  @supports -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
-      @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
           /* Don't need pre spacer */
           --uc-window-drag-space-pre: 0px;
         }
       }
-      @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
           /* Don't need window control */
           --uc-window-control-width: 0px;
@@ -4748,9 +4748,9 @@
         }
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       @media screen and (max-width: 1100px) {
-        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
           :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
             /* Don't need pre spacer */
             --uc-window-drag-space-pre: 0px;
@@ -4761,13 +4761,13 @@
         }
       }
       @media screen and (min-width: 1100px) {
-        @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
           :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
             /* Don't need pre spacer */
             --uc-window-drag-space-pre: 0px;
           }
         }
-        @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
           :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
             /* Don't need window control */
             --uc-window-control-width: 0px;
@@ -4781,21 +4781,21 @@
     border-inline-style: solid !important;
     border-inline-color: var(--toolbar-bgcolor);
   }
-  @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+  @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
     #nav-bar {
       border-inline-start-width: var(--uc-window-drag-space-pre);
       border-inline-end-width: var(--uc-widow-control-space);
     }
   }
-  @supports -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
       #nav-bar {
         border-inline-start-width: var(--uc-window-drag-space-pre);
         border-inline-end-width: var(--uc-widow-control-space);
       }
     }
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
-      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         @media screen and (max-width: 1100px) {
           #nav-bar {
             border-inline-start-width: var(--uc-window-drag-space-pre);
@@ -4805,16 +4805,16 @@
       }
     }
   }
-  @supports -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
-      @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         @media screen and (min-width: 1100px) {
-          @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+          @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
             #nav-bar {
               margin-inline-start: var(--uc-window-drag-space-pre) !important;
             }
           }
-          @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
             #nav-bar {
               margin-inline-end: var(--uc-widow-control-space) !important;
             }
@@ -4845,21 +4845,21 @@
       --uc-window-control-width: 72px;
     }
 
-    @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
       :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
         border-inline-start-width: var(--uc-widow-control-space);
         border-inline-end-width: var(--uc-window-drag-space-pre);
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner") {
-      @supports -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
         :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
           border-inline-start-width: var(--uc-widow-control-space);
           border-inline-end-width: var(--uc-window-drag-space-pre);
         }
       }
-      @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
-        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           @media screen and (max-width: 1100px) {
             :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
               border-inline-start-width: var(--uc-widow-control-space);
@@ -4869,16 +4869,16 @@
         }
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner") {
-      @supports not -moz-bool-pref("userChrome.tab.one_liner.combine_navbar") {
-        @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @media screen and (min-width: 1100px) {
-            @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+            @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
               :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
                 margin-inline-start: var(--uc-window-drag-space-pre, 0px) !important;
               }
             }
-            @supports -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
+            @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
               :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
                 margin-inline-end: var(--uc-widow-control-space, 0px) !important;
               }
@@ -4895,7 +4895,7 @@
   }
 }
 /*= Tab Bar - Show only current tab ==========================================*/
-@supports -moz-bool-pref("userChrome.tab.as_titlebar") {
+@supports -moz-bool-pref("userChrome.tabbar.as_titlebar") {
   :root:not([tabsintitlebar="true"]) #tabbrowser-tabs,
   #scrollbutton-up,
   #scrollbutton-down,
@@ -5375,15 +5375,15 @@
     opacity: var(--tab-separator-opacity);
   }
 
-  @supports -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.tabbar_first") {
-      @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-background::before {
           opacity: var(--tab-separator-opacity);
           transform: translateX(-1.5px) translateY(calc(-50% + 1px));
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         @media screen and (min-width: 1100px) {
           .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-background::before {
             opacity: var(--tab-separator-opacity);
@@ -5779,7 +5779,7 @@
 }
 /** Clipped tabs - Show close button at pinned tab ****************************/
 @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned") {
-  @supports not -moz-bool-pref("userChrome.tab.as_titlebar") {
+  @supports not -moz-bool-pref("userChrome.tabbar.as_titlebar") {
     #tabbrowser-tabs {
       --uc-close-button-size: 24px;
       --uc-close-button-padding: 6px;
@@ -6460,7 +6460,7 @@
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
   )
-  or -moz-bool-pref("userChrome.tab.one_liner") {
+  or -moz-bool-pref("userChrome.tabbar.one_liner") {
   :root {
     --uc-tabbar-height: var(--tab-min-height);
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
@@ -6518,7 +6518,7 @@
       }
     }
     @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") {
-      @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.tab.one_liner") {
+      @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.tabbar.one_liner") {
         #navigator-toolbox:hover {
           --uc-toolbar-height: var(--uc-tabbar-height);
         }
@@ -6529,7 +6529,7 @@
             }
           }
         }
-        @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
           @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
             #navigator-toolbox:hover {
               --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
@@ -6541,8 +6541,8 @@
             }
           }
         }
-        @supports -moz-bool-pref("userChrome.tab.one_liner") {
-          @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
             @supports -moz-bool-pref("userChrome.autohide.navbar") {
               @media screen and (max-width: 1100px) {
                 @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
@@ -6569,8 +6569,8 @@
           }
         }
       }
-      @supports -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref("userChrome.tab.one_liner") {
-        @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+      @supports -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref("userChrome.tabbar.one_liner") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
           @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
             #navigator-toolbox:hover {
               --uc-toolbar-height: var(--uc-navbar-height);
@@ -6582,8 +6582,8 @@
             }
           }
         }
-        @supports -moz-bool-pref("userChrome.tab.one_liner") {
-          @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
             @supports -moz-bool-pref("userChrome.autohide.navbar") {
               @media screen and (max-width: 1100px) {
                 @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
@@ -6605,20 +6605,20 @@
   }
 }
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") {
-  @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+  @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       :root:not([customizing]) #titlebar {
         margin-bottom: var(--uc-tabbar-hide-height);
         will-change: margin-bottom;
       }
 
-      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #TabsToolbar:not([customizing]) {
           opacity: 0;
           will-change: opacity;
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
           opacity: 0;
           will-change: opacity;
@@ -6628,31 +6628,31 @@
       #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
         margin-bottom: 0px;
       }
-      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
           opacity: 1;
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
           opacity: 1;
         }
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       @media screen and (min-width: 1100px) {
         :root:not([customizing]) #titlebar {
           margin-bottom: var(--uc-tabbar-hide-height);
           will-change: margin-bottom;
         }
 
-        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) {
             opacity: 0;
             will-change: opacity;
           }
         }
-        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
             opacity: 0;
             will-change: opacity;
@@ -6662,12 +6662,12 @@
         #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
           margin-bottom: 0px;
         }
-        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
             opacity: 1;
           }
         }
-        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
             opacity: 1;
           }
@@ -6679,13 +6679,13 @@
           will-change: margin-bottom;
         }
 
-        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) {
             opacity: 0;
             will-change: opacity;
           }
         }
-        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
             opacity: 0;
             will-change: opacity;
@@ -6695,12 +6695,12 @@
         #navigator-toolbox:is(:hover, :focus-within) > #titlebar {
           margin-bottom: 0px;
         }
-        @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
             opacity: 1;
           }
         }
-        @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar > *:not(.titlebar-buttonbox-container) {
             opacity: 1;
           }
@@ -6713,12 +6713,12 @@
           background-color 1s var(--animation-easing-function) !important;
       }
 
-      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #TabsToolbar:not([customizing]) {
           transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
           transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
         }
@@ -6730,12 +6730,12 @@
       #navigator-toolbox:is(:hover, :focus-within) > #titlebar:not([customizing]) {
         transition-delay: 0s !important;
       }
-      @supports not -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]) {
           transition-delay: 0s !important;
         }
       }
-      @supports -moz-bool-pref("userChrome.tab.on_bottom") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #navigator-toolbox:is(:hover, :focus-within)
           #TabsToolbar:not([customizing])
           > *:not(.titlebar-buttonbox-container) {
@@ -6744,8 +6744,8 @@
       }
     }
   }
-  @supports -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref("userChrome.tab.one_liner") {
-    @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+  @supports -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref("userChrome.tabbar.one_liner") {
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
       #nav-bar:not([customizing]) {
         margin-bottom: var(--uc-navbar-hide-height);
         opacity: 0;
@@ -6757,8 +6757,8 @@
         opacity: 1;
       }
     }
-    @supports -moz-bool-pref("userChrome.tab.one_liner") {
-      @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         @supports -moz-bool-pref("userChrome.autohide.navbar") {
           @media screen and (max-width: 1100px) {
             #nav-bar:not([customizing]) {

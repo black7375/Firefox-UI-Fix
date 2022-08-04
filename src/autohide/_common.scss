@@ -1,4 +1,4 @@
-@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.tab.one_liner") {
+@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.tabbar.one_liner") {
   :root {
     --uc-tabbar-height: var(--tab-min-height); // calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));

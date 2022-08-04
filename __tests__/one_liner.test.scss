@@ -11,10 +11,10 @@
         }
       }
       @include expect {
-        @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @include example;
         }
-        @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @media screen and (min-width: 1100px) {
             @include example;
           }
@@ -31,11 +31,11 @@
         }
       }
       @include expect {
-        @supports -moz-bool-pref("userChrome.tab.one_liner") {
-          @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
             @include example;
           }
-          @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
             @media screen and (min-width: 1100px) {
               @include example;
             }
@@ -55,11 +55,11 @@
         }
       }
       @include expect {
-        @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
           @include example;
         }
-        @supports -moz-bool-pref("userChrome.tab.one_liner") {
-          @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
             @media screen and (max-width: 1100px) {
               @include example;
             }
@@ -77,10 +77,10 @@
         }
       }
       @include expect {
-        @supports not -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @include example;
         }
-        @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @media screen and (min-width: 1100px) {
             @include example;
           }
@@ -100,11 +100,11 @@
         }
       }
       @include expect {
-        @supports not -moz-bool-pref("userChrome.tab.one_liner") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
           @include example;
         }
-        @supports -moz-bool-pref("userChrome.tab.one_liner") {
-          @supports -moz-bool-pref("userChrome.tab.one_liner.responsive") {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
             @supports -moz-bool-pref("userChrome.autohide.navbar") {
               @media screen and (max-width: 1100px) {
                 @include example;

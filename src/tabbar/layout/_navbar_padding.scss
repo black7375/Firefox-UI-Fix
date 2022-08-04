@@ -29,24 +29,24 @@
 }
 
 @mixin _remove_spacer_oneLiner() {
-  @include Option("userChrome.tab.one_liner.tabbar_first") {
+  @include Option("userChrome.tabbar.one_liner.tabbar_first") {
     @include _remove_spacer_pre;
   }
-  @include NotOption("userChrome.tab.one_liner.tabbar_first") {
+  @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
     @include _remove_spacer_post;
   }
 }
 
 @mixin _oneLiner_navBar_borderPadding() {
-  @include NotOption("userChrome.tab.one_liner") {
+  @include NotOption("userChrome.tabbar.one_liner") {
     @content;
   }
-  @include Option("userChrome.tab.one_liner") {
-    @include Option("userChrome.tab.one_liner.combine_navbar") {
+  @include Option("userChrome.tabbar.one_liner") {
+    @include Option("userChrome.tabbar.one_liner.combine_navbar") {
       @content;
     }
-    @include NotOption("userChrome.tab.one_liner.combine_navbar") {
-      @include Option("userChrome.tab.on_bottom") {
+    @include NotOption("userChrome.tabbar.one_liner.combine_navbar") {
+      @include Option("userChrome.tabbar.on_bottom") {
         @media screen and (max-width: 1100px) {
           @content;
         }
@@ -56,8 +56,8 @@
 }
 
 @mixin _oneLiner_navBar_marginGap() {
-  @include NotOption("userChrome.tab.one_liner.combine_navbar") {
-    @include Option("userChrome.tab.one_liner.responsive") {
+  @include NotOption("userChrome.tabbar.one_liner.combine_navbar") {
+    @include Option("userChrome.tabbar.one_liner.responsive") {
       @media screen and (min-width: 1100px) {
         @content;
       }
@@ -67,14 +67,14 @@
 
 //------------------------------------------------------------------------------
 
-@include Option("userChrome.tab.one_liner") {
+@include Option("userChrome.tabbar.one_liner") {
   :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-    @include NotOption("userChrome.tab.one_liner.responsive") {
+    @include NotOption("userChrome.tabbar.one_liner.responsive") {
       @include _remove_spacer_oneLiner;
     }
-    @include Option("userChrome.tab.one_liner.responsive") {
+    @include Option("userChrome.tabbar.one_liner.responsive") {
       @media screen and (max-width: 1100px) {
-        @include NotOption("userChrome.tab.on_bottom") {
+        @include NotOption("userChrome.tabbar.on_bottom") {
           @include _remove_spacer_pre;
           @include _remove_spacer_post;
         }
@@ -95,12 +95,12 @@
     border-inline-end-width: var(--uc-widow-control-space);
   }
 
-  @include Option("userChrome.tab.one_liner") {
+  @include Option("userChrome.tabbar.one_liner") {
     @include _oneLiner_navBar_marginGap {
-      @include NotOption("userChrome.tab.one_liner.tabbar_first") {
+      @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
         margin-inline-start: var(--uc-window-drag-space-pre) !important;
       }
-      @include Option("userChrome.tab.one_liner.tabbar_first") {
+      @include Option("userChrome.tabbar.one_liner.tabbar_first") {
         margin-inline-end: var(--uc-widow-control-space) !important;
       }
     }
@@ -132,12 +132,12 @@
       border-inline-end-width: var(--uc-window-drag-space-pre);
     }
 
-    @include Option("userChrome.tab.one_liner") {
+    @include Option("userChrome.tabbar.one_liner") {
       @include _oneLiner_navBar_marginGap {
-        @include NotOption("userChrome.tab.one_liner.tabbar_first") {
+        @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
           margin-inline-start: var(--uc-window-drag-space-pre, 0px) !important;
         }
-        @include Option("userChrome.tab.one_liner.tabbar_first") {
+        @include Option("userChrome.tabbar.one_liner.tabbar_first") {
           margin-inline-end: var(--uc-widow-control-space, 0px) !important;
         }
       }
