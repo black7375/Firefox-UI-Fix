@@ -43,9 +43,33 @@ See the above repository for updates as well as full license text. */
 #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
   @include NotOption("userChrome.hidden.tabbar") {
     opacity: 0;
+    visibility: collapse;
   }
   @include Option("userChrome.hidden.tabbar") {
+    opacity: 1;
     visibility: visible;
+
+    @include Option("userChrome.autohide.navbar") {
+      opacity: 0;
+      visibility: collapse;
+    }
+  }
+}
+#navigator-toolbox:is(:hover, :focus-within) #toolbar-menubar[inactive]:not([customizing]) > .titlebar-buttonbox-container {
+  @include Option("userChrome.hidden.tabbar") {
+    @include Option("userChrome.autohide.navbar") {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+@include Animate {
+  #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+    transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay, 600ms),
+                visibility 100ms var(--animation-easing-function) 0.25s !important;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) #toolbar-menubar[inactive]:not([customizing]) > .titlebar-buttonbox-container {
+    transition-delay: 0s !important;
   }
 }
 

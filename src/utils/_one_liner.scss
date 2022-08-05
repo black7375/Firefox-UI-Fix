@@ -46,17 +46,23 @@
   }
 }
 
+@mixin OneLinerNabarContent() {
+  @include NotOption("userChrome.tabbar.one_liner") {
+    @content;
+  }
+  @include Option("userChrome.tabbar.one_liner") {
+    @include Option("userChrome.tabbar.one_liner.responsive") {
+      @media screen and (max-width: 1100px) {
+        @content;
+      }
+    }
+  }
+}
+
 @mixin OneLinerNavbar() {
   @include Option("userChrome.autohide.navbar") {
-    @include NotOption("userChrome.tabbar.one_liner") {
+    @include OneLinerNabarContent() {
       @content;
-    }
-    @include Option("userChrome.tabbar.one_liner") {
-      @include Option("userChrome.tabbar.one_liner.responsive") {
-        @media screen and (max-width: 1100px) {
-          @content;
-        }
-      }
     }
   }
 }
