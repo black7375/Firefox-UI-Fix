@@ -41,7 +41,12 @@ See the above repository for updates as well as full license text. */
 }
 
 #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
-  opacity: 0;
+  @include NotOption("userChrome.hidden.tabbar") {
+    opacity: 0;
+  }
+  @include Option("userChrome.hidden.tabbar") {
+    visibility: visible;
+  }
 }
 
 .titlebar-buttonbox-container > .titlebar-buttonbox {
@@ -68,11 +73,25 @@ See the above repository for updates as well as full license text. */
     visibility: hidden;
   }
 }
+@include Option("userChrome.hidden.tabbar") {
+  :root[inFullscreen]:not([macOSNativeFullscreen]) {
+    #toolbar-menubar {
+      visibility: visible !important;
+      min-height: 0 !important;
+      max-height: 0 !important;
+    }
+    #menubar-items {
+      visibility: collapse !important;
+    }
+  }
+}
 
 /* At Activated Menubar */
 :root:not([chromehidden~="menubar"], [sizemode="fullscreen"]) #toolbar-menubar:not([autohide="true"]) + #TabsToolbar > .titlebar-buttonbox-container {
   display: block !important;
 }
 :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
-  visibility: hidden;
+  @include NotOption("userChrome.hidden.tabbar") {
+    visibility: hidden;
+  }
 }

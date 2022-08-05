@@ -6,6 +6,10 @@
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
     --uc-bm-height: calc(20px + (2 * var(--bookmark-block-padding, 4px))); /* 20px = 16px + (2px * 2) [margin block] */
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
+
+    @include Option("userChrome.hidden.tabbar") {
+      --uc-tabbar-height: 0px;
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 @include NotOption("userChrome.tabbar.one_liner") {
-  @include Option("userChrome.tabbar.on_bottom") {
+  @include Option("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
     @import "layout/window_control";
   }
 }

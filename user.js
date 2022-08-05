@@ -85,6 +85,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.autohide.page_action",                true);
 // user_pref("userChrome.autohide.toolbar_overlap",            true);
 
+// user_pref("userChrome.hidden.tabbar",                       true);
+
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
 // user_pref("userChrome.rounding.square_panelitem",           true);

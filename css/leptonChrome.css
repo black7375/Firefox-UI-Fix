@@ -4335,9 +4335,11 @@
   }
 }
 /*= Tab Bar - Shared Layout ==================================================*/
-@supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.tabbar.one_liner") {
+@supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.tabbar.one_liner") or -moz-bool-pref(
+    "userChrome.hidden.tabbar"
+  ) {
   @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
-    @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+    @supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.hidden.tabbar") {
       /*= Windows Control - Move to toolbar ========================================*/
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
       See the above repository for updates as well as full license text. */
@@ -4384,8 +4386,15 @@
         height: 32px;
       }
 
-      #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
-        opacity: 0;
+      @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+        #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+          opacity: 0;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+        #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+          visibility: visible;
+        }
       }
 
       .titlebar-buttonbox-container > .titlebar-buttonbox {
@@ -4415,6 +4424,16 @@
           visibility: hidden;
         }
       }
+      @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+        :root[inFullscreen]:not([macOSNativeFullscreen]) #toolbar-menubar {
+          visibility: visible !important;
+          min-height: 0 !important;
+          max-height: 0 !important;
+        }
+        :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
+          visibility: collapse !important;
+        }
+      }
       /* At Activated Menubar */
       :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
         #toolbar-menubar:not([autohide="true"])
@@ -4423,8 +4442,10 @@
         display: block !important;
       }
 
-      :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
-        visibility: hidden;
+      @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+        :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
+          visibility: hidden;
+        }
       }
     }
   }
@@ -4477,8 +4498,15 @@
           height: 32px;
         }
 
-        #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
-          opacity: 0;
+        @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+          #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+            opacity: 0;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+          #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+            visibility: visible;
+          }
         }
 
         .titlebar-buttonbox-container > .titlebar-buttonbox {
@@ -4508,6 +4536,16 @@
             visibility: hidden;
           }
         }
+        @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+          :root[inFullscreen]:not([macOSNativeFullscreen]) #toolbar-menubar {
+            visibility: visible !important;
+            min-height: 0 !important;
+            max-height: 0 !important;
+          }
+          :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
+            visibility: collapse !important;
+          }
+        }
         /* At Activated Menubar */
         :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
           #toolbar-menubar:not([autohide="true"])
@@ -4516,8 +4554,10 @@
           display: block !important;
         }
 
-        :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
-          visibility: hidden;
+        @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+          :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
+            visibility: hidden;
+          }
         }
       }
     }
@@ -4570,8 +4610,15 @@
             height: 32px;
           }
 
-          #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
-            opacity: 0;
+          @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+            #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+              opacity: 0;
+            }
+          }
+          @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+            #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+              visibility: visible;
+            }
           }
 
           .titlebar-buttonbox-container > .titlebar-buttonbox {
@@ -4601,6 +4648,16 @@
               visibility: hidden;
             }
           }
+          @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+            :root[inFullscreen]:not([macOSNativeFullscreen]) #toolbar-menubar {
+              visibility: visible !important;
+              min-height: 0 !important;
+              max-height: 0 !important;
+            }
+            :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
+              visibility: collapse !important;
+            }
+          }
           /* At Activated Menubar */
           :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
             #toolbar-menubar:not([autohide="true"])
@@ -4609,8 +4666,10 @@
             display: block !important;
           }
 
-          :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
-            visibility: hidden;
+          @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+            :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
+              visibility: hidden;
+            }
           }
         }
       }
@@ -4662,8 +4721,15 @@
             height: 32px;
           }
 
-          #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
-            opacity: 0;
+          @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+            #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+              opacity: 0;
+            }
+          }
+          @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+            #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+              visibility: visible;
+            }
           }
 
           .titlebar-buttonbox-container > .titlebar-buttonbox {
@@ -4693,6 +4759,16 @@
               visibility: hidden;
             }
           }
+          @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+            :root[inFullscreen]:not([macOSNativeFullscreen]) #toolbar-menubar {
+              visibility: visible !important;
+              min-height: 0 !important;
+              max-height: 0 !important;
+            }
+            :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
+              visibility: collapse !important;
+            }
+          }
           /* At Activated Menubar */
           :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
             #toolbar-menubar:not([autohide="true"])
@@ -4701,8 +4777,10 @@
             display: block !important;
           }
 
-          :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
-            visibility: hidden;
+          @supports not -moz-bool-pref("userChrome.hidden.tabbar") {
+            :root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
+              visibility: hidden;
+            }
           }
         }
       }
@@ -6470,6 +6548,11 @@
     /* 20px = 16px + (2px * 2) [margin block] */
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
   }
+  @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+    :root {
+      --uc-tabbar-height: 0px;
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
@@ -6976,6 +7059,19 @@
       :root[inFullscreen="true"] #sidebar-box:hover {
         transition-delay: 0ms !important;
       }
+    }
+  }
+}
+/** Hidden ********************************************************************/
+@supports -moz-bool-pref("userChrome.hidden.tabbar") {
+  @supports not -moz-bool-pref("userChrome.hidden.tabbar.tabs_only") {
+    #TabsToolbar {
+      display: none;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.hidden.tabbar.tabs_only") {
+    #tabbrowser-tabs {
+      display: none;
     }
   }
 }

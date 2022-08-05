@@ -31,7 +31,7 @@
 }
 
 /*= Tab Bar - Shared Layout ==================================================*/
-@include Option("userChrome.tabbar.on_bottom", "userChrome.tabbar.one_liner") {
+@include Option("userChrome.tabbar.on_bottom", "userChrome.tabbar.one_liner", "userChrome.hidden.tabbar") {
   @import "layout";
 }
 
