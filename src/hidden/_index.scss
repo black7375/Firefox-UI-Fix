@@ -11,3 +11,29 @@
     }
   }
 }
+
+@include Option("userChrome.hidden.selected_tab") {
+  .tabbrowser-tab[selected="true"] {
+    -moz-box-flex: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+  }
+}
+
+@include Option("userChrome.hidden.disabled_menu") {
+  menu,
+  menuitem:not(#context-back, #context-forward) {
+    &[disabled="true"] {
+      display: none !important;
+    }
+  }
+
+  @include NativeMenu {
+    #context-back,
+    #context-forward {
+      &[disabled="true"] {
+        display: none !important;
+      }
+    }
+  }
+}

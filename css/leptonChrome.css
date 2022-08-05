@@ -7237,6 +7237,26 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.hidden.selected_tab") {
+  .tabbrowser-tab[selected="true"] {
+    -moz-box-flex: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.hidden.disabled_menu") {
+  menu[disabled="true"],
+  menuitem:not(#context-back, #context-forward)[disabled="true"] {
+    display: none !important;
+  }
+
+  @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
+    #context-back[disabled="true"],
+    #context-forward[disabled="true"] {
+      display: none !important;
+    }
+  }
+}
 /** Library - Icons Replace ***************************************************/
 @supports -moz-bool-pref("userChrome.icon.library") {
   /*= Standard Folder - More Visible ===========================================*/

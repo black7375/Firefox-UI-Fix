@@ -87,6 +87,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.hidden.tabbar",                       true);
 // user_pref("userChrome.hidden.navbar",                       true);
+// user_pref("userChrome.hidden.selected_tab",                 true);
+// user_pref("userChrome.hidden.disabled_menu",                true);
 
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
