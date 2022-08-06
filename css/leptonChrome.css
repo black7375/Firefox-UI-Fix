@@ -2858,6 +2858,9 @@
       text-decoration: line-through;
       text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
     }
+    #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTarget:hover {
+      text-decoration: none;
+    }
     #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
       filter: grayscale(100%) !important;
     }
