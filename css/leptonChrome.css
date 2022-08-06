@@ -133,6 +133,12 @@
     /* Legacy: v96 */
     --lwt-tabs-border-color: rgba(0, 0, 0, 0.3);
   }
+
+  /*= Findbar Border Color =====================================================*/
+  html|input.findbar-textbox {
+    border: 1px solid var(--input-border-color, var(--toolbar-field-border-color, ThreeDShadow)) !important;
+    /* Original: 1px solid var(--input-border-color, var(--toolbar-field-border-color)) */
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
