@@ -87,6 +87,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.hidden.tabbar",                       true);
 // user_pref("userChrome.hidden.navbar",                       true);
+// user_pref("userChrome.hidden.sidebar_header",               true);
+// user_pref("userChrome.hidden.sidebar_header.vertical_tab_only", true);
 // user_pref("userChrome.hidden.urlbar_iconbox",               true);
 // user_pref("userChrome.hidden.selected_tab",                 true);
 // user_pref("userChrome.hidden.disabled_menu",                true);
@@ -137,8 +139,6 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);
 
-// user_pref("userChrome.sidebar.hidden_header",               true);
-// user_pref("userChrome.sidebar.hidden_header.vertical_tab_only", true);
 // user_pref("userChrome.sidebar.overlap",                     true);
 
 // user_pref("userChrome.icon.account_image_to_right",         true);
