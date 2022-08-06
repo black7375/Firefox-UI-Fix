@@ -8443,8 +8443,11 @@
     #context_reloadTab,
     #context_reloadSelectedTabs,
     #treestyletab_piro_sakura_ne_jp-menuitem-_context_reloadTab,
+    #treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_reloadTab,
+    #treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:reloadTree,
     #tabcenter-reborn_ariasuni-menuitem-_contextMenuReloadTab,
-    #sidebartabs_asamuzak_jp-menuitem-_reloadTab {
+    #sidebartabs_asamuzak_jp-menuitem-_reloadTab,
+    #sidebartabs_asamuzak_jp-menuitem-_reloadAllTabs {
       --menuitem-image: url("../icons/reload.svg");
     }
 
@@ -8491,7 +8494,10 @@
     #context_bookmarkTab,
     #context_bookmarkSelectedTabs,
     #treestyletab_piro_sakura_ne_jp-menuitem-_context_bookmarkTab,
-    #sidebartabs_asamuzak_jp-menuitem-_bookmarkTab {
+    #treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_bookmarkSelected,
+    #treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:bookmarkTree,
+    #sidebartabs_asamuzak_jp-menuitem-_bookmarkTab,
+    #sidebartabs_asamuzak_jp-menuitem-_bookmarkAllTabs {
       --menuitem-image: url("chrome://browser/skin/bookmark.svg");
     }
 
@@ -8522,18 +8528,21 @@
     #context_reopenInContainer,
     #treestyletab_piro_sakura_ne_jp-menuitem-_context_reopenInContainer,
     #tabcenter-reborn_ariasuni-menuitem-_contextMenuOpenInContextualTab,
+    #sidebartabs_asamuzak_jp-menuitem-_openNewTabInContainer,
     #sidebartabs_asamuzak_jp-menuitem-_reopenTabInContainer {
       --menuitem-image: url("../icons/container-openin-16.svg");
     }
 
     #context_selectAllTabs,
     #treestyletab_piro_sakura_ne_jp-menuitem-_context_selectAllTabs,
+    #treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_selectAllTabs,
     #sidebartabs_asamuzak_jp-menuitem-_selectAllTabs {
       --menuitem-image: url("../icons/tab-multiple.svg");
     }
 
     #context_closeTab,
     #treestyletab_piro_sakura_ne_jp-menuitem-_context_closeTab,
+    #treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:closeTree,
     #tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTab,
     #sidebartabs_asamuzak_jp-menuitem-_closeTab {
       --menuitem-image: url("chrome://global/skin/icons/close.svg");
@@ -8541,6 +8550,7 @@
 
     #context_undoCloseTab,
     #treestyletab_piro_sakura_ne_jp-menuitem-_context_undoCloseTab,
+    #treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_undoCloseTab,
     #tabcenter-reborn_ariasuni-menuitem-_contextMenuUndoCloseTab,
     #sidebartabs_asamuzak_jp-menuitem-_undoCloseTab {
       --menuitem-image: url("../icons/undo.svg");
