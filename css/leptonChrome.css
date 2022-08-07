@@ -6496,6 +6496,10 @@
     box-shadow: -1px 0px 15px -10px var(--uc-sidebar-shadow-color);
   }
 
+  #sidebar {
+    display: block;
+  }
+
   #sidebar-splitter {
     display: none !important;
   }
@@ -6505,22 +6509,30 @@
     direction: rtl;
   }
 
+  #sidebar-header {
+    background-color: var(--sidebar-background-color) !important;
+    color: var(--sidebar-text-color) !important;
+    overflow: hidden;
+  }
+
   @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
-    #sidebar-box {
+    #sidebar-box,
+    #sidebar {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
+    }
+
+    #sidebar-box {
       margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
-      will-change: transform;
+      will-change: padding-inline;
     }
     #sidebar-box:not([hidden="true"]) {
-      transform: translateX(var(--uc-sidebar-activate-width));
-    }
-    #sidebar-box[positionend="true"]:not([hidden="true"]) {
-      transform: translateX(var(--uc-sidebar-activate-width-reverse));
+      padding-inline-start: var(--uc-sidebar-activate-width);
     }
     @media (prefers-reduced-motion: no-preference) {
       #sidebar-box {
-        transition: transform 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out, visibility 0s linear !important;
+        transition: padding-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
+          visibility 0s linear !important;
       }
     }
   }
@@ -7102,12 +7114,6 @@
   }
 
   @supports -moz-bool-pref("userChrome.sidebar.overlap") {
-    #sidebar-header {
-      background-color: var(--sidebar-background-color) !important;
-      color: var(--sidebar-text-color) !important;
-      overflow: hidden;
-    }
-
     #sidebar {
       min-width: var(--uc-sidebar-width) !important;
       max-width: var(--uc-sidebar-width) !important;
@@ -7120,23 +7126,12 @@
     }
 
     :root[inFullscreen="true"] #sidebar-box {
-      will-change: transform;
-    }
-    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]) {
       margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
-      transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
+      padding-inline-start: var(--uc-sidebar-fullscreen-width);
+      will-change: padding-inline-start;
     }
-    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]):hover {
-      transform: translateX(var(--uc-sidebar-activate-width)) !important;
-    }
-    :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
-      margin-inline-end: var(--uc-sidebar-activate-width-reverse) !important;
-      transform: translateX(
-        calc(var(--uc-sidebar-activate-width) + -1 * var(--uc-sidebar-fullscreen-width))
-      ) !important;
-    }
-    :root[inFullscreen="true"] #sidebar-box[positionend="true"]:hover {
-      transform: translateX(0) !important;
+    :root[inFullscreen="true"] #sidebar-box:hover {
+      padding-inline-start: var(--uc-sidebar-activate-width);
     }
     :root[inFullscreen="true"] #sidebar-box #sidebar-header,
     :root[inFullscreen="true"] #sidebar-box #sidebar {
@@ -7155,7 +7150,7 @@
       }
 
       :root[inFullscreen="true"] #sidebar-box {
-        transition: transform 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+        transition: padding-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
       }
       :root[inFullscreen="true"] #sidebar-box:hover {
         transition-delay: 0ms !important;

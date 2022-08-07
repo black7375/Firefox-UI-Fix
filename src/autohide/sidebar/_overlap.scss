@@ -1,9 +1,3 @@
-#sidebar-header {
-  background-color: var(--sidebar-background-color) !important;
-  color: var(--sidebar-text-color) !important;
-  overflow: hidden;
-}
-
 #sidebar {
   min-width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
@@ -17,23 +11,12 @@
 }
 
 :root[inFullscreen="true"] #sidebar-box {
-  will-change: transform;
+  margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+  padding-inline-start: var(--uc-sidebar-fullscreen-width);
+  will-change: padding-inline-start;
 
-  &:not([positionend="true"]) {
-    margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
-    transform: translateX(var(--uc-sidebar-fullscreen-width)) !important;
-
-    &:hover {
-      transform: translateX(var(--uc-sidebar-activate-width)) !important;
-    }
-  }
-  &[positionend="true"] {
-    margin-inline-end: var(--uc-sidebar-activate-width-reverse) !important;
-    transform: translateX(calc(var(--uc-sidebar-activate-width) + (-1 * var(--uc-sidebar-fullscreen-width)))) !important;
-
-    &:hover {
-      transform: translateX(0) !important;
-    }
+  &:hover {
+    padding-inline-start: var(--uc-sidebar-activate-width);
   }
 
   #sidebar-header,
@@ -55,7 +38,7 @@
   }
 
   :root[inFullscreen="true"] #sidebar-box {
-    transition: transform 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+    transition: padding-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
 
     &:hover {
       transition-delay: 0ms !important;
