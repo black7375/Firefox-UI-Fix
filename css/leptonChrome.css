@@ -133,6 +133,12 @@
     /* Legacy: v96 */
     --lwt-tabs-border-color: rgba(0, 0, 0, 0.3);
   }
+
+  /*= Findbar Border Color =====================================================*/
+  html|input.findbar-textbox {
+    border: 1px solid var(--input-border-color, var(--toolbar-field-border-color, ThreeDShadow)) !important;
+    /* Original: 1px solid var(--input-border-color, var(--toolbar-field-border-color)) */
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -2858,6 +2864,9 @@
       text-decoration: line-through;
       text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
     }
+    #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTarget:hover {
+      text-decoration: none;
+    }
     #downloadsListBox .download-state:not([exists], [state="0"]) .downloadTypeIcon {
       filter: grayscale(100%) !important;
     }
@@ -3253,7 +3262,7 @@
       }
     }
     .tabbrowser-tab:not([last-visible-tab]) {
-      margin-inline-end: -0.5px !important;
+      margin-inline-end: -1px !important;
     }
   }
   @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
@@ -4614,7 +4623,7 @@
     position: absolute;
     /* Position */
     top: 50%;
-    transform: translateY(calc(-50% + 1px)) !important;
+    transform: translateY(-50%) !important;
     /* Bar shape */
     width: 0px;
     height: 100%;
@@ -4632,6 +4641,7 @@
     .tabbrowser-tab[visuallyselected] .tab-background::after,
     .tabbrowser-tab[beforeselected-visible] .tab-background::after {
       --lwt-background-tab-separator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
+      opacity: 1;
     }
   }
   @supports not -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
@@ -5954,7 +5964,8 @@
     list-style-image: url("chrome://browser/skin/window.svg");
   }
 
-  #appMenuRestoreSession {
+  #appMenuRestoreSession,
+  #appMenu-restoreSession {
     list-style-image: url("../icons/restore-session.svg");
   }
 
