@@ -30,7 +30,9 @@
 
 /*= Container Tab - Color line at icon's bottom ==============================*/
 @include Option("userChrome.tab.container") {
-  @import "container_tab";
+  @include NotOption("userChrome.tabbar.as_titlebar") {
+    @import "container_tab";
+  }
 }
 
 /*= Crashed Tab - Don't show Favicons ========================================*/
