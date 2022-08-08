@@ -46,7 +46,7 @@
   }
 }
 
-@mixin OneLinerNabarContent() {
+@mixin OneLinerNavbarContent() {
   @include NotOption("userChrome.tabbar.one_liner") {
     @content;
   }
@@ -61,7 +61,7 @@
 
 @mixin OneLinerNavbar() {
   @include Option("userChrome.autohide.navbar") {
-    @include OneLinerNabarContent() {
+    @include OneLinerNavbarContent() {
       @content;
     }
   }
