@@ -6570,6 +6570,13 @@
     }
   }
 }
+/*= Centered - URL Bar =======================================================*/
+@supports -moz-bool-pref("userChrome.centered.urlbar") {
+  #urlbar:not([focused]) #urlbar-input,
+  #urlbar:not([focused]) .urlbar-input {
+    text-align: center !important;
+  }
+}
 /*= Centered - Bookmark Bar ==================================================*/
 @supports -moz-bool-pref("userChrome.centered.bookmarkbar") {
   #PlacesToolbarItems {

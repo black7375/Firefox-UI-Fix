@@ -95,6 +95,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.centered.tab",                        true);
 // user_pref("userChrome.centered.tab.label",                  true);
+// user_pref("userChrome.centered.urlbar",                     true);
 // user_pref("userChrome.centered.bookmarkbar",                true);
 
 // user_pref("userChrome.rounding.square_button",              true);
