@@ -8,7 +8,9 @@
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
 
     @include Option("userChrome.hidden.tabbar") {
-      --uc-tabbar-height: 0px;
+      @include OneLinerNavbarContent() {
+        --uc-tabbar-height: 0px;
+      }
     }
     @include Option("userChrome.hidden.navbar") {
       --uc-navbar-height: 0px;

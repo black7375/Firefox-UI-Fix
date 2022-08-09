@@ -4633,7 +4633,7 @@
       }
     }
     @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
-      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.hidden.tabbar") {
         @media screen and (max-width: 1100px) {
           /*= Windows Control - Move to toolbar ========================================*/
           /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
@@ -4983,7 +4983,7 @@
     }
     @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       @media screen and (max-width: 1100px) {
-        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
+        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") or not -moz-bool-pref("userChrome.hidden.tabbar") {
           :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
             /* Don't need pre spacer */
             --uc-window-drag-space-pre: 0px;
@@ -5028,7 +5028,7 @@
       }
     }
     @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
-      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.hidden.tabbar") {
         @media screen and (max-width: 1100px) {
           #nav-bar {
             border-inline-start-width: var(--uc-window-drag-space-pre);
@@ -5092,7 +5092,7 @@
         }
       }
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
-        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.hidden.tabbar") {
           @media screen and (max-width: 1100px) {
             :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
               border-inline-start-width: var(--uc-widow-control-space);
@@ -6713,8 +6713,19 @@
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
   }
   @supports -moz-bool-pref("userChrome.hidden.tabbar") {
-    :root {
-      --uc-tabbar-height: 0px;
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+      :root {
+        --uc-tabbar-height: 0px;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+        @media screen and (max-width: 1100px) {
+          :root {
+            --uc-tabbar-height: 0px;
+          }
+        }
+      }
     }
   }
   @supports -moz-bool-pref("userChrome.hidden.navbar") {
@@ -7215,21 +7226,28 @@
   }
 }
 /** Hidden ********************************************************************/
-@supports -moz-bool-pref("userChrome.hidden.tabbar") {
-  #TabsToolbar {
-    display: none !important;
+@supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+  @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+    #TabsToolbar {
+      display: none !important;
+    }
   }
-}
-@supports -moz-bool-pref("userChrome.hidden.navbar") {
-  @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+  @supports -moz-bool-pref("userChrome.hidden.navbar") {
     #nav-bar {
       visibility: collapse;
       /* display: none is not work */
     }
   }
-  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
-    @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
-      @media screen and (max-width: 1100px) {
+}
+@supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+    @media screen and (max-width: 1100px) {
+      @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+        #TabsToolbar {
+          display: none !important;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.hidden.navbar") {
         #nav-bar {
           visibility: collapse;
           /* display: none is not work */

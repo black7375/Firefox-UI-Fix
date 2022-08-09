@@ -1,11 +1,11 @@
-@include Option("userChrome.hidden.tabbar") {
-  #TabsToolbar {
-    display: none !important;
+@include OneLinerNavbarContent() {
+  @include Option("userChrome.hidden.tabbar") {
+    #TabsToolbar {
+      display: none !important;
+    }
   }
-}
 
-@include Option("userChrome.hidden.navbar") {
-  @include OneLinerNavbarContent() {
+  @include Option("userChrome.hidden.navbar") {
     #nav-bar {
       visibility: collapse; /* display: none is not work */
     }

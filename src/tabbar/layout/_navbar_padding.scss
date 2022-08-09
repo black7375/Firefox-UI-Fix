@@ -46,7 +46,7 @@
       @content;
     }
     @include NotOption("userChrome.tabbar.one_liner.combine_navbar") {
-      @include Option("userChrome.tabbar.on_bottom") {
+      @include Option("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
         @media screen and (max-width: 1100px) {
           @content;
         }
@@ -74,7 +74,7 @@
     }
     @include Option("userChrome.tabbar.one_liner.responsive") {
       @media screen and (max-width: 1100px) {
-        @include NotOption("userChrome.tabbar.on_bottom") {
+        @include NotOption("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
           @include _remove_spacer_pre;
           @include _remove_spacer_post;
         }
