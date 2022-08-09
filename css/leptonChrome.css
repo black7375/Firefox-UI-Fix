@@ -7256,6 +7256,11 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.hidden.tab_icon") {
+  .tabbrowser-tab:not([pinned="true"]) .tab-icon-stack {
+    display: none;
+  }
+}
 @supports -moz-bool-pref("userChrome.hidden.sidebar_header") {
   @supports not -moz-bool-pref("userChrome.hidden.sidebar_header.vertical_tab_only") {
     #sidebar-header {
