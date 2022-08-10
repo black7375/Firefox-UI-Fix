@@ -154,6 +154,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userContent.page.proton_color.dark_blue_accent", true);
 // user_pref("userContent.page.proton_color.system_accent",    true);
+// user_pref("userContent.page.monospace",                     true);
 
 // == Theme Default Settings ===================================================
 // -- User Chrome --------------------------------------------------------------
