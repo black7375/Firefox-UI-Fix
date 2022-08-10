@@ -51,6 +51,11 @@
   @import "theme/proton_chrome";
 }
 
+/* Monospace ******************************************************************/
+@include Option("userChrome.theme.monospace") {
+  @import "theme/monospace";
+}
+
 /** Decoration ****************************************************************/
 @import "decoration/index";
 

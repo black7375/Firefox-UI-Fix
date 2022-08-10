@@ -2771,6 +2771,12 @@
     }
   }
 }
+/* Monospace ******************************************************************/
+@supports -moz-bool-pref("userChrome.theme.monospace") {
+  * {
+    font-family: -moz-fixed;
+  }
+}
 /** Decoration ****************************************************************/
 /*= Cursor Types =============================================================*/
 @supports -moz-bool-pref("userChrome.decoration.cursor") {
