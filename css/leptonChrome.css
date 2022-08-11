@@ -5046,6 +5046,18 @@
   }
   @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
     @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
+          #nav-bar {
+            margin-inline-start: var(--uc-window-drag-space-pre) !important;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
+          #nav-bar {
+            margin-inline-end: var(--uc-widow-control-space) !important;
+          }
+        }
+      }
       @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         @media screen and (min-width: 1100px) {
           @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
@@ -5110,6 +5122,18 @@
     }
     @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+          @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
+            :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+              margin-inline-start: var(--uc-window-drag-space-pre, 0px) !important;
+            }
+          }
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
+            :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+              margin-inline-end: var(--uc-widow-control-space, 0px) !important;
+            }
+          }
+        }
         @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @media screen and (min-width: 1100px) {
             @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {

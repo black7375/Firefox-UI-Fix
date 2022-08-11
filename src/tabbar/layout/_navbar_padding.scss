@@ -57,6 +57,9 @@
 
 @mixin _oneLiner_navBar_marginGap() {
   @include NotOption("userChrome.tabbar.one_liner.combine_navbar") {
+    @include NotOption("userChrome.tabbar.one_liner.responsive") {
+      @content;
+    }
     @include Option("userChrome.tabbar.one_liner.responsive") {
       @media screen and (min-width: 1100px) {
         @content;
