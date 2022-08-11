@@ -1,8 +1,14 @@
 :root {
-  --uc-navbar-size: 40vw;
-  --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
+  --uc-navbar-width-origin: 40vw;
+  --uc-navbar-width: var(--uc-navbar-width-origin);
+  --uc-tabbar-width: calc(100vw - var(--uc-navbar-width));
 
-  --uc-navbar-margin: calc(var(--uc-navbar-size) + var(--uc-navbar-gap, 0px));
+  --uc-navbar-margin: calc(var(--uc-navbar-width) + var(--uc-navbar-gap, 0px));
+
+  @include Option("userChrome.autohide.fill_urlbar") {
+    --uc-navbar-width-origin: 50vw;
+    --uc-navbar-width: 24em;
+  }
 }
 
 #nav-bar {
@@ -79,7 +85,7 @@ toolbarspring.chromeclass-toolbar-additional {
     margin-inline-start: var(--uc-navbar-margin) !important;
   }
   #nav-bar {
-    margin-inline-end: var(--uc-tabbar-size) !important;
+    margin-inline-end: var(--uc-tabbar-width) !important;
   }
   .titlebar-spacer[type="pre-tabs"] {
     display: none !important;
@@ -90,7 +96,7 @@ toolbarspring.chromeclass-toolbar-additional {
     margin-inline-end: var(--uc-navbar-margin) !important;
   }
   #nav-bar {
-    margin-inline-start: var(--uc-tabbar-size) !important;
+    margin-inline-start: var(--uc-tabbar-width) !important;
   }
   .titlebar-spacer[type="post-tabs"] {
     display: none !important;

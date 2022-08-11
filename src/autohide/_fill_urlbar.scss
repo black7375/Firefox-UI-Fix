@@ -1,0 +1,30 @@
+#nav-bar:not(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
+  -moz-box-ordinal-group: 0;
+  min-width: calc(var(--uc-navbar-width, 100vw) - ((2 * var(--urlbar-margin-inline)) + var(--uc-window-drag-space-pre, 0px) + var(--uc-navbar-gap, 0px))) !important;
+}
+
+@include Option("userChrome.tabbar.one_liner") {
+  #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) {
+    --uc-tabbar-width: calc(100vw - var(--uc-navbar-width-origin));
+  }
+}
+
+@include Animate {
+  @include OneLiner {
+    #nav-bar {
+      transition: margin-inline 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+    }
+    #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) {
+      transition-delay: 0s !important;
+    }
+  }
+
+  @include OneLinerNavbarContent {
+    #urlbar-container {
+      transition: min-width 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+    }
+    #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
+      transition-delay: 0s !important;
+    }
+  }
+}

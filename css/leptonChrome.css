@@ -4144,9 +4144,16 @@
 @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
   @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
     :root {
-      --uc-navbar-size: 40vw;
-      --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
-      --uc-navbar-margin: calc(var(--uc-navbar-size) + var(--uc-navbar-gap, 0px));
+      --uc-navbar-width-origin: 40vw;
+      --uc-navbar-width: var(--uc-navbar-width-origin);
+      --uc-tabbar-width: calc(100vw - var(--uc-navbar-width));
+      --uc-navbar-margin: calc(var(--uc-navbar-width) + var(--uc-navbar-gap, 0px));
+    }
+    @supports -moz-bool-pref("userChrome.autohide.fill_urlbar") {
+      :root {
+        --uc-navbar-width-origin: 50vw;
+        --uc-navbar-width: 24em;
+      }
     }
 
     #nav-bar {
@@ -4223,7 +4230,7 @@
       }
 
       #nav-bar {
-        margin-inline-end: var(--uc-tabbar-size) !important;
+        margin-inline-end: var(--uc-tabbar-width) !important;
       }
 
       .titlebar-spacer[type="pre-tabs"] {
@@ -4236,7 +4243,7 @@
       }
 
       #nav-bar {
-        margin-inline-start: var(--uc-tabbar-size) !important;
+        margin-inline-start: var(--uc-tabbar-width) !important;
       }
 
       .titlebar-spacer[type="post-tabs"] {
@@ -4247,9 +4254,16 @@
   @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
     @media screen and (min-width: 1100px) {
       :root {
-        --uc-navbar-size: 40vw;
-        --uc-tabbar-size: calc(100vw - var(--uc-navbar-size));
-        --uc-navbar-margin: calc(var(--uc-navbar-size) + var(--uc-navbar-gap, 0px));
+        --uc-navbar-width-origin: 40vw;
+        --uc-navbar-width: var(--uc-navbar-width-origin);
+        --uc-tabbar-width: calc(100vw - var(--uc-navbar-width));
+        --uc-navbar-margin: calc(var(--uc-navbar-width) + var(--uc-navbar-gap, 0px));
+      }
+      @supports -moz-bool-pref("userChrome.autohide.fill_urlbar") {
+        :root {
+          --uc-navbar-width-origin: 50vw;
+          --uc-navbar-width: 24em;
+        }
       }
 
       #nav-bar {
@@ -4326,7 +4340,7 @@
         }
 
         #nav-bar {
-          margin-inline-end: var(--uc-tabbar-size) !important;
+          margin-inline-end: var(--uc-tabbar-width) !important;
         }
 
         .titlebar-spacer[type="pre-tabs"] {
@@ -4339,7 +4353,7 @@
         }
 
         #nav-bar {
-          margin-inline-start: var(--uc-tabbar-size) !important;
+          margin-inline-start: var(--uc-tabbar-width) !important;
         }
 
         .titlebar-spacer[type="post-tabs"] {
@@ -7251,6 +7265,67 @@
       }
       :root[inFullscreen="true"] #sidebar-box:hover {
         transition-delay: 0ms !important;
+      }
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.autohide.fill_urlbar") {
+  #nav-bar:not(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
+    -moz-box-ordinal-group: 0;
+    min-width: calc(
+      var(--uc-navbar-width, 100vw) -
+        (2 * var(--urlbar-margin-inline) + var(--uc-window-drag-space-pre, 0px) + var(--uc-navbar-gap, 0px))
+    ) !important;
+  }
+
+  @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+    #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) {
+      --uc-tabbar-width: calc(100vw - var(--uc-navbar-width-origin));
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+      @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+        #nav-bar {
+          transition: margin-inline 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+        }
+
+        #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) {
+          transition-delay: 0s !important;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+        @media screen and (prefers-reduced-motion: no-preference) and (min-width: 1100px) {
+          #nav-bar {
+            transition: margin-inline 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+          }
+
+          #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) {
+            transition-delay: 0s !important;
+          }
+        }
+      }
+    }
+    @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+      #urlbar-container {
+        transition: min-width 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+      }
+
+      #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
+        transition-delay: 0s !important;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+        @media screen and (prefers-reduced-motion: no-preference) and (max-width: 1100px) {
+          #urlbar-container {
+            transition: min-width 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+          }
+
+          #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
+            transition-delay: 0s !important;
+          }
+        }
       }
     }
   }

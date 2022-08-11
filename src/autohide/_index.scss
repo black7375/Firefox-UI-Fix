@@ -29,3 +29,7 @@
 }
 
 @import "sidebar";
+
+@include Option("userChrome.autohide.fill_urlbar") {
+  @import "fill_urlbar";
+}
