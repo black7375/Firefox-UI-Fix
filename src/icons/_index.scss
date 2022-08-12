@@ -1,0 +1,33 @@
+/** Library - Icons Replace ***************************************************/
+@include Option("userChrome.icon.library") {
+  @import "../library/chrome";
+}
+
+/** Panel - Icons *************************************************************/
+@include Option("userChrome.icon.panel") {
+  @import "layout/panel";
+  @import "panel";
+}
+
+/** Menu - Icons Layout *******************************************************/
+@include Option("userChrome.icon.menu") {
+  @import "layout/menu";
+  @import "layout/bookmark_menu";
+
+  @include Option("userChrome.icon.context_menu") {
+    @import "context_menu";
+  }
+  @include Option("userChrome.icon.global_menubar") {
+    @import "global_menubar";
+  }
+  @include Option("userChrome.icon.global_menu") {
+    @import "global_menu";
+  }
+}
+
+/** Libray Menu ***************************************************************/
+@include Option("userChrome.icon.library") {
+  @include Option("userChrome.icon.menu") {
+    @import "library";
+  }
+}

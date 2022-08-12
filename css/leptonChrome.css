@@ -355,7 +355,8 @@
     box-shadow: none !important;
   }
 }
-/** System Default Theme ******************************************************/
+/** Theme *********************************************************************/
+/*= System Default Theme =====================================================*/
 @supports -moz-bool-pref("userChrome.theme.system_default") {
   /*= Common - URL Bar focus color =============================================*/
   @media (-moz-windows-accent-color-in-titlebar), (-moz-gtk-csd-available) {
@@ -1044,12 +1045,7 @@
     }
   }
 }
-/** Fully Theme Mode **********************************************************/
-/* Default Themes
-     https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json
-     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/light/manifest.json
-     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
-  */
+/*= Fully Theme Mode =========================================================*/
 @supports -moz-bool-pref("userChrome.theme.proton_color") {
   /*= Default Colors - Hard Coded ==============================================*/
   /* Based on chrome://global/skin/in-content/common.css */
@@ -1491,7 +1487,7 @@
     /* Original: hsla(0,0%,80%,.5), match arrowpanel-dimmed-further */
   }
 }
-/* Fully Dark Mode ************************************************************/
+/*= Fully Dark Mode ==========================================================*/
 @supports -moz-bool-pref("userChrome.theme.fully_dark") {
   /*= Remove White Flash =======================================================*/
   #tabbrowser-tabbox,
@@ -1571,7 +1567,7 @@
     }
   }
 }
-/* Proton Theme Mode **********************************************************/
+/*= Proton Theme Mode ========================================================*/
 @supports -moz-bool-pref("userChrome.theme.proton_chrome") {
   /*= Proton Commons ===========================================================*/
   @-moz-document url("chrome://global/content/commonDialog.xhtml"),
@@ -2771,7 +2767,7 @@
     }
   }
 }
-/* Monospace ******************************************************************/
+/*= Monospace ================================================================*/
 @supports -moz-bool-pref("userChrome.theme.monospace") {
   * {
     font-family: -moz-fixed;
@@ -7424,6 +7420,7 @@
     }
   }
 }
+/** Icons *********************************************************************/
 /** Library - Icons Replace ***************************************************/
 @supports -moz-bool-pref("userChrome.icon.library") {
   /*= Standard Folder - More Visible ===========================================*/
@@ -9921,7 +9918,7 @@
     }
   }
 }
-/*= Waterfox =================================================================*/
+/** Waterfox ******************************************************************/
 @supports -moz-bool-pref("userChrome.icon.panel") {
   #appMenu-restart-button {
     list-style-image: url("../icons/refresh-cw.svg") !important;
@@ -9960,7 +9957,7 @@
     background-color: var(--button-active-bgcolor);
   }
 }
-/*= Tor Browser ==============================================================*/
+/** Tor Browser ***************************************************************/
 @supports -moz-bool-pref("userChrome.icon.panel") {
   #appMenuNewIdentity {
     list-style-image: url("chrome://browser/skin/new_identity.svg");
