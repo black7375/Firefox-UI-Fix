@@ -127,6 +127,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.tabbar.on_bottom",                    true);
 // user_pref("userChrome.tabbar.on_bottom.above_bookmark",     true); // Need on_bottom
 // user_pref("userChrome.tabbar.on_bottom.menubar_on_top",     true); // Need on_bottom
+// user_pref("userChrome.tabbar.on_bottom.hidden_single_tab",  true); // Need on_bottom
 // user_pref("userChrome.tabbar.one_liner",                    true);
 // user_pref("userChrome.tabbar.one_liner.combine_navbar",     true); // Need one_liner
 // user_pref("userChrome.tabbar.one_liner.tabbar_first",       true); // Need one_liner

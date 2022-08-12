@@ -36,6 +36,25 @@ See the above repository for updates as well as full license text. */
   }
 }
 
+/*= Tabbar - Hidden at singgle tab ===========================================*/
+@include Option("userChrome.tabbar.on_bottom.hidden_single_tab") {
+  #tabbrowser-tabs .tabbrowser-tab:only-of-type {
+    display: none !important;
+  }
+
+  #tabbrowser-tabs,
+  #tabbrowser-tabs arrowscrollbox {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  @include Animate {
+    #tabbrowser-tabs {
+      transition: height 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+    }
+  }
+}
+
 /*= Menubar - Always on top ==================================================*/
 @include Option("userChrome.tabbar.on_bottom.menubar_on_top") {
   /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
