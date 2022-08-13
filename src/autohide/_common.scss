@@ -27,10 +27,21 @@
     position: relative;
     z-index: 2;
   }
+  #navigator-toolbox:not(:hover) {
+    animation: 1s keepfront;
+  }
+  @keyframes keepfront {
+    from {
+      z-index: 3;
+    }
+    to {
+      z-index: 3;
+    }
+  }
 
-  #TabsToolbar {
+  #sidebar-box:is(:hover, :focus-within) {
     position: relative;
-    z-index: 3;
+    z-index: 2 !important;
   }
 
   @include Option("userChrome.autohide.toolbar_overlap") {

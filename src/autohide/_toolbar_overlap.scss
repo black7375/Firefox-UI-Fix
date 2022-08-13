@@ -7,7 +7,7 @@
       transition: margin-top 1s ease,
                   margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
 
-      &:hover {
+      &:is(:hover, :focus-within) {
         transition-delay: 0s !important;
       }
 
@@ -19,13 +19,13 @@
     @include NotOption("userChrome.decoration.animate") {
       transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
 
-      &:hover {
+      &:is(:hover, :focus-within) {
         transition-delay: 0s !important;
       }
     }
   }
 
-  &:hover {
+  &:is(:hover, :focus-within) {
     @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar") {
       @include Option("userChrome.autohide.tabbar", "userChrome.tabbar.one_liner") {
         --uc-toolbar-height: var(--uc-tabbar-height);

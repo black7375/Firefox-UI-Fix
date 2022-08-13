@@ -3,7 +3,7 @@
   opacity: 0;
 }
 
-#urlbar-container:hover #page-action-buttons > .urlbar-page-action,
+#urlbar-container:is(:hover, :focus-within) #page-action-buttons > .urlbar-page-action,
 .urlbar-page-action[open],
 .urlbar-page-action[open] ~ .urlbar-page-action {
   margin-inline-end: 0px !important;
@@ -21,7 +21,7 @@
                   background-color 2.5s var(--animation-easing-function) !important;
     }
   }
-  #urlbar-container:hover #page-action-buttons > .urlbar-page-action,
+  #urlbar-container:is(:hover, :focus-within) #page-action-buttons > .urlbar-page-action,
   .urlbar-page-action[open],
   .urlbar-page-action[open] ~ .urlbar-page-action{
     transition-delay: 0s !important;

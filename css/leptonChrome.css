@@ -6703,7 +6703,7 @@
     opacity: 0;
   }
 
-  #urlbar-container:hover #page-action-buttons > .urlbar-page-action,
+  #urlbar-container:is(:hover, :focus-within) #page-action-buttons > .urlbar-page-action,
   .urlbar-page-action[open],
   .urlbar-page-action[open] ~ .urlbar-page-action {
     margin-inline-end: 0px !important;
@@ -6722,7 +6722,7 @@
       }
     }
 
-    #urlbar-container:hover #page-action-buttons > .urlbar-page-action,
+    #urlbar-container:is(:hover, :focus-within) #page-action-buttons > .urlbar-page-action,
     .urlbar-page-action[open],
     .urlbar-page-action[open] ~ .urlbar-page-action {
       transition-delay: 0s !important;
@@ -6753,7 +6753,7 @@
       transition-duration: 0.2s;
       transition-delay: 600ms;
     }
-    .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]):hover {
+    .tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]):is(:hover, :focus-within) {
       transition-delay: 0s;
     }
     @supports not -moz-bool-pref("userChrome.autohide.tab.opacity") {
@@ -6823,9 +6823,21 @@
     z-index: 2;
   }
 
-  #TabsToolbar {
+  #navigator-toolbox:not(:hover) {
+    animation: 1s keepfront;
+  }
+
+  @keyframes keepfront {
+    from {
+      z-index: 3;
+    }
+    to {
+      z-index: 3;
+    }
+  }
+  #sidebar-box:is(:hover, :focus-within) {
     position: relative;
-    z-index: 3;
+    z-index: 2 !important;
   }
 
   @supports -moz-bool-pref("userChrome.autohide.toolbar_overlap") {
@@ -6839,7 +6851,7 @@
           transition: margin-top 1s ease,
             margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
         }
-        #navigator-toolbox:hover {
+        #navigator-toolbox:is(:hover, :focus-within) {
           transition-delay: 0s !important;
         }
         #navigator-toolbox[inFullscreen="true"] {
@@ -6851,19 +6863,19 @@
         #navigator-toolbox {
           transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
         }
-        #navigator-toolbox:hover {
+        #navigator-toolbox:is(:hover, :focus-within) {
           transition-delay: 0s !important;
         }
       }
     }
     @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") {
       @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.tabbar.one_liner") {
-        #navigator-toolbox:hover {
+        #navigator-toolbox:is(:hover, :focus-within) {
           --uc-toolbar-height: var(--uc-tabbar-height);
         }
         @supports not -moz-bool-pref("userChrome.autohide.navbar") {
           @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-            #navigator-toolbox:hover {
+            #navigator-toolbox:is(:hover, :focus-within) {
               --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-bm-height));
             }
           }
@@ -6871,12 +6883,12 @@
         @supports -moz-bool-pref("userChrome.autohide.navbar") {
           @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
             @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-              #navigator-toolbox:hover {
+              #navigator-toolbox:is(:hover, :focus-within) {
                 --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
               }
             }
             @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-              #navigator-toolbox:hover {
+              #navigator-toolbox:is(:hover, :focus-within) {
                 --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
               }
             }
@@ -6885,12 +6897,12 @@
             @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
               @media screen and (max-width: 1100px) {
                 @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-                  #navigator-toolbox:hover {
+                  #navigator-toolbox:is(:hover, :focus-within) {
                     --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
                   }
                 }
                 @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-                  #navigator-toolbox:hover {
+                  #navigator-toolbox:is(:hover, :focus-within) {
                     --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height) + var(--uc-bm-height));
                   }
                 }
@@ -6903,7 +6915,7 @@
     @supports not -moz-bool-pref("userChrome.autohide.tabbar") {
       @supports not -moz-bool-pref("userChrome.autohide.navbar") {
         @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-          #navigator-toolbox:hover {
+          #navigator-toolbox:is(:hover, :focus-within) {
             --uc-toolbar-height: var(--uc-bm-height);
           }
         }
@@ -6912,12 +6924,12 @@
         @supports -moz-bool-pref("userChrome.autohide.navbar") {
           @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
             @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-              #navigator-toolbox:hover {
+              #navigator-toolbox:is(:hover, :focus-within) {
                 --uc-toolbar-height: var(--uc-navbar-height);
               }
             }
             @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-              #navigator-toolbox:hover {
+              #navigator-toolbox:is(:hover, :focus-within) {
                 --uc-toolbar-height: calc(var(--uc-navbar-height) + var(--uc-bm-height));
               }
             }
@@ -6926,12 +6938,12 @@
             @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
               @media screen and (max-width: 1100px) {
                 @supports not -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-                  #navigator-toolbox:hover {
+                  #navigator-toolbox:is(:hover, :focus-within) {
                     --uc-toolbar-height: var(--uc-navbar-height);
                   }
                 }
                 @supports -moz-bool-pref("userChrome.autohide.bookmarkbar") {
-                  #navigator-toolbox:hover {
+                  #navigator-toolbox:is(:hover, :focus-within) {
                     --uc-toolbar-height: calc(var(--uc-navbar-height) + var(--uc-bm-height));
                   }
                 }
@@ -7216,7 +7228,7 @@
       will-change: min-width, max-width;
     }
 
-    #sidebar-box:hover > #sidebar {
+    #sidebar-box:is(:hover, :focus-within) > #sidebar {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
     }
@@ -7226,7 +7238,7 @@
       padding-inline-start: var(--uc-sidebar-fullscreen-width);
       will-change: padding-inline-start;
     }
-    :root[inFullscreen="true"] #sidebar-box:hover {
+    :root[inFullscreen="true"] #sidebar-box:is(:hover, :focus-within) {
       padding-inline-start: var(--uc-sidebar-activate-width);
     }
     :root[inFullscreen="true"] #sidebar-box #sidebar-header,
@@ -7241,14 +7253,14 @@
         transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
       }
 
-      #sidebar-box:hover > #sidebar {
+      #sidebar-box:is(:hover, :focus-within) > #sidebar {
         transition-delay: 0ms !important;
       }
 
       :root[inFullscreen="true"] #sidebar-box {
         transition: padding-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
       }
-      :root[inFullscreen="true"] #sidebar-box:hover {
+      :root[inFullscreen="true"] #sidebar-box:is(:hover, :focus-within) {
         transition-delay: 0ms !important;
       }
     }
@@ -7261,7 +7273,7 @@
       overflow: hidden;
       will-change: min-width, max-width;
     }
-    #sidebar-box:hover {
+    #sidebar-box:is(:hover, :focus-within) {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
     }
@@ -7270,14 +7282,14 @@
       margin-inline-start: var(--uc-sidebar-fullscreen-margin) !important;
       will-change: margin-inline-start;
     }
-    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]):hover {
+    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]):is(:hover, :focus-within) {
       margin-inline-start: 0 !important;
     }
     :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
       margin-inline-end: var(--uc-sidebar-fullscreen-margin) !important;
       will-change: margin-inline-end;
     }
-    :root[inFullscreen="true"] #sidebar-box[positionend="true"]:hover {
+    :root[inFullscreen="true"] #sidebar-box[positionend="true"]:is(:hover, :focus-within) {
       margin-inline-end: 0 !important;
     }
 
@@ -7285,7 +7297,7 @@
       #sidebar-box {
         transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
       }
-      #sidebar-box:hover {
+      #sidebar-box:is(:hover, :focus-within) {
         transition-delay: 0ms !important;
       }
 
@@ -7295,7 +7307,7 @@
       :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
         transition-property: margin-inline-end !important;
       }
-      :root[inFullscreen="true"] #sidebar-box:hover {
+      :root[inFullscreen="true"] #sidebar-box:is(:hover, :focus-within) {
         transition-delay: 0ms !important;
       }
     }

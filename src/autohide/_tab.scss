@@ -15,7 +15,7 @@
     transition-timing-function: var(--animation-easing-function);
     transition-duration: 0.2s;
     transition-delay: 600ms;
-    &:hover {
+    &:is(:hover, :focus-within) {
       transition-delay: 0s;
     }
 

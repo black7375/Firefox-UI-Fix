@@ -5,7 +5,7 @@
   will-change: min-width, max-width;
 }
 
-#sidebar-box:hover > #sidebar {
+#sidebar-box:is(:hover, :focus-within) > #sidebar {
   min-width: var(--uc-sidebar-activate-width) !important;
   max-width: var(--uc-sidebar-activate-width) !important;
 }
@@ -15,7 +15,7 @@
   padding-inline-start: var(--uc-sidebar-fullscreen-width);
   will-change: padding-inline-start;
 
-  &:hover {
+  &:is(:hover, :focus-within) {
     padding-inline-start: var(--uc-sidebar-activate-width);
   }
 
@@ -33,14 +33,14 @@
     transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
   }
 
-  #sidebar-box:hover > #sidebar {
+  #sidebar-box:is(:hover, :focus-within) > #sidebar {
     transition-delay: 0ms !important;
   }
 
   :root[inFullscreen="true"] #sidebar-box {
     transition: padding-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
 
-    &:hover {
+    &:is(:hover, :focus-within) {
       transition-delay: 0ms !important;
     }
   }
