@@ -52,6 +52,12 @@
   }
 }
 
+@include Option("userChrome.hidden.bookmarkbar_icon") {
+  #PlacesToolbarItems .bookmark-item > .toolbarbutton-icon {
+    display: none;
+  }
+}
+
 @include Option("userChrome.hidden.selected_tab") {
   .tabbrowser-tab[selected="true"] {
     -moz-box-flex: 0 !important;
