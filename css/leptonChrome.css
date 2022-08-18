@@ -6454,7 +6454,7 @@
   .urlbarView-type-icon {
     min-width: 16px !important;
     height: 16px !important;
-    margin-bottom: 0 !important;
+    margin-block: 0 !important;
     margin-inline-start: 0 !important;
   }
 
@@ -6470,8 +6470,9 @@
 }
 /*= Url View - Always show page actions ======================================*/
 @supports -moz-bool-pref("userChrome.urlView.always_show_page_actions") {
-  #pageActionButton {
+  #urlbar:not([breakout-extend="true"]) #pageActionButton {
     display: block !important;
+    visibility: visible !important;
   }
 }
 /** Panel UI ******************************************************************/
