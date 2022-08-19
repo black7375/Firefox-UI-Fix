@@ -37,11 +37,9 @@
 }
 
 @include Option("userChrome.hidden.urlbar_iconbox") {
-  #identity-box[pageproxystate="valid"]
-  #identity-box[pageproxystate="valid"]
   #identity-box[pageproxystate="valid"] {
-    .notSecureText #identity-icon-label,
-    .chromeUI #identity-icon-box,
+    &.notSecureText #identity-icon-label,
+    &.chromeUI #identity-icon-box,
     &.extensionPage #identity-icon-box {
       display: none;
     }
