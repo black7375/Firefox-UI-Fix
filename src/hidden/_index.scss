@@ -50,9 +50,16 @@
   }
 }
 
-@include Option("userChrome.hidden.bookmarkbar_icon") {
-  #PlacesToolbarItems .bookmark-item > .toolbarbutton-icon {
-    display: none;
+#PlacesToolbarItems .bookmark-item {
+  @include Option("userChrome.hidden.bookmarkbar_icon") {
+    > .toolbarbutton-icon {
+      display: none;
+    }
+  }
+  @include Option("userChrome.hidden.bookmarkbar_label") {
+    > .toolbarbutton-text {
+      visibility: collapse; /* display: none is not work */
+    }
   }
 }
 

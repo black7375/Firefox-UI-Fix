@@ -7441,6 +7441,13 @@
     display: none;
   }
 }
+@supports -moz-bool-pref("userChrome.hidden.bookmarkbar_label") {
+  #PlacesToolbarItems .bookmark-item > .toolbarbutton-text {
+    visibility: collapse;
+    /* display: none is not work */
+  }
+}
+
 @supports -moz-bool-pref("userChrome.hidden.selected_tab") {
   .tabbrowser-tab[selected="true"] {
     -moz-box-flex: 0 !important;
