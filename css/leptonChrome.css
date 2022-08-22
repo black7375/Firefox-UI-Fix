@@ -6208,8 +6208,10 @@
 /*= Sound Tab ================================================================*/
 /*= Sound Tab - Hide Label ===================================================*/
 @supports -moz-bool-pref("userChrome.tab.sound_hide_label") {
-  .tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) {
-    display: none !important;
+  @supports not -moz-bool-pref("userChrome.tab.sound_show_label") {
+    .tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) {
+      display: none !important;
+    }
   }
 }
 /*= Sound Tab - Show Label ===================================================*/
