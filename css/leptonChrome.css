@@ -6251,10 +6251,20 @@
     opacity: 1 !important;
   }
 
-  .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
-    transform: translateX(4px);
+  /* Label */
+  @supports not -moz-bool-pref("userChrome.hidden.tab_icon") {
+    .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
+      transform: translateX(4px);
+    }
   }
-
+  @supports -moz-bool-pref("userChrome.hidden.tab_icon") {
+    @supports not -moz-bool-pref("userChrome.hidden.tab_icon.always") {
+      .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+        .tab-label {
+        transform: translateX(4px);
+      }
+    }
+  }
   /* Animate */
   @media (prefers-reduced-motion: no-preference) {
     .tab-icon-overlay:not([crashed]),
@@ -6268,21 +6278,39 @@
   }
   /* None exist favicon - Size bigger */
   @supports not -moz-bool-pref("userChrome.tab.always_show_tab_icon") {
-    .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
-      transform: translateX(-0.5px) translateY(-1px);
-      inset-inline-end: 0 !important;
-      margin-inline-end: 0 !important;
-      padding: 0 !important;
+    @supports not -moz-bool-pref("userChrome.hidden.tab_icon") {
+      .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
+        transform: translateX(-0.5px) translateY(-1px);
+        inset-inline-end: 0 !important;
+        margin-inline-end: 0 !important;
+        padding: 0 !important;
+      }
+      .tabbrowser-tab:not([image]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
+        opacity: 0 !important;
+        /* Favicon hidden */
+      }
+      .tabbrowser-tab:not([image]):not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+        .tab-label {
+        transform: translateX(3px);
+      }
     }
-
-    .tabbrowser-tab:not([image]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
-      opacity: 0 !important;
-      /* Favicon hidden */
-    }
-
-    .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
-      .tab-label {
-      transform: translateX(3px);
+    @supports -moz-bool-pref("userChrome.hidden.tab_icon") {
+      @supports not -moz-bool-pref("userChrome.hidden.tab_icon.always") {
+        .tabbrowser-tab .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
+          transform: translateX(-0.5px) translateY(-1px);
+          inset-inline-end: 0 !important;
+          margin-inline-end: 0 !important;
+          padding: 0 !important;
+        }
+        .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
+          opacity: 0 !important;
+          /* Favicon hidden */
+        }
+        .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+          .tab-label {
+          transform: translateX(3px);
+        }
+      }
     }
   }
   /* Busy - Show */
@@ -7453,8 +7481,15 @@
   }
 }
 @supports -moz-bool-pref("userChrome.hidden.tab_icon") {
-  .tabbrowser-tab:not([pinned="true"]) .tab-icon-stack {
-    display: none;
+  @supports not -moz-bool-pref("userChrome.hidden.tab_icon.always") {
+    .tabbrowser-tab:not([pinned="true"]) .tab-icon-image {
+      display: none;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.hidden.tab_icon.always") {
+    .tabbrowser-tab:not([pinned="true"]) .tab-icon-stack {
+      display: none;
+    }
   }
 }
 @supports -moz-bool-pref("userChrome.hidden.sidebar_header") {

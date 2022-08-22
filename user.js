@@ -87,6 +87,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.autohide.page_action",                true);
 // user_pref("userChrome.autohide.toolbar_overlap",            true);
 
+// user_pref("userChrome.hidden.tab_icon",                     true);
+// user_pref("userChrome.hidden.tab_icon.always",              true);
 // user_pref("userChrome.hidden.tabbar",                       true);
 // user_pref("userChrome.hidden.navbar",                       true);
 // user_pref("userChrome.hidden.sidebar_header",               true);
@@ -94,7 +96,6 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.hidden.urlbar_iconbox",               true);
 // user_pref("userChrome.hidden.bookmarkbar_icon",             true);
 // user_pref("userChrome.hidden.bookmarkbar_label",            true);
-// user_pref("userChrome.hidden.tab_icon",                     true);
 // user_pref("userChrome.hidden.disabled_menu",                true);
 
 // user_pref("userChrome.centered.tab",                        true);

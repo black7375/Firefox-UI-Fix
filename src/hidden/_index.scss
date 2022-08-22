@@ -13,8 +13,17 @@
 }
 
 @include Option("userChrome.hidden.tab_icon") {
-  .tabbrowser-tab:not([pinned="true"]) .tab-icon-stack {
-    display: none;
+  .tabbrowser-tab:not([pinned="true"]) {
+    @include NotOption("userChrome.hidden.tab_icon.always") {
+      .tab-icon-image {
+        display: none;
+      }
+    }
+    @include Option("userChrome.hidden.tab_icon.always") {
+      .tab-icon-stack {
+        display: none;
+      }
+    }
   }
 }
 
