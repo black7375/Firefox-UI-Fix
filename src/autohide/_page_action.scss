@@ -1,0 +1,29 @@
+#page-action-buttons >  .urlbar-page-action {
+  margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding) );
+  opacity: 0;
+}
+
+#urlbar-container:is(:hover, :focus-within) #page-action-buttons > .urlbar-page-action,
+.urlbar-page-action[open],
+.urlbar-page-action[open] ~ .urlbar-page-action {
+  margin-inline-end: 0px !important;
+  opacity: 1;
+}
+
+@include Animate {
+  #page-action-buttons > .urlbar-page-action {
+    transition: margin-inline-end 50ms var(--animation-easing-function) 900ms,
+                opacity 1.5s var(--animation-easing-function) 600ms !important;
+
+    @include Option("userChrome.decoration.animate") {
+      transition: margin-inline-end 50ms var(--animation-easing-function) 900ms,
+                  opacity 1.5s var(--animation-easing-function) 600ms,
+                  background-color 2.5s var(--animation-easing-function) !important;
+    }
+  }
+  #urlbar-container:is(:hover, :focus-within) #page-action-buttons > .urlbar-page-action,
+  .urlbar-page-action[open],
+  .urlbar-page-action[open] ~ .urlbar-page-action{
+    transition-delay: 0s !important;
+  }
+}

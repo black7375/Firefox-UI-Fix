@@ -1,0 +1,35 @@
+@include Option("userChrome.autohide.back_button") {
+  @import "back_button";
+}
+@include Option("userChrome.autohide.forward_button") {
+  @import "forward_button";
+}
+@include Option("userChrome.autohide.page_action") {
+  @import "page_action";
+}
+
+@include Option("userChrome.autohide.tab") {
+  @import "tab";
+}
+
+@import "common";
+@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar") {
+  @include Option("userChrome.autohide.tabbar", "userChrome.tabbar.one_liner") {
+    @import "tabbar";
+  }
+  @include Option("userChrome.autohide.navbar", "userChrome.tabbar.one_liner") {
+    @import "navbar";
+  }
+}
+@include Option("userChrome.autohide.bookmarkbar") {
+  @import "bookmarkbar";
+}
+@include Option("userChrome.autohide.infobar") {
+  @import "infobar";
+}
+
+@import "sidebar";
+
+@include Option("userChrome.autohide.fill_urlbar") {
+  @import "fill_urlbar";
+}

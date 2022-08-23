@@ -390,6 +390,7 @@ $firefoxProfileDirPaths = @(
   "${HOME}\AppData\Roaming\Mozilla\Firefox",
   "${HOME}\AppData\Roaming\Waterfox",
   "${HOME}\AppData\Roaming\librewolf",
+  "${HOME}\AppData\Roaming\Ghostery Browser",
   "${HOME}\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser"
 )
 

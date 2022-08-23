@@ -338,6 +338,7 @@ firefoxProfileDirPaths=(
   "${HOME}/.mozilla/firefox"
   "${HOME}/.waterfox"
   "${HOME}/.librewolf"
+  "${HOME}/.ghostery browser"
   "${HOME}/.pulse-browser"
   "${HOME}/.firedragon"
   "${HOME}/.local/opt/tor-browser/app/Browser/TorBrowser/Data/Browser"
@@ -346,6 +347,7 @@ firefoxProfileDirPaths=(
   "${HOME}/Library/Application Support/Firefox"
   "${HOME}/Library/Application Support/Waterfox"
   "${HOME}/Library/Application Support/libreWolf"
+  "${HOME}/Library/Application Support/Ghostery Browser"
   "${HOME}/Library/Application Support/pulse-browser"
   "${HOME}/Library/Application Support/TorBrowser/Browser"
 )

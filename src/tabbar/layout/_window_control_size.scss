@@ -1,0 +1,27 @@
+:root {
+  --uc-window-control-width: 0px;   /* Same as .titlebar-buttonbox-container      -  Space reserved for window controls */
+  --uc-window-drag-space-pre: 0px;  /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
+  --uc-window-drag-space-post: 0px; /* Same as .titlebar-spacer[type="post-tabs"] */
+
+  --uc-widow-control-space: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+}
+
+:root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+  --uc-window-control-width: 84px; /* 84px is default value of linux */
+  --uc-window-drag-space-pre: var(--uc-title-pre-spacer, 40px); // 30px
+  --uc-window-drag-space-post: var(--uc-title-post-spacer, 40px); // 25px
+
+  @include OS($win7, $win8) {
+    --uc-window-control-width: 105px;
+  }
+  @include OS($win10) {
+    --uc-window-control-width: 138px;
+  }
+  @include OS($mac) {
+    --uc-window-control-width: 72px;
+  }
+}
+
+:root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
+  --uc-window-drag-space-pre: 0px; /* Remove pre space */
+}

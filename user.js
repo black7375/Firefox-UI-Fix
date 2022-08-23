@@ -68,10 +68,40 @@ user_pref("userChrome.rounding.square_tab",            true);
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
+// user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
+// user_pref("userChrome.theme.monospace",                     true);
+
 // user_pref("userChrome.decoration.disable_panel_animate",    true);
 // user_pref("userChrome.decoration.disable_sidebar_animate",  true);
 
-// user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
+// user_pref("userChrome.autohide.tab",                        true);
+// user_pref("userChrome.autohide.tab.opacity",                true);
+// user_pref("userChrome.autohide.tab.blur",                   true);
+// user_pref("userChrome.autohide.tabbar",                     true);
+// user_pref("userChrome.autohide.navbar",                     true);
+// user_pref("userChrome.autohide.bookmarkbar",                true);
+// user_pref("userChrome.autohide.sidebar",                    true);
+// user_pref("userChrome.autohide.fill_urlbar",                true);
+// user_pref("userChrome.autohide.back_button",                true);
+// user_pref("userChrome.autohide.forward_button",             true);
+// user_pref("userChrome.autohide.page_action",                true);
+// user_pref("userChrome.autohide.toolbar_overlap",            true);
+
+// user_pref("userChrome.hidden.tab_icon",                     true);
+// user_pref("userChrome.hidden.tab_icon.always",              true);
+// user_pref("userChrome.hidden.tabbar",                       true);
+// user_pref("userChrome.hidden.navbar",                       true);
+// user_pref("userChrome.hidden.sidebar_header",               true);
+// user_pref("userChrome.hidden.sidebar_header.vertical_tab_only", true);
+// user_pref("userChrome.hidden.urlbar_iconbox",               true);
+// user_pref("userChrome.hidden.bookmarkbar_icon",             true);
+// user_pref("userChrome.hidden.bookmarkbar_label",            true);
+// user_pref("userChrome.hidden.disabled_menu",                true);
+
+// user_pref("userChrome.centered.tab",                        true);
+// user_pref("userChrome.centered.tab.label",                  true);
+// user_pref("userChrome.centered.urlbar",                     true);
+// user_pref("userChrome.centered.bookmarkbar",                true);
 
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
@@ -95,20 +125,28 @@ user_pref("userChrome.rounding.square_tab",            true);
 // user_pref("userChrome.urlView.go_button_when_typing",       true);
 // user_pref("userChrome.urlView.always_show_page_actions",    true);
 
-// user_pref("userChrome.tab.on_bottom",                       true);
-// user_pref("userChrome.tab.on_bottom.above_bookmark",        true); // Need on_bottom
-// user_pref("userChrome.tab.on_bottom.menubar_on_top",        true); // Need on_bottom
+// user_pref("userChrome.tabbar.as_titlebar",                  true);
+// user_pref("userChrome.tabbar.on_bottom",                    true);
+// user_pref("userChrome.tabbar.on_bottom.above_bookmark",     true); // Need on_bottom
+// user_pref("userChrome.tabbar.on_bottom.menubar_on_top",     true); // Need on_bottom
+// user_pref("userChrome.tabbar.on_bottom.hidden_single_tab",  true); // Need on_bottom
+// user_pref("userChrome.tabbar.one_liner",                    true);
+// user_pref("userChrome.tabbar.one_liner.combine_navbar",     true); // Need one_liner
+// user_pref("userChrome.tabbar.one_liner.tabbar_first",       true); // Need one_liner
+// user_pref("userChrome.tabbar.one_liner.responsive",         true); // Need one_liner
+
 // user_pref("userChrome.tab.always_show_tab_icon",            true);
 // user_pref("userChrome.tab.close_button_at_pinned",          true);
 // user_pref("userChrome.tab.close_button_at_pinned.always",   true);
 // user_pref("userChrome.tab.close_button_at_pinned.background", true);
 // user_pref("userChrome.tab.close_button_at_hover.always",    true); // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
-// user_pref("userChrome.tab.centered_label",                  true);
 
 // user_pref("userChrome.panel.remove_strip",                  true);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);
+
+// user_pref("userChrome.sidebar.overlap",                     true);
 
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);
@@ -120,6 +158,7 @@ user_pref("userChrome.rounding.square_tab",            true);
 
 // user_pref("userContent.page.proton_color.dark_blue_accent", true);
 // user_pref("userContent.page.proton_color.system_accent",    true);
+// user_pref("userContent.page.monospace",                     true);
 
 // == Theme Default Settings ===================================================
 // -- User Chrome --------------------------------------------------------------

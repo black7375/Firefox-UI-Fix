@@ -1,0 +1,68 @@
+@use "option" as *;
+
+@mixin OneLinerContent() {
+  @include NotOption("userChrome.tabbar.one_liner.responsive") {
+    @content;
+  }
+  @include Option("userChrome.tabbar.one_liner.responsive") {
+    @media screen and (min-width: 1100px) {
+      @content;
+    }
+  }
+}
+
+@mixin OneLiner() {
+  @include Option("userChrome.tabbar.one_liner") {
+    @include OneLinerContent {
+      @content;
+    }
+  }
+}
+
+@mixin OneLinerOnBottom() {
+  @include NotOption("userChrome.tabbar.one_liner") {
+    @content;
+  }
+  @include Option("userChrome.tabbar.one_liner") {
+    @include Option("userChrome.tabbar.one_liner.responsive") {
+      @media screen and (max-width: 1100px) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin OneLinerTabbar() {
+  @include NotOption("userChrome.tabbar.one_liner.responsive") {
+    @content;
+  }
+  @include Option("userChrome.tabbar.one_liner.responsive") {
+    @media screen and (min-width: 1100px) {
+      @content;
+    }
+    @include Option("userChrome.autohide.tabbar") {
+      @content;
+    }
+  }
+}
+
+@mixin OneLinerNavbarContent() {
+  @include NotOption("userChrome.tabbar.one_liner") {
+    @content;
+  }
+  @include Option("userChrome.tabbar.one_liner") {
+    @include Option("userChrome.tabbar.one_liner.responsive") {
+      @media screen and (max-width: 1100px) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin OneLinerNavbar() {
+  @include Option("userChrome.autohide.navbar") {
+    @include OneLinerNavbarContent() {
+      @content;
+    }
+  }
+}
