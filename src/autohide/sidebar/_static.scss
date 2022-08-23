@@ -3,7 +3,7 @@
   overflow: hidden;
 
   will-change: min-width, max-width;
-  &:hover {
+  &:is(:hover, :focus-within) {
     min-width: var(--uc-sidebar-activate-width) !important;
     max-width: var(--uc-sidebar-activate-width) !important;
   }
@@ -14,7 +14,7 @@
     margin-inline-start: var(--uc-sidebar-fullscreen-margin) !important;
     will-change: margin-inline-start;
 
-    &:hover {
+    &:is(:hover, :focus-within) {
       margin-inline-start: 0 !important;
     }
   }
@@ -23,7 +23,7 @@
     margin-inline-end: var(--uc-sidebar-fullscreen-margin) !important;
     will-change: margin-inline-end;
 
-    &:hover {
+    &:is(:hover, :focus-within) {
       margin-inline-end: 0 !important;
     }
   }
@@ -34,7 +34,7 @@
   #sidebar-box {
     transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
 
-    &:hover {
+    &:is(:hover, :focus-within) {
       transition-delay: 0ms !important;
     }
   }
@@ -45,7 +45,7 @@
     &[positionend="true"] {
       transition-property: margin-inline-end !important;
     }
-    &:hover {
+    &:is(:hover, :focus-within) {
       transition-delay: 0ms !important;
     }
   }

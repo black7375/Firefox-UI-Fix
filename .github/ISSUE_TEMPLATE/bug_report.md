@@ -37,11 +37,13 @@ assignees: ''
      - GTK Theme Name (Linux only): <!-- For example: Adwaita, Adwaita-Dark, Breath, Breath-Dark. Run `gsettings get org.gnome.desktop.interface gtk-theme` to output this -->
    - [ ] Other: (e.g. [Photon Colors](https://addons.mozilla.org/en-US/firefox/addon/photon-colors/), [Google Chrome Dark](https://addons.mozilla.org/en-US/firefox/addon/google-chrome-dark/), [Fairytale Of Nature](https://addons.mozilla.org/en-US/firefox/addon/fairytale-of-nature/))
 
-**`user.js` setup**
+<details><summary><strong><code>user.js</code> setup</strong></summary><br>
 
+<!-- Your user.js setup -->
 ```javascript
-// Your setting
+// Your settings
 ```
-
+</details>
+ 
 **Additional context**
 <!-- Add any other context about the problem here. -->

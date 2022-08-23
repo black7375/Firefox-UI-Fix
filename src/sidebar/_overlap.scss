@@ -22,6 +22,10 @@
     }
   }
 
+  #sidebar {
+    display: block;
+  }
+
   #sidebar-splitter {
     display: none !important;
   }
@@ -32,23 +36,29 @@
     direction: rtl;
   }
 
+  #sidebar-header {
+    background-color: var(--sidebar-background-color) !important;
+    color: var(--sidebar-text-color) !important;
+    overflow: hidden;
+  }
+
   @include NotOption("userChrome.autohide.sidebar") {
-    #sidebar-box {
+    #sidebar-box,
+    #sidebar {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
-      margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+    }
 
-      will-change: transform;
+    #sidebar-box {
+      margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+      will-change: padding-inline;
 
       &:not([hidden="true"]) {
-        transform: translateX(var(--uc-sidebar-activate-width));
-      }
-      &[positionend="true"]:not([hidden="true"]) {
-        transform: translateX(var(--uc-sidebar-activate-width-reverse));
+        padding-inline-start: var(--uc-sidebar-activate-width);
       }
 
       @include Animate {
-        transition: transform 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
+        transition: padding-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
                     visibility 0s linear !important;
       }
     }

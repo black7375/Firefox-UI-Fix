@@ -2,7 +2,7 @@
 See the above repository for updates as well as full license text. */
 
 /*= Tabbar - Move to bottom ==================================================*/
-#titlebar{
+#titlebar {
   order: 2; /* When userChrome.fullscreen.overlap */
   -moz-box-ordinal-group: 2;
   --tabs-navbar-shadow-size: 0px;
@@ -16,13 +16,17 @@ See the above repository for updates as well as full license text. */
   display: none;
 }
 
-@include Option("userChrome.tab.on_bottom.above_bookmark") {
+#TabsToolbar-customization-target > .toolbarbutton-1:last-child {
+  padding-inline-end: var(--toolbar-start-end-padding, 8px);
+}
+
+@include Option("userChrome.tabbar.on_bottom.above_bookmark") {
   #PersonalToolbar {
     order: 2; /* When userChrome.fullscreen.overlap */
     -moz-box-ordinal-group: 2;
   }
 }
-@include NotOption("userChrome.tab.on_bottom.above_bookmark") {
+@include NotOption("userChrome.tabbar.on_bottom.above_bookmark") {
   @include Option("userChrome.tab.connect_to_window") {
     @include Option("userChrome.tab.color_like_toolbar") {
       #navigator-toolbox {
@@ -32,8 +36,27 @@ See the above repository for updates as well as full license text. */
   }
 }
 
+/*= Tabbar - Hidden at singgle tab ===========================================*/
+@include Option("userChrome.tabbar.on_bottom.hidden_single_tab") {
+  #tabbrowser-tabs .tabbrowser-tab:only-of-type {
+    display: none !important;
+  }
+
+  #tabbrowser-tabs,
+  #tabbrowser-tabs arrowscrollbox {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  @include Animate {
+    #tabbrowser-tabs {
+      transition: height 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+    }
+  }
+}
+
 /*= Menubar - Always on top ==================================================*/
-@include Option("userChrome.tab.on_bottom.menubar_on_top") {
+@include Option("userChrome.tabbar.on_bottom.menubar_on_top") {
   /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
 
@@ -60,7 +83,6 @@ See the above repository for updates as well as full license text. */
 
   #navigator-toolbox{
     -moz-window-dragging: drag;
-    padding-top: calc(var(--uc-menubar-height) + var(--uc-titlebar-padding)) !important;
   }
   :root[sizemode="fullscreen"] #navigator-toolbox {
     padding-top: 0px !important;

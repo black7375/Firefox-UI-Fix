@@ -1,0 +1,35 @@
+/*= System Default Theme =====================================================*/
+@include Option("userChrome.theme.system_default") {
+  @import "system_default_theme";
+}
+
+/*= Fully Theme Mode =========================================================*/
+// Default Themes
+//   https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json
+//   https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/light/manifest.json
+//   https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
+
+@include Option("userChrome.theme.proton_color") {
+  @import "proton_color";
+  @include Option("userChrome.theme.proton_color.dark_blue_accent") {
+    @import "dark_blue_accent";
+  }
+}
+@include Option("userChrome.theme.fully_color") {
+  @import "fully_color";
+}
+
+/*= Fully Dark Mode ==========================================================*/
+@include Option("userChrome.theme.fully_dark") {
+  @import "fully_dark";
+}
+
+/*= Proton Theme Mode ========================================================*/
+@include Option("userChrome.theme.proton_chrome") {
+  @import "proton_chrome";
+}
+
+/*= Monospace ================================================================*/
+@include Option("userChrome.theme.monospace") {
+  @import "monospace";
+}

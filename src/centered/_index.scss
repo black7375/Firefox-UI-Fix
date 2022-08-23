@@ -1,0 +1,12 @@
+/*= Centered - Tab ===========================================================*/
+@import "tab";
+
+/*= Centered - URL Bar =======================================================*/
+@include Option("userChrome.centered.urlbar") {
+  @import "urlbar";
+}
+
+/*= Centered - Bookmark Bar ==================================================*/
+@include Option("userChrome.centered.bookmarkbar") {
+  @import "bookmarkbar";
+}
