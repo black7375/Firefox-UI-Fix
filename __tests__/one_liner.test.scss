@@ -1,0 +1,118 @@
+@use 'true' as *;
+@use "example" as *;
+@use "../src/utils/one_liner";
+
+@include test-module("One Liner [mix]") {
+  @include test("content") {
+    @include assert {
+      @include output {
+        @include one_liner.OneLinerContent {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+          @include example;
+        }
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+          @media screen and (min-width: 1100px) {
+            @include example;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("explicitly") {
+    @include assert {
+      @include output {
+        @include one_liner.OneLiner {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+            @include example;
+          }
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+            @media screen and (min-width: 1100px) {
+              @include example;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("One Liner for Responsive [mix]") {
+  @include test("Tabs on bottom") {
+    @include assert {
+      @include output {
+        @include one_liner.OneLinerOnBottom {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @include example;
+        }
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+            @media screen and (max-width: 1100px) {
+              @include example;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include test("Tab bar") {
+    @include assert {
+      @include output {
+        @include one_liner.OneLinerTabbar {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+          @include example;
+        }
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+          @media screen and (min-width: 1100px) {
+            @include example;
+          }
+          @supports -moz-bool-pref("userChrome.autohide.tabbar") {
+            @include example;
+          }
+        }
+      }
+    }
+  }
+
+  @include test("Nav Bar") {
+    @include assert {
+      @include output {
+        @include one_liner.OneLinerNavbar {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("userChrome.autohide.navbar") {
+          @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
+            @include example;
+          }
+          @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
+            @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+              @media screen and (max-width: 1100px) {
+                @include example;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

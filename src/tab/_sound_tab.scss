@@ -1,6 +1,8 @@
 /*= Sound Tab - Hide Label ===================================================*/
 @include Option("userChrome.tab.sound_hide_label") {
-  @import "sound_tab/hide_label";
+  @include NotOption("userChrome.tab.sound_show_label") {
+    @import "sound_tab/hide_label";
+  }
 }
 
 /*= Sound Tab - Show Label ===================================================*/

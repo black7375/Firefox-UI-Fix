@@ -1,0 +1,121 @@
+/*= Windows Control - Move to toolbar ========================================*/
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+:root {
+  --uc-titlebar-padding: 0px;
+}
+
+@include OS($win) {
+  :root[sizemode="maximized"][tabsintitlebar] {
+    --uc-titlebar-padding: 8px;
+  }
+}
+
+#toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
+#TabsToolbar > .titlebar-buttonbox-container {
+  position: fixed;
+  display: block;
+  top: var(--uc-titlebar-padding);
+  right:0;
+  height: 40px;
+  z-index: 1;
+}
+
+/* where window controls are on left */
+@include OS($mac) {
+  :root{
+    --uc-titlebar-padding: 0px !important;
+  }
+  .titlebar-buttonbox-container{
+    left:0;
+    right: unset !important;
+  }
+}
+
+#navigator-toolbox {
+  padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+}
+
+:root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {
+  height: 32px;
+}
+
+#toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+  @include NotOption("userChrome.hidden.tabbar") {
+    opacity: 0;
+    visibility: collapse;
+  }
+  @include Option("userChrome.hidden.tabbar") {
+    opacity: 1;
+    visibility: visible;
+
+    @include Option("userChrome.autohide.navbar") {
+      opacity: 0;
+      visibility: collapse;
+    }
+  }
+}
+#navigator-toolbox:is(:hover, :focus-within) #toolbar-menubar[inactive]:not([customizing]) > .titlebar-buttonbox-container {
+  @include Option("userChrome.hidden.tabbar") {
+    @include Option("userChrome.autohide.navbar") {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+@include Animate {
+  #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+    transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay, 600ms),
+                visibility 100ms var(--animation-easing-function) 0.25s !important;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) #toolbar-menubar[inactive]:not([customizing]) > .titlebar-buttonbox-container {
+    transition-delay: 0s !important;
+  }
+}
+
+.titlebar-buttonbox-container > .titlebar-buttonbox {
+  height: 100%;
+  @include OS($mac) {
+    margin-block: 10px;
+  }
+}
+
+/* At Full Screen */
+:root[sizemode="fullscreen"] #window-controls {
+  position: fixed;
+  display: flex;
+  top: 0;
+  right: 0;
+  height: 40px;
+}
+:root[uidensity="compact"][sizemode="fullscreen"] #window-controls {
+  height: 32px;
+}
+
+@include Option("browser.fullscreen.autohide") {
+  :root[sizemode="fullscreen"] #navigator-toolbox:not(:hover) .titlebar-buttonbox-container {
+    visibility: hidden;
+  }
+}
+@include Option("userChrome.hidden.tabbar") {
+  :root[inFullscreen]:not([macOSNativeFullscreen]) {
+    #toolbar-menubar {
+      visibility: visible !important;
+      min-height: 0 !important;
+      max-height: 0 !important;
+    }
+    #menubar-items {
+      visibility: collapse !important;
+    }
+  }
+}
+
+/* At Activated Menubar */
+:root:not([chromehidden~="menubar"], [sizemode="fullscreen"]) #toolbar-menubar:not([autohide="true"]) + #TabsToolbar > .titlebar-buttonbox-container {
+  display: block !important;
+}
+:root:not([chromehidden~="menubar"]) #toolbar-menubar:not([autohide="true"]) .titlebar-buttonbox-container {
+  @include NotOption("userChrome.hidden.tabbar") {
+    visibility: hidden;
+  }
+}

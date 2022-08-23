@@ -1,0 +1,91 @@
+@include OneLinerNavbarContent() {
+  @include Option("userChrome.hidden.tabbar") {
+    #TabsToolbar {
+      display: none !important;
+    }
+  }
+
+  @include Option("userChrome.hidden.navbar") {
+    #nav-bar {
+      visibility: collapse; /* display: none is not work */
+    }
+  }
+}
+
+@include Option("userChrome.hidden.tab_icon") {
+  .tabbrowser-tab:not([pinned="true"]) {
+    @include NotOption("userChrome.hidden.tab_icon.always") {
+      .tab-icon-image {
+        display: none;
+      }
+    }
+    @include Option("userChrome.hidden.tab_icon.always") {
+      .tab-icon-stack {
+        display: none;
+      }
+    }
+  }
+}
+
+@include Option("userChrome.hidden.sidebar_header") {
+  @include NotOption("userChrome.hidden.sidebar_header.vertical_tab_only") {
+    #sidebar-header {
+      display: none !important;
+    }
+  }
+
+  @include Option("userChrome.hidden.sidebar_header.vertical_tab_only") {
+    #sidebar-box:is(
+      [sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"],
+      [sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"],
+      [sidebarcommand="sidebartabs_asamuzak_jp-sidebar-action"]
+    ) #sidebar-header {
+      display: none !important;
+    }
+  }
+}
+
+@include Option("userChrome.hidden.urlbar_iconbox") {
+  #identity-box[pageproxystate="valid"] {
+    &.notSecureText #identity-icon-label,
+    &.chromeUI #identity-icon-box,
+    &.extensionPage #identity-icon-box {
+      display: none;
+    }
+
+    &.notSecureText #identity-icon-box {
+      padding-inline-end: 5px; /* Original: 8px */
+    }
+  }
+}
+
+#PlacesToolbarItems .bookmark-item {
+  @include Option("userChrome.hidden.bookmarkbar_icon") {
+    > .toolbarbutton-icon {
+      display: none;
+    }
+  }
+  @include Option("userChrome.hidden.bookmarkbar_label") {
+    > .toolbarbutton-text {
+      visibility: collapse; /* display: none is not work */
+    }
+  }
+}
+
+@include Option("userChrome.hidden.disabled_menu") {
+  menu,
+  menuitem:not(#context-back, #context-forward) {
+    &[disabled="true"] {
+      display: none !important;
+    }
+  }
+
+  @include NativeMenu {
+    #context-back,
+    #context-forward {
+      &[disabled="true"] {
+        display: none !important;
+      }
+    }
+  }
+}
