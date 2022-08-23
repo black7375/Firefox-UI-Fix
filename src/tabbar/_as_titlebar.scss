@@ -1,8 +1,22 @@
+//-- Mixin ---------------------------------------------------------------------
+@mixin _asTitlebar_preSpacer() {
+  @include NotOption("userChrome.centered.tab") {
+    @content;
+  }
+  @include Option("userChrome.centered.tab") {
+    @include Option("userChrome.centered.tab.label") {
+      @content;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+
 :root:not([tabsintitlebar="true"]) #tabbrowser-tabs, /* Show only */
 #scrollbutton-up, /* Defaults */
 #scrollbutton-down,
 .titlebar-spacer[type="pre-tabs"],
-spacer[part="overflow-end-indicator"],
+spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
 .tabbrowser-tab:not([selected="true"]),
 .tabbrowser-tab[selected="true"] .tab-background,
 .tabbrowser-tab[selected="true"] .tab-stack:is(::before, ::after),
@@ -13,28 +27,32 @@ spacer[part="overflow-end-indicator"],
 
 .tabbrowser-tab[selected="true"] {
   -moz-window-dragging: drag;
-  --tab-max-width: 100%;
-  width: var(--tab-max-width) !important;
+  --tab-max-width: 100vw;
+  min-width: calc(var(--uc-tabbar-width, 100vw) - var(--uc-widow-control-space)) !important;
+  max-width: var(--tab-max-width) !important;
 
   margin-inline-start: calc(var(--tab-shadow-max-size) * -1) !important;
   // padding-inline-start: calc(var(--tab-shadow-max-size) + 1px) !important;
-}
-.tabbrowser-tab[selected="true"][pinned="true"] {
-  -moz-box-flex: 100;
-  max-width: var(--tab-max-width) !important;
-}
-.tabbrowser-tab[selected="true"] .tab-label-container {
-  margin-inline: 0 !important;
-}
 
+  &[pinned="true"] {
+    -moz-box-flex: 100;
+    max-width: var(--tab-max-width) !important;
+  }
+  .tab-label-container {
+    margin-inline: 0 !important;
+  }
+}
 .tab-content {
   margin-inline: auto;
   width: 100%;
 }
 
-
 /* Pinned */
+#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned][selected="true"] {
+  position: relative !important;
+}
 #tabbrowser-tabs {
+  --tab-overflow-pinned-tabs-width: 0 !important;
   padding-inline: 0 !important; /* Original: var(--tab-overflow-pinned-tabs-width) 0; */
 }
 .tab-throbber,
@@ -50,44 +68,20 @@ spacer[part="overflow-end-indicator"],
   width: unset !important;
 }
 
+/* Padding */
+@include _asTitlebar_preSpacer {
+  #tabbrowser-arrowscrollbox {
+    margin-inline: 2px !important;
+  }
+  :root[sizemode="normal"] #tabbrowser-arrowscrollbox {
+    margin-inline: 6px !important;
+  }
+}
 
-// @supports not -moz-bool-pref("browser.tabs.tabmanager.enabled") {
-//   #tabbrowser-tabs:not([overflow="true"], [hashiddentabs]) ~ #alltabs-button {
-//     display: none;
-//   }
-//   #tabbrowser-tabs:not([overflow="true"])[using-closing-tabs-spacer] ~ #alltabs-button {
-//     // temporary space to keep a tab's close button under the cursor
-//     display: -moz-box;
-//     visibility: hidden;
-//   }
-// }
-//
-// #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow="true"]) ~ #new-tab-button,
-// #tabbrowser-tabs[overflow="true"] > #tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button,
-// #tabbrowser-tabs:not([hasadjacentnewtabbutton]) > #tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button,
-// #TabsToolbar[customizing="true"] #tabs-newtab-button {
-//   display: none;
-// }
-//
-// #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox::part(scrollbox) {
-//   // Add padding to match the shadow's blur radius so the
-//   //  shadow doesn't get clipped when either the first or
-//   //  last tab is selected
-//   padding-inline: var(--tab-shadow-max-size); // 6px
-// }
-//
-// #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
-//   margin-inline-start: 12px !important;
-// }
+
 @include Option("browser.tabs.tabmanager.enabled") {
   :root:not([tabsintitlebar="true"]) #tabbrowser-tabs:not([overflow="true"], [hashiddentabs]) ~ #alltabs-button,
   :root:not([tabsintitlebar="true"]) #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow="true"]) ~ #new-tab-button {
     display: -moz-box !important;
   }
-}
-#tabbrowser-tabs:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox {
-  padding-inline: 12.5px !important;
-}
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
-  --inline-tab-padding: 0 !important;
 }

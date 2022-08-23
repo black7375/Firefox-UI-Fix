@@ -4,6 +4,7 @@
 @use "utils/theme" as *;
 @use "utils/accent_color" as *;
 @use "utils/native_menu" as *;
+@use "utils/one_liner" as *;
 @use "utils/proton_elements" as Proton;
 @use "sass:selector";
 
@@ -18,37 +19,8 @@
 /** Compatibility Fixes *******************************************************/
 @import "compatibility/index";
 
-/** System Default Theme ******************************************************/
-@include Option("userChrome.theme.system_default") {
-  @import "theme/system_default_theme";
-}
-
-/** Fully Theme Mode **********************************************************/
-/* Default Themes
-     https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json
-     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/light/manifest.json
-     https://github.com/mozilla/gecko-dev/blob/master/browser/themes/addons/dark/manifest.json
-  */
-
-@include Option("userChrome.theme.proton_color") {
-  @import "theme/proton_color";
-  @include Option("userChrome.theme.proton_color.dark_blue_accent") {
-    @import "theme/dark_blue_accent";
-  }
-}
-@include Option("userChrome.theme.fully_color") {
-  @import "theme/fully_color";
-}
-
-/* Fully Dark Mode ************************************************************/
-@include Option("userChrome.theme.fully_dark") {
-  @import "theme/fully_dark";
-}
-
-/* Proton Theme Mode **********************************************************/
-@include Option("userChrome.theme.proton_chrome") {
-  @import "theme/proton_chrome";
-}
+/** Theme *********************************************************************/
+@import "theme/index";
 
 /** Decoration ****************************************************************/
 @import "decoration/index";
@@ -62,6 +34,9 @@
 /** Tab Bar UI ****************************************************************/
 @import "tabbar/index";
 
+/** Tab UI ****************************************************************/
+@import "tab/index";
+
 /** Url View UI ***************************************************************/
 @import "urlview/index";
 
@@ -71,54 +46,26 @@
 /** Sidebar UI ****************************************************************/
 @import "sidebar/index";
 
-/** Other UI ******************************************************************/
-@import "others/index";
-
 /** Fullscreen - Overlap toolbar **********************************************/
 @import "fullscreen/index";
+
+/** Centered ******************************************************************/
+@import "centered/index";
 
 /** Auto Hide *****************************************************************/
 @import "autohide/index";
 
-/** Library - Icons Replace ***************************************************/
-@include Option("userChrome.icon.library") {
-  @import "library/chrome";
-}
+/** Hidden ********************************************************************/
+@import "hidden/index";
 
-/** Panel - Icons *************************************************************/
-@include Option("userChrome.icon.panel") {
-  @import "icons/layout_panel";
-  @import "icons/panel";
-}
+/** Icons *********************************************************************/
+@import "icons/index";
 
-/** Menu - Icons Layout *******************************************************/
-@include Option("userChrome.icon.menu") {
-  @import "icons/layout_menu";
-  @import "icons/layout_bookmark_menu";
-
-  @include Option("userChrome.icon.context_menu") {
-    @import "icons/context_menu";
-  }
-  @include Option("userChrome.icon.global_menubar") {
-    @import "icons/global_menubar";
-  }
-  @include Option("userChrome.icon.global_menu") {
-    @import "icons/global_menu";
-  }
-}
-
-/** Libray Menu ***************************************************************/
-@include Option("userChrome.icon.library") {
-  @include Option("userChrome.icon.menu") {
-    @import "icons/library";
-  }
-}
-
-/*= Waterfox =================================================================*/
+/** Waterfox ******************************************************************/
 @import "icons/waterfox";
 @include Option("userChrome.theme.fully_color") {
   @import "theme/waterfox";
 }
 
-/*= Tor Browser ==============================================================*/
+/** Tor Browser ***************************************************************/
 @import "icons/tor_browser";

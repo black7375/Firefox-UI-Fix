@@ -7,7 +7,7 @@
       transition: margin-top 1s ease,
                   margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
 
-      &:hover {
+      &:is(:hover, :focus-within) {
         transition-delay: 0s !important;
       }
 
@@ -19,24 +19,24 @@
     @include NotOption("userChrome.decoration.animate") {
       transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
 
-      &:hover {
+      &:is(:hover, :focus-within) {
         transition-delay: 0s !important;
       }
     }
   }
 
-  &:hover {
-    @include Option("userChrome.autohide.tabbar", "userChrome.tab.one_liner") {
-      --uc-toolbar-height: var(--uc-tabbar-height);
+  &:is(:hover, :focus-within) {
+    @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar") {
+      @include Option("userChrome.autohide.tabbar", "userChrome.tabbar.one_liner") {
+        --uc-toolbar-height: var(--uc-tabbar-height);
 
-      @include NotOption("userChrome.autohide.navbar") {
-        @include Option("userChrome.autohide.bookmarkbar") {
-          --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-bm-height));
+        @include NotOption("userChrome.autohide.navbar") {
+          @include Option("userChrome.autohide.bookmarkbar") {
+            --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-bm-height));
+          }
         }
-      }
 
-      @include NotOption("userChrome.tab.one_liner") {
-        @include Option("userChrome.autohide.navbar") {
+        @include OneLinerNavbar {
           @include NotOption("userChrome.autohide.bookmarkbar") {
             --uc-toolbar-height: calc(var(--uc-tabbar-height) + var(--uc-navbar-height));
           }
@@ -53,8 +53,8 @@
         }
       }
 
-      @include NotOption("userChrome.tab.one_liner") {
-        @include Option("userChrome.autohide.navbar") {
+      @include Option("userChrome.autohide.navbar", "userChrome.tabbar.one_liner") {
+        @include OneLinerNavbar {
           @include NotOption("userChrome.autohide.bookmarkbar") {
             --uc-toolbar-height: var(--uc-navbar-height);
           }

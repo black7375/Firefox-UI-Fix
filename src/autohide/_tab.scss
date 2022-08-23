@@ -1,0 +1,34 @@
+.tabbrowser-tab:not([multiselected]) .tab-content:not(:hover):not([selected]) {
+  @include NotOption("userChrome.autohide.tab.opacity") {
+    @include NotOption("userChrome.autohide.tab.blur") {
+      margin-bottom: -64px;
+    }
+  }
+  @include Option("userChrome.autohide.tab.opacity") {
+    opacity: 0%;
+  }
+  @include Option("userChrome.autohide.tab.blur") {
+    filter: blur(8px);
+  }
+
+  @include Animate {
+    transition-timing-function: var(--animation-easing-function);
+    transition-duration: 0.2s;
+    transition-delay: 600ms;
+    &:is(:hover, :focus-within) {
+      transition-delay: 0s;
+    }
+
+    @include NotOption("userChrome.autohide.tab.opacity") {
+      @include NotOption("userChrome.autohide.tab.blur") {
+        transition-property: margin-bottom;
+      }
+    }
+    @include Option("userChrome.autohide.tab.opacity") {
+      transition-property: opacity;
+    }
+    @include Option("userChrome.autohide.tab.blur") {
+      transition-property: filter;
+    }
+  }
+}

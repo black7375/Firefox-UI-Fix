@@ -1,7 +1,8 @@
 /*= tabContextMenu ===========================================================*/
 #context_openANewTab,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_newTab,
-#tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenAlternatePosition {
+#tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenAlternatePosition,
+#sidebartabs_asamuzak_jp-menuitem-_newTab {
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
 }
 #tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenInWindow {
@@ -14,37 +15,46 @@
 #context_reloadTab,
 #context_reloadSelectedTabs,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_reloadTab,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuReloadTab {
+#treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_reloadTab,
+#treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:reloadTree,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuReloadTab,
+#sidebartabs_asamuzak_jp-menuitem-_reloadTab,
+#sidebartabs_asamuzak_jp-menuitem-_reloadAllTabs {
   --menuitem-image: url("../icons/reload.svg");
 }
 #context_toggleMuteTab,
 #context_toggleMuteSelectedTabs,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab-mute,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab,
+#sidebartabs_asamuzak_jp-menuitem-_muteTab {
   --menuitem-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
 }
 #context_toggleMuteTab[muted],
 #context_toggleMuteSelectedTabs[muted],
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab-unmute,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab[label="Unmute Tab"] {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab[label="Unmute Tab"],
+#sidebartabs_asamuzak_jp-menuitem-_muteTab[label="Unmute Tab"] {
   --menuitem-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg");
 }
 #context_pinTab,
 #context_pinSelectedTabs,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_pinTab,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuPinTab {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuPinTab,
+#sidebartabs_asamuzak_jp-menuitem-_pinTab {
   --menuitem-image: url("../icons/pin-tab.svg");
 }
 #context_unpinTab,
 #context_unpinSelectedTabs,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_unpinTab,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuPinTab[label="Unpin Tab"] {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuPinTab[label="Unpin Tab"],
+#sidebartabs_asamuzak_jp-menuitem-_pinTab[label="Unpin Tab"] {
   --menuitem-image: url("../icons/unpin-tab.svg");
 }
 #context_duplicateTab,
 #context_duplicateTabs,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
+#sidebartabs_asamuzak_jp-menuitem-_dupeTab {
   --menuitem-image: url("../icons/notebook-subsection.svg");
 }
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
@@ -52,12 +62,17 @@
 
 #context_bookmarkTab,
 #context_bookmarkSelectedTabs,
-#treestyletab_piro_sakura_ne_jp-menuitem-_context_bookmarkTab {
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_bookmarkTab,
+#treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_bookmarkSelected,
+#treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:bookmarkTree,
+#sidebartabs_asamuzak_jp-menuitem-_bookmarkTab,
+#sidebartabs_asamuzak_jp-menuitem-_bookmarkAllTabs {
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #context_moveTabOptions,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_moveTab,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuMoveTab {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuMoveTab,
+#sidebartabs_asamuzak_jp-menuitem-_moveTab {
   --menuitem-image: url("../icons/arrow-swap.svg");
 }
 #context_sendTabToDevice,
@@ -80,27 +95,48 @@
 }
 #context_reopenInContainer,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_reopenInContainer,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuOpenInContextualTab {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuOpenInContextualTab,
+#sidebartabs_asamuzak_jp-menuitem-_openNewTabInContainer,
+#sidebartabs_asamuzak_jp-menuitem-_reopenTabInContainer {
   --menuitem-image: url("../icons/container-openin-16.svg");
 }
+#sidebartabs_asamuzak_jp-menuitem-_reloadAllTabs {
+}
 #context_selectAllTabs,
-#treestyletab_piro_sakura_ne_jp-menuitem-_context_selectAllTabs {
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_selectAllTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_selectAllTabs,
+#sidebartabs_asamuzak_jp-menuitem-_selectAllTabs {
   --menuitem-image: url("../icons/tab-multiple.svg");
+}
+
+#sidebartabs_asamuzak_jp-menuitem-_tabGroup {
 }
 
 #context_closeTab,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_closeTab,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTab {
+#treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:closeTree,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTab,
+#sidebartabs_asamuzak_jp-menuitem-_closeTab {
   --menuitem-image: url("chrome://global/skin/icons/close.svg");
 }
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTabs {
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTabs,
+#sidebartabs_asamuzak_jp-menuitem-_closeMultipleTabs {
 }
 #context_closeTabOptions {
 }
 #context_undoCloseTab,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_undoCloseTab,
-#tabcenter-reborn_ariasuni-menuitem-_contextMenuUndoCloseTab {
+#treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_undoCloseTab,
+#tabcenter-reborn_ariasuni-menuitem-_contextMenuUndoCloseTab,
+#sidebartabs_asamuzak_jp-menuitem-_undoCloseTab {
   --menuitem-image: url("../icons/undo.svg");
+}
+
+#treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:collapseTreeRecursively,
+#treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:collapseAll,
+#treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:expandTreeRecursively {
+}
+#treestyletab_piro_sakura_ne_jp-menuitem-_grouped\:expandAll {
 }
 
 /*= new-tab-button-popup =====================================================*/

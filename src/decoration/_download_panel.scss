@@ -11,6 +11,9 @@
   .downloadTarget {
     text-decoration: line-through;
     text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
+    &:hover {
+      text-decoration: none;
+    }
   }
   .downloadTypeIcon {
     filter: grayscale(100%) !important;

@@ -1,17 +1,12 @@
-#nav-bar:not([customizing]) {
-  opacity: 0;
-  will-change: margin-bottom, opacity;
-}
-#navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
-  opacity: 1;
-}
-
-@include NotOption("userChrome.tab.one_liner") {
+@include OneLinerNavbar {
   #nav-bar:not([customizing]) {
     margin-bottom: var(--uc-navbar-hide-height);
+    opacity: 0;
+    will-change: margin-bottom, opacity;
   }
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
     margin-bottom: 0;
+    opacity: 1;
   }
 }
 
@@ -20,6 +15,13 @@
     transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                 opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                 var(--ext-theme-background-transition) !important;
+
+    @include Option("userChrome.autohide.fill_urlbar") {
+      transition: margin-inline 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                  margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                  opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                  var(--ext-theme-background-transition) !important;
+    }
   }
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
     transition-delay: 0s !important;

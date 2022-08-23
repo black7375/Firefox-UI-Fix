@@ -1,15 +1,24 @@
-@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.tab.one_liner") {
+@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.tabbar.one_liner") {
   :root {
-    --uc-tabbar-height: calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
+    --uc-tabbar-height: var(--tab-min-height); // calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
     --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
     --uc-bm-height: calc(20px + (2 * var(--bookmark-block-padding, 4px))); /* 20px = 16px + (2px * 2) [margin block] */
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
+
+    @include Option("userChrome.hidden.tabbar") {
+      @include OneLinerNavbarContent() {
+        --uc-tabbar-height: 0px;
+      }
+    }
+    @include Option("userChrome.hidden.navbar") {
+      --uc-navbar-height: 0px;
+    }
   }
 }
 
-@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar") {
+@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.autohide.infobar") {
   :root {
     --uc-autohide-toolbar-delay: 600ms;
   }
@@ -18,10 +27,21 @@
     position: relative;
     z-index: 2;
   }
+  #navigator-toolbox:not(:hover) {
+    animation: 1s keepfront;
+  }
+  @keyframes keepfront {
+    from {
+      z-index: 3;
+    }
+    to {
+      z-index: 3;
+    }
+  }
 
-  #TabsToolbar {
+  #sidebar-box:is(:hover, :focus-within) {
     position: relative;
-    z-index: 3;
+    z-index: 2 !important;
   }
 
   @include Option("userChrome.autohide.toolbar_overlap") {

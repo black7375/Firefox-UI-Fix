@@ -10,7 +10,7 @@
 
 /** Clipped tabs - Show close button at pinned tab ****************************/
 @include Option("userChrome.tab.close_button_at_pinned") {
-  @include NotOption("userChrome.tab.as_titlebar") {
+  @include NotOption("userChrome.tabbar.as_titlebar") {
     @import "clipped_tab/pinned_close_button";
   }
 }
