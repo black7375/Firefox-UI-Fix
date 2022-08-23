@@ -4430,12 +4430,16 @@
       --uc-window-control-width: 138px;
     }
   }
+
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    :root[tabsintitlebar] {
       --uc-window-control-width: 72px;
     }
-  }
 
+    :root[sizemode="fullscreen"] {
+      --uc-widow-control-space: 0;
+    }
+  }
   :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
     --uc-window-drag-space-pre: 0px;
     /* Remove pre space */
@@ -4482,6 +4486,11 @@
         .titlebar-buttonbox-container {
           left: 0;
           right: unset !important;
+        }
+
+        #toolbar-menubar:not([autohide="true"]) {
+          visibility: visible !important;
+          height: 0;
         }
       }
       #navigator-toolbox {
@@ -4626,6 +4635,11 @@
             left: 0;
             right: unset !important;
           }
+
+          #toolbar-menubar:not([autohide="true"]) {
+            visibility: visible !important;
+            height: 0;
+          }
         }
         #navigator-toolbox {
           padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
@@ -4768,6 +4782,11 @@
             .titlebar-buttonbox-container {
               left: 0;
               right: unset !important;
+            }
+
+            #toolbar-menubar:not([autohide="true"]) {
+              visibility: visible !important;
+              height: 0;
             }
           }
           #navigator-toolbox {
@@ -4921,6 +4940,11 @@
             .titlebar-buttonbox-container {
               left: 0;
               right: unset !important;
+            }
+
+            #toolbar-menubar:not([autohide="true"]) {
+              visibility: visible !important;
+              height: 0;
             }
           }
           #navigator-toolbox {

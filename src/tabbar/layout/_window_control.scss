@@ -30,6 +30,11 @@ See the above repository for updates as well as full license text. */
     left:0;
     right: unset !important;
   }
+
+  #toolbar-menubar:not([autohide="true"]) {
+    visibility: visible !important;
+    height: 0;
+  }
 }
 
 #navigator-toolbox {

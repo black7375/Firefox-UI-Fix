@@ -17,8 +17,13 @@
   @include OS($win10) {
     --uc-window-control-width: 138px;
   }
-  @include OS($mac) {
+}
+@include OS($mac) {
+  :root[tabsintitlebar] {
     --uc-window-control-width: 72px;
+  }
+  :root[sizemode="fullscreen"] {
+    --uc-widow-control-space: 0;
   }
 }
 
