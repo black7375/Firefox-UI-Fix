@@ -9,7 +9,7 @@
 
 @mixin _remove_spacer_post() {
   /* Don't need window control */
-  --uc-widow-control-space: 0px;
+  --uc-window-control-space: 0px;
 }
 
 @mixin _remove_spacer_oneLiner() {
@@ -91,7 +91,7 @@
   @include OS($win, $linux) {
     @include _oneLiner_navBar_borderPadding {
       border-inline-start-width: var(--uc-window-drag-space-pre);
-      border-inline-end-width: var(--uc-widow-control-space);
+      border-inline-end-width: var(--uc-window-control-space);
     }
 
     @include Option("userChrome.tabbar.one_liner") {
@@ -100,7 +100,7 @@
           margin-inline-start: var(--uc-window-drag-space-pre) !important;
         }
         @include Option("userChrome.tabbar.one_liner.tabbar_first") {
-          margin-inline-end: var(--uc-widow-control-space) !important;
+          margin-inline-end: var(--uc-window-control-space) !important;
         }
       }
     }
@@ -112,14 +112,14 @@
 @include OS($mac) {
   :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
     @include _oneLiner_navBar_borderPadding {
-      border-inline-start-width: var(--uc-widow-control-space);
+      border-inline-start-width: var(--uc-window-control-space);
       border-inline-end-width: var(--uc-window-drag-space-pre);
     }
 
     @include Option("userChrome.tabbar.one_liner") {
       @include _oneLiner_navBar_marginGap {
         @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
-          margin-inline-start: var(--uc-widow-control-space, 0px) !important;
+          margin-inline-start: var(--uc-window-control-space, 0px) !important;
         }
         @include Option("userChrome.tabbar.one_liner.tabbar_first") {
           margin-inline-end: var(--uc-window-drag-space-pre, 0px) !important;
@@ -134,7 +134,7 @@
           margin-inline-end: var(--uc-window-drag-space-pre, 0px) !important;
         }
         @include Option("userChrome.tabbar.one_liner.tabbar_first") {
-          margin-inline-start: var(--uc-widow-control-space, 0px) !important;
+          margin-inline-start: var(--uc-window-control-space, 0px) !important;
         }
       }
     }
