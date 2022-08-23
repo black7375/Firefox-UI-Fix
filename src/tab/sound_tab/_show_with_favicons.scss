@@ -1,3 +1,30 @@
+//-- Mixin ---------------------------------------------------------------------
+@mixin _hidden_tabIcon_soundTabLabel() {
+  @include NotOption("userChrome.hidden.tab_icon") {
+    @content;
+  }
+  @include Option("userChrome.hidden.tab_icon") {
+    @include NotOption("userChrome.hidden.tab_icon.always") {
+      @content;
+    }
+  }
+}
+
+@mixin _hidden_tabIcon_soundTabIcon() {
+  @include NotOption("userChrome.hidden.tab_icon") {
+    &:not([image]) {
+      @content;
+    }
+  }
+  @include Option("userChrome.hidden.tab_icon") {
+    @include NotOption("userChrome.hidden.tab_icon.always") {
+      @content;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+
 /* Makes the favicons always visible (also on hover) */
 .tab-icon-image:not([pinned]) {
   opacity: 1 !important;
@@ -26,8 +53,12 @@
   fill-opacity: 0.8 !important;
   opacity: 1 !important;
 }
-.tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
-  transform: translateX(4px);
+
+/* Label */
+@include _hidden_tabIcon_soundTabLabel {
+  .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
+    transform: translateX(4px);
+  }
 }
 
 /* Animate */
@@ -44,18 +75,22 @@
 
 /* None exist favicon - Size bigger */
 @include NotOption("userChrome.tab.always_show_tab_icon") {
-  .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
-    transform: translateX(-0.5px) translateY(-1px);
-    inset-inline-end: 0 !important;
-    margin-inline-end: 0 !important;
-    padding: 0 !important;
-  }
-  .tabbrowser-tab:not([image]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
-    opacity: 0 !important; /* Favicon hidden */
-  }
-  .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
-    .tab-label {
-    transform: translateX(3px);
+  .tabbrowser-tab {
+    @include _hidden_tabIcon_soundTabIcon {
+      .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
+        transform: translateX(-0.5px) translateY(-1px);
+        inset-inline-end: 0 !important;
+        margin-inline-end: 0 !important;
+        padding: 0 !important;
+      }
+      &:is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
+        opacity: 0 !important; /* Favicon hidden */
+      }
+      &:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+                                                           .tab-label {
+        transform: translateX(3px);
+      }
+    }
   }
 }
 

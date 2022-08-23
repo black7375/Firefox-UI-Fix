@@ -1,5 +1,5 @@
 /*= Tabs on Bottom ===========================================================*/
-@include Option("userChrome.tab.on_bottom", "userChrome.fullscreen.overlap") {
+@include Option("userChrome.tabbar.on_bottom", "userChrome.fullscreen.overlap") {
   /* Don't use display: flex at not fullscreen!! side effect #372 */
   :root[sizemode="fullscreen"] #navigator-toolbox {
     display: flex !important; /* Needed for content to take up entire height, compatibility with tabs on bottom */
@@ -19,51 +19,26 @@
   }
 }
 
-@include Option("userChrome.tab.on_bottom") {
-  @import "tabs_on_bottom";
+@include Option("userChrome.tabbar.on_bottom") {
+  @include OneLinerOnBottom {
+    @import "on_bottom";
+  }
 }
 
-/*= Tab Bar - Connect to window ==============================================*/
-@include Option("userChrome.tab.connect_to_window") {
-  @import "connect_to_window";
+/*= Tab Bar - Oneliner =======================================================*/
+@include OneLiner {
+  @import "one_liner";
 }
 
-/*= Selected Tab =============================================================*/
-@import "selected_tab";
-
-/*= Unselected Tab - Divide line =============================================*/
-@import "unselected_tab";
-
-/*= New tab button ============================================================*/
-@import "newtab_button";
-
-/*= Unloaded Tab - Contents Opacity ===========================================*/
-@include Option("userChrome.tab.unloaded") {
-  @import "unload_tab";
+/*= Tab Bar - Shared Layout ==================================================*/
+@include Option("userChrome.tabbar.on_bottom", "userChrome.tabbar.one_liner", "userChrome.hidden.tabbar", "userChrome.tabbar.as_titlebar") {
+  @import "layout/window_control_size";
+}
+@include Option("userChrome.tabbar.on_bottom", "userChrome.tabbar.one_liner", "userChrome.hidden.tabbar") {
+  @import "layout";
 }
 
-/*= Clipped tabs =============================================================*/
-@import "clipped_tab";
-
-/*= Sound Tab ================================================================*/
-@import "sound_tab";
-
-/*= PictureInPicture Tab - Show PIP Icon =====================================*/
-@include Option("userChrome.tab.pip") {
-  @import "picture_in_picture_tab";
-}
-
-/*= Container Tab - Color line at icon's bottom ==============================*/
-@include Option("userChrome.tab.container") {
-  @import "container_tab";
-}
-
-/*= Crashed Tab - Don't show Favicons ========================================*/
-@include Option("userChrome.tab.crashed") {
-  @import "crashed_tab";
-}
-
-/*= Tab Label - Make to Center ===============================================*/
-@include Option("userChrome.tab.centered_label") {
-  @import "centered_label";
+/*= Tab Bar - Show only current tab ==========================================*/
+@include Option("userChrome.tabbar.as_titlebar") {
+  @import "as_titlebar";
 }

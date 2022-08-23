@@ -1,0 +1,52 @@
+#sidebar-box {
+  --uc-sidebar-fullscreen-margin: calc(var(--uc-sidebar-fullscreen-width) + var(--uc-sidebar-activate-width-reverse));
+  overflow: hidden;
+
+  will-change: min-width, max-width;
+  &:is(:hover, :focus-within) {
+    min-width: var(--uc-sidebar-activate-width) !important;
+    max-width: var(--uc-sidebar-activate-width) !important;
+  }
+}
+
+:root[inFullscreen="true"] #sidebar-box {
+  &:not([positionend="true"]) {
+    margin-inline-start: var(--uc-sidebar-fullscreen-margin) !important;
+    will-change: margin-inline-start;
+
+    &:is(:hover, :focus-within) {
+      margin-inline-start: 0 !important;
+    }
+  }
+
+  &[positionend="true"] {
+    margin-inline-end: var(--uc-sidebar-fullscreen-margin) !important;
+    will-change: margin-inline-end;
+
+    &:is(:hover, :focus-within) {
+      margin-inline-end: 0 !important;
+    }
+  }
+}
+
+
+@include Animate {
+  #sidebar-box {
+    transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+
+    &:is(:hover, :focus-within) {
+      transition-delay: 0ms !important;
+    }
+  }
+
+  :root[inFullscreen="true"] #sidebar-box {
+    transition: margin-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+
+    &[positionend="true"] {
+      transition-property: margin-inline-end !important;
+    }
+    &:is(:hover, :focus-within) {
+      transition-delay: 0ms !important;
+    }
+  }
+}

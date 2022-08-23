@@ -1,0 +1,10 @@
+@include Option("userChrome.centered.tab") {
+  @import "tab/layout";
+
+  @include NotOption("userChrome.centered.tab.label") {
+    @import "tab/content";
+  }
+  @include Option("userChrome.centered.tab.label") {
+    @import "tab/label";
+  }
+}
