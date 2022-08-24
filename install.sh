@@ -67,7 +67,7 @@ mac_command_line_developer_tools() {
 
 check_git() {
   if ! [ -x "$(command -v git)" ]; then
-    if [ "${OSTYPE}" == "linux-gnu" ] || [ "${OSTYPE}" == "FreeBSD" ]; then
+    if [[ "${OSTYPE}" == "linux"* || "${OSTYPE}" == "FreeBSD" ]]; then
       pacapt_install
       sudo pacapt -S git
       pacapt_uninstall
