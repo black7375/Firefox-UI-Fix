@@ -5358,6 +5358,12 @@
             --uc-window-drag-space-pre: 0px;
           }
         }
+        @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+          :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+            /* Don't need window control */
+            --uc-window-control-space: 0px;
+          }
+        }
         @supports -moz-bool-pref("userChrome.tabbar.as_titlebar") {
           :root:is([tabsintitlebar], [sizemode="fullscreen"]) #tabbrowser-tabs {
             /* Don't need window control */
@@ -5405,6 +5411,12 @@
             :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
               /* Don't need pre spacer */
               --uc-window-drag-space-pre: 0px;
+            }
+          }
+          @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+            :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+              /* Don't need window control */
+              --uc-window-control-space: 0px;
             }
           }
           @supports -moz-bool-pref("userChrome.tabbar.as_titlebar") {
@@ -5566,11 +5578,6 @@
               margin-inline-end: var(--uc-window-drag-space-pre, 0px) !important;
             }
           }
-          @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
-            :root[tabsintitlebar="true"]:not([inFullscreen]) #TabsToolbar {
-              margin-inline-start: var(--uc-window-control-space, 0px) !important;
-            }
-          }
         }
         @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
           @media screen and (min-width: 1100px) {
@@ -5579,10 +5586,19 @@
                 margin-inline-end: var(--uc-window-drag-space-pre, 0px) !important;
               }
             }
-            @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
-              :root[tabsintitlebar="true"]:not([inFullscreen]) #TabsToolbar {
-                margin-inline-start: var(--uc-window-control-space, 0px) !important;
-              }
+          }
+        }
+      }
+      @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
+        @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+          :root[tabsintitlebar="true"]:not([inFullscreen]) #TabsToolbar {
+            margin-inline-start: var(--uc-window-control-width, 0px) !important;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
+          @media screen and (min-width: 1100px) {
+            :root[tabsintitlebar="true"]:not([inFullscreen]) #TabsToolbar {
+              margin-inline-start: var(--uc-window-control-width, 0px) !important;
             }
           }
         }

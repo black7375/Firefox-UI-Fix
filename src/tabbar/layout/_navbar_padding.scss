@@ -17,6 +17,9 @@
     @include OS($win, $linux) {
       @include _remove_spacer_pre;
     }
+    @include OS($mac) {
+      @include _remove_spacer_post;
+    }
     @include Option("userChrome.tabbar.as_titlebar") {
       #tabbrowser-tabs {
         @include _remove_spacer_post;
@@ -133,8 +136,10 @@
         @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
           margin-inline-end: var(--uc-window-drag-space-pre, 0px) !important;
         }
-        @include Option("userChrome.tabbar.one_liner.tabbar_first") {
-          margin-inline-start: var(--uc-window-control-space, 0px) !important;
+      }
+      @include Option("userChrome.tabbar.one_liner.tabbar_first") {
+        @include OneLinerContent {
+          margin-inline-start: var(--uc-window-control-width, 0px) !important;
         }
       }
     }
