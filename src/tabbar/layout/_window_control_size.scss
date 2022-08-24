@@ -3,7 +3,7 @@
   --uc-window-drag-space-pre: 0px;  /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
   --uc-window-drag-space-post: 0px; /* Same as .titlebar-spacer[type="post-tabs"] */
 
-  --uc-widow-control-space: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+  --uc-window-control-space: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
 }
 
 :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
@@ -17,8 +17,13 @@
   @include OS($win10) {
     --uc-window-control-width: 138px;
   }
-  @include OS($mac) {
+}
+@include OS($mac) {
+  :root[tabsintitlebar] {
     --uc-window-control-width: 72px;
+  }
+  :root[sizemode="fullscreen"] {
+    --uc-window-control-space: 0;
   }
 }
 
