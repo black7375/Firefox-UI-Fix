@@ -28,7 +28,7 @@ spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
 .tabbrowser-tab[selected="true"] {
   -moz-window-dragging: drag;
   --tab-max-width: 100vw;
-  min-width: calc(var(--uc-tabbar-width, 100vw) - var(--uc-widow-control-space)) !important;
+  min-width: calc(var(--uc-tabbar-width, 100vw) - var(--uc-window-control-space)) !important;
   max-width: var(--tab-max-width) !important;
 
   margin-inline-start: calc(var(--tab-shadow-max-size) * -1) !important;
