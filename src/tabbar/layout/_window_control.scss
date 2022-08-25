@@ -8,6 +8,17 @@ See the above repository for updates as well as full license text. */
 @include OS($win) {
   :root[sizemode="maximized"][tabsintitlebar] {
     --uc-titlebar-padding: 8px;
+
+    #navigator-toolbox {
+      margin-top: calc(-1 * var(--uc-titlebar-padding));
+    }
+  }
+  :root[sizemode="normal"][tabsintitlebar] #titlebar,
+  :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+    appearance: none !important;
+  }
+  .browser-toolbar:not(.titlebar-color) {
+    background-clip: border-box !important;
   }
 }
 
@@ -15,10 +26,20 @@ See the above repository for updates as well as full license text. */
 #TabsToolbar > .titlebar-buttonbox-container {
   position: fixed;
   display: block;
-  top: var(--uc-titlebar-padding);
+  top: 0;
   right:0;
-  height: 40px;
   z-index: 1;
+}
+#toolbar-menubar[autohide="true"] {
+  > .titlebar-buttonbox-container {
+    height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+  }
+
+  @include OS($win10) {
+    &[inactive="true"] > > .titlebar-buttonbox-container .titlebar-button {
+      stroke: var(--toolbar-color, currentColor) !important;
+    }
+  }
 }
 
 /* where window controls are on left */

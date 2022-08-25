@@ -4466,15 +4466,35 @@
         :root[sizemode="maximized"][tabsintitlebar] {
           --uc-titlebar-padding: 8px;
         }
+        :root[sizemode="maximized"][tabsintitlebar] #navigator-toolbox {
+          margin-top: calc(-1 * var(--uc-titlebar-padding));
+        }
+
+        :root[sizemode="normal"][tabsintitlebar] #titlebar,
+        :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+          appearance: none !important;
+        }
+
+        .browser-toolbar:not(.titlebar-color) {
+          background-clip: border-box !important;
+        }
       }
       #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
       #TabsToolbar > .titlebar-buttonbox-container {
         position: fixed;
         display: block;
-        top: var(--uc-titlebar-padding);
+        top: 0;
         right: 0;
-        height: 40px;
         z-index: 1;
+      }
+
+      #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+        height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+      }
+      @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+        #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+          stroke: var(--toolbar-color, currentColor) !important;
+        }
       }
 
       /* where window controls are on left */
@@ -4614,15 +4634,35 @@
           :root[sizemode="maximized"][tabsintitlebar] {
             --uc-titlebar-padding: 8px;
           }
+          :root[sizemode="maximized"][tabsintitlebar] #navigator-toolbox {
+            margin-top: calc(-1 * var(--uc-titlebar-padding));
+          }
+
+          :root[sizemode="normal"][tabsintitlebar] #titlebar,
+          :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+            appearance: none !important;
+          }
+
+          .browser-toolbar:not(.titlebar-color) {
+            background-clip: border-box !important;
+          }
         }
         #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
         #TabsToolbar > .titlebar-buttonbox-container {
           position: fixed;
           display: block;
-          top: var(--uc-titlebar-padding);
+          top: 0;
           right: 0;
-          height: 40px;
           z-index: 1;
+        }
+
+        #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+          height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+        }
+        @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+            stroke: var(--toolbar-color, currentColor) !important;
+          }
         }
 
         /* where window controls are on left */
@@ -4759,15 +4799,35 @@
           :root[sizemode="maximized"][tabsintitlebar] {
             --uc-titlebar-padding: 8px;
           }
+          :root[sizemode="maximized"][tabsintitlebar] #navigator-toolbox {
+            margin-top: calc(-1 * var(--uc-titlebar-padding));
+          }
+
+          :root[sizemode="normal"][tabsintitlebar] #titlebar,
+          :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+            appearance: none !important;
+          }
+
+          .browser-toolbar:not(.titlebar-color) {
+            background-clip: border-box !important;
+          }
         }
         #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
         #TabsToolbar > .titlebar-buttonbox-container {
           position: fixed;
           display: block;
-          top: var(--uc-titlebar-padding);
+          top: 0;
           right: 0;
-          height: 40px;
           z-index: 1;
+        }
+
+        #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+          height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+        }
+        @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+            stroke: var(--toolbar-color, currentColor) !important;
+          }
         }
 
         /* where window controls are on left */
@@ -4907,15 +4967,35 @@
             :root[sizemode="maximized"][tabsintitlebar] {
               --uc-titlebar-padding: 8px;
             }
+            :root[sizemode="maximized"][tabsintitlebar] #navigator-toolbox {
+              margin-top: calc(-1 * var(--uc-titlebar-padding));
+            }
+
+            :root[sizemode="normal"][tabsintitlebar] #titlebar,
+            :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+              appearance: none !important;
+            }
+
+            .browser-toolbar:not(.titlebar-color) {
+              background-clip: border-box !important;
+            }
           }
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
           #TabsToolbar > .titlebar-buttonbox-container {
             position: fixed;
             display: block;
-            top: var(--uc-titlebar-padding);
+            top: 0;
             right: 0;
-            height: 40px;
             z-index: 1;
+          }
+
+          #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+            height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+          }
+          @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+            #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+              stroke: var(--toolbar-color, currentColor) !important;
+            }
           }
 
           /* where window controls are on left */
@@ -5065,15 +5145,35 @@
             :root[sizemode="maximized"][tabsintitlebar] {
               --uc-titlebar-padding: 8px;
             }
+            :root[sizemode="maximized"][tabsintitlebar] #navigator-toolbox {
+              margin-top: calc(-1 * var(--uc-titlebar-padding));
+            }
+
+            :root[sizemode="normal"][tabsintitlebar] #titlebar,
+            :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+              appearance: none !important;
+            }
+
+            .browser-toolbar:not(.titlebar-color) {
+              background-clip: border-box !important;
+            }
           }
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
           #TabsToolbar > .titlebar-buttonbox-container {
             position: fixed;
             display: block;
-            top: var(--uc-titlebar-padding);
+            top: 0;
             right: 0;
-            height: 40px;
             z-index: 1;
+          }
+
+          #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+            height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+          }
+          @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+            #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+              stroke: var(--toolbar-color, currentColor) !important;
+            }
           }
 
           /* where window controls are on left */
@@ -5210,15 +5310,35 @@
             :root[sizemode="maximized"][tabsintitlebar] {
               --uc-titlebar-padding: 8px;
             }
+            :root[sizemode="maximized"][tabsintitlebar] #navigator-toolbox {
+              margin-top: calc(-1 * var(--uc-titlebar-padding));
+            }
+
+            :root[sizemode="normal"][tabsintitlebar] #titlebar,
+            :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+              appearance: none !important;
+            }
+
+            .browser-toolbar:not(.titlebar-color) {
+              background-clip: border-box !important;
+            }
           }
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
           #TabsToolbar > .titlebar-buttonbox-container {
             position: fixed;
             display: block;
-            top: var(--uc-titlebar-padding);
+            top: 0;
             right: 0;
-            height: 40px;
             z-index: 1;
+          }
+
+          #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+            height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+          }
+          @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+            #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+              stroke: var(--toolbar-color, currentColor) !important;
+            }
           }
 
           /* where window controls are on left */
@@ -7233,7 +7353,7 @@
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
   )
-  or -moz-bool-pref("userChrome.tabbar.one_liner") {
+  or -moz-bool-pref("userChrome.tabbar.one_liner") or -moz-bool-pref("userChrome.hidden.tabbar") {
   :root {
     --uc-tabbar-height: var(--tab-min-height);
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
