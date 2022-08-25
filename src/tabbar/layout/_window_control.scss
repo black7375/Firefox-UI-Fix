@@ -28,8 +28,10 @@ See the above repository for updates as well as full license text. */
   display: block;
   top: 0;
   right:0;
-  height: 40px;
   z-index: 1;
+}
+#toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+  height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
 }
 
 /* where window controls are on left */

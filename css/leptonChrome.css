@@ -4485,8 +4485,11 @@
         display: block;
         top: 0;
         right: 0;
-        height: 40px;
         z-index: 1;
+      }
+
+      #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+        height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
       }
 
       /* where window controls are on left */
@@ -4645,8 +4648,11 @@
           display: block;
           top: 0;
           right: 0;
-          height: 40px;
           z-index: 1;
+        }
+
+        #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+          height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
         }
 
         /* where window controls are on left */
@@ -4802,8 +4808,11 @@
           display: block;
           top: 0;
           right: 0;
-          height: 40px;
           z-index: 1;
+        }
+
+        #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+          height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
         }
 
         /* where window controls are on left */
@@ -4962,8 +4971,11 @@
             display: block;
             top: 0;
             right: 0;
-            height: 40px;
             z-index: 1;
+          }
+
+          #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+            height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
           }
 
           /* where window controls are on left */
@@ -5132,8 +5144,11 @@
             display: block;
             top: 0;
             right: 0;
-            height: 40px;
             z-index: 1;
+          }
+
+          #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+            height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
           }
 
           /* where window controls are on left */
@@ -5289,8 +5304,11 @@
             display: block;
             top: 0;
             right: 0;
-            height: 40px;
             z-index: 1;
+          }
+
+          #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
+            height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
           }
 
           /* where window controls are on left */
@@ -7305,7 +7323,7 @@
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
   )
-  or -moz-bool-pref("userChrome.tabbar.one_liner") {
+  or -moz-bool-pref("userChrome.tabbar.one_liner") or -moz-bool-pref("userChrome.hidden.tabbar") {
   :root {
     --uc-tabbar-height: var(--tab-min-height);
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
