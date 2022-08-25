@@ -30,8 +30,16 @@ See the above repository for updates as well as full license text. */
   right:0;
   z-index: 1;
 }
-#toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
-  height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+#toolbar-menubar[autohide="true"] {
+  > .titlebar-buttonbox-container {
+    height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+  }
+
+  @include OS($win10) {
+    &[inactive="true"] > > .titlebar-buttonbox-container .titlebar-button {
+      stroke: var(--toolbar-color, currentColor) !important;
+    }
+  }
 }
 
 /* where window controls are on left */

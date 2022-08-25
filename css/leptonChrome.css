@@ -4491,6 +4491,11 @@
       #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
         height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
       }
+      @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+        #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+          stroke: var(--toolbar-color, currentColor) !important;
+        }
+      }
 
       /* where window controls are on left */
       @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -4654,6 +4659,11 @@
         #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
           height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
         }
+        @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+            stroke: var(--toolbar-color, currentColor) !important;
+          }
+        }
 
         /* where window controls are on left */
         @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -4813,6 +4823,11 @@
 
         #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
           height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+        }
+        @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+            stroke: var(--toolbar-color, currentColor) !important;
+          }
         }
 
         /* where window controls are on left */
@@ -4976,6 +4991,11 @@
 
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
             height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+          }
+          @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+            #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+              stroke: var(--toolbar-color, currentColor) !important;
+            }
           }
 
           /* where window controls are on left */
@@ -5150,6 +5170,11 @@
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
             height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
           }
+          @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+            #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+              stroke: var(--toolbar-color, currentColor) !important;
+            }
+          }
 
           /* where window controls are on left */
           @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
@@ -5309,6 +5334,11 @@
 
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container {
             height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
+          }
+          @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+            #toolbar-menubar[autohide="true"][inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
+              stroke: var(--toolbar-color, currentColor) !important;
+            }
           }
 
           /* where window controls are on left */
