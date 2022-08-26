@@ -101,6 +101,12 @@
       outline: var(--focus-outline) !important;
     }
   }
+  /*= Tab Separator Color ======================================================*/
+  #TabsToolbar {
+    --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent);
+    /* 60% at v105 */
+  }
+
   /*= Light Weight Theme =======================================================*/
   /* Header Image */
   :root[lwtheme-image] {
