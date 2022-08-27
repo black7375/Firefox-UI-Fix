@@ -4412,8 +4412,6 @@
   }
 
   :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-    --uc-window-control-width: 84px;
-    /* 84px is default value of linux */
     --uc-window-drag-space-pre: var(--uc-title-pre-spacer, 40px);
     --uc-window-drag-space-post: var(--uc-title-post-spacer, 40px);
   }
@@ -4428,6 +4426,28 @@
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
     :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
       --uc-window-control-width: 138px;
+    }
+  }
+  @media (-moz-gtk-csd-available) {
+    :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+      /* 84px is default value of linux */
+    }
+    @media (-moz-gtk-csd-minimize-button), (-moz-gtk-csd-maximize-button), (-moz-gtk-csd-close-button) {
+      :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+        --uc-window-control-width: 28px;
+      }
+    }
+    @media (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-maximize-button),
+      (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-close-button),
+      (-moz-gtk-csd-maximize-button) and (-moz-gtk-csd-close-button) {
+      :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+        --uc-window-control-width: 56px;
+      }
+    }
+    @media (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-maximize-button) and (-moz-gtk-csd-close-button) {
+      :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+        --uc-window-control-width: 84px;
+      }
     }
   }
 

@@ -7,7 +7,6 @@
 }
 
 :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-  --uc-window-control-width: 84px; /* 84px is default value of linux */
   --uc-window-drag-space-pre: var(--uc-title-pre-spacer, 40px); // 30px
   --uc-window-drag-space-post: var(--uc-title-post-spacer, 40px); // 25px
 
@@ -16,6 +15,25 @@
   }
   @include OS($win10) {
     --uc-window-control-width: 138px;
+  }
+  @include OS($linux) {
+    $linuxWindowControlWidth: 84px / 3; /* 84px is default value of linux */
+
+    @media (-moz-gtk-csd-minimize-button),
+    (-moz-gtk-csd-maximize-button),
+    (-moz-gtk-csd-close-button) {
+      --uc-window-control-width: #{ $linuxWindowControlWidth };
+    }
+
+    @media (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-maximize-button),
+    (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-close-button),
+    (-moz-gtk-csd-maximize-button) and (-moz-gtk-csd-close-button) {
+      --uc-window-control-width: #{ $linuxWindowControlWidth * 2 };
+    }
+
+    @media (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-maximize-button) and (-moz-gtk-csd-close-button) {
+      --uc-window-control-width: #{ $linuxWindowControlWidth * 3  };
+    }
   }
 }
 @include OS($mac) {
