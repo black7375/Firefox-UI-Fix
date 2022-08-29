@@ -16,6 +16,11 @@
       --uc-navbar-height: 0px;
     }
   }
+  @supports selector(:has(a)) {
+    #navigator-toolbox:has(#PersonalToolbar[collapsed="true"]) {
+      --uc-bm-height: 0px;
+    }
+  }
 }
 
 @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.autohide.infobar") {

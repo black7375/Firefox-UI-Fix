@@ -23,6 +23,9 @@ user_pref("browser.compactmode.show", true);
 // about:home Search Bar - 89 Above
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 
+// CSS's `:has()` selector #457 - 103 Above
+user_pref("layout.css.has-selector.enabled", true);
+
 // Browser Theme Based Scheme - Will be activate 95 Above
 // user_pref("layout.css.prefers-color-scheme.content-override", 3);
 

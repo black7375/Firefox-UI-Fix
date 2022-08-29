@@ -5,9 +5,11 @@
   will-change: margin-bottom, opacity;
 
   @include Option("userChrome.autohide.toolbar_overlap") {
-    &[collapsed="true"] {
-      visibility: visible !important;
-      max-height: unset !important;
+    @supports not selector(:has(a)) {
+      &[collapsed="true"] {
+        visibility: visible !important;
+        max-height: unset !important;
+      }
     }
   }
 }

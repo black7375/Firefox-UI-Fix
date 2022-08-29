@@ -7390,6 +7390,12 @@
       --uc-navbar-height: 0px;
     }
   }
+
+  @supports selector(:has(a)) {
+    #navigator-toolbox:has(#PersonalToolbar[collapsed="true"]) {
+      --uc-bm-height: 0px;
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
@@ -7735,9 +7741,11 @@
     will-change: margin-bottom, opacity;
   }
   @supports -moz-bool-pref("userChrome.autohide.toolbar_overlap") {
-    #PersonalToolbar:not([customizing])[collapsed="true"] {
-      visibility: visible !important;
-      max-height: unset !important;
+    @supports not selector(:has(a)) {
+      #PersonalToolbar:not([customizing])[collapsed="true"] {
+        visibility: visible !important;
+        max-height: unset !important;
+      }
     }
   }
 
