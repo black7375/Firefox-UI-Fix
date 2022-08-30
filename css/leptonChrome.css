@@ -3187,14 +3187,51 @@
     /* Original: 40px */
   }
 
-  .titlebar-spacer[type="pre-tabs"] {
-    width: var(--uc-title-pre-spacer) !important;
-  }
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    .titlebar-spacer[type="pre-tabs"] {
+      width: var(--uc-title-pre-spacer) !important;
+    }
 
-  .titlebar-spacer[type="post-tabs"] {
-    width: var(--uc-title-post-spacer) !important;
+    .titlebar-spacer[type="post-tabs"] {
+      width: var(--uc-title-post-spacer) !important;
+    }
   }
+  @media (-moz-gtk-csd-available) {
+    @media (-moz-gtk-csd-reversed-placement) {
+      .titlebar-spacer[type="pre-tabs"] {
+        width: var(--uc-title-pre-spacer) !important;
+      }
 
+      .titlebar-spacer[type="post-tabs"] {
+        width: var(--uc-title-post-spacer) !important;
+      }
+    }
+  }
+  @media (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win10),
+    (-moz-platform: windows-win10) {
+    .titlebar-spacer[type="pre-tabs"] {
+      width: var(--uc-title-post-spacer) !important;
+    }
+
+    .titlebar-spacer[type="post-tabs"] {
+      width: var(--uc-title-pre-spacer) !important;
+    }
+  }
+  @media (-moz-gtk-csd-available) {
+    @media (-moz-gtk-csd-reversed-placement: 0) {
+      .titlebar-spacer[type="pre-tabs"] {
+        width: var(--uc-title-post-spacer) !important;
+      }
+
+      .titlebar-spacer[type="post-tabs"] {
+        width: var(--uc-title-pre-spacer) !important;
+      }
+    }
+  }
   /* Tabbar Buttons */
   :root {
     --newtab-button-minus-width-padding: 2px;
