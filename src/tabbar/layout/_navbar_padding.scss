@@ -2,39 +2,6 @@
 /* Customized https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
 
 //-- Mixin ---------------------------------------------------------------------
-@mixin _remove_spacer_pre() {
-  /* Don't need pre spacer */
-  --uc-window-drag-space-pre: 0px;
-}
-
-@mixin _remove_spacer_post() {
-  /* Don't need window control */
-  --uc-window-control-space: 0px;
-}
-
-@mixin _remove_spacer_oneLiner() {
-  @include Option("userChrome.tabbar.one_liner.tabbar_first") {
-    @include WindowControl_Right {
-      @include _remove_spacer_pre;
-    }
-    @include WindowControl_Left {
-      @include _remove_spacer_post;
-    }
-    @include Option("userChrome.tabbar.as_titlebar") {
-      #tabbrowser-tabs {
-        @include _remove_spacer_post;
-      }
-    }
-  }
-  @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
-    @include NotOption("userChrome.tabbar.as_titlebar") {
-      @include WindowControl_Right {
-        @include _remove_spacer_post;
-      }
-    }
-  }
-}
-
 @mixin _oneLiner_navBar_borderPadding() {
   @include NotOption("userChrome.tabbar.one_liner") {
     @content;
@@ -67,25 +34,6 @@
 }
 
 //------------------------------------------------------------------------------
-
-@include Option("userChrome.tabbar.one_liner") {
-  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-    @include NotOption("userChrome.tabbar.one_liner.responsive") {
-      @include _remove_spacer_oneLiner;
-    }
-    @include Option("userChrome.tabbar.one_liner.responsive") {
-      @media screen and (max-width: 1100px) {
-        @include NotOption("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
-          @include _remove_spacer_pre;
-          @include _remove_spacer_post;
-        }
-      }
-      @media screen and (min-width: 1100px) {
-        @include _remove_spacer_oneLiner;
-      }
-    }
-  }
-}
 
 #nav-bar {
   border-inline-style: solid !important;
