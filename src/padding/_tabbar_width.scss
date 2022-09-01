@@ -3,11 +3,21 @@
   --uc-title-pre-spacer: 30px; /* Original: 40px */
   --uc-title-post-spacer: 25px; /* Original: 40px */
 }
-.titlebar-spacer[type="pre-tabs"] {
-  width: var(--uc-title-pre-spacer) !important;
+@include WindowControl_Left {
+  .titlebar-spacer[type="pre-tabs"] {
+    width: var(--uc-title-pre-spacer) !important;
+  }
+  .titlebar-spacer[type="post-tabs"] {
+    width: var(--uc-title-post-spacer) !important;
+  }
 }
-.titlebar-spacer[type="post-tabs"] {
-  width: var(--uc-title-post-spacer) !important;
+@include WindowControl_Right {
+  .titlebar-spacer[type="pre-tabs"] {
+    width: var(--uc-title-post-spacer) !important;
+  }
+  .titlebar-spacer[type="post-tabs"] {
+    width: var(--uc-title-pre-spacer) !important;
+  }
 }
 
 /* Tabbar Buttons */
