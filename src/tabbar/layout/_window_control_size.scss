@@ -101,3 +101,10 @@
     }
   }
 }
+
+@include Has {
+  #navigator-toolbox:has(#toolbar-menubar[autohide="false"]) {
+    @include _remove_spacer_pre;
+    @include _remove_spacer_post;
+  }
+}

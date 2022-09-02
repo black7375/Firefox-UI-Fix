@@ -1,0 +1,34 @@
+@use "true" as *;
+@use "example" as *;
+@use "../src/utils/has" as *;
+
+@include test-module("`:has()` selector test [mix]") {
+  @include test("exist `:has()`") {
+    @include assert {
+      @include output {
+        @include Has {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports selector(:has(a)) {
+          @include example;
+        }
+      }
+    }
+  }
+  @include test("don't exist `:has()`") {
+    @include assert {
+      @include output {
+        @include NotHas {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports not selector(:has(a)) {
+          @include example;
+        }
+      }
+    }
+  }
+}

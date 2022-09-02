@@ -4637,6 +4637,12 @@
       }
     }
   }
+  @supports selector(:has(a)) {
+    #navigator-toolbox:has(#toolbar-menubar[autohide="false"]) {
+      --uc-window-drag-space-pre: 0px;
+      --uc-window-control-space: 0px;
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.tabbar.one_liner") or -moz-bool-pref(
     "userChrome.hidden.tabbar"

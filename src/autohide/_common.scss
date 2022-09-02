@@ -16,7 +16,7 @@
       --uc-navbar-height: 0px;
     }
   }
-  @supports selector(:has(a)) {
+  @include Has {
     #navigator-toolbox:has(#PersonalToolbar[collapsed="true"]) {
       --uc-bm-height: 0px;
     }
