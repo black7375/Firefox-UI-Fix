@@ -5989,6 +5989,14 @@
     }
   }
 }
+/*= Tab Bar - Show only current tab ==========================================*/
+@supports -moz-bool-pref("userChrome.tabbar.fill_width") {
+  /* Why 100vw? Tab closing requires width animation to end and "none" can't be animated */
+  .tabbrowser-tab[fadein]:not([style^="max-width"]) {
+    --tab-max-width: 100vw;
+    max-width: var(--tab-max-width) !important;
+  }
+}
 /** Tab UI ****************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @supports -moz-bool-pref("userChrome.tab.connect_to_window") {

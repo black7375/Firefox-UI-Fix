@@ -42,3 +42,8 @@
 @include Option("userChrome.tabbar.as_titlebar") {
   @import "as_titlebar";
 }
+
+/*= Tab Bar - Show only current tab ==========================================*/
+@include Option("userChrome.tabbar.fill_width") {
+  @import "fill_width";
+}
