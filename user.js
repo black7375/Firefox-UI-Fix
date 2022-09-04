@@ -23,6 +23,9 @@ user_pref("browser.compactmode.show", true);
 // about:home Search Bar - 89 Above
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 
+// CSS's `:has()` selector #457 - 103 Above
+user_pref("layout.css.has-selector.enabled", true);
+
 // Browser Theme Based Scheme - Will be activate 95 Above
 // user_pref("layout.css.prefers-color-scheme.content-override", 3);
 
@@ -64,7 +67,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
 
 // user_pref("userChrome.compatiblity.os.linux_non_native_titlebar_button", true);
-// user_pref("userChrome.compatibility.os.windows_maximized, true");
+// user_pref("userChrome.compatibility.os.windows_maximized", true");
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
