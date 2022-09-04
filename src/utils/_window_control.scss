@@ -1,0 +1,23 @@
+@use "os" as *;
+
+@mixin WindowControl_Right() {
+  @include OS($win) {
+    @content;
+  }
+  @include OS($linux) {
+    @media (-moz-gtk-csd-reversed-placement: 0) {
+      @content;
+    }
+  }
+}
+
+@mixin WindowControl_Left() {
+  @include OS($mac) {
+    @content;
+  }
+  @include OS($linux) {
+    @media (-moz-gtk-csd-reversed-placement) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+// Need `:has selector`
+
+@mixin Has() {
+  @supports selector(:has(a)) {
+    @content;
+  }
+}
+
+@mixin NotHas() {
+  @supports not selector(:has(a)) {
+    @content;
+  }
+}
