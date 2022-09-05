@@ -9106,8 +9106,12 @@
 
   /* Padding */
   :root {
+    --uc-menu-background-position: left;
     --context-menu-background-padding-default: 5px;
     --context-menu-background-padding: var(--context-menu-background-padding-default);
+  }
+  :root:-moz-locale-dir(rtl) {
+    --uc-menu-background-position: right;
   }
 
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
@@ -9130,19 +9134,20 @@
   .openintabs-menuitem,
   #blockedPopupDontShowMessage,
   #BMB_viewBookmarksToolbar {
-    background-position: left var(--context-menu-background-padding) center !important;
+    background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
   }
 
   /* Menubar */
   @supports -moz-bool-pref("userChrome.icon.global_menubar") {
     #main-menubar > menu {
-      background-position: left var(--context-menu-background-padding-default) center !important;
+      background-position: var(--uc-menu-background-position) var(--context-menu-background-padding-default) center !important;
       padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
       padding-inline-end: 3px;
     }
     #main-menubar > menu:first-child {
-      background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
+      background-position: var(--uc-menu-background-position) calc(3px + var(--context-menu-background-padding-default))
+        center !important;
       padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
     }
     #main-menubar > menu > menupopup {
@@ -9311,7 +9316,7 @@
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
-      background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+      background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
 
     menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
@@ -9335,7 +9340,7 @@
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
-      background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+      background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
   }
   /* Linux */
