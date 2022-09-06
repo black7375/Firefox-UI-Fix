@@ -5,7 +5,12 @@
 }
 
 .tabbrowser-tab {
+  $containerPositionX: 9px;
+  --container-position-x: #{ $containerPositionX };
   --container-position-y: 11px;
+  &:-moz-locale-dir(rtl) {
+    --container-position-x: #{ $containerPositionX * -1 };
+  }
 }
 :root[uidensity="compact"] .tabbrowser-tab {
   --container-position-y: 10px;
@@ -18,7 +23,7 @@
   content: "";
   display: block;
   position: absolute !important;
-  transform: translate(9px, var(--container-position-y)) !important;
+  transform: translate(var(--container-position-x), var(--container-position-y)) !important;
 
   /* Shape */
   border-bottom: 2px solid var(--identity-icon-color);

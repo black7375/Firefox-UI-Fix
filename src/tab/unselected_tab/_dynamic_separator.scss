@@ -23,6 +23,18 @@
 
 //------------------------------------------------------------------------------
 
+#tabbrowser-arrowscrollbox {
+  --start-tab-separator-position-x: -1.5px;
+  --end-tab-separator-position-x: 1.5px;
+  --tab-separator-position-x: -2.5px;
+  --tab-separator-position-y: calc(-50% + 1px);
+  &:-moz-locale-dir(rtl) {
+    --start-tab-separator-position-x: 1.5px;
+    --end-tab-separator-position-x: -1.5px;
+    --tab-separator-position-x: 2.5px;
+  }
+}
+
 @include Option("userChrome.tab.newtab_button_like_tab") {
   #tabbrowser-arrowscrollbox {
     position: absolute;
@@ -33,7 +45,7 @@
     @include _dynamicSeparatorShape;
 
     /* More position */
-    transform: translateX(-2.5px) translateY(calc(-50% + 1px));
+    transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y));
   }
 }
 
@@ -46,11 +58,11 @@
   }
 
   .tab-background::before {
-    transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
+    transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
   .tabbrowser-tab[last-visible-tab] .tab-background::after {
     right: 0;
-    transform: translateX(1.5px) translateY(calc(-50% + 1px)) !important;
+    transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
 }
 
@@ -62,7 +74,7 @@
     @include OneLinerContent {
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-background::before {
         opacity: var(--tab-separator-opacity);
-        transform: translateX(-1.5px) translateY(calc(-50% + 1px));
+        transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
       }
     }
   }

@@ -3192,6 +3192,10 @@
     --uc-title-post-spacer: 25px;
     /* Original: 40px */
   }
+  :root:-moz-locale-dir(rtl) {
+    --uc-title-pre-spacer: 25px;
+    --uc-title-post-spacer: 30px;
+  }
 
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     .titlebar-spacer[type="pre-tabs"] {
@@ -6329,6 +6333,18 @@
 /*= Unselected Tab - Divide line =============================================*/
 /*= Unselected Tab - Dynamic Separator =======================================*/
 @supports -moz-bool-pref("userChrome.tab.dynamic_separtor") {
+  #tabbrowser-arrowscrollbox {
+    --start-tab-separator-position-x: -1.5px;
+    --end-tab-separator-position-x: 1.5px;
+    --tab-separator-position-x: -2.5px;
+    --tab-separator-position-y: calc(-50% + 1px);
+  }
+  #tabbrowser-arrowscrollbox:-moz-locale-dir(rtl) {
+    --start-tab-separator-position-x: 1.5px;
+    --end-tab-separator-position-x: -1.5px;
+    --tab-separator-position-x: 2.5px;
+  }
+
   @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox {
       position: absolute;
@@ -6349,7 +6365,7 @@
       opacity: 0;
       background-color: var(--toolbarseparator-color);
       /* More position */
-      transform: translateX(-2.5px) translateY(calc(-50% + 1px));
+      transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y));
     }
     @supports -moz-bool-pref("userChrome.compatibility.dynamic_separator") {
       .tab-background::before,
@@ -6386,12 +6402,12 @@
     }
 
     .tab-background::before {
-      transform: translateX(-2.5px) translateY(calc(-50% + 1px)) !important;
+      transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
 
     .tabbrowser-tab[last-visible-tab] .tab-background::after {
       right: 0;
-      transform: translateX(1.5px) translateY(calc(-50% + 1px)) !important;
+      transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
   }
   .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
@@ -6403,14 +6419,14 @@
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-background::before {
           opacity: var(--tab-separator-opacity);
-          transform: translateX(-1.5px) translateY(calc(-50% + 1px));
+          transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
         }
       }
       @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         @media screen and (min-width: 1100px) {
           .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-background::before {
             opacity: var(--tab-separator-opacity);
-            transform: translateX(-1.5px) translateY(calc(-50% + 1px));
+            transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
           }
         }
       }
@@ -6908,13 +6924,20 @@
   }
 
   /* Makes the speaker icon to always appear if the tab is playing (not only on hover) */
+  .tabbrowser-tab {
+    --uc-sound-tab-icon-position-x: -0.5px;
+  }
+  .tabbrowser-tab:-moz-locale-dir(rtl) {
+    --uc-sound-tab-icon-position-x: 0.5px;
+  }
+
   .tab-icon-overlay:not([crashed]),
   .tab-icon-overlay[pinned][crashed][selected] {
     /* Position */
     top: 0 !important;
     inset-inline-end: -9px !important;
     z-index: 1 !important;
-    transform: translateX(-0.5px) translateY(-6px);
+    transform: translateX(var(--uc-sound-tab-icon-position-x)) translateY(-6px);
     /* Shape */
     padding: 1.5px !important;
     border-radius: 10px !important;
@@ -6934,14 +6957,24 @@
   /* Label */
   @supports not -moz-bool-pref("userChrome.hidden.tab_icon") {
     .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
-      transform: translateX(4px);
+      --uc-sound-tab-label-position-x: 4px;
+      transform: translateX(var(--uc-sound-tab-label-position-x));
+    }
+    .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+      .tab-label:-moz-locale-dir(rtl) {
+      --uc-sound-tab-label-position-x: -4px;
     }
   }
   @supports -moz-bool-pref("userChrome.hidden.tab_icon") {
     @supports not -moz-bool-pref("userChrome.hidden.tab_icon.always") {
       .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
         .tab-label {
-        transform: translateX(4px);
+        --uc-sound-tab-label-position-x: 4px;
+        transform: translateX(var(--uc-sound-tab-label-position-x));
+      }
+      .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+        .tab-label:-moz-locale-dir(rtl) {
+        --uc-sound-tab-label-position-x: -4px;
       }
     }
   }
@@ -6958,9 +6991,17 @@
   }
   /* None exist favicon - Size bigger */
   @supports not -moz-bool-pref("userChrome.tab.always_show_tab_icon") {
+    .tabbrowser-tab {
+      --uc-sound-tab-no-icon-position-x: -0.5px;
+      --uc-sound-tab-no-icon-label-position-x: 3px;
+    }
+    .tabbrowser-tab:-moz-locale-dir(rtl) {
+      --uc-sound-tab-no-icon-position-x: 0.5px;
+      --uc-sound-tab-no-icon-label-position-x: -3px;
+    }
     @supports not -moz-bool-pref("userChrome.hidden.tab_icon") {
       .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
-        transform: translateX(-0.5px) translateY(-1px);
+        transform: translateX(var(--uc-sound-tab-no-icon-position-x)) translateY(-1px);
         inset-inline-end: 0 !important;
         margin-inline-end: 0 !important;
         padding: 0 !important;
@@ -6971,13 +7012,13 @@
       }
       .tabbrowser-tab:not([image]):not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
         .tab-label {
-        transform: translateX(3px);
+        transform: translateX(var(--uc-sound-tab-no-icon-label-position-x));
       }
     }
     @supports -moz-bool-pref("userChrome.hidden.tab_icon") {
       @supports not -moz-bool-pref("userChrome.hidden.tab_icon.always") {
         .tabbrowser-tab .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
-          transform: translateX(-0.5px) translateY(-1px);
+          transform: translateX(var(--uc-sound-tab-no-icon-position-x)) translateY(-1px);
           inset-inline-end: 0 !important;
           margin-inline-end: 0 !important;
           padding: 0 !important;
@@ -6988,7 +7029,7 @@
         }
         .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
           .tab-label {
-          transform: translateX(3px);
+          transform: translateX(var(--uc-sound-tab-no-icon-label-position-x));
         }
       }
     }
@@ -7001,7 +7042,7 @@
 
   /* Busy - Overlay Position */
   .tabbrowser-tab:not([pinned])[busy] .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
-    transform: translateX(-0.5px) translateY(-6px);
+    transform: translateX(var(--uc-sound-tab-icon-position-x)) translateY(-6px);
   }
 
   .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed])[busy] {
@@ -7082,7 +7123,11 @@
       }
     }
     .tabbrowser-tab {
+      --container-position-x: 9px;
       --container-position-y: 11px;
+    }
+    .tabbrowser-tab:-moz-locale-dir(rtl) {
+      --container-position-x: -9px;
     }
 
     :root[uidensity="compact"] .tabbrowser-tab {
@@ -7098,7 +7143,7 @@
       content: "";
       display: block;
       position: absolute !important;
-      transform: translate(9px, var(--container-position-y)) !important;
+      transform: translate(var(--container-position-x), var(--container-position-y)) !important;
       /* Shape */
       border-bottom: 2px solid var(--identity-icon-color);
       width: 25%;
@@ -9106,8 +9151,12 @@
 
   /* Padding */
   :root {
+    --uc-menu-background-position: left;
     --context-menu-background-padding-default: 5px;
     --context-menu-background-padding: var(--context-menu-background-padding-default);
+  }
+  :root:-moz-locale-dir(rtl) {
+    --uc-menu-background-position: right;
   }
 
   :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
@@ -9130,19 +9179,20 @@
   .openintabs-menuitem,
   #blockedPopupDontShowMessage,
   #BMB_viewBookmarksToolbar {
-    background-position: left var(--context-menu-background-padding) center !important;
+    background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
     padding-inline-start: var(--context-menu-background-padding) !important;
   }
 
   /* Menubar */
   @supports -moz-bool-pref("userChrome.icon.global_menubar") {
     #main-menubar > menu {
-      background-position: left var(--context-menu-background-padding-default) center !important;
+      background-position: var(--uc-menu-background-position) var(--context-menu-background-padding-default) center !important;
       padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
       padding-inline-end: 3px;
     }
     #main-menubar > menu:first-child {
-      background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
+      background-position: var(--uc-menu-background-position) calc(3px + var(--context-menu-background-padding-default))
+        center !important;
       padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
     }
     #main-menubar > menu > menupopup {
@@ -9311,7 +9361,7 @@
     #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
-      background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+      background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
 
     menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
@@ -9335,7 +9385,7 @@
     #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
       margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
-      background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+      background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
     }
   }
   /* Linux */

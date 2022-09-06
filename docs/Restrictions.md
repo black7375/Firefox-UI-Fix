@@ -6,7 +6,8 @@
   * [Cross Platform](#cross-platform)
   * [Firefox Version](#firefox-version)
   * [Side Effect](#side-effect)
-  * [`-moz-accent-color` Related](#-moz-accent-color-related)
+  * [RTL](#rtl)
+  * [`-moz-accent-color`](#-moz-accent-color)
 - [Internals](#internals)
   * [CSS Loading Order](#css-loading-order)
   * [DOM structure cannot be modified](#dom-structure-cannot-be-modified)
@@ -59,10 +60,6 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 - `-moz-os-version` -> `-moz-platform` [#331](https://github.com/black7375/Firefox-UI-Fix/issues/331)
 - Breaking change with `-moz-accent-color`/`-moz-accent-color-foreground` -> `AccentColor`/`AccentColorText` [#433](https://github.com/black7375/Firefox-UI-Fix/issues/433)
 
-### `-moz-accent-color`
-
-I don't know the exact reason, but it can be a problem if it is not applied to [CSS Variable](https://developer.mozilla.org/en-US/docs/Web/CSS/var). [#437](https://github.com/black7375/Firefox-UI-Fix/issues/437)
-
 ### Side Effect
 Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).
 
@@ -76,6 +73,16 @@ The following code will cause extension panels fail to open and trying to open t
 Info: `#nav-bar` is [`toolbar`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/toolbar).
 
 Another `display: flex`'s side effect examples. [#368](https://github.com/black7375/Firefox-UI-Fix/issues/368) [#372](https://github.com/black7375/Firefox-UI-Fix/issues/372)
+
+### RTL
+
+It can be detected using [`:-moz-locale-dir(rtl)`](https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-locale-dir(rtl)) on the interface(chrome) and [`:dir(rtl)`](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir) on the content.
+
+[`margin-inline`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-inline) and [`padding-inline`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-inline) works as desired, but [`background-position-x`](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position-x) and [`translateX()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX) should use the opposite values.
+
+### `-moz-accent-color`
+
+I don't know the exact reason, but it can be a problem if it is not applied to [CSS Variable](https://developer.mozilla.org/en-US/docs/Web/CSS/var). [#437](https://github.com/black7375/Firefox-UI-Fix/issues/437)
 
 ## Internals
 ### CSS Loading Order
