@@ -89,6 +89,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.autohide.forward_button",             true);
 // user_pref("userChrome.autohide.page_action",                true);
 // user_pref("userChrome.autohide.toolbar_overlap",            true);
+// user_pref("userChrome.autohide.toolbar_overlap.allow_layout_shift", true);
 
 // user_pref("userChrome.hidden.tab_icon",                     true);
 // user_pref("userChrome.hidden.tab_icon.always",              true);

@@ -7951,10 +7951,12 @@
     will-change: margin-bottom, opacity;
   }
   @supports -moz-bool-pref("userChrome.autohide.toolbar_overlap") {
-    @supports not selector(:has(a)) {
-      #PersonalToolbar:not([customizing])[collapsed="true"] {
-        visibility: visible !important;
-        max-height: unset !important;
+    @supports not -moz-bool-pref("userChrome.autohide.toolbar_overlap.allow_layout_shift") {
+      @supports not selector(:has(a)) {
+        #PersonalToolbar:not([customizing])[collapsed="true"] {
+          visibility: visible !important;
+          max-height: unset !important;
+        }
       }
     }
   }
