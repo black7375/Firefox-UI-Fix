@@ -19,6 +19,11 @@ html#main-window menupopup:not(.in-menulist) {
     var(--menuitem-hover-background-color) 40%,
     transparent
   ) !important;
+
+  /* Above FF v105 #466 */
+  --panel-color: var(--menu-color) !important;
+  --panel-background: var(--menu-background-color) !important;
+  --panel-border-color: var(--menu-border-color) !important;
 }
 
 // TODO: `OS` not covered case
