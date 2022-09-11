@@ -1298,12 +1298,32 @@
       var(--menuitem-hover-background-color) 40%,
       transparent
     ) !important;
-    /* Above FF v105 #466 */
-    --panel-color: var(--menu-color) !important;
-    --panel-background: var(--menu-background-color) !important;
-    --panel-border-color: var(--menu-border-color) !important;
   }
 
+  @media (-moz-windows-non-native-menus) {
+    html#main-window menupopup:not(.in-menulist) {
+      /* Above FF v105 #466 */
+      --panel-color: var(--menu-color) !important;
+      --panel-background: var(--menu-background-color) !important;
+      --panel-border-color: var(--menu-border-color) !important;
+    }
+
+    menu[disabled="true"],
+    menu[_moz-menuactive="true"][disabled="true"],
+    menuitem[disabled="true"],
+    menuitem[_moz-menuactive="true"][disabled="true"] {
+      color: var(--menu-disabled-color) !important;
+    }
+    menu[_moz-menuactive="true"]:not([disabled="true"]),
+    menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
+      background-color: var(--menuitem-hover-background-color) !important;
+      color: var(--menu-color) !important;
+    }
+
+    html#main-window menupopup:not(.in-menulist) menuseparator {
+      border-top: 1px solid var(--menu-border-color);
+    }
+  }
   @media not all and (-moz-gtk-csd-available) {
     window:is(#bookmarksPanel, #history-panel)[lwt-sidebar="true"] menupopup {
       --panel-color: var(--lwt-sidebar-text-color, var(--menu-color)) !important;
