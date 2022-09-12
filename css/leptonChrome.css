@@ -1307,21 +1307,36 @@
       --panel-background: var(--menu-background-color) !important;
       --panel-border-color: var(--menu-border-color) !important;
     }
-
-    menu[disabled="true"],
-    menu[_moz-menuactive="true"][disabled="true"],
-    menuitem[disabled="true"],
-    menuitem[_moz-menuactive="true"][disabled="true"] {
+    html#main-window menupopup:not(.in-menulist) menuseparator {
+      border-top: 1px solid var(--menu-border-color);
+    }
+    html#main-window menupopup menu[disabled="true"],
+    html#main-window menupopup menu[_moz-menuactive="true"][disabled="true"],
+    html#main-window menupopup menuitem[disabled="true"],
+    html#main-window menupopup menuitem[_moz-menuactive="true"][disabled="true"] {
       color: var(--menu-disabled-color) !important;
     }
-    menu[_moz-menuactive="true"]:not([disabled="true"]),
-    menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
+    html#main-window menupopup menu[_moz-menuactive="true"]:not([disabled="true"]),
+    html#main-window menupopup menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
       background-color: var(--menuitem-hover-background-color) !important;
       color: var(--menu-color) !important;
     }
-
-    html#main-window menupopup:not(.in-menulist) menuseparator {
-      border-top: 1px solid var(--menu-border-color);
+    html#main-window
+      menupopup
+      #context-navigation
+      > .menuitem-iconic[_moz-menuactive="true"]
+      > .menu-iconic-left
+      > .menu-iconic-icon {
+      background-color: var(--menuitem-hover-background-color) !important;
+    }
+    html#main-window menupopup #context-navigation > .menuitem-iconic[_moz-menuactive="true"],
+    html#main-window
+      menupopup
+      #context-navigation
+      > .menuitem-iconic[_moz-menuactive="true"][disabled="true"]
+      > .menu-iconic-left
+      > .menu-iconic-icon {
+      background-color: transparent !important;
     }
   }
   @media not all and (-moz-gtk-csd-available) {
