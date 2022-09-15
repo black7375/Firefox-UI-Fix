@@ -4291,6 +4291,10 @@
       transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
     }
 
+    #navigator-toolbox {
+      z-index: 2;
+    }
+
     @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
       :root {
         --uc-navbar-gap: 10px;
@@ -4399,6 +4403,10 @@
 
       #TabsToolbar > .titlebar-buttonbox-container {
         transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
+      }
+
+      #navigator-toolbox {
+        z-index: 2;
       }
 
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
