@@ -1,0 +1,24 @@
+#tabbrowser-tabs {
+  counter-reset: tab-counts;
+}
+
+.tabbrowser-tab:not([hidden="true"]) {
+  counter-increment: tab-counts;
+}
+
+.tabbrowser-tab:not([hidden="true"]) .tab-label-container::before {
+  display: inline-block;
+  grid-row: 1;
+}
+.tabbrowser-tab:not([hidden="true"]) .tab-label-container > .tab-text {
+  grid-row: 1;
+}
+
+// https://www.designcise.com/web/tutorial/how-to-add-space-before-or-after-an-element-using-css-pseudo-elements
+.tabbrowser-tab:not([hidden="true"])[pinned="true"] .tab-label-container::before  {
+  content: "\00a0" counter(tab-counts);
+}
+
+.tabbrowser-tab:not([hidden="true"]):not([pinned="true"]) .tab-label-container::before {
+  content: counter(tab-counts) ":\00a0";
+}

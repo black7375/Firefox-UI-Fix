@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
 /** Default Thme - Contrast ***************************************************/
@@ -7198,6 +7199,33 @@
 @supports -moz-bool-pref("userChrome.tab.crashed") {
   .tab-icon-image[crashed] {
     display: none !important;
+  }
+}
+/*= Counter for Tab ==========================================================*/
+@supports -moz-bool-pref("userChrome.tab.counter") {
+  #tabbrowser-tabs {
+    counter-reset: tab-counts;
+  }
+
+  .tabbrowser-tab:not([hidden="true"]) {
+    counter-increment: tab-counts;
+  }
+
+  .tabbrowser-tab:not([hidden="true"]) .tab-label-container::before {
+    display: inline-block;
+    grid-row: 1;
+  }
+
+  .tabbrowser-tab:not([hidden="true"]) .tab-label-container > .tab-text {
+    grid-row: 1;
+  }
+
+  .tabbrowser-tab:not([hidden="true"])[pinned="true"] .tab-label-container::before {
+    content: " " counter(tab-counts);
+  }
+
+  .tabbrowser-tab:not([hidden="true"]):not([pinned="true"]) .tab-label-container::before {
+    content: counter(tab-counts) ": ";
   }
 }
 /** Url View UI ***************************************************************/
