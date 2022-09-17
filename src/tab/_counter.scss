@@ -1,24 +1,63 @@
+//-- Mixin ---------------------------------------------------------------------
+@mixin _tab_counter_without_centered() {
+  @include Option("userChrome.centered.tab") {
+    @include NotOption("userChrome.centered.tab.label") {
+      @content;
+    }
+  }
+  @include NotOption("userChrome.centered.tab") {
+    @content;
+  }
+}
+
+//------------------------------------------------------------------------------
+
 #tabbrowser-tabs {
   counter-reset: tab-counts;
 }
 
 .tabbrowser-tab:not([hidden="true"]) {
   counter-increment: tab-counts;
+
+  // https://www.designcise.com/web/tutorial/how-to-add-space-before-or-after-an-element-using-css-pseudo-elements
+  &[pinned="true"] .tab-label-container::before  {
+    content: "\00a0" counter(tab-counts);
+  }
+  &:not([pinned="true"]) .tab-label-container::before {
+    content: counter(tab-counts) ":\00a0";
+  }
+
+  .tab-label-container {
+    display: grid;
+
+    align-content: safe center;
+    align-items: safe center;
+
+    @include _tab_counter_without_centered {
+      justify-content: start;
+      justify-items: start;
+    }
+
+    &::before {
+      display: inline-block;
+      grid-row: 1;
+    }
+    > .tab-text {
+      grid-row: 1;
+    }
+
+    &[pinned] {
+      width: unset !important; /* Original: 0 */
+      > .tab-text,
+      > .tab-secondary-label {
+        width: 0;
+      }
+    }
+  }
 }
 
-.tabbrowser-tab:not([hidden="true"]) .tab-label-container::before {
-  display: inline-block;
-  grid-row: 1;
-}
-.tabbrowser-tab:not([hidden="true"]) .tab-label-container > .tab-text {
-  grid-row: 1;
-}
-
-// https://www.designcise.com/web/tutorial/how-to-add-space-before-or-after-an-element-using-css-pseudo-elements
-.tabbrowser-tab:not([hidden="true"])[pinned="true"] .tab-label-container::before  {
-  content: "\00a0" counter(tab-counts);
-}
-
-.tabbrowser-tab:not([hidden="true"]):not([pinned="true"]) .tab-label-container::before {
-  content: counter(tab-counts) ":\00a0";
+// Like centered label
+.tab-label,
+.tab-secondary-label {
+  overflow: hidden;
 }

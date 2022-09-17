@@ -7210,22 +7210,50 @@
   .tabbrowser-tab:not([hidden="true"]) {
     counter-increment: tab-counts;
   }
-
+  .tabbrowser-tab:not([hidden="true"])[pinned="true"] .tab-label-container::before {
+    content: " " counter(tab-counts);
+  }
+  .tabbrowser-tab:not([hidden="true"]):not([pinned="true"]) .tab-label-container::before {
+    content: counter(tab-counts) ": ";
+  }
+  .tabbrowser-tab:not([hidden="true"]) .tab-label-container {
+    display: grid;
+    align-content: safe center;
+    align-items: safe center;
+  }
+  @supports -moz-bool-pref("userChrome.centered.tab") {
+    @supports not -moz-bool-pref("userChrome.centered.tab.label") {
+      .tabbrowser-tab:not([hidden="true"]) .tab-label-container {
+        justify-content: start;
+        justify-items: start;
+      }
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.centered.tab") {
+    .tabbrowser-tab:not([hidden="true"]) .tab-label-container {
+      justify-content: start;
+      justify-items: start;
+    }
+  }
   .tabbrowser-tab:not([hidden="true"]) .tab-label-container::before {
     display: inline-block;
     grid-row: 1;
   }
-
   .tabbrowser-tab:not([hidden="true"]) .tab-label-container > .tab-text {
     grid-row: 1;
   }
-
-  .tabbrowser-tab:not([hidden="true"])[pinned="true"] .tab-label-container::before {
-    content: " " counter(tab-counts);
+  .tabbrowser-tab:not([hidden="true"]) .tab-label-container[pinned] {
+    width: unset !important;
+    /* Original: 0 */
+  }
+  .tabbrowser-tab:not([hidden="true"]) .tab-label-container[pinned] > .tab-text,
+  .tabbrowser-tab:not([hidden="true"]) .tab-label-container[pinned] > .tab-secondary-label {
+    width: 0;
   }
 
-  .tabbrowser-tab:not([hidden="true"]):not([pinned="true"]) .tab-label-container::before {
-    content: counter(tab-counts) ": ";
+  .tab-label,
+  .tab-secondary-label {
+    overflow: hidden;
   }
 }
 /** Url View UI ***************************************************************/
