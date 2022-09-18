@@ -21,6 +21,45 @@ html#main-window menupopup:not(.in-menulist) {
   ) !important;
 }
 
+@media (-moz-windows-non-native-menus) {
+  html#main-window menupopup {
+    &:not(.in-menulist) {
+      /* Above FF v105 #466 */
+      --panel-color: var(--menu-color) !important;
+      --panel-background: var(--menu-background-color) !important;
+      --panel-border-color: var(--menu-border-color) !important;
+
+      menuseparator {
+        border-top: 1px solid var(--menu-border-color);
+      }
+    }
+
+    menu,
+    menuitem {
+      &[disabled="true"],
+      &[_moz-menuactive="true"][disabled="true"] {
+        color: var(--menu-disabled-color) !important;
+      }
+
+      &[_moz-menuactive="true"]:not([disabled="true"]) {
+        background-color: var(--menuitem-hover-background-color) !important;
+        color: var(--menu-color) !important;
+      }
+    }
+
+    #context-navigation > .menuitem-iconic[_moz-menuactive="true"] {
+      > .menu-iconic-left > .menu-iconic-icon {
+        background-color: var(--menuitem-hover-background-color) !important;
+      }
+
+      &,
+      &[disabled="true"] > .menu-iconic-left > .menu-iconic-icon {
+        background-color: transparent !important;
+      }
+    }
+  }
+}
+
 // TODO: `OS` not covered case
 @media not all and (-moz-gtk-csd-available) {
   window:is(#bookmarksPanel, #history-panel)[lwt-sidebar="true"] menupopup {

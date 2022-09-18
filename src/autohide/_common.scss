@@ -1,3 +1,8 @@
+:root {
+  --uc-autohide-toolbar-speed: 0.25s;
+  --uc-autohide-toolbar-delay: 600ms;
+}
+
 @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.tabbar.one_liner", "userChrome.hidden.tabbar") {
   :root {
     --uc-tabbar-height: var(--tab-min-height); // calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
@@ -24,10 +29,6 @@
 }
 
 @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.autohide.infobar") {
-  :root {
-    --uc-autohide-toolbar-delay: 600ms;
-  }
-
   #navigator-toolbox {
     position: relative;
     z-index: 2;

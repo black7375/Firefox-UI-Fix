@@ -38,13 +38,13 @@
 
 @include Animate {
   #titlebar:not([customizing]) {
-    transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+    transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                 background-color 1s var(--animation-easing-function) !important;
   }
 
   #TabsToolbar:not([customizing]) {
     @include _autohide_tabbar {
-      transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
+      transition: opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
     }
   }
 
