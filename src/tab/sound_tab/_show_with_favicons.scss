@@ -31,13 +31,19 @@
 }
 
 /* Makes the speaker icon to always appear if the tab is playing (not only on hover) */
+.tabbrowser-tab {
+  --uc-sound-tab-icon-position-x: -0.5px;
+  &:-moz-locale-dir(rtl) {
+    --uc-sound-tab-icon-position-x: 0.5px;
+  }
+}
 .tab-icon-overlay:not([crashed]),
 .tab-icon-overlay[pinned][crashed][selected] {
   /* Position */
   top: 0 !important;
   inset-inline-end: -9px !important;
   z-index: 1 !important;
-  transform: translateX(-0.5px) translateY(-6px);
+  transform: translateX(var(--uc-sound-tab-icon-position-x)) translateY(-6px);
 
   /* Shape */
   padding: 1.5px !important;
@@ -56,8 +62,21 @@
 
 /* Label */
 @include _hidden_tabIcon_soundTabLabel {
-  .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label {
-    transform: translateX(4px);
+  .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
+    .tab-label-container {
+      &[labeldirection=ltr],
+      &:not([labeldirection]):-moz-locale-dir(ltr) {
+        --uc-sound-tab-label-position-x: 4px;
+      }
+      &[labeldirection=rtl],
+      :not([labeldirection]):-moz-locale-dir(rtl) {
+        --uc-sound-tab-label-position-x: -4px;
+      }
+
+      > * {
+        transform: translateX(var(--uc-sound-tab-label-position-x));
+      }
+    }
   }
 }
 
@@ -68,7 +87,7 @@
     transition: 0.1s var(--animation-easing-function);
   }
 
-  .tab-label-container > .tab-label {
+  .tab-label-container > * {
     transition: transform 0.25s var(--animation-easing-function);
   }
 }
@@ -76,9 +95,22 @@
 /* None exist favicon - Size bigger */
 @include NotOption("userChrome.tab.always_show_tab_icon") {
   .tabbrowser-tab {
+    .tab-label-container {
+      &[labeldirection=ltr],
+      &:not([labeldirection]):-moz-locale-dir(ltr) {
+        --uc-sound-tab-no-icon-position-x: -0.5px;
+        --uc-sound-tab-no-icon-label-position-x: 3px;
+      }
+      &[labeldirection=rtl],
+      :not([labeldirection]):-moz-locale-dir(rtl) {
+        --uc-sound-tab-no-icon-position-x: 0.5px;
+        --uc-sound-tab-no-icon-label-position-x: -3px;
+      }
+    }
+
     @include _hidden_tabIcon_soundTabIcon {
       .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
-        transform: translateX(-0.5px) translateY(-1px);
+        transform: translateX(var(--uc-sound-tab-no-icon-position-x)) translateY(-1px);
         inset-inline-end: 0 !important;
         margin-inline-end: 0 !important;
         padding: 0 !important;
@@ -87,8 +119,8 @@
         opacity: 0 !important; /* Favicon hidden */
       }
       &:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
-                                                           .tab-label {
-        transform: translateX(3px);
+        .tab-label-container > * {
+        transform: translateX(var(--uc-sound-tab-no-icon-label-position-x));
       }
     }
   }
@@ -102,7 +134,7 @@
 
 /* Busy - Overlay Position */
 .tabbrowser-tab:not([pinned])[busy] .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
-  transform: translateX(-0.5px) translateY(-6px);
+  transform: translateX(var(--uc-sound-tab-icon-position-x)) translateY(-6px);
 }
 .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed])[busy] {
   inset-inline-end: -9px !important;

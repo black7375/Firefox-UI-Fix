@@ -2,6 +2,10 @@
 :root {
   --uc-title-pre-spacer: 30px; /* Original: 40px */
   --uc-title-post-spacer: 25px; /* Original: 40px */
+  &:-moz-locale-dir(rtl) {
+    --uc-title-pre-spacer: 25px;
+    --uc-title-post-spacer: 30px;
+  }
 }
 @include WindowControl_Left {
   .titlebar-spacer[type="pre-tabs"] {

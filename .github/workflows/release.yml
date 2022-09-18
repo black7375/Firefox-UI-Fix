@@ -55,12 +55,20 @@ jobs:
 
       - name: Release Structure
         run: |
+          # Remove unnecessary files
+          rm -rf ./.git ./.github ./__tests__ ./docs ./src
+          rm -rf ./.gitattributes ./.gitignore ./.prettierignore ./.prettierrc.json
+          rm -rf ./package.json ./yarn.lock ./waterfox.sh
+          rm -rf ./CODE_OF_CONDUCT.md ./CONTRIBUTING.md ./README.org
+
+          # Move to ./chrome/
           mkdir -v chrome
 
           shopt -s extglob
-          mv -v !(chrome|user.js|install.sh) chrome/
+          mv -v !(chrome|CREDITS|LICENSE|user.js|install.sh|install.ps1) chrome/
 
-          zip -rv ${{ matrix.name }}.zip chrome user.js install.sh
+          # Zip files
+          zip -rv ${{ matrix.name }}.zip chrome CREDITS LICENSE user.js install.sh install.ps1
 
       - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
         if: startsWith(github.ref, 'refs/tags/')
