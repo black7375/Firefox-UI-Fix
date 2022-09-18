@@ -62,12 +62,16 @@ $_initialMenus: selector.append(
 // Padding
 @mixin _layout_root_padding() {
   :root {
+    --uc-menu-background-position: left;
     --context-menu-background-padding-default: 5px;
     --context-menu-background-padding: var(--context-menu-background-padding-default);
+    &:-moz-locale-dir(rtl) {
+      --uc-menu-background-position: right;
+    }
   }
 }
 @mixin _layout_init_padding() {
-  background-position: left var(--context-menu-background-padding) center !important;
+  background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
 

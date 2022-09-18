@@ -56,12 +56,12 @@ $_layoutCommonMenus: (
 /* Menubar */
 @include Option("userChrome.icon.global_menubar") {
   #{$_globalMenus} {
-    background-position: left var(--context-menu-background-padding-default) center !important;
+    background-position: var(--uc-menu-background-position) var(--context-menu-background-padding-default) center !important;
     padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
     padding-inline-end: 3px;
 
     &:first-child {
-      background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
+      background-position: var(--uc-menu-background-position) calc(3px + var(--context-menu-background-padding-default)) center !important;
       padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
     }
     > menupopup {

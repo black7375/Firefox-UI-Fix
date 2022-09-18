@@ -12,14 +12,14 @@
 
 @include Animate {
   #nav-bar:not([customizing]) {
-    transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
-                opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+    transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                 var(--ext-theme-background-transition) !important;
 
     @include Option("userChrome.autohide.fill_urlbar") {
-      transition: margin-inline 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
-                  margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
-                  opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+      transition: margin-inline var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                  margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                  opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                   var(--ext-theme-background-transition) !important;
     }
   }
