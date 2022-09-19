@@ -107,6 +107,9 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.centered.urlbar",                     true);
 // user_pref("userChrome.centered.bookmarkbar",                true);
 
+// user_pref("userChrome.counter.tab",                         true);
+// user_pref("userChrome.counter.bookmark_menu",               true);
+
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
 // user_pref("userChrome.rounding.square_panelitem",           true);
@@ -146,7 +149,6 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.tab.close_button_at_pinned.background", true);
 // user_pref("userChrome.tab.close_button_at_hover.always",    true); // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
-// user_pref("userChrome.tab.counter",                         true);
 
 // user_pref("userChrome.panel.remove_strip",                  true);
 // user_pref("userChrome.panel.full_width_separator",          true);
