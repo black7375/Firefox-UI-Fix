@@ -7378,6 +7378,8 @@
     --uc-sidebar-activate-width-reverse: calc(-1 * var(--uc-sidebar-activate-width));
     --uc-sidebar-fullscreen-width: 4px;
     --uc-sidebar-shadow-color: #28282f;
+    --uc-autohide-sidebar-speed: 750ms;
+    --uc-autohide-fullscreen-sidebar-speed: 1s;
     --uc-autohide-sidebar-delay: 600ms;
     /* Wait 0.6s before hiding sidebar */
     z-index: 1 !important;
@@ -8141,7 +8143,8 @@
 
     @media (prefers-reduced-motion: no-preference) {
       #sidebar {
-        transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+        transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function)
+          var(--uc-autohide-sidebar-delay) !important;
       }
 
       #sidebar-box:is(:hover, :focus-within) > #sidebar {
@@ -8149,7 +8152,8 @@
       }
 
       :root[inFullscreen="true"] #sidebar-box {
-        transition: padding-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+        transition: padding-inline-start var(--uc-autohide-fullscreen-sidebar-speed) var(--animation-easing-function)
+          var(--uc-autohide-sidebar-delay) !important;
       }
       :root[inFullscreen="true"] #sidebar-box:is(:hover, :focus-within) {
         transition-delay: 0ms !important;
@@ -8186,14 +8190,16 @@
 
     @media (prefers-reduced-motion: no-preference) {
       #sidebar-box {
-        transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+        transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function)
+          var(--uc-autohide-sidebar-delay) !important;
       }
       #sidebar-box:is(:hover, :focus-within) {
         transition-delay: 0ms !important;
       }
 
       :root[inFullscreen="true"] #sidebar-box {
-        transition: margin-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+        transition: margin-inline-start var(--uc-autohide-fullscreen-sidebar-speed) var(--animation-easing-function)
+          var(--uc-autohide-sidebar-delay) !important;
       }
       :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
         transition-property: margin-inline-end !important;
