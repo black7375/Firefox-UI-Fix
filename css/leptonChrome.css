@@ -2720,6 +2720,10 @@
       treechildren::-moz-tree-separator(selected) {
         border-color: var(--organizer-selected-color) !important;
       }
+      treechildren::-moz-tree-cell-text(primary, dropOn),
+      treechildren::-moz-tree-drop-feedback {
+        background-color: var(--organizer-outline-color) !important;
+      }
 
       /*- Info Box -------------------------------------------------------------*/
       #detailsPane {
