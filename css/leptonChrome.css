@@ -4352,7 +4352,9 @@
       }
     }
     #urlbar-container {
-      min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
+      min-width: calc(
+        var(--uc-oneliner-urlbar-base-width, 50px) + 24px + 2 * var(--toolbarbutton-inner-padding)
+      ) !important;
     }
 
     #PersonalToolbar {
@@ -4467,7 +4469,9 @@
         }
       }
       #urlbar-container {
-        min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
+        min-width: calc(
+          var(--uc-oneliner-urlbar-base-width, 50px) + 24px + 2 * var(--toolbarbutton-inner-padding)
+        ) !important;
       }
 
       #PersonalToolbar {
