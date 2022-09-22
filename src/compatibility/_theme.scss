@@ -123,3 +123,14 @@ menu {
 html|input.findbar-textbox {
   border: 1px solid var(--input-border-color, var(--toolbar-field-border-color, ThreeDShadow)) !important; /* Original: 1px solid var(--input-border-color, var(--toolbar-field-border-color)) */
 }
+
+/*= Drop Indicator Color #473 ================================================*/
+treechildren::-moz-tree-cell-text(primary, dropOn),
+treechildren::-moz-tree-drop-feedback,
+vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
+  background-color: var(--button-primary-bgcolor, var(--focus-outline-color)) !important; /* Original: SelectedItem or AccentColor*/
+}
+
+#bookmarksPanel[lwt-sidebar="true"] {
+  --focus-outline-color: var(--in-content-focus-outline-color, AccentColor) !important;
+}
