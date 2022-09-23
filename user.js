@@ -116,6 +116,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.rounding.square_checklabel",          true);
 
 // user_pref("userChrome.padding.first_tab",                   true);
+// user_pref("userChrome.padding.first_tab.always",            true);
 // user_pref("userChrome.padding.drag_space",                  true);
 // user_pref("userChrome.padding.drag_space.maximized",        true);
 
