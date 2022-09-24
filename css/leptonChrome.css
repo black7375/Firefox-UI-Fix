@@ -337,7 +337,7 @@
     }
 
     /*= Linux - Titlebar button at lwtheme =====================================*/
-    @supports not -moz-bool-pref("userChrome.compatiblity.os.linux_non_native_titlebar_button") {
+    @supports not -moz-bool-pref("userChrome.compatibility.os.linux_non_native_titlebar_button") {
       .titlebar-button:-moz-lwtheme {
         appearance: auto !important;
       }
