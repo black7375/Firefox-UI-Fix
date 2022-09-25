@@ -1387,6 +1387,12 @@
       background-color: transparent !important;
     }
   }
+  @media (-moz-windows-non-native-menus) and (-moz-toolbar-prefers-color-scheme: light),
+    (-moz-windows-non-native-menus) and (prefers-color-scheme: light) {
+    :root[style*="background-noodles-right"] menupopup {
+      --toolbarbutton-hover-background: rgba(232, 224, 255, 0.11999999731779099) !important;
+    }
+  }
   @media not all and (-moz-gtk-csd-available) {
     window:is(#bookmarksPanel, #history-panel)[lwt-sidebar="true"] menupopup {
       --panel-color: var(--lwt-sidebar-text-color, var(--menu-color)) !important;

@@ -58,6 +58,13 @@ html#main-window menupopup:not(.in-menulist) {
       }
     }
   }
+
+  @include Light {
+    :root[style*="background-noodles-right"] menupopup {
+      // Alphen Glow Theme - Like darkmode
+      --toolbarbutton-hover-background: rgba(232, 224, 255, 0.11999999731779099)!important;
+    }
+  }
 }
 
 // TODO: `OS` not covered case
