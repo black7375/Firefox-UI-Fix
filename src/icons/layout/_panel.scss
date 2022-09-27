@@ -39,6 +39,7 @@
 }
 #appMenu-proton-update-banner .toolbarbutton-text {
   margin-inline-start: 0 !important;
+  padding-inline-start: 0 !important; /* FF v107 */
 }
 
 #appMenu-multiView .subviewbutton::before,
@@ -80,7 +81,7 @@
 #appMenu-multiView .subviewbutton::before,
 #appMenu-proton-update-banner::before,
 #downloadsHistory .button-icon,
-.subviewbutton > image {
+.subviewbutton:not(#appMenu-proton-update-banner) > image {
   fill: currentColor !important;
   fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
   -moz-context-properties: fill !important;
