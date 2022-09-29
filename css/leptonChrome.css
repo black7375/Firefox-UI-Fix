@@ -388,12 +388,15 @@
     (-moz-platform: windows-win8),
     (-moz-os-version: windows-win10),
     (-moz-platform: windows-win10) {
-    :root[tabsintitlebar][sizemode="maximized"] #titlebar {
-      /* -moz-default-appearance: -moz-window-titlebar */
-      appearance: none !important;
+    @supports not -moz-bool-pref("userChrome.compatibility.os.windows_maximized") {
+      :root[tabsintitlebar] #titlebar {
+        /* -moz-default-appearance: -moz-window-titlebar */
+        appearance: none !important;
+      }
     }
     @supports -moz-bool-pref("userChrome.compatibility.os.windows_maximized") {
       :root[tabsintitlebar][sizemode="maximized"] #titlebar {
+        appearance: none !important;
         padding-top: 8px;
       }
     }
