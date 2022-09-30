@@ -1,0 +1,31 @@
+// Init
+@include Option("userChrome.combined.urlbar_with_reload") {
+  #nav-bar-customization-target > * {
+    -moz-box-ordinal-group: 1;
+  }
+  #nav-bar-customization-target > #urlbar-container {
+    -moz-box-ordinal-group: 5;
+  }
+  #nav-bar-customization-target > #urlbar-container ~ * {
+    -moz-box-ordinal-group: 7;
+  }
+}
+
+@include Option("userChrome.combined.urlbar_with_reload") {
+  #nav-bar-customization-target > #stop-reload-button {
+    -moz-box-ordinal-group: 6;
+  }
+
+  @import "reload";
+}
+
+@include Option("userChrome.combined.urlbar_with_back_forward") {
+  #nav-bar-customization-target > #back-button {
+    -moz-box-ordinal-group: 2;
+  }
+  #nav-bar-customization-target > #forward-button {
+    -moz-box-ordinal-group: 4;
+  }
+
+  @import "back_forward";
+}

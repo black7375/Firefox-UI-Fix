@@ -81,6 +81,15 @@
   }
 }
 
+@include Option("userChrome.combined.urlbar_with_reload") {
+  #nav-bar-customization-target > #stop-reload-button .toolbarbutton-icon {
+    transition: background-color 2.5s var(--animation-easing-function) !important;
+    &:hover {
+      transition: background-color 1.25s var(--animation-easing-function) !important;
+    }
+  }
+}
+
 /*- Border - Other Fields --------------------------------------------------*/
 #search-box,
 xul|search-textbox.tabsFilter,

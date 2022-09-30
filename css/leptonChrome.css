@@ -2865,6 +2865,15 @@
       --toolbar-field-border-color: var(--toolbar-field-focus-border-color);
     }
 
+    @supports -moz-bool-pref("userChrome.combined.urlbar_with_reload") {
+      #nav-bar-customization-target
+        > #stop-reload-button:hover
+        ~ #urlbar-container
+        #urlbar:not([focused="true"])
+        > #urlbar-background {
+        --toolbar-field-border-color: var(--toolbar-field-focus-border-color);
+      }
+    }
     /*- Other Fields -----------------------------------------------------------*/
     /* Sidebar */
     .sidebar-panel[lwt-sidebar] #search-box:hover,
@@ -3004,6 +3013,14 @@
       transition: background-color 1.25s var(--animation-easing-function) !important;
     }
 
+    @supports -moz-bool-pref("userChrome.combined.urlbar_with_reload") {
+      #nav-bar-customization-target > #stop-reload-button .toolbarbutton-icon {
+        transition: background-color 2.5s var(--animation-easing-function) !important;
+      }
+      #nav-bar-customization-target > #stop-reload-button .toolbarbutton-icon:hover {
+        transition: background-color 1.25s var(--animation-easing-function) !important;
+      }
+    }
     /*- Border - Other Fields --------------------------------------------------*/
     #search-box,
     xul|search-textbox.tabsFilter,
@@ -7605,6 +7622,148 @@
   #PlacesToolbarItems {
     display: flex !important;
     justify-content: safe center !important;
+  }
+}
+/** Combined ******************************************************************/
+@supports -moz-bool-pref("userChrome.combined.urlbar_with_reload") {
+  #nav-bar-customization-target > * {
+    -moz-box-ordinal-group: 1;
+  }
+
+  #nav-bar-customization-target > #urlbar-container {
+    -moz-box-ordinal-group: 5;
+  }
+
+  #nav-bar-customization-target > #urlbar-container ~ * {
+    -moz-box-ordinal-group: 7;
+  }
+}
+@supports -moz-bool-pref("userChrome.combined.urlbar_with_reload") {
+  #nav-bar-customization-target > #stop-reload-button {
+    -moz-box-ordinal-group: 6;
+  }
+
+  #nav-bar {
+    --uc-toolbarbutton-padding: 2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
+  }
+
+  #urlbar {
+    padding-right: calc(12px + var(--uc-toolbarbutton-padding));
+  }
+
+  #nav-bar-customization-target > #stop-reload-button {
+    z-index: 3;
+    position: relative;
+    --toolbarbutton-hover-background: var(--urlbar-box-hover-bgcolor);
+    color: var(--urlbar-box-hover-text-color) !important;
+    margin-left: calc(-1 * (15px + var(--urlbar-margin-inline) + var(--uc-toolbarbutton-padding)));
+  }
+
+  #nav-bar-customization-target > #stop-reload-button > .toolbarbutton-1 > .toolbarbutton-icon {
+    --uc-reload-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
+    width: var(--uc-reload-icon-size) !important;
+    height: var(--uc-reload-icon-size) !important;
+    padding: var(--urlbar-icon-padding) !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.combined.urlbar_with_back_forward") {
+  #nav-bar-customization-target > #back-button {
+    -moz-box-ordinal-group: 2;
+  }
+
+  #nav-bar-customization-target > #forward-button {
+    -moz-box-ordinal-group: 4;
+  }
+
+  #nav-bar {
+    --uc-backbutton-background: var(--toolbarbutton-hover-background, hsla(0, 100%, 100%, 0.5));
+    --uc-backbutton-hover-background: var(--toolbarbutton-active-background);
+    --uc-backbutton-active-background: color-mix(in srgb, currentColor 20%, transparent);
+    --uc-toolbar-button-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
+    --uc-toolbar-button-size: calc(12px + 2 * var(--uc-toolbar-button-boundary));
+    --uc-urlbar-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
+  }
+
+  #back-button {
+    z-index: 3 !important;
+    background-color: var(--toolbar-bgcolor) !important;
+    background-clip: content-box !important;
+    border-radius: 100%;
+    padding-block: 0 !important;
+    padding-inline-end: 0 !important;
+  }
+
+  #back-button > menupopup {
+    margin-top: -1px !important;
+  }
+
+  #back-button > .toolbarbutton-icon {
+    background-color: var(--uc-backbutton-background);
+    background-origin: padding-box;
+    background-clip: padding-box;
+    border: 1px solid var(--uc-backbutton-border-color);
+    border-radius: 10000px !important;
+    padding-inline-end: var(--urlbar-icon-padding) !important;
+    height: auto !important;
+  }
+
+  #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+    background-color: var(--uc-backbutton-hover-background) !important;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    border-color: rgba(12, 12, 13, 0.35);
+  }
+
+  #back-button[open] > .toolbarbutton-icon,
+  #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
+    background-color: var(--uc-backbutton-active-background) !important;
+    border-color: rgba(12, 12, 13, 0.4);
+  }
+
+  #nav-bar-customization-target > #back-button,
+  #nav-bar-customization-target > #forward-button {
+    position: relative;
+  }
+
+  #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+    padding-inline-end: var(--urlbar-icon-padding) !important;
+    height: auto !important;
+  }
+
+  #nav-bar-customization-target > #back-button[disabled="true"] {
+    opacity: 1 !important;
+    /* Original: 0.4 */
+  }
+
+  #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
+    fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+    background-color: color-mix(
+      in srgb,
+      var(--toolbarbutton-hover-background),
+      var(--toolbar-field-background-color) 40%
+    ) !important;
+  }
+
+  #nav-bar-customization-target > #forward-button {
+    z-index: 2;
+    margin-inline-start: calc(-1 * var(--uc-toolbar-button-boundary) + 1px) !important;
+    padding-inline-end: 0px !important;
+    /* Original: var(--toolbarbutton-outer-padding) */
+  }
+
+  #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
+    padding-inline-end: var(--urlbar-icon-padding) !important;
+    /* Original: var(--toolbarbutton-inner-padding) */
+    padding-block: var(--urlbar-icon-padding) !important;
+    height: var(--uc-urlbar-icon-size) !important;
+  }
+
+  #nav-bar-customization-target > #urlbar-container {
+    /* var(--urlbar-margin-inline) */
+    margin-inline-start: calc(-1 * var(--uc-toolbar-button-size)) !important;
+  }
+
+  #nav-bar-customization-target > #urlbar-container > #urlbar:not([breakout][breakout-extend]) {
+    padding-left: var(--uc-toolbar-button-size);
   }
 }
 /** Auto Hide *****************************************************************/
