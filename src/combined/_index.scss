@@ -1,11 +1,24 @@
 // Init
-@include Option("userChrome.combined.urlbar_with_reload") {
+@include Option("userChrome.combined.urlbar_with_reload", "userChrome.combined.urlbar_with_back_forward") {
+  #nav-bar {
+    --uc-toolbarbutton-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
+    --uc-toolbarbutton-padding: calc(2 * var(--uc-toolbarbutton-boundary));
+    --uc-toolbarbutton-size: calc(12px + var(--uc-toolbarbutton-padding));
+
+    --uc-urlbar-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
+  }
+
   #nav-bar-customization-target > * {
     -moz-box-ordinal-group: 1;
   }
+  // Preserve
+  // `back`    -> 2
+  // `home`    -> 3
+  // `forward` -> 4
   #nav-bar-customization-target > #urlbar-container {
     -moz-box-ordinal-group: 5;
   }
+  // `reload`  -> 6
   #nav-bar-customization-target > #urlbar-container ~ * {
     -moz-box-ordinal-group: 7;
   }

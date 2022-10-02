@@ -7625,7 +7625,14 @@
   }
 }
 /** Combined ******************************************************************/
-@supports -moz-bool-pref("userChrome.combined.urlbar_with_reload") {
+@supports -moz-bool-pref("userChrome.combined.urlbar_with_reload") or -moz-bool-pref("userChrome.combined.urlbar_with_back_forward") {
+  #nav-bar {
+    --uc-toolbarbutton-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
+    --uc-toolbarbutton-padding: calc(2 * var(--uc-toolbarbutton-boundary));
+    --uc-toolbarbutton-size: calc(12px + var(--uc-toolbarbutton-padding));
+    --uc-urlbar-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
+  }
+
   #nav-bar-customization-target > * {
     -moz-box-ordinal-group: 1;
   }
@@ -7643,12 +7650,8 @@
     -moz-box-ordinal-group: 6;
   }
 
-  #nav-bar {
-    --uc-toolbarbutton-padding: 2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
-  }
-
   #urlbar {
-    padding-right: calc(12px + var(--uc-toolbarbutton-padding));
+    padding-right: var(--uc-toolbarbutton-size);
   }
 
   #nav-bar-customization-target > #stop-reload-button {
@@ -7660,9 +7663,8 @@
   }
 
   #nav-bar-customization-target > #stop-reload-button > .toolbarbutton-1 > .toolbarbutton-icon {
-    --uc-reload-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
-    width: var(--uc-reload-icon-size) !important;
-    height: var(--uc-reload-icon-size) !important;
+    width: var(--uc-urlbar-icon-size) !important;
+    height: var(--uc-urlbar-icon-size) !important;
     padding: var(--urlbar-icon-padding) !important;
   }
 }
@@ -7679,12 +7681,30 @@
     --uc-backbutton-background: var(--toolbarbutton-hover-background, hsla(0, 100%, 100%, 0.5));
     --uc-backbutton-hover-background: var(--toolbarbutton-active-background);
     --uc-backbutton-active-background: color-mix(in srgb, currentColor 20%, transparent);
-    --uc-toolbar-button-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
-    --uc-toolbar-button-size: calc(12px + 2 * var(--uc-toolbar-button-boundary));
-    --uc-urlbar-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
   }
 
-  #back-button {
+  #nav-bar-customization-target > #urlbar-container {
+    /* var(--urlbar-margin-inline) */
+    margin-inline-start: calc(-1 * var(--uc-toolbarbutton-size)) !important;
+  }
+  #nav-bar-customization-target > #urlbar-container > #urlbar:not([breakout][breakout-extend]) {
+    padding-left: var(--uc-toolbarbutton-size);
+  }
+  #nav-bar-customization-target > #forward-button {
+    z-index: 2;
+    position: relative;
+    margin-inline-start: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px) !important;
+    padding-inline-end: 0px !important;
+    /* Original: var(--toolbarbutton-outer-padding) */
+  }
+  #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
+    padding-inline-end: var(--urlbar-icon-padding) !important;
+    /* Original: var(--toolbarbutton-inner-padding) */
+    padding-block: var(--urlbar-icon-padding) !important;
+    height: var(--uc-urlbar-icon-size) !important;
+  }
+  #nav-bar-customization-target > #back-button {
+    position: relative;
     z-index: 3 !important;
     background-color: var(--toolbar-bgcolor) !important;
     background-clip: content-box !important;
@@ -7692,12 +7712,10 @@
     padding-block: 0 !important;
     padding-inline-end: 0 !important;
   }
-
-  #back-button > menupopup {
+  #nav-bar-customization-target > #back-button > menupopup {
     margin-top: -1px !important;
   }
-
-  #back-button > .toolbarbutton-icon {
+  #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
     background-color: var(--uc-backbutton-background);
     background-origin: padding-box;
     background-clip: padding-box;
@@ -7706,64 +7724,27 @@
     padding-inline-end: var(--urlbar-icon-padding) !important;
     height: auto !important;
   }
-
-  #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+  #nav-bar-customization-target > #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
     background-color: var(--uc-backbutton-hover-background) !important;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
     border-color: rgba(12, 12, 13, 0.35);
   }
-
-  #back-button[open] > .toolbarbutton-icon,
-  #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
+  #nav-bar-customization-target > #back-button[open] > .toolbarbutton-icon,
+  #nav-bar-customization-target > #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
     background-color: var(--uc-backbutton-active-background) !important;
     border-color: rgba(12, 12, 13, 0.4);
   }
-
-  #nav-bar-customization-target > #back-button,
-  #nav-bar-customization-target > #forward-button {
-    position: relative;
-  }
-
-  #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
-    padding-inline-end: var(--urlbar-icon-padding) !important;
-    height: auto !important;
-  }
-
   #nav-bar-customization-target > #back-button[disabled="true"] {
     opacity: 1 !important;
     /* Original: 0.4 */
   }
-
   #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
-    fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
     background-color: color-mix(
       in srgb,
       var(--toolbarbutton-hover-background),
       var(--toolbar-field-background-color) 40%
     ) !important;
-  }
-
-  #nav-bar-customization-target > #forward-button {
-    z-index: 2;
-    margin-inline-start: calc(-1 * var(--uc-toolbar-button-boundary) + 1px) !important;
-    padding-inline-end: 0px !important;
-    /* Original: var(--toolbarbutton-outer-padding) */
-  }
-
-  #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
-    padding-inline-end: var(--urlbar-icon-padding) !important;
-    /* Original: var(--toolbarbutton-inner-padding) */
-    padding-block: var(--urlbar-icon-padding) !important;
-    height: var(--uc-urlbar-icon-size) !important;
-  }
-
-  #nav-bar-customization-target > #urlbar-container {
-    /* var(--urlbar-margin-inline) */
-    margin-inline-start: calc(-1 * var(--uc-toolbar-button-size)) !important;
-  }
-
-  #nav-bar-customization-target > #urlbar-container > #urlbar:not([breakout][breakout-extend]) {
-    padding-left: var(--uc-toolbar-button-size);
+    fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
   }
 }
 /** Auto Hide *****************************************************************/

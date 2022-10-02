@@ -1,12 +1,7 @@
 // Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/reload_button_in_urlbar.css made available under Mozilla Public License v. 2.0
 // See the above repository for updates as well as full license text.
-
-#nav-bar {
-  --uc-toolbarbutton-padding: 2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
-}
-
 #urlbar {
-  padding-right: calc(12px + var(--uc-toolbarbutton-padding));
+  padding-right: var(--uc-toolbarbutton-size);
 }
 
 #nav-bar-customization-target > #stop-reload-button {
@@ -20,9 +15,8 @@
 }
 
 #nav-bar-customization-target > #stop-reload-button > .toolbarbutton-1 > .toolbarbutton-icon {
-  --uc-reload-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
-  width: var(--uc-reload-icon-size) !important;
-  height: var(--uc-reload-icon-size) !important;
+  width: var(--uc-urlbar-icon-size) !important;
+  height: var(--uc-urlbar-icon-size) !important;
 
   padding: var(--urlbar-icon-padding) !important;
 }
