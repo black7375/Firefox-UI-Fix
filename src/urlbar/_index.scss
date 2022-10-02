@@ -1,5 +1,11 @@
-// Init
-@include Option("userChrome.combined.urlbar_with_reload", "userChrome.combined.urlbar_with_back_forward") {
+/*= Url Bar - Always show page actions =======================================*/
+@include Option("userChrome.urlbar.always_show_page_actions") {
+  @import "always_show_page_actions";
+}
+
+/*= Url Bar - Combined buttons ===============================================*/
+@include Option("userChrome.urlbar.combined_with_reload", "userChrome.urlbar.combined_with_back_forward") {
+  // Init
   #nav-bar {
     --uc-toolbarbutton-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
     --uc-toolbarbutton-padding: calc(2 * var(--uc-toolbarbutton-boundary));
@@ -24,15 +30,15 @@
   }
 }
 
-@include Option("userChrome.combined.urlbar_with_reload") {
+@include Option("userChrome.urlbar.combined_with_reload") {
   #nav-bar-customization-target > #stop-reload-button {
     -moz-box-ordinal-group: 6;
   }
 
-  @import "reload";
+  @import "reload_button";
 }
 
-@include Option("userChrome.combined.urlbar_with_back_forward") {
+@include Option("userChrome.urlbar.combined_with_back_forward") {
   #nav-bar-customization-target > #back-button {
     -moz-box-ordinal-group: 2;
   }
@@ -40,5 +46,5 @@
     -moz-box-ordinal-group: 4;
   }
 
-  @import "back_forward";
+  @import "back_forward_button";
 }

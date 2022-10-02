@@ -110,9 +110,6 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.counter.tab",                         true);
 // user_pref("userChrome.counter.bookmark_menu",               true);
 
-// user_pref("userChrome.combined.urlbar_with_reload",         true);
-// user_pref("userChrome.combined.urlbar_with_back_forward",   true);
-
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
 // user_pref("userChrome.rounding.square_panelitem",           true);
@@ -131,9 +128,12 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.padding.urlView_result",              true);
 // user_pref("userChrome.padding.panel_header",                true);
 
+// user_pref("userChrome.urlbar.always_show_page_actions",    true);
+// user_pref("userChrome.urlbar.combined_with_reload",         true);
+// user_pref("userChrome.urlbar.combined_with_back_forward",   true);
+
 // user_pref("userChrome.urlView.move_icon_to_left",           true);
 // user_pref("userChrome.urlView.go_button_when_typing",       true);
-// user_pref("userChrome.urlView.always_show_page_actions",    true);
 
 // user_pref("userChrome.tabbar.as_titlebar",                  true);
 // user_pref("userChrome.tabbar.fill_width",                   true);
