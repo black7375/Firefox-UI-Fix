@@ -1,9 +1,18 @@
 /* for First Tab Space */
 :root {
-  --space-left-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
+  --uc-space-left-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
 }
 
-:root:not([tabsintitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
-:root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs:not([positionpinnedtabs]) {
-  padding-inline-start: var(--space-left-tabbar) !important;
+@include NotOption("userChrome.padding.first_tab.always") {
+  :root:not([tabsintitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
+  :root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs:not([positionpinnedtabs]) {
+    padding-inline-start: var(--uc-space-left-tabbar) !important;
+  }
+}
+
+@include Option("userChrome.padding.first_tab.always") {
+  :root:not([tabsintitlebar]) #tabbrowser-tabs,
+  :root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs {
+    padding-inline-start: calc(var(--tab-overflow-pinned-tabs-width, 0px) +  var(--uc-space-left-tabbar)) !important;
+  }
 }
