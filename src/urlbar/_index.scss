@@ -4,9 +4,22 @@
 }
 
 /*= Url Bar - Combined buttons ===============================================*/
-@include Option("userChrome.urlbar.combined_with_reload", "userChrome.urlbar.combined_with_back_forward") {
+@include Option("userChrome.urlbar.combined_with_reload", "userChrome.urlbar.combined_with_back_forward", "userChrome.urlbar.combined_with_home") {
   // Init
   #nav-bar {
+    // Color
+    --uc-combined-circlebutton-background: hsla(0,100%,100%,.5);
+    --uc-combined-circlebutton-hover-background: var(--uc-combined-circlebutton-background);
+    --uc-combined-circlebutton-active-background: var(--toolbarbutton-active-background);
+    --uc-combined-circlebutton-border-color: hsla(240,5%,5%,.3);
+    &[brighttext] {
+      // Original: Using :-moz-lwtheme
+      --uc-combined-circlebutton-background: var(--toolbarbutton-hover-background);
+      --uc-combined-circlebutton-hover-background: var(--toolbarbutton-active-background);
+      --uc-combined-circlebutton-active-background: color-mix(in srgb, currentColor 20%, transparent);
+    }
+
+    // Padding & Size
     --uc-toolbarbutton-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
     --uc-toolbarbutton-padding: calc(2 * var(--uc-toolbarbutton-boundary));
     --uc-toolbarbutton-size: calc(12px + var(--uc-toolbarbutton-padding));
@@ -47,4 +60,12 @@
   }
 
   @import "back_forward_button";
+}
+
+@include Option("userChrome.urlbar.combined_with_home") {
+  #nav-bar-customization-target > #home-button {
+    -moz-box-ordinal-group: 3;
+  }
+
+  @import "home_button";
 }

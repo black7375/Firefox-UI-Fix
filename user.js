@@ -128,9 +128,10 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.padding.urlView_result",              true);
 // user_pref("userChrome.padding.panel_header",                true);
 
-// user_pref("userChrome.urlbar.always_show_page_actions",    true);
+// user_pref("userChrome.urlbar.always_show_page_actions",     true);
 // user_pref("userChrome.urlbar.combined_with_reload",         true);
 // user_pref("userChrome.urlbar.combined_with_back_forward",   true);
+// user_pref("userChrome.urlbar.combined_with_home",           true);
 
 // user_pref("userChrome.urlView.move_icon_to_left",           true);
 // user_pref("userChrome.urlView.go_button_when_typing",       true);

@@ -1,9 +1,3 @@
-#nav-bar {
-  --uc-backbutton-background:  var(--toolbarbutton-hover-background, hsla(0,100%,100%,.5));
-  --uc-backbutton-hover-background: var(--toolbarbutton-active-background);
-  --uc-backbutton-active-background: color-mix(in srgb, currentColor 20%, transparent);
-}
-
 #nav-bar-customization-target > {
   #urlbar-container {
     /* var(--urlbar-margin-inline) */
@@ -31,37 +25,17 @@
   #back-button {
     position: relative;
 
-    z-index: 3 !important;
-    background-color: var(--toolbar-bgcolor) !important;
-    background-clip: content-box !important;
-    border-radius: 100%;
-
-    padding-block: 0 !important;
-    padding-inline-end: 0 !important;
-
-    > menupopup {
-      margin-top: -1px !important;
-    }
-
     > .toolbarbutton-icon {
-      background-color: var(--uc-backbutton-background);
-      background-origin: padding-box;
-      background-clip: padding-box;
-      border: 1px solid var(--uc-backbutton-border-color);
-      border-radius: 10000px !important;
-
-      padding-inline-end: var(--urlbar-icon-padding) !important;
-      height: auto !important
+      background-color: var(--uc-combined-circlebutton-background);
     }
-
     &:not([disabled], [open]):hover > .toolbarbutton-icon {
-      background-color: var(--uc-backbutton-hover-background) !important;
+      background-color: var(--uc-combined-circlebutton-hover-background) !important;
       box-shadow: 0 1px 6px hsla(0,0%,0%,.1);
       border-color: hsla(240,5%,5%,.35);
     }
     &[open] > .toolbarbutton-icon,
     &:not([disabled]):hover:active > .toolbarbutton-icon {
-      background-color: var(--uc-backbutton-active-background) !important;
+      background-color: var(--uc-combined-circlebutton-active-background) !important;
       border-color: hsla(240,5%,5%,.40);
     }
 
@@ -71,6 +45,43 @@
       > .toolbarbutton-icon {
         background-color:  color-mix(in srgb, var(--toolbarbutton-hover-background), var(--toolbar-field-background-color) 40%) !important;
         fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+      }
+    }
+
+    @include Option("userChrome.urlbar.combined_with_home") {
+      z-index: 2;
+
+      margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
+      padding-inline-start: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
+
+      > .toolbarbutton-icon {
+        padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
+        padding-block: var(--urlbar-icon-padding) !important;
+        height: var(--uc-urlbar-icon-size) !important;
+      }
+    }
+
+    @include NotOption("userChrome.urlbar.combined_with_home") {
+      z-index: 3 !important;
+      background-color: var(--toolbar-bgcolor) !important;
+      background-clip: content-box !important;
+      border-radius: 100%;
+
+      padding-block: 0 !important;
+      padding-inline-end: 0 !important;
+
+      > menupopup {
+        margin-top: -1px !important;
+      }
+
+      > .toolbarbutton-icon {
+        background-origin: padding-box;
+        background-clip: padding-box;
+        border: 1px solid var(--uc-combined-circlebutton-border-color);
+        border-radius: 10000px !important;
+
+        padding-inline-end: var(--urlbar-icon-padding) !important;
+        height: auto !important
       }
     }
   }
