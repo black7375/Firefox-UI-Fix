@@ -32,18 +32,18 @@ html#main-window menupopup:not(.in-menulist) {
       menuseparator {
         border-top: 1px solid var(--menu-border-color);
       }
-    }
 
-    menu,
-    menuitem {
-      &[disabled="true"],
-      &[_moz-menuactive="true"][disabled="true"] {
-        color: var(--menu-disabled-color) !important;
-      }
+      menu,
+      menuitem {
+        &[disabled="true"],
+        &[_moz-menuactive="true"][disabled="true"] {
+          color: var(--menu-disabled-color) !important;
+        }
 
-      &[_moz-menuactive="true"]:not([disabled="true"]) {
-        background-color: var(--menuitem-hover-background-color) !important;
-        color: var(--menu-color) !important;
+        &[_moz-menuactive="true"]:not([disabled="true"]) {
+          background-color: var(--menuitem-hover-background-color) !important;
+          color: var(--menu-color) !important;
+        }
       }
     }
 
@@ -56,6 +56,13 @@ html#main-window menupopup:not(.in-menulist) {
       &[disabled="true"] > .menu-iconic-left > .menu-iconic-icon {
         background-color: transparent !important;
       }
+    }
+  }
+
+  @include Light {
+    :root[style*="background-noodles-right"] menupopup {
+      // Alphen Glow Theme - Like darkmode
+      --toolbarbutton-hover-background: rgba(232, 224, 255, 0.11999999731779099)!important;
     }
   }
 }
@@ -102,7 +109,7 @@ html#main-window menupopup:not(.in-menulist) {
     window:is(#bookmarksPanel, #history-panel)[style*="--newtab-background-color: rgba(43, 42, 51, 1);"]    menupopup {
     /* Default Dark Mode */
     --panel-color: var(--menu-color) !important;
-    --panel-background: var(--menu-background-color) !important;
+    --panel-background: var(--menu-background-color, -moz-menuhover) !important;
   }
 }
 

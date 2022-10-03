@@ -66,7 +66,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.compatibility.navbar_top_border",    true);
 // user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
 
-// user_pref("userChrome.compatiblity.os.linux_non_native_titlebar_button", true);
+// user_pref("userChrome.compatibility.os.linux_non_native_titlebar_button", true);
 // user_pref("userChrome.compatibility.os.windows_maximized", true);
 
 // == Theme Custom Settings ====================================================
@@ -116,6 +116,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.rounding.square_checklabel",          true);
 
 // user_pref("userChrome.padding.first_tab",                   true);
+// user_pref("userChrome.padding.first_tab.always",            true);
 // user_pref("userChrome.padding.drag_space",                  true);
 // user_pref("userChrome.padding.drag_space.maximized",        true);
 

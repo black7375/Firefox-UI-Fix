@@ -27,6 +27,7 @@
 }
 
 #navigator-toolbox {
+  position: relative;
   z-index: 2;
 }
 
@@ -71,7 +72,7 @@
 }
 
 #urlbar-container {
-  min-width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important; // Original: calc(350px + 24px + 2 * var(--toolbarbutton-inner-padding))
+  min-width: calc(var(--uc-oneliner-urlbar-base-width, 50px) + 24px + 2 * var(--toolbarbutton-inner-padding)) !important; // Original: calc(350px + 24px + 2 * var(--toolbarbutton-inner-padding))
 }
 
 #PersonalToolbar {

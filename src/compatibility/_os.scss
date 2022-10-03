@@ -131,7 +131,7 @@
   }
 
   /*= Linux - Titlebar button at lwtheme =====================================*/
-  @include NotOption("userChrome.compatiblity.os.linux_non_native_titlebar_button") {
+  @include NotOption("userChrome.compatibility.os.linux_non_native_titlebar_button") {
     .titlebar-button:-moz-lwtheme {
       appearance: auto !important;
     }
@@ -183,14 +183,22 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 }
 
 /*= Titlebar Container Size at maximized #384 ================================*/
-@include Option("userChrome.compatibility.os.windows_maximized") {
-  @include OS($win) {
-    :root[tabsintitlebar][sizemode="maximized"] #titlebar {
-      /* -moz-default-appearance: -moz-window-titlebar */
-      appearance: none !important;
+@include OS($win) {
+  :root[tabsintitlebar] {
+    @include NotOption("userChrome.compatibility.os.windows_maximized") {
+      #titlebar {
+        // Prevent #476 FF v105 above
+        /* -moz-default-appearance: -moz-window-titlebar */
+        appearance: none !important;
+      }
+    }
+    @include Option("userChrome.compatibility.os.windows_maximized") {
+      &[sizemode="maximized"] #titlebar {
+        appearance: none !important;
 
-      // Prevent sideeffect #370
-      padding-top: 8px; // Don't use margin-top for reserved fullscreen animation
+        // Prevent sideeffect #370
+        padding-top: 8px; // Don't use margin-top for reserved fullscreen animation
+      }
     }
   }
 }
