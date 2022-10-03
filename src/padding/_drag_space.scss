@@ -1,7 +1,7 @@
 /* for Extra Drag Space */
 // https://searchfox.org/mozilla-esr78/search?q=--space-above-tabbar&path=&case=false&regexp=false
 :root {
-  --space-above-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
+  --uc-space-above-tabbar: 8px; /* If the option is not specified, it is equivalent to 0px. */
 }
 
 //-- Mixin ---------------------------------------------------------------------
@@ -33,28 +33,28 @@
 
 @include OS($win10) {
   @include _dragSpaceHeight {
-    height: calc(var(--tab-min-height) + var(--space-above-tabbar) - var(--tabs-navbar-shadow-size));
+    height: calc(var(--tab-min-height) + var(--uc-space-above-tabbar) - var(--tabs-navbar-shadow-size));
   }
 }
 @include OS($win7, $win8, $linux) {
   @include _dragSpaceHeight {
-    height: calc(var(--tab-min-height) + var(--space-above-tabbar));
+    height: calc(var(--tab-min-height) + var(--uc-space-above-tabbar));
   }
 }
 
 @include OS($mac) {
   #TabsToolbar > .toolbar-items {
-    padding-top: var(--space-above-tabbar) !important;
+    padding-top: var(--uc-space-above-tabbar) !important;
   }
 }
 @include OS($win7) {
   /* Add 4px extra margin on top of the tabs toolbar on Windows 7. */
   @include _dragSpacePadding {
-    padding-top: calc(var(--space-above-tabbar) + 4px) !important;
+    padding-top: calc(var(--uc-space-above-tabbar) + 4px) !important;
   }
 }
 @include OS($win8, $win10, $linux) {
   @include _dragSpacePadding {
-    padding-top: var(--space-above-tabbar) !important;
+    padding-top: var(--uc-space-above-tabbar) !important;
   }
 }
