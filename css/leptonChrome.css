@@ -7368,7 +7368,7 @@
   }
 
   #urlbar {
-    padding-right: var(--uc-toolbarbutton-size);
+    padding-right: calc(var(--uc-toolbarbutton-size) - var(--urlbar-margin-inline) / 2);
   }
 
   #nav-bar-customization-target > #stop-reload-button {
@@ -7376,7 +7376,7 @@
     position: relative;
     --toolbarbutton-hover-background: var(--urlbar-box-hover-bgcolor);
     color: var(--urlbar-box-hover-text-color) !important;
-    margin-left: calc(-1 * (15px + var(--urlbar-margin-inline) + var(--uc-toolbarbutton-padding)));
+    margin-left: calc(-1 * (var(--uc-toolbarbutton-size) + var(--urlbar-margin-inline)));
   }
 
   #nav-bar-customization-target > #stop-reload-button > .toolbarbutton-1 > .toolbarbutton-icon {
