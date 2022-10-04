@@ -7430,6 +7430,7 @@
     --uc-toolbarbutton-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
     --uc-toolbarbutton-padding: calc(2 * var(--uc-toolbarbutton-boundary));
     --uc-toolbarbutton-size: calc(12px + var(--uc-toolbarbutton-padding));
+    --uc-toolbarbutton-halfsize: calc(6px + var(--uc-toolbarbutton-boundary));
     --uc-urlbar-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
   }
   #nav-bar[brighttext] {
@@ -7448,6 +7449,25 @@
 
   #nav-bar-customization-target > #urlbar-container ~ * {
     -moz-box-ordinal-group: 7;
+  }
+}
+@supports -moz-bool-pref("userChrome.urlbar.combined_with_back_forward") or -moz-bool-pref("userChrome.urlbar.combined_with_home") {
+  #nav-bar-customization-target > #urlbar-container {
+    /* var(--urlbar-margin-inline) */
+    margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin)) !important;
+  }
+  #nav-bar-customization-target > #urlbar-container > #urlbar:not([breakout][breakout-extend]) {
+    padding-left: var(--uc-urlbar-combined-margin);
+  }
+  @supports -moz-bool-pref("userChrome.urlbar.combined_with_back_forward") {
+    #nav-bar-customization-target > #urlbar-container {
+      --uc-urlbar-combined-margin: var(--uc-toolbarbutton-size);
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.urlbar.combined_with_back_forward") {
+    #nav-bar-customization-target > #urlbar-container {
+      --uc-urlbar-combined-margin: var(--uc-toolbarbutton-halfsize);
+    }
   }
 }
 @supports -moz-bool-pref("userChrome.urlbar.combined_with_reload") {
@@ -7482,13 +7502,6 @@
     -moz-box-ordinal-group: 4;
   }
 
-  #nav-bar-customization-target > #urlbar-container {
-    /* var(--urlbar-margin-inline) */
-    margin-inline-start: calc(-1 * var(--uc-toolbarbutton-size)) !important;
-  }
-  #nav-bar-customization-target > #urlbar-container > #urlbar:not([breakout][breakout-extend]) {
-    padding-left: var(--uc-toolbarbutton-size);
-  }
   #nav-bar-customization-target > #forward-button {
     z-index: 2;
     position: relative;

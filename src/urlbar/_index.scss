@@ -23,6 +23,7 @@
     --uc-toolbarbutton-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
     --uc-toolbarbutton-padding: calc(2 * var(--uc-toolbarbutton-boundary));
     --uc-toolbarbutton-size: calc(12px + var(--uc-toolbarbutton-padding));
+    --uc-toolbarbutton-halfsize: calc(6px + var(--uc-toolbarbutton-boundary));
 
     --uc-urlbar-icon-size: calc(16px + 2 * var(--urlbar-icon-padding));
   }
@@ -40,6 +41,24 @@
   // `reload`  -> 6
   #nav-bar-customization-target > #urlbar-container ~ * {
     -moz-box-ordinal-group: 7;
+  }
+}
+
+@include Option("userChrome.urlbar.combined_with_back_forward", "userChrome.urlbar.combined_with_home") {
+  #nav-bar-customization-target > #urlbar-container {
+    /* var(--urlbar-margin-inline) */
+    margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin)) !important;
+
+    > #urlbar:not([breakout][breakout-extend]) {
+      padding-left: var(--uc-urlbar-combined-margin);
+    }
+
+    @include Option("userChrome.urlbar.combined_with_back_forward") {
+      --uc-urlbar-combined-margin: var(--uc-toolbarbutton-size);
+    }
+    @include NotOption("userChrome.urlbar.combined_with_back_forward") {
+      --uc-urlbar-combined-margin: var(--uc-toolbarbutton-halfsize);
+    }
   }
 }
 
