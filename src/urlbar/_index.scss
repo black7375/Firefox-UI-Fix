@@ -4,7 +4,10 @@
 }
 
 /*= Url Bar - Combined buttons ===============================================*/
-@include Option("userChrome.urlbar.combined_with_reload", "userChrome.urlbar.combined_with_back_forward", "userChrome.urlbar.combined_with_home") {
+@include Option(
+  "userChrome.combined.nav_button", "userChrome.combined.nav_button.home_button",
+  "userChrome.combined.urlbar.nav_button", "userChrome.combined.urlbar.home_button", "userChrome.combined.urlbar.reload_button"
+) {
   // Init
   #nav-bar {
     // Color
@@ -44,7 +47,7 @@
   }
 }
 
-@include Option("userChrome.urlbar.combined_with_back_forward", "userChrome.urlbar.combined_with_home") {
+@include Option("userChrome.combined.urlbar.nav_button", "userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #urlbar-container {
     /* var(--urlbar-margin-inline) */
     margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin)) !important;
@@ -53,38 +56,50 @@
       padding-left: var(--uc-urlbar-combined-margin);
     }
 
-    @include Option("userChrome.urlbar.combined_with_back_forward") {
+    @include Option("userChrome.combined.urlbar.nav_button") {
       --uc-urlbar-combined-margin: var(--uc-toolbarbutton-size);
     }
-    @include NotOption("userChrome.urlbar.combined_with_back_forward") {
+    @include NotOption("userChrome.combined.urlbar.nav_button") {
       --uc-urlbar-combined-margin: var(--uc-toolbarbutton-halfsize);
+
+      @include Option("userChrome.combined.nav_button") {
+        @include Option("userChrome.combined.nav_button.home_button") {
+          @include Option("userChrome.combined.urlbar.home_button") {
+            --uc-urlbar-combined-margin: var(--uc-toolbarbutton-size);
+          }
+        }
+      }
     }
   }
 }
 
-@include Option("userChrome.urlbar.combined_with_reload") {
-  #nav-bar-customization-target > #stop-reload-button {
-    -moz-box-ordinal-group: 6;
+@include Option("userChrome.combined.nav_button", "userChrome.combined.urlbar.nav_button") {
+  @import "back_forward_button";
+}
+@include Option("userChrome.combined.nav_button") {
+  @include Option("userChrome.combined.nav_button.home_button") {
+    @import "home_button";
   }
-
-  @import "reload_button";
 }
 
-@include Option("userChrome.urlbar.combined_with_back_forward") {
+@include Option("userChrome.combined.urlbar.nav_button") {
   #nav-bar-customization-target > #back-button {
     -moz-box-ordinal-group: 2;
   }
   #nav-bar-customization-target > #forward-button {
     -moz-box-ordinal-group: 4;
   }
-
-  @import "back_forward_button";
 }
-
-@include Option("userChrome.urlbar.combined_with_home") {
+@include Option("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #home-button {
     -moz-box-ordinal-group: 3;
   }
-
   @import "home_button";
+}
+@include Option("userChrome.combined.urlbar.reload_button") {
+  #nav-bar-customization-target > #stop-reload-button {
+    -moz-box-ordinal-group: 6;
+  }
+
+  @import "reload_button";
 }

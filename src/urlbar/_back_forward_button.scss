@@ -1,45 +1,87 @@
+//-- Mixin ---------------------------------------------------------------------
+@mixin _combined_nav_button_background() {
+  > .toolbarbutton-icon {
+    background-color: var(--uc-combined-circlebutton-background);
+  }
+  &:not([disabled], [open]):hover > .toolbarbutton-icon {
+    background-color: var(--uc-combined-circlebutton-hover-background) !important;
+    box-shadow: 0 1px 6px hsla(0,0%,0%,.1);
+    border-color: hsla(240,5%,5%,.35);
+  }
+  &[open] > .toolbarbutton-icon,
+  &:not([disabled]):hover:active > .toolbarbutton-icon {
+    background-color: var(--uc-combined-circlebutton-active-background) !important;
+    border-color: hsla(240,5%,5%,.40);
+  }
+
+  &[disabled="true"] {
+    opacity: 1 !important; /* Original: 0.4 */
+
+    > .toolbarbutton-icon {
+      background-color:  color-mix(in srgb, var(--toolbarbutton-hover-background), var(--toolbar-field-background-color) 40%) !important;
+      fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+    }
+  }
+}
+
+@mixin _back_button_circle_shape() {
+  z-index: 3 !important;
+  background-color: var(--toolbar-bgcolor) !important;
+  background-clip: content-box !important;
+  border-radius: 100%;
+
+  padding-block: 0 !important;
+  padding-inline-end: 0 !important;
+
+  > menupopup {
+    margin-top: -1px !important;
+  }
+
+  > .toolbarbutton-icon {
+    background-origin: padding-box;
+    background-clip: padding-box;
+    border: 1px solid var(--uc-combined-circlebutton-border-color);
+    border-radius: 10000px !important;
+
+    padding-inline-end: var(--urlbar-icon-padding) !important;
+    height: auto !important
+  }
+}
+
+//------------------------------------------------------------------------------
+
 #nav-bar-customization-target > {
   #forward-button {
     z-index: 2;
     position: relative;
 
     margin-inline-start: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px) !important;
-    padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
-
     > .toolbarbutton-icon {
       padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
       padding-block: var(--urlbar-icon-padding) !important;
       height: var(--uc-urlbar-icon-size) !important;
+    }
+
+    @include Option("userChrome.combined.urlbar.nav_button") {
+      padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
+    }
+    @include NotOption("userChrome.combined.urlbar.nav_button") {
+      @include Option("userChrome.combined.urlbar.home_button") {
+        @include NotOption("userChrome.combined.nav_button.home_button") {
+          @include _combined_nav_button_background;
+        }
+      }
+      @include NotOption("userChrome.combined.urlbar.home_button") {
+        @include _combined_nav_button_background;
+      }
     }
   }
 
   #back-button {
     position: relative;
 
-    > .toolbarbutton-icon {
-      background-color: var(--uc-combined-circlebutton-background);
-    }
-    &:not([disabled], [open]):hover > .toolbarbutton-icon {
-      background-color: var(--uc-combined-circlebutton-hover-background) !important;
-      box-shadow: 0 1px 6px hsla(0,0%,0%,.1);
-      border-color: hsla(240,5%,5%,.35);
-    }
-    &[open] > .toolbarbutton-icon,
-    &:not([disabled]):hover:active > .toolbarbutton-icon {
-      background-color: var(--uc-combined-circlebutton-active-background) !important;
-      border-color: hsla(240,5%,5%,.40);
-    }
-
-    &[disabled="true"] {
-      opacity: 1 !important; /* Original: 0.4 */
-
-      > .toolbarbutton-icon {
-        background-color:  color-mix(in srgb, var(--toolbarbutton-hover-background), var(--toolbar-field-background-color) 40%) !important;
-        fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
-      }
-    }
-
-    @include Option("userChrome.urlbar.combined_with_home") {
+    @include _combined_nav_button_background;
+    @include Option("userChrome.combined.nav_button.home_button", "userChrome.combined.urlbar.home_button") {
       z-index: 2;
 
       margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
@@ -52,27 +94,14 @@
       }
     }
 
-    @include NotOption("userChrome.urlbar.combined_with_home") {
-      z-index: 3 !important;
-      background-color: var(--toolbar-bgcolor) !important;
-      background-clip: content-box !important;
-      border-radius: 100%;
-
-      padding-block: 0 !important;
-      padding-inline-end: 0 !important;
-
-      > menupopup {
-        margin-top: -1px !important;
+    @include NotOption("userChrome.combined.nav_button.home_button") {
+      @include Option("userChrome.combined.urlbar.nav_button") {
+        @include NotOption("userChrome.combined.urlbar.home_button") {
+          @include _back_button_circle_shape;
+        }
       }
-
-      > .toolbarbutton-icon {
-        background-origin: padding-box;
-        background-clip: padding-box;
-        border: 1px solid var(--uc-combined-circlebutton-border-color);
-        border-radius: 10000px !important;
-
-        padding-inline-end: var(--urlbar-icon-padding) !important;
-        height: auto !important
+      @include NotOption("userChrome.combined.urlbar.nav_button") {
+        @include _back_button_circle_shape;
       }
     }
   }

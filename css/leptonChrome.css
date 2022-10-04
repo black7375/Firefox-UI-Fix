@@ -7419,9 +7419,11 @@
   }
 }
 /*= Url Bar - Combined buttons ===============================================*/
-@supports -moz-bool-pref("userChrome.urlbar.combined_with_reload") or -moz-bool-pref(
-    "userChrome.urlbar.combined_with_back_forward"
-  ) or -moz-bool-pref("userChrome.urlbar.combined_with_home") {
+@supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref(
+    "userChrome.combined.nav_button.home_button"
+  ) or -moz-bool-pref("userChrome.combined.urlbar.nav_button") or -moz-bool-pref(
+    "userChrome.combined.urlbar.home_button"
+  ) or -moz-bool-pref("userChrome.combined.urlbar.reload_button") {
   #nav-bar {
     --uc-combined-circlebutton-background: hsla(0, 100%, 100%, 0.5);
     --uc-combined-circlebutton-hover-background: var(--uc-combined-circlebutton-background);
@@ -7451,7 +7453,7 @@
     -moz-box-ordinal-group: 7;
   }
 }
-@supports -moz-bool-pref("userChrome.urlbar.combined_with_back_forward") or -moz-bool-pref("userChrome.urlbar.combined_with_home") {
+@supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #urlbar-container {
     /* var(--urlbar-margin-inline) */
     margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin)) !important;
@@ -7459,61 +7461,101 @@
   #nav-bar-customization-target > #urlbar-container > #urlbar:not([breakout][breakout-extend]) {
     padding-left: var(--uc-urlbar-combined-margin);
   }
-  @supports -moz-bool-pref("userChrome.urlbar.combined_with_back_forward") {
+  @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
     #nav-bar-customization-target > #urlbar-container {
       --uc-urlbar-combined-margin: var(--uc-toolbarbutton-size);
     }
   }
-  @supports not -moz-bool-pref("userChrome.urlbar.combined_with_back_forward") {
+  @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
     #nav-bar-customization-target > #urlbar-container {
       --uc-urlbar-combined-margin: var(--uc-toolbarbutton-halfsize);
     }
+    @supports -moz-bool-pref("userChrome.combined.nav_button") {
+      @supports -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+        @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+          #nav-bar-customization-target > #urlbar-container {
+            --uc-urlbar-combined-margin: var(--uc-toolbarbutton-size);
+          }
+        }
+      }
+    }
   }
 }
-@supports -moz-bool-pref("userChrome.urlbar.combined_with_reload") {
-  #nav-bar-customization-target > #stop-reload-button {
-    -moz-box-ordinal-group: 6;
-  }
-
-  #urlbar {
-    padding-right: calc(var(--uc-toolbarbutton-size) - var(--urlbar-margin-inline) / 2);
-  }
-
-  #nav-bar-customization-target > #stop-reload-button {
-    z-index: 3;
-    position: relative;
-    --toolbarbutton-hover-background: var(--urlbar-box-hover-bgcolor);
-    color: var(--urlbar-box-hover-text-color) !important;
-    margin-left: calc(-1 * (var(--uc-toolbarbutton-size) + var(--urlbar-margin-inline)));
-  }
-
-  #nav-bar-customization-target > #stop-reload-button > .toolbarbutton-1 > .toolbarbutton-icon {
-    width: var(--uc-urlbar-icon-size) !important;
-    height: var(--uc-urlbar-icon-size) !important;
-    padding: var(--urlbar-icon-padding) !important;
-  }
-}
-@supports -moz-bool-pref("userChrome.urlbar.combined_with_back_forward") {
-  #nav-bar-customization-target > #back-button {
-    -moz-box-ordinal-group: 2;
-  }
-
-  #nav-bar-customization-target > #forward-button {
-    -moz-box-ordinal-group: 4;
-  }
-
+@supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
   #nav-bar-customization-target > #forward-button {
     z-index: 2;
     position: relative;
     margin-inline-start: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px) !important;
-    padding-inline-end: 0px !important;
-    /* Original: var(--toolbarbutton-outer-padding) */
   }
   #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
     padding-inline-end: var(--urlbar-icon-padding) !important;
     /* Original: var(--toolbarbutton-inner-padding) */
     padding-block: var(--urlbar-icon-padding) !important;
     height: var(--uc-urlbar-icon-size) !important;
+  }
+  @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+    #nav-bar-customization-target > #forward-button {
+      padding-inline-end: 0px !important;
+      /* Original: var(--toolbarbutton-outer-padding) */
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+    @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+      @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+        #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
+          background-color: var(--uc-combined-circlebutton-background);
+        }
+        #nav-bar-customization-target > #forward-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+          background-color: var(--uc-combined-circlebutton-hover-background) !important;
+          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+          border-color: rgba(12, 12, 13, 0.35);
+        }
+        #nav-bar-customization-target > #forward-button[open] > .toolbarbutton-icon,
+        #nav-bar-customization-target > #forward-button:not([disabled]):hover:active > .toolbarbutton-icon {
+          background-color: var(--uc-combined-circlebutton-active-background) !important;
+          border-color: rgba(12, 12, 13, 0.4);
+        }
+        #nav-bar-customization-target > #forward-button[disabled="true"] {
+          opacity: 1 !important;
+          /* Original: 0.4 */
+        }
+        #nav-bar-customization-target > #forward-button[disabled="true"] > .toolbarbutton-icon {
+          background-color: color-mix(
+            in srgb,
+            var(--toolbarbutton-hover-background),
+            var(--toolbar-field-background-color) 40%
+          ) !important;
+          fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+        }
+      }
+    }
+    @supports not -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+      #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-background);
+      }
+      #nav-bar-customization-target > #forward-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-hover-background) !important;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+        border-color: rgba(12, 12, 13, 0.35);
+      }
+      #nav-bar-customization-target > #forward-button[open] > .toolbarbutton-icon,
+      #nav-bar-customization-target > #forward-button:not([disabled]):hover:active > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-active-background) !important;
+        border-color: rgba(12, 12, 13, 0.4);
+      }
+      #nav-bar-customization-target > #forward-button[disabled="true"] {
+        opacity: 1 !important;
+        /* Original: 0.4 */
+      }
+      #nav-bar-customization-target > #forward-button[disabled="true"] > .toolbarbutton-icon {
+        background-color: color-mix(
+          in srgb,
+          var(--toolbarbutton-hover-background),
+          var(--toolbar-field-background-color) 40%
+        ) !important;
+        fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+      }
+    }
   }
   #nav-bar-customization-target > #back-button {
     position: relative;
@@ -7543,7 +7585,7 @@
     ) !important;
     fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
   }
-  @supports -moz-bool-pref("userChrome.urlbar.combined_with_home") {
+  @supports -moz-bool-pref("userChrome.combined.nav_button.home_button") or -moz-bool-pref("userChrome.combined.urlbar.home_button") {
     #nav-bar-customization-target > #back-button {
       z-index: 2;
       margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
@@ -7557,19 +7599,66 @@
       height: var(--uc-urlbar-icon-size) !important;
     }
   }
-  @supports not -moz-bool-pref("userChrome.urlbar.combined_with_home") {
-    #nav-bar-customization-target > #back-button {
-      z-index: 3 !important;
+  @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+    @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+      @supports not -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+        #nav-bar-customization-target > #back-button {
+          z-index: 3 !important;
+          background-color: var(--toolbar-bgcolor) !important;
+          background-clip: content-box !important;
+          border-radius: 100%;
+          padding-block: 0 !important;
+          padding-inline-end: 0 !important;
+        }
+        #nav-bar-customization-target > #back-button > menupopup {
+          margin-top: -1px !important;
+        }
+        #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+          background-origin: padding-box;
+          background-clip: padding-box;
+          border: 1px solid var(--uc-combined-circlebutton-border-color);
+          border-radius: 10000px !important;
+          padding-inline-end: var(--urlbar-icon-padding) !important;
+          height: auto !important;
+        }
+      }
+    }
+    @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+      #nav-bar-customization-target > #back-button {
+        z-index: 3 !important;
+        background-color: var(--toolbar-bgcolor) !important;
+        background-clip: content-box !important;
+        border-radius: 100%;
+        padding-block: 0 !important;
+        padding-inline-end: 0 !important;
+      }
+      #nav-bar-customization-target > #back-button > menupopup {
+        margin-top: -1px !important;
+      }
+      #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+        background-origin: padding-box;
+        background-clip: padding-box;
+        border: 1px solid var(--uc-combined-circlebutton-border-color);
+        border-radius: 10000px !important;
+        padding-inline-end: var(--urlbar-icon-padding) !important;
+        height: auto !important;
+      }
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.combined.nav_button") {
+  @supports -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+    #nav-bar-customization-target > #home-button {
+      z-index: 3;
+      position: relative;
       background-color: var(--toolbar-bgcolor) !important;
       background-clip: content-box !important;
       border-radius: 100%;
       padding-block: 0 !important;
       padding-inline-end: 0 !important;
     }
-    #nav-bar-customization-target > #back-button > menupopup {
-      margin-top: -1px !important;
-    }
-    #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+    #nav-bar-customization-target > #home-button > .toolbarbutton-icon {
+      background-color: var(--uc-combined-circlebutton-background);
       background-origin: padding-box;
       background-clip: padding-box;
       border: 1px solid var(--uc-combined-circlebutton-border-color);
@@ -7577,9 +7666,27 @@
       padding-inline-end: var(--urlbar-icon-padding) !important;
       height: auto !important;
     }
+    #nav-bar-customization-target > #home-button:hover > .toolbarbutton-icon {
+      background-color: var(--uc-combined-circlebutton-hover-background) !important;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+      border-color: rgba(12, 12, 13, 0.35);
+    }
+    #nav-bar-customization-target > #home-button:hover:active > .toolbarbutton-icon {
+      background-color: var(--uc-combined-circlebutton-active-background) !important;
+      border-color: rgba(12, 12, 13, 0.4);
+    }
   }
 }
-@supports -moz-bool-pref("userChrome.urlbar.combined_with_home") {
+@supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+  #nav-bar-customization-target > #back-button {
+    -moz-box-ordinal-group: 2;
+  }
+
+  #nav-bar-customization-target > #forward-button {
+    -moz-box-ordinal-group: 4;
+  }
+}
+@supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #home-button {
     -moz-box-ordinal-group: 3;
   }
@@ -7612,6 +7719,41 @@
     border-color: rgba(12, 12, 13, 0.4);
   }
 }
+@supports -moz-bool-pref("userChrome.combined.urlbar.reload_button") {
+  #nav-bar-customization-target > #stop-reload-button {
+    -moz-box-ordinal-group: 6;
+  }
+
+  #urlbar {
+    padding-right: calc(var(--uc-toolbarbutton-size) - var(--urlbar-margin-inline) / 2);
+  }
+
+  #nav-bar-customization-target > #stop-reload-button {
+    z-index: 3;
+    position: relative;
+    --toolbarbutton-hover-background: var(--urlbar-box-hover-bgcolor);
+    color: var(--urlbar-box-hover-text-color) !important;
+    margin-left: calc(-1 * (var(--uc-toolbarbutton-size) + var(--urlbar-margin-inline)));
+  }
+
+  #nav-bar-customization-target > #stop-reload-button > .toolbarbutton-1 > .toolbarbutton-icon {
+    width: var(--uc-urlbar-icon-size) !important;
+    height: var(--uc-urlbar-icon-size) !important;
+    padding: var(--urlbar-icon-padding) !important;
+  }
+}
+#nav-bar-customization-target > #back-button {
+  -moz-box-ordinal-group: 2;
+}
+
+#nav-bar-customization-target > #forward-button {
+  -moz-box-ordinal-group: 4;
+}
+
+#nav-bar-customization-target > #home-button {
+  -moz-box-ordinal-group: 3;
+}
+
 /** Url View UI ***************************************************************/
 /*= Url View - Move icon to left =============================================*/
 @supports -moz-bool-pref("userChrome.urlView.move_icon_to_left") {
