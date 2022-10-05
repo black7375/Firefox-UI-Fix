@@ -1,9 +1,4 @@
-/*= Url Bar - Always show page actions =======================================*/
-@include Option("userChrome.urlbar.always_show_page_actions") {
-  @import "always_show_page_actions";
-}
-
-/*= Url Bar - Combined buttons ===============================================*/
+/*= Combined - At URL bar ====================================================*/
 @include Option(
   "userChrome.combined.nav_button", "userChrome.combined.nav_button.home_button",
   "userChrome.combined.urlbar.nav_button", "userChrome.combined.urlbar.home_button", "userChrome.combined.urlbar.reload_button"

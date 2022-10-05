@@ -7410,15 +7410,133 @@
     display: none !important;
   }
 }
-/** urlbar ********************************************************************/
-/*= Url Bar - Always show page actions =======================================*/
+/** Url View UI ***************************************************************/
+/*= Url View - Always show page actions ======================================*/
 @supports -moz-bool-pref("userChrome.urlbar.always_show_page_actions") {
   #urlbar:not([breakout-extend="true"]) #pageActionButton {
     display: block !important;
     visibility: visible !important;
   }
 }
-/*= Url Bar - Combined buttons ===============================================*/
+/*= Url View - Move icon to left =============================================*/
+@supports -moz-bool-pref("userChrome.urlView.move_icon_to_left") {
+  .urlbarView-type-icon {
+    min-width: 16px !important;
+    height: 16px !important;
+    margin-block: 0 !important;
+    margin-inline-start: 0 !important;
+  }
+
+  .urlbarView-favicon {
+    margin-inline-start: 20px !important;
+  }
+}
+/*= Url View - Go button when typing =========================================*/
+@supports -moz-bool-pref("userChrome.urlView.go_button_when_typing") {
+  #urlbar-input-container[pageproxystate="invalid"] #urlbar-go-button {
+    display: block !important;
+  }
+}
+/** Panel UI ******************************************************************/
+@supports -moz-bool-pref("userChrome.panel.remove_strip") {
+  #appMenu-fxa-separator {
+    --panel-separator-zap-gradient: none;
+    /* Original: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%) */
+  }
+}
+@supports -moz-bool-pref("userChrome.panel.full_width_separator") {
+  /* Full width separators */
+  :root {
+    /* Original
+    --panel-separator-margin-vertical: 4px;
+    --panel-separator-margin-horizontal: 8px;
+    --panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal);
+     */
+    --panel-separator-margin-horizontal: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.panel.full_width_padding") {
+  /* Original
+  --arrowpanel-menuitem-margin: 0 8px;
+  --arrowpanel-menuitem-padding-block: 8px;
+  --arrowpanel-menuitem-padding-inline: 8px;
+  --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline);
+  */
+  :root,
+  :root:is([uidensity="compact"], [uidensity="touch"]) {
+    --arrowpanel-menuitem-margin: 0 !important;
+    --arrowpanel-menuitem-padding-inline: calc(var(--arrowpanel-menuitem-padding-block) + 8px) !important;
+  }
+}
+/** Sidebar UI ****************************************************************/
+@supports -moz-bool-pref("userChrome.sidebar.overlap") or -moz-bool-pref("userChrome.autohide.sidebar") {
+  #sidebar-box {
+    /* Original
+     min-width: 14em;
+     width: 18em;
+     max-width: 36em;
+    */
+    --uc-sidebar-width: 40px;
+    --uc-sidebar-activate-width: 18em;
+    --uc-sidebar-activate-width-reverse: calc(-1 * var(--uc-sidebar-activate-width));
+    --uc-sidebar-fullscreen-width: 4px;
+    --uc-sidebar-shadow-color: #28282f;
+    --uc-autohide-sidebar-speed: 750ms;
+    --uc-autohide-fullscreen-sidebar-speed: 1s;
+    --uc-autohide-sidebar-delay: 600ms;
+    /* Wait 0.6s before hiding sidebar */
+    z-index: 1 !important;
+    position: relative !important;
+    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+  }
+  #sidebar-box[positionend="true"] {
+    box-shadow: -1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+  }
+
+  #sidebar {
+    display: block;
+  }
+
+  #sidebar-splitter {
+    display: none !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.sidebar.overlap") {
+  #sidebar-box[positionend="true"] {
+    direction: rtl;
+  }
+
+  #sidebar-header,
+  #sidebar {
+    background-color: var(--sidebar-background-color) !important;
+    color: var(--sidebar-text-color) !important;
+    overflow: hidden;
+  }
+
+  @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
+    #sidebar-box,
+    #sidebar {
+      min-width: var(--uc-sidebar-activate-width) !important;
+      max-width: var(--uc-sidebar-activate-width) !important;
+    }
+
+    #sidebar-box {
+      margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+      will-change: padding-inline;
+    }
+    #sidebar-box:not([hidden="true"]) {
+      padding-inline-start: var(--uc-sidebar-activate-width);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #sidebar-box {
+        transition: padding-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
+          visibility 0s linear !important;
+      }
+    }
+  }
+}
+/** Combined UI ***************************************************************/
+/*= Combined - At URL bar ====================================================*/
 @supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref(
     "userChrome.combined.nav_button.home_button"
   ) or -moz-bool-pref("userChrome.combined.urlbar.nav_button") or -moz-bool-pref(
@@ -7740,136 +7858,6 @@
     width: var(--uc-urlbar-icon-size) !important;
     height: var(--uc-urlbar-icon-size) !important;
     padding: var(--urlbar-icon-padding) !important;
-  }
-}
-#nav-bar-customization-target > #back-button {
-  -moz-box-ordinal-group: 2;
-}
-
-#nav-bar-customization-target > #forward-button {
-  -moz-box-ordinal-group: 4;
-}
-
-#nav-bar-customization-target > #home-button {
-  -moz-box-ordinal-group: 3;
-}
-
-/** Url View UI ***************************************************************/
-/*= Url View - Move icon to left =============================================*/
-@supports -moz-bool-pref("userChrome.urlView.move_icon_to_left") {
-  .urlbarView-type-icon {
-    min-width: 16px !important;
-    height: 16px !important;
-    margin-block: 0 !important;
-    margin-inline-start: 0 !important;
-  }
-
-  .urlbarView-favicon {
-    margin-inline-start: 20px !important;
-  }
-}
-/*= Url View - Go button when typing =========================================*/
-@supports -moz-bool-pref("userChrome.urlView.go_button_when_typing") {
-  #urlbar-input-container[pageproxystate="invalid"] #urlbar-go-button {
-    display: block !important;
-  }
-}
-/** Panel UI ******************************************************************/
-@supports -moz-bool-pref("userChrome.panel.remove_strip") {
-  #appMenu-fxa-separator {
-    --panel-separator-zap-gradient: none;
-    /* Original: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%) */
-  }
-}
-@supports -moz-bool-pref("userChrome.panel.full_width_separator") {
-  /* Full width separators */
-  :root {
-    /* Original
-    --panel-separator-margin-vertical: 4px;
-    --panel-separator-margin-horizontal: 8px;
-    --panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal);
-     */
-    --panel-separator-margin-horizontal: 0 !important;
-  }
-}
-@supports -moz-bool-pref("userChrome.panel.full_width_padding") {
-  /* Original
-  --arrowpanel-menuitem-margin: 0 8px;
-  --arrowpanel-menuitem-padding-block: 8px;
-  --arrowpanel-menuitem-padding-inline: 8px;
-  --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline);
-  */
-  :root,
-  :root:is([uidensity="compact"], [uidensity="touch"]) {
-    --arrowpanel-menuitem-margin: 0 !important;
-    --arrowpanel-menuitem-padding-inline: calc(var(--arrowpanel-menuitem-padding-block) + 8px) !important;
-  }
-}
-/** Sidebar UI ****************************************************************/
-@supports -moz-bool-pref("userChrome.sidebar.overlap") or -moz-bool-pref("userChrome.autohide.sidebar") {
-  #sidebar-box {
-    /* Original
-     min-width: 14em;
-     width: 18em;
-     max-width: 36em;
-    */
-    --uc-sidebar-width: 40px;
-    --uc-sidebar-activate-width: 18em;
-    --uc-sidebar-activate-width-reverse: calc(-1 * var(--uc-sidebar-activate-width));
-    --uc-sidebar-fullscreen-width: 4px;
-    --uc-sidebar-shadow-color: #28282f;
-    --uc-autohide-sidebar-speed: 750ms;
-    --uc-autohide-fullscreen-sidebar-speed: 1s;
-    --uc-autohide-sidebar-delay: 600ms;
-    /* Wait 0.6s before hiding sidebar */
-    z-index: 1 !important;
-    position: relative !important;
-    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
-  }
-  #sidebar-box[positionend="true"] {
-    box-shadow: -1px 0px 15px -10px var(--uc-sidebar-shadow-color);
-  }
-
-  #sidebar {
-    display: block;
-  }
-
-  #sidebar-splitter {
-    display: none !important;
-  }
-}
-@supports -moz-bool-pref("userChrome.sidebar.overlap") {
-  #sidebar-box[positionend="true"] {
-    direction: rtl;
-  }
-
-  #sidebar-header,
-  #sidebar {
-    background-color: var(--sidebar-background-color) !important;
-    color: var(--sidebar-text-color) !important;
-    overflow: hidden;
-  }
-
-  @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
-    #sidebar-box,
-    #sidebar {
-      min-width: var(--uc-sidebar-activate-width) !important;
-      max-width: var(--uc-sidebar-activate-width) !important;
-    }
-
-    #sidebar-box {
-      margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
-      will-change: padding-inline;
-    }
-    #sidebar-box:not([hidden="true"]) {
-      padding-inline-start: var(--uc-sidebar-activate-width);
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      #sidebar-box {
-        transition: padding-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
-          visibility 0s linear !important;
-      }
-    }
   }
 }
 /** Others UI **************************************************************/
