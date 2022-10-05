@@ -3460,8 +3460,10 @@
         padding-inline: 1px !important;
       }
     }
-    .tabbrowser-tab:not([last-visible-tab]) {
-      margin-inline-end: -1px !important;
+    @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
+      .tabbrowser-tab:not([last-visible-tab]) {
+        margin-inline-end: -1px !important;
+      }
     }
   }
   @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
@@ -3591,16 +3593,18 @@
       /* Prevent overflow pinned tab bottom margin */
     }
 
-    :root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
-    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
-    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
-    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
-      max-height: var(--tab-min-height) !important;
-      /* Force apply height */
-    }
+    @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
+      :root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
+      #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+      #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
+      #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
+        max-height: var(--tab-min-height) !important;
+        /* Force apply height */
+      }
 
-    :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
-      height: var(--tab-min-height) !important;
+      :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+        height: var(--tab-min-height) !important;
+      }
     }
   }
   /* Scroll Button - Size Fix */
@@ -6135,7 +6139,82 @@
     }
   }
 }
-/*= Tab Bar - Show only current tab ==========================================*/
+/*= Tab Bar - Multi Row ======================================================*/
+@supports -moz-bool-pref("userChrome.tabbar.multi_row") {
+  /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/multi-row_tabs.css made available under Mozilla Public License v. 2.0
+  See the above repository for updates as well as full license text. */
+  :root {
+    --uc-multirow-tabbar-rows: 3;
+    --uc-multirow-tab-dynamic-width: 1;
+    /* Change to 0 for fixed-width tabs using the above width. */
+  }
+
+  #tabbrowser-tabs {
+    min-height: unset !important;
+    padding-inline-start: 0px !important;
+  }
+
+  @-moz-document url(chrome://browser/content/browser.xhtml)
+  {
+    #scrollbutton-up ~ spacer,
+    #scrollbutton-up,
+    #scrollbutton-down {
+      display: var(--scrollbutton-display-model, initial);
+    }
+
+    scrollbox[part][orient="horizontal"] {
+      display: flex;
+      flex-wrap: wrap;
+      overflow-y: scroll;
+      max-height: calc((var(--tab-min-height) + 2 * var(--tab-block-margin, 0px)) * var(--uc-multirow-tabbar-rows));
+      scroll-snap-type: y mandatory;
+    }
+  }
+  .scrollbox-clip[orient="horizontal"],
+  #tabbrowser-arrowscrollbox {
+    overflow: -moz-hidden-unscrollable;
+    display: block;
+    --scrollbutton-display-model: none;
+  }
+
+  .tabbrowser-tab {
+    scroll-snap-align: start;
+  }
+
+  #tabbrowser-tabs .tabbrowser-tab[pinned] {
+    position: static !important;
+    margin-inline-start: 0px !important;
+  }
+
+  .tabbrowser-tab[fadein]:not([pinned]) {
+    flex-grow: var(--uc-multirow-tab-dynamic-width);
+  }
+
+  .tabbrowser-tab > stack {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* remove bottom margin so it doesn't throw off row height computation */
+  #tabs-newtab-button {
+    margin-bottom: 0 !important;
+  }
+
+  #tabbrowser-tabs[hasadjacentnewtabbutton][overflow="true"]
+    > #tabbrowser-arrowscrollbox
+    > #tabbrowser-arrowscrollbox-periphery
+    > #tabs-newtab-button {
+    display: -moz-box !important;
+  }
+
+  #alltabs-button,
+  :root:not([customizing]) #TabsToolbar #new-tab-button,
+  #tabbrowser-arrowscrollbox > spacer,
+  .tabbrowser-tab::after {
+    display: none !important;
+  }
+}
+/*= Tab Bar - Fill width tab =================================================*/
 @supports -moz-bool-pref("userChrome.tabbar.fill_width") {
   /* Why 100vw? Tab closing requires width animation to end and "none" can't be animated */
   .tabbrowser-tab[fadein]:not([style^="max-width"]) {
@@ -6165,11 +6244,12 @@
     z-index: 1 !important;
   }
 
-  #TabsToolbar {
-    overflow: hidden;
-    /* Prevent toolbar area over */
+  @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
+    #TabsToolbar {
+      overflow: hidden;
+      /* Prevent toolbar area over */
+    }
   }
-
   /* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
   #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
     z-index: 0 !important;
@@ -6496,10 +6576,11 @@
   }
 
   @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
-    #tabbrowser-arrowscrollbox {
-      position: absolute;
+    @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
+      #tabbrowser-arrowscrollbox {
+        position: absolute;
+      }
     }
-
     .tab-background::before,
     #tabs-newtab-button::before {
       /* Box Model */

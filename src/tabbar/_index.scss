@@ -43,7 +43,12 @@
   @import "as_titlebar";
 }
 
-/*= Tab Bar - Show only current tab ==========================================*/
+/*= Tab Bar - Multi Row ======================================================*/
+@include Option("userChrome.tabbar.multi_row") {
+  @import "multi_row";
+}
+
+/*= Tab Bar - Fill width tab =================================================*/
 @include Option("userChrome.tabbar.fill_width") {
   @import "fill_width";
 }

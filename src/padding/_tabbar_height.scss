@@ -48,14 +48,16 @@
     --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important; /* Prevent overflow pinned tab bottom margin */
   }
 
-  :root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
-  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
-  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
-  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
-    max-height: var(--tab-min-height) !important; /* Force apply height */
-  }
-  :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
-    height: var(--tab-min-height) !important;
+  @include NotOption("userChrome.tabbar.multi_row") {
+    :root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
+    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
+    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
+      max-height: var(--tab-min-height) !important; /* Force apply height */
+    }
+    :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+      height: var(--tab-min-height) !important;
+    }
   }
 }
 

@@ -95,8 +95,10 @@
       padding-inline: 1px !important;
     }
   }
-  .tabbrowser-tab:not([last-visible-tab]) {
-    margin-inline-end: -1px !important;
+  @include NotOption("userChrome.tabbar.multi_row") {
+    .tabbrowser-tab:not([last-visible-tab]) {
+      margin-inline-end: -1px !important;
+    }
   }
 }
 @include Option("userChrome.tab.photon_like_padding") {

@@ -141,6 +141,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.tabbar.as_titlebar",                  true);
 // user_pref("userChrome.tabbar.fill_width",                   true);
+// user_pref("userChrome.tabbar.multi_row",                    true);
 // user_pref("userChrome.tabbar.on_bottom",                    true);
 // user_pref("userChrome.tabbar.on_bottom.above_bookmark",     true); // Need on_bottom
 // user_pref("userChrome.tabbar.on_bottom.menubar_on_top",     true); // Need on_bottom

@@ -36,8 +36,10 @@
 }
 
 @include Option("userChrome.tab.newtab_button_like_tab") {
-  #tabbrowser-arrowscrollbox {
-    position: absolute;
+  @include NotOption("userChrome.tabbar.multi_row") {
+    #tabbrowser-arrowscrollbox {
+      position: absolute;
+    }
   }
 
   .tab-background::before,
