@@ -36,7 +36,7 @@
 }
 
 @include Option("userChrome.tab.newtab_button_like_tab") {
-  #tabbrowser-arrowscrollbox {
+  #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox {
     position: absolute;
   }
 
