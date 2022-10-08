@@ -66,13 +66,15 @@
       padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
     }
     @include NotOption("userChrome.combined.urlbar.nav_button") {
-      @include Option("userChrome.combined.urlbar.home_button") {
-        @include NotOption("userChrome.combined.nav_button.home_button") {
+      @include NotOption("userChrome.combined.nav_button.none_forward_background") {
+        @include Option("userChrome.combined.urlbar.home_button") {
+          @include NotOption("userChrome.combined.nav_button.home_button") {
+            @include _combined_nav_button_background;
+          }
+        }
+        @include NotOption("userChrome.combined.urlbar.home_button") {
           @include _combined_nav_button_background;
         }
-      }
-      @include NotOption("userChrome.combined.urlbar.home_button") {
-        @include _combined_nav_button_background;
       }
     }
   }
