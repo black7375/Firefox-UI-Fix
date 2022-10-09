@@ -1,8 +1,8 @@
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
-/** Default Theme - Contrast ***************************************************/
+/** Default Theme - Contrast **************************************************/
 @supports -moz-bool-pref("userChrome.theme.built_in_contrast") {
-  /*= Light mode - Color darker =================================================*/
+  /*= Lightmode - Color darker =================================================*/
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]),
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
     --lwt-accent-color: rgb(229, 229, 235) !important;
@@ -21,7 +21,7 @@
       background-color: var(--lwt-accent-color) !important;
     }
   }
-  /*= Dark mode - Color lighter =================================================*/
+  /*= Darkmode - Color lighter =================================================*/
   :root[lwtheme-mozlightdark][lwthemetextcolor="bright"],
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
     --toolbar-bgcolor: rgba(43, 42, 51, 5) !important;
@@ -2318,7 +2318,7 @@
       border-radius: 4px !important;
     }
   }
-  /*= Cert Exception Dialog =====================================================*/
+  /*= Cert Exception Dialog ====================================================*/
   @-moz-document url("chrome://pippki/content/exceptionDialog.xhtml")
   {
     #locationTextBox {
@@ -6117,7 +6117,7 @@
     }
   }
 }
-/** Tab UI ****************************************************************/
+/** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
   .tab-background {
@@ -10872,7 +10872,7 @@
     }
   }
 }
-/** Library Menu ***************************************************************/
+/** Library Menu **************************************************************/
 @supports -moz-bool-pref("userChrome.icon.library") {
   @supports -moz-bool-pref("userChrome.icon.menu") {
     /*= organizeButtonPopup ======================================================*/

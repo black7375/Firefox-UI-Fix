@@ -39,7 +39,7 @@ user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photo
 user_pref("userChrome.tab.lepton_like_padding",        true); // Original
 user_pref("userChrome.tab.photon_like_padding",       false); // Photon
 
-user_pref("userChrome.tab.dynamic_separator",           true); // Original, Proton
+user_pref("userChrome.tab.dynamic_separator",          true); // Original, Proton
 user_pref("userChrome.tab.static_separator",          false); // Photon
 user_pref("userChrome.tab.static_separator.selected_accent", false); // Just option
 
