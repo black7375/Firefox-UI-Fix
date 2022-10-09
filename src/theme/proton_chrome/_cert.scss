@@ -7,7 +7,7 @@
   }
 }
 
-/*= Cert Exeption Dialog =====================================================*/
+/*= Cert Exception Dialog =====================================================*/
 @-moz-document url("chrome://pippki/content/exceptionDialog.xhtml")
 {
   #locationTextBox {
@@ -25,12 +25,12 @@
     &:focus {
       border-color: transparent !important;
       outline: 2px solid var(--in-content-focus-outline-color) !important;
-      outline-offset: -1px !important; /* Prevents antialising around the corners */
+      outline-offset: -1px !important; /* Prevents antialiasing around the corners */
     }
     &:-moz-ui-invalid {
       border-color: transparent !important;
       outline: 2px solid var(--in-content-border-invalid) !important;
-      outline-offset: -1px !important; /* Prevents antialising around the corners */
+      outline-offset: -1px !important; /* Prevents antialiasing around the corners */
     }
     &:disabled {
       opacity: 0.4 !important;
