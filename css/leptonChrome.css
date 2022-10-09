@@ -103,7 +103,8 @@
     }
   }
   /*= Tab Separator Color ======================================================*/
-  #TabsToolbar {
+  #TabsToolbar,
+  #nav-bar {
     --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent);
     /* 60% at v105 */
   }
@@ -2918,6 +2919,21 @@
       cursor: progress !important;
     }
     */
+}
+/*= Panel UI Button Separator ================================================*/
+@supports -moz-bool-pref("userChrome.decoration.panel_button_separator") {
+  :root:not([chromehidden~="toolbar"]) #PanelUI-button {
+    margin-inline-start: 3px;
+    padding-inline-start: 2px;
+    border-inline-start: 1px solid;
+    border-image: linear-gradient(
+      transparent 4px,
+      var(--toolbarseparator-color) 4px,
+      var(--toolbarseparator-color) calc(100% - 4px),
+      transparent calc(100% - 4px)
+    );
+    border-image-slice: 1;
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
   /*= Field Border ===========================================================*/
