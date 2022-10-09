@@ -39,7 +39,7 @@ user_pref("userChrome.tab.color_like_toolbar",         true); // Original, Photo
 user_pref("userChrome.tab.lepton_like_padding",        true); // Original
 user_pref("userChrome.tab.photon_like_padding",       false); // Photon
 
-user_pref("userChrome.tab.dynamic_separtor",           true); // Original, Proton
+user_pref("userChrome.tab.dynamic_separator",          true); // Original, Proton
 user_pref("userChrome.tab.static_separator",          false); // Photon
 user_pref("userChrome.tab.static_separator.selected_accent", false); // Just option
 
@@ -64,7 +64,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.compatibility.covered_header_image", true);
 // user_pref("userChrome.compatibility.panel_cutoff",         true);
 // user_pref("userChrome.compatibility.navbar_top_border",    true);
-// user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_seperator
+// user_pref("userChrome.compatibility.dynamic_separator",    true); // Need dynamic_separator
 
 // user_pref("userChrome.compatibility.os.linux_non_native_titlebar_button", true);
 // user_pref("userChrome.compatibility.os.windows_maximized", true);
@@ -255,7 +255,7 @@ user_pref("general.smoothScroll.currentVelocityWeighting", "0.15"); //   "0.25"
 user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); //    "0.4"
 */
 
-// == Smooth Scroling ==========================================================
+// == Smooth Scrolling ==========================================================
 // ** Scrolling Options ********************************************************
 // based on natural smooth scrolling v2 by aveyo
 // this preset will reset couple extra variables for consistency

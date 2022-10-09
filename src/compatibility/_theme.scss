@@ -48,7 +48,7 @@ menu {
 /*= Remove Tab Border ========================================================*/
 @mixin _theme_removeTabBorder($options...) {
   %noneBorder {
-    /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+    /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
     border: unset !important;
   }
   @each $prefix, $postfix in $options {

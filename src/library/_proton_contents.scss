@@ -1,7 +1,7 @@
 $iconSelector: "> .menu-iconic-left > .menu-iconic-icon";
 $checkedIconSelector: "> .menu-iconic-left[checked=\"true\"] > .menu-iconic-icon";
 
-/*- Radio Button ---------------------------------------------------------*/
+/*- Radio Button -------------------------------------------------------------*/
 menuitem[type="radio"] {
   @include Proton.RadioGlobal;
 
@@ -41,7 +41,7 @@ menuitem[type="checkbox"][disabled="true"] {
   @include Proton.DisabledMenuItem;
 }
 
-/*- Check Box ------------------------------------------------------------*/
+/*- Check Box ----------------------------------------------------------------*/
 /* From checkbox.css */
 menuitem[type="checkbox"] {
   @include Proton.CheckboxGlobal(true);
@@ -99,7 +99,7 @@ menuitem[type="checkbox"] {
   }
 }
 
-/*- Menu Separtor --------------------------------------------------------*/
+/*- Menu Separator -----------------------------------------------------------*/
 menuseparator {
   appearance: none !important;
   min-width: 2px;

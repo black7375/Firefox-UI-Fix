@@ -185,8 +185,8 @@ write_file() {
 get_ini_section() {
   local filePath="$1"
 
-  local ouput=$(grep -E "^\[" "${filePath}" |sed -e "s/^\[//g" -e "s/\]$//g")
-  echo "${ouput}"
+  local output=$(grep -E "^\[" "${filePath}" |sed -e "s/^\[//g" -e "s/\]$//g")
+  echo "${output}"
 }
 get_ini_value() {
   local filePath="$1"

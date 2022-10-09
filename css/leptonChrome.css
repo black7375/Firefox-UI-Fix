@@ -1,6 +1,6 @@
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
-/** Default Thme - Contrast ***************************************************/
+/** Default Theme - Contrast **************************************************/
 @supports -moz-bool-pref("userChrome.theme.built_in_contrast") {
   /*= Lightmode - Color darker =================================================*/
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]),
@@ -87,7 +87,7 @@
       .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
       > .tab-stack
       > .tab-background {
-      /* Nigtly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+      /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
       border: unset !important;
     }
 
@@ -495,16 +495,16 @@
       --win-field-bgcolor: #ffffff;
       --win-component-bgcolor: #f2f2f2;
       --win-border-color: #8a8a8a;
-      --win-tab-seperator-color: #a3a3a3;
+      --win-tab-separator-color: #a3a3a3;
       --win-sidebar-bgcolor: #e6e6e6;
       --win-sidebar-hover-bgcolor: #cfcfcf;
       --win-sidebar-button-hover-bgcolor: #b8b8b8;
       --win-sidebar-button-hover-active-bgcolor: #a3a3a3;
       --win-button-border: #747474;
-      --win-shorcut-text-color: #757575;
+      --win-shortcut-text-color: #757575;
       --win-error-color: #b31616;
       --win-red-border-color: #ff4343;
-      --win-accent-forground-color: AccentColorText;
+      --win-accent-foreground-color: AccentColorText;
       --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, AccentColor);
       --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, AccentColor);
       --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, AccentColor);
@@ -512,7 +512,7 @@
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
       :root:not(:-moz-lwtheme) {
-        --win-accent-forground-color: -moz-accent-color-foreground;
+        --win-accent-foreground-color: -moz-accent-color-foreground;
         --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
         --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
         --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, -moz-accent-color);
@@ -536,13 +536,13 @@
         --win-field-bgcolor: #373737;
         --win-component-bgcolor: #171717;
         --win-border-color: #5b5b5b;
-        --win-tab-seperator-color: #555555;
+        --win-tab-separator-color: #555555;
         --win-sidebar-bgcolor: #1f1f1f;
         --win-sidebar-hover-bgcolor: #353535;
         --win-sidebar-button-hover-bgcolor: #353535;
         --win-sidebar-button-hover-active-bgcolor: #4c4c4c;
         --win-button-border: #8f8f8f;
-        --win-shorcut-text-color: #adadad;
+        --win-shortcut-text-color: #adadad;
         --win-error-color: #ffb900;
         --win-red-border-color: #ff4343;
         --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, AccentColor);
@@ -584,8 +584,8 @@
       --panel-disabled-color: var(--win-disabled-color) !important;
       --download-progress-paused-color: var(--win-disabled-color) !important;
       /* Text Shortcut Color */
-      --panel-shortcut-color: var(--win-shorcut-text-color) !important;
-      --panel-description-color: var(--win-shorcut-text-color) !important;
+      --panel-shortcut-color: var(--win-shortcut-text-color) !important;
+      --panel-description-color: var(--win-shortcut-text-color) !important;
       /* Title Background */
       --lwt-accent-color: var(--win-bgcolor) !important;
       --toolbar-field-border-color: var(--win-bgcolor) !important;
@@ -597,9 +597,9 @@
       --arrowpanel-background: var(--win-component-bgcolor) !important;
       --autocomplete-popup-background: var(--win-component-bgcolor) !important;
       /* Border Color */
-      /* Seperator */
-      --toolbarseparator-color: var(--win-tab-seperator-color) !important;
-      /* Field Backround Color */
+      /* Separator */
+      --toolbarseparator-color: var(--win-tab-separator-color) !important;
+      /* Field Background Color */
       --input-bgcolor: var(--win-field-bgcolor) !important;
       --toolbar-field-background-color: var(--win-field-bgcolor) !important;
       --toolbar-field-focus-background-color: var(--win-field-bgcolor) !important;
@@ -631,9 +631,9 @@
       --checkbox-border-color: var(--win-button-border) !important;
       --input-border-color: var(--win-button-border) !important;
       --autocomplete-popup-separator-color: var(--win-button-border) !important;
-      /* Accent Forground Color */
-      --button-primary-color: var(--win-accent-forground-color) !important;
-      --checkbox-checked-color: var(--win-accent-forground-color) !important;
+      /* Accent Foreground Color */
+      --button-primary-color: var(--win-accent-foreground-color) !important;
+      --checkbox-checked-color: var(--win-accent-foreground-color) !important;
       /* Accent Color */
       --button-primary-bgcolor: var(--win-accent-color) !important;
       --focus-outline-color: var(--win-accent-color) !important;
@@ -906,11 +906,11 @@
       /* Selected Background Color */
       --toolbar-bgcolor: var(--mac-selected-bgcolor) !important;
       --toolbar-non-lwt-bgcolor: var(--mac-selected-bgcolor) !important;
-      /* Field Backround Color */
+      /* Field Background Color */
       --input-bgcolor: var(--mac-field-bgcolor) !important;
       --toolbar-field-background-color: var(--mac-field-bgcolor) !important;
       --tab-icon-overlay-stroke: var(--mac-field-bgcolor) !important;
-      /* Panel Backround Color */
+      /* Panel Background Color */
       --arrowpanel-background: var(--mac-panel-bgcolor) !important;
       /* Hover Background Color  */
       --menuitem-hover-background-color: var(--mac-hover-bgcolor) !important;
@@ -947,7 +947,7 @@
         --input-border-color: var(--mac-bgcolor) !important;
         --autocomplete-popup-separator-color: var(--mac-bgcolor) !important;
        */
-      /* Accent Color Forground */
+      /* Accent Color Foreground */
       --button-primary-color: var(--mac-primary-button-color) !important;
       --checkbox-checked-color: var(--mac-primary-button-color) !important;
       /* Accent Color */
@@ -1134,7 +1134,7 @@
     --in-content-link-color-hover: var(--blue-70);
     --in-content-link-color-active: var(--blue-80);
     --in-content-link-color-visited: var(--blue-60);
-    /* button background states are also used for checkboxes and radiobuttons */
+    /* button background states are also used for checkboxes and radio buttons */
     --in-content-button-text-color: var(--in-content-text-color);
     --in-content-button-text-color-hover: var(--in-content-text-color);
     --in-content-button-background: rgba(207, 207, 216, 0.33);
@@ -2318,7 +2318,7 @@
       border-radius: 4px !important;
     }
   }
-  /*= Cert Exeption Dialog =====================================================*/
+  /*= Cert Exception Dialog ====================================================*/
   @-moz-document url("chrome://pippki/content/exceptionDialog.xhtml")
   {
     #locationTextBox {
@@ -2336,13 +2336,13 @@
       border-color: transparent !important;
       outline: 2px solid var(--in-content-focus-outline-color) !important;
       outline-offset: -1px !important;
-      /* Prevents antialising around the corners */
+      /* Prevents antialiasing around the corners */
     }
     #locationTextBox:-moz-ui-invalid {
       border-color: transparent !important;
       outline: 2px solid var(--in-content-border-invalid) !important;
       outline-offset: -1px !important;
-      /* Prevents antialising around the corners */
+      /* Prevents antialiasing around the corners */
     }
     #locationTextBox:disabled {
       opacity: 0.4 !important;
@@ -3124,7 +3124,7 @@
       from {
         margin-top: 0;
       }
-      /* Dont' use `to`: Depending on density */
+      /* Don't use `to`: Depending on density */
     }
     /*- Expand - Synced Tabs ---------------------------------------------------*/
     @-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
@@ -3200,7 +3200,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_tab") or -moz-bool-pref("userChrome.round.square_button") {
-  /* Fix Tab bar button radious */
+  /* Fix Tab bar button radius */
   #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-icon,
   #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-text,
   #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-badge-stack,
@@ -4071,7 +4071,7 @@
         }
       }
     }
-    /*= Tabbar - Hidden at singgle tab ===========================================*/
+    /*= Tabbar - Hidden at single tab ===========================================*/
     @supports -moz-bool-pref("userChrome.tabbar.on_bottom.hidden_single_tab") {
       #tabbrowser-tabs .tabbrowser-tab:only-of-type {
         display: none !important;
@@ -4221,7 +4221,7 @@
             }
           }
         }
-        /*= Tabbar - Hidden at singgle tab ===========================================*/
+        /*= Tabbar - Hidden at single tab ===========================================*/
         @supports -moz-bool-pref("userChrome.tabbar.on_bottom.hidden_single_tab") {
           #tabbrowser-tabs .tabbrowser-tab:only-of-type {
             display: none !important;
@@ -6117,7 +6117,7 @@
     }
   }
 }
-/** Tab UI ****************************************************************/
+/** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
   .tab-background {
@@ -6218,7 +6218,7 @@
     .tabbrowser-tab[visuallyselected="true"]:not(:focus)
     > .tab-stack
     > .tab-background:-moz-lwtheme {
-    /* Origina: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
+    /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
          Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
     box-shadow: 0 0 1px var(--toolbar-color) !important;
   }
@@ -6330,7 +6330,7 @@
     /* Fill color for GTK */
     :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::before,
     :root:not([customizing="true"]):not([lwtheme="true"]) tab[visuallyselected] > stack::after {
-      /* As GTK Toolbar's background-color + backround-image
+      /* As GTK Toolbar's background-color + background-image
          * --toolbar-non-lwt-bgcolor: -moz-dialog;
          * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
          */
@@ -6406,7 +6406,7 @@
     background-color: rgba(255, 255, 255, 0.2) !important;
   }
 
-  /* Prevent identitiy color flashing */
+  /* Prevent identity color flashing */
   .tabbrowser-tab[usercontextid] .tab-context-line {
     --identity-icon-color: none;
   }
@@ -6456,7 +6456,7 @@
 }
 /*= Unselected Tab - Divide line =============================================*/
 /*= Unselected Tab - Dynamic Separator =======================================*/
-@supports -moz-bool-pref("userChrome.tab.dynamic_separtor") {
+@supports -moz-bool-pref("userChrome.tab.dynamic_separator") {
   #tabbrowser-arrowscrollbox {
     --start-tab-separator-position-x: -1.5px;
     --end-tab-separator-position-x: 1.5px;
@@ -6690,13 +6690,13 @@
   #tabs-newtab-button {
     /* Original:
       margin: 0 0 var(--tabs-navbar-shadow-size) !important
-      => Can't ovrride style. Therefore, we should approach it by bypass.
+      => Can't override style. Therefore, we should approach it by bypass.
       */
     --tabs-navbar-shadow-size: -1px;
     /* Original: 1px */
     --tabs-navbar-original-shadow-size: 1px;
     --tab-corner-rounding: 4px;
-    /* Hardcorded */
+    /* Hardcoded */
     /* Size */
     -moz-box-align: stretch !important;
     padding-top: var(--tab-block-margin) !important;
@@ -6725,27 +6725,27 @@
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
       fill: color-mix(in srgb, AccentColorText 10%, transparent) !important;
-      /* Hardcorded for compatibility */
+      /* Hardcoded for compatibility */
     }
 
     :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
       fill: color-mix(in srgb, AccentColorText 15%, transparent) !important;
-      /* Hardcorded for compatibility */
+      /* Hardcoded for compatibility */
     }
 
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
       :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
         fill: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent) !important;
-        /* Hardcorded for compatibility */
+        /* Hardcoded for compatibility */
       }
 
       :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
         #tabs-newtab-button:hover:active {
         fill: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent) !important;
-        /* Hardcorded for compatibility */
+        /* Hardcoded for compatibility */
       }
     }
   }
@@ -6764,7 +6764,7 @@
 @supports -moz-bool-pref("userChrome.tab.newtab_button_smaller") {
   #tabs-newtab-button > .toolbarbutton-icon {
     margin-left: 1px;
-    /* Origianl: calc((var(--tab-min-height) - 16px) / 2) = 10px */
+    /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
     --toolbarbutton-inner-padding: 6px;
   }
 
@@ -7525,7 +7525,7 @@
     }
 
     @media (-moz-gtk-csd-available) {
-      /* Fix transparent backgorund */
+      /* Fix transparent background */
       :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
         appearance: auto !important;
       }
@@ -8519,7 +8519,7 @@
     list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
   }
 
-  /* Boomark */
+  /* Bookmark */
   :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
     list-style-image: url("chrome://browser/skin/bookmark.svg") !important;
   }
@@ -8562,7 +8562,7 @@
     list-style-image: url("../icons/tag-open.svg") !important;
   }
 
-  /* Boomark */
+  /* Bookmark */
   :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, open, OrganizerQuery_allbms_____v) {
     list-style-image: url("chrome://browser/skin/bookmark-hollow.svg") !important;
   }
@@ -9495,7 +9495,7 @@
     }
   }
   /*= Bookmark Menu - Layout ===================================================*/
-  /* #goPopup(Legacy of historyMenuPoup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
+  /* #goPopup(Legacy of historyMenuPopup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
      * #BMB_bookmarksPopup: looks like arrow panel
      */
   /* Empty Menu */
@@ -10455,7 +10455,7 @@
     }
 
     /*= textbox-contextmenu ======================================================*/
-    /* Browser's Searchbar, Libray's Searchbar, Page Info */
+    /* Browser's Searchbar, Library's Searchbar, Page Info */
     .textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
       --menuitem-image: url("../icons/undo.svg");
     }
@@ -10872,7 +10872,7 @@
     }
   }
 }
-/** Libray Menu ***************************************************************/
+/** Library Menu **************************************************************/
 @supports -moz-bool-pref("userChrome.icon.library") {
   @supports -moz-bool-pref("userChrome.icon.menu") {
     /*= organizeButtonPopup ======================================================*/

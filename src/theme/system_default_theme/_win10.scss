@@ -12,17 +12,17 @@
     --win-field-bgcolor: #ffffff;
     --win-component-bgcolor: #f2f2f2;
     --win-border-color: #8a8a8a;
-    --win-tab-seperator-color: #a3a3a3;
+    --win-tab-separator-color: #a3a3a3;
     --win-sidebar-bgcolor: #e6e6e6;
     --win-sidebar-hover-bgcolor: #cfcfcf;
     --win-sidebar-button-hover-bgcolor: #b8b8b8;
     --win-sidebar-button-hover-active-bgcolor: #a3a3a3;
     --win-button-border: #747474;
-    --win-shorcut-text-color: #757575;
+    --win-shortcut-text-color: #757575;
     --win-error-color: #b31616;
     --win-red-border-color: #ff4343;
     @include AccentColor {
-      --win-accent-forground-color: #{$accentTextColor};
+      --win-accent-foreground-color: #{$accentTextColor};
       --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, #{$accentColor});
       --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, #{$accentColor});
       --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, #{$accentColor});
@@ -42,13 +42,13 @@
       --win-field-bgcolor: #373737;
       --win-component-bgcolor: #171717;
       --win-border-color: #5b5b5b;
-      --win-tab-seperator-color: #555555;
+      --win-tab-separator-color: #555555;
       --win-sidebar-bgcolor: #1f1f1f;
       --win-sidebar-hover-bgcolor: #353535;
       --win-sidebar-button-hover-bgcolor: #353535;
       --win-sidebar-button-hover-active-bgcolor: #4c4c4c;
       --win-button-border: #8f8f8f;
-      --win-shorcut-text-color: #adadad;
+      --win-shortcut-text-color: #adadad;
       --win-error-color: #ffb900;
       --win-red-border-color: #ff4343;
       @include AccentColor {
@@ -85,8 +85,8 @@
     --download-progress-paused-color: var(--win-disabled-color) !important;
 
     /* Text Shortcut Color */
-    --panel-shortcut-color: var(--win-shorcut-text-color) !important;
-    --panel-description-color: var(--win-shorcut-text-color) !important;
+    --panel-shortcut-color: var(--win-shortcut-text-color) !important;
+    --panel-description-color: var(--win-shortcut-text-color) !important;
 
     /* Title Background */
     --lwt-accent-color: var(--win-bgcolor) !important;
@@ -103,10 +103,10 @@
     /* Border Color */
     // --menu-border-color: var(--win-border-color) !important;
 
-    /* Seperator */
-    --toolbarseparator-color: var(--win-tab-seperator-color) !important;
+    /* Separator */
+    --toolbarseparator-color: var(--win-tab-separator-color) !important;
 
-    /* Field Backround Color */
+    /* Field Background Color */
     --input-bgcolor: var(--win-field-bgcolor) !important;
     --toolbar-field-background-color: var(--win-field-bgcolor) !important;
     --toolbar-field-focus-background-color: var(--win-field-bgcolor) !important;
@@ -145,9 +145,9 @@
     --input-border-color: var(--win-button-border) !important;
     --autocomplete-popup-separator-color: var(--win-button-border) !important;
 
-    /* Accent Forground Color */
-    --button-primary-color: var(--win-accent-forground-color) !important;
-    --checkbox-checked-color: var(--win-accent-forground-color) !important;
+    /* Accent Foreground Color */
+    --button-primary-color: var(--win-accent-foreground-color) !important;
+    --checkbox-checked-color: var(--win-accent-foreground-color) !important;
 
     /* Accent Color */
     --button-primary-bgcolor: var(--win-accent-color) !important;
