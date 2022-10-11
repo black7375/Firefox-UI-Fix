@@ -8,6 +8,11 @@
   @import "panel_button_separator";
 }
 
+/*= Panel UI Arrow ===========================================================*/
+@include Option("userChrome.decoration.panel_arrow") {
+  @import "panel_arrow";
+}
+
 @include Animate {
   /*= Field Border ===========================================================*/
   @include Option("userChrome.decoration.field_border") {
