@@ -61,13 +61,6 @@
 @import "hidden/index";
 
 /** Icons *********************************************************************/
-@import "icons/index";
-
-/** Waterfox ******************************************************************/
-@import "icons/waterfox";
-@include Option("userChrome.theme.fully_color") {
-  @import "theme/waterfox";
+@include NotOption("userChrome.icon.disabled") {
+  @import "icons/index";
 }
-
-/** Tor Browser ***************************************************************/
-@import "icons/tor_browser";

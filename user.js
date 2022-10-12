@@ -153,6 +153,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.sidebar.overlap",                     true);
 
+// user_pref("userChrome.icon.disabled",                       true);
 // user_pref("userChrome.icon.account_image_to_right",         true);
 // user_pref("userChrome.icon.account_label_to_right",         true);
 // user_pref("userChrome.icon.menu.full",                      true);
