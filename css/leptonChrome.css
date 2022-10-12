@@ -6479,7 +6479,7 @@
 }
 /*= Unselected Tab - Divide line =============================================*/
 /*= Unselected Tab - Dynamic Separator =======================================*/
-@supports -moz-bool-pref("userChrome.tab.dynamic_separator") {
+@supports -moz-bool-pref("userChrome.tab.dynamic_separator") or -moz-bool-pref("userChrome.tab.dynamic_separtor") {
   #tabbrowser-arrowscrollbox {
     --start-tab-separator-position-x: -1.5px;
     --end-tab-separator-position-x: 1.5px;

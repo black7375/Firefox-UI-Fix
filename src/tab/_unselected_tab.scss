@@ -1,5 +1,8 @@
 /*= Unselected Tab - Dynamic Separator =======================================*/
-@include Option("userChrome.tab.dynamic_separator") {
+@include Option(
+  "userChrome.tab.dynamic_separator",
+  "userChrome.tab.dynamic_separtor"
+) {
   @import "unselected_tab/dynamic_separator";
 }
 
