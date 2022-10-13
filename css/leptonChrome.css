@@ -6637,6 +6637,10 @@
     --tab-separator-position-x: 2.5px;
   }
 
+  #tabbrowser-arrowscrollbox-periphery {
+    position: relative;
+  }
+
   @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
       #tabbrowser-arrowscrollbox {
@@ -6650,7 +6654,7 @@
       display: block;
       position: absolute;
       /* Position */
-      bottom: 0%;
+      top: 50%;
       /* Bar shape */
       width: 1px;
       height: 20px;
@@ -6677,7 +6681,7 @@
       display: block;
       position: absolute;
       /* Position */
-      bottom: 0%;
+      top: 50%;
       /* Bar shape */
       width: 1px;
       height: 20px;

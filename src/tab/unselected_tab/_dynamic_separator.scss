@@ -6,7 +6,7 @@
   position: absolute;
 
   /* Position */
-  bottom: 0%;
+  top: 50%;
 
   /* Bar shape */
   width: 1px;
@@ -33,6 +33,10 @@
     --end-tab-separator-position-x: -1.5px;
     --tab-separator-position-x: 2.5px;
   }
+}
+
+#tabbrowser-arrowscrollbox-periphery {
+  position: relative;
 }
 
 @include Option("userChrome.tab.newtab_button_like_tab") {
