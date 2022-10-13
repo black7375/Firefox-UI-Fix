@@ -3,7 +3,7 @@
 :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu) .bookmark-item[container="true"]:not([query="true"], [tagContainer], [dayContainer]),
 /* in Sidebar, Library, Add/Edit Bookmark dialog */
 /* https://github.com/rillian/firefox/blob/1f88437d263f56bdede4f20f69ba9c7b62f57001/layout/style/nsCSSAnonBoxList.h#L85-L98 */
-/* Need to overide!!, can not use :not() */
+/* Need to override!!, can not use :not() */
 :-moz-any(#bookmarks-view, #historyTree, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, container),
 #editBMPanel_folderMenuList:not([selectedGuid="toolbar_____"], [selectedGuid="menu________"]),
 #editBMPanel_folderMenuList .folder-icon:not([id]),
@@ -69,7 +69,7 @@
   list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
 }
 
-/* Boomark */
+/* Bookmark */
 :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
   list-style-image: url("chrome://browser/skin/bookmark.svg") !important;
 }
@@ -111,7 +111,7 @@
   list-style-image: url("../icons/tag-open.svg") !important;
 }
 
-/* Boomark */
+/* Bookmark */
 :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, open, OrganizerQuery_allbms_____v) {
   list-style-image: url("chrome://browser/skin/bookmark-hollow.svg") !important;
 }

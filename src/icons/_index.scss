@@ -25,9 +25,15 @@
   }
 }
 
-/** Libray Menu ***************************************************************/
+/** Library Menu **************************************************************/
 @include Option("userChrome.icon.library") {
   @include Option("userChrome.icon.menu") {
     @import "library";
   }
 }
+
+/** Waterfox ******************************************************************/
+@import "waterfox";
+
+/** Tor Browser ***************************************************************/
+@import "tor_browser";

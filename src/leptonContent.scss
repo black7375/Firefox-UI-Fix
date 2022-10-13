@@ -40,8 +40,10 @@
 }
 
 /** Menu - Icons Layout *******************************************************/
-@include Option("userChrome.icon.menu") {
-  @import "contents/context_menu";
+@include NotOption("userChrome.icon.disabled") {
+  @include Option("userChrome.icon.menu") {
+    @import "contents/context_menu";
+  }
 }
 
 /** Download Panel ************************************************************/
