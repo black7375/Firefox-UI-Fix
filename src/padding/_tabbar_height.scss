@@ -59,6 +59,11 @@
   }
 }
 
+/* Works with TabMixPlus */
+#TabsToolbar[multibar] .tabbrowser-tab {
+  height: unset !important; /* Original: var(--tab-min-height_mlt) */
+}
+
 /* Scroll Button - Size Fix */
 :root #tabbrowser-arrowscrollbox {
   --scrollbtn-vertical-padding: 3px;
