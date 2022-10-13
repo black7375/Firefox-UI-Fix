@@ -48,15 +48,20 @@
     --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important; /* Prevent overflow pinned tab bottom margin */
   }
 
-  :root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
-  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
-  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
-  #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
+  :root:not([uidensity="compact"]) #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox,
+  #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+  #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
+  #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
     max-height: var(--tab-min-height) !important; /* Force apply height */
   }
-  :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+  :root[uidensity="compact"] #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox {
     height: var(--tab-min-height) !important;
   }
+}
+
+/* Works with TabMixPlus */
+#TabsToolbar[multibar] .tabbrowser-tab {
+  height: unset !important; /* Original: var(--tab-min-height_mlt) */
 }
 
 /* Scroll Button - Size Fix */

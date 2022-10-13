@@ -3465,7 +3465,7 @@
         padding-inline: 1px !important;
       }
     }
-    .tabbrowser-tab:not([last-visible-tab]) {
+    #TabsToolbar:not([multibar]) .tabbrowser-tab:not([last-visible-tab]) {
       margin-inline-end: -1px !important;
     }
   }
@@ -3596,18 +3596,30 @@
       /* Prevent overflow pinned tab bottom margin */
     }
 
-    :root:not([uidensity="compact"]) #tabbrowser-arrowscrollbox,
-    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
-    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
-    #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
+    :root:not([uidensity="compact"]) #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox,
+    #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+    #TabsToolbar:not([multibar])
+      #tabbrowser-arrowscrollbox[overflowing="true"]
+      > .tabbrowser-tab[pinned="true"]
+      .tab-stack,
+    #TabsToolbar:not([multibar])
+      #tabbrowser-arrowscrollbox[overflowing="true"]
+      > .tabbrowser-tab[pinned="true"]
+      .tab-content {
       max-height: var(--tab-min-height) !important;
       /* Force apply height */
     }
 
-    :root[uidensity="compact"] #tabbrowser-arrowscrollbox {
+    :root[uidensity="compact"] #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox {
       height: var(--tab-min-height) !important;
     }
   }
+  /* Works with TabMixPlus */
+  #TabsToolbar[multibar] .tabbrowser-tab {
+    height: unset !important;
+    /* Original: var(--tab-min-height_mlt) */
+  }
+
   /* Scroll Button - Size Fix */
   :root #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
@@ -6162,7 +6174,7 @@
     z-index: 1 !important;
   }
 
-  #TabsToolbar {
+  #TabsToolbar:not([multibar]) {
     overflow: hidden;
     /* Prevent toolbar area over */
   }
@@ -6492,8 +6504,12 @@
     --tab-separator-position-x: 2.5px;
   }
 
+  #tabbrowser-arrowscrollbox-periphery {
+    position: relative;
+  }
+
   @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
-    #tabbrowser-arrowscrollbox {
+    #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox {
       position: absolute;
     }
 
