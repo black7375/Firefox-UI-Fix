@@ -191,6 +191,12 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
         /* -moz-default-appearance: -moz-window-titlebar */
         appearance: none !important;
       }
+      @include OS($win7, $win8) {
+        &[sizemode="maximized"] #titlebar {
+          // Only win7, win8 #480
+          padding-top: 8px; // Don't use margin-top for reserved fullscreen animation
+        }
+      }
     }
     @include Option("userChrome.compatibility.os.windows_maximized") {
       &[sizemode="maximized"] #titlebar {
