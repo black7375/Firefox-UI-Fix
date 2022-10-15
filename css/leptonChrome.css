@@ -9707,7 +9707,11 @@
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
       #tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
       #sidebartabs_asamuzak_jp-menuitem-_dupeTab {
-        --menuitem-image: url("../icons/notebook-subsection.svg");
+        --menuitem-image: url("../icons/tab-copy.svg");
+      }
+
+      #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
+        --menuitem-image: url("../icons/tab-unload.svg");
       }
 
       #context_bookmarkTab,
@@ -9765,6 +9769,15 @@
       #tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTab,
       #sidebartabs_asamuzak_jp-menuitem-_closeTab {
         --menuitem-image: url("chrome://global/skin/icons/close.svg");
+      }
+
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_closeTabOptions,
+        #treestyletab_piro_sakura_ne_jp-menuitem-_context_closeMultipleTabs,
+        #tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTabs,
+        #sidebartabs_asamuzak_jp-menuitem-_closeMultipleTabs {
+          --menuitem-image: url("../icons/filter-dismiss.svg");
+        }
       }
 
       #context_undoCloseTab,
@@ -10495,6 +10508,12 @@
         --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
       }
 
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #paste-and-go {
+          --menuitem-image: url("../icons/edit-paste-go.svg");
+        }
+      }
+
       #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_delete"] {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
       }
@@ -10536,6 +10555,12 @@
       }
 
       /* Only searchbar */
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        menuitem.searchbar-paste-and-search {
+          --menuitem-image: url("../icons/edit-paste-search.svg");
+        }
+      }
+
       menuitem.searchbar-clear-history {
         --menuitem-image: url("chrome://browser/skin/forget.svg");
       }
@@ -10828,6 +10853,10 @@
 
       #sync-syncnowitem {
         --menuitem-image: url("chrome://browser/skin/sync.svg");
+      }
+
+      #menu_openFirefoxView {
+        --menuitem-image: url("chrome://branding/content/icon32.png");
       }
 
       #webDeveloperMenu,

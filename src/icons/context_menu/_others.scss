@@ -138,6 +138,9 @@
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
 }
 #paste-and-go {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/edit-paste-go.svg");
+  }
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_delete"] {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -175,6 +178,9 @@
 
 /* Only searchbar */
 menuitem.searchbar-paste-and-search {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/edit-paste-search.svg");
+  }
 }
 menuitem.searchbar-clear-history {
   --menuitem-image: url("chrome://browser/skin/forget.svg");

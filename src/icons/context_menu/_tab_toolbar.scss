@@ -55,9 +55,10 @@
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
 #sidebartabs_asamuzak_jp-menuitem-_dupeTab {
-  --menuitem-image: url("../icons/notebook-subsection.svg");
+  --menuitem-image: url("../icons/tab-copy.svg");
 }
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
+  --menuitem-image: url("../icons/tab-unload.svg");
 }
 
 #context_bookmarkTab,
@@ -119,10 +120,13 @@
 #sidebartabs_asamuzak_jp-menuitem-_closeTab {
   --menuitem-image: url("chrome://global/skin/icons/close.svg");
 }
+#context_closeTabOptions,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_closeMultipleTabs,
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTabs,
 #sidebartabs_asamuzak_jp-menuitem-_closeMultipleTabs {
-}
-#context_closeTabOptions {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/filter-dismiss.svg");
+  }
 }
 #context_undoCloseTab,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_undoCloseTab,
