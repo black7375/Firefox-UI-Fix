@@ -1,3 +1,4 @@
+#sidebar-header,
 #sidebar {
   min-width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
@@ -5,9 +6,12 @@
   will-change: min-width, max-width;
 }
 
-#sidebar-box:is(:hover, :focus-within) > #sidebar {
-  min-width: var(--uc-sidebar-activate-width) !important;
-  max-width: var(--uc-sidebar-activate-width) !important;
+#sidebar-box:is(:hover, :focus-within) > {
+  #sidebar-header,
+  #sidebar {
+    min-width: var(--uc-sidebar-activate-width) !important;
+    max-width: var(--uc-sidebar-activate-width) !important;
+  }
 }
 
 :root[inFullscreen="true"] #sidebar-box {
@@ -29,12 +33,16 @@
 }
 
 @include Animate {
+  #sidebar-header,
   #sidebar {
     transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
   }
 
-  #sidebar-box:is(:hover, :focus-within) > #sidebar {
-    transition-delay: 0ms !important;
+  #sidebar-box:is(:hover, :focus-within) > {
+    #sidebar-header,
+    #sidebar {
+      transition-delay: 0ms !important;
+    }
   }
 
   :root[inFullscreen="true"] #sidebar-box {
