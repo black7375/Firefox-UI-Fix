@@ -9382,6 +9382,11 @@
       background-image: var(--menuitem-image);
     }
 
+    #tabContextMenu > .tabmix-newtab-menu-icon {
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+    }
+
     /* For native context menus */
     @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
       :not(menu, #ContentSelectDropdown)
@@ -9899,6 +9904,45 @@
         --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
       }
 
+      /*= Tab Mix Plus =============================================================*/
+      #context_openANewTab.tabmix-newtab-menu-icon {
+        list-style-image: var(--menuitem-image) !important;
+      }
+
+      #tm-copyTabUrl {
+        --menuitem-image: url("../icons/link.svg");
+      }
+
+      #context_reloadTabOptions {
+        --menuitem-image: url("../icons/reload.svg");
+      }
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_reloadTabOptions {
+          --menuitem-image: url("../icons/filter-reload.svg");
+        }
+      }
+      @supports not -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_reloadTabOptions + #context_reloadTab {
+          --menuitem-image: url("../icons/blank.svg");
+        }
+      }
+
+      #tm-protectTab {
+        --menuitem-image: url("../icons/shield-task.svg");
+      }
+
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #tm-lockTab {
+          --menuitem-image: url("../icons/lock-closed.svg");
+        }
+      }
+
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_bookmarkAllTabs {
+          --menuitem-image: url("../icons/bookmark-multiple.svg");
+        }
+      }
+
       /*= contentAreaContextMenu ===================================================*/
       #context-viewsource-goToLine {
         --menuitem-image: url("../icons/text-number-format.svg");
@@ -10218,6 +10262,19 @@
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
         }
       }
+      /*= Tab Mix Plus =============================================================*/
+      #tm-autoreload_menu {
+        --menuitem-image: url("../icons/reload-auto.svg");
+      }
+
+      #tm-openAllLinks {
+        --menuitem-image: url("../icons/new-tab-multiple.svg");
+      }
+
+      #tm-content-undoCloseTab {
+        --menuitem-image: url("../icons/undo.svg");
+      }
+
       /*= downloadsContextMenu =====================================================*/
       .downloadPauseMenuItem {
         --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");

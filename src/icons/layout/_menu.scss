@@ -41,6 +41,10 @@ $_layoutCommonMenus: (
 @include _layoutInitIconMenus {
   @include _layout_icon_menus;
 }
+#tabContextMenu > .tabmix-newtab-menu-icon {
+  -moz-context-properties: fill, fill-opacity !important;
+  fill: currentColor !important;
+}
 
 /* For native context menus */
 #{$_nestedPopupIconMenus} {
