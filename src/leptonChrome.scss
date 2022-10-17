@@ -13,7 +13,7 @@
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
 
-/** Default Thme - Contrast ***************************************************/
+/** Default Theme - Contrast **************************************************/
 @include Option("userChrome.theme.built_in_contrast") {
   @import "theme/built_in";
 }
@@ -36,7 +36,7 @@
 /** Tab Bar UI ****************************************************************/
 @import "tabbar/index";
 
-/** Tab UI ****************************************************************/
+/** Tab UI ********************************************************************/
 @import "tab/index";
 
 /** Url View UI ***************************************************************/
@@ -61,13 +61,6 @@
 @import "hidden/index";
 
 /** Icons *********************************************************************/
-@import "icons/index";
-
-/** Waterfox ******************************************************************/
-@import "icons/waterfox";
-@include Option("userChrome.theme.fully_color") {
-  @import "theme/waterfox";
+@include NotOption("userChrome.icon.disabled") {
+  @import "icons/index";
 }
-
-/** Tor Browser ***************************************************************/
-@import "icons/tor_browser";

@@ -15,7 +15,7 @@
 - [UDN: omni.ja (formerly omni.jar)](https://udn.realityripple.com/docs/Mozilla/About_omni.ja_(formerly_omni.jar))
 - [Firefox 4: jar jar jar](https://web.archive.org/web/20161003115800/https://blog.mozilla.org/tglek/2010/09/14/firefox-4-jar-jar-jar/)
 - [Firefox's Optimized Zip Format: Reading Zip Files Really Quickly](https://taras.glek.net/post/optimized-zip-format/)
-- [How to Optimize or Deoptimize Firefox OMNI.JA File](https://www.raymond.cc/blog/edit-files-inside-firefox-4-omni-jar-to-auto-save-password/)
+- [How to Optimize or De-optimize Firefox OMNI.JA File](https://www.raymond.cc/blog/edit-files-inside-firefox-4-omni-jar-to-auto-save-password/)
 
 **Explanation**
 

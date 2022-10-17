@@ -46,7 +46,7 @@ It comes from [#109](https://github.com/black7375/Firefox-UI-Fix/issues/109#issu
 Stable: Only bugfix, Documentation.
 - `master`: Common bugfix, documentation.
 - `photon-style`: Bugfix, documentation specified in `photon-style`.
-- `proton-sryle`: Bugfix, documentation specified in `proton-style`.
+- `proton-style`: Bugfix, documentation specified in `proton-style`.
 
 Development: New Features.
 - `dev`: Common new features.

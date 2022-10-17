@@ -41,18 +41,3 @@ jobs:
 
       - name: Test
         run: yarn test
-
-  prettier:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Prettify code
-        uses: creyD/prettier_action@v4.1.1
-        with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --write .
-          only_changed: True
-          commit_message: "Clean: Prettified Code!"

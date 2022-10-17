@@ -16,7 +16,7 @@
 #tabbrowser-tabs {
   z-index: 1 !important;
 }
-#TabsToolbar {
+#TabsToolbar:not([multibar]) {
   overflow: hidden;   /* Prevent toolbar area over */
 }
 

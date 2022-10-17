@@ -100,7 +100,7 @@ Many implementations using `::before`, `::after`.
 - [Dynamic Tab Separator](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L3394-L3457)
 - [Static Tab Separator](https://github.com/black7375/Firefox-UI-Fix/blob/0f78a73b856e1335954ecded93d377b85134bd61/userChrome.css#L3387-L3428)
 - [Picture In Picture Indicator](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L3716-L3753)
-- [Contaner Indicator](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L3754-L3852)
+- [Container Indicator](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L3754-L3852)
 
 For icons, [`list-style-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-image) and [`background-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image) are available.
 
@@ -127,7 +127,7 @@ Firefox actively uses [shadow dom](https://developer.mozilla.org/en-US/docs/Web/
 
 To modify, it is often a roundabout approach or impossible to inherit.
 
-Onething bypass method is to declare [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) to shadow root.
+One bypass method is to declare [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) to shadow root.
 - [Scrollbutton Padding](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2906-L2924)
 - [Audio, Video Player UI](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L5-L47)
 - [Video Player Twoline UI](https://github.com/black7375/Firefox-UI-Fix/blob/cbf14cd55a9edada7ab2f5f1b626608fb9fe38a2/src/contents/_video_player.scss#L68-L171): It is pretty difficult when the condition becomes complicated.
@@ -139,7 +139,7 @@ Another limitation of shadow dom in user style is that you cannot use shadow dom
 - [Bug 1575507 - Shadow parts should work in user-origin stylesheets.](https://bugzilla.mozilla.org/show_bug.cgi?id=1575507)
 
 ### XUL
-Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and binded with C++ for performance like a treeview of bookmarks.  
+Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and bound with C++ for performance like a treeview of bookmarks.  
 XUL's [box model](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/The_Box_Model) and [DOM](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/Document_Object_Model) are different from HTML.
 
 There ar few appropriate documents, so we have to read the source code and work. (Ex. [1](https://github.com/mozilla/gecko-dev/blob/master/layout/style/nsCSSAnonBoxList.h), [2](https://github.com/mozilla/gecko-dev/blob/master/layout/xul/tree/nsITreeView.idl))
@@ -151,7 +151,7 @@ Example of legacy documents that will help.
 - [UDN: ::-moz-tree-cell-text](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS/::-moz-tree-cell-text)
 
 Another case.  
-Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute) is set and CSS of same property may not be appplied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
+Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute/align), [`attributes`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Attribute) is set and CSS of same property may not be applied. (Ex. [`box-align: start`](https://udn.realityripple.com/docs/Web/CSS/box-align))
 
 ### Supports
 [`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) change in CSS is not detected in real time. (Caching after checking only once)  
