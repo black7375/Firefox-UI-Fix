@@ -395,6 +395,14 @@
         /* -moz-default-appearance: -moz-window-titlebar */
         appearance: none !important;
       }
+      @media (-moz-os-version: windows-win7),
+        (-moz-platform: windows-win7),
+        (-moz-os-version: windows-win8),
+        (-moz-platform: windows-win8) {
+        :root[tabsintitlebar][sizemode="maximized"] #titlebar {
+          padding-top: 8px;
+        }
+      }
     }
     @supports -moz-bool-pref("userChrome.compatibility.os.windows_maximized") {
       :root[tabsintitlebar][sizemode="maximized"] #titlebar {
@@ -3640,7 +3648,25 @@
       }
     }
   }
+  :root {
+    /* Works with TabMixPlus */
+    --tab-min-height_mlt: calc(
+      var(--tab-min-height) + 2 * (var(--tab-block-margin, var(--proton-tab-block-margin, 0px)))
+    ) !important;
+  }
+
+  #TabsToolbar[multibar] .tabbrowser-tab {
+    height: unset !important;
+    /* Original: var(--tab-min-height_mlt) */
+  }
+
   @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
+    :root {
+      --tab-min-height_mlt: calc(
+        var(--tab-min-height) + var(--tab-block-margin, var(--proton-tab-block-margin, 0px))
+      ) !important;
+    }
+
     #TabsToolbar {
       --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important;
       /* Prevent overflow pinned tab bottom margin */
@@ -3666,12 +3692,6 @@
       }
     }
   }
-  /* Works with TabMixPlus */
-  #TabsToolbar[multibar] .tabbrowser-tab {
-    height: unset !important;
-    /* Original: var(--tab-min-height_mlt) */
-  }
-
   /* Scroll Button - Size Fix */
   :root #tabbrowser-arrowscrollbox {
     --scrollbtn-vertical-padding: 3px;
@@ -7732,8 +7752,16 @@
     overflow: hidden;
   }
 
+  #sidebar-header {
+    font-size: unset !important;
+  }
+  #sidebar-header > #sidebar-switcher-target {
+    font-size: 1.333em;
+  }
+
   @supports not -moz-bool-pref("userChrome.autohide.sidebar") {
     #sidebar-box,
+    #sidebar-header,
     #sidebar {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
@@ -7744,7 +7772,7 @@
       will-change: padding-inline;
     }
     #sidebar-box:not([hidden="true"]) {
-      padding-inline-start: var(--uc-sidebar-activate-width);
+      padding-inline-start: var(--uc-sidebar-activate-width) !important;
     }
     @media (prefers-reduced-motion: no-preference) {
       #sidebar-box {
@@ -8841,12 +8869,14 @@
   }
 
   @supports -moz-bool-pref("userChrome.sidebar.overlap") {
+    #sidebar-header,
     #sidebar {
       min-width: var(--uc-sidebar-width) !important;
       max-width: var(--uc-sidebar-width) !important;
       will-change: min-width, max-width;
     }
 
+    #sidebar-box:is(:hover, :focus-within) > #sidebar-header,
     #sidebar-box:is(:hover, :focus-within) > #sidebar {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
@@ -8868,11 +8898,13 @@
     }
 
     @media (prefers-reduced-motion: no-preference) {
+      #sidebar-header,
       #sidebar {
         transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function)
           var(--uc-autohide-sidebar-delay) !important;
       }
 
+      #sidebar-box:is(:hover, :focus-within) > #sidebar-header,
       #sidebar-box:is(:hover, :focus-within) > #sidebar {
         transition-delay: 0ms !important;
       }
@@ -9959,6 +9991,11 @@
       background-image: var(--menuitem-image);
     }
 
+    #tabContextMenu > .tabmix-newtab-menu-icon {
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+    }
+
     /* For native context menus */
     @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
       :not(menu, #ContentSelectDropdown)
@@ -10308,7 +10345,11 @@
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
       #tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
       #sidebartabs_asamuzak_jp-menuitem-_dupeTab {
-        --menuitem-image: url("../icons/notebook-subsection.svg");
+        --menuitem-image: url("../icons/tab-copy.svg");
+      }
+
+      #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
+        --menuitem-image: url("../icons/tab-unload.svg");
       }
 
       #context_bookmarkTab,
@@ -10366,6 +10407,15 @@
       #tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTab,
       #sidebartabs_asamuzak_jp-menuitem-_closeTab {
         --menuitem-image: url("chrome://global/skin/icons/close.svg");
+      }
+
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_closeTabOptions,
+        #treestyletab_piro_sakura_ne_jp-menuitem-_context_closeMultipleTabs,
+        #tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTabs,
+        #sidebartabs_asamuzak_jp-menuitem-_closeMultipleTabs {
+          --menuitem-image: url("../icons/filter-dismiss.svg");
+        }
       }
 
       #context_undoCloseTab,
@@ -10461,6 +10511,45 @@
 
       #toolbar-context-menu > menuitem[data-l10n-id="full-screen-exit"] {
         --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
+      }
+
+      /*= Tab Mix Plus =============================================================*/
+      #context_openANewTab.tabmix-newtab-menu-icon {
+        list-style-image: var(--menuitem-image) !important;
+      }
+
+      #tm-copyTabUrl {
+        --menuitem-image: url("../icons/link.svg");
+      }
+
+      #context_reloadTabOptions {
+        --menuitem-image: url("../icons/reload.svg");
+      }
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_reloadTabOptions {
+          --menuitem-image: url("../icons/filter-reload.svg");
+        }
+      }
+      @supports not -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_reloadTabOptions + #context_reloadTab {
+          --menuitem-image: url("../icons/blank.svg");
+        }
+      }
+
+      #tm-protectTab {
+        --menuitem-image: url("../icons/shield-task.svg");
+      }
+
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #tm-lockTab {
+          --menuitem-image: url("../icons/lock-closed.svg");
+        }
+      }
+
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #context_bookmarkAllTabs {
+          --menuitem-image: url("../icons/bookmark-multiple.svg");
+        }
       }
 
       /*= contentAreaContextMenu ===================================================*/
@@ -10782,6 +10871,19 @@
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
         }
       }
+      /*= Tab Mix Plus =============================================================*/
+      #tm-autoreload_menu {
+        --menuitem-image: url("../icons/reload-auto.svg");
+      }
+
+      #tm-openAllLinks {
+        --menuitem-image: url("../icons/new-tab-multiple.svg");
+      }
+
+      #tm-content-undoCloseTab {
+        --menuitem-image: url("../icons/undo.svg");
+      }
+
       /*= downloadsContextMenu =====================================================*/
       .downloadPauseMenuItem {
         --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
@@ -11096,6 +11198,12 @@
         --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
       }
 
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #paste-and-go {
+          --menuitem-image: url("../icons/edit-paste-go.svg");
+        }
+      }
+
       #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_delete"] {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
       }
@@ -11137,6 +11245,12 @@
       }
 
       /* Only searchbar */
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        menuitem.searchbar-paste-and-search {
+          --menuitem-image: url("../icons/edit-paste-search.svg");
+        }
+      }
+
       menuitem.searchbar-clear-history {
         --menuitem-image: url("chrome://browser/skin/forget.svg");
       }
@@ -11429,6 +11543,10 @@
 
       #sync-syncnowitem {
         --menuitem-image: url("chrome://browser/skin/sync.svg");
+      }
+
+      #menu_openFirefoxView {
+        --menuitem-image: url("chrome://branding/content/icon32.png");
       }
 
       #webDeveloperMenu,

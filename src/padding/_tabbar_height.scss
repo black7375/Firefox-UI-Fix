@@ -43,7 +43,20 @@
     }
   }
 }
+
+:root {
+  /* Works with TabMixPlus */
+  --tab-min-height_mlt: calc(var(--tab-min-height) + 2 * (var(--tab-block-margin, var(--proton-tab-block-margin, 0px)))) !important;
+}
+#TabsToolbar[multibar] .tabbrowser-tab {
+  height: unset !important; /* Original: var(--tab-min-height_mlt) */
+}
+
 @include Option("userChrome.tab.connect_to_window") {
+  :root {
+    --tab-min-height_mlt: calc(var(--tab-min-height) + var(--tab-block-margin, var(--proton-tab-block-margin, 0px))) !important;
+  }
+
   #TabsToolbar {
     --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important; /* Prevent overflow pinned tab bottom margin */
   }
@@ -59,11 +72,6 @@
       height: var(--tab-min-height) !important;
     }
   }
-}
-
-/* Works with TabMixPlus */
-#TabsToolbar[multibar] .tabbrowser-tab {
-  height: unset !important; /* Original: var(--tab-min-height_mlt) */
 }
 
 /* Scroll Button - Size Fix */
