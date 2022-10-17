@@ -27,7 +27,7 @@ root
 |- .github: Issue/PR Template, Github Actions
 |- .prettierignore: Exclude coding style
 |- .prettierrc.json: Coding style
-|- install.ps1: Install script write in powersehll
+|- install.ps1: Install script write in powershell
 |- install.sh: Install script write in bash
 |- package.json: Build setup, package dependency
 |- LEPTON: Meta infos (branch, version)
@@ -47,7 +47,7 @@ Icons are mainly [FirefoxUX/photon-icons](https://github.com/FirefoxUX/photon-ic
 or [microsoft/fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).  
 Although not yet used, [tabler/tabler-icons](https://github.com/tabler/tabler-icons) and [feathericons/feather](https://github.com/feathericons/feather) can also be referred to.
 
-You can see more in the issue, [Unify icon design langauge #213](https://github.com/black7375/Firefox-UI-Fix/issues/213).
+You can see more in the issue, [Unify icon design language #213](https://github.com/black7375/Firefox-UI-Fix/issues/213).
 
 ## Install Scripts
 ### Meta Info files

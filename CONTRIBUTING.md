@@ -90,7 +90,7 @@ Even if you copy the code snippet, it is recommended that you leave a link.
 
 **FAQ**
 
-If you have any questions about other licenses, please see [Moailla's MPL 2.0 FAQ](https://www.mozilla.org/en-US/MPL/2.0/FAQ/).
+If you have any questions about other licenses, please see [Mozilla's MPL 2.0 FAQ](https://www.mozilla.org/en-US/MPL/2.0/FAQ/).
 
 
 ## References

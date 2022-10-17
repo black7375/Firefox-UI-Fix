@@ -55,9 +55,10 @@
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
 #sidebartabs_asamuzak_jp-menuitem-_dupeTab {
-  --menuitem-image: url("../icons/notebook-subsection.svg");
+  --menuitem-image: url("../icons/tab-copy.svg");
 }
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
+  --menuitem-image: url("../icons/tab-unload.svg");
 }
 
 #context_bookmarkTab,
@@ -119,10 +120,13 @@
 #sidebartabs_asamuzak_jp-menuitem-_closeTab {
   --menuitem-image: url("chrome://global/skin/icons/close.svg");
 }
+#context_closeTabOptions,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_closeMultipleTabs,
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuCloseTabs,
 #sidebartabs_asamuzak_jp-menuitem-_closeMultipleTabs {
-}
-#context_closeTabOptions {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/filter-dismiss.svg");
+  }
 }
 #context_undoCloseTab,
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_undoCloseTab,
@@ -214,4 +218,54 @@ menuitem.viewCustomizeToolbar {
 }
 #toolbar-context-menu > menuitem[data-l10n-id="full-screen-exit"] {
   --menuitem-image: url("chrome://browser/skin/fullscreen-exit.svg");
+}
+
+/*= Tab Mix Plus =============================================================*/
+#context_openANewTab.tabmix-newtab-menu-icon {
+  list-style-image: var(--menuitem-image) !important;
+}
+#tm-duplicateinWin {
+}
+#tm-mergeWindowsTab {
+}
+#tm-renameTab {
+}
+#tm-copyTabUrl {
+  --menuitem-image: url("../icons/link.svg");
+}
+
+#tm-autoreloadTab_menu {
+}
+#context_reloadTabOptions {
+  --menuitem-image: url("../icons/reload.svg");
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/filter-reload.svg");
+  }
+  + #context_reloadTab {
+    @include NotOption("userChrome.icon.menu.full") {
+      --menuitem-image: url("../icons/blank.svg");
+    }
+  }
+}
+
+#tm-undoCloseList {
+}
+
+#tm-docShell {
+}
+#tm-freezeTab {
+}
+#tm-protectTab {
+  --menuitem-image: url("../icons/shield-task.svg");
+}
+#tm-lockTab {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/lock-closed.svg");
+  }
+}
+
+#context_bookmarkAllTabs {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/bookmark-multiple.svg");
+  }
 }

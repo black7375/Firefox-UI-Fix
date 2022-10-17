@@ -46,8 +46,17 @@
     overflow: hidden;
   }
 
+  #sidebar-header {
+    font-size: unset !important;
+
+    > #sidebar-switcher-target {
+      font-size: 1.333em;
+    }
+  }
+
   @include NotOption("userChrome.autohide.sidebar") {
     #sidebar-box,
+    #sidebar-header,
     #sidebar {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
@@ -58,7 +67,7 @@
       will-change: padding-inline;
 
       &:not([hidden="true"]) {
-        padding-inline-start: var(--uc-sidebar-activate-width);
+        padding-inline-start: var(--uc-sidebar-activate-width) !important;
       }
 
       @include Animate {
