@@ -40,10 +40,6 @@
 }
 
 @include Option("userChrome.tab.newtab_button_like_tab") {
-  #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox {
-    position: absolute;
-  }
-
   .tab-background::before,
   #tabs-newtab-button::before {
     @include _dynamicSeparatorShape;
