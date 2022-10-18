@@ -6538,13 +6538,19 @@
     fill: color-mix(in srgb, currentColor 11%, transparent);
   }
   @supports -moz-bool-pref("userChrome.tab.multi_selected") {
-    :root:not([customizing="true"]) .tabbrowser-tab[multiselected] > stack::before,
-    :root:not([customizing="true"]) .tabbrowser-tab[multiselected] > stack::after {
+    :root:not([customizing="true"]) .tabbrowser-tab[multiselected]:not([selected]) > stack::before,
+    :root:not([customizing="true"]) .tabbrowser-tab[multiselected]:not([selected]) > stack::after {
       fill: color-mix(in srgb, currentColor 65%, transparent);
       opacity: 0.3;
     }
-    :root:not([customizing="true"]) #TabsToolbar[brighttext] .tabbrowser-tab[multiselected] > stack::before,
-    :root:not([customizing="true"]) #TabsToolbar[brighttext] .tabbrowser-tab[multiselected] > stack::after {
+    :root:not([customizing="true"])
+      #TabsToolbar[brighttext]
+      .tabbrowser-tab[multiselected]:not([selected])
+      > stack::before,
+    :root:not([customizing="true"])
+      #TabsToolbar[brighttext]
+      .tabbrowser-tab[multiselected]:not([selected])
+      > stack::after {
       opacity: 0.15;
     }
   }

@@ -82,14 +82,14 @@
     }
   }
   @include Option("userChrome.tab.multi_selected") {
-    .tabbrowser-tab[multiselected] > stack {
+    .tabbrowser-tab[multiselected]:not([selected]) > stack {
       &::before,
       &::after {
         fill: color-mix(in srgb, currentColor 65%, transparent);
         opacity: 0.3;
       }
     }
-    #TabsToolbar[brighttext] .tabbrowser-tab[multiselected] > stack {
+    #TabsToolbar[brighttext] .tabbrowser-tab[multiselected]:not([selected]) > stack {
       &::before,
       &::after {
         opacity: 0.15;
