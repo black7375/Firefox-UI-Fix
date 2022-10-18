@@ -6,13 +6,14 @@
 
 :root:not([customizing="true"]) {
   .tabbrowser-tab {
-    > stack {
+    .tab-background {
       &::before,
       &::after {
         /* Box */
         display: block;
         position: absolute;
         z-index: 1;
+        bottom: 0;
 
         /* Shape */
         width: var(--tab-corner-rounding);
@@ -44,17 +45,16 @@
       }
 
       &::before {
-        left: var(--tab-corner-position) !important;
+        left: var(--tab-corner-position);
         background-image: url("../icons/tab-bottom-corner-left.svg");
       }
       &::after {
-        left: auto;
         right: var(--tab-corner-position);
         background-image: url("../icons/tab-bottom-corner-right.svg");
       }
     }
 
-    &[selected] > stack {
+    &[visuallyselected] .tab-background {
       &::before,
       &::after {
         @include NotOption("userChrome.tab.bottom_rounded_corner.all") {
@@ -68,13 +68,13 @@
         );
       }
     }
-    &[multiselected] > stack {
+    &[multiselected] .tab-background {
       &::before,
       &::after {
         fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
       }
     }
-    &:hover:not([selected], [multiselected]) > stack {
+    &:hover:not([visuallyselected], [multiselected]) .tab-background {
       &::before,
       &::after {
         fill: color-mix(in srgb, currentColor 11%, transparent);
@@ -82,23 +82,17 @@
     }
   }
   @include Option("userChrome.tab.multi_selected") {
-    .tabbrowser-tab[multiselected]:not([selected]) > stack {
+    .tabbrowser-tab[multiselected]:not([visuallyselected]) .tab-background {
       &::before,
       &::after {
         fill: color-mix(in srgb, currentColor 65%, transparent);
         opacity: 0.3;
       }
     }
-    #TabsToolbar[brighttext] .tabbrowser-tab[multiselected]:not([selected]) > stack {
-      &::before,
-      &::after {
-        opacity: 0.15;
-      }
-    }
   }
 
   &::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
-     #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[selected] > stack:-moz-lwtheme {
+     #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background:-moz-lwtheme {
     &::before,
     &::after {
       /* As Selected Tab - Box Shadow */
@@ -109,7 +103,7 @@
   @include OS($linux) {
     /* Fill color for GTK */
     &:not([lwtheme="true"]) {
-      .tabbrowser-tab[selected] > stack {
+      .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background {
         &::before,
         &::after {
           /* As GTK Toolbar's background-color + background-image
@@ -118,9 +112,10 @@
            */
           fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog);
           stroke: transparent;
+          opacity: 1;
         }
       }
-      #TabsToolbar[brighttext] .tabbrowser-tab[selected] > stack {
+      #TabsToolbar[brighttext] .tabbrowser-tab[visuallyselected] .tab-background {
         &::before,
         &::after {
           stroke: transparent;
