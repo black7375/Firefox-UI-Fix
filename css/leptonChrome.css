@@ -6702,11 +6702,6 @@
   }
 
   @supports -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
-    @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
-      #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox {
-        position: absolute;
-      }
-    }
     .tab-stack::before,
     #tabs-newtab-button::before {
       /* Box Model */
