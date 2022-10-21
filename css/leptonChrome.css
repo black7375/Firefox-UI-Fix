@@ -9554,8 +9554,7 @@
       }
 
       /* Checkbox menuitem, None iconic menu */
-      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[checked="true"],
-      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic) {
+      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"] {
         padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
       }
 

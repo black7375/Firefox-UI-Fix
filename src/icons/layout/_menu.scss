@@ -117,7 +117,8 @@ $_layoutCommonMenus: (
   }
 
   /* Checkbox menuitem, None iconic menu */
-  #{selector.nest($_nestedPopupPadding, "menuitem[checked=\"true\"], menu:not(.menu-iconic)")} {
+  #{selector.nest($_nestedPopupPadding, "menuitem[type=\"checkbox\"]")} {
+    // "menuitem[checked=\"true\"], menu:not(.menu-iconic)"
     @include _layout_init_mac_others;
   }
 
