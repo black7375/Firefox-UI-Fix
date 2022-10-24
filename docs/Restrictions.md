@@ -8,6 +8,8 @@
   * [Side Effect](#side-effect)
   * [RTL](#rtl)
   * [`-moz-accent-color`](#-moz-accent-color)
+  * [Fork Browsers](#fork-browsers)
+  * [Add-ons](#add-ons)
 - [Internals](#internals)
   * [CSS Loading Order](#css-loading-order)
   * [DOM structure cannot be modified](#dom-structure-cannot-be-modified)
@@ -84,6 +86,41 @@ It can be detected using [`:-moz-locale-dir(rtl)`](https://developer.mozilla.org
 
 I don't know the exact reason, but it can be a problem if it is not applied to [CSS Variable](https://developer.mozilla.org/en-US/docs/Web/CSS/var). [#437](https://github.com/black7375/Firefox-UI-Fix/issues/437)
 
+### Fork Browsers
+
+Fork browsers have a different installation location([bash](https://github.com/black7375/Firefox-UI-Fix/blob/2e87567b662922810d53959e46084b78f330f54e/install.sh#L336-L353), [powershell](https://github.com/black7375/Firefox-UI-Fix/blob/2e87567b662922810d53959e46084b78f330f54e/install.ps1#L387-L395)), and there may be a menu that Firefox does not have.
+
+This is a list of fork browsers supported by this project.
+- [Waterfox](https://www.waterfox.net/)
+- [LibreWolf](https://librewolf.net/)
+- [Tor Browser](https://www.torproject.org/download/)
+- [Pulse Browser](https://pulsebrowser.app/)
+- [Firedragon](https://dr460nf1r3.org/projects/firedragon/)
+- [Ghostery Broser](https://www.ghostery.com/dawn)
+
+### Add-ons
+
+**Web extentions**
+
+You can apply [Web extentions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)'s context menu icons.
+
+At this time, we recommend that the [explicit ID](https://extensionworkshop.com/documentation/develop/extensions-and-the-add-on-id/) is set.  
+If not, an anonymous ID is created in the local, so you need a [UUID replacer](https://github.com/overdodactyl/ShadowFox/blob/master/scripts/uuids.sh).
+
+This is a list of web extentions supported by this project.
+- [Tree Style Tab](https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/)
+- [Tab Center Reborn](https://addons.mozilla.org/en-US/firefox/addon/tabcenter-reborn/)
+- [Sidebar Tabs](https://addons.mozilla.org/en-US/firefox/addon/sidebartabs/)
+
+**Legacy Addons**
+
+We should consider [Legacy addons](https://extensionworkshop.com/documentation/develop/porting-a-legacy-firefox-extension/), not web extentions.
+
+Legacy addons can be loaded by [Auto config's feature](./Preference.md#auto-config) or [bootstrapLoder](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader) and can directly manipulate the DOM structure and style. [onemen/TabMixPlus#168](https://github.com/onemen/TabMixPlus/issues/168)
+
+This is a list of legacy addons supported by this project.
+- [Tab Mix Plus](https://github.com/onemen/TabMixPlus)
+
 ## Internals
 ### CSS Loading Order
 User CSS(`userChrome.css`, `userContent.css`) is usually loaded first.
@@ -91,7 +128,7 @@ User CSS(`userChrome.css`, `userContent.css`) is usually loaded first.
 In many cases, overriding should be prevented with [`important!`](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_!important_exception)(Anti-pattern in general web), and side effects should also be considered. [#11](https://github.com/black7375/Firefox-UI-Fix/issues/11)
 
 ### DOM structure cannot be modified
-It is possible with [JS(Autoconfig)](./Preference.md#auto-config), but there are security and configuration issues, so we should make the most of CSS.
+It is possible with [JS(Auto config)](./Preference.md#auto-config), but there are security and configuration issues, so we should make the most of CSS.
 
 [`::before`](https://developer.mozilla.org/en-US/docs/Web/CSS/::before) and [`::after`](https://developer.mozilla.org/en-US/docs/Web/CSS/::after) can indirectly add CSS elements.
 
