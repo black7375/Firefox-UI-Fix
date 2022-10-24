@@ -7979,16 +7979,18 @@
         will-change: margin-bottom;
       }
 
+      #TabsToolbar:not([customizing]) {
+        will-change: opacity;
+      }
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #TabsToolbar:not([customizing]) {
+        #TabsToolbar:not([customizing]),
+        #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
           opacity: 0;
-          will-change: opacity;
         }
       }
       @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
           opacity: 0;
-          will-change: opacity;
         }
       }
 
@@ -7996,7 +7998,8 @@
         margin-bottom: 0px;
       }
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar,
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar .titlebar-buttonbox-container {
           opacity: 1;
         }
       }
@@ -8013,16 +8016,18 @@
           will-change: margin-bottom;
         }
 
+        #TabsToolbar:not([customizing]) {
+          will-change: opacity;
+        }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #TabsToolbar:not([customizing]) {
+          #TabsToolbar:not([customizing]),
+          #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
             opacity: 0;
-            will-change: opacity;
           }
         }
         @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
             opacity: 0;
-            will-change: opacity;
           }
         }
 
@@ -8030,7 +8035,8 @@
           margin-bottom: 0px;
         }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar,
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar .titlebar-buttonbox-container {
             opacity: 1;
           }
         }
@@ -8046,16 +8052,18 @@
           will-change: margin-bottom;
         }
 
+        #TabsToolbar:not([customizing]) {
+          will-change: opacity;
+        }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #TabsToolbar:not([customizing]) {
+          #TabsToolbar:not([customizing]),
+          #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
             opacity: 0;
-            will-change: opacity;
           }
         }
         @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
             opacity: 0;
-            will-change: opacity;
           }
         }
 
@@ -8063,7 +8071,8 @@
           margin-bottom: 0px;
         }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar,
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar .titlebar-buttonbox-container {
             opacity: 1;
           }
         }
@@ -8082,7 +8091,8 @@
       }
 
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #TabsToolbar:not([customizing]) {
+        #TabsToolbar:not([customizing]),
+        #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
           transition: opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
             var(--uc-autohide-toolbar-delay) !important;
         }
@@ -8101,7 +8111,8 @@
         transition-delay: 0s !important;
       }
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]) {
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]),
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
           transition-delay: 0s !important;
         }
       }
