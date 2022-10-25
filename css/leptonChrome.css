@@ -10249,7 +10249,7 @@
         /* iconic */
       }
 
-      @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
+      @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
         #context-back {
           --menuitem-image: url("chrome://browser/skin/back.svg");
         }
