@@ -1,0 +1,196 @@
+#tabbrowser-tabs {
+  --uc-tab-corner-size: calc(var(--tab-min-height) / 2);
+  --uc-tab-corner-half-size: calc(var(--uc-tab-corner-size) / 2);
+  --uc-tab-corner-margin: calc(var(--uc-tab-corner-half-size) + 1px);
+  --uc-tab-corner-height: calc(var(--tab-min-height) - var(--tab-block-margin) + 1px);
+
+  @include Option(
+    "userChrome.tab.bottom_rounded_corner.wave",
+    "userChrome.tab.bottom_rounded_corner.australis",
+    "userChrome.tab.bottom_rounded_corner.chrome_legacy"
+  ) {
+    --uc-tab-corner-size: var(--tab-min-height);
+  }
+
+  @include Option("userChrome.tab.bottom_rounded_corner.wave") {
+    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-wave.svg");
+    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-wave.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.australis") {
+    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-australis.svg");
+    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-australis.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.chrome") {
+    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chrome.svg");
+    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chrome.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chrome-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chrome-clipped.svg");
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
+    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chromeLegacy.svg");
+    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chromeLegacy.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.edge") {
+    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-edge.svg");
+    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-edge.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
+  }
+}
+
+.tabbrowser-tab {
+  padding-inline: 0 !important;
+  overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
+
+  .tab-background {
+    --tab-border-radius: 0px;
+    margin-inline: var(--uc-tab-corner-half-size) !important;
+
+    &::before,
+    &::after {
+      /* Box */
+      display: block;
+      position: absolute;
+      z-index: -1;
+      bottom: 0;
+
+      /* Shape */
+      width: var(--uc-tab-corner-size);
+      height: var(--uc-tab-corner-height);
+
+      /* Color */
+      fill: transparent;
+      stroke: transparent;
+      -moz-context-properties: fill, stroke;
+      // For stroke
+      // box-shadow: 0 0 4px rgba(0,0,0,.4);
+      // box-shadow: 0 0 1px var(--toolbar-color) !important;
+      // box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))) !important
+
+      /* Image */
+      // background-size: var(--tab-corner-rounding);
+      background-size: var(--uc-tab-corner-size) var(--uc-tab-corner-height);
+      background-repeat: no-repeat;
+      background-position-y: bottom;
+
+      @include Option("userChrome.tab.bottom_rounded_corner.all") {
+        content: "";
+      }
+      @include NotOption("userChrome.tab.color_like_toolbar") {
+        /* Based on tab background
+            background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
+
+            defaults
+            background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+            background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
+       */
+        fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor))) !important;
+      }
+    }
+
+    &::before {
+      right: calc(100% - var(--uc-tab-corner-margin));
+      background-image: var(--uc-tab-corner-left-side-svg);
+    }
+    &::after {
+      left: calc(100% - var(--uc-tab-corner-margin));
+      background-image: var(--uc-tab-corner-right-side-svg);
+    }
+  }
+  &[beforeselected-visible] .tab-background::after {
+    background-image: var(--uc-tab-corner-right-side-svg-clipped);
+  }
+  &[visuallyselected] + .tabbrowser-tab .tab-background::before {
+    background-image: var(--uc-tab-corner-left-side-svg-clipped);
+  }
+  &[positionpinnedtabs] .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
+    background-image: var(--uc-tab-corner-left-side-svg) !important;
+  }
+
+  &[visuallyselected] .tab-background {
+    &::before,
+    &::after {
+      @include NotOption("userChrome.tab.bottom_rounded_corner.all") {
+        content: "";
+      }
+
+      fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+      stroke: var(
+        --tab-line-color, var(--lwt-tab-line-color,
+          var(--tabs-border-color, rgba(128, 128, 142, 0.9)))
+      );
+    }
+  }
+  &[multiselected] .tab-background {
+    &::before,
+    &::after {
+      fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+    }
+  }
+  &:hover:not([visuallyselected], [multiselected]) .tab-background {
+    &::before,
+    &::after {
+      fill: color-mix(in srgb, currentColor 11%, transparent);
+    }
+  }
+}
+@include Option("userChrome.tab.multi_selected") {
+  .tabbrowser-tab[multiselected]:not([visuallyselected]) .tab-background {
+    &::before,
+    &::after {
+      fill: var(--uc-multiselected-tab-bgcolor);
+    }
+  }
+}
+:root {
+  &:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+    #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background:-moz-lwtheme {
+    &::before,
+    &::after {
+      /* As Selected Tab - Box Shadow */
+      stroke: var(--toolbar-color);
+    }
+  }
+  @include OS($linux) {
+    /* Fill color for GTK */
+    &:not([lwtheme="true"]) {
+      .tabbrowser-tab[visuallyselected] .tab-background {
+        &::before,
+        &::after {
+          /* As GTK Toolbar's background-color + background-image
+           * --toolbar-non-lwt-bgcolor: -moz-dialog;
+           * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
+           */
+          stroke: transparent;
+          fill: rgba(255, 255, 255, .075);
+          @include NotOption("userChrome.tab.color_like_toolbar") {
+            fill: rgba(255, 255, 255, .15);
+          }
+        }
+      }
+      #TabsToolbar[brighttext] .tabbrowser-tab[selected] .tab-background {
+        &::before,
+        &::after {
+          stroke: transparent;
+        }
+      }
+    }
+  }
+}
+
+#tabbrowser-tabs {
+  &[positionpinnedtabs],
+  &:not([overflow]) .tabbrowser-tab[first-visible-tab],
+  &[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-left: var(--uc-tab-corner-half-size) !important;
+  }
+}
+.tabbrowser-tab[last-visible-tab] {
+  margin-right: vart(--uc-tab-corner-half-size) !important;
+}

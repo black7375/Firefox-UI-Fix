@@ -6364,24 +6364,35 @@
 }
 /*= Multi Selected Color - More Contrast =====================================*/
 @supports -moz-bool-pref("userChrome.tab.multi_selected") {
+  #TabsToolbar {
+    --uc-multiselected-tab-bgcolor: color-mix(in srgb, currentColor 28%, var(--toolbar-bgcolor, transparent));
+  }
+  #TabsToolbar[brighttext] {
+    --uc-multiselected-tab-bgcolor: color-mix(in srgb, currentColor 16%, var(--toolbar-bgcolor, transparent));
+  }
+
   #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[multiselected]:not([selected]):-moz-lwtheme {
-    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)),
-      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
-  }
-
-  .tab-background[multiselected="true"]:not([selected="true"]) > .tab-loading-burst:not([bursting]) {
-    background: color-mix(in srgb, currentColor 65%, transparent);
-    opacity: 0.3;
-  }
-
-  #TabsToolbar[brighttext]
-    .tab-background[multiselected="true"]:not([selected="true"])
-    > .tab-loading-burst:not([bursting]) {
-    opacity: 0.15;
+    > .tab-background[multiselected]:not([selected]) {
+    /* Original:
+    background-attachment: scroll, scroll, fixed;
+    background-color: transparent;
+    background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)),
+                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
+                      var(--lwt-header-image, none);
+    background-position: 0 0, 0 0, right top;
+    background-repeat: repeat-x, repeat-x, no-repeat;
+    background-size: auto 100%, auto 100%, auto auto;
+    */
+    background-attachment: scroll, fixed !important;
+    background-color: transparent !important;
+    background-image: linear-gradient(var(--uc-multiselected-tab-bgcolor), var(--uc-multiselected-tab-bgcolor)),
+      var(--lwt-header-image, none) !important;
+    background-position: 0 0, right top !important;
+    background-repeat: repeat-x, no-repeat !important;
+    background-size: auto 100%, auto auto !important;
   }
 
   @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
@@ -6404,6 +6415,23 @@
 }
 /*= Selected Tab - Box Shadow ================================================*/
 @supports -moz-bool-pref("userChrome.tab.box_shadow") {
+  .tab-background {
+    --uc-tab-background-shadow-soft: 0 0 1px;
+    --uc-tab-background-shadow-hard: 0 0 0 1px;
+  }
+  @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner") {
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") or -moz-bool-pref(
+        "userChrome.tab.bottom_rounded_corner.australis"
+      ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-bool-pref(
+        "userChrome.tab.bottom_rounded_corner.chrome"
+      ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
+      .tab-background {
+        --uc-tab-background-shadow-soft: 0 -1px 0;
+        --uc-tab-background-shadow-hard: 0 -1px 0;
+      }
+    }
+  }
+
   #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[visuallyselected="true"]:not(:focus)
@@ -6411,7 +6439,7 @@
     > .tab-background:-moz-lwtheme {
     /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
          Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
-    box-shadow: 0 0 1px var(--toolbar-color) !important;
+    box-shadow: var(--uc-tab-background-shadow-soft) var(--toolbar-color) !important;
   }
 
   #TabsToolbar[brighttext]
@@ -6419,7 +6447,7 @@
     .tabbrowser-tab[multiselected]:not([visuallyselected])
     > .tab-stack
     > .tab-background:-moz-lwtheme {
-    box-shadow: 0 0 1px color-mix(in srgb, var(--toolbar-color) 80%, transparent) !important;
+    box-shadow: var(--uc-tab-background-shadow-soft) color-mix(in srgb, var(--toolbar-color) 80%, transparent) !important;
   }
 
   /* Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
@@ -6428,7 +6456,8 @@
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
     > .tab-stack
     > .tab-background {
-    box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))),
+    box-shadow: var(--uc-tab-background-shadow-soft)
+        var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))),
       0 0 4px rgba(128, 128, 142, 0.5) !important;
   }
 
@@ -6437,7 +6466,8 @@
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
     > .tab-stack
     > .tab-background:-moz-lwtheme {
-    box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))) !important;
+    box-shadow: var(--uc-tab-background-shadow-soft)
+      var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))) !important;
   }
 
   /* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
@@ -6448,7 +6478,7 @@
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
     > .tab-stack
     > .tab-background:-moz-lwtheme {
-    box-shadow: 0 0 0 1px
+    box-shadow: var(--uc-tab-background-shadow-hard)
         var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))),
       0 0 4px rgba(128, 128, 142, 0.5) !important;
   }
@@ -6459,135 +6489,348 @@
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
     > .tab-stack
     > .tab-background:-moz-lwtheme {
-    box-shadow: 0 0 0 1px
+    box-shadow: var(--uc-tab-background-shadow-hard)
       var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))) !important;
   }
 }
 /*= Selected Tab - Bottom Rounded Corner =====================================*/
 @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner") {
-  #tabbrowser-tabs {
-    --tab-corner-rounding: 3px;
-    /* 10px looks about like chromium - 17px looks close to Australis tabs */
-    --tab-corner-padding: 0px;
-    --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
-  }
+  @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") {
+    @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.australis") {
+      @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome") {
+        @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
+          @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
+            #tabbrowser-tabs {
+              --tab-corner-rounding: 3px;
+              /* 10px looks about like chromium - 17px looks close to Australis tabs */
+              --tab-corner-padding: 0px;
+              --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+            }
 
-  :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before,
-  :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
-    /* Box */
-    display: block;
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    /* Shape */
-    width: var(--tab-corner-rounding);
-    height: 100%;
-    /* Color */
-    fill: transparent;
-    stroke: transparent;
-    -moz-context-properties: fill, stroke;
-    /* Image */
-    background-size: var(--tab-corner-rounding);
-    background-repeat: no-repeat;
-    background-position-y: bottom;
-  }
-  @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
-    :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before,
-    :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
-      content: "";
-    }
-  }
-  @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
-    :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before,
-    :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
-      /* Based on tab background
-         background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
+            :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before,
+            :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
+              /* Box */
+              display: block;
+              position: absolute;
+              z-index: 1;
+              bottom: 0;
+              /* Shape */
+              width: var(--tab-corner-rounding);
+              height: 100%;
+              /* Color */
+              fill: transparent;
+              stroke: transparent;
+              -moz-context-properties: fill, stroke;
+              /* Image */
+              background-size: var(--tab-corner-rounding);
+              background-repeat: no-repeat;
+              background-position-y: bottom;
+            }
+            @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
+              :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before,
+              :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
+                content: "";
+              }
+            }
+            @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
+              :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before,
+              :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
+                /* Based on tab background
+                   background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
 
-         defaults
-         background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
-         background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
-      */
-      fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor))) !important;
+                   defaults
+                   background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+                   background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
+                */
+                fill: var(
+                  --lwt-selected-tab-background-color,
+                  var(--tab-selected-bgcolor, var(--toolbar-bgcolor))
+                ) !important;
+              }
+            }
+            :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before {
+              left: var(--tab-corner-position);
+              background-image: url("../icons/tab-bottom-corner-left.svg");
+            }
+            :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
+              right: var(--tab-corner-position);
+              background-image: url("../icons/tab-bottom-corner-right.svg");
+            }
+            :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
+            :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
+              fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+              stroke: var(--tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)));
+            }
+            @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
+              :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
+              :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
+                content: "";
+              }
+            }
+            :root:not([customizing="true"]) .tabbrowser-tab[multiselected] .tab-background::before,
+            :root:not([customizing="true"]) .tabbrowser-tab[multiselected] .tab-background::after {
+              fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+            }
+            :root:not([customizing="true"])
+              .tabbrowser-tab:hover:not([visuallyselected], [multiselected])
+              .tab-background::before,
+            :root:not([customizing="true"])
+              .tabbrowser-tab:hover:not([visuallyselected], [multiselected])
+              .tab-background::after {
+              fill: color-mix(in srgb, currentColor 11%, transparent);
+            }
+            @supports -moz-bool-pref("userChrome.tab.multi_selected") {
+              :root:not([customizing="true"])
+                .tabbrowser-tab[multiselected]:not([visuallyselected])
+                .tab-background::before,
+              :root:not([customizing="true"])
+                .tabbrowser-tab[multiselected]:not([visuallyselected])
+                .tab-background::after {
+                fill: color-mix(in srgb, currentColor 65%, transparent);
+                opacity: 0.3;
+              }
+            }
+            :root:not([customizing="true"])::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+              #TabsToolbar[brighttext]
+              #tabbrowser-tabs:not([noshadowfortests])
+              .tabbrowser-tab[visuallyselected]
+              .tab-background:-moz-lwtheme::before,
+            :root:not([customizing="true"])::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+              #TabsToolbar[brighttext]
+              #tabbrowser-tabs:not([noshadowfortests])
+              .tabbrowser-tab[visuallyselected]
+              .tab-background:-moz-lwtheme::after {
+              /* As Selected Tab - Box Shadow */
+              stroke: var(--toolbar-color);
+            }
+            @media (-moz-gtk-csd-available) {
+              :root:not([customizing="true"]) {
+                /* Fill color for GTK */
+              }
+              :root:not([customizing="true"]):not([lwtheme="true"])
+                .tabbrowser-tab:is([visuallyselected], [multiselected])
+                .tab-background::before,
+              :root:not([customizing="true"]):not([lwtheme="true"])
+                .tabbrowser-tab:is([visuallyselected], [multiselected])
+                .tab-background::after {
+                /* As GTK Toolbar's background-color + background-image
+                 * --toolbar-non-lwt-bgcolor: -moz-dialog;
+                 * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
+                 */
+                fill: color-mix(in srgb, white 15%, -moz-dialog);
+                stroke: transparent;
+                opacity: 1;
+              }
+              :root:not([customizing="true"]):not([lwtheme="true"])
+                #TabsToolbar[brighttext]
+                .tabbrowser-tab[visuallyselected]
+                .tab-background::before,
+              :root:not([customizing="true"]):not([lwtheme="true"])
+                #TabsToolbar[brighttext]
+                .tabbrowser-tab[visuallyselected]
+                .tab-background::after {
+                stroke: transparent;
+              }
+            }
+          }
+        }
+      }
     }
   }
-  :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before {
-    left: var(--tab-corner-position);
-    background-image: url("../icons/tab-bottom-corner-left.svg");
-  }
-  :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
-    right: var(--tab-corner-position);
-    background-image: url("../icons/tab-bottom-corner-right.svg");
-  }
-  :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
-  :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
-    fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
-    stroke: var(--tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)));
-  }
-  @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
-    :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
-    :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
-      content: "";
+  @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") or -moz-bool-pref(
+      "userChrome.tab.bottom_rounded_corner.australis"
+    ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-bool-pref(
+      "userChrome.tab.bottom_rounded_corner.chrome"
+    ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
+    #tabbrowser-tabs {
+      --uc-tab-corner-size: calc(var(--tab-min-height) / 2);
+      --uc-tab-corner-half-size: calc(var(--uc-tab-corner-size) / 2);
+      --uc-tab-corner-margin: calc(var(--uc-tab-corner-half-size) + 1px);
+      --uc-tab-corner-height: calc(var(--tab-min-height) - var(--tab-block-margin) + 1px);
     }
-  }
-  :root:not([customizing="true"]) .tabbrowser-tab[multiselected] .tab-background::before,
-  :root:not([customizing="true"]) .tabbrowser-tab[multiselected] .tab-background::after {
-    fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
-  }
-  :root:not([customizing="true"])
-    .tabbrowser-tab:hover:not([visuallyselected], [multiselected])
-    .tab-background::before,
-  :root:not([customizing="true"])
-    .tabbrowser-tab:hover:not([visuallyselected], [multiselected])
-    .tab-background::after {
-    fill: color-mix(in srgb, currentColor 11%, transparent);
-  }
-  @supports -moz-bool-pref("userChrome.tab.multi_selected") {
-    :root:not([customizing="true"]) .tabbrowser-tab[multiselected]:not([visuallyselected]) .tab-background::before,
-    :root:not([customizing="true"]) .tabbrowser-tab[multiselected]:not([visuallyselected]) .tab-background::after {
-      fill: color-mix(in srgb, currentColor 65%, transparent);
-      opacity: 0.3;
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") or -moz-bool-pref(
+        "userChrome.tab.bottom_rounded_corner.australis"
+      ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
+      #tabbrowser-tabs {
+        --uc-tab-corner-size: var(--tab-min-height);
+      }
     }
-  }
-  :root:not([customizing="true"])::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
-    #TabsToolbar[brighttext]
-    #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab[visuallyselected]
-    .tab-background:-moz-lwtheme::before,
-  :root:not([customizing="true"])::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
-    #TabsToolbar[brighttext]
-    #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab[visuallyselected]
-    .tab-background:-moz-lwtheme::after {
-    /* As Selected Tab - Box Shadow */
-    stroke: var(--toolbar-color);
-  }
-  @media (-moz-gtk-csd-available) {
-    :root:not([customizing="true"]) {
-      /* Fill color for GTK */
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") {
+      #tabbrowser-tabs {
+        --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-wave.svg");
+        --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-wave.svg");
+        --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
+        --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
+      }
     }
-    :root:not([customizing="true"]):not([lwtheme="true"])
-      .tabbrowser-tab:is([visuallyselected], [multiselected])
-      .tab-background::before,
-    :root:not([customizing="true"]):not([lwtheme="true"])
-      .tabbrowser-tab:is([visuallyselected], [multiselected])
-      .tab-background::after {
-      /* As GTK Toolbar's background-color + background-image
-       * --toolbar-non-lwt-bgcolor: -moz-dialog;
-       * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
-       */
-      fill: color-mix(in srgb, white 15%, -moz-dialog);
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.australis") {
+      #tabbrowser-tabs {
+        --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-australis.svg");
+        --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-australis.svg");
+        --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
+        --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome") {
+      #tabbrowser-tabs {
+        --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chrome.svg");
+        --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chrome.svg");
+        --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chrome-clipped.svg");
+        --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chrome-clipped.svg");
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
+      #tabbrowser-tabs {
+        --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chromeLegacy.svg");
+        --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chromeLegacy.svg");
+        --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
+        --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
+      #tabbrowser-tabs {
+        --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-edge.svg");
+        --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-edge.svg");
+        --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
+        --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
+      }
+    }
+
+    .tabbrowser-tab {
+      padding-inline: 0 !important;
+      overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
+    }
+    .tabbrowser-tab .tab-background {
+      --tab-border-radius: 0px;
+      margin-inline: var(--uc-tab-corner-half-size) !important;
+    }
+    .tabbrowser-tab .tab-background::before,
+    .tabbrowser-tab .tab-background::after {
+      /* Box */
+      display: block;
+      position: absolute;
+      z-index: -1;
+      bottom: 0;
+      /* Shape */
+      width: var(--uc-tab-corner-size);
+      height: var(--uc-tab-corner-height);
+      /* Color */
+      fill: transparent;
       stroke: transparent;
-      opacity: 1;
+      -moz-context-properties: fill, stroke;
+      /* Image */
+      background-size: var(--uc-tab-corner-size) var(--uc-tab-corner-height);
+      background-repeat: no-repeat;
+      background-position-y: bottom;
     }
-    :root:not([customizing="true"]):not([lwtheme="true"])
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
+      .tabbrowser-tab .tab-background::before,
+      .tabbrowser-tab .tab-background::after {
+        content: "";
+      }
+    }
+    @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
+      .tabbrowser-tab .tab-background::before,
+      .tabbrowser-tab .tab-background::after {
+        /* Based on tab background
+             background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
+
+             defaults
+             background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+             background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
+        */
+        fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor))) !important;
+      }
+    }
+    .tabbrowser-tab .tab-background::before {
+      right: calc(100% - var(--uc-tab-corner-margin));
+      background-image: var(--uc-tab-corner-left-side-svg);
+    }
+    .tabbrowser-tab .tab-background::after {
+      left: calc(100% - var(--uc-tab-corner-margin));
+      background-image: var(--uc-tab-corner-right-side-svg);
+    }
+    .tabbrowser-tab[beforeselected-visible] .tab-background::after {
+      background-image: var(--uc-tab-corner-right-side-svg-clipped);
+    }
+    .tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-background::before {
+      background-image: var(--uc-tab-corner-left-side-svg-clipped);
+    }
+    .tabbrowser-tab[positionpinnedtabs] .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
+      background-image: var(--uc-tab-corner-left-side-svg) !important;
+    }
+    .tabbrowser-tab[visuallyselected] .tab-background::before,
+    .tabbrowser-tab[visuallyselected] .tab-background::after {
+      fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+      stroke: var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9))));
+    }
+    @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
+      .tabbrowser-tab[visuallyselected] .tab-background::before,
+      .tabbrowser-tab[visuallyselected] .tab-background::after {
+        content: "";
+      }
+    }
+    .tabbrowser-tab[multiselected] .tab-background::before,
+    .tabbrowser-tab[multiselected] .tab-background::after {
+      fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+    }
+    .tabbrowser-tab:hover:not([visuallyselected], [multiselected]) .tab-background::before,
+    .tabbrowser-tab:hover:not([visuallyselected], [multiselected]) .tab-background::after {
+      fill: color-mix(in srgb, currentColor 11%, transparent);
+    }
+
+    @supports -moz-bool-pref("userChrome.tab.multi_selected") {
+      .tabbrowser-tab[multiselected]:not([visuallyselected]) .tab-background::before,
+      .tabbrowser-tab[multiselected]:not([visuallyselected]) .tab-background::after {
+        fill: var(--uc-multiselected-tab-bgcolor);
+      }
+    }
+    :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
       #TabsToolbar[brighttext]
+      #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab[visuallyselected]
-      .tab-background::before,
-    :root:not([customizing="true"]):not([lwtheme="true"])
+      .tab-background:-moz-lwtheme::before,
+    :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
       #TabsToolbar[brighttext]
+      #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab[visuallyselected]
-      .tab-background::after {
-      stroke: transparent;
+      .tab-background:-moz-lwtheme::after {
+      /* As Selected Tab - Box Shadow */
+      stroke: var(--toolbar-color);
+    }
+    @media (-moz-gtk-csd-available) {
+      :root {
+        /* Fill color for GTK */
+      }
+      :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
+      :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
+        /* As GTK Toolbar's background-color + background-image
+         * --toolbar-non-lwt-bgcolor: -moz-dialog;
+         * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
+         */
+        stroke: transparent;
+        fill: rgba(255, 255, 255, 0.075);
+      }
+      @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
+        :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
+        :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
+          fill: rgba(255, 255, 255, 0.15);
+        }
+      }
+      :root:not([lwtheme="true"]) #TabsToolbar[brighttext] .tabbrowser-tab[selected] .tab-background::before,
+      :root:not([lwtheme="true"]) #TabsToolbar[brighttext] .tabbrowser-tab[selected] .tab-background::after {
+        stroke: transparent;
+      }
+    }
+
+    #tabbrowser-tabs[positionpinnedtabs],
+    #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[first-visible-tab],
+    #tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
+      margin-left: var(--uc-tab-corner-half-size) !important;
+    }
+
+    .tabbrowser-tab[last-visible-tab] {
+      margin-right: vart(--uc-tab-corner-half-size) !important;
     }
   }
 }
