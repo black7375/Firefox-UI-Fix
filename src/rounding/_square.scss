@@ -56,6 +56,11 @@
   html|input {
     border-radius: 0 !important;
   }
+
+  #urlbar-background,
+  #searchbar {
+    --toolbarbutton-border-radius: 0;
+  }
 }
 
 @include Option("userChrome.rounding.square_checklabel") {

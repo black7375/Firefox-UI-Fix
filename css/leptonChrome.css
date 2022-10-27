@@ -3271,6 +3271,11 @@
   html|input {
     border-radius: 0 !important;
   }
+
+  #urlbar-background,
+  #searchbar {
+    --toolbarbutton-border-radius: 0;
+  }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
   .checkbox-check,
