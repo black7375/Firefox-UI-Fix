@@ -6426,7 +6426,7 @@
         "userChrome.tab.bottom_rounded_corner.chrome"
       ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
       .tab-background {
-        --uc-tab-background-shadow-soft: 0 -1px 0;
+        --uc-tab-background-shadow-soft: 0 -1px 1px -1px;
         --uc-tab-background-shadow-hard: 0 -1px 0;
       }
     }
@@ -6643,56 +6643,63 @@
       "userChrome.tab.bottom_rounded_corner.chrome"
     ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
     #tabbrowser-tabs {
-      --uc-tab-corner-size: calc(var(--tab-min-height) / 2);
       --uc-tab-corner-half-size: calc(var(--uc-tab-corner-size) / 2);
-      --uc-tab-corner-margin: calc(var(--uc-tab-corner-half-size) + 1px);
+      --uc-tab-corner-half-size-reverse: calc(var(--uc-tab-corner-half-size) * -1);
       --uc-tab-corner-height: calc(var(--tab-min-height) - var(--tab-block-margin) + 1px);
-    }
-    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") or -moz-bool-pref(
-        "userChrome.tab.bottom_rounded_corner.australis"
-      ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
-      #tabbrowser-tabs {
-        --uc-tab-corner-size: var(--tab-min-height);
-      }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") {
       #tabbrowser-tabs {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-wave.svg");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-wave.svg");
+        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-wave-soft.svg");
+        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-wave-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
+        --uc-tab-corner-size: 30px;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.australis") {
       #tabbrowser-tabs {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-australis.svg");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-australis.svg");
+        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-australis-soft.svg");
+        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-australis-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
+        --uc-tab-corner-size: 30px;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome") {
       #tabbrowser-tabs {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chrome.svg");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chrome.svg");
+        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chrome-soft.svg");
+        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chrome-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chrome-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chrome-clipped.svg");
+        --uc-tab-corner-size: 16px;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
       #tabbrowser-tabs {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chromeLegacy.svg");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chromeLegacy.svg");
+        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chromeLegacy-soft.svg");
+        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chromeLegacy-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
+        --uc-tab-corner-size: 35px;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
       #tabbrowser-tabs {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-edge.svg");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-edge.svg");
+        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-edge-soft.svg");
+        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-edge-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
+        --uc-tab-corner-size: 16px;
       }
     }
 
@@ -6701,8 +6708,30 @@
       overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
     }
     .tabbrowser-tab .tab-background {
-      --tab-border-radius: 0px;
-      margin-inline: var(--uc-tab-corner-half-size) !important;
+      padding-inline: var(--uc-tab-corner-half-size) !important;
+      background-clip: content-box;
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") {
+      .tabbrowser-tab .tab-background {
+        --tab-border-radius: 12.5px;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.australis") {
+      .tabbrowser-tab .tab-background {
+        --tab-border-radius: 12.5px;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome") {
+      .tabbrowser-tab .tab-background {
+        --tab-border-radius: 6px;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
+      .tabbrowser-tab .tab-background {
+        --tab-border-radius: 0px;
+      }
+    }
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
     }
     .tabbrowser-tab .tab-background::before,
     .tabbrowser-tab .tab-background::after {
@@ -6719,7 +6748,7 @@
       stroke: transparent;
       -moz-context-properties: fill, stroke;
       /* Image */
-      background-size: var(--uc-tab-corner-size) var(--uc-tab-corner-height);
+      background-size: cover;
       background-repeat: no-repeat;
       background-position-y: bottom;
     }
@@ -6743,11 +6772,11 @@
       }
     }
     .tabbrowser-tab .tab-background::before {
-      right: calc(100% - var(--uc-tab-corner-margin));
+      left: var(--uc-tab-corner-half-size-reverse);
       background-image: var(--uc-tab-corner-left-side-svg);
     }
     .tabbrowser-tab .tab-background::after {
-      left: calc(100% - var(--uc-tab-corner-margin));
+      right: var(--uc-tab-corner-half-size-reverse);
       background-image: var(--uc-tab-corner-right-side-svg);
     }
     .tabbrowser-tab[beforeselected-visible] .tab-background::after {
@@ -6759,10 +6788,8 @@
     .tabbrowser-tab[positionpinnedtabs] .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
       background-image: var(--uc-tab-corner-left-side-svg) !important;
     }
-    .tabbrowser-tab[visuallyselected] .tab-background::before,
-    .tabbrowser-tab[visuallyselected] .tab-background::after {
-      fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
-      stroke: var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9))));
+    .tabbrowser-tab[visuallyselected] .tab-background {
+      background-clip: border-box;
     }
     @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
       .tabbrowser-tab[visuallyselected] .tab-background::before,
@@ -6770,9 +6797,19 @@
         content: "";
       }
     }
+    .tabbrowser-tab[visuallyselected] .tab-background::before,
+    .tabbrowser-tab[visuallyselected] .tab-background::after,
     .tabbrowser-tab[multiselected] .tab-background::before,
     .tabbrowser-tab[multiselected] .tab-background::after {
       fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+    }
+    @supports -moz-bool-pref("userChrome.tab.box_shadow") {
+      .tabbrowser-tab[visuallyselected] .tab-background::before,
+      .tabbrowser-tab[visuallyselected] .tab-background::after,
+      .tabbrowser-tab[multiselected] .tab-background::before,
+      .tabbrowser-tab[multiselected] .tab-background::after {
+        stroke: var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9))));
+      }
     }
     .tabbrowser-tab:hover:not([visuallyselected], [multiselected]) .tab-background::before,
     .tabbrowser-tab:hover:not([visuallyselected], [multiselected]) .tab-background::after {
@@ -6798,9 +6835,23 @@
       /* As Selected Tab - Box Shadow */
       stroke: var(--toolbar-color);
     }
+    @supports -moz-bool-pref("userChrome.tab.box_shadow") {
+      :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+        #TabsToolbar[brighttext]
+        #tabbrowser-tabs:not([noshadowfortests])
+        .tabbrowser-tab[visuallyselected]
+        .tab-background:-moz-lwtheme {
+        --uc-tab-corner-left-side-svg: var(--uc-tab-corner-left-side-svg-soft);
+        --uc-tab-corner-right-side-svg: var(--uc-tab-corner-right-side-svg-soft);
+      }
+    }
     @media (-moz-gtk-csd-available) {
       :root {
         /* Fill color for GTK */
+      }
+      :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background {
+        background-clip: content-box;
+        background-color: unset !important;
       }
       :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
       :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
@@ -6808,7 +6859,6 @@
          * --toolbar-non-lwt-bgcolor: -moz-dialog;
          * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
          */
-        stroke: transparent;
         fill: rgba(255, 255, 255, 0.075);
       }
       @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
@@ -6817,8 +6867,10 @@
           fill: rgba(255, 255, 255, 0.15);
         }
       }
-      :root:not([lwtheme="true"]) #TabsToolbar[brighttext] .tabbrowser-tab[selected] .tab-background::before,
-      :root:not([lwtheme="true"]) #TabsToolbar[brighttext] .tabbrowser-tab[selected] .tab-background::after {
+      :root:not([lwtheme="true"]) .tabbrowser-tab[multiselected] .tab-background::before,
+      :root:not([lwtheme="true"]) .tabbrowser-tab[multiselected] .tab-background::after,
+      :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
+      :root:not([lwtheme="true"]) .tabbrowser-tab[visuallyselected] .tab-background::after {
         stroke: transparent;
       }
     }
