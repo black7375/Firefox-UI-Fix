@@ -55,7 +55,8 @@
   }
 }
 
-.tabbrowser-tab {
+//-- Mixin ---------------------------------------------------------------------
+@mixin _bottomRoundedCornerOtherPadding() {
   padding-inline: 0 !important;
   overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
 
@@ -63,6 +64,28 @@
     --tab-border-radius: 0px;
     margin-inline: var(--uc-tab-corner-half-size) !important;
 
+    @content;
+  }
+}
+
+//------------------------------------------------------------------------------
+
+.tabbrowser-tab {
+  @include Option("userChrome.tab.bottom_rounded_corner.all") {
+    @include _bottomRoundedCornerOtherPadding;
+  }
+  @include NotOption("userChrome.tab.bottom_rounded_corner.all") {
+    &[visuallyselected] {
+      @include _bottomRoundedCornerOtherPadding {
+        &::before,
+        &::after {
+          content: "";
+        }
+      }
+    }
+  }
+
+  .tab-background {
     &::before,
     &::after {
       /* Box */
@@ -124,15 +147,6 @@
     background-image: var(--uc-tab-corner-left-side-svg) !important;
   }
 
-  &[visuallyselected] .tab-background {
-
-    &::before,
-    &::after {
-      @include NotOption("userChrome.tab.bottom_rounded_corner.all") {
-        content: "";
-      }
-    }
-  }
   &[visuallyselected] .tab-background,
   &[multiselected] .tab-background {
     &::before,

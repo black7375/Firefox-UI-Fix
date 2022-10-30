@@ -6712,13 +6712,29 @@
       }
     }
 
-    .tabbrowser-tab {
-      padding-inline: 0 !important;
-      overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
+    @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
+      .tabbrowser-tab {
+        padding-inline: 0 !important;
+        overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
+      }
+      .tabbrowser-tab .tab-background {
+        --tab-border-radius: 0px;
+        margin-inline: var(--uc-tab-corner-half-size) !important;
+      }
     }
-    .tabbrowser-tab .tab-background {
-      --tab-border-radius: 0px;
-      margin-inline: var(--uc-tab-corner-half-size) !important;
+    @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
+      .tabbrowser-tab[visuallyselected] {
+        padding-inline: 0 !important;
+        overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
+      }
+      .tabbrowser-tab[visuallyselected] .tab-background {
+        --tab-border-radius: 0px;
+        margin-inline: var(--uc-tab-corner-half-size) !important;
+      }
+      .tabbrowser-tab[visuallyselected] .tab-background::before,
+      .tabbrowser-tab[visuallyselected] .tab-background::after {
+        content: "";
+      }
     }
     .tabbrowser-tab .tab-background::before,
     .tabbrowser-tab .tab-background::after {
@@ -6774,12 +6790,6 @@
     }
     .tabbrowser-tab[positionpinnedtabs] .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
       background-image: var(--uc-tab-corner-left-side-svg) !important;
-    }
-    @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
-      .tabbrowser-tab[visuallyselected] .tab-background::before,
-      .tabbrowser-tab[visuallyselected] .tab-background::after {
-        content: "";
-      }
     }
     .tabbrowser-tab[visuallyselected] .tab-background::before,
     .tabbrowser-tab[visuallyselected] .tab-background::after,
