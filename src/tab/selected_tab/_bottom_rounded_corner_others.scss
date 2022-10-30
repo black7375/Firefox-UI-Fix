@@ -60,24 +60,8 @@
   overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
 
   .tab-background {
-   //  --tab-border-radius: 0px;
-    padding-inline: var(--uc-tab-corner-half-size) !important;
-    background-clip: content-box;
-
-    @include Option("userChrome.tab.bottom_rounded_corner.wave") {
-      --tab-border-radius: 12.5px;
-    }
-    @include Option("userChrome.tab.bottom_rounded_corner.australis") {
-      --tab-border-radius: 12.5px;
-    }
-    @include Option("userChrome.tab.bottom_rounded_corner.chrome") {
-      --tab-border-radius: 6px;
-    }
-    @include Option("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
-      --tab-border-radius: 0px;
-    }
-    @include Option("userChrome.tab.bottom_rounded_corner.edge") {
-    }
+    --tab-border-radius: 0px;
+    margin-inline: var(--uc-tab-corner-half-size) !important;
 
     &::before,
     &::after {
@@ -104,7 +88,7 @@
       // background-size: var(--tab-corner-rounding);
       background-size: cover;
       background-repeat: no-repeat;
-      background-position-y: bottom;
+      background-position: bottom;
 
       @include Option("userChrome.tab.bottom_rounded_corner.all") {
         content: "";
@@ -141,7 +125,6 @@
   }
 
   &[visuallyselected] .tab-background {
-    background-clip: border-box;
 
     &::before,
     &::after {
@@ -157,10 +140,7 @@
       fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
 
       @include Option("userChrome.tab.box_shadow") {
-        stroke: var(
-          --tab-line-color, var(--lwt-tab-line-color,
-            var(--tabs-border-color, rgba(128, 128, 142, 0.9)))
-        );
+        stroke: var(--uc-tab-shadow-color);
       }
     }
   }
@@ -181,19 +161,11 @@
 }
 
 :root {
-  &:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
-    #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background:-moz-lwtheme {
-    &::before,
-    &::after {
-      /* As Selected Tab - Box Shadow */
-      stroke: var(--toolbar-color);
-    }
-  }
   &:is(
     [lwtheme-mozlightdark],
     [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
     [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-  ) #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background:-moz-lwtheme {
+  ) #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab {
     @include Option("userChrome.tab.box_shadow") {
       --uc-tab-corner-left-side-svg: var(--uc-tab-corner-left-side-svg-soft);
       --uc-tab-corner-right-side-svg: var(--uc-tab-corner-right-side-svg-soft);
@@ -202,6 +174,9 @@
   @include OS($linux) {
     /* Fill color for GTK */
     &:not([lwtheme="true"]) .tabbrowser-tab {
+      @include Option("userChrome.tab.box_shadow") {
+        --uc-tab-shadow-color: rgba(0,0,0, 0.4);
+      }
       &[visuallyselected] .tab-background {
         background-clip: content-box;
         background-color: unset !important; // --toolbar-non-lwt-bgcolor: -moz-dialog;
@@ -216,13 +191,6 @@
           @include NotOption("userChrome.tab.color_like_toolbar") {
             fill: rgba(255, 255, 255, .15);
           }
-        }
-      }
-      &[multiselected] .tab-background,
-      &[visuallyselected] .tab-background {
-        &::before,
-        &::after {
-          stroke: transparent;
         }
       }
     }
