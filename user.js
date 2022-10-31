@@ -42,6 +42,7 @@ user_pref("userChrome.tab.photon_like_padding",       false); // Photon
 user_pref("userChrome.tab.dynamic_separator",          true); // Original, Proton
 user_pref("userChrome.tab.static_separator",          false); // Photon
 user_pref("userChrome.tab.static_separator.selected_accent", false); // Just option
+user_pref("userChrome.tab.bar_separator",             false); // Just option
 
 user_pref("userChrome.tab.newtab_button_like_tab",     true); // Original
 user_pref("userChrome.tab.newtab_button_smaller",     false); // Photon

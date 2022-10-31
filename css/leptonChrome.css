@@ -6592,7 +6592,7 @@
   }
 }
 /*= Selected Tab - Photon like contextline ===================================*/
-@supports -moz-bool-pref("userChrome.tab.photon_like_contextline") {
+@supports -moz-bool-pref("userChrome.tab.photon_like_contextline") or -moz-bool-pref("userChrome.tab.bar_separator") {
   :root[lwtheme-mozlightdark] #tabbrowser-tabs,
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
@@ -6605,6 +6605,8 @@
       /* -moz-accent-color */
     }
   }
+}
+@supports -moz-bool-pref("userChrome.tab.photon_like_contextline") {
   .tab-context-line {
     display: -moz-inline-box !important;
     height: 2px !important;
@@ -6909,6 +6911,53 @@
     .tab-stack::after {
       transition: opacity 0.2s var(--animation-easing-function);
       /* cubic-bezier(.07, .95, 0, 1) */
+    }
+  }
+}
+/*= Unselected Tab - Bar Separator ===========================================*/
+@supports -moz-bool-pref("userChrome.tab.bar_separator") {
+  .tab-stack::before {
+    /* Box Model */
+    content: "";
+    display: block;
+    position: absolute;
+    /* Position */
+    top: 50%;
+    left: 0%;
+    transform: translateX(calc((var(--inline-tab-padding) - 5px) / 2)) translateY(calc(-50% + var(--tab-block-margin)));
+    z-index: 1;
+    /* Bar shape */
+    width: 3px;
+    height: 20px;
+    /* Bar Color */
+    background-color: var(--uc-bar-separator-color, var(--tab-line-color, var(--lwt-tab-line-color, #0a84ff)));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tab-stack::before {
+      transition-property: opacity, background-color;
+      transition-duration: 0.2s;
+      transition-timing-function: var(--animation-easing-function);
+      /* cubic-bezier(.07, .95, 0, 1) */
+    }
+  }
+
+  :root[sessionrestored] .tabbrowser-tab[busy] .tab-stack::before {
+    --uc-bar-separator-color: currentColor;
+    opacity: 0.7;
+  }
+  :root[sessionrestored] .tabbrowser-tab[busy][progress] .tab-stack::before {
+    --uc-bar-separator-color: var(--tab-loading-fill);
+    opacity: 1;
+  }
+  :root[sessionrestored]
+    #TabsToolbar[brighttext]
+    .tabbrowser-tab[busy][progress]:not([selected="true"])
+    .tab-stack::before {
+    --uc-bar-separator-color: var(--lwt-tab-loading-fill-inactive, #84c1ff);
+  }
+  @supports -moz-bool-pref("userChrome.tab.unloaded") {
+    :root[sessionrestored] .tabbrowser-tab[pending] .tab-stack::before {
+      opacity: 0.7;
     }
   }
 }
