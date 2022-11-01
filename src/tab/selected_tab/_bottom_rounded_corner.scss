@@ -2,6 +2,9 @@
   --tab-corner-rounding: 3px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
   --tab-corner-padding: 0px;
   --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+
+  --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left.svg");
+  --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right.svg");
 }
 
 :root:not([customizing="true"]) {
@@ -46,11 +49,11 @@
 
       &::before {
         left: var(--tab-corner-position);
-        background-image: url("../icons/tab-bottom-corner-left.svg");
+        background-image: var(--uc-tab-corner-left-side-svg);
       }
       &::after {
         right: var(--tab-corner-position);
-        background-image: url("../icons/tab-bottom-corner-right.svg");
+        background-image: var(var(--uc-tab-corner-right-side-svg));
       }
     }
 

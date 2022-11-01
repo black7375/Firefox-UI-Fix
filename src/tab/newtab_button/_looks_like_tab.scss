@@ -1,27 +1,52 @@
 #tabs-newtab-button {
-  /* Original:
+  @include Option("userChrome.tab.connect_to_window") {
+    /* Size */
+    -moz-box-align: stretch !important;
+    padding-top: var(--tab-block-margin) !important;
+  }
+
+  @include Option("userChrome.tab.bottom_rounded_corner") {
+    /* Original:
     margin: 0 0 var(--tabs-navbar-shadow-size) !important
     => Can't override style. Therefore, we should approach it by bypass.
-    */
-  --tabs-navbar-shadow-size: -1px; /* Original: 1px */
-  --tabs-navbar-original-shadow-size: 0.5px;
-  --tab-corner-rounding: 4px; /* Hardcoded */
+   */
+    --tabs-navbar-shadow-size: -1px; /* Original: 1px */
+    --tabs-navbar-original-shadow-size: 0.5px;
+    --tab-corner-rounding: 4px; /* Hardcoded */
 
-  /* Size */
-  -moz-box-align: stretch !important;
-  padding-top: var(--tab-block-margin) !important;
+    /* Corner Rounding Image */
+    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
+    background-image: var(--uc-tab-corner-left-side-svg), var(--uc-tab-corner-right-side-svg);
+    background-repeat: no-repeat;
+    background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
+                         right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
+    background-size: var(--tab-corner-rounding);
 
-  /* Corner Rounding Image */
-  --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
-  background-image: url("../icons/tab-bottom-corner-left.svg"), url("../icons/tab-bottom-corner-right.svg");
-  background-repeat: no-repeat;
-  background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
-    right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
-  background-size: var(--tab-corner-rounding);
+    /* Corner Rounding Color */
+    fill: transparent !important;
+    -moz-context-properties: fill !important;
 
-  /* Corner Rounding Color */
-  fill: transparent !important;
-  -moz-context-properties: fill !important;
+    @include Option(
+      "userChrome.tab.bottom_rounded_corner.wave",
+      "userChrome.tab.bottom_rounded_corner.australis",
+      "userChrome.tab.bottom_rounded_corner.chrome_legacy",
+      "userChrome.tab.bottom_rounded_corner.chrome",
+      "userChrome.tab.bottom_rounded_corner.edge"
+    ) {
+      --newtab-position: 0px;
+      --uc-tab-corner-half-height: calc(var(--uc-tab-corner-height) / 2);
+      --uc-tab-corner-half-height-reverse: calc(var(--uc-tab-corner-half-height) * -1);
+
+      margin-inline: var(--uc-tab-corner-half-height-reverse) !important;
+      padding-inline: var(--uc-tab-corner-half-height) !important;
+      overflow-clip-margin: var(--uc-tab-corner-half-height) !important;
+      background-size: var(--uc-tab-corner-height);
+      background-origin: padding-box;
+
+      .toolbarbutton-icon {
+      }
+    }
+  }
 }
 
 /* Corner Rounding Color */
@@ -61,4 +86,22 @@
   -moz-context-properties: fill, fill-opacity;
   fill: var(--toolbarbutton-icon-fill);
   fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+
+  @include Option(
+    "userChrome.tab.bottom_rounded_corner.wave",
+    "userChrome.tab.bottom_rounded_corner.australis",
+    "userChrome.tab.bottom_rounded_corner.chrome_legacy",
+    "userChrome.tab.bottom_rounded_corner.chrome",
+    "userChrome.tab.bottom_rounded_corner.edge"
+  ) {
+    --tab-border-radius: 0px;
+    width: unset !important;
+    padding-inline: 0px !important;
+    margin-inline: calc(var(--uc-tab-corner-half-height) - #{( 15.5px / 2 )}) !important;
+
+    background-color: transparent !important;
+    // background-size: calc((var(--toolbarbutton-inner-padding) * 2 + 16px) - var(--uc-tab-corner-size)) 100%;
+    // background-repeat: no-repeat;
+    // background-position: center;
+  }
 }
