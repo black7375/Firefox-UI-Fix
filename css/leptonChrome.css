@@ -2939,7 +2939,9 @@
   #protections-popup-footer .protections-popup-footer-button,
   #protections-popup-multiView .panel-subview-footer-button,
   #identity-popup-clear-sitedata-button,
-  #identity-popup-more-info {
+  #identity-popup-more-info,
+  #unified-extensions-manage-extensions,
+  .unified-extensions-item-open-menu {
     cursor: pointer !important;
   }
 
@@ -9364,6 +9366,11 @@
     #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
       list-style-image: url("chrome://global/skin/icons/close.svg");
     }
+
+    /*= unified-extensions-view ===================================================*/
+    #unified-extensions-manage-extensions {
+      list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+    }
   }
   /** Menu - Icons Layout *******************************************************/
   @supports -moz-bool-pref("userChrome.icon.menu") {
@@ -10689,6 +10696,19 @@
 
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_sendTabsToDevice\:manage {
         --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+      }
+
+      /*= unified-extensions-context-menu ==========================================*/
+      .unified-extensions-context-menu-manage-extension {
+        --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+      }
+
+      .unified-extensions-context-menu-remove-extension {
+        --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+      }
+
+      .unified-extensions-context-menu-report-extension {
+        --menuitem-image: url("../icons/send.svg");
       }
     }
     @supports -moz-bool-pref("userChrome.icon.global_menubar") {
