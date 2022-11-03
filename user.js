@@ -142,6 +142,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.urlView.always_show_page_actions",    true);
 // user_pref("userChrome.urlView.move_icon_to_left",           true);
 // user_pref("userChrome.urlView.go_button_when_typing",       true);
+// user_pref("userChrome.urlView.focus_item_border",           true);
 
 // user_pref("userChrome.tabbar.as_titlebar",                  true);
 // user_pref("userChrome.tabbar.fill_width",                   true);
