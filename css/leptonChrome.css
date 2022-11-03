@@ -3273,22 +3273,34 @@
 }
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
   :root {
-    --toolbarbutton-border-radius: 0 !important;
+    --urlbar-icon-border-radius: 0 !important;
+    /* Original: calc(var(--toolbarbutton-border-radius) - 1px); */
+  }
+
+  .toolbarbutton-1,
+  .toolbarbutton-icon,
+  .panel-info-button,
+  .searchbar-engine-one-off-item,
+  .urlbarView-button,
+  .urlbarView-tip-button,
+  .urlbarView-action,
+  toolbarbutton.bookmark-item:not(.subviewbutton),
+  #sidebar-switcher-target {
+    --toolbarbutton-border-radius: 0;
     /* Original: 4px */
   }
 
   button,
-  findbar toolbarbutton {
+  findbar toolbarbutton,
+  .notification-button {
     border-radius: 0 !important;
   }
 }
-@supports -moz-bool-pref("userChrome.rounding.square_tab") or -moz-bool-pref("userChrome.round.square_button") {
+@supports -moz-bool-pref("userChrome.rounding.square_tab") or -moz-bool-pref("userChrome.rounding.square_button") {
   /* Fix Tab bar button radius */
-  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-icon,
-  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-text,
-  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button) > .toolbarbutton-badge-stack,
+  #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button),
   .tab-close-button {
-    --tab-border-radius: var(--toolbarbutton-border-radius) !important;
+    --tab-border-radius: var(--toolbarbutton-border-radius);
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_panel") {
@@ -3323,8 +3335,14 @@
     border-radius: 0 !important;
   }
 
+  #urlbar-input-container,
   #urlbar-background,
   #searchbar {
+    --toolbarbutton-border-radius: 0;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_urlView_item") {
+  .urlbarView-row-inner {
     --toolbarbutton-border-radius: 0;
   }
 }
