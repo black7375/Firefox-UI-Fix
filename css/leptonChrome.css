@@ -7367,8 +7367,7 @@
     .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
       .tab-label-container[labeldirection="rtl"],
     .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
-      .tab-label-container
-      :not([labeldirection]):-moz-locale-dir(rtl) {
+      .tab-label-container:not([labeldirection]):-moz-locale-dir(rtl) {
       --uc-sound-tab-label-position-x: -4px;
     }
     .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
@@ -7388,8 +7387,7 @@
       .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
         .tab-label-container[labeldirection="rtl"],
       .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
-        .tab-label-container
-        :not([labeldirection]):-moz-locale-dir(rtl) {
+        .tab-label-container:not([labeldirection]):-moz-locale-dir(rtl) {
         --uc-sound-tab-label-position-x: -4px;
       }
       .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
@@ -8213,6 +8211,50 @@
   .tab-label,
   .tab-secondary-label {
     overflow: hidden;
+  }
+
+  @supports -moz-bool-pref("userChrome.tab.sound_with_favicons") {
+    @supports not -moz-bool-pref("userChrome.hidden.tab_icon") {
+      .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+        .tab-label-container[labeldirection="ltr"],
+      .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+        .tab-label-container:not([labeldirection]):-moz-locale-dir(ltr) {
+        --uc-sound-tab-label-position-x: 2px;
+      }
+      .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+        .tab-label-container[labeldirection="rtl"],
+      .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+        .tab-label-container:not([labeldirection]):-moz-locale-dir(rtl) {
+        --uc-sound-tab-label-position-x: -2px;
+      }
+      .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+        .tab-label-container::before {
+        transform: translateX(var(--uc-sound-tab-label-position-x, 0px));
+      }
+    }
+    @supports -moz-bool-pref("userChrome.hidden.tab_icon") {
+      @supports not -moz-bool-pref("userChrome.hidden.tab_icon.always") {
+        .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+          .tab-label-container[labeldirection="ltr"],
+        .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+          .tab-label-container:not([labeldirection]):-moz-locale-dir(ltr) {
+          --uc-sound-tab-label-position-x: 2px;
+        }
+        .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+          .tab-label-container[labeldirection="rtl"],
+        .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])[pinned]
+          .tab-label-container:not([labeldirection]):-moz-locale-dir(rtl) {
+          --uc-sound-tab-label-position-x: -2px;
+        }
+        .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+          .tab-label-container::before {
+          transform: translateX(var(--uc-sound-tab-label-position-x, 0px));
+        }
+      }
+    }
+    .tab-label-container::beforee {
+      transition: transform 0.25s var(--animation-easing-function);
+    }
   }
 }
 /*= Counter for Bookmark menu ================================================*/
