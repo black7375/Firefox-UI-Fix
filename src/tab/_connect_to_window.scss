@@ -18,7 +18,7 @@
 }
 @include NotOption("userChrome.tabbar.multi_row") {
   #TabsToolbar:not([multibar]) {
-    overflow: hidden;   /* Prevent toolbar area over */
+    overflow: clip; /* Prevent toolbar area over */
   }
 }
 

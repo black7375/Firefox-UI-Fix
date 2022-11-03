@@ -45,7 +45,7 @@
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #context-savelink {
-  --menuitem-image: url("chrome://browser/skin/save.svg");
+  --menuitem-image: url("../icons/toolbarButton-download.svg");
 }
 #context-savelinktopocket {
   --menuitem-image: url("../icons/pocket-outline.svg");
@@ -148,7 +148,7 @@
 }
 
 #context-savepage {
-  --menuitem-image: url("chrome://browser/skin/save.svg");
+  --menuitem-image: url("../icons/toolbarButton-download.svg");
 }
 #context-pocket {
   --menuitem-image: url("../icons/pocket-outline.svg");
@@ -243,7 +243,7 @@
   /* iconic */
 }
 
-@include NativeMenu {
+@include OS($mac) {
   #context-back {
     --menuitem-image: url("chrome://browser/skin/back.svg");
   }

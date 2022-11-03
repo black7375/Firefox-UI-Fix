@@ -1422,6 +1422,7 @@
       /* or var(--lwt-sidebar-highlight-background-color)
            If this value is used, unset is required in the default theme.
         */
+      background-color: var(--menuitem-hover-background-color) !important;
     }
 
     /* Fallback background - Set to Legacy. It will be removed Next update
@@ -2940,7 +2941,9 @@
   #protections-popup-footer .protections-popup-footer-button,
   #protections-popup-multiView .panel-subview-footer-button,
   #identity-popup-clear-sitedata-button,
-  #identity-popup-more-info {
+  #identity-popup-more-info,
+  #unified-extensions-manage-extensions,
+  .unified-extensions-item-open-menu {
     cursor: pointer !important;
   }
 
@@ -3274,7 +3277,8 @@
     /* Original: 4px */
   }
 
-  button {
+  button,
+  findbar toolbarbutton {
     border-radius: 0 !important;
   }
 }
@@ -3317,6 +3321,11 @@
   xul|richlistbox,
   html|input {
     border-radius: 0 !important;
+  }
+
+  #urlbar-background,
+  #searchbar {
+    --toolbarbutton-border-radius: 0;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
@@ -6331,7 +6340,7 @@
 
   @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
     #TabsToolbar:not([multibar]) {
-      overflow: hidden;
+      overflow: clip;
       /* Prevent toolbar area over */
     }
   }
@@ -8543,10 +8552,15 @@
   or -moz-bool-pref("userChrome.autohide.infobar") {
   #navigator-toolbox {
     position: relative;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) {
     z-index: 2;
   }
+  #navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar {
+    z-index: -1;
+  }
 
-  #navigator-toolbox:not(:hover) {
+  #navigator-toolbox:not(:hover):not(:focus-within) {
     animation: 1s keepfront;
   }
 
@@ -8689,16 +8703,18 @@
         will-change: margin-bottom;
       }
 
+      #TabsToolbar:not([customizing]) {
+        will-change: opacity;
+      }
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #TabsToolbar:not([customizing]) {
+        #TabsToolbar:not([customizing]),
+        #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
           opacity: 0;
-          will-change: opacity;
         }
       }
       @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
         #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
           opacity: 0;
-          will-change: opacity;
         }
       }
 
@@ -8706,7 +8722,8 @@
         margin-bottom: 0px;
       }
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar,
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar .titlebar-buttonbox-container {
           opacity: 1;
         }
       }
@@ -8723,16 +8740,18 @@
           will-change: margin-bottom;
         }
 
+        #TabsToolbar:not([customizing]) {
+          will-change: opacity;
+        }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #TabsToolbar:not([customizing]) {
+          #TabsToolbar:not([customizing]),
+          #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
             opacity: 0;
-            will-change: opacity;
           }
         }
         @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
             opacity: 0;
-            will-change: opacity;
           }
         }
 
@@ -8740,7 +8759,8 @@
           margin-bottom: 0px;
         }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar,
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar .titlebar-buttonbox-container {
             opacity: 1;
           }
         }
@@ -8756,16 +8776,18 @@
           will-change: margin-bottom;
         }
 
+        #TabsToolbar:not([customizing]) {
+          will-change: opacity;
+        }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #TabsToolbar:not([customizing]) {
+          #TabsToolbar:not([customizing]),
+          #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
             opacity: 0;
-            will-change: opacity;
           }
         }
         @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
           #TabsToolbar:not([customizing]) > *:not(.titlebar-buttonbox-container) {
             opacity: 0;
-            will-change: opacity;
           }
         }
 
@@ -8773,7 +8795,8 @@
           margin-bottom: 0px;
         }
         @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar {
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar,
+          #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar .titlebar-buttonbox-container {
             opacity: 1;
           }
         }
@@ -8792,7 +8815,8 @@
       }
 
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #TabsToolbar:not([customizing]) {
+        #TabsToolbar:not([customizing]),
+        #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
           transition: opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
             var(--uc-autohide-toolbar-delay) !important;
         }
@@ -8811,7 +8835,8 @@
         transition-delay: 0s !important;
       }
       @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]) {
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]),
+        #navigator-toolbox:is(:hover, :focus-within) #TabsToolbar:not([customizing]) .titlebar-buttonbox-container {
           transition-delay: 0s !important;
         }
       }
@@ -9631,7 +9656,7 @@
 
     @supports -moz-bool-pref("userChrome.icon.panel_full") {
       #appMenu-save-file-button2 {
-        list-style-image: url("chrome://browser/skin/save.svg");
+        list-style-image: url("../icons/toolbarButton-download.svg");
       }
 
       #appMenu-find-button2 {
@@ -10052,6 +10077,11 @@
 
     #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
       list-style-image: url("chrome://global/skin/icons/close.svg");
+    }
+
+    /*= unified-extensions-view ===================================================*/
+    #unified-extensions-manage-extensions {
+      list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
     }
   }
   /** Menu - Icons Layout *******************************************************/
@@ -10706,7 +10736,7 @@
       }
 
       #context-savelink {
-        --menuitem-image: url("chrome://browser/skin/save.svg");
+        --menuitem-image: url("../icons/toolbarButton-download.svg");
       }
 
       #context-savelinktopocket {
@@ -10836,7 +10866,7 @@
       }
 
       #context-savepage {
-        --menuitem-image: url("chrome://browser/skin/save.svg");
+        --menuitem-image: url("../icons/toolbarButton-download.svg");
       }
 
       #context-pocket {
@@ -10948,7 +10978,7 @@
         /* iconic */
       }
 
-      @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
+      @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
         #context-back {
           --menuitem-image: url("chrome://browser/skin/back.svg");
         }
@@ -11379,6 +11409,19 @@
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_sendTabsToDevice\:manage {
         --menuitem-image: url("chrome://global/skin/icons/settings.svg");
       }
+
+      /*= unified-extensions-context-menu ==========================================*/
+      .unified-extensions-context-menu-manage-extension {
+        --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+      }
+
+      .unified-extensions-context-menu-remove-extension {
+        --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+      }
+
+      .unified-extensions-context-menu-report-extension {
+        --menuitem-image: url("../icons/send.svg");
+      }
     }
     @supports -moz-bool-pref("userChrome.icon.global_menubar") {
       /*= main-menubar =============================================================*/
@@ -11434,7 +11477,7 @@
       }
 
       #menu_savePage {
-        --menuitem-image: url("chrome://browser/skin/save.svg");
+        --menuitem-image: url("../icons/toolbarButton-download.svg");
       }
 
       #menu_sendLink {
@@ -11802,7 +11845,7 @@
       }
 
       #fileImport {
-        --menuitem-image: url("chrome://browser/skin/save.svg");
+        --menuitem-image: url("../icons/toolbarButton-download.svg");
       }
 
       #fileExport {

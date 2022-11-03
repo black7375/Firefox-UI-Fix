@@ -7,7 +7,9 @@
   :root {
     --toolbarbutton-border-radius: 0 !important;  /* Original: 4px */
   }
-  button {
+
+  button,
+  findbar toolbarbutton {
     border-radius: 0 !important;
   }
 }
@@ -53,6 +55,11 @@
   xul|richlistbox,
   html|input {
     border-radius: 0 !important;
+  }
+
+  #urlbar-background,
+  #searchbar {
+    --toolbarbutton-border-radius: 0;
   }
 }
 
