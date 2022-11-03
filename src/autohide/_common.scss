@@ -31,9 +31,15 @@
 @include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.autohide.infobar") {
   #navigator-toolbox {
     position: relative;
-    z-index: 2;
+    &:is(:hover, :focus-within) {
+      z-index: 2;
+
+      #PersonalToolbar {
+        z-index: -1;
+      }
+    }
   }
-  #navigator-toolbox:not(:hover) {
+  #navigator-toolbox:not(:hover):not(:focus-within) {
     animation: 1s keepfront;
   }
   @keyframes keepfront {
@@ -43,10 +49,6 @@
     to {
       z-index: 3;
     }
-  }
-
-  #PersonalToolbar {
-    z-index: -1;
   }
 
   #sidebar-box:is(:hover, :focus-within) {

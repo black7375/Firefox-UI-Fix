@@ -7841,10 +7841,15 @@
   or -moz-bool-pref("userChrome.autohide.infobar") {
   #navigator-toolbox {
     position: relative;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) {
     z-index: 2;
   }
+  #navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar {
+    z-index: -1;
+  }
 
-  #navigator-toolbox:not(:hover) {
+  #navigator-toolbox:not(:hover):not(:focus-within) {
     animation: 1s keepfront;
   }
 
@@ -7856,10 +7861,6 @@
       z-index: 3;
     }
   }
-  #PersonalToolbar {
-    z-index: -1;
-  }
-
   #sidebar-box:is(:hover, :focus-within) {
     position: relative;
     z-index: 2 !important;
