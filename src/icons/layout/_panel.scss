@@ -82,12 +82,11 @@
 .subviewbutton:not(#appMenu-proton-update-banner) > image {
   fill: currentColor !important;
   fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
-  -moz-context-properties: fill !important;
+  -moz-context-properties: fill, fill-opacity, stroke !important;
 }
 #appMenu-zoomReduce-button2 > .toolbarbutton-icon,
 #appMenu-zoomEnlarge-button2 > .toolbarbutton-icon {
   stroke: var(--zoom-controls-bgcolor, var(--button-bgcolor, ButtonFace)) !important;
-  -moz-context-properties: fill, stroke !important;
 }
 #appMenu-zoomReduce-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon,
 #appMenu-zoomEnlarge-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon {

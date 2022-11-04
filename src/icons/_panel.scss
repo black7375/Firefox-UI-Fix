@@ -176,7 +176,7 @@
   /* Color */
   fill: currentColor;
   fill-opacity: var(--toolbarbutton-icon-fill-opacity);
-  -moz-context-properties: fill;
+  -moz-context-properties: fill, fill-opacity, stroke;
 
   background-size: 16px;
   background-repeat: no-repeat;
@@ -416,7 +416,7 @@ panelMenuBookmarkThisPage[starred] {
 /*= protections-popup ========================================================*/
 #protections-popup-settings-button > .protections-popup-settings-icon,
 #protections-popup-show-report-button > .protections-popup-show-report-icon {
-  -moz-context-properties: fill;
+  -moz-context-properties: fill, fill-opacity, stroke;
   fill: currentColor;
   margin-inline-end: 1em;
 }

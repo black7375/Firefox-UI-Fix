@@ -8688,7 +8688,7 @@
         #forward-button,
         #clearDownloadsButton {
           fill: currentColor !important;
-          -moz-context-properties: fill !important;
+          -moz-context-properties: fill, fill-opacity, stroke !important;
         }
 
         /* Add */
@@ -8826,13 +8826,12 @@
     .subviewbutton:not(#appMenu-proton-update-banner) > image {
       fill: currentColor !important;
       fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
-      -moz-context-properties: fill !important;
+      -moz-context-properties: fill, fill-opacity, stroke !important;
     }
 
     #appMenu-zoomReduce-button2 > .toolbarbutton-icon,
     #appMenu-zoomEnlarge-button2 > .toolbarbutton-icon {
       stroke: var(--zoom-controls-bgcolor, var(--button-bgcolor, ButtonFace)) !important;
-      -moz-context-properties: fill, stroke !important;
     }
 
     #appMenu-zoomReduce-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon,
@@ -9040,7 +9039,7 @@
       /* Color */
       fill: currentColor;
       fill-opacity: var(--toolbarbutton-icon-fill-opacity);
-      -moz-context-properties: fill;
+      -moz-context-properties: fill, fill-opacity, stroke;
       background-size: 16px;
       background-repeat: no-repeat;
       background-position: left center;
@@ -9308,7 +9307,7 @@
     /*= protections-popup ========================================================*/
     #protections-popup-settings-button > .protections-popup-settings-icon,
     #protections-popup-show-report-button > .protections-popup-show-report-icon {
-      -moz-context-properties: fill;
+      -moz-context-properties: fill, fill-opacity, stroke;
       fill: currentColor;
       margin-inline-end: 1em;
     }
@@ -9402,7 +9401,7 @@
     #BMB_viewBookmarksToolbar,
     #context_openANewTab.tabmix-newtab-menu-icon {
       /* Color */
-      -moz-context-properties: fill, fill-opacity !important;
+      -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
       /* Layout */
       background-size: 16px !important;
@@ -9411,7 +9410,7 @@
     }
 
     #tabContextMenu > .tabmix-newtab-menu-icon {
-      -moz-context-properties: fill, fill-opacity !important;
+      -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
     }
 

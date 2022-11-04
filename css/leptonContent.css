@@ -280,7 +280,7 @@
 
     .context-menu-list .context-menu-item button span {
       /* Color */
-      -moz-context-properties: fill, fill-opacity !important;
+      -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
       /* Layout */
       background-size: 16px !important;
@@ -2362,7 +2362,7 @@
       #forward-button,
       #clearDownloadsButton {
         fill: currentColor !important;
-        -moz-context-properties: fill !important;
+        -moz-context-properties: fill, fill-opacity, stroke !important;
       }
 
       /* Add */
@@ -3037,7 +3037,7 @@
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
         /* Color */
-        -moz-context-properties: fill, fill-opacity !important;
+        -moz-context-properties: fill, fill-opacity, stroke !important;
         fill: currentColor !important;
         /* Layout */
         background-size: 16px !important;
