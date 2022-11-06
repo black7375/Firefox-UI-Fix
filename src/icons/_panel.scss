@@ -88,7 +88,7 @@
 }
 @include Option("userChrome.icon.panel_full") {
   #appMenu-save-file-button2 {
-    list-style-image: url("chrome://browser/skin/save.svg");
+    list-style-image: url("../icons/toolbarButton-download.svg");
   }
   #appMenu-find-button2 {
     list-style-image: url("chrome://global/skin/icons/search-glass.svg");
@@ -176,7 +176,7 @@
   /* Color */
   fill: currentColor;
   fill-opacity: var(--toolbarbutton-icon-fill-opacity);
-  -moz-context-properties: fill;
+  -moz-context-properties: fill, fill-opacity, stroke;
 
   background-size: 16px;
   background-repeat: no-repeat;
@@ -416,7 +416,7 @@ panelMenuBookmarkThisPage[starred] {
 /*= protections-popup ========================================================*/
 #protections-popup-settings-button > .protections-popup-settings-icon,
 #protections-popup-show-report-button > .protections-popup-show-report-icon {
-  -moz-context-properties: fill;
+  -moz-context-properties: fill, fill-opacity, stroke;
   fill: currentColor;
   margin-inline-end: 1em;
 }
@@ -472,4 +472,9 @@ panelMenuBookmarkThisPage[starred] {
 
 #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
   list-style-image: url("chrome://global/skin/icons/close.svg");
+}
+
+/*= unified-extensions-view ===================================================*/
+#unified-extensions-manage-extensions {
+  list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
 }

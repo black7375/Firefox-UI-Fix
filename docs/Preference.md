@@ -141,6 +141,9 @@ user_pref("general.smoothScroll.currentVelocityWeighting", "0.12"); // String
 **Basics**
 Customizations that cannot be done with add-on and [`User Custom CSS`](./README.md#user-custom-css), such as adding browser UI elements directly or changing default behavior, must use `Auto Config`.
 
+`.mjs`(ES6 Module) is also used in FF `v102` or above.
+- [Bug 1432901 - Prototype loading ES6 Module as JSM](https://bugzilla.mozilla.org/show_bug.cgi?id=1432901)
+
 **How to**
 ```javascript
 pref("general.config.filename", "config.js"); // alternative to "firefox.cfg", for using highlight

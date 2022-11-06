@@ -7,7 +7,8 @@ $_layoutCommonMenus: (
   $_libraryMenuitem,
   $_libraryMenu,
   $_sendTabMenuitem,
-  $_otherIconMenu
+  $_otherIconMenu,
+  "#context_openANewTab.tabmix-newtab-menu-icon"
 );
 @mixin _layoutInitIconMenus() {
   #{$_globalMenus},
@@ -42,7 +43,7 @@ $_layoutCommonMenus: (
   @include _layout_icon_menus;
 }
 #tabContextMenu > .tabmix-newtab-menu-icon {
-  -moz-context-properties: fill, fill-opacity !important;
+  -moz-context-properties: fill, fill-opacity, stroke !important;
   fill: currentColor !important;
 }
 
@@ -117,7 +118,8 @@ $_layoutCommonMenus: (
   }
 
   /* Checkbox menuitem, None iconic menu */
-  #{selector.nest($_nestedPopupPadding, "menuitem[checked=\"true\"], menu:not(.menu-iconic)")} {
+  #{selector.nest($_nestedPopupPadding, "menuitem[type=\"checkbox\"]")} {
+    // "menuitem[checked=\"true\"], menu:not(.menu-iconic)"
     @include _layout_init_mac_others;
   }
 
