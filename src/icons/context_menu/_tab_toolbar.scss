@@ -222,19 +222,26 @@ menuitem.viewCustomizeToolbar {
 
 /*= Tab Mix Plus =============================================================*/
 #context_openANewTab.tabmix-newtab-menu-icon {
-  list-style-image: var(--menuitem-image) !important;
+  list-style-image: none !important;
 }
-#tm-duplicateinWin {
-}
-#tm-mergeWindowsTab {
+@include Option("userChrome.icon.menu.full") {
+  #tm-duplicateinWin {
+    --menuitem-image: url("../icons/tab-desktop-multiple-bottom.svg");
+  }
+  #tm-mergeWindowsTab {
+    --menuitem-image: url("../icons/merge.svg");
+  }
 }
 #tm-renameTab {
+  --menuitem-image: url("chrome://global/skin/icons/edit.svg");
 }
 #tm-copyTabUrl {
   --menuitem-image: url("../icons/link.svg");
 }
 
 #tm-autoreloadTab_menu {
+  // --menuitem-image: url("../icons/reload-auto.svg");
+  --menuitem-image: url("../icons/timer10.svg");
 }
 #context_reloadTabOptions {
   --menuitem-image: url("../icons/reload.svg");
@@ -252,8 +259,10 @@ menuitem.viewCustomizeToolbar {
 }
 
 #tm-docShell {
+  --menuitem-image: url("chrome://browser/skin/permissions.svg");
 }
 #tm-freezeTab {
+  --menuitem-image: url("../icons/weather-snowflake.svg");
 }
 #tm-protectTab {
   --menuitem-image: url("../icons/shield-task.svg");
