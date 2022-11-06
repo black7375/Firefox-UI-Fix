@@ -9934,8 +9934,15 @@
       }
 
       /*= Tab Mix Plus =============================================================*/
-      #context_openANewTab.tabmix-newtab-menu-icon {
-        list-style-image: none !important;
+      @media (-moz-os-version: windows-win7),
+        (-moz-platform: windows-win7),
+        (-moz-os-version: windows-win8),
+        (-moz-platform: windows-win8),
+        (-moz-os-version: windows-win10),
+        (-moz-platform: windows-win10) {
+        #context_openANewTab.tabmix-newtab-menu-icon .menu-iconic-left {
+          display: none;
+        }
       }
 
       @supports -moz-bool-pref("userChrome.icon.menu.full") {

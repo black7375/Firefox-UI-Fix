@@ -222,7 +222,11 @@ menuitem.viewCustomizeToolbar {
 
 /*= Tab Mix Plus =============================================================*/
 #context_openANewTab.tabmix-newtab-menu-icon {
-  list-style-image: none !important;
+  .menu-iconic-left {
+    @include OS($win) {
+      display: none;
+    }
+  }
 }
 @include Option("userChrome.icon.menu.full") {
   #tm-duplicateinWin {
