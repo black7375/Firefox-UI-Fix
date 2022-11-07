@@ -3753,7 +3753,7 @@
 /*= BookMark Bar - Reduce Height =============================================*/
 @supports -moz-bool-pref("userChrome.padding.bookmarkbar") {
   :root[uidensity="compact"] #PersonalToolbar toolbarbutton {
-    margin-top: 0px;
+    margin-top: 0px !important;
     /* Original: 2px */
   }
 }
@@ -3975,7 +3975,7 @@
 /*= Panel - Reduce padding ===================================================*/
 @supports -moz-bool-pref("userChrome.padding.panel") {
   :root {
-    --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding) !important;
+    --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding, 8px) !important;
     /* Original: 0 8px */
     --arrowpanel-menuitem-padding-block: 5px !important;
     /* Original: 8px */
@@ -4039,7 +4039,7 @@
 
   /* not cut off for Protection popup Footer on windows */
   :root[uidensity="compact"] #protections-popup-multiView #protections-popup-footer {
-    padding: 3px 0 10px !important;
+    padding: 0 !important;
   }
 
   /* Button and disabled category in Protection popup */
