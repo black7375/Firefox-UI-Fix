@@ -6428,7 +6428,7 @@
   }
 }
 /*= Selected Tab - Photon like contextline ===================================*/
-@supports -moz-bool-pref("userChrome.tab.photon_like_contextline") {
+@supports -moz-bool-pref("userChrome.tab.photon_like_contextline") or -moz-bool-pref("userChrome.tab.static_separator") {
   :root[lwtheme-mozlightdark] #tabbrowser-tabs,
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
@@ -6441,6 +6441,8 @@
       /* -moz-accent-color */
     }
   }
+}
+@supports -moz-bool-pref("userChrome.tab.photon_like_contextline") {
   .tab-context-line {
     display: -moz-inline-box !important;
     height: 2px !important;
@@ -6668,6 +6670,14 @@
       .tab-background::before {
       opacity: 0 !important;
     }
+
+    :root:not([uidensity="compact"]) #tabs-newtab-button > .toolbarbutton-icon {
+      margin-left: 2px;
+    }
+
+    :root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
+      margin-left: 1px;
+    }
   }
   /* Animate */
   @media (prefers-reduced-motion: no-preference) {
@@ -6847,14 +6857,6 @@
 @supports -moz-bool-pref("userChrome.tab.newtab_button_proton") {
   :root:not([uidensity="touch"]) #tabs-newtab-button > .toolbarbutton-icon {
     --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 16px) / 2 - 1px);
-  }
-
-  :root:not([uidensity="compact"]) #tabs-newtab-button > .toolbarbutton-icon {
-    margin-left: 2px;
-  }
-
-  :root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
-    margin-left: 1px;
   }
 }
 /*= Unloaded Tab - Contents Opacity ===========================================*/
