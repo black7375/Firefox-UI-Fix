@@ -11157,10 +11157,7 @@
         --menuitem-image: url("chrome://global/skin/icons/info.svg");
       }
     }
-  }
-  /** Library Menu **************************************************************/
-  @supports -moz-bool-pref("userChrome.icon.library") {
-    @supports -moz-bool-pref("userChrome.icon.menu") {
+    @supports -moz-bool-pref("userChrome.icon.library") {
       /*= organizeButtonPopup ======================================================*/
       #newbookmark {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
