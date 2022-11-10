@@ -6861,7 +6861,7 @@
 }
 /*= Unloaded Tab - Contents Opacity ===========================================*/
 @supports -moz-bool-pref("userChrome.tab.unloaded") {
-  #tabbrowser-tabs .tabbrowser-tab[pending] .tab-content {
+  .tabbrowser-tab[pending] .tab-content {
     opacity: 0.7;
   }
 }
