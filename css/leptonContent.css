@@ -280,7 +280,7 @@
 
     .context-menu-list .context-menu-item button span {
       /* Color */
-      -moz-context-properties: fill, fill-opacity !important;
+      -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
       /* Layout */
       background-size: 16px !important;
@@ -417,7 +417,7 @@
     }
   }
   /** Activity Stream - Home Search Bar looks like proton *********************/
-  @supports -moz-bool-pref("userContent.newTab.animate") {
+  @supports -moz-bool-pref("userContent.newTab.searchbar") {
     /* Dropdown Colors */
     #root {
       --newtab-search-background-color: rgba(255, 255, 255, 1);
@@ -1680,6 +1680,7 @@
       .input-row input[type="tel"],
       .input-row input[type="text"],
       .input-row input::placeholder,
+      .input-text,
       .firefox-family-services > ul > .firefox-service,
       .faint,
       .faint a,
@@ -1704,7 +1705,9 @@
       .input-row input[type="password"],
       .input-row input[type="tel"],
       .input-row input[type="text"],
+      .input-text,
       header,
+      .card,
       .bg-white:not(nav) {
         background: var(--in-content-box-background) !important;
       }
@@ -2362,7 +2365,7 @@
       #forward-button,
       #clearDownloadsButton {
         fill: currentColor !important;
-        -moz-context-properties: fill !important;
+        -moz-context-properties: fill, fill-opacity, stroke !important;
       }
 
       /* Add */
@@ -3037,7 +3040,7 @@
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
         /* Color */
-        -moz-context-properties: fill, fill-opacity !important;
+        -moz-context-properties: fill, fill-opacity, stroke !important;
         fill: currentColor !important;
         /* Layout */
         background-size: 16px !important;

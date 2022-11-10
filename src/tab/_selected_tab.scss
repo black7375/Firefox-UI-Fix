@@ -19,7 +19,10 @@
 }
 
 /*= Selected Tab - Photon like contextline ===================================*/
-@include Option("userChrome.tab.photon_like_contextline", "userChrome.tab.bar_separator") {
+@include Option(
+  "userChrome.tab.photon_like_contextline",
+  "userChrome.tab.static_separator",
+  "userChrome.tab.bar_separator") {
   :root[lwtheme-mozlightdark] #tabbrowser-tabs, /* Legacy: v96 */
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
@@ -31,6 +34,7 @@
     }
   }
 }
+
 @include Option("userChrome.tab.photon_like_contextline") {
   @import "selected_tab/photon_like_contextline";
 }
