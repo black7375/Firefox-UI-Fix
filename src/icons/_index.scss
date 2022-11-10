@@ -23,11 +23,7 @@
   @include Option("userChrome.icon.global_menu") {
     @import "global_menu";
   }
-}
-
-/** Library Menu **************************************************************/
-@include Option("userChrome.icon.library") {
-  @include Option("userChrome.icon.menu") {
+  @include Option("userChrome.icon.library") {
     @import "library";
   }
 }

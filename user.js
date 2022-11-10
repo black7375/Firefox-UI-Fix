@@ -5,9 +5,6 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Proton Enabled #127 || Removed at 97 #328 (Maintained for compatibility with ESR)
 user_pref("browser.proton.enabled", true);
 
-// Proton Tooltip
-user_pref("browser.proton.places-tooltip.enabled", true);
-
 // Fill SVG Color
 user_pref("svg.context-properties.content.enabled", true);
 
@@ -42,6 +39,7 @@ user_pref("userChrome.tab.photon_like_padding",       false); // Photon
 user_pref("userChrome.tab.dynamic_separator",          true); // Original, Proton
 user_pref("userChrome.tab.static_separator",          false); // Photon
 user_pref("userChrome.tab.static_separator.selected_accent", false); // Just option
+user_pref("userChrome.tab.bar_separator",             false); // Just option
 
 user_pref("userChrome.tab.newtab_button_like_tab",     true); // Original
 user_pref("userChrome.tab.newtab_button_smaller",     false); // Photon
@@ -125,6 +123,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.rounding.square_menupopup",           true);
 // user_pref("userChrome.rounding.square_menuitem",            true);
 // user_pref("userChrome.rounding.square_field",               true);
+// user_pref("userChrome.rounding.square_urlView_item",        true);
 // user_pref("userChrome.rounding.square_checklabel",          true);
 
 // user_pref("userChrome.padding.first_tab",                   true);
@@ -141,6 +140,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.urlView.always_show_page_actions",    true);
 // user_pref("userChrome.urlView.move_icon_to_left",           true);
 // user_pref("userChrome.urlView.go_button_when_typing",       true);
+// user_pref("userChrome.urlView.focus_item_border",           true);
 
 // user_pref("userChrome.tabbar.as_titlebar",                  true);
 // user_pref("userChrome.tabbar.fill_width",                   true);

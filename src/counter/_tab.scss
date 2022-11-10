@@ -10,6 +10,18 @@
   }
 }
 
+// Copy from "../tab/sound_tab/show_with_favicons"
+@mixin _hidden_tabIcon_soundTabLabel() {
+  @include NotOption("userChrome.hidden.tab_icon") {
+    @content;
+  }
+  @include Option("userChrome.hidden.tab_icon") {
+    @include NotOption("userChrome.hidden.tab_icon.always") {
+      @content;
+    }
+  }
+}
+
 //------------------------------------------------------------------------------
 
 #tabbrowser-tabs {
@@ -60,4 +72,29 @@
 .tab-label,
 .tab-secondary-label {
   overflow: hidden;
+}
+
+// Compatibility with sound tab
+@include Option("userChrome.tab.sound_with_favicons") {
+  @include _hidden_tabIcon_soundTabLabel {
+    .tabbrowser-tab:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
+      &[pinned] .tab-label-container {
+        &[labeldirection=ltr],
+        &:not([labeldirection]):-moz-locale-dir(ltr) {
+          --uc-sound-tab-label-position-x: 2px;
+        }
+        &[labeldirection=rtl],
+        &:not([labeldirection]):-moz-locale-dir(rtl) {
+          --uc-sound-tab-label-position-x: -2px;
+        }
+      }
+      .tab-label-container::before {
+        transform: translateX(var(--uc-sound-tab-label-position-x, 0px));
+      }
+    }
+  }
+
+  .tab-label-container::beforee {
+    transition: transform 0.25s var(--animation-easing-function);
+  }
 }

@@ -7,7 +7,7 @@
 #urlbar[breakout][breakout-extend] > #urlbar-input-container {
   height: var(--urlbar-height) !important;
   padding-block: 0 !important;
-  padding-inline: 0 !important;
+  padding-inline: var(--urlbar-container-padding, 0px) !important;
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-background {

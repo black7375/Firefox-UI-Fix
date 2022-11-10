@@ -1,3 +1,15 @@
+/*= Notification =============================================================*/
+// https://github.com/mozilla/gecko-dev/blob/master/toolkit/components/alerts/alert.xhtml
+#doNotDisturbMenuItem {
+  --menuitem-image: url(chrome://global/skin/media/pause-fill.svg);
+}
+#disableForOriginMenuItem {
+  --menuitem-image: url("chrome://global/skin/icons/blocked.svg");
+}
+#openSettingsMenuItem {
+  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+}
+
 /*= blockedPopupOptions ======================================================*/
 #blockedPopupAllowSite {
   --menuitem-image: url("chrome://global/skin/icons/check.svg");
@@ -212,4 +224,15 @@ menuitem.searchbar-clear-history {
 }
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_sendTabsToDevice\:manage {
   --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+}
+
+/*= unified-extensions-context-menu ==========================================*/
+.unified-extensions-context-menu-manage-extension {
+  --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+}
+.unified-extensions-context-menu-remove-extension {
+  --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+}
+.unified-extensions-context-menu-report-extension {
+  --menuitem-image: url("../icons/send.svg");
 }
