@@ -1,61 +1,24 @@
-#tabbrowser-tabs {
-  --uc-tab-corner-half-size: calc(var(--uc-tab-corner-size) / 2);
-  --uc-tab-corner-half-size-reverse: calc(var(--uc-tab-corner-half-size) * -1);
-  --uc-tab-corner-height: calc(var(--tab-min-height) - var(--tab-block-margin) + 1px);
+//-- Mixin ---------------------------------------------------------------------
+@function _clipPathURL($svg) {
+  @return url($svg + "#svgClipPath");
+}
+@mixin _clipPath($svg, $position) {
+  $result: _clipPathURL($svg);
 
-  @include Option("userChrome.tab.bottom_rounded_corner.wave") {
-    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-wave.svg");
-    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-wave.svg");
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-wave-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-wave-soft.svg");
-    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
-    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
-
-    --uc-tab-corner-size: 30px;
+  @if $position == "left" {
+    --uc-tab-corner-left-side-svg: #{ url($svg) };
+    --uc-tab-corner-left-side-clipPath: #{ $result };
   }
-  @include Option("userChrome.tab.bottom_rounded_corner.australis") {
-    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-australis.svg");
-    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-australis.svg");
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-australis-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-australis-soft.svg");
-    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
-    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
-
-    --uc-tab-corner-size: 30px;
-  }
-  @include Option("userChrome.tab.bottom_rounded_corner.chrome") {
-    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chrome.svg");
-    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chrome.svg");
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chrome-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chrome-soft.svg");
-    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chrome-clipped.svg");
-    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chrome-clipped.svg");
-
-    --uc-tab-corner-size: 16px; // 18px;
-  }
-  @include Option("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
-    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chromeLegacy.svg");
-    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chromeLegacy.svg");
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chromeLegacy-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chromeLegacy-soft.svg");
-    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
-    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
-
-    --uc-tab-corner-size: 35px;
-  }
-  @include Option("userChrome.tab.bottom_rounded_corner.edge") {
-    --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-edge.svg");
-    --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-edge.svg");
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-edge-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-edge-soft.svg");
-    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
-    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
-
-    --uc-tab-corner-size: 16px;
+  @else if $position == "right" {
+    --uc-tab-corner-right-side-svg: #{ url($svg) };
+    --uc-tab-corner-right-side-clipPath: #{ $result };
   }
 }
+@mixin _tabCornerSVG($left, $right) {
+  @include _clipPath($left,  "left" );
+  @include _clipPath($right, "right");
+}
 
-//-- Mixin ---------------------------------------------------------------------
 @mixin _bottomRoundedCornerOtherPadding() {
   padding-inline: 0 !important;
   overflow-clip-margin: var(--uc-tab-corner-half-size) !important;
@@ -69,6 +32,74 @@
 }
 
 //------------------------------------------------------------------------------
+
+#tabbrowser-tabs {
+  --uc-tab-corner-half-size: calc(var(--uc-tab-corner-size) / 2);
+  --uc-tab-corner-half-size-reverse: calc(var(--uc-tab-corner-half-size) * -1);
+  --uc-tab-corner-height: calc(var(--tab-min-height) - var(--tab-block-margin) + 1px);
+  --uc-tab-corner-bgimage: none;
+
+  @include Option("userChrome.tab.bottom_rounded_corner.wave") {
+    @include _tabCornerSVG(
+      "../icons/tab-bottom-corner-left-wave.svg",
+      "../icons/tab-bottom-corner-right-wave.svg"
+    );
+    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-wave-soft.svg");
+    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-wave-soft.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
+
+    --uc-tab-corner-size: 30px;
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.australis") {
+    @include _tabCornerSVG(
+      "../icons/tab-bottom-corner-left-australis.svg",
+      "../icons/tab-bottom-corner-right-australis.svg"
+    );
+    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-australis-soft.svg");
+    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-australis-soft.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
+
+    --uc-tab-corner-size: 30px;
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.chrome") {
+    @include _tabCornerSVG(
+      "../icons/tab-bottom-corner-left-chrome.svg",
+      "../icons/tab-bottom-corner-right-chrome.svg"
+    );
+    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chrome-soft.svg");
+    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chrome-soft.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chrome-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chrome-clipped.svg");
+
+    --uc-tab-corner-size: 16px; // 18px;
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
+    @include _tabCornerSVG(
+      "../icons/tab-bottom-corner-left-chromeLegacy.svg",
+      "../icons/tab-bottom-corner-right-chromeLegacy.svg"
+    );
+    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chromeLegacy-soft.svg");
+    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chromeLegacy-soft.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
+
+    --uc-tab-corner-size: 35px;
+  }
+  @include Option("userChrome.tab.bottom_rounded_corner.edge") {
+    @include _tabCornerSVG(
+      "../icons/tab-bottom-corner-left-edge.svg",
+      "../icons/tab-bottom-corner-right-edge.svg"
+    );
+    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-edge-soft.svg");
+    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-edge-soft.svg");
+    --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
+    --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
+
+    --uc-tab-corner-size: 16px;
+  }
+}
 
 .tabbrowser-tab {
   @include Option("userChrome.tab.bottom_rounded_corner.all") {
@@ -109,9 +140,10 @@
 
       /* Image */
       // background-size: var(--tab-corner-rounding);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: bottom;
+      background-size: cover, auto auto;
+      background-repeat: no-repeat, no-repeat;
+      background-position: bottom, right top;
+      background-attachment: scroll, fixed;
 
       @include Option("userChrome.tab.bottom_rounded_corner.all") {
         content: "";
@@ -127,30 +159,32 @@
         fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor))) !important;
       }
     }
-
     &::before {
       left: var(--uc-tab-corner-half-size-reverse);
-      background-image: var(--uc-tab-corner-left-side-svg);
+      background-image: var(--uc-tab-corner-left-side-svg), var(--uc-tab-corner-bgimage);
+      clip-path: var(--uc-tab-corner-left-side-clipPath);
     }
     &::after {
       right: var(--uc-tab-corner-half-size-reverse);
-      background-image: var(--uc-tab-corner-right-side-svg);
+      background-image: var(--uc-tab-corner-right-side-svg), var(--uc-tab-corner-bgimage);
+      clip-path: var(--uc-tab-corner-right-side-clipPath);
     }
   }
+
   &[beforeselected-visible] .tab-background::after {
-    background-image: var(--uc-tab-corner-right-side-svg-clipped);
+    --uc-tab-corner-right-side-svg: var(--uc-tab-corner-right-side-svg-clipped);
   }
   &[visuallyselected] + .tabbrowser-tab .tab-background::before {
-    background-image: var(--uc-tab-corner-left-side-svg-clipped);
+    --uc-tab-corner-left-side-svg: var(--uc-tab-corner-left-side-svg-clipped);
   }
-  &[positionpinnedtabs] .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
-    background-image: var(--uc-tab-corner-left-side-svg) !important;
-  }
+  // &[positionpinnedtabs] .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before {
+  //   background-image: var(--uc-tab-corner-left-side-svg), var(--lwt-header-image, none) !important;
+  // }
 
-  &[visuallyselected] .tab-background,
-  &[multiselected] .tab-background {
+  &:is([visuallyselected], [multiselected]) .tab-background {
     &::before,
     &::after {
+      --uc-tab-corner-bgimage: var(--lwt-header-image, none);
       fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
 
       @include Option("userChrome.tab.box_shadow") {
