@@ -3764,19 +3764,19 @@
   }
 }
 @supports -moz-bool-pref("userChrome.padding.infobar") {
-  :root:not([uidensity]) #tab-notification-deck {
+  :root:not([uidensity]) notification-message {
     --infobar-message-vertical-margin: 3px;
     --infobar-vertical-margin: 7px;
     --infobar-button-vertical-margin: 3px;
   }
 
-  :root[uidensity="compact"] #tab-notification-deck {
+  :root[uidensity="compact"] notification-message {
     --infobar-message-vertical-margin: 2px;
     --infobar-vertical-margin: 6px;
     --infobar-button-vertical-margin: 2px;
   }
 
-  :root[uidensity="touch"] #tab-notification-deck {
+  :root[uidensity="touch"] notification-message {
     --infobar-message-vertical-margin: 4px;
     --infobar-vertical-margin: 8px;
     --infobar-button-vertical-margin: 4px;
