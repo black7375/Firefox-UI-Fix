@@ -63,7 +63,8 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 - Breaking change with `-moz-accent-color`/`-moz-accent-color-foreground` -> `AccentColor`/`AccentColorText` [#433](https://github.com/black7375/Firefox-UI-Fix/issues/433)
 
 ### Side Effect
-Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).
+Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).  
+Sometimes there are times when there is a really hard to understand. [#503](https://github.com/black7375/Firefox-UI-Fix/issues/503#issuecomment-1312685684)
 
 Especially be careful when customizing XUL elements.  
 The following code will cause extension panels fail to open and trying to open them might even crash Firefox. ([@MrOtherGuy](https://www.reddit.com/r/FirefoxCSS/comments/u1mdld/comment/i4eg29n/?utm_source=share&utm_medium=web2x&context=3) reports)

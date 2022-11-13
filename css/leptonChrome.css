@@ -8523,13 +8523,13 @@
 @supports -moz-bool-pref("userChrome.hidden.disabled_menu") {
   menu[disabled="true"],
   menuitem:not(#context-back, #context-forward)[disabled="true"] {
-    display: none !important;
+    visibility: collapse !important;
   }
 
   @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
     #context-back[disabled="true"],
     #context-forward[disabled="true"] {
-      display: none !important;
+      visibility: collapse !important;
     }
   }
 }
