@@ -182,9 +182,10 @@
   // }
 
   &:is([visuallyselected], [multiselected]) .tab-background {
+    --uc-tab-corner-bgimage: var(--lwt-header-image, none);
+
     &::before,
     &::after {
-      --uc-tab-corner-bgimage: var(--lwt-header-image, none);
       fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
 
       @include Option("userChrome.tab.box_shadow") {
@@ -206,6 +207,9 @@
       fill: var(--uc-multiselected-tab-bgcolor);
     }
   }
+}
+#tabbrowser-tabs[movingtab] .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background:-moz-lwtheme {
+  --uc-tab-corner-bgimage: none;
 }
 
 :root {
