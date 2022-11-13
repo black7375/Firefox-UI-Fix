@@ -227,7 +227,6 @@
       }
       &[visuallyselected] .tab-background {
         background-clip: content-box;
-        background-color: unset !important; // --toolbar-non-lwt-bgcolor: -moz-dialog;
 
         &::before,
         &::after {
@@ -235,6 +234,7 @@
            * --toolbar-non-lwt-bgcolor: -moz-dialog;
            * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
            */
+          --uc-tab-corner-bgimage: linear-gradient(var(--toolbar-non-lwt-bgcolor), var(--toolbar-non-lwt-bgcolor));
           fill: rgba(255, 255, 255, .075);
           @include NotOption("userChrome.tab.color_like_toolbar") {
             fill: rgba(255, 255, 255, .15);
