@@ -1739,7 +1739,14 @@ jest-each@^29.3.1:
     jest-util "^29.3.1"
     pretty-format "^29.3.1"
 
-jest-environment-node@^29.3.1:
+jest-environment-node-single-context@^29.0.0:
+  version "29.0.0"
+  resolved "https://registry.yarnpkg.com/jest-environment-node-single-context/-/jest-environment-node-single-context-29.0.0.tgz#1959273b6b33b6ec63605863d8768488a247b91d"
+  integrity sha512-/XB09Hje38Kl5k9ISUpXNom3M4DQo5ifEsnELPFP5r3yrJDRyNQCEjL/9ScUN6z6UeF4FCNZUsiJIX/tGtTXNw==
+  dependencies:
+    jest-environment-node "^29.0.1"
+
+jest-environment-node@^29.0.1, jest-environment-node@^29.3.1:
   version "29.3.1"
   resolved "https://registry.yarnpkg.com/jest-environment-node/-/jest-environment-node-29.3.1.tgz#5023b32472b3fba91db5c799a0d5624ad4803e74"
   integrity sha512-xm2THL18Xf5sIHoU7OThBPtuH6Lerd+Y1NLYiZJlkE3hbE+7N7r8uvHIl/FkZ5ymKXJe/11SQuf3fv4v6rUMag==
