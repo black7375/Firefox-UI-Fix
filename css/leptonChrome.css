@@ -6692,8 +6692,6 @@
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-wave.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-wave.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-wave.svg#svgClipPath");
-        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-wave-soft.svg");
-        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-wave-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
         --uc-tab-corner-size: 30px;
@@ -6705,8 +6703,6 @@
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-australis.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-australis.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-australis.svg#svgClipPath");
-        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-australis-soft.svg");
-        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-australis-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
         --uc-tab-corner-size: 30px;
@@ -6718,8 +6714,6 @@
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-chrome.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chrome.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-chrome.svg#svgClipPath");
-        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chrome-soft.svg");
-        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chrome-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chrome-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chrome-clipped.svg");
         --uc-tab-corner-size: 16px;
@@ -6731,8 +6725,6 @@
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-chromeLegacy.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chromeLegacy.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-chromeLegacy.svg#svgClipPath");
-        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chromeLegacy-soft.svg");
-        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chromeLegacy-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
         --uc-tab-corner-size: 35px;
@@ -6744,8 +6736,6 @@
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-edge.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-edge.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-edge.svg#svgClipPath");
-        --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-edge-soft.svg");
-        --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-edge-soft.svg");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
         --uc-tab-corner-size: 8px;
@@ -6789,7 +6779,7 @@
       /* Color */
       fill: transparent;
       stroke: transparent;
-      -moz-context-properties: fill, stroke;
+      -moz-context-properties: fill, stroke, stroke-opacity;
       /* Image */
       background-size: cover, auto auto;
       background-repeat: no-repeat, no-repeat;
@@ -6863,9 +6853,14 @@
       :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
         #TabsToolbar[brighttext]
         #tabbrowser-tabs:not([noshadowfortests])
-        .tabbrowser-tab {
-        --uc-tab-corner-left-side-svg: var(--uc-tab-corner-left-side-svg-soft);
-        --uc-tab-corner-right-side-svg: var(--uc-tab-corner-right-side-svg-soft);
+        .tabbrowser-tab:is([visuallyselected], [multiselected])
+        .tab-background::before,
+      :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+        #TabsToolbar[brighttext]
+        #tabbrowser-tabs:not([noshadowfortests])
+        .tabbrowser-tab:is([visuallyselected], [multiselected])
+        .tab-background::after {
+        stroke-opacity: 0.3;
       }
     }
     @media (-moz-gtk-csd-available) {

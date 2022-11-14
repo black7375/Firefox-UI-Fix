@@ -44,8 +44,6 @@
       "../icons/tab-bottom-corner-left-wave.svg",
       "../icons/tab-bottom-corner-right-wave.svg"
     );
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-wave-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-wave-soft.svg");
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
 
@@ -56,8 +54,6 @@
       "../icons/tab-bottom-corner-left-australis.svg",
       "../icons/tab-bottom-corner-right-australis.svg"
     );
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-australis-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-australis-soft.svg");
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
 
@@ -68,8 +64,6 @@
       "../icons/tab-bottom-corner-left-chrome.svg",
       "../icons/tab-bottom-corner-right-chrome.svg"
     );
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chrome-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chrome-soft.svg");
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chrome-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chrome-clipped.svg");
 
@@ -80,8 +74,6 @@
       "../icons/tab-bottom-corner-left-chromeLegacy.svg",
       "../icons/tab-bottom-corner-right-chromeLegacy.svg"
     );
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-chromeLegacy-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-chromeLegacy-soft.svg");
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
 
@@ -92,8 +84,6 @@
       "../icons/tab-bottom-corner-left-edge.svg",
       "../icons/tab-bottom-corner-right-edge.svg"
     );
-    --uc-tab-corner-left-side-svg-soft: url("../icons/tab-bottom-corner-left-edge-soft.svg");
-    --uc-tab-corner-right-side-svg-soft: url("../icons/tab-bottom-corner-right-edge-soft.svg");
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
 
@@ -132,7 +122,7 @@
       /* Color */
       fill: transparent;
       stroke: transparent;
-      -moz-context-properties: fill, stroke;
+      -moz-context-properties: fill, stroke, stroke-opacity;
       // For stroke
       // box-shadow: 0 0 4px rgba(0,0,0,.4);
       // box-shadow: 0 0 1px var(--toolbar-color) !important;
@@ -217,10 +207,12 @@
     [lwtheme-mozlightdark],
     [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
     [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-  ) #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab {
+  ) #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background {
     @include Option("userChrome.tab.box_shadow") {
-      --uc-tab-corner-left-side-svg: var(--uc-tab-corner-left-side-svg-soft);
-      --uc-tab-corner-right-side-svg: var(--uc-tab-corner-right-side-svg-soft);
+      &::before,
+      &::after {
+        stroke-opacity: 0.3;
+      }
     }
   }
   @include OS($linux) {
