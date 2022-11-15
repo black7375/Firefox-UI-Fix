@@ -3643,6 +3643,13 @@
     --arrowpanel-menuitem-padding-block: 8px !important; /* Original: 8px */
     --arrowpanel-menuitem-padding-inline: 8px !important; /* Original: 8px */
   }
+  @supports not -moz-bool-pref("userChrome.icon.disabled") {
+    @supports not -moz-bool-pref("userChrome.icon.panel") {
+      .subviewbutton {
+        min-height: calc(16px + var(--arrowpanel-menuitem-padding-block) * 2) !important;
+      }
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.padding.panel_header") {
   .panel-header {

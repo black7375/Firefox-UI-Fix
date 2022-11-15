@@ -14,3 +14,11 @@
   --arrowpanel-menuitem-padding-block: 8px !important; /* Original: 8px */
   --arrowpanel-menuitem-padding-inline: 8px !important; /* Original: 8px */
 }
+
+@include NotOption("userChrome.icon.disabled") {
+  @include NotOption("userChrome.icon.panel") {
+    .subviewbutton {
+      min-height: calc(16px + (var(--arrowpanel-menuitem-padding-block) * 2)) !important;
+    }
+  }
+}
