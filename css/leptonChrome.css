@@ -6535,7 +6535,7 @@
       @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome") {
         @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
           @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
-            #tabbrowser-tabs {
+            #TabsToolbar {
               --tab-corner-rounding: 3px;
               /* 10px looks about like chromium - 17px looks close to Australis tabs */
               --tab-corner-padding: 0px;
@@ -6679,36 +6679,35 @@
     ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-bool-pref(
       "userChrome.tab.bottom_rounded_corner.chrome"
     ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
-    #tabbrowser-tabs {
+    #TabsToolbar {
+      --uc-tab-corner-height: calc(var(--tab-min-height) + 1px);
+      --uc-tab-corner-size: var(--uc-tab-corner-height);
       --uc-tab-corner-half-size: calc(var(--uc-tab-corner-size) / 2);
       --uc-tab-corner-half-size-reverse: calc(var(--uc-tab-corner-half-size) * -1);
-      --uc-tab-corner-height: calc(var(--tab-min-height) - var(--tab-block-margin) + 1px);
       --uc-tab-corner-bgimage: none;
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.wave") {
-      #tabbrowser-tabs {
+      #TabsToolbar {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-wave.svg");
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-wave.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-wave.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-wave.svg#svgClipPath");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
-        --uc-tab-corner-size: 30px;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.australis") {
-      #tabbrowser-tabs {
+      #TabsToolbar {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-australis.svg");
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-australis.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-australis.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-australis.svg#svgClipPath");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
-        --uc-tab-corner-size: 30px;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome") {
-      #tabbrowser-tabs {
+      #TabsToolbar {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chrome.svg");
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-chrome.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chrome.svg");
@@ -6719,25 +6718,24 @@
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
-      #tabbrowser-tabs {
+      #TabsToolbar {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-chromeLegacy.svg");
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-chromeLegacy.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-chromeLegacy.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-chromeLegacy.svg#svgClipPath");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
-        --uc-tab-corner-size: 35px;
       }
     }
     @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
-      #tabbrowser-tabs {
+      #TabsToolbar {
         --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left-edge.svg");
         --uc-tab-corner-left-side-clipPath: url("../icons/tab-bottom-corner-left-edge.svg#svgClipPath");
         --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right-edge.svg");
         --uc-tab-corner-right-side-clipPath: url("../icons/tab-bottom-corner-right-edge.svg#svgClipPath");
         --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
-        --uc-tab-corner-size: 8px;
+        --uc-tab-corner-size: 14px;
       }
     }
 
@@ -6749,6 +6747,7 @@
       .tabbrowser-tab .tab-background {
         --tab-border-radius: 0px;
         margin-inline: var(--uc-tab-corner-half-size) !important;
+        position: relative;
       }
     }
     @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.all") {
@@ -6759,6 +6758,7 @@
       .tabbrowser-tab[visuallyselected] .tab-background {
         --tab-border-radius: 0px;
         margin-inline: var(--uc-tab-corner-half-size) !important;
+        position: relative;
       }
       .tabbrowser-tab[visuallyselected] .tab-background::before,
       .tabbrowser-tab[visuallyselected] .tab-background::after {
@@ -6805,13 +6805,12 @@
       }
     }
     .tabbrowser-tab .tab-background::before {
-      left: var(--uc-tab-corner-half-size-reverse);
+      right: 100%;
       background-image: var(--uc-tab-corner-left-side-svg), var(--uc-tab-corner-bgimage);
       clip-path: var(--uc-tab-corner-left-side-clipPath);
-      transform: translateX(0.5px);
     }
     .tabbrowser-tab .tab-background::after {
-      right: var(--uc-tab-corner-half-size-reverse);
+      left: 100%;
       background-image: var(--uc-tab-corner-right-side-svg), var(--uc-tab-corner-bgimage);
       clip-path: var(--uc-tab-corner-right-side-clipPath);
     }
@@ -7326,7 +7325,7 @@
         --uc-newtab-non-corner-bgwidth: 0px;
         --uc-tab-corner-half-height: calc(var(--uc-tab-corner-height) / 2);
         --uc-tab-corner-half-height-reverse: calc(var(--uc-tab-corner-half-height) * -1);
-        margin-inline: var(--uc-tab-corner-half-height-reverse) !important;
+        transform: translateX(var(--uc-tab-corner-half-height-reverse));
         padding-inline: var(--uc-tab-corner-half-height) !important;
         overflow-clip-margin: var(--uc-tab-corner-half-height) !important;
         background-image: var(--uc-tab-corner-left-side-svg),

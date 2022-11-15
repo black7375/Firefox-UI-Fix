@@ -39,7 +39,7 @@
       --uc-tab-corner-half-height: calc(var(--uc-tab-corner-height) / 2);
       --uc-tab-corner-half-height-reverse: calc(var(--uc-tab-corner-half-height) * -1);
 
-      margin-inline: var(--uc-tab-corner-half-height-reverse) !important;
+      transform: translateX(var(--uc-tab-corner-half-height-reverse));
       padding-inline: var(--uc-tab-corner-half-height) !important;
       overflow-clip-margin: var(--uc-tab-corner-half-height) !important;
 

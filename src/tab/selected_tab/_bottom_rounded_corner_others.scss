@@ -26,6 +26,7 @@
   .tab-background {
     --tab-border-radius: 0px;
     margin-inline: var(--uc-tab-corner-half-size) !important;
+    position: relative;
 
     @content;
   }
@@ -33,10 +34,12 @@
 
 //------------------------------------------------------------------------------
 
-#tabbrowser-tabs {
+#TabsToolbar {
+  --uc-tab-corner-height: calc(var(--tab-min-height) + 1px);
+  --uc-tab-corner-size: var(--uc-tab-corner-height);
   --uc-tab-corner-half-size: calc(var(--uc-tab-corner-size) / 2);
   --uc-tab-corner-half-size-reverse: calc(var(--uc-tab-corner-half-size) * -1);
-  --uc-tab-corner-height: calc(var(--tab-min-height) - var(--tab-block-margin) + 1px);
+
   --uc-tab-corner-bgimage: none;
 
   @include Option("userChrome.tab.bottom_rounded_corner.wave") {
@@ -46,8 +49,6 @@
     );
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-wave-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
-
-    --uc-tab-corner-size: 30px;
   }
   @include Option("userChrome.tab.bottom_rounded_corner.australis") {
     @include _tabCornerSVG(
@@ -56,8 +57,6 @@
     );
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-australis-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-cilpped.svg");
-
-    --uc-tab-corner-size: 30px;
   }
   @include Option("userChrome.tab.bottom_rounded_corner.chrome") {
     @include _tabCornerSVG(
@@ -76,8 +75,6 @@
     );
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-chromeLegacy-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
-
-    --uc-tab-corner-size: 35px;
   }
   @include Option("userChrome.tab.bottom_rounded_corner.edge") {
     @include _tabCornerSVG(
@@ -87,7 +84,7 @@
     --uc-tab-corner-left-side-svg-clipped: url("../icons/tab-bottom-corner-left-edge-clipped.svg");
     --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-edge-clipped.svg");
 
-    --uc-tab-corner-size: 8px; // 16px
+    --uc-tab-corner-size: 14px;
   }
 }
 
@@ -150,13 +147,12 @@
       }
     }
     &::before {
-      left: var(--uc-tab-corner-half-size-reverse);
+      right: 100%;
       background-image: var(--uc-tab-corner-left-side-svg), var(--uc-tab-corner-bgimage);
       clip-path: var(--uc-tab-corner-left-side-clipPath);
-      transform: translateX(0.5px);
     }
     &::after {
-      right: var(--uc-tab-corner-half-size-reverse);
+      left: 100%;
       background-image: var(--uc-tab-corner-right-side-svg), var(--uc-tab-corner-bgimage);
       clip-path: var(--uc-tab-corner-right-side-clipPath);
     }
