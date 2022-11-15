@@ -6460,7 +6460,6 @@
         "userChrome.tab.bottom_rounded_corner.chrome"
       ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
       #TabsToolbar {
-        --uc-tab-background-shadow-soft: 0 -1px 1px -1px;
         --uc-tab-background-shadow-hard: 0 -1px 0;
         --uc-tab-basic-shadow: 0 -1px 0px rgba(0, 0, 0, 0.4);
         --uc-tab-additional-shadow: 0 0 0 transparent;
@@ -6809,6 +6808,7 @@
       left: var(--uc-tab-corner-half-size-reverse);
       background-image: var(--uc-tab-corner-left-side-svg), var(--uc-tab-corner-bgimage);
       clip-path: var(--uc-tab-corner-left-side-clipPath);
+      transform: translateX(0.5px);
     }
     .tabbrowser-tab .tab-background::after {
       right: var(--uc-tab-corner-half-size-reverse);
