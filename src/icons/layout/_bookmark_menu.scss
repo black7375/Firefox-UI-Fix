@@ -108,11 +108,19 @@ $_bookmarkToolbarMenus: selector.nest(
   /* Bookmark Popup - As Arrow Panel */
   #PersonalToolbar menupopup menuitem,
   #PersonalToolbar menupopup menu {
-    padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
+    padding-inline: var(--arrowpanel-menuitem-padding-inline) !important;
   }
 
   /* Bookmark Popup - None icon menu */
   @include _layoutBookmarkPopup() {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
+  }
+  @include _layoutBookmarkToolbar() {
+    padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+  }
+  @include _layoutBookmarkMenu() {
+    > .menu-text {
+      padding-inline-start: var(--context-menu-mac-padding) !important;
+    }
   }
 }

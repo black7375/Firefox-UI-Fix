@@ -8782,12 +8782,22 @@
       /* Bookmark Popup - As Arrow Panel */
       #PersonalToolbar menupopup menuitem,
       #PersonalToolbar menupopup menu {
-        padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
+        padding-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       }
       /* Bookmark Popup - None icon menu */
       menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
       menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
         padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
+      }
+      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+        padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+      }
+      menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]) > .menu-text,
+      menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) > .menu-text,
+      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) > .menu-text,
+      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) > .menu-text {
+        padding-inline-start: var(--context-menu-mac-padding) !important;
       }
     }
     @supports -moz-bool-pref("userChrome.icon.context_menu") {
