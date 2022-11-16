@@ -171,6 +171,12 @@
       --menu-icon-opacity: var(--dark-menu-icon-opacity);
     }
   }
+  /*= Firefox View Border #498 =================================================*/
+  :root:not([privatebrowsingmode="temporary"])[firefoxviewhidden] #firefox-view-button + #tabbrowser-tabs {
+    border-inline-start: none !important;
+    padding-inline-start: var(--tab-overflow-pinned-tabs-width) !important;
+    margin-inline-start: 0 !important;
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
