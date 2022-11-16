@@ -4008,7 +4008,6 @@
       height: calc(var(--uc-tabbar-height) - var(--uc-navbar-double-block)) !important;
       margin-top: calc(var(--uc-tabbar-hide-height) + var(--uc-navbar-double-block)) !important;
       margin-bottom: var(--uc-navbar-block, 0px) !important;
-      transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
     }
     #titlebar {
       transform: translateY(var(--uc-navbar-block, 0px));
@@ -4039,8 +4038,8 @@
       #nav-bar-customization-target {
         -moz-box-align: center;
       }
-      #urlbar[breakout] {
-        top: 0px !important; /* Original: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2); */
+      #urlbar-container {
+        min-height: calc(var(--urlbar-container-height) - 2px) !important;
       }
     }
     @supports -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
@@ -4107,7 +4106,6 @@
         height: calc(var(--uc-tabbar-height) - var(--uc-navbar-double-block)) !important;
         margin-top: calc(var(--uc-tabbar-hide-height) + var(--uc-navbar-double-block)) !important;
         margin-bottom: var(--uc-navbar-block, 0px) !important;
-        transform: translateY(calc(-1 * var(--uc-navbar-block, 0px)));
       }
       #titlebar {
         transform: translateY(var(--uc-navbar-block, 0px));
@@ -4138,8 +4136,8 @@
         #nav-bar-customization-target {
           -moz-box-align: center;
         }
-        #urlbar[breakout] {
-          top: 0px !important; /* Original: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2); */
+        #urlbar-container {
+          min-height: calc(var(--urlbar-container-height) - 2px) !important;
         }
       }
       @supports -moz-bool-pref("userChrome.tabbar.one_liner.combine_navbar") {
