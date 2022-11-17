@@ -155,6 +155,11 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.tabbar.one_liner.responsive",         true); // Need one_liner
 
 // user_pref("userChrome.tab.bottom_rounded_corner.all",       true);
+// user_pref("userChrome.tab.bottom_rounded_corner.australis", true);
+// user_pref("userChrome.tab.bottom_rounded_corner.edge",      true);
+// user_pref("userChrome.tab.bottom_rounded_corner.chrome",    true);
+// user_pref("userChrome.tab.bottom_rounded_corner.chrome_legacy", true);
+// user_pref("userChrome.tab.bottom_rounded_corner.wave",      true);
 // user_pref("userChrome.tab.always_show_tab_icon",            true);
 // user_pref("userChrome.tab.close_button_at_pinned",          true);
 // user_pref("userChrome.tab.close_button_at_pinned.always",   true);
