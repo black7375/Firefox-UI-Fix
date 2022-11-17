@@ -2821,8 +2821,8 @@
         margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
     #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
-      transition: -moz-box-flex 0.2s var(--animation-easing-function),
-        margin-inline-start 0.2s var(--animation-easing-function) !important;
+      transition: margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out,
+        max-width 0.1s ease-out !important;
     }
     #tabbrowser-tabs:not([movingtab]) .tab-content::before,
     #tabbrowser-tabs:not([movingtab]) .tab-content::after {
