@@ -1,7 +1,10 @@
-#tabbrowser-tabs {
-  --tab-corner-rounding: 3px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
-  --tab-corner-padding: 0px;
-  --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+#TabsToolbar {
+  --uc-tab-corner-rounding: 3px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
+  --uc-tab-corner-padding: 0px;
+  --uc-tab-corner-position: calc(var(--uc-tab-corner-padding) - var(--uc-tab-corner-rounding));
+
+  --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left.svg");
+  --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right.svg");
 }
 
 :root:not([customizing="true"]) {
@@ -16,7 +19,7 @@
         bottom: 0;
 
         /* Shape */
-        width: var(--tab-corner-rounding);
+        width: var(--uc-tab-corner-rounding);
         height: 100%;
 
         /* Color */
@@ -25,7 +28,7 @@
         -moz-context-properties: fill, stroke;
 
         /* Image */
-        background-size: var(--tab-corner-rounding);
+        background-size: var(--uc-tab-corner-rounding);
         background-repeat: no-repeat;
         background-position-y: bottom;
 
@@ -45,12 +48,12 @@
       }
 
       &::before {
-        left: var(--tab-corner-position);
-        background-image: url("../icons/tab-bottom-corner-left.svg");
+        left: var(--uc-tab-corner-position);
+        background-image: var(--uc-tab-corner-left-side-svg);
       }
       &::after {
-        right: var(--tab-corner-position);
-        background-image: url("../icons/tab-bottom-corner-right.svg");
+        right: var(--uc-tab-corner-position);
+        background-image: var(--uc-tab-corner-right-side-svg);
       }
     }
 
