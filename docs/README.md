@@ -31,15 +31,15 @@ Firefox Source Code:
 - [Firefox Source Docs](https://firefox-source-docs.mozilla.org/)
 
 Firefox Documents:
-- [Support Mozilla: Firefox advanced customization and configuration options](https://support.mozilla.org/en-US/kb/firefox-advanced-customization-and-configuration)
-- [Support Mozilla: Profiles - Where Firefox stores your bookmarks, passwords and other user data](https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data)
+- [Mozilla Support: Firefox advanced customization and configuration options](https://support.mozilla.org/en-US/kb/firefox-advanced-customization-and-configuration)
+- [Mozilla Support: Profiles - Where Firefox stores your bookmarks, passwords and other user data](https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data)
 
-Test for None mac users:
+Test for non-Mac users:
 - [Docker-OSX](https://github.com/sickcodes/Docker-OSX)
 
 ## Project-Specific
 ### Environment
-[`git`](https://git-scm.com/) and [`yarn`](https://yarnpkg.com/) should be installed.
+[`git`](https://git-scm.com/) and [`yarn`](https://yarnpkg.com/) must be installed.
 
 You can configure it as follows:
 ```shell
