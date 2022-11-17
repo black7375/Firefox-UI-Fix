@@ -4057,6 +4057,9 @@
         var(--uc-oneliner-urlbar-base-width, 50px) + 24px + 2 * var(--toolbarbutton-inner-padding)
       ) !important;
     }
+    #urlbar[breakout][breakout-extend] {
+      min-width: calc(310px + 2 * (24px + 2 * var(--toolbarbutton-inner-padding))) !important;
+    }
     #PersonalToolbar {
       position: relative;
       z-index: -1;
@@ -4154,6 +4157,9 @@
         min-width: calc(
           var(--uc-oneliner-urlbar-base-width, 50px) + 24px + 2 * var(--toolbarbutton-inner-padding)
         ) !important;
+      }
+      #urlbar[breakout][breakout-extend] {
+        min-width: calc(310px + 2 * (24px + 2 * var(--toolbarbutton-inner-padding))) !important;
       }
       #PersonalToolbar {
         position: relative;
