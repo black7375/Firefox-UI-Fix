@@ -11,17 +11,17 @@
     => Can't override style. Therefore, we should approach it by bypass.
    */
     --tabs-navbar-shadow-size: -1px; /* Original: 1px */
-    --tabs-navbar-original-shadow-size: 0.5px;
-    --tab-corner-rounding: 4px; /* Hardcoded */
+    --uc-tabs-navbar-shadow-size: 0.5px;
+    --uc-tab-corner-rounding: 4px; /* Hardcoded */
     --uc-newtab-bgcolor: transparent;
 
     /* Corner Rounding Image */
-    --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
+    --uc-newtab-position: calc((var(--uc-tab-corner-rounding) / 2) * -1);
     background-image: var(--uc-tab-corner-left-side-svg), var(--uc-tab-corner-right-side-svg);
     background-repeat: no-repeat;
-    background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
-                         right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
-    background-size: var(--tab-corner-rounding);
+    background-position: left var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size),
+                         right var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size);
+    background-size: var(--uc-tab-corner-rounding);
 
     /* Corner Rounding Color */
     fill: var(--uc-newtab-bgcolor) !important;
@@ -34,7 +34,7 @@
       "userChrome.tab.bottom_rounded_corner.chrome",
       "userChrome.tab.bottom_rounded_corner.edge"
     ) {
-      --newtab-position: 0px;
+      --uc-newtab-position: 0px;
       --uc-newtab-non-corner-bgwidth: 0px;
       --uc-tab-corner-half-height: calc(var(--uc-tab-corner-height) / 2);
       --uc-tab-corner-half-height-reverse: calc(var(--uc-tab-corner-half-height) * -1);
@@ -46,9 +46,9 @@
       background-image: var(--uc-tab-corner-left-side-svg),
                         linear-gradient(to left, var(--uc-newtab-bgcolor), var(--uc-newtab-bgcolor)),
                         var(--uc-tab-corner-right-side-svg);
-      background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
-                           center bottom var(--tabs-navbar-original-shadow-size),
-                           right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
+      background-position: left var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size),
+                           center bottom var(--uc-tabs-navbar-shadow-size),
+                           right var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size);
       background-size: var(--uc-tab-corner-height) var(--uc-tab-corner-height),
                        var(--uc-newtab-non-corner-bgwidth) var(--uc-tab-corner-height),
                        var(--uc-tab-corner-height) var(--uc-tab-corner-height);
@@ -120,7 +120,7 @@
   border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
 
   padding: calc(var(--toolbarbutton-inner-padding) - (var(--tab-block-margin) / 4)) var(--toolbarbutton-inner-padding)
-    calc(var(--toolbarbutton-inner-padding) + (var(--tab-block-margin) / 4) + var(--tabs-navbar-original-shadow-size)) !important;
+    calc(var(--toolbarbutton-inner-padding) + (var(--tab-block-margin) / 4) + var(--uc-tabs-navbar-shadow-size)) !important;
   -moz-context-properties: fill, fill-opacity;
   fill: var(--toolbarbutton-icon-fill);
   fill-opacity: var(--toolbarbutton-icon-fill-opacity);

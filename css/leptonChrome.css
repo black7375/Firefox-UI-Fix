@@ -6536,10 +6536,10 @@
         @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
           @supports not -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
             #TabsToolbar {
-              --tab-corner-rounding: 3px;
+              --uc-tab-corner-rounding: 3px;
               /* 10px looks about like chromium - 17px looks close to Australis tabs */
-              --tab-corner-padding: 0px;
-              --tab-corner-position: calc(var(--tab-corner-padding) - var(--tab-corner-rounding));
+              --uc-tab-corner-padding: 0px;
+              --uc-tab-corner-position: calc(var(--uc-tab-corner-padding) - var(--uc-tab-corner-rounding));
               --uc-tab-corner-left-side-svg: url("../icons/tab-bottom-corner-left.svg");
               --uc-tab-corner-right-side-svg: url("../icons/tab-bottom-corner-right.svg");
             }
@@ -6552,14 +6552,14 @@
               z-index: 1;
               bottom: 0;
               /* Shape */
-              width: var(--tab-corner-rounding);
+              width: var(--uc-tab-corner-rounding);
               height: 100%;
               /* Color */
               fill: transparent;
               stroke: transparent;
               -moz-context-properties: fill, stroke;
               /* Image */
-              background-size: var(--tab-corner-rounding);
+              background-size: var(--uc-tab-corner-rounding);
               background-repeat: no-repeat;
               background-position-y: bottom;
             }
@@ -6586,11 +6586,11 @@
               }
             }
             :root:not([customizing="true"]) .tabbrowser-tab .tab-background::before {
-              left: var(--tab-corner-position);
+              left: var(--uc-tab-corner-position);
               background-image: var(--uc-tab-corner-left-side-svg);
             }
             :root:not([customizing="true"]) .tabbrowser-tab .tab-background::after {
-              right: var(--tab-corner-position);
+              right: var(--uc-tab-corner-position);
               background-image: var(--uc-tab-corner-right-side-svg);
             }
             :root:not([customizing="true"]) .tabbrowser-tab[visuallyselected] .tab-background::before,
@@ -7300,17 +7300,17 @@
       */
       --tabs-navbar-shadow-size: -1px;
       /* Original: 1px */
-      --tabs-navbar-original-shadow-size: 0.5px;
-      --tab-corner-rounding: 4px;
+      --uc-tabs-navbar-shadow-size: 0.5px;
+      --uc-tab-corner-rounding: 4px;
       /* Hardcoded */
       --uc-newtab-bgcolor: transparent;
       /* Corner Rounding Image */
-      --newtab-position: calc((var(--tab-corner-rounding) / 2) * -1);
+      --uc-newtab-position: calc((var(--uc-tab-corner-rounding) / 2) * -1);
       background-image: var(--uc-tab-corner-left-side-svg), var(--uc-tab-corner-right-side-svg);
       background-repeat: no-repeat;
-      background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
-        right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
-      background-size: var(--tab-corner-rounding);
+      background-position: left var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size),
+        right var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size);
+      background-size: var(--uc-tab-corner-rounding);
       /* Corner Rounding Color */
       fill: var(--uc-newtab-bgcolor) !important;
       -moz-context-properties: fill !important;
@@ -7321,7 +7321,7 @@
         "userChrome.tab.bottom_rounded_corner.chrome"
       ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
       #tabs-newtab-button {
-        --newtab-position: 0px;
+        --uc-newtab-position: 0px;
         --uc-newtab-non-corner-bgwidth: 0px;
         --uc-tab-corner-half-height: calc(var(--uc-tab-corner-height) / 2);
         --uc-tab-corner-half-height-reverse: calc(var(--uc-tab-corner-half-height) * -1);
@@ -7331,9 +7331,9 @@
         background-image: var(--uc-tab-corner-left-side-svg),
           linear-gradient(to left, var(--uc-newtab-bgcolor), var(--uc-newtab-bgcolor)),
           var(--uc-tab-corner-right-side-svg);
-        background-position: left var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size),
-          center bottom var(--tabs-navbar-original-shadow-size),
-          right var(--newtab-position) bottom var(--tabs-navbar-original-shadow-size);
+        background-position: left var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size),
+          center bottom var(--uc-tabs-navbar-shadow-size),
+          right var(--uc-newtab-position) bottom var(--uc-tabs-navbar-shadow-size);
         background-size: var(--uc-tab-corner-height) var(--uc-tab-corner-height),
           var(--uc-newtab-non-corner-bgwidth) var(--uc-tab-corner-height),
           var(--uc-tab-corner-height) var(--uc-tab-corner-height);
@@ -7450,7 +7450,7 @@
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important;
     /* Original: var(--tab-border-radius) */
     padding: calc(var(--toolbarbutton-inner-padding) - var(--tab-block-margin) / 4) var(--toolbarbutton-inner-padding)
-      calc(var(--toolbarbutton-inner-padding) + var(--tab-block-margin) / 4 + var(--tabs-navbar-original-shadow-size)) !important;
+      calc(var(--toolbarbutton-inner-padding) + var(--tab-block-margin) / 4 + var(--uc-tabs-navbar-shadow-size)) !important;
     -moz-context-properties: fill, fill-opacity;
     fill: var(--toolbarbutton-icon-fill);
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
