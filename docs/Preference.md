@@ -46,7 +46,7 @@ Key information on the sets that can be used in the configuration file.
 - `sticky_pref()`: Always logged even if the defaults match
 - `user_pref()`: Set user pref
 
-The following is a method of operating the configuration file parser.
+The following is a method of operating the configuration file parser.  
 See [EBNF (Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
 
 ```ebnf
