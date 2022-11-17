@@ -27,7 +27,7 @@
   - Convention is to use a dotted segmented form (Ex. `browser.cache.disk.enable`)
 - Value:
   - Type: bool, 32-bit ints, 8-bit C string
-  - When you need an float, use a string. (Ex. `general.smoothScroll.currentVelocityWeighting`: `"0.25"`)
+  - When you need a float, use a string (Ex. `general.smoothScroll.currentVelocityWeighting`: `"0.25"`)
 
 **Main Purpose**
 - Feature enable/disable flags (Ex. `xpinstall.signatures.required`).
@@ -46,8 +46,8 @@ Key information on the sets that can be used in the configuration file.
 - `sticky_pref()`: Always logged even if the defaults match
 - `user_pref()`: Set user pref
 
-The following is a method of operating the configuration file parser.  
-See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
+The following is a method of operating the configuration file parser.
+See [EBNF (Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
 
 ```ebnf
 <pref-file>   = <pref>*
@@ -107,7 +107,7 @@ It is written to `prefs.js` in a way that can be set by the GUI.
 **Basics**
 It exists in the profile directory, and is used to store settings that are changed from *defaults* or when users added *new settings*.
 
-In general, Do NOT edit `prefs.js` directly.
+In general, do NOT edit `prefs.js` directly.
 
 ### user.js
 **Related Docs**

@@ -19,10 +19,10 @@
 
 **Explanation**
 
-Firefox achieve performance improvements by moving many of their internal parts from being standalone files or sets of JAR files into just one JAR file called `omni.ja`.  
+Firefox achieves performance improvements by moving many of their internal parts from being standalone files or sets of JAR files into just one JAR file called `omni.ja`.  
 This reduces the amount of I/O needed to load the application.
 
-Chrome content, modules, non-binary components, and many other elements are packaged in an omni.jar file for each base directory.
+Chrome content, modules, non-binary components, and many other elements are packaged in an omni.ja file for each base directory.
 
 - `actors/`: [JSActors](https://firefox-source-docs.mozilla.org/dom/ipc/jsactors.html) related files.
 - `chrome.manifest`: The [chrome manifest](https://udn.realityripple.com/docs/Mozilla/Chrome_Registration) file.
