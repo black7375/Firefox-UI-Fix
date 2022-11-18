@@ -7604,15 +7604,19 @@
     > .tab-close-button:not([selected="true"]) {
     display: -moz-inline-box !important;
   }
-
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
     visibility: collapse !important;
     opacity: 0;
   }
-
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
     visibility: visible !important;
     opacity: 1;
+  }
+  @supports -moz-bool-pref("userChrome.tab.close_button_at_hover.with_selected") {
+    #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([pinned]):not(:hover) .tab-close-button {
+      visibility: collapse !important;
+      opacity: 0;
+    }
   }
 
   @supports -moz-bool-pref("userChrome.tab.close_button_at_hover.always") {
@@ -7620,34 +7624,27 @@
       visibility: collapse !important;
       opacity: 0;
     }
-
     .tabbrowser-tab:hover .tab-close-button {
       visibility: visible !important;
       opacity: 1;
+    }
+    @supports -moz-bool-pref("userChrome.tab.close_button_at_hover.with_selected") {
+      .tabbrowser-tab:not([pinned]):not(:hover) .tab-close-button {
+        visibility: collapse !important;
+        opacity: 0;
+      }
     }
   }
   /* Animate */
   @media (prefers-reduced-motion: no-preference) {
     /* Fade out */
-    #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
+    .tabbrowser-tab .tab-close-button {
       transition: opacity 0.1s var(--animation-easing-function) !important;
     }
 
     /* Fade in */
-    #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
+    .tabbrowser-tab:hover .tab-close-button {
       transition: opacity 0.25s var(--animation-easing-function) !important;
-    }
-
-    @supports -moz-bool-pref("userChrome.tab.close_button_at_hover.always") {
-      /* Fade out */
-      .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
-        transition: opacity 0.1s var(--animation-easing-function) !important;
-      }
-
-      /* Fade in */
-      .tabbrowser-tab:hover .tab-close-button {
-        transition: opacity 0.25s var(--animation-easing-function) !important;
-      }
     }
   }
   /* Closed Button's icon thicker */
