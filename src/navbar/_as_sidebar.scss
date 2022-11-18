@@ -1,0 +1,125 @@
+:root {
+  --uc-navbar-margin-block: var(--toolbarbutton-inner-padding);
+  --uc-urlbar-margin-top: calc(var(--uc-navbar-height) + var(--uc-navbar-margin-block));
+
+  --uc-urlbar-container-height: 36px;
+  --uc-navbar-sideblock-height: calc(var(--uc-urlbar-margin-top) + var(--uc-urlbar-container-height));
+}
+
+#nav-bar,
+#sidebar-box,
+#sidebar-header,
+#sidebar {
+  min-width: var(--uc-sidebar-activate-width) !important;
+  max-width: var(--uc-sidebar-activate-width) !important;
+}
+
+#nav-bar,
+#wrapper-urlbar-container,
+#urlbar-container {
+  position: absolute !important;
+}
+
+#nav-bar {
+  --toolbarbutton-outer-padding: 0px !important;
+  z-index: 1;
+
+  margin-top: calc(var(--uc-tabbar-height) + var(--uc-bm-height) + var(--uc-menubar-height) + var(--uc-navbar-margin-block)); // drag space
+  overflow-y: visible !important; // show urlbar
+
+  background: none !important;
+  box-shadow: none !important;
+
+  -moz-window-dragging: drag;
+}
+@include Has {
+  :root:has(#sidebar-box[hidden="true"]) #nav-bar {
+    margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
+    opacity: 0;
+    visibility: collapse;
+  }
+  :root:has(#sidebar-box[positionend="true"]) #nav-bar {
+    right: 0;
+  }
+}
+@include Animate {
+  @include Option("userChrome.decoration.animate") {
+    @include NotOption("userChrome.decoration.disable_sidebar_animate") {
+      #nav-bar {
+        transition: margin-inline-start 0.25s var(--animation-easing-function),
+                    opacity 0.25s ease-in-out,
+                    visibility 0s linear,
+                    margin-top var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                    var(--ext-theme-background-transition)!important;
+        will-change: margin-inline-start, opacity, visibility, margin-top;
+      }
+      :root:has(#sidebar-box[hidden="true"]) #nav-bar,
+      #navigator-toolbox:is(:hover, :focus-within) #nav-bar {
+        transition-delay: 0s, 0s, 0.25s, 0s, 0s !important;
+      }
+    }
+    @include Option("userChrome.decoration.disable_sidebar_animate") {
+      #nav-bar {
+        transition: margin-top var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay), var(--ext-theme-background-transition) !important;
+        will-change: margin-top;
+      }
+      #navigator-toolbox:is(:hover, :focus-within) #nav-bar {
+        transition-delay: 0s !important;
+      }
+    }
+  }
+}
+
+#urlbar-container {
+  top: var(--uc-urlbar-margin-top);
+  min-width: calc(var(--uc-sidebar-activate-width) - (2 * var(--toolbarbutton-inner-padding))) !important;
+}
+
+#sidebar-header {
+  margin-top: var(--uc-navbar-sideblock-height) !important;
+  -moz-window-dragging: drag;
+}
+
+:root[customizing="true"] {
+  #browser[collapsed="true"] {
+    visibility: visible !important;
+
+    #appcontent {
+      visibility: collapse;
+    }
+
+    #sidebar-box {
+      position: absolute;
+      height: 100%;
+
+      &[positionend="true"] {
+        right: 0;
+      }
+    }
+  }
+
+  #customization-container {
+    --uc-customization-conatiner-margin: var(--uc-navbar-height-default);
+    @include Option("userChrome.hidden.tabbar") {
+      --uc-customization-conatiner-margin: calc(var(--uc-navbar-height-default) - var(--uc-tabbar-height-default));
+    }
+
+    width: calc(100% - var(--uc-sidebar-activate-width));
+    height: calc(100% - var(--uc-customization-conatiner-margin));
+  }
+
+  &:has(#sidebar-box:not([positionend="true"])) #customization-container {
+    margin-inline-start: var(--uc-sidebar-activate-width);
+  }
+  &:has(#sidebar-box[positionend="true"]) #customization-container {
+    margin-inline-end: var(--uc-sidebar-activate-width);
+  }
+
+  #customization-palette-container {
+    flex-shrink: 0.35 !important;
+  }
+  #customization-panel-container {
+    flex-shrink: 0.5 !important;
+  }
+}
+

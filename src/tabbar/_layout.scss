@@ -35,4 +35,6 @@
   }
 }
 
-@import "layout/navbar_padding";
+@include NotOption("userChrome.navbar.as_sidebar") {
+  @import "layout/navbar_padding";
+}
