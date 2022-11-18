@@ -49,6 +49,11 @@
 }
 
 /*= Tab Bar - Fill width tab =================================================*/
+@include Option("userChrome.tabbar.unscroll") {
+  @import "unscroll";
+}
+
+/*= Tab Bar - Fill width tab =================================================*/
 @include Option("userChrome.tabbar.fill_width") {
   @import "fill_width";
 }

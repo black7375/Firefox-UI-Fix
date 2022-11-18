@@ -6327,6 +6327,54 @@
   }
 }
 /*= Tab Bar - Fill width tab =================================================*/
+@supports -moz-bool-pref("userChrome.tabbar.unscroll") {
+  /* Disable scrollbox */
+  spacer[part="overflow-start-indicator"] + .scrollbox-clip > scrollbox {
+    overflow: -moz-hidden-unscrollable !important;
+  }
+
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([pinned]):not([visuallyselected]) {
+    /* Set minimum width below which tabs will not shrink */
+    --tab-min-width: 16px;
+    container-type: inline-size;
+    container-name: backgroundTab;
+  }
+  @container backgroundTab (max-width: 46px) {
+    #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([pinned]):not([visuallyselected]) .tab-content {
+      --inline-tab-padding: 0px;
+      justify-self: center;
+    }
+    #tabbrowser-tabs[closebuttons="activetab"]
+      .tabbrowser-tab:not([pinned]):not([visuallyselected])
+      .tab-icon-stack
+      > * {
+      margin-inline-end: 0 !important;
+    }
+    #tabbrowser-tabs[closebuttons="activetab"]
+      .tabbrowser-tab:not([pinned]):not([visuallyselected])
+      .tab-label-container,
+    #tabbrowser-tabs[closebuttons="activetab"]
+      .tabbrowser-tab:not([pinned]):not([visuallyselected]):hover
+      .tab-close-button {
+      visibility: collapse !important;
+    }
+  }
+  #tabbrowser-tabs[closebuttons="activetab"][hasadjacentnewtabbutton="true"] #tabbrowser-arrowscrollbox-periphery {
+    position: absolute !important;
+    right: 0;
+  }
+  #tabbrowser-tabs[closebuttons="activetab"][hasadjacentnewtabbutton="true"]
+    #tabbrowser-arrowscrollbox-periphery
+    > #tabs-newtab-button {
+    z-index: 2 !important;
+  }
+  #tabbrowser-tabs[closebuttons="activetab"][hasadjacentnewtabbutton="true"] #tabbrowser-arrowscrollbox {
+    padding-inline-end: calc(
+      16px + (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)) * 2
+    ) !important;
+  }
+}
+/*= Tab Bar - Fill width tab =================================================*/
 @supports -moz-bool-pref("userChrome.tabbar.fill_width") {
   /* Why 100vw? Tab closing requires width animation to end and "none" can't be animated */
   .tabbrowser-tab[fadein]:not([style^="max-width"]) {
