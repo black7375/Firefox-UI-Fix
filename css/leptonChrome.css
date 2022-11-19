@@ -8329,6 +8329,14 @@
   }
 }
 /** Url View UI ***************************************************************/
+/*= Url View - Share Layout ==================================================*/
+@supports -moz-bool-pref("userChrome.urlView.as_launcher") or -moz-bool-pref("userChrome.urlView.full_width_padding") {
+  .urlbarView {
+    --uc-urlView-padding: calc(5px + var(--urlbar-container-padding));
+    margin-inline: 0 !important;
+    /* Original: calc(5px + var(--urlbar-container-padding)) */
+  }
+}
 /*= Url View - Looks like Launcher ===========================================*/
 @supports -moz-bool-pref("userChrome.urlView.as_launcher") {
   /* Init & Base Layout */
@@ -8348,14 +8356,17 @@
     top: 12vh !important;
     width: calc(100% - (var(--uc-urlView-margin) + var(--toolbarbutton-inner-padding))) !important;
     /* paddding as margin */
-    margin-inline: 0 !important;
-    padding-inline: calc(5px + var(--urlbar-container-padding)) !important;
     /* background */
     background-color: var(--toolbar-field-focus-background-color) !important;
     background-clip: border-box;
     border: 1px solid var(--arrowpanel-border-color) !important;
     border-radius: var(--toolbarbutton-border-radius) !important;
     box-shadow: 0 2px 14px rgba(0, 0, 0, 0.13);
+  }
+  @supports not -moz-bool-pref("userChrome.urlView.full_width_padding") {
+    .urlbarView {
+      padding-inline: var(--uc-urlView-padding) !important;
+    }
   }
 
   .urlbarView-body-inner {
@@ -8426,6 +8437,43 @@
     width: var(--uc-searchBar-icon-size) !important;
     /* Original: 16px */
     height: var(--uc-searchBar-icon-size) !important;
+  }
+}
+/*= Url View - Full Width Pddding ============================================*/
+@supports -moz-bool-pref("userChrome.urlView.full_width_padding") {
+  .urlbarView {
+    --uc-urlView-padding-double: calc(var(--uc-urlView-padding) * 2);
+    --uc-urlView-full-width-padding: var(--uc-urlView-padding-double);
+  }
+  @supports not -moz-bool-pref("userChrome.urlView.as_launcher") {
+    .urlbarView {
+      --uc-urlView-full-width-padding: var(--uc-urlView-padding);
+      width: 100% !important;
+    }
+  }
+
+  #urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
+    border-color: transparent !important;
+  }
+  #urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner::before {
+    content: "";
+    position: absolute;
+    border-top: 1px solid var(--autocomplete-popup-separator-color);
+    transform: translate(-50%, -1px);
+    left: 50%;
+  }
+
+  #urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner::before,
+  .urlbarView .search-one-offs {
+    width: calc(100% + 2px - var(--uc-urlView-padding-double)) !important;
+  }
+
+  .urlbarView .search-one-offs {
+    margin-inline: var(--uc-urlView-full-width-padding) !important;
+  }
+
+  .urlbarView-row-inner {
+    padding-inline: calc(var(--uc-urlView-full-width-padding) + var(--urlbarView-item-inline-padding)) !important;
   }
 }
 /*= Url View - Always show page actions ======================================*/

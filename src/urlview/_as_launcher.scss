@@ -55,8 +55,9 @@ $_urlRowPadding: 2px; //.urlbarView-row
   width: calc(100% - (var(--uc-urlView-margin) + var(--toolbarbutton-inner-padding))) !important;
 
   /* paddding as margin */
-  margin-inline: 0 !important;
-  padding-inline: calc(5px + var(--urlbar-container-padding)) !important;;
+  @include NotOption("userChrome.urlView.full_width_padding") {
+    padding-inline: var(--uc-urlView-padding) !important;
+  }
 
   /* background */
   background-color: var(--toolbar-field-focus-background-color) !important;

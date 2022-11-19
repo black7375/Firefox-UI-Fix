@@ -1,6 +1,20 @@
+/*= Url View - Share Layout ==================================================*/
+@include Option("userChrome.urlView.as_launcher", "userChrome.urlView.full_width_padding") {
+  .urlbarView {
+    --uc-urlView-padding: calc(5px + var(--urlbar-container-padding));
+
+    margin-inline: 0 !important; /* Original: calc(5px + var(--urlbar-container-padding)) */
+  }
+}
+
 /*= Url View - Looks like Launcher ===========================================*/
 @include Option("userChrome.urlView.as_launcher") {
   @import "as_launcher";
+}
+
+/*= Url View - Full Width Pddding ============================================*/
+@include Option("userChrome.urlView.full_width_padding") {
+  @import "full_width_padding";
 }
 
 /*= Url View - Always show page actions ======================================*/
