@@ -4235,19 +4235,6 @@
     @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
       See the above repository for updates as well as full license text. */
-      :root {
-        /* height if native titlebar is enabled, assumes empty menubar */
-        --uc-menubar-height: 20px;
-        --uc-menubar-padding: 1px;
-        /* FF's menubar padding */
-        --uc-menubar-container-height: calc(var(--uc-menubar-height) - (2 * var(--uc-menubar-padding)));
-      }
-
-      :root[tabsintitlebar] {
-        /* height when native titlebar is disabled, more roomy so can fit buttons etc. */
-        --uc-menubar-height: 30px;
-      }
-
       /* Menubar on top patch - use with tabs_on_bottom.css */
       /* Only really useful if menubar is ALWAYS visible */
       :root:not([sizemode="fullscreen"]) {
@@ -4298,11 +4285,6 @@
 
       #toolbar-menubar .toolbarbutton-1 {
         --toolbarbutton-inner-padding: 3px;
-      }
-
-      #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
-      #TabsToolbar > .titlebar-buttonbox-container {
-        height: var(--uc-menubar-container-height);
       }
 
       :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -4385,19 +4367,6 @@
         @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
           /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
           See the above repository for updates as well as full license text. */
-          :root {
-            /* height if native titlebar is enabled, assumes empty menubar */
-            --uc-menubar-height: 20px;
-            --uc-menubar-padding: 1px;
-            /* FF's menubar padding */
-            --uc-menubar-container-height: calc(var(--uc-menubar-height) - (2 * var(--uc-menubar-padding)));
-          }
-
-          :root[tabsintitlebar] {
-            /* height when native titlebar is disabled, more roomy so can fit buttons etc. */
-            --uc-menubar-height: 30px;
-          }
-
           /* Menubar on top patch - use with tabs_on_bottom.css */
           /* Only really useful if menubar is ALWAYS visible */
           :root:not([sizemode="fullscreen"]) {
@@ -4448,11 +4417,6 @@
 
           #toolbar-menubar .toolbarbutton-1 {
             --toolbarbutton-inner-padding: 3px;
-          }
-
-          #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
-          #TabsToolbar > .titlebar-buttonbox-container {
-            height: var(--uc-menubar-container-height);
           }
 
           :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -4928,7 +4892,16 @@
       }
 
       #navigator-toolbox {
-        padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+        padding-top: var(--uc-titlebar-padding) !important;
+      }
+      @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
+          #navigator-toolbox {
+            padding-top: calc(
+              max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)
+            ) !important;
+          }
+        }
       }
 
       #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
@@ -5084,7 +5057,16 @@
         }
 
         #navigator-toolbox {
-          padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+          padding-top: var(--uc-titlebar-padding) !important;
+        }
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+          @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
+            #navigator-toolbox {
+              padding-top: calc(
+                max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)
+              ) !important;
+            }
+          }
         }
 
         #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
@@ -5237,7 +5219,16 @@
         }
 
         #navigator-toolbox {
-          padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+          padding-top: var(--uc-titlebar-padding) !important;
+        }
+        @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+          @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
+            #navigator-toolbox {
+              padding-top: calc(
+                max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)
+              ) !important;
+            }
+          }
         }
 
         #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
@@ -5393,7 +5384,16 @@
           }
 
           #navigator-toolbox {
-            padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+            padding-top: var(--uc-titlebar-padding) !important;
+          }
+          @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+            @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
+              #navigator-toolbox {
+                padding-top: calc(
+                  max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)
+                ) !important;
+              }
+            }
           }
 
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
@@ -5555,7 +5555,16 @@
           }
 
           #navigator-toolbox {
-            padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+            padding-top: var(--uc-titlebar-padding) !important;
+          }
+          @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+            @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
+              #navigator-toolbox {
+                padding-top: calc(
+                  max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)
+                ) !important;
+              }
+            }
           }
 
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
@@ -5708,7 +5717,16 @@
           }
 
           #navigator-toolbox {
-            padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+            padding-top: var(--uc-titlebar-padding) !important;
+          }
+          @supports -moz-bool-pref("userChrome.tabbar.on_bottom") {
+            @supports -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") {
+              #navigator-toolbox {
+                padding-top: calc(
+                  max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)
+                ) !important;
+              }
+            }
           }
 
           #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
@@ -9115,7 +9133,9 @@
 @supports -moz-bool-pref("userChrome.autohide.tabbar") or -moz-bool-pref("userChrome.autohide.navbar") or -moz-bool-pref(
     "userChrome.autohide.bookmarkbar"
   )
-  or -moz-bool-pref("userChrome.tabbar.one_liner") or -moz-bool-pref("userChrome.hidden.tabbar") or -moz-bool-pref("userChrome.navbar.as_sidebar") {
+  or -moz-bool-pref("userChrome.tabbar.one_liner") or -moz-bool-pref("userChrome.tabbar.on_bottom.menubar_on_top") or -moz-bool-pref(
+    "userChrome.hidden.tabbar"
+  ) or -moz-bool-pref("userChrome.navbar.as_sidebar") {
   :root {
     --uc-tabbar-height: var(--uc-tabbar-height-default);
     --uc-tabbar-height-default: var(--tab-min-height);
@@ -9131,6 +9151,8 @@
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
     --uc-titlebar-buttonbox-height: 34px;
     --uc-menubar-height: 0px;
+    --uc-menubar-height-default: calc(1.6rem + 2px);
+    --uc-menubar-inner-height: calc(1.6rem - 2px);
   }
   @supports -moz-bool-pref("userChrome.hidden.tabbar") {
     @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
@@ -9155,16 +9177,16 @@
   }
 
   @supports selector(:has(a)) {
-    :root:not([tabsintitlebar]):has(#toolbar-menubar) #nav-bar {
-      --uc-menubar-height: 1.6rem;
+    :root:not([tabsintitlebar]):has(#toolbar-menubar) {
+      --uc-menubar-height: var(--uc-menubar-height-default);
     }
     @media (-moz-gtk-csd-available) {
-      :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) #nav-bar {
+      :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) {
         --uc-menubar-height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin));
       }
     }
     @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-      :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) #nav-bar {
+      :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) {
         --uc-menubar-height: calc(var(--tab-min-height) - var(--tabs-navbar-shadow-size));
       }
     }
@@ -9172,15 +9194,15 @@
       (-moz-platform: windows-win7),
       (-moz-os-version: windows-win8),
       (-moz-platform: windows-win8) {
-      :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) #nav-bar {
+      :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) {
         --uc-menubar-height: calc(var(--tab-min-height) + var(--tab-block-margin));
       }
     }
-    :root[tabsintitlebar]:has(#toolbar-menubar[autohide="false"]) #nav-bar {
+    :root[tabsintitlebar]:has(#toolbar-menubar[autohide="false"]) {
       --uc-menubar-height: var(--uc-titlebar-buttonbox-height);
     }
-    :root:not([tabsintitlebar]):has(#toolbar-menubar[autohide="true"][inactive="true"]) #nav-bar,
-    :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"][inactive="true"]) #nav-bar {
+    :root:not([tabsintitlebar]):has(#toolbar-menubar[autohide="true"][inactive="true"]),
+    :root[tabsintitlebar]:has(#toolbar-menubar[autohide="true"][inactive="true"]) {
       --uc-menubar-height: 0px;
     }
 
