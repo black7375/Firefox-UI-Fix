@@ -36,7 +36,7 @@
   :root:has(#sidebar-box[hidden="true"]) #nav-bar {
     margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
     opacity: 0;
-    visibility: collapse;
+    visibility: hidden; // If use `collapse`, inline `--urlbar-toolbar-height` variable is calculated strangely small.
   }
   :root:has(#sidebar-box[positionend="true"]) #nav-bar {
     right: 0;
@@ -122,4 +122,3 @@
     flex-shrink: 0.5 !important;
   }
 }
-
