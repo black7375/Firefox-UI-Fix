@@ -1,3 +1,8 @@
+/*= Url View - Looks like Launcher ===========================================*/
+@include Option("userChrome.urlView.as_launcher") {
+  @import "as_launcher";
+}
+
 /*= Url View - Always show page actions ======================================*/
 @include Option("userChrome.urlbar.always_show_page_actions") {
   @import "always_show_page_actions";
