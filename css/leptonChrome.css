@@ -3774,8 +3774,6 @@
   :root:not([uidensity="touch"]) #search-container {
     padding-block: 3px !important;
     /* Original: 4px */
-    margin-inline: 5px !important;
-    /* Original: 5px */
   }
 
   :root:not([uidensity="compact"]) #urlbar-container,
@@ -8223,6 +8221,10 @@
   #urlbar-container {
     top: var(--uc-urlbar-margin-top);
     min-width: calc(var(--uc-sidebar-activate-width) - 2 * var(--toolbarbutton-inner-padding)) !important;
+    margin-inline: auto !important;
+    /* Original: var(--urlbar-margin-inline) */
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   #sidebar-header {
@@ -8230,6 +8232,9 @@
     -moz-window-dragging: drag;
   }
 
+  :root[customizing="true"] #wrapper-urlbar-container {
+    left: 50%;
+  }
   :root[customizing="true"] #browser[collapsed="true"] {
     visibility: visible !important;
   }
