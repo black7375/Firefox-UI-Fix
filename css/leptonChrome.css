@@ -9866,14 +9866,29 @@
   }
 }
 @supports -moz-bool-pref("userChrome.hidden.urlbar_iconbox") {
-  #identity-box[pageproxystate="valid"].notSecureText #identity-icon-label,
-  #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box,
-  #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box {
-    display: none;
+  @supports not -moz-bool-pref("userChrome.hidden.urlbar_iconbox.label_only") {
+    #identity-box[pageproxystate="valid"].notSecureText #identity-icon-label,
+    #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box,
+    #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box {
+      display: none;
+    }
+    #identity-box[pageproxystate="valid"].notSecureText #identity-icon-box {
+      padding-inline-end: 5px;
+      /* Original: 8px */
+    }
   }
-  #identity-box[pageproxystate="valid"].notSecureText #identity-icon-box {
-    padding-inline-end: 5px;
-    /* Original: 8px */
+  @supports -moz-bool-pref("userChrome.hidden.urlbar_iconbox.label_only") {
+    #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box,
+    #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box {
+      padding-inline: var(--urlbar-icon-padding) !important;
+    }
+    #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box:not(:hover),
+    #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box:not(:hover) {
+      background-color: transparent !important;
+    }
+    #identity-box[pageproxystate="valid"] #identity-icon-label {
+      display: none !important;
+    }
   }
 }
 @supports -moz-bool-pref("userChrome.hidden.bookmarkbar_icon") {

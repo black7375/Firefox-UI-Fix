@@ -98,6 +98,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.hidden.sidebar_header",               true);
 // user_pref("userChrome.hidden.sidebar_header.vertical_tab_only", true);
 // user_pref("userChrome.hidden.urlbar_iconbox",               true);
+// user_pref("userChrome.hidden.urlbar_iconbox.label_only",    true);
 // user_pref("userChrome.hidden.bookmarkbar_icon",             true);
 // user_pref("userChrome.hidden.bookmarkbar_label",            true);
 // user_pref("userChrome.hidden.disabled_menu",                true);

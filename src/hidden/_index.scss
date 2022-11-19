@@ -47,14 +47,29 @@
 
 @include Option("userChrome.hidden.urlbar_iconbox") {
   #identity-box[pageproxystate="valid"] {
-    &.notSecureText #identity-icon-label,
-    &.chromeUI #identity-icon-box,
-    &.extensionPage #identity-icon-box {
-      display: none;
-    }
+    @include NotOption("userChrome.hidden.urlbar_iconbox.label_only") {
+      &.notSecureText #identity-icon-label,
+      &.chromeUI #identity-icon-box,
+      &.extensionPage #identity-icon-box {
+        display: none;
+      }
 
-    &.notSecureText #identity-icon-box {
-      padding-inline-end: 5px; /* Original: 8px */
+      &.notSecureText #identity-icon-box {
+        padding-inline-end: 5px; /* Original: 8px */
+      }
+    }
+    @include Option("userChrome.hidden.urlbar_iconbox.label_only") {
+      &.chromeUI #identity-icon-box,
+      &.extensionPage #identity-icon-box {
+        padding-inline: var(--urlbar-icon-padding) !important;
+        &:not(:hover) {
+          background-color: transparent !important;
+        }
+      }
+
+      #identity-icon-label {
+        display: none !important;
+      }
     }
   }
 }
