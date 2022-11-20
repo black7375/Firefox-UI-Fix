@@ -1,10 +1,10 @@
 /*= Url Bar - Icon box as Separator ==========================================*/
-@include Option("userChrome.urlbar.iconbox_as_separator") {
+@include Option("userChrome.urlbar.iconbox_with_separator") {
   @import "iconbox_as_separator";
 }
 
 /*= Url View - Share Layout ==================================================*/
-@include Option("userChrome.urlView.as_launcher", "userChrome.urlView.full_width_padding") {
+@include Option("userChrome.urlView.as_commandbar", "userChrome.urlView.full_width_padding") {
   .urlbarView {
     --uc-urlView-padding: calc(5px + var(--urlbar-container-padding));
 
@@ -13,7 +13,7 @@
 }
 
 /*= Url View - Looks like Launcher ===========================================*/
-@include Option("userChrome.urlView.as_launcher") {
+@include Option("userChrome.urlView.as_commandbar") {
   @import "as_launcher";
 }
 

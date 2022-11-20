@@ -138,9 +138,9 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.padding.urlView_result",              true);
 // user_pref("userChrome.padding.panel_header",                true);
 
-// user_pref("userChrome.urlbar.iconbox_as_separator",         true);
+// user_pref("userChrome.urlbar.iconbox_with_separator",       true);
 
-// user_pref("userChrome.urlView.as_launcher",                 true);
+// user_pref("userChrome.urlView.as_commandbar",               true);
 // user_pref("userChrome.urlView.full_width_padding",          true);
 // user_pref("userChrome.urlView.always_show_page_actions",    true);
 // user_pref("userChrome.urlView.move_icon_to_left",           true);

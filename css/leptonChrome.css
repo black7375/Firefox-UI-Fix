@@ -3769,7 +3769,7 @@
   }
 }
 /*= URL Bar - Reduce Padding =================================================*/
-@supports not -moz-bool-pref("userChrome.urlView.as_launcher") {
+@supports not -moz-bool-pref("userChrome.urlView.as_commandbar") {
   @supports -moz-bool-pref("userChrome.padding.urlbar") {
     :root:not([uidensity="touch"]) #urlbar-container,
     :root:not([uidensity="touch"]) #search-container {
@@ -3802,7 +3802,7 @@
     }
   }
 }
-@supports -moz-bool-pref("userChrome.padding.urlView_expanding") or -moz-bool-pref("userChrome.urlView.as_launcher") {
+@supports -moz-bool-pref("userChrome.padding.urlView_expanding") or -moz-bool-pref("userChrome.urlView.as_commandbar") {
   #urlbar[breakout][breakout-extend] {
     top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
     left: 0 !important;
@@ -8330,7 +8330,7 @@
 }
 /** Url View UI ***************************************************************/
 /*= Url Bar - Icon box as Separator ==========================================*/
-@supports -moz-bool-pref("userChrome.urlbar.iconbox_as_separator") {
+@supports -moz-bool-pref("userChrome.urlbar.iconbox_with_separator") {
   #identity-box {
     /* separator */
     position: relative;
@@ -8377,7 +8377,7 @@
   }
 }
 /*= Url View - Share Layout ==================================================*/
-@supports -moz-bool-pref("userChrome.urlView.as_launcher") or -moz-bool-pref("userChrome.urlView.full_width_padding") {
+@supports -moz-bool-pref("userChrome.urlView.as_commandbar") or -moz-bool-pref("userChrome.urlView.full_width_padding") {
   .urlbarView {
     --uc-urlView-padding: calc(5px + var(--urlbar-container-padding));
     margin-inline: 0 !important;
@@ -8385,7 +8385,7 @@
   }
 }
 /*= Url View - Looks like Launcher ===========================================*/
-@supports -moz-bool-pref("userChrome.urlView.as_launcher") {
+@supports -moz-bool-pref("userChrome.urlView.as_commandbar") {
   /* Init & Base Layout */
   .urlbarView {
     --urlbarView-favicon-width: 32px;
@@ -8492,7 +8492,7 @@
     --uc-urlView-padding-double: calc(var(--uc-urlView-padding) * 2);
     --uc-urlView-full-width-padding: var(--uc-urlView-padding-double);
   }
-  @supports not -moz-bool-pref("userChrome.urlView.as_launcher") {
+  @supports not -moz-bool-pref("userChrome.urlView.as_commandbar") {
     .urlbarView {
       --uc-urlView-full-width-padding: var(--uc-urlView-padding);
       width: 100% !important;
@@ -10106,7 +10106,7 @@
     #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box:not(:hover) {
       background-color: transparent !important;
     }
-    @supports not -moz-bool-pref("userChrome.urlbar.iconbox_as_separator") {
+    @supports not -moz-bool-pref("userChrome.urlbar.iconbox_with_separator") {
       #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box,
       #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box {
         padding-inline: var(--urlbar-icon-padding) !important;
