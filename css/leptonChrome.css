@@ -8398,10 +8398,10 @@
     --uc-urlView-row-bottom: 2px;
     --uc-urlView-margin: calc(var(--uc-sidebar-activate-width, 18rem) + var(--toolbarbutton-inner-padding));
     position: fixed !important;
-    left: 50%;
+    left: 50vw;
     transform: translateX(-50%);
     top: 12vh !important;
-    width: calc(100% - (var(--uc-urlView-margin) + var(--toolbarbutton-inner-padding))) !important;
+    width: calc(100vw - (var(--uc-urlView-margin) + var(--toolbarbutton-inner-padding))) !important;
     /* paddding as margin */
     /* background */
     background-color: var(--toolbar-field-focus-background-color) !important;
