@@ -101,6 +101,12 @@ $_bookmarkToolbarMenus: selector.nest(
   /* Bookmark Popup - None icon menu */
   @include _layoutBookmarkMenu() {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+
+    .menu-text {
+      // https://github.com/mozilla/gecko-dev/commit/e54707888510dec75db59a170b287d1db031505a
+      // https://github.com/mozilla/gecko-dev/blob/e54707888510dec75db59a170b287d1db031505a/toolkit/themes/linux/global/menu.css#L103
+      margin-inline-start: 21px !important;
+    }
   }
 }
 

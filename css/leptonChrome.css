@@ -8787,6 +8787,12 @@
       #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
         padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
       }
+      menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]) .menu-text,
+      menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) .menu-text,
+      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) .menu-text,
+      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) .menu-text {
+        margin-inline-start: 21px !important;
+      }
     }
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
       /* Bookmark Popup - As Arrow Panel */
