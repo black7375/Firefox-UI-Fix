@@ -8329,6 +8329,53 @@
   }
 }
 /** Url View UI ***************************************************************/
+/*= Url Bar - Icon box as Separator ==========================================*/
+@supports -moz-bool-pref("userChrome.urlbar.iconbox_as_separator") {
+  #identity-box {
+    /* separator */
+    position: relative;
+  }
+
+  #identity-box[pageproxystate="valid"].notSecureText > .identity-box-button:not(:hover, [open]),
+  #identity-box[pageproxystate="valid"].chromeUI > .identity-box-button:not(:hover, [open]),
+  #identity-box[pageproxystate="valid"].extensionPage > .identity-box-button:not(:hover, [open]) {
+    /* remove background from urlbar box */
+    background-color: transparent !important;
+  }
+  #identity-box[pageproxystate="valid"].notSecureText > .identity-box-button:not(:hover, [open])::after,
+  #identity-box[pageproxystate="valid"].chromeUI > .identity-box-button:not(:hover, [open])::after,
+  #identity-box[pageproxystate="valid"].extensionPage > .identity-box-button:not(:hover, [open])::after {
+    opacity: 0.375;
+  }
+  #identity-box[pageproxystate="valid"].notSecureText > .identity-box-button::after,
+  #identity-box[pageproxystate="valid"].chromeUI > .identity-box-button::after,
+  #identity-box[pageproxystate="valid"].extensionPage > .identity-box-button::after {
+    /* Box Model */
+    content: "";
+    position: absolute;
+    display: block;
+    /* Position */
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Bar shape */
+    width: 1px;
+    height: 1em;
+    /* Bar Color */
+    opacity: 0;
+    background-color: currentColor;
+  }
+  #identity-box[pageproxystate="valid"] #identity-icon-label {
+    /* increase space between icon and text - as identity box padding */
+    padding-inline-start: 8px !important;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .identity-box-button::after {
+      transition: opacity 0.2s var(--animation-easing-function);
+    }
+  }
+}
 /*= Url View - Share Layout ==================================================*/
 @supports -moz-bool-pref("userChrome.urlView.as_launcher") or -moz-bool-pref("userChrome.urlView.full_width_padding") {
   .urlbarView {
@@ -10055,13 +10102,15 @@
     }
   }
   @supports -moz-bool-pref("userChrome.hidden.urlbar_iconbox.label_only") {
-    #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box,
-    #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box {
-      padding-inline: var(--urlbar-icon-padding) !important;
-    }
     #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box:not(:hover),
     #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box:not(:hover) {
       background-color: transparent !important;
+    }
+    @supports not -moz-bool-pref("userChrome.urlbar.iconbox_as_separator") {
+      #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box,
+      #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box {
+        padding-inline: var(--urlbar-icon-padding) !important;
+      }
     }
     #identity-box[pageproxystate="valid"] #identity-icon-label {
       display: none !important;

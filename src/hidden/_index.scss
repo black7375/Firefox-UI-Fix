@@ -61,9 +61,12 @@
     @include Option("userChrome.hidden.urlbar_iconbox.label_only") {
       &.chromeUI #identity-icon-box,
       &.extensionPage #identity-icon-box {
-        padding-inline: var(--urlbar-icon-padding) !important;
         &:not(:hover) {
           background-color: transparent !important;
+        }
+
+        @include NotOption("userChrome.urlbar.iconbox_as_separator") {
+          padding-inline: var(--urlbar-icon-padding) !important;
         }
       }
 

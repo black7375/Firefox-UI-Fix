@@ -138,6 +138,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.padding.urlView_result",              true);
 // user_pref("userChrome.padding.panel_header",                true);
 
+// user_pref("userChrome.urlbar.iconbox_as_separator",         true);
+
 // user_pref("userChrome.urlView.as_launcher",                 true);
 // user_pref("userChrome.urlView.full_width_padding",          true);
 // user_pref("userChrome.urlView.always_show_page_actions",    true);

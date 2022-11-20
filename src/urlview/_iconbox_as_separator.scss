@@ -1,0 +1,52 @@
+#identity-box {
+  /* separator */
+  position: relative;
+}
+
+#identity-box[pageproxystate="valid"] {
+  &.notSecureText,
+  &.chromeUI,
+  &.extensionPage {
+    > .identity-box-button {
+      &:not(:hover, [open]) {
+        /* remove background from urlbar box */
+        background-color: transparent !important;
+
+        &::after {
+          opacity: 0.375;
+        }
+      }
+
+      &::after {
+        /* Box Model */
+        content: "";
+        position: absolute;
+        display: block;
+
+        /* Position */
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        /* Bar shape */
+        width: 1px;
+        height: 1em;
+
+        /* Bar Color */
+        opacity: 0;
+        background-color: currentColor;
+      }
+    }
+  }
+
+  #identity-icon-label {
+    /* increase space between icon and text - as identity box padding */
+    padding-inline-start: 8px !important;
+  }
+}
+
+@include Animate {
+  .identity-box-button::after {
+    transition: opacity 0.2s var(--animation-easing-function);
+  }
+}
