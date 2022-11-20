@@ -8707,10 +8707,10 @@
 @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #urlbar-container {
     /* var(--urlbar-margin-inline) */
-    margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin)) !important;
+    margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin, 0px)) !important;
   }
   #nav-bar-customization-target > #urlbar-container > #urlbar:not([breakout][breakout-extend]) {
-    padding-left: var(--uc-urlbar-combined-margin);
+    padding-left: var(--uc-urlbar-combined-margin, 0px);
   }
   @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
     #nav-bar-customization-target > #urlbar-container {
@@ -8731,12 +8731,30 @@
       }
     }
   }
+
+  @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+    @supports -moz-bool-pref("userChrome.autohide.forward_button") {
+      #nav-bar-customization-target
+        > #forward-button[disabled="true"]
+        ~ #urlbar-container
+        > #urlbar:not([breakout][breakout-extend]) {
+        padding-left: calc(var(--uc-urlbar-combined-margin, 0px) - var(--urlbar-icon-padding));
+      }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #nav-bar-customization-target > #forward-button[disabled="true"] ~ #urlbar-container > #urlbar {
+        transition-property: margin-left, padding-left;
+        transition-duration: 0.5s;
+        transition-timing-function: var(--animation-easing-function);
+      }
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
   #nav-bar-customization-target > #forward-button {
+    --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
     z-index: 2;
     position: relative;
-    margin-inline-start: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px) !important;
   }
   #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
     padding-inline-end: var(--urlbar-icon-padding) !important;
@@ -8767,10 +8785,6 @@
             background-color: var(--uc-combined-circlebutton-active-background) !important;
             border-color: rgba(12, 12, 13, 0.4);
           }
-          #nav-bar-customization-target > #forward-button[disabled="true"] {
-            opacity: 1 !important;
-            /* Original: 0.4 */
-          }
           #nav-bar-customization-target > #forward-button[disabled="true"] > .toolbarbutton-icon {
             background-color: color-mix(
               in srgb,
@@ -8778,6 +8792,12 @@
               var(--toolbar-field-background-color) 40%
             ) !important;
             fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+          }
+          @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
+            #nav-bar-customization-target > #forward-button[disabled="true"] {
+              opacity: 1 !important;
+              /* Original: 0.4 */
+            }
           }
         }
       }
@@ -8795,10 +8815,6 @@
           background-color: var(--uc-combined-circlebutton-active-background) !important;
           border-color: rgba(12, 12, 13, 0.4);
         }
-        #nav-bar-customization-target > #forward-button[disabled="true"] {
-          opacity: 1 !important;
-          /* Original: 0.4 */
-        }
         #nav-bar-customization-target > #forward-button[disabled="true"] > .toolbarbutton-icon {
           background-color: color-mix(
             in srgb,
@@ -8807,7 +8823,23 @@
           ) !important;
           fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
         }
+        @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
+          #nav-bar-customization-target > #forward-button[disabled="true"] {
+            opacity: 1 !important;
+            /* Original: 0.4 */
+          }
+        }
       }
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
+    #nav-bar-customization-target > #forward-button {
+      margin-inline-start: var(--uc-forward-button-margin) !important;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.autohide.forward_button") {
+    #nav-bar-customization-target > #forward-button:not([disabled="true"]) {
+      margin-inline-start: var(--uc-forward-button-margin) !important;
     }
   }
   #nav-bar-customization-target > #back-button {
@@ -8826,10 +8858,6 @@
     background-color: var(--uc-combined-circlebutton-active-background) !important;
     border-color: rgba(12, 12, 13, 0.4);
   }
-  #nav-bar-customization-target > #back-button[disabled="true"] {
-    opacity: 1 !important;
-    /* Original: 0.4 */
-  }
   #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
     background-color: color-mix(
       in srgb,
@@ -8837,6 +8865,12 @@
       var(--toolbar-field-background-color) 40%
     ) !important;
     fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+  }
+  @supports not -moz-bool-pref("userChrome.autohide.back_button") {
+    #nav-bar-customization-target > #back-button[disabled="true"] {
+      opacity: 1 !important;
+      /* Original: 0.4 */
+    }
   }
   @supports -moz-bool-pref("userChrome.combined.nav_button.home_button") or -moz-bool-pref("userChrome.combined.urlbar.home_button") {
     #nav-bar-customization-target > #back-button {
@@ -8861,7 +8895,19 @@
           background-clip: content-box !important;
           border-radius: 100%;
           padding-block: 0 !important;
-          padding-inline-end: 0 !important;
+        }
+        @supports not -moz-bool-pref("userChrome.autohide.back_button") {
+          #nav-bar-customization-target > #back-button {
+            padding-inline-end: 0 !important;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.autohide.back_button") {
+          #nav-bar-customization-target > #back-button:not([disabled="true"]) {
+            padding-inline-end: 0 !important;
+          }
+          #nav-bar-customization-target > #back-button[disabled="true"] {
+            padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
+          }
         }
         #nav-bar-customization-target > #back-button > menupopup {
           margin-top: -1px !important;
@@ -8883,7 +8929,19 @@
         background-clip: content-box !important;
         border-radius: 100%;
         padding-block: 0 !important;
-        padding-inline-end: 0 !important;
+      }
+      @supports not -moz-bool-pref("userChrome.autohide.back_button") {
+        #nav-bar-customization-target > #back-button {
+          padding-inline-end: 0 !important;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.autohide.back_button") {
+        #nav-bar-customization-target > #back-button:not([disabled="true"]) {
+          padding-inline-end: 0 !important;
+        }
+        #nav-bar-customization-target > #back-button[disabled="true"] {
+          padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
+        }
       }
       #nav-bar-customization-target > #back-button > menupopup {
         margin-top: -1px !important;
@@ -9208,9 +9266,16 @@
   }
 }
 /** Auto Hide *****************************************************************/
+@supports -moz-bool-pref("userChrome.autohide.back_button") or -moz-bool-pref("userChrome.autohide.forward_button") {
+  :root {
+    --uc-toolbarbutton-hide-size: calc(
+      -1 * (16px + (2 * var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding)))
+    );
+  }
+}
 @supports -moz-bool-pref("userChrome.autohide.back_button") {
   #back-button[disabled="true"] {
-    margin-left: -36px !important;
+    margin-left: var(--uc-toolbarbutton-hide-size) !important;
     opacity: 0 !important;
     pointer-events: none;
   }
@@ -9228,7 +9293,7 @@
 }
 @supports -moz-bool-pref("userChrome.autohide.forward_button") {
   #forward-button[disabled="true"] {
-    margin-left: -36px !important;
+    margin-left: var(--uc-toolbarbutton-hide-size) !important;
     opacity: 0 !important;
     pointer-events: none;
   }

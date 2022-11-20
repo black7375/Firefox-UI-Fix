@@ -15,8 +15,6 @@
   }
 
   &[disabled="true"] {
-    opacity: 1 !important; /* Original: 0.4 */
-
     > .toolbarbutton-icon {
       background-color:  color-mix(in srgb, var(--toolbarbutton-hover-background), var(--toolbar-field-background-color) 40%) !important;
       fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
@@ -31,7 +29,17 @@
   border-radius: 100%;
 
   padding-block: 0 !important;
-  padding-inline-end: 0 !important;
+  @include NotOption("userChrome.autohide.back_button") {
+    padding-inline-end: 0 !important;
+  }
+  @include Option("userChrome.autohide.back_button") {
+    &:not([disabled="true"]) {
+      padding-inline-end: 0 !important;
+    }
+    &[disabled="true"] {
+      padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
+    }
+  }
 
   > menupopup {
     margin-top: -1px !important;
@@ -52,10 +60,11 @@
 
 #nav-bar-customization-target > {
   #forward-button {
+    --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
+
     z-index: 2;
     position: relative;
 
-    margin-inline-start: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px) !important;
     > .toolbarbutton-icon {
       padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
       padding-block: var(--urlbar-icon-padding) !important;
@@ -70,11 +79,30 @@
         @include Option("userChrome.combined.urlbar.home_button") {
           @include NotOption("userChrome.combined.nav_button.home_button") {
             @include _combined_nav_button_background;
+            @include NotOption("userChrome.autohide.forward_button") {
+              &[disabled="true"] {
+                opacity: 1 !important; /* Original: 0.4 */
+              }
+            }
           }
         }
         @include NotOption("userChrome.combined.urlbar.home_button") {
           @include _combined_nav_button_background;
+          @include NotOption("userChrome.autohide.forward_button") {
+            &[disabled="true"] {
+              opacity: 1 !important; /* Original: 0.4 */
+            }
+          }
         }
+      }
+    }
+
+    @include NotOption("userChrome.autohide.forward_button") {
+      margin-inline-start: var(--uc-forward-button-margin) !important;
+    }
+    @include Option("userChrome.autohide.forward_button") {
+      &:not([disabled="true"]) {
+        margin-inline-start: var(--uc-forward-button-margin) !important;
       }
     }
   }
@@ -83,6 +111,11 @@
     position: relative;
 
     @include _combined_nav_button_background;
+    @include NotOption("userChrome.autohide.back_button") {
+      &[disabled="true"] {
+        opacity: 1 !important; /* Original: 0.4 */
+      }
+    }
     @include Option("userChrome.combined.nav_button.home_button", "userChrome.combined.urlbar.home_button") {
       z-index: 2;
 

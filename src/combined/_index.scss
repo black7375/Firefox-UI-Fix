@@ -45,10 +45,10 @@
 @include Option("userChrome.combined.urlbar.nav_button", "userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #urlbar-container {
     /* var(--urlbar-margin-inline) */
-    margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin)) !important;
+    margin-inline-start: calc(-1 * var(--uc-urlbar-combined-margin, 0px)) !important;
 
     > #urlbar:not([breakout][breakout-extend]) {
-      padding-left: var(--uc-urlbar-combined-margin);
+      padding-left: var(--uc-urlbar-combined-margin, 0px);
     }
 
     @include Option("userChrome.combined.urlbar.nav_button") {
@@ -63,6 +63,20 @@
             --uc-urlbar-combined-margin: var(--uc-toolbarbutton-size);
           }
         }
+      }
+    }
+  }
+  #nav-bar-customization-target > #forward-button[disabled="true"] ~ #urlbar-container > #urlbar {
+    @include Option("userChrome.combined.urlbar.nav_button") {
+      @include Option("userChrome.autohide.forward_button") {
+        &:not([breakout][breakout-extend]) {
+          padding-left: calc(var(--uc-urlbar-combined-margin, 0px) - var(--urlbar-icon-padding));
+        }
+      }
+      @include Animate {
+        transition-property: margin-left, padding-left;
+        transition-duration: 0.5s;
+        transition-timing-function: var(--animation-easing-function);
       }
     }
   }
