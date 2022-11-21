@@ -63,7 +63,8 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 - Breaking change with `-moz-accent-color`/`-moz-accent-color-foreground` -> `AccentColor`/`AccentColorText` [#433](https://github.com/black7375/Firefox-UI-Fix/issues/433)
 
 ### Side Effect
-Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).
+Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).  
+Sometimes there are times when there is a really hard to understand. [#503](https://github.com/black7375/Firefox-UI-Fix/issues/503#issuecomment-1312685684)
 
 Especially be careful when customizing XUL elements.  
 The following code will cause extension panels fail to open and trying to open them might even crash Firefox. ([@MrOtherGuy](https://www.reddit.com/r/FirefoxCSS/comments/u1mdld/comment/i4eg29n/?utm_source=share&utm_medium=web2x&context=3) reports)
@@ -88,9 +89,9 @@ I don't know the exact reason, but it can be a problem if it is not applied to [
 
 ### Fork Browsers
 
-Fork browsers have a different installation location([bash](https://github.com/black7375/Firefox-UI-Fix/blob/2e87567b662922810d53959e46084b78f330f54e/install.sh#L336-L353), [powershell](https://github.com/black7375/Firefox-UI-Fix/blob/2e87567b662922810d53959e46084b78f330f54e/install.ps1#L387-L395)), and there may be a menu that Firefox does not have.
+Fork browsers have a different installation location ([bash](https://github.com/black7375/Firefox-UI-Fix/blob/2e87567b662922810d53959e46084b78f330f54e/install.sh#L336-L353), [powershell](https://github.com/black7375/Firefox-UI-Fix/blob/2e87567b662922810d53959e46084b78f330f54e/install.ps1#L387-L395)), and there may be a menu that Firefox does not have.
 
-This is a list of fork browsers supported by this project.
+List of fork browsers supported by this project:
 - [Waterfox](https://www.waterfox.net/)
 - [LibreWolf](https://librewolf.net/)
 - [Tor Browser](https://www.torproject.org/download/)
@@ -107,7 +108,7 @@ You can apply [Web extentions](https://developer.mozilla.org/en-US/docs/Mozilla/
 At this time, we recommend that the [explicit ID](https://extensionworkshop.com/documentation/develop/extensions-and-the-add-on-id/) is set.  
 If not, an anonymous ID is created in the local, so you need a [UUID replacer](https://github.com/overdodactyl/ShadowFox/blob/master/scripts/uuids.sh).
 
-This is a list of web extentions supported by this project.
+List of web extentions supported by this project:
 - [Tree Style Tab](https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/)
 - [Tab Center Reborn](https://addons.mozilla.org/en-US/firefox/addon/tabcenter-reborn/)
 - [Sidebar Tabs](https://addons.mozilla.org/en-US/firefox/addon/sidebartabs/)
@@ -118,17 +119,17 @@ We should consider [Legacy addons](https://extensionworkshop.com/documentation/d
 
 Legacy addons can be loaded by [Auto config's feature](./Preference.md#auto-config) or [bootstrapLoder](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader) and can directly manipulate the DOM structure and style. [onemen/TabMixPlus#168](https://github.com/onemen/TabMixPlus/issues/168)
 
-This is a list of legacy addons supported by this project.
+List of legacy addons supported by this project:
 - [Tab Mix Plus](https://github.com/onemen/TabMixPlus)
 
 ## Internals
 ### CSS Loading Order
-User CSS(`userChrome.css`, `userContent.css`) is usually loaded first.
+User CSS (`userChrome.css`, `userContent.css`) is usually loaded first.
 
-In many cases, overriding should be prevented with [`important!`](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_!important_exception)(Anti-pattern in general web), and side effects should also be considered. [#11](https://github.com/black7375/Firefox-UI-Fix/issues/11)
+In many cases, overriding should be prevented with [`!important`](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_!important_exception) (Anti-pattern in general web), and side effects should also be considered. [#11](https://github.com/black7375/Firefox-UI-Fix/issues/11)
 
 ### DOM structure cannot be modified
-It is possible with [JS(Auto config)](./Preference.md#auto-config), but there are security and configuration issues, so we should make the most of CSS.
+It is possible with [JS (Auto config)](./Preference.md#auto-config), but there are security and configuration issues, so we should make the most of CSS.
 
 [`::before`](https://developer.mozilla.org/en-US/docs/Web/CSS/::before) and [`::after`](https://developer.mozilla.org/en-US/docs/Web/CSS/::after) can indirectly add CSS elements.
 
@@ -148,7 +149,7 @@ It is recommended to use `list-style-image` when a layout is provided for the im
 - [Menu Item Icon](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4551-L4744)
 - [Error Illustration](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L275-L380)
 
-You can use [`-moz-box-ordinal-group`](https://udn.realityripple.com/docs/Web/CSS/box-ordinal-group)([`-moz-box`](https://udn.realityripple.com/docs/Web/CSS/Mozilla_Extensions#display)) and [`order`](https://developer.mozilla.org/en-US/docs/Web/CSS/order)(at [flex](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox)) to change the order of the layout.  
+You can use [`-moz-box-ordinal-group`](https://udn.realityripple.com/docs/Web/CSS/box-ordinal-group) ([`-moz-box`](https://udn.realityripple.com/docs/Web/CSS/Mozilla_Extensions#display)) and [`order`](https://developer.mozilla.org/en-US/docs/Web/CSS/order) (at [flex](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox)) to change the order of the layout.  
 In experience, the detailed actions of `-moz-box` and `flex` are different, so tests are required.
 - [Separator Order](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4286-L4288)
 - [Sync Menu Item's Image Order](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4234-L4238)
@@ -160,7 +161,7 @@ By default, [attribute selectors](https://developer.mozilla.org/en-US/docs/Web/C
 If there is no state attributes, you can bypass by using [both transitions and keyframes](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L2704-L2730) for animation.
 
 ### Shadow DOM
-Firefox actively uses [shadow dom](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) internally.
+Firefox actively uses [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) internally.
 
 To modify, it is often a roundabout approach or impossible to inherit.
 
@@ -169,7 +170,7 @@ One bypass method is to declare [`var()`](https://developer.mozilla.org/en-US/do
 - [Audio, Video Player UI](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userContent.css#L5-L47)
 - [Video Player Twoline UI](https://github.com/black7375/Firefox-UI-Fix/blob/cbf14cd55a9edada7ab2f5f1b626608fb9fe38a2/src/contents/_video_player.scss#L68-L171): It is pretty difficult when the condition becomes complicated.
 
-Another limitation of shadow dom in user style is that you cannot use shadow dom related selectors like [`:host`](https://developer.mozilla.org/en-US/docs/Web/CSS/:host_function) and [`::part`](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+Another limitation of shadow DOM in user style is that you cannot use shadow DOM related selectors like [`:host`](https://developer.mozilla.org/en-US/docs/Web/CSS/:host_function) and [`::part`](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
 
 - [Using ::part() selector in userchrome.css?](https://www.reddit.com/r/FirefoxCSS/comments/d2sukj/using_part_selector_in_userchromecss/)
 - [Can't change some shadow-dom properties](https://www.reddit.com/r/FirefoxCSS/comments/rebn3s/cant_change_some_shadowdom_properties/)
@@ -179,11 +180,11 @@ Another limitation of shadow dom in user style is that you cannot use shadow dom
 Sometimes firefox can use [XUL](https://en.wikipedia.org/wiki/XUL) that have been written and bound with C++ for performance like a treeview of bookmarks.  
 XUL's [box model](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/The_Box_Model) and [DOM](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/Tutorial/Document_Object_Model) are different from HTML.
 
-There ar few appropriate documents, so we have to read the source code and work. (Ex. [1](https://github.com/mozilla/gecko-dev/blob/master/layout/style/nsCSSAnonBoxList.h), [2](https://github.com/mozilla/gecko-dev/blob/master/layout/xul/tree/nsITreeView.idl))
+There are a few appropriate documents, so we have to read the source code and work. (Ex. [1](https://github.com/mozilla/gecko-dev/blob/master/layout/style/nsCSSAnonBoxList.h), [2](https://github.com/mozilla/gecko-dev/blob/master/layout/xul/tree/nsITreeView.idl))
 
 Available CSS features are also restricted.
 
-Example of legacy documents that will help.
+Examples of legacy documents that will help:
 - [UDN: ::-moz-tree-cell](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS/::-moz-tree-cell)
 - [UDN: ::-moz-tree-cell-text](https://udn.realityripple.com/docs/Mozilla/Gecko/Chrome/CSS/::-moz-tree-cell-text)
 
@@ -193,9 +194,9 @@ Like [`<toolbar align="end"></toolbar>`](https://udn.realityripple.com/docs/Arch
 ### Supports
 [`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) change in CSS is not detected in real time. (Caching after checking only once)  
 
-So a restart is required, and if the mozilla need real time changes, are using `@media` to handle it.
+So a restart is required, and if Mozilla needs real time changes, they are using `@media` to handle it.
 
-If project only use pure CSS, we cannot add `@media rules`.
+If project only uses pure CSS, we cannot add `@media rules`.
 
 - [Bug 1267890 - Support detecting bool preferences in chrome stylesheets](https://bugzilla.mozilla.org/show_bug.cgi?id=1267890)
 - [Bug 1698132 - Improve caching behaviour of -moz-bool-pref](https://bugzilla.mozilla.org/show_bug.cgi?id=1698132)

@@ -41,21 +41,23 @@
     padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
   }
 }
-@include Option("userChrome.icon.panel_sparse") {
-  #appMenu-new-tab-button2,           /* Separate */
-  #appMenu-passwords-button,          /* Separate */
-  #appMenu-extensions-themes-button,
-  #appMenu-save-file-button2,         /* Separate */
-  #appMenu-find-button2,
-  #appMenu-more-button2,              /* Separate */
-  #appMenu-help-button2,
-  #appMenu-quit-button2               /* Separate */ {
-    padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
-    padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
-  }
-  #appMenu-zoom-controls2, /* Legacy v104 */
-  #appMenu-zoom-controls {
-    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+@include NotOption("userChrome.icon.panel_photon") {
+  @include NotOption("userChrome.icon.panel_full") {
+    #appMenu-new-tab-button2,           /* Separate */
+    #appMenu-passwords-button,          /* Separate */
+    #appMenu-extensions-themes-button,
+    #appMenu-save-file-button2,         /* Separate */
+    #appMenu-find-button2,
+    #appMenu-more-button2,              /* Separate */
+    #appMenu-help-button2,
+    #appMenu-quit-button2               /* Separate */ {
+      padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
+      padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
+    }
+    #appMenu-zoom-controls2, /* Legacy v104 */
+    #appMenu-zoom-controls {
+      padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+    }
   }
 }
 #appMenu-new-window-button2 {

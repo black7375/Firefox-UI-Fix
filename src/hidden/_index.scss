@@ -94,7 +94,7 @@
   menu,
   menuitem:not(#context-back, #context-forward) {
     &[disabled="true"] {
-      display: none !important;
+      visibility: collapse !important;
     }
   }
 
@@ -102,7 +102,7 @@
     #context-back,
     #context-forward {
       &[disabled="true"] {
-        display: none !important;
+        visibility: collapse !important;
       }
     }
   }

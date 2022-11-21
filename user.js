@@ -47,7 +47,6 @@ user_pref("userChrome.tab.newtab_button_proton",      false); // Proton
 
 user_pref("userChrome.icon.panel_full",                true); // Original, Proton
 user_pref("userChrome.icon.panel_photon",             false); // Photon
-user_pref("userChrome.icon.panel_sparse",             false); // Just option
 
 // Original Only
 user_pref("userChrome.tab.box_shadow",                 true);

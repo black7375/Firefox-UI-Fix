@@ -9,7 +9,7 @@
   width: 16px;
 }
 
-@include Option("userChrome.icon.panel_photon", "userChrome.icon.panel_sparse") {
+@include NotOption("userChrome.icon.panel_full") {
   :root {
     /* Global */
     --arrowpanel-menuicon-paddingx2: calc(var(--arrowpanel-menuicon-padding) * 2);
