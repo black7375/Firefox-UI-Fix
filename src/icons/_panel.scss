@@ -41,21 +41,23 @@
     padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
   }
 }
-@include Option("userChrome.icon.panel_sparse") {
-  #appMenu-new-tab-button2,           /* Seperate */
-  #appMenu-passwords-button,          /* Seperate */
-  #appMenu-extensions-themes-button,
-  #appMenu-save-file-button2,         /* Seperate */
-  #appMenu-find-button2,
-  #appMenu-more-button2,              /* Seperate */
-  #appMenu-help-button2,
-  #appMenu-quit-button2               /* Seperate */ {
-    padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
-    padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
-  }
-  #appMenu-zoom-controls2, /* Legacy v104 */
-  #appMenu-zoom-controls {
-    padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+@include NotOption("userChrome.icon.panel_photon") {
+  @include NotOption("userChrome.icon.panel_full") {
+    #appMenu-new-tab-button2,           /* Separate */
+    #appMenu-passwords-button,          /* Separate */
+    #appMenu-extensions-themes-button,
+    #appMenu-save-file-button2,         /* Separate */
+    #appMenu-find-button2,
+    #appMenu-more-button2,              /* Separate */
+    #appMenu-help-button2,
+    #appMenu-quit-button2               /* Separate */ {
+      padding-top: var(--arrowpanel-menuitemblank-padding-block) !important;
+      padding-bottom: var(--arrowpanel-menuitemblank-padding-block) !important;
+    }
+    #appMenu-zoom-controls2, /* Legacy v104 */
+    #appMenu-zoom-controls {
+      padding-inline-start: var(--arrowpanel-menuimageblank-padding-horizontal) !important;
+    }
   }
 }
 #appMenu-new-window-button2 {
@@ -88,7 +90,7 @@
 }
 @include Option("userChrome.icon.panel_full") {
   #appMenu-save-file-button2 {
-    list-style-image: url("chrome://browser/skin/save.svg");
+    list-style-image: url("../icons/toolbarButton-download.svg");
   }
   #appMenu-find-button2 {
     list-style-image: url("chrome://global/skin/icons/search-glass.svg");
@@ -176,7 +178,7 @@
   /* Color */
   fill: currentColor;
   fill-opacity: var(--toolbarbutton-icon-fill-opacity);
-  -moz-context-properties: fill;
+  -moz-context-properties: fill, fill-opacity, stroke;
 
   background-size: 16px;
   background-repeat: no-repeat;
@@ -416,7 +418,7 @@ panelMenuBookmarkThisPage[starred] {
 /*= protections-popup ========================================================*/
 #protections-popup-settings-button > .protections-popup-settings-icon,
 #protections-popup-show-report-button > .protections-popup-show-report-icon {
-  -moz-context-properties: fill;
+  -moz-context-properties: fill, fill-opacity, stroke;
   fill: currentColor;
   margin-inline-end: 1em;
 }
@@ -472,4 +474,9 @@ panelMenuBookmarkThisPage[starred] {
 
 #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
   list-style-image: url("chrome://global/skin/icons/close.svg");
+}
+
+/*= unified-extensions-view ===================================================*/
+#unified-extensions-manage-extensions {
+  list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
 }

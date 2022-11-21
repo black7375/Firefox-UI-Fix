@@ -59,4 +59,28 @@
       }
     }
   }
+  @include test("Highlight") {
+    @include assert {
+      @include output {
+        @include AccentColor("Highlight") {
+          body {
+            background-color: $accentColor;
+            color: $accentTextColor;
+          }
+        }
+      }
+      @include expect {
+        body {
+          background-color: AccentColor;
+          color: AccentColorText;
+        }
+        @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+          body {
+            background-color: Highlight;
+            color: HighlightText;
+          }
+        }
+      }
+    }
+  }
 }

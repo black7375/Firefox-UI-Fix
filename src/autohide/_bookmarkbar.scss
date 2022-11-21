@@ -5,9 +5,13 @@
   will-change: margin-bottom, opacity;
 
   @include Option("userChrome.autohide.toolbar_overlap") {
-    &[collapsed="true"] {
-      visibility: visible !important;
-      max-height: unset !important;
+    @include NotOption("userChrome.autohide.toolbar_overlap.allow_layout_shift") {
+      @include NotHas {
+        &[collapsed="true"] {
+          visibility: visible !important;
+          max-height: unset !important;
+        }
+      }
     }
   }
 }
@@ -20,8 +24,8 @@
 @include Animate {
   #PersonalToolbar:not([customizing]) {
     //  --ext-theme-background-transition: background-color 0.1s cubic-bezier(.17,.67,.83,.67);
-    transition: margin-bottom 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
-                opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+    transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+                opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                 min-height 170ms ease-out, max-height 170ms ease-out, var(--ext-theme-background-transition) !important;
   }
   #navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar:not([customizing]) {

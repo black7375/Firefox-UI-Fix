@@ -1,6 +1,6 @@
 //-- Variables -----------------------------------------------------------------
 // Items
-// .menu-iconic, .menuitem-iconic: Alreay exist, not target.
+// .menu-iconic, .menuitem-iconic: Already exist, not target.
 // .in-menulist: Not a range because it is a select menu of web content.
 // [checked="true"]: There should be a check mark instead of an icon.
 $_iconNoneCommon: ".in-menulist, [checked=\"true\"]";
@@ -44,7 +44,7 @@ $_initialMenus: selector.append(
 // Icon
 @mixin _layout_icon_menus() {
   /* Color */
-  -moz-context-properties: fill, fill-opacity !important;
+  -moz-context-properties: fill, fill-opacity, stroke !important;
   fill: currentColor !important;
 
   /* Layout */
@@ -62,12 +62,16 @@ $_initialMenus: selector.append(
 // Padding
 @mixin _layout_root_padding() {
   :root {
+    --uc-menu-background-position: left;
     --context-menu-background-padding-default: 5px;
     --context-menu-background-padding: var(--context-menu-background-padding-default);
+    &:-moz-locale-dir(rtl) {
+      --uc-menu-background-position: right;
+    }
   }
 }
 @mixin _layout_init_padding() {
-  background-position: left var(--context-menu-background-padding) center !important;
+  background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
 

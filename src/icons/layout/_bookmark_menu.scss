@@ -1,5 +1,5 @@
 /*= Bookmark Menu - Layout ===================================================*/
-/* #goPopup(Legacy of historyMenuPoup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
+/* #goPopup(Legacy of historyMenuPopup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
    * #BMB_bookmarksPopup: looks like arrow panel
    */
 
@@ -66,7 +66,7 @@ $_bookmarkToolbarMenus: selector.nest(
   }
   @include _layoutBookmarkMenu() {
     margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
-    background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+    background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
   }
   @include _layoutBookmarkPopup() {
     padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding) + 2px) !important;
@@ -82,7 +82,7 @@ $_bookmarkToolbarMenus: selector.nest(
   @include _layoutBookmarkMenu() {
     margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
     padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
-    background-position: left calc(var(--arrowpanel-menuicon-padding)) center !important;
+    background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
   }
 }
 
@@ -101,6 +101,12 @@ $_bookmarkToolbarMenus: selector.nest(
   /* Bookmark Popup - None icon menu */
   @include _layoutBookmarkMenu() {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+
+    .menu-text {
+      // https://github.com/mozilla/gecko-dev/commit/e54707888510dec75db59a170b287d1db031505a
+      // https://github.com/mozilla/gecko-dev/blob/e54707888510dec75db59a170b287d1db031505a/toolkit/themes/linux/global/menu.css#L103
+      margin-inline-start: 21px !important;
+    }
   }
 }
 
@@ -108,11 +114,19 @@ $_bookmarkToolbarMenus: selector.nest(
   /* Bookmark Popup - As Arrow Panel */
   #PersonalToolbar menupopup menuitem,
   #PersonalToolbar menupopup menu {
-    padding-inline: calc(var(--arrowpanel-menuicon-padding) + var(--arrowpanel-menuitem-padding-inline)) !important;
+    padding-inline: var(--arrowpanel-menuitem-padding-inline) !important;
   }
 
   /* Bookmark Popup - None icon menu */
   @include _layoutBookmarkPopup() {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
+  }
+  @include _layoutBookmarkToolbar() {
+    padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+  }
+  @include _layoutBookmarkMenu() {
+    > .menu-text {
+      padding-inline-start: var(--context-menu-mac-padding) !important;
+    }
   }
 }

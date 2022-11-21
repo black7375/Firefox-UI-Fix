@@ -23,12 +23,12 @@ root
 |- src/: Source files
 |- src/leptonChrome.scss: Entry of SCSS for Browser UI
 |- src/leptonContent.scss: Entry of SCSS for Web pages
-|- .gitattributes: Exclude at `Download Zip`
+|- .gitattributes: Exclude at `Download ZIP`
 |- .github: Issue/PR Template, Github Actions
 |- .prettierignore: Exclude coding style
 |- .prettierrc.json: Coding style
-|- install.ps1: Install script write in powersehll
-|- install.sh: Install script write in bash
+|- install.ps1: Install script written in powershell
+|- install.sh: Install script written in bash
 |- package.json: Build setup, package dependency
 |- LEPTON: Meta infos (branch, version)
 |- user.js: about:config settings
@@ -47,7 +47,7 @@ Icons are mainly [FirefoxUX/photon-icons](https://github.com/FirefoxUX/photon-ic
 or [microsoft/fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).  
 Although not yet used, [tabler/tabler-icons](https://github.com/tabler/tabler-icons) and [feathericons/feather](https://github.com/feathericons/feather) can also be referred to.
 
-You can see more in the issue, [Unify icon design langauge #213](https://github.com/black7375/Firefox-UI-Fix/issues/213).
+You can see more in the issue, [Unify icon design language #213](https://github.com/black7375/Firefox-UI-Fix/issues/213).
 
 ## Install Scripts
 ### Meta Info files
@@ -88,7 +88,7 @@ Path=<Full PATH>
 Inspired by [arkenfox](https://github.com/arkenfox/user.js/wiki/3.1-Overrides).  
 These files need to use a shell script and has some priorities.
 
-CSS override settings(`userChrome-overrides.css`, `userContent-overrides.css`) are relatively simple.
+CSS override settings (`userChrome-overrides.css`, `userContent-overrides.css`) are relatively simple.
 - `./<CSS_OVERRIDES>` (Will be copied `<FIREFOX_PROFILE>/chrome/`)
 - `<FIREFOX_PROFILE>/chrome/<CSS_OVERRIDES>`
 

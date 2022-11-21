@@ -1,4 +1,4 @@
-@use 'true' as *;
+@use "true" as *;
 @use "example" as *;
 @use "../src/utils/each";
 
@@ -68,7 +68,7 @@
   @include test("prefix custom option") {
     @include assert {
       @include output {
-        @include each.AtEach("supports", "userChrome.tab.photon", "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
+        @include each.AtEach("supports", "userChrome.tab.photon", "-moz-bool-pref", ("separator": " or ", "quoted": true)) {
           @include example;
         }
       }
@@ -84,7 +84,7 @@
     @include assert {
       @include output {
         $input: "userChrome.tab.photon" "userChrome.padding.photon";
-        @include each.AtEach("supports", $input, "-moz-bool-pref", ("seperator": " or ", "quoted": true)) {
+        @include each.AtEach("supports", $input, "-moz-bool-pref", ("separator": " or ", "quoted": true)) {
           @include example;
         }
       }

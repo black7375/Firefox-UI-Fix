@@ -9,7 +9,7 @@
   width: 16px;
 }
 
-@include Option("userChrome.icon.panel_photon", "userChrome.icon.panel_sparse") {
+@include NotOption("userChrome.icon.panel_full") {
   :root {
     /* Global */
     --arrowpanel-menuicon-paddingx2: calc(var(--arrowpanel-menuicon-padding) * 2);
@@ -39,6 +39,7 @@
 }
 #appMenu-proton-update-banner .toolbarbutton-text {
   margin-inline-start: 0 !important;
+  padding-inline-start: 0 !important; /* FF v107 */
 }
 
 #appMenu-multiView .subviewbutton::before,
@@ -50,9 +51,7 @@
 }
 #appMenu-proton-update-banner {
   margin-bottom: 2px !important;
-}
-#appMenu-proton-update-banner::before {
-  margin-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
+  padding-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
 }
 #appMenu-fxa-status2,
 #appMenu-zoom-controls2, /* Legacy v104 */
@@ -80,15 +79,14 @@
 #appMenu-multiView .subviewbutton::before,
 #appMenu-proton-update-banner::before,
 #downloadsHistory .button-icon,
-.subviewbutton > image {
+.subviewbutton:not(#appMenu-proton-update-banner) > image {
   fill: currentColor !important;
   fill-opacity: var(--toolbarbutton-icon-fill-opacity) !important;
-  -moz-context-properties: fill !important;
+  -moz-context-properties: fill, fill-opacity, stroke !important;
 }
 #appMenu-zoomReduce-button2 > .toolbarbutton-icon,
 #appMenu-zoomEnlarge-button2 > .toolbarbutton-icon {
   stroke: var(--zoom-controls-bgcolor, var(--button-bgcolor, ButtonFace)) !important;
-  -moz-context-properties: fill, stroke !important;
 }
 #appMenu-zoomReduce-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon,
 #appMenu-zoomEnlarge-button2:not([disabled], [open], :active):is(:hover) > .toolbarbutton-icon {

@@ -7,12 +7,18 @@
 $accentColor: AccentColor;
 $accentTextColor: AccentColorText;
 
-@mixin AccentColor() {
+@mixin AccentColor($mode: "-moz-accent-color") {
   @content;
 
   @include Option("userChrome.compatibility.accent_color") {
-    $accentColor: -moz-accent-color !global;
-    $accentTextColor: -moz-accent-color-foreground !global;
+    @if $mode == "Highlight" {
+      $accentColor: Highlight !global;
+      $accentTextColor: HighlightText !global;
+    }
+    @else {
+      $accentColor: -moz-accent-color !global;
+      $accentTextColor: -moz-accent-color-foreground !global;
+    }
 
     @content;
   }

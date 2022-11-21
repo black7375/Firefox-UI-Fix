@@ -23,11 +23,13 @@
   @include Option("userChrome.icon.global_menu") {
     @import "global_menu";
   }
-}
-
-/** Libray Menu ***************************************************************/
-@include Option("userChrome.icon.library") {
-  @include Option("userChrome.icon.menu") {
+  @include Option("userChrome.icon.library") {
     @import "library";
   }
 }
+
+/** Waterfox ******************************************************************/
+@import "waterfox";
+
+/** Tor Browser ***************************************************************/
+@import "tor_browser";

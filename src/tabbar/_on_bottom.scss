@@ -36,7 +36,7 @@ See the above repository for updates as well as full license text. */
   }
 }
 
-/*= Tabbar - Hidden at singgle tab ===========================================*/
+/*= Tabbar - Hidden at single tab ===========================================*/
 @include Option("userChrome.tabbar.on_bottom.hidden_single_tab") {
   #tabbrowser-tabs .tabbrowser-tab:only-of-type {
     display: none !important;
@@ -59,17 +59,6 @@ See the above repository for updates as well as full license text. */
 @include Option("userChrome.tabbar.on_bottom.menubar_on_top") {
   /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom_menubar_on_top_patch.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
-
-  :root {
-    /* height if native titlebar is enabled, assumes empty menubar */
-    --uc-menubar-height: 20px;
-    --uc-menubar-padding: 1px; /* FF's menubar padding */
-    --uc-menubar-container-height: calc(var(--uc-menubar-height) - (2 * var(--uc-menubar-padding)));
-  }
-  :root[tabsintitlebar] {
-    /* height when native titlebar is disabled, more roomy so can fit buttons etc. */
-    --uc-menubar-height: 30px;
-  }
 
   /* Menubar on top patch - use with tabs_on_bottom.css */
   /* Only really useful if menubar is ALWAYS visible */
@@ -117,10 +106,6 @@ See the above repository for updates as well as full license text. */
     --toolbarbutton-inner-padding: 3px;
   }
 
-  #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
-  #TabsToolbar > .titlebar-buttonbox-container {
-    height: var(--uc-menubar-container-height);
-  }
   :root:not([chromehidden~="menubar"], [sizemode="fullscreen"]) #toolbar-menubar:not([autohide="true"]) + #TabsToolbar > .titlebar-buttonbox-container{
     visibility: collapse !important;
   }

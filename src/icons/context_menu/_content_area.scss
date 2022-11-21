@@ -45,7 +45,7 @@
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #context-savelink {
-  --menuitem-image: url("chrome://browser/skin/save.svg");
+  --menuitem-image: url("../icons/toolbarButton-download.svg");
 }
 #context-savelinktopocket {
   --menuitem-image: url("../icons/pocket-outline.svg");
@@ -148,7 +148,7 @@
 }
 
 #context-savepage {
-  --menuitem-image: url("chrome://browser/skin/save.svg");
+  --menuitem-image: url("../icons/toolbarButton-download.svg");
 }
 #context-pocket {
   --menuitem-image: url("../icons/pocket-outline.svg");
@@ -243,7 +243,7 @@
   /* iconic */
 }
 
-@include NativeMenu {
+@include OS($mac) {
   #context-back {
     --menuitem-image: url("chrome://browser/skin/back.svg");
   }
@@ -260,4 +260,54 @@
   #context-bookmarkpage {
     --menuitem-image: url("chrome://browser/skin/bookmark.svg");
   }
+}
+
+/*= Tab Mix Plus =============================================================*/
+#tm-autoreload_menu {
+  // --menuitem-image: url("../icons/reload-auto.svg");
+  --menuitem-image: url("../icons/timer10.svg");
+}
+
+#tm-linkWithhistory {
+  // ic_fluent_skip_forward_tab_24_regular
+  --menuitem-image: url("../icons/new-tab-skip-forward.svg");
+}
+#tm-openAllLinks {
+  --menuitem-image: url("../icons/new-tab-multiple.svg");
+}
+#tm-openinverselink {
+  --menuitem-image: url("../icons/new-tab-forward.svg");
+}
+
+#tm-content-closetab {
+  --menuitem-image: url("../icons/dismiss-filled.svg");
+}
+#tm-duplicateTabContext {
+  --menuitem-image: url("../icons/tab-copy.svg");
+}
+#tm-duplicateinWinContext {
+  --menuitem-image: url("../icons/tab-desktop-multiple-bottom.svg");
+}
+#tm-detachTabContext {
+  --menuitem-image: url("../icons/convert-range.svg");
+}
+#tm-mergeWindows {
+  --menuitem-image: url("../icons/merge.svg");
+}
+#tm-content-freezeTab {
+  --menuitem-image: url("../icons/weather-snowflake.svg");
+}
+#tm-content-protectTab {
+  --menuitem-image: url("../icons/shield-task.svg");
+}
+#tm-content-lockTab {
+  --menuitem-image: url("../icons/lock-closed.svg");
+}
+#tm-tabsList {
+}
+
+#tm-content-undoCloseTab {
+  --menuitem-image: url("../icons/undo.svg");
+}
+#tm-content-undoCloseList {
 }

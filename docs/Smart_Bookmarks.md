@@ -1,4 +1,4 @@
-# Smart Bookmarks(Query Bookmarks)
+# Smart Bookmarks (Query Bookmarks)
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
@@ -12,7 +12,7 @@
 
 ## Basics
 **Related Docs**
-- [Support Mozilla: Restore the default Smart Bookmarks Folders](https://support.mozilla.org/en-US/kb/restore-default-smart-bookmarks-folders) (Not works)
+- [Mozilla Support: Restore the default Smart Bookmarks Folders](https://support.mozilla.org/en-US/kb/restore-default-smart-bookmarks-folders) (does not work)
 - [Smart Bookmarks. A quick guide.](https://www.reddit.com/r/firefox/comments/2i4qcy/smart_bookmarks_a_quick_guide/)
 - [Smart Bookmarks. A quick guide. (extended)](https://www.reddit.com/r/firefox/comments/fvcw96/query_bookmarks_smart_bookmarks_a_quick_guide/)
 - [How to Create Custom Smart Bookmarks Folders in Firefox](https://www.howtogeek.com/111820/how-to-create-custom-smart-bookmarks-folders-in-firefox/)

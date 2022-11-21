@@ -1,53 +1,49 @@
-#tabbrowser-tabs[closebuttons="activetab"]
+@mixin _closeButtonAtHover() {
+  .tabbrowser-tab {
+    &:not([visuallyselected]) .tab-close-button {
+      visibility: collapse !important;
+      opacity: 0;
+    }
+    &:hover .tab-close-button {
+      visibility: visible !important;
+      opacity: 1;
+    }
+
+    @include Option("userChrome.tab.close_button_at_hover.with_selected") {
+      &:not([pinned]):not(:hover) .tab-close-button {
+        visibility: collapse !important;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] {
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab:not([pinned])
   > .tab-stack
   > .tab-content
   > .tab-close-button:not([selected="true"]) {
-  display: -moz-inline-box !important;
+    display: -moz-inline-box !important;
+  }
+
+  @include _closeButtonAtHover;
 }
 
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
-  visibility: collapse !important;
-  opacity: 0;
-}
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
-  visibility: visible !important;
-  opacity: 1;
-}
 @include Option("userChrome.tab.close_button_at_hover.always") {
-  .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
-    visibility: collapse !important;
-    opacity: 0;
-  }
-  .tabbrowser-tab:hover .tab-close-button {
-    visibility: visible !important;
-    opacity: 1;
-  }
+  @include _closeButtonAtHover;
 }
 
 /* Animate */
 @include Animate {
   /* Fade out */
-  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
+  .tabbrowser-tab .tab-close-button {
     transition: opacity 0.1s var(--animation-easing-function) !important;
   }
 
   /* Fade in */
-  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:hover .tab-close-button {
+  .tabbrowser-tab:hover .tab-close-button {
     transition: opacity 0.25s var(--animation-easing-function) !important;
-  }
-
-  @include Option("userChrome.tab.close_button_at_hover.always") {
-    /* Fade out */
-    .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
-      transition: opacity 0.1s var(--animation-easing-function) !important;
-    }
-
-    /* Fade in */
-    .tabbrowser-tab:hover .tab-close-button {
-      transition: opacity 0.25s var(--animation-easing-function) !important;
-    }
   }
 }
 
