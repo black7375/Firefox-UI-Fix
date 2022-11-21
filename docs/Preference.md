@@ -27,7 +27,7 @@
   - Convention is to use a dotted segmented form (Ex. `browser.cache.disk.enable`)
 - Value:
   - Type: bool, 32-bit ints, 8-bit C string
-  - When you need an float, use a string. (Ex. `general.smoothScroll.currentVelocityWeighting`: `"0.25"`)
+  - When you need a float, use a string (Ex. `general.smoothScroll.currentVelocityWeighting`: `"0.25"`)
 
 **Main Purpose**
 - Feature enable/disable flags (Ex. `xpinstall.signatures.required`).
@@ -47,7 +47,7 @@ Key information on the sets that can be used in the configuration file.
 - `user_pref()`: Set user pref
 
 The following is a method of operating the configuration file parser.  
-See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
+See [EBNF (Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
 
 ```ebnf
 <pref-file>   = <pref>*
@@ -73,7 +73,7 @@ See [EBNF(Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Bac
 
 ## Default Config
 - [`modules/libpref/init/all.js`](https://github.com/mozilla/gecko-dev/blob/master/modules/libpref/init/all.js): all products
-- [`browser/app/profile/firefox.js`](https://github.com/mozilla/gecko-dev/blob/master/browser/app/profile/firefox.js): only firefox deskstop
+- [`browser/app/profile/firefox.js`](https://github.com/mozilla/gecko-dev/blob/master/browser/app/profile/firefox.js): only firefox desktop
 
 In release builds these are all put into [`omni.ja`](./Omni_ja.md).
 
@@ -107,7 +107,7 @@ It is written to `prefs.js` in a way that can be set by the GUI.
 **Basics**
 It exists in the profile directory, and is used to store settings that are changed from *defaults* or when users added *new settings*.
 
-In general, Do NOT edit `prefs.js` directly.
+In general, do NOT edit `prefs.js` directly.
 
 ### user.js
 **Related Docs**
@@ -140,6 +140,9 @@ user_pref("general.smoothScroll.currentVelocityWeighting", "0.12"); // String
 
 **Basics**
 Customizations that cannot be done with add-on and [`User Custom CSS`](./README.md#user-custom-css), such as adding browser UI elements directly or changing default behavior, must use `Auto Config`.
+
+`.mjs`(ES6 Module) is also used in FF `v102` or above.
+- [Bug 1432901 - Prototype loading ES6 Module as JSM](https://bugzilla.mozilla.org/show_bug.cgi?id=1432901)
 
 **How to**
 ```javascript

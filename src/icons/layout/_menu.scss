@@ -7,7 +7,8 @@ $_layoutCommonMenus: (
   $_libraryMenuitem,
   $_libraryMenu,
   $_sendTabMenuitem,
-  $_otherIconMenu
+  $_otherIconMenu,
+  "#context_openANewTab.tabmix-newtab-menu-icon"
 );
 @mixin _layoutInitIconMenus() {
   #{$_globalMenus},
@@ -41,6 +42,10 @@ $_layoutCommonMenus: (
 @include _layoutInitIconMenus {
   @include _layout_icon_menus;
 }
+#tabContextMenu > .tabmix-newtab-menu-icon {
+  -moz-context-properties: fill, fill-opacity, stroke !important;
+  fill: currentColor !important;
+}
 
 /* For native context menus */
 #{$_nestedPopupIconMenus} {
@@ -56,12 +61,12 @@ $_layoutCommonMenus: (
 /* Menubar */
 @include Option("userChrome.icon.global_menubar") {
   #{$_globalMenus} {
-    background-position: left var(--context-menu-background-padding-default) center !important;
+    background-position: var(--uc-menu-background-position) var(--context-menu-background-padding-default) center !important;
     padding-inline-start: calc(16px + var(--context-menu-background-padding-default)) !important;
     padding-inline-end: 3px;
 
     &:first-child {
-      background-position: left calc(3px + var(--context-menu-background-padding-default)) center !important;
+      background-position: var(--uc-menu-background-position) calc(3px + var(--context-menu-background-padding-default)) center !important;
       padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
     }
     > menupopup {
@@ -113,7 +118,8 @@ $_layoutCommonMenus: (
   }
 
   /* Checkbox menuitem, None iconic menu */
-  #{selector.nest($_nestedPopupPadding, "menuitem[checked=\"true\"], menu:not(.menu-iconic)")} {
+  #{selector.nest($_nestedPopupPadding, "menuitem[type=\"checkbox\"]")} {
+    // "menuitem[checked=\"true\"], menu:not(.menu-iconic)"
     @include _layout_init_mac_others;
   }
 

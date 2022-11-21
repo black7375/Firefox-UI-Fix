@@ -8,7 +8,7 @@
 }
 
 @include OS($linux) {
-  /* Fix transparent backgorund */
+  /* Fix transparent background */
   :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
     appearance: auto !important;
   }

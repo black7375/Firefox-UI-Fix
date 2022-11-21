@@ -12,7 +12,7 @@
 @include Animate {
   @include OneLiner {
     #nav-bar {
-      transition: margin-inline 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+      transition: margin-inline var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                   var(--ext-theme-background-transition) !important;
     }
     #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) {
@@ -22,7 +22,7 @@
 
   @include OneLinerNavbarContent {
     #urlbar-container {
-      transition: min-width 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+      transition: min-width var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
     }
     #nav-bar:is(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
       transition-delay: 0s !important;

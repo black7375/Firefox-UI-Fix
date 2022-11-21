@@ -1,0 +1,22 @@
+#appMenu-popup {
+  background-image: url("../icons/panelarrow-vertical.svg");
+  background-repeat: no-repeat;
+  background-position-x: right 10px;
+  background-position-y: top;
+
+  -moz-context-properties: fill, stroke;
+  fill: var(--panel-background);
+  stroke: var(--panel-border-color);
+
+  &[side="top"] {
+    margin-top: -8px !important; /* Original: -4px */
+    padding-top: 4px;
+  }
+  &[side="bottom"] {
+    background-image: url("../icons/panelarrow-vertical-reverse.svg");
+    background-position-y: bottom;
+
+    margin-bottom: -8px !important; /* Original: -4px */
+    padding-bottom: 4px;
+  }
+}

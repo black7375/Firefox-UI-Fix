@@ -32,7 +32,7 @@
 
 @include Animate {
   #sidebar-box {
-    transition: min-width 750ms var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+    transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
 
     &:is(:hover, :focus-within) {
       transition-delay: 0ms !important;
@@ -40,7 +40,7 @@
   }
 
   :root[inFullscreen="true"] #sidebar-box {
-    transition: margin-inline-start 1s var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+    transition: margin-inline-start var(--uc-autohide-fullscreen-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
 
     &[positionend="true"] {
       transition-property: margin-inline-end !important;

@@ -42,3 +42,18 @@
 @include Option("userChrome.tabbar.as_titlebar") {
   @import "as_titlebar";
 }
+
+/*= Tab Bar - Multi Row ======================================================*/
+@include Option("userChrome.tabbar.multi_row") {
+  @import "multi_row";
+}
+
+/*= Tab Bar - Scollmode disabled =============================================*/
+@include Option("userChrome.tabbar.unscroll") {
+  @import "unscroll";
+}
+
+/*= Tab Bar - Fill width tab =================================================*/
+@include Option("userChrome.tabbar.fill_width") {
+  @import "fill_width";
+}

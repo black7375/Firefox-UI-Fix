@@ -1,13 +1,19 @@
 /*= Windows Control - Move to toolbar ========================================*/
 /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_on_bottom.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
+
+/* Titlebar Button Box */
 :root {
   --uc-titlebar-padding: 0px;
 }
 
-@include OS($win) {
-  :root[sizemode="maximized"][tabsintitlebar] {
-    --uc-titlebar-padding: 8px;
+#navigator-toolbox {
+  padding-top: var(--uc-titlebar-padding) !important;
+
+  @include Option("userChrome.tabbar.on_bottom") {
+    @include Option("userChrome.tabbar.on_bottom.menubar_on_top") {
+      padding-top: calc(max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)) !important;
+    }
   }
 }
 
@@ -15,29 +21,59 @@ See the above repository for updates as well as full license text. */
 #TabsToolbar > .titlebar-buttonbox-container {
   position: fixed;
   display: block;
-  top: var(--uc-titlebar-padding);
+  top: 0;
   right:0;
-  height: 40px;
   z-index: 1;
 }
 
-/* where window controls are on left */
-@include OS($mac) {
-  :root{
-    --uc-titlebar-padding: 0px !important;
+#toolbar-menubar[autohide="true"] {
+  > .titlebar-buttonbox-container {
+    height: var(--uc-titlebar-buttonbox-height, var(--uc-navbar-height, 36px));
   }
+
+  @include OS($win10) {
+    &[inactive="true"] > > .titlebar-buttonbox-container .titlebar-button {
+      stroke: var(--toolbar-color, currentColor) !important;
+    }
+  }
+}
+
+.titlebar-buttonbox-container > .titlebar-buttonbox {
+  height: 100%;
+  @include OS($mac) {
+    margin-block: 10px;
+  }
+}
+
+@include WindowControl_Left {
   .titlebar-buttonbox-container{
     left:0;
     right: unset !important;
   }
 }
 
-#navigator-toolbox {
-  padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+@include OS($win) {
+  :root[sizemode="maximized"][tabsintitlebar] {
+    --uc-titlebar-padding: 8px;
+
+    #navigator-toolbox-background {
+      margin-top: calc(-1 * var(--uc-titlebar-padding));
+    }
+  }
+  :root[sizemode="normal"][tabsintitlebar] #titlebar,
+  :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+    appearance: none !important;
+  }
+  .browser-toolbar:not(.titlebar-color) {
+    background-clip: border-box !important;
+  }
 }
 
-:root[uidensity="compact"] #TabsToolbar > .titlebar-buttonbox-container {
-  height: 32px;
+@include OS($mac) {
+  #toolbar-menubar:not([autohide="true"]) {
+    visibility: visible !important;
+    height: 0;
+  }
 }
 
 #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
@@ -55,6 +91,7 @@ See the above repository for updates as well as full license text. */
     }
   }
 }
+
 #navigator-toolbox:is(:hover, :focus-within) #toolbar-menubar[inactive]:not([customizing]) > .titlebar-buttonbox-container {
   @include Option("userChrome.hidden.tabbar") {
     @include Option("userChrome.autohide.navbar") {
@@ -63,6 +100,7 @@ See the above repository for updates as well as full license text. */
     }
   }
 }
+
 @include Animate {
   #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
     transition: opacity 0.25s var(--animation-easing-function) var(--uc-autohide-toolbar-delay, 600ms),
@@ -71,25 +109,6 @@ See the above repository for updates as well as full license text. */
   #navigator-toolbox:is(:hover, :focus-within) #toolbar-menubar[inactive]:not([customizing]) > .titlebar-buttonbox-container {
     transition-delay: 0s !important;
   }
-}
-
-.titlebar-buttonbox-container > .titlebar-buttonbox {
-  height: 100%;
-  @include OS($mac) {
-    margin-block: 10px;
-  }
-}
-
-/* At Full Screen */
-:root[sizemode="fullscreen"] #window-controls {
-  position: fixed;
-  display: flex;
-  top: 0;
-  right: 0;
-  height: 40px;
-}
-:root[uidensity="compact"][sizemode="fullscreen"] #window-controls {
-  height: 32px;
 }
 
 @include Option("browser.fullscreen.autohide") {

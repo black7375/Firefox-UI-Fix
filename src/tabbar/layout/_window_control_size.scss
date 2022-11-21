@@ -3,11 +3,44 @@
   --uc-window-drag-space-pre: 0px;  /* Same as .titlebar-spacer[type="pre-tabs"]  - Extra space reserved on both sides of the nav-bar to be able to drag the window */
   --uc-window-drag-space-post: 0px; /* Same as .titlebar-spacer[type="post-tabs"] */
 
-  --uc-widow-control-space: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
+  --uc-window-control-space: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-post));
 }
 
+//-- Mixin ---------------------------------------------------------------------
+@mixin _remove_spacer_pre() {
+  --uc-window-drag-space-pre: 0px; // Don't need pre spacer
+}
+
+@mixin _remove_spacer_post() {
+  --uc-window-control-space: 0px; // Don't need window control
+}
+
+@mixin _remove_spacer_oneLiner() {
+  @include Option("userChrome.tabbar.one_liner.tabbar_first") {
+    @include WindowControl_Right {
+      @include _remove_spacer_pre;
+    }
+    @include WindowControl_Left {
+      @include _remove_spacer_post;
+    }
+    @include Option("userChrome.tabbar.as_titlebar") {
+      #tabbrowser-tabs {
+        @include _remove_spacer_post;
+      }
+    }
+  }
+  @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
+    @include NotOption("userChrome.tabbar.as_titlebar") {
+      @include WindowControl_Right {
+        @include _remove_spacer_post;
+      }
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+
 :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-  --uc-window-control-width: 84px; /* 84px is default value of linux */
   --uc-window-drag-space-pre: var(--uc-title-pre-spacer, 40px); // 30px
   --uc-window-drag-space-post: var(--uc-title-post-spacer, 40px); // 25px
 
@@ -17,11 +50,61 @@
   @include OS($win10) {
     --uc-window-control-width: 138px;
   }
-  @include OS($mac) {
+  @include OS($linux) {
+    $linuxWindowControlWidth: 84px / 3; /* 84px is default value of linux */
+
+    @media (-moz-gtk-csd-minimize-button),
+    (-moz-gtk-csd-maximize-button),
+    (-moz-gtk-csd-close-button) {
+      --uc-window-control-width: #{ $linuxWindowControlWidth };
+    }
+
+    @media (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-maximize-button),
+    (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-close-button),
+    (-moz-gtk-csd-maximize-button) and (-moz-gtk-csd-close-button) {
+      --uc-window-control-width: #{ $linuxWindowControlWidth * 2 };
+    }
+
+    @media (-moz-gtk-csd-minimize-button) and (-moz-gtk-csd-maximize-button) and (-moz-gtk-csd-close-button) {
+      --uc-window-control-width: #{ $linuxWindowControlWidth * 3  };
+    }
+  }
+}
+@include OS($mac) {
+  :root[tabsintitlebar] {
     --uc-window-control-width: 72px;
+  }
+  :root[sizemode="fullscreen"] {
+    @include _remove_spacer_post;
   }
 }
 
 :root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
-  --uc-window-drag-space-pre: 0px; /* Remove pre space */
+  @include _remove_spacer_pre;
+}
+
+@include Option("userChrome.tabbar.one_liner") {
+  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+    @include NotOption("userChrome.tabbar.one_liner.responsive") {
+      @include _remove_spacer_oneLiner;
+    }
+    @include Option("userChrome.tabbar.one_liner.responsive") {
+      @media screen and (max-width: 1100px) {
+        @include NotOption("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
+          @include _remove_spacer_pre;
+          @include _remove_spacer_post;
+        }
+      }
+      @media screen and (min-width: 1100px) {
+        @include _remove_spacer_oneLiner;
+      }
+    }
+  }
+}
+
+@include Has {
+  #navigator-toolbox:has(#toolbar-menubar[autohide="false"]) {
+    @include _remove_spacer_pre;
+    @include _remove_spacer_post;
+  }
 }

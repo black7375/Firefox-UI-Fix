@@ -40,9 +40,7 @@
         margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
     &[pinned] {
-      transition: -moz-box-flex 0.2s var(--animation-easing-function),
-        margin-inline-start 0.2s var(--animation-easing-function) !important;
-
+      transition: margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
   }
 
@@ -78,6 +76,15 @@
   transition: background-color 2.5s var(--animation-easing-function) !important;
   &:hover {
     transition: background-color 1.25s var(--animation-easing-function) !important;
+  }
+}
+
+@include Option("userChrome.combined.urlbar_with_reload") {
+  #nav-bar-customization-target > #stop-reload-button .toolbarbutton-icon {
+    transition: background-color 2.5s var(--animation-easing-function) !important;
+    &:hover {
+      transition: background-color 1.25s var(--animation-easing-function) !important;
+    }
   }
 }
 
@@ -144,7 +151,7 @@ xul|search-textbox.tabsFilter,
   from {
     margin-top: 0;
   }
-  /* Dont' use `to`: Depending on density */
+  /* Don't use `to`: Depending on density */
 }
 
 /*- Expand - Synced Tabs ---------------------------------------------------*/

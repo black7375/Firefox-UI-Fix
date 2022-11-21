@@ -31,7 +31,7 @@ Shows this help message
 
 .PARAMETER WhatIf
 Runs the installer without actioning any file copies/moves
-Equivelant to a dry-run
+Equivalent to a dry-run
 
 .EXAMPLE
 PS> .\Install.ps1 -u -f C:\Users\someone\ff-profiles

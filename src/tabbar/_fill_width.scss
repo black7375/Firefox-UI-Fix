@@ -1,0 +1,8 @@
+// Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tabs_fill_available_width.css made available under Mozilla Public License v. 2.0
+// See the above repository for updates as well as full license text.
+
+/* Why 100vw? Tab closing requires width animation to end and "none" can't be animated */
+.tabbrowser-tab[fadein]:not([style^="max-width"]) {
+  --tab-max-width: 100vw;
+  max-width: var(--tab-max-width) !important;
+}

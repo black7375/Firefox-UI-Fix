@@ -18,14 +18,14 @@
 
 -----
 
-🔔🔔 Did you set a custom, but not work?
+🔔🔔 Does the theme not work after installation?
 
 You should copy [[./user.js][ ~user.js~ ]] file before the theme works.
 
 The option system depends on user configuration, and nothing applies without settings. \\
-Also, real-time changes are difficult for [[./docs/Restrictions.md#supports][technical limitations]] and require restarts.
+Also, real-time changes are difficult because of [[./docs/Restrictions.md#supports][technical limitations]] and require a restart.
 
-Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-userjs][can be conflict]] and should be explicitly =false=.
+Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-userjs][can be conflicted]] and should be explicitly set to =false=.
 
 -----
 
@@ -39,8 +39,8 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
   Lepton's photon styled is preserve Photon's feeling while keep [[https://github.com/black7375/Firefox-UI-Fix][Original Lepton]].'s strengths.
 
   /Disclaimer:/ It works on *Firefox 89* and above!!
-  | *Wiki*             |             |         |                               |      |
-  | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Screenshots][Screenshots]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options][Options]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution][Compatibility Issues Solution]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Tips][Tips]] |
+  | *Wiki*             |             |          |         |                               |      |                      |
+  | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][Installation Guide]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Screenshots][Screenshots]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Tutorial][Tutorial]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options][Options]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution][Compatibility Issues Solution]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Tips][Tips]] | [[https://github.com/black7375/Firefox-UI-Fix/wiki/Show-Off-Your-Config][Show Off Your Config]] |
 
   [[https://user-images.githubusercontent.com/25581533/120091976-41ea4e00-c0ff-11eb-88ca-a204cfcebe72.png]]
 
@@ -52,10 +52,8 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
     - Default light/dark theme contrast enhancement
     - Colorful context menu
     - More dark mode support
-    - GTK system theme support
-    - Windows system theme support
-    - Mac system theme support
-    - Windows7 compatibility
+    - Windows/Mac/Linux system theme support
+    - Windows 7 compatibility
   - *Icons*
     - Panel: like Photon
     - Context Menu
@@ -68,13 +66,13 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
     - Menu
     - Density
     - Others...
-  - *Tabbar Layouts*
+  - *Tab Bar Layouts*
     - Tabs on Bottom
     - One Liner
     - Vertical Tab Support
   - *Tab Design*
     - General:
-      - Connect with toolbar(Buttons like tabs): like Photon
+      - Connect with toolbar (buttons like tabs): like Photon
     - Selected:
       - Context Line: like Photon
       - Bottom Rounding: Natural
@@ -100,7 +98,7 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
       - Focused Shadow: Same as the accent color
       - Hand off to Awesomebar
     - Icons:
-      - Size: Fill(Changes dynamically to your size)
+      - Size: Fill (Changes dynamically to your size)
   - *Error Page Design*
     - Illustrations: Restore error page illustrations
   - *Video Player*
@@ -118,9 +116,9 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
 
 ** Installation Guide
 
-   *Script Installation (experimental)*
+   *Installation script (experimental)*
 
-   Linux, mac users:
+   Linux/Mac users:
    #+BEGIN_SRC bash
    bash -c "$(curl -fsSL https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.sh)"
    #+END_SRC
@@ -135,8 +133,8 @@ Windows users: Run with powershell ([[https://github.com/black7375/Firefox-UI-Fi
    You can see the [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][installation guide]] with screenshots on the wiki.
 
   1. Download files
-     - Click the green ":arrow_down: Code"-button above
-     - Select ":package: Download Zip"
+     - Click the green ":arrow_down: Code" button above
+     - Select ":package: Download ZIP"
   2. Find your profile directory
      - Open =about:support= in a new tab
      - Find the =Profile Folder= entry and click the =Open Folder= button

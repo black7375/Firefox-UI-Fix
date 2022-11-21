@@ -2,32 +2,6 @@
 /* Customized https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
 
 //-- Mixin ---------------------------------------------------------------------
-@mixin _remove_spacer_pre() {
-  /* Don't need pre spacer */
-  --uc-window-drag-space-pre: 0px;
-}
-
-@mixin _remove_spacer_post() {
-  /* Don't need window control */
-  --uc-widow-control-space: 0px;
-}
-
-@mixin _remove_spacer_oneLiner() {
-  @include Option("userChrome.tabbar.one_liner.tabbar_first") {
-    @include _remove_spacer_pre;
-    @include Option("userChrome.tabbar.as_titlebar") {
-      #tabbrowser-tabs {
-        @include _remove_spacer_post;
-      }
-    }
-  }
-  @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
-    @include NotOption("userChrome.tabbar.as_titlebar") {
-      @include _remove_spacer_post;
-    }
-  }
-}
-
 @mixin _oneLiner_navBar_borderPadding() {
   @include NotOption("userChrome.tabbar.one_liner") {
     @content;
@@ -61,66 +35,64 @@
 
 //------------------------------------------------------------------------------
 
-@include Option("userChrome.tabbar.one_liner") {
-  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
-    @include NotOption("userChrome.tabbar.one_liner.responsive") {
-      @include _remove_spacer_oneLiner;
-    }
-    @include Option("userChrome.tabbar.one_liner.responsive") {
-      @media screen and (max-width: 1100px) {
-        @include NotOption("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
-          @include _remove_spacer_pre;
-          @include _remove_spacer_post;
-        }
-      }
-      @media screen and (min-width: 1100px) {
-        @include _remove_spacer_oneLiner;
-      }
-    }
-  }
-}
-
 #nav-bar {
   border-inline-style: solid !important;
   border-inline-color: transparent;
 
-  @include _oneLiner_navBar_borderPadding {
-    border-inline-start-width: var(--uc-window-drag-space-pre);
-    border-inline-end-width: var(--uc-widow-control-space);
-  }
-
-  @include Option("userChrome.tabbar.one_liner") {
-    @include _oneLiner_navBar_marginGap {
-      @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
-        margin-inline-start: var(--uc-window-drag-space-pre) !important;
-      }
-      @include Option("userChrome.tabbar.one_liner.tabbar_first") {
-        margin-inline-end: var(--uc-widow-control-space) !important;
-      }
-    }
-  }
-}
-
-/* Use this pref to check Mac OS where window controls are on left */
-/* This pref defaults to true on Mac and doesn't actually do anything on other platforms. So if your system has window controls on LEFT side you can set the pref to true */
-@include OS($mac) {
-  :root[tabsintitlebar="true"]:not([inFullscreen]) #nav-bar {
+  @include WindowControl_Right {
     @include _oneLiner_navBar_borderPadding {
-      border-inline-start-width: var(--uc-widow-control-space);
-      border-inline-end-width: var(--uc-window-drag-space-pre);
+      border-inline-start-width: var(--uc-window-drag-space-pre);
+      border-inline-end-width: var(--uc-window-control-space);
     }
 
     @include Option("userChrome.tabbar.one_liner") {
       @include _oneLiner_navBar_marginGap {
         @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
-          margin-inline-start: var(--uc-window-drag-space-pre, 0px) !important;
+          margin-inline-start: var(--uc-window-drag-space-pre) !important;
         }
         @include Option("userChrome.tabbar.one_liner.tabbar_first") {
-          margin-inline-end: var(--uc-widow-control-space, 0px) !important;
+          margin-inline-end: var(--uc-window-control-space) !important;
         }
       }
     }
   }
+}
+
+@include WindowControl_Left {
+  #nav-bar {
+    @include _oneLiner_navBar_borderPadding {
+      border-inline-start-width: var(--uc-window-control-space);
+      border-inline-end-width: var(--uc-window-drag-space-pre);
+    }
+    @include Option("userChrome.tabbar.one_liner") {
+      @include _oneLiner_navBar_marginGap {
+        @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
+          margin-inline-start: var(--uc-window-control-space, 0px) !important;
+        }
+        @include Option("userChrome.tabbar.one_liner.tabbar_first") {
+          margin-inline-end: var(--uc-window-drag-space-pre, 0px) !important;
+        }
+      }
+    }
+  }
+
+  #TabsToolbar {
+    @include Option("userChrome.tabbar.one_liner") {
+      @include _oneLiner_navBar_marginGap {
+        @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
+          margin-inline-end: var(--uc-window-drag-space-pre, 0px) !important;
+        }
+      }
+      @include Option("userChrome.tabbar.one_liner.tabbar_first") {
+        @include OneLinerContent {
+          margin-inline-start: var(--uc-window-control-width, 0px) !important;
+        }
+      }
+    }
+  }
+}
+
+@include OS($mac) {
   :root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,
   :root[sizemode="fullscreen"] #window-controls {
     right: unset;

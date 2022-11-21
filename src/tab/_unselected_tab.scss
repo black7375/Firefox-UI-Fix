@@ -1,9 +1,14 @@
 /*= Unselected Tab - Dynamic Separator =======================================*/
-@include Option("userChrome.tab.dynamic_separtor") {
+@include Option("userChrome.tab.dynamic_separator") {
   @import "unselected_tab/dynamic_separator";
 }
 
 /*= Unselected Tab - Static Separator ========================================*/
 @include Option("userChrome.tab.static_separator") {
   @import "unselected_tab/static_separator";
+}
+
+/*= Unselected Tab - Bar Separator ===========================================*/
+@include Option("userChrome.tab.bar_separator") {
+  @import "unselected_tab/bar_separator";
 }
