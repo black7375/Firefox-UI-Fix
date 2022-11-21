@@ -38,6 +38,8 @@ spacer[part="overflow-start-indicator"] + .scrollbox-clip > scrollbox {
     #tabbrowser-arrowscrollbox-periphery {
       position: absolute !important;
       right: 0;
+      top: 50%;
+      transform: translateY(-50%);
 
       > #tabs-newtab-button {
         z-index: 2 !important;

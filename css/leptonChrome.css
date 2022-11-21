@@ -6393,6 +6393,8 @@
   #tabbrowser-tabs[closebuttons="activetab"][hasadjacentnewtabbutton="true"] #tabbrowser-arrowscrollbox-periphery {
     position: absolute !important;
     right: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
   #tabbrowser-tabs[closebuttons="activetab"][hasadjacentnewtabbutton="true"]
     #tabbrowser-arrowscrollbox-periphery
@@ -8185,8 +8187,11 @@
     position: absolute !important;
   }
 
+  #nav-bar-customization-target {
+    -moz-box-pack: justify;
+  }
+
   #nav-bar {
-    --toolbarbutton-outer-padding: 0px !important;
     z-index: 1;
     margin-top: calc(
       var(--uc-tabbar-height) + var(--uc-bm-height) + var(--uc-menubar-height) + var(--uc-navbar-margin-block)
@@ -8248,6 +8253,13 @@
     transform: translateX(-50%);
   }
 
+  #customizableui-special-spring1,
+  #customizableui-special-spring2,
+  #wrapper-customizableui-special-spring1,
+  #wrapper-customizableui-special-spring2 {
+    display: none !important;
+  }
+
   #sidebar-header {
     margin-top: var(--uc-navbar-sideblock-height) !important;
     -moz-window-dragging: drag;
@@ -8285,9 +8297,7 @@
   :root[customizing="true"]:has(#sidebar-box[positionend="true"]) #customization-container {
     margin-inline-end: var(--uc-sidebar-activate-width);
   }
-  :root[customizing="true"] #customization-palette-container {
-    flex-shrink: 0.35 !important;
-  }
+  :root[customizing="true"] #customization-palette-container,
   :root[customizing="true"] #customization-panel-container {
     flex-shrink: 0.5 !important;
   }
@@ -8444,6 +8454,8 @@
   }
   .urlbarView-row:not([type="tip"], [type="dynamic"]) .urlbarView-favicon {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
   .urlbarView-row:not([type="tip"], [type="dynamic"]) .urlbarView-title {
     padding-inline-start: calc(

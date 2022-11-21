@@ -93,6 +93,8 @@ $_urlRowPadding: 2px; //.urlbarView-row
     .urlbarView-favicon {
       position: absolute;
       // padding-block: $_URL_ROW_INNER_PADDING;
+      top: 50%;
+      transform: translateY(-50%);
     }
     .urlbarView-title {
       padding-inline-start: calc(var(--urlbarView-item-inline-padding) + var(--identity-box-margin-inline) + var(--urlbarView-favicon-width)) !important;
