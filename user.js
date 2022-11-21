@@ -178,6 +178,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.bookmarkbar.multi_row",               true);
 
+// user_pref("userChrome.findbar.floating_on_top",             true);
+
 // user_pref("userChrome.panel.remove_strip",                  true);
 // user_pref("userChrome.panel.full_width_separator",          true);
 // user_pref("userChrome.panel.full_width_padding",            true);
