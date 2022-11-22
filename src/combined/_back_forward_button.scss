@@ -40,6 +40,11 @@
       padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
     }
   }
+  @include Option("userChrome.padding.toolbar_button") {
+    @include Option("userChrome.padding.toolbar_button.compact") {
+      --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
+    }
+  }
 
   > menupopup {
     margin-top: -1px !important;

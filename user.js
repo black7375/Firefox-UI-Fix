@@ -131,6 +131,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.padding.drag_space",                  true);
 // user_pref("userChrome.padding.drag_space.maximized",        true);
 
+// user_pref("userChrome.padding.toolbar_button.compact",      true);
 // user_pref("userChrome.padding.menu_compact",                true);
 // user_pref("userChrome.padding.bookmark_menu.compact",       true);
 // user_pref("userChrome.padding.urlView_expanding",           true);

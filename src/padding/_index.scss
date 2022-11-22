@@ -20,6 +20,20 @@
 }
 
 /*= Tool Bar - Button Padding ================================================*/
+@include Option("userChrome.padding.toolbar_button", "userChrome.tab.newtab_button_smaller") {
+  :root {
+    --uc-small-toolbarbutton-inner-padding: 6px;
+    --uc-toolbarbutton-inner-padding-default: 8px;
+  }
+  :root[uidensity="compact"] {
+    --uc-small-toolbarbutton-inner-padding: 4px;
+    --uc-toolbarbutton-inner-padding-default: 6px;
+  }
+  :root[uidensity="touch"] #tabs-newtab-button > .toolbarbutton-icon {
+    --uc-small-toolbarbutton-inner-padding: 9px;
+    --uc-toolbarbutton-inner-padding-default: 9px;
+  }
+}
 @include Option("userChrome.padding.toolbar_button") {
   @import "toolbar_button";
 }
