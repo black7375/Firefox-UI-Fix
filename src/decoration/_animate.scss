@@ -40,9 +40,7 @@
         margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
     &[pinned] {
-      transition: -moz-box-flex 0.2s var(--animation-easing-function),
-        margin-inline-start 0.2s var(--animation-easing-function) !important;
-
+      transition: margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
   }
 

@@ -21,10 +21,14 @@
   },
   "devDependencies": {
     "csstree-validator": "^3.0.0",
-    "fast-glob": "^3.2.11",
-    "jest": "^27.5.1",
-    "prettier": "^2.6.1",
-    "sass": "^1.49.0",
+    "fast-glob": "^3.2.12",
+    "jest": "^29.3.1",
+    "jest-environment-node-single-context": "^29.0.0",
+    "prettier": "^2.7.1",
+    "sass": "^1.56.1",
     "sass-true": "^6.1.0"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-node-single-context"
   }
 }
