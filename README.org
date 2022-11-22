@@ -12,20 +12,20 @@
   - [[#why-proton][WHY Proton?]]
   - [[#why-not-proton][WHY Not Proton?]]
   - [[#padding-comparisons][Padding Comparisons]]
-  - [[#contributors][Contributors]]
+  - [[#sponsors--contributors][Sponsors & Contributors]]
   - [[#faq][FAQ]]
 :END:
 
 -----
 
-🔔🔔 Did you set a custom, but not work?
+🔔🔔 Does the theme not work after installation?
 
 You should copy [[./user.js][ ~user.js~ ]] file before the theme works.
 
 The option system depends on user configuration, and nothing applies without settings. \\
-Also, real-time changes are difficult for [[./docs/Restrictions.md#supports][technical limitations]] and require restarts.
+Also, real-time changes are difficult because of [[./docs/Restrictions.md#supports][technical limitations]] and require a restart.
 
-Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-userjs][can be conflict]] and should be explicitly =false=.
+Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-userjs][can be conflicted]] and should be explicitly set to =false=.
 
 -----
 
@@ -52,10 +52,8 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
     - Default light/dark theme contrast enhancement
     - Colorful context menu
     - More dark mode support
-    - GTK system theme support
-    - Windows system theme support
-    - Mac system theme support
-    - Windows7 compatibility
+    - Windows/Mac/Linux system theme support
+    - Windows 7 compatibility
   - *Icons*
     - Panel: like Photon
     - Context Menu
@@ -68,13 +66,13 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
     - Menu
     - Density
     - Others...
-  - *Tabbar Layouts*
+  - *Tab Bar Layouts*
     - Tabs on Bottom
     - One Liner
     - Vertical Tab Support
   - *Tab Design*
     - General:
-      - Connect with toolbar(Buttons like tabs): like Photon
+      - Connect with toolbar (buttons like tabs): like Photon
     - Selected:
       - Context Line: like Photon
       - Bottom Rounding: Natural
@@ -100,7 +98,7 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
       - Focused Shadow: Same as the accent color
       - Hand off to Awesomebar
     - Icons:
-      - Size: Fill(Changes dynamically to your size)
+      - Size: Fill (Changes dynamically to your size)
   - *Error Page Design*
     - Illustrations: Restore error page illustrations
   - *Video Player*
@@ -118,9 +116,9 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
 
 ** Installation Guide
 
-   *Script Installation (experimental)*
+   *Installation script (experimental)*
 
-   Linux, mac users:
+   Linux/Mac users:
    #+BEGIN_SRC bash
    bash -c "$(curl -fsSL https://raw.githubusercontent.com/black7375/Firefox-UI-Fix/master/install.sh)"
    #+END_SRC
@@ -135,8 +133,8 @@ Windows users: Run with powershell ([[https://github.com/black7375/Firefox-UI-Fi
    You can see the [[https://github.com/black7375/Firefox-UI-Fix/wiki/Installation-Guide][installation guide]] with screenshots on the wiki.
 
   1. Download files
-     - Click the green ":arrow_down: Code"-button above
-     - Select ":package: Download Zip"
+     - Click the green ":arrow_down: Code" button above
+     - Select ":package: Download ZIP"
   2. Find your profile directory
      - Open =about:support= in a new tab
      - Find the =Profile Folder= entry and click the =Open Folder= button
@@ -188,9 +186,17 @@ Windows users: Run with powershell ([[https://github.com/black7375/Firefox-UI-Fi
   - Lepton
 
 
-** Contributors
+** Sponsors & Contributors
 
-Thanks to all contributors to this project for providing help and developing features!
+Thanks to all sponsors & contributors to this project for providing help and developing features!
+
+*Sponsors*
+
+[[https://user-images.githubusercontent.com/25581533/203210367-9f2eed69-666a-4218-acde-128892aa09d8.png]]
+[[https://github.com/ojaha065][@@html:<img src="https://avatars.githubusercontent.com/u/37581768?s=60&v=4"/>@@]]
+[[https://github.com/nikkehtine][@@html:<img src="https://avatars.githubusercontent.com/u/27138416?s=60&v=4"/>@@]]
+
+*Contributors*
 
 [[https://github.com/black7375/Firefox-UI-Fix/graphs/contributors][@@html:<img src="https://contrib.rocks/image?repo=black7375/Firefox-UI-Fix"/>@@]]
 

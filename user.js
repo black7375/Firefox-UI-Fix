@@ -5,9 +5,6 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Proton Enabled #127 || Removed at 97 #328 (Maintained for compatibility with ESR)
 user_pref("browser.proton.enabled", true);
 
-// Proton Tooltip
-user_pref("browser.proton.places-tooltip.enabled", true);
-
 // Fill SVG Color
 user_pref("svg.context-properties.content.enabled", true);
 
@@ -49,7 +46,6 @@ user_pref("userChrome.tab.newtab_button_proton",      false); // Proton
 
 user_pref("userChrome.icon.panel_full",               false); // Original, Proton
 user_pref("userChrome.icon.panel_photon",              true); // Photon
-user_pref("userChrome.icon.panel_sparse",             false); // Just option
 
 // Original Only
 user_pref("userChrome.tab.box_shadow",                false);

@@ -126,6 +126,13 @@
     .tab-background::before {
     opacity: 0 !important;
   }
+
+  :root:not([uidensity="compact"]) #tabs-newtab-button > .toolbarbutton-icon {
+    margin-left: 2px;
+  }
+  :root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
+    margin-left: 1px;
+  }
 }
 
 /* Animate */
