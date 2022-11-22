@@ -64,25 +64,35 @@
 //------------------------------------------------------------------------------
 
 #nav-bar-customization-target > {
-  #forward-button {
-    --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
+  @include NotOption("userChrome.combined.nav_button.normal_forward") {
+    #forward-button {
+      --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
 
-    z-index: 2;
-    position: relative;
+      z-index: 2;
+      position: relative;
 
-    > .toolbarbutton-icon {
-      padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
-      padding-block: var(--urlbar-icon-padding) !important;
-      height: var(--uc-urlbar-icon-size) !important;
-    }
+      > .toolbarbutton-icon {
+        padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
+        padding-block: var(--urlbar-icon-padding) !important;
+        height: var(--uc-urlbar-icon-size) !important;
+      }
 
-    @include Option("userChrome.combined.urlbar.nav_button") {
-      padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
-    }
-    @include NotOption("userChrome.combined.urlbar.nav_button") {
-      @include NotOption("userChrome.combined.nav_button.none_forward_background") {
-        @include Option("userChrome.combined.urlbar.home_button") {
-          @include NotOption("userChrome.combined.nav_button.home_button") {
+      @include Option("userChrome.combined.urlbar.nav_button") {
+        padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
+      }
+      @include NotOption("userChrome.combined.urlbar.nav_button") {
+        @include NotOption("userChrome.combined.nav_button.none_forward_background") {
+          @include Option("userChrome.combined.urlbar.home_button") {
+            @include NotOption("userChrome.combined.nav_button.home_button") {
+              @include _combined_nav_button_background;
+              @include NotOption("userChrome.autohide.forward_button") {
+                &[disabled="true"] {
+                  opacity: 1 !important; /* Original: 0.4 */
+                }
+              }
+            }
+          }
+          @include NotOption("userChrome.combined.urlbar.home_button") {
             @include _combined_nav_button_background;
             @include NotOption("userChrome.autohide.forward_button") {
               &[disabled="true"] {
@@ -91,23 +101,15 @@
             }
           }
         }
-        @include NotOption("userChrome.combined.urlbar.home_button") {
-          @include _combined_nav_button_background;
-          @include NotOption("userChrome.autohide.forward_button") {
-            &[disabled="true"] {
-              opacity: 1 !important; /* Original: 0.4 */
-            }
-          }
-        }
       }
-    }
 
-    @include NotOption("userChrome.autohide.forward_button") {
-      margin-inline-start: var(--uc-forward-button-margin) !important;
-    }
-    @include Option("userChrome.autohide.forward_button") {
-      &:not([disabled="true"]) {
+      @include NotOption("userChrome.autohide.forward_button") {
         margin-inline-start: var(--uc-forward-button-margin) !important;
+      }
+      @include Option("userChrome.autohide.forward_button") {
+        &:not([disabled="true"]) {
+          margin-inline-start: var(--uc-forward-button-margin) !important;
+        }
       }
     }
   }

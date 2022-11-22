@@ -3462,9 +3462,28 @@
   }
 }
 /*= Tool Bar - Button Padding ================================================*/
+@supports -moz-bool-pref("userChrome.padding.toolbar_button") or -moz-bool-pref("userChrome.tab.newtab_button_smaller") {
+  :root {
+    --uc-small-toolbarbutton-inner-padding: 6px;
+    --uc-toolbarbutton-inner-padding-default: 8px;
+  }
+  :root[uidensity="compact"] {
+    --uc-small-toolbarbutton-inner-padding: 4px;
+    --uc-toolbarbutton-inner-padding-default: 6px;
+  }
+  :root[uidensity="touch"] #tabs-newtab-button > .toolbarbutton-icon {
+    --uc-small-toolbarbutton-inner-padding: 9px;
+    --uc-toolbarbutton-inner-padding-default: 9px;
+  }
+}
 @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
   :root[uidensity="compact"] {
     --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
+  }
+  @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
+    :root {
+      --toolbarbutton-inner-padding: var(--uc-small-toolbarbutton-inner-padding) !important;
+    }
   }
 }
 /*= Nav Bar - Reduce Width ===================================================*/
@@ -8029,25 +8048,55 @@
   }
 }
 @supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
-  #nav-bar-customization-target > #forward-button {
-    --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
-    z-index: 2;
-    position: relative;
-  }
-  #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
-    padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
-    padding-block: var(--urlbar-icon-padding) !important;
-    height: var(--uc-urlbar-icon-size) !important;
-  }
-  @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+  @supports not -moz-bool-pref("userChrome.combined.nav_button.normal_forward") {
     #nav-bar-customization-target > #forward-button {
-      padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
+      --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
+      z-index: 2;
+      position: relative;
     }
-  }
-  @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
-    @supports not -moz-bool-pref("userChrome.combined.nav_button.none_forward_background") {
-      @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
-        @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+    #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
+      padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
+      padding-block: var(--urlbar-icon-padding) !important;
+      height: var(--uc-urlbar-icon-size) !important;
+    }
+    @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+      #nav-bar-customization-target > #forward-button {
+        padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
+      }
+    }
+    @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+      @supports not -moz-bool-pref("userChrome.combined.nav_button.none_forward_background") {
+        @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+          @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+            #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
+              background-color: var(--uc-combined-circlebutton-background);
+            }
+            #nav-bar-customization-target > #forward-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+              background-color: var(--uc-combined-circlebutton-hover-background) !important;
+              box-shadow: 0 1px 6px hsla(0deg, 0%, 0%, 0.1);
+              border-color: hsla(240deg, 5%, 5%, 0.35);
+            }
+            #nav-bar-customization-target > #forward-button[open] > .toolbarbutton-icon,
+            #nav-bar-customization-target > #forward-button:not([disabled]):hover:active > .toolbarbutton-icon {
+              background-color: var(--uc-combined-circlebutton-active-background) !important;
+              border-color: hsla(240deg, 5%, 5%, 0.4);
+            }
+            #nav-bar-customization-target > #forward-button[disabled="true"] > .toolbarbutton-icon {
+              background-color: color-mix(
+                in srgb,
+                var(--toolbarbutton-hover-background),
+                var(--toolbar-field-background-color) 40%
+              ) !important;
+              fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+            }
+            @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
+              #nav-bar-customization-target > #forward-button[disabled="true"] {
+                opacity: 1 !important; /* Original: 0.4 */
+              }
+            }
+          }
+        }
+        @supports not -moz-bool-pref("userChrome.combined.urlbar.home_button") {
           #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
             background-color: var(--uc-combined-circlebutton-background);
           }
@@ -8076,44 +8125,16 @@
           }
         }
       }
-      @supports not -moz-bool-pref("userChrome.combined.urlbar.home_button") {
-        #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
-          background-color: var(--uc-combined-circlebutton-background);
-        }
-        #nav-bar-customization-target > #forward-button:not([disabled], [open]):hover > .toolbarbutton-icon {
-          background-color: var(--uc-combined-circlebutton-hover-background) !important;
-          box-shadow: 0 1px 6px hsla(0deg, 0%, 0%, 0.1);
-          border-color: hsla(240deg, 5%, 5%, 0.35);
-        }
-        #nav-bar-customization-target > #forward-button[open] > .toolbarbutton-icon,
-        #nav-bar-customization-target > #forward-button:not([disabled]):hover:active > .toolbarbutton-icon {
-          background-color: var(--uc-combined-circlebutton-active-background) !important;
-          border-color: hsla(240deg, 5%, 5%, 0.4);
-        }
-        #nav-bar-customization-target > #forward-button[disabled="true"] > .toolbarbutton-icon {
-          background-color: color-mix(
-            in srgb,
-            var(--toolbarbutton-hover-background),
-            var(--toolbar-field-background-color) 40%
-          ) !important;
-          fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
-        }
-        @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
-          #nav-bar-customization-target > #forward-button[disabled="true"] {
-            opacity: 1 !important; /* Original: 0.4 */
-          }
-        }
+    }
+    @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
+      #nav-bar-customization-target > #forward-button {
+        margin-inline-start: var(--uc-forward-button-margin) !important;
       }
     }
-  }
-  @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
-    #nav-bar-customization-target > #forward-button {
-      margin-inline-start: var(--uc-forward-button-margin) !important;
-    }
-  }
-  @supports -moz-bool-pref("userChrome.autohide.forward_button") {
-    #nav-bar-customization-target > #forward-button:not([disabled="true"]) {
-      margin-inline-start: var(--uc-forward-button-margin) !important;
+    @supports -moz-bool-pref("userChrome.autohide.forward_button") {
+      #nav-bar-customization-target > #forward-button:not([disabled="true"]) {
+        margin-inline-start: var(--uc-forward-button-margin) !important;
+      }
     }
   }
   #nav-bar-customization-target > #back-button {
