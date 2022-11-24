@@ -5665,6 +5665,10 @@
   #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
     z-index: 0 !important;
   }
+  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] .tab-stack {
+    /* Temporary solution for compatibility #513 */
+    overflow-y: clip;
+  }
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Color like toolbar ========================================*/
