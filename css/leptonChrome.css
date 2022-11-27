@@ -1293,7 +1293,8 @@
       --panel-background: var(--menu-background-color) !important;
       --panel-border-color: var(--menu-border-color) !important;
     }
-    html#main-window menupopup:not(.in-menulist) menuseparator {
+    html#main-window menupopup:not(.in-menulist):not([placespopup]) menuseparator,
+    html#main-window menupopup:not(.in-menulist)[placespopup] menuseparator::before {
       border-top: 1px solid var(--menu-border-color) !important;
     }
     html#main-window menupopup:not(.in-menulist) menu[disabled="true"],
