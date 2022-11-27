@@ -1,3 +1,7 @@
+#TabsToolbar {
+  --toolbarseparator-color: color-mix(in srgb, currentColor 30%, transparent);
+}
+
 .tabbrowser-tab[first-visible-tab="true"] .tab-background::before,
 .tab-background::after {
   content: "";
@@ -11,15 +15,14 @@
 
   /* Position */
   top: 50%;
-  transform:  translateY(-50%) !important;
+  transform:  translateY(-50%);
 
   /* Bar shape */
   width: 0px;
   height: 100%;
 
   /* Bar Color */
-  opacity: 0.3;
-  border-right: 1px solid var(--lwt-background-tab-separator-color, currentColor) !important;
+  border-right: 1px solid var(--toolbarseparator-color);
 }
 .tab-background::after {
   right: 0;
@@ -29,8 +32,7 @@
 .tabbrowser-tab[visuallyselected] .tab-background::after,
 .tabbrowser-tab[beforeselected-visible] .tab-background::after {
   @include Option("userChrome.tab.static_separator.selected_accent") {
-    --lwt-background-tab-separator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
-    opacity: 1;
+    --toolbarseparator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
   }
   @include NotOption("userChrome.tab.static_separator.selected_accent") {
     opacity: 0;
