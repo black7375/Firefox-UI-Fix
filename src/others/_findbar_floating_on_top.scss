@@ -3,6 +3,11 @@ See the above repository for updates as well as full license text. */
 
 /* Note that privacy.resistFingerprinting.letterboxing prevents this from working properly */
 
+#main-window > body > box {
+  // #navigator-toolbox-background for compatibility
+  z-index: 1;
+}
+
 findbar {
   -moz-box-ordinal-group: 0;
   position: relative;
