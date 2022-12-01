@@ -32,7 +32,8 @@
 
 @include Animate {
   #sidebar-box {
-    transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
+    transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay),
+                max-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
 
     &:is(:hover, :focus-within) {
       transition-delay: 0ms !important;

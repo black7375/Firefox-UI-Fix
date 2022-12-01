@@ -6852,16 +6852,20 @@
     --uc-sidebar-activate-width: 18em;
     --uc-sidebar-activate-width-reverse: calc(-1 * var(--uc-sidebar-activate-width));
     --uc-sidebar-fullscreen-width: 4px;
+    --uc-sidebar-shadow-size: 1px;
+    --uc-sidebar-shadow-width: 0px;
+    --uc-sidebar-shadow-position: var(--uc-sidebar-shadow-position-default);
+    --uc-sidebar-shadow-position-default: calc(var(--uc-sidebar-shadow-size) + var(--uc-sidebar-shadow-width));
     --uc-sidebar-shadow-color: #28282f;
     --uc-autohide-sidebar-speed: 750ms;
     --uc-autohide-fullscreen-sidebar-speed: 1s;
     --uc-autohide-sidebar-delay: 600ms; /* Wait 0.6s before hiding sidebar */
     z-index: 1 !important;
     position: relative !important;
-    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+    box-shadow: var(--uc-sidebar-shadow-position) 0px 15px -10px var(--uc-sidebar-shadow-color);
   }
   #sidebar-box[positionend="true"] {
-    box-shadow: -1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+    --uc-sidebar-shadow-position: calc(-1 * var(--uc-sidebar-shadow-position-default));
   }
   #sidebar {
     display: block;
@@ -6896,6 +6900,7 @@
     #sidebar-box {
       margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
       will-change: padding-inline;
+      --uc-sidebar-shadow-width: var(--uc-sidebar-activate-width);
     }
     #sidebar-box:not([hidden="true"]) {
       padding-inline-start: var(--uc-sidebar-activate-width) !important;
@@ -6903,7 +6908,7 @@
     @media (prefers-reduced-motion: no-preference) {
       #sidebar-box {
         transition: padding-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
-          visibility 0s linear !important;
+          box-shadow 0s linear, visibility 0s linear !important;
       }
     }
   }
@@ -7571,17 +7576,22 @@
       max-width: var(--uc-sidebar-width) !important;
       will-change: min-width, max-width;
     }
+    #sidebar-box:is(:hover, :focus-within) {
+      --uc-sidebar-shadow-width: calc(var(--uc-sidebar-activate-width) - var(--uc-sidebar-width));
+    }
     #sidebar-box:is(:hover, :focus-within) > #sidebar-header,
     #sidebar-box:is(:hover, :focus-within) > #sidebar {
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
     }
     :root[inFullscreen="true"] #sidebar-box {
+      --uc-sidebar-shadow-width: var(--uc-sidebar-fullscreen-width);
       margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
       padding-inline-start: var(--uc-sidebar-fullscreen-width);
-      will-change: padding-inline-start;
+      will-change: padding-inline-start, opacity, box-shadow, visibility;
     }
     :root[inFullscreen="true"] #sidebar-box:is(:hover, :focus-within) {
+      --uc-sidebar-shadow-width: var(--uc-sidebar-activate-width);
       padding-inline-start: var(--uc-sidebar-activate-width);
     }
     :root[inFullscreen="true"] #sidebar-box #sidebar-header,
@@ -7596,13 +7606,22 @@
         transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function)
           var(--uc-autohide-sidebar-delay) !important;
       }
+      #sidebar-box:is(:hover, :focus-within) {
+        transition: margin-inline-start var(--uc-autohide-sidebar-speed) var(--animation-easing-function),
+          opacity var(--uc-autohide-sidebar-speed) ease-in-out,
+          box-shadow var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-speed),
+          visibility 0s linear !important;
+      }
       #sidebar-box:is(:hover, :focus-within) > #sidebar-header,
       #sidebar-box:is(:hover, :focus-within) > #sidebar {
         transition-delay: 0ms !important;
       }
       :root[inFullscreen="true"] #sidebar-box {
         transition: padding-inline-start var(--uc-autohide-fullscreen-sidebar-speed) var(--animation-easing-function)
-          var(--uc-autohide-sidebar-delay) !important;
+            var(--uc-autohide-sidebar-delay),
+          opacity var(--uc-autohide-fullscreen-sidebar-speed) ease-in-out,
+          box-shadow calc(var(--uc-autohide-fullscreen-sidebar-speed) + 0.05s) var(--animation-easing-function),
+          visibility 0s linear !important;
       }
       :root[inFullscreen="true"] #sidebar-box:is(:hover, :focus-within) {
         transition-delay: 0ms !important;
@@ -7638,7 +7657,8 @@
     @media (prefers-reduced-motion: no-preference) {
       #sidebar-box {
         transition: min-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function)
-          var(--uc-autohide-sidebar-delay) !important;
+            var(--uc-autohide-sidebar-delay),
+          max-width var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
       }
       #sidebar-box:is(:hover, :focus-within) {
         transition-delay: 0ms !important;
