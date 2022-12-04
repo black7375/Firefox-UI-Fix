@@ -158,7 +158,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // -- User Content -------------------------------------------------------------
 // user_pref("userContent.player.ui.twoline",                  true);
 
-// user_pref("userContent.newTab.hide_logo",                   true);
+// user_pref("userContent.newTab.hidden_logo",                 true);
 
 // user_pref("userContent.page.proton_color.dark_blue_accent", true);
 // user_pref("userContent.page.proton_color.system_accent",    true);

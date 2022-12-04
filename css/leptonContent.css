@@ -443,7 +443,7 @@
     }
   }
   /** Activity Stream - Hide Firefox's logo ***********************************/
-  @supports -moz-bool-pref("userContent.newTab.hide_logo") {
+  @supports -moz-bool-pref("userContent.newTab.hidden_logo") {
     .logo-and-wordmark {
       display: none !important;
     }
