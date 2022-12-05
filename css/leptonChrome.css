@@ -6971,7 +6971,7 @@
     }
     .tab-label,
     .tab-secondary-label {
-      overflow: hidden;
+      overflow: clip;
     }
     .tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),
     .tabbrowser-tab:not(:hover, [pinned]) .tab-label-container:not([textoverflow]) {
