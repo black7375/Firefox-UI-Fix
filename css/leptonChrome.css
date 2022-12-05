@@ -6048,7 +6048,6 @@
     }
   }
   @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
-    #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-background::before,
     #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
       .tab-background::after {
