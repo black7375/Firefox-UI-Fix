@@ -1,0 +1,143 @@
+name: Bug report
+description: Create a report to help us improve
+labels: ["Issue::Bug"]
+
+body:
+# == Bug Infos =================================================================
+  - type: markdown
+    id: bug-infos
+    attributes:
+      value: "## Bug Infos"
+  - type: textarea
+    id: describe-the-bug
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Tell us what you want!
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If is helpful to attach screenshots or video similar to the desired features.
+      placeholder: Drag or paste images or videos to upload
+    validations:
+      required: false
+
+# == Environments ===============================================================
+  - type: markdown
+    id: environments
+    attributes:
+      value: "## Environments"
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      options:
+        - Linux
+        - Mac OS
+        - Windows 11
+        - Windows 10
+        - Windows 8
+        - Windows 7
+        - Others
+      multiple: true
+    validations:
+      required: true
+  - type: input
+    id: os-others
+    attributes:
+      label: OS - Others
+      description: Enter only if you choose `Others` from the OS
+      placeholder: e.g. FreeBSD
+    validations:
+      required: false
+
+  - type: input
+    id: firefox-version
+    attributes:
+      label: Firefox Version
+      description: Write from `about:support` - `version`
+      placeholder: e.g. v101.1b3
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: distribution
+    attributes:
+      label: Distribution
+      options:
+        - label: "[Original Lepton](https://github.com/black7375/Firefox-UI-Fix)"
+        - label: "[Lepton's photon style](https://github.com/black7375/Firefox-UI-Fix/tree/photon-style)"
+        - label: "[Lepton's proton style](https://github.com/black7375/Firefox-UI-Fix/tree/proton-style)"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: theme
+    attributes:
+      label: Theme
+      options:
+        - label: "Light"
+        - label: "Dark"
+        - label: "Alpenglow (System: Light)"
+        - label: "Alpenglow (System: Dark)"
+        - label: "System Default"
+        - label: "Others: (e.g. [Photon Colors](https://addons.mozilla.org/en-US/firefox/addon/photon-colors/), [Google Chrome Dark](https://addons.mozilla.org/en-US/firefox/addon/google-chrome-dark/), [Fairytale Of Nature](https://addons.mozilla.org/en-US/firefox/addon/fairytale-of-nature/))"
+    validations:
+      required: true
+  - type: textarea
+    id: theme-more-info
+    attributes:
+      label: Theme - More Info
+      description: |
+        Enter only for the following cases:
+
+        - Choose `System Default` with linux users
+          Tip: Run `gsettings get org.gnome.desktop.interface gtk-theme` to output this
+        - Choose `Others`
+      placeholder: |
+        Example for each case
+
+        - Adwaita, Adwaita-Dark, Breath, Breath-Dark
+        - Your theme links like https://addons.mozilla.org/en-US/firefox/addon/photon-colors/
+    validations:
+      required: false
+
+  - type: textarea
+    id: user-js-setup
+    attributes:
+      label: "`user.js` setup"
+      description: |
+        Your `user.js` or `about:config` settings
+      placeholder: Please tell me your settings
+      value: |
+        <details><summary><strong><code>user.js</code> setup</strong></summary><br>
+
+        ```javascript
+        // Your settings
+        ```
+        </details>
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+      placeholder: Anything to write down or refer to is fine
+    validations:
+      required: false

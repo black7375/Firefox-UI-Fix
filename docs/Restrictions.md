@@ -75,7 +75,11 @@ The following code will cause extension panels fail to open and trying to open t
 ```
 Info: `#nav-bar` is [`toolbar`](https://udn.realityripple.com/docs/Archive/Mozilla/XUL/toolbar).
 
-Another `display: flex`'s side effect examples. [#368](https://github.com/black7375/Firefox-UI-Fix/issues/368) [#372](https://github.com/black7375/Firefox-UI-Fix/issues/372)
+Another `display: flex`'s side effect examples. [#368](https://github.com/black7375/Firefox-UI-Fix/issues/368) [#372](https://github.com/black7375/Firefox-UI-Fix/issues/372)  
+After FF `v107`, breakage due to `-moz-box` may occur.
+
+- [Bug 1783934 - Add a way to incrementally migrate -moz-box layout to modern flexbox](https://bugzilla.mozilla.org/show_bug.cgi?id=1783934)
+- [Bug 1790616 - Use modern flexbox in the browser toolbox.](https://bugzilla.mozilla.org/show_bug.cgi?id=1790616)
 
 ### RTL
 

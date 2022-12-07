@@ -25,4 +25,9 @@
 /* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
 #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
   z-index: 0 !important;
+
+  .tab-stack {
+    /* Temporary solution for compatibility #513 */
+    overflow-y: clip;
+  }
 }
