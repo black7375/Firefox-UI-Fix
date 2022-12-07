@@ -193,4 +193,14 @@
       }
     }
   }
+
+  /** Activity Stream - Hide Firefox's logo ***********************************/
+  @include Option("userContent.newTab.hidden_logo") {
+    .logo-and-wordmark {
+      display: none !important;
+    }
+    .outer-wrapper:not(.fixed-search) .search-wrapper {
+      padding-top: 0 !important;
+    }
+  }
 }
