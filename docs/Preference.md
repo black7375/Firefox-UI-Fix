@@ -50,25 +50,26 @@ The following is a method of operating the configuration file parser.
 See [EBNF (Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
 
 ```ebnf
-<pref-file>   = <pref>*
-<pref>        = <pref-spec> "(" <pref-name> "," <pref-value> <pref-attrs> ")" ";"
-<pref-spec>   = "user_pref" | "pref" | "sticky_pref" // in default pref files
-<pref-spec>   = "user_pref"                          // in user pref files
-<pref-name>   = <string-literal>
-<pref-value>  = <string-literal> | "true" | "false" | <int-value>
-<int-value>   = <sign>? <int-literal>
-<sign>        = "+" | "-"
-<int-literal> = [0-9]+ (and cannot be followed by [A-Za-z_])
-<string-literal> =
+<pref-file>   = <pref>*;
+<pref>        = <pref-spec> "(" <pref-name> "," <pref-value> <pref-attrs> ")" ";";
+<pref-spec>   = "user_pref" | "pref" | "sticky_pref"; (* in default pref files *)
+<pref-spec>   = "user_pref";                          (* in user pref files    *)
+<pref-name>   = <string-literal>;
+<pref-value>  = <string-literal> | "true" | "false" | <int-value>;
+<int-value>   = <sign>? <int-literal>;
+<sign>        = "+" | "-";
+<int-literal> = [0-9]+ (and cannot be followed by [A-Za-z_]);
+<string-literal> = ?
   A single or double-quoted string, with the following escape sequences
-  allowed: \", \', \\, \n, \r, \xNN, \uNNNN, where \xNN gives a raw byte
-  value that is copied directly into an 8-bit string value, and \uNNNN
+  allowed: "\"", "\'" "\\", "\n", "\r", "\xNN", "\uNNNN", where "\xNN" gives a raw byte
+  value that is copied directly into an 8-bit string value, and "\uNNNN"
   gives a UTF-16 code unit that is converted to UTF-8 before being copied
-  into an 8-bit string value. \x00 and \u0000 are disallowed because they
+  into an 8-bit string value. "\x00" and "\u0000" are disallowed because they
   would cause C++ code handling such strings to misbehave.
-<pref-attrs>  = ("," <pref-attr>)*      // in default pref files
-              = <empty>                 // in user pref files
-<pref-attr>   = "sticky" | "locked"     // default pref files only
+?;
+<pref-attrs>  = ("," <pref-attr>)*       (* in default pref files   *)
+              = <empty>;                 (* in user pref files      *)
+<pref-attr>   = "sticky" | "locked";     (* default pref files only *)
 ```
 
 ## Default Config

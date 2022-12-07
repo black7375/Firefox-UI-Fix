@@ -10,6 +10,10 @@
     --uc-sidebar-activate-width: 18em;
     --uc-sidebar-activate-width-reverse: calc(-1 * var(--uc-sidebar-activate-width));
     --uc-sidebar-fullscreen-width: 4px;
+    --uc-sidebar-shadow-size: 1px;
+    --uc-sidebar-shadow-width: 0px;
+    --uc-sidebar-shadow-position: var(--uc-sidebar-shadow-position-default);
+    --uc-sidebar-shadow-position-default: calc(var(--uc-sidebar-shadow-size) + var(--uc-sidebar-shadow-width));
     --uc-sidebar-shadow-color: #28282F;
 
     --uc-autohide-sidebar-speed: 750ms;
@@ -19,9 +23,9 @@
     z-index: 1 !important;
     position: relative !important;
 
-    box-shadow: 1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+    box-shadow: var(--uc-sidebar-shadow-position) 0px 15px -10px var(--uc-sidebar-shadow-color);
     &[positionend="true"] {
-      box-shadow: -1px 0px 15px -10px var(--uc-sidebar-shadow-color);
+      --uc-sidebar-shadow-position: calc(-1 * var(--uc-sidebar-shadow-position-default));
     }
   }
 
@@ -66,13 +70,14 @@
       margin-inline-start: var(--uc-sidebar-activate-width-reverse) !important;
       will-change: padding-inline;
 
+      --uc-sidebar-shadow-width: var(--uc-sidebar-activate-width);
       &:not([hidden="true"]) {
         padding-inline-start: var(--uc-sidebar-activate-width) !important;
       }
 
       @include Animate {
         transition: padding-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
-                    visibility 0s linear !important;
+                    box-shadow 0s linear, visibility 0s linear !important;
       }
     }
   }
