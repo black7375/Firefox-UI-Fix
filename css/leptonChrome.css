@@ -8076,7 +8076,7 @@
       }
     }
     @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
-      @supports not -moz-bool-pref("userChrome.combined.nav_button.none_forward_background") {
+      @supports not -moz-bool-pref("userChrome.combined.nav_button.none_background") {
         @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
           @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
             #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
@@ -8101,7 +8101,7 @@
               fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
             }
             @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
-              #nav-bar-customization-target > #forward-button[disabled="true"] {
+              #nav-bar-customization-target > #forward-button[disabled="true"][disabled="true"] {
                 opacity: 1 !important; /* Original: 0.4 */
               }
             }
@@ -8130,7 +8130,7 @@
             fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
           }
           @supports not -moz-bool-pref("userChrome.autohide.forward_button") {
-            #nav-bar-customization-target > #forward-button[disabled="true"] {
+            #nav-bar-customization-target > #forward-button[disabled="true"][disabled="true"] {
               opacity: 1 !important; /* Original: 0.4 */
             }
           }
@@ -8151,30 +8151,64 @@
   #nav-bar-customization-target > #back-button {
     position: relative;
   }
-  #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
-    background-color: var(--uc-combined-circlebutton-background);
+  @supports not -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+    @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+      #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-background);
+      }
+      #nav-bar-customization-target > #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-hover-background) !important;
+        box-shadow: 0 1px 6px hsla(0deg, 0%, 0%, 0.1);
+        border-color: hsla(240deg, 5%, 5%, 0.35);
+      }
+      #nav-bar-customization-target > #back-button[open] > .toolbarbutton-icon,
+      #nav-bar-customization-target > #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-active-background) !important;
+        border-color: hsla(240deg, 5%, 5%, 0.4);
+      }
+      #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
+        background-color: color-mix(
+          in srgb,
+          var(--toolbarbutton-hover-background),
+          var(--toolbar-field-background-color) 40%
+        ) !important;
+        fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+      }
+      @supports not -moz-bool-pref("userChrome.autohide.back_button") {
+        #nav-bar-customization-target > #back-button[disabled="true"][disabled="true"] {
+          opacity: 1 !important; /* Original: 0.4 */
+        }
+      }
+    }
   }
-  #nav-bar-customization-target > #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
-    background-color: var(--uc-combined-circlebutton-hover-background) !important;
-    box-shadow: 0 1px 6px hsla(0deg, 0%, 0%, 0.1);
-    border-color: hsla(240deg, 5%, 5%, 0.35);
-  }
-  #nav-bar-customization-target > #back-button[open] > .toolbarbutton-icon,
-  #nav-bar-customization-target > #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
-    background-color: var(--uc-combined-circlebutton-active-background) !important;
-    border-color: hsla(240deg, 5%, 5%, 0.4);
-  }
-  #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
-    background-color: color-mix(
-      in srgb,
-      var(--toolbarbutton-hover-background),
-      var(--toolbar-field-background-color) 40%
-    ) !important;
-    fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
-  }
-  @supports not -moz-bool-pref("userChrome.autohide.back_button") {
-    #nav-bar-customization-target > #back-button[disabled="true"] {
-      opacity: 1 !important; /* Original: 0.4 */
+  @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") or -moz-bool-pref("userChrome.combined.nav_button.home_button") {
+    @supports not -moz-bool-pref("userChrome.combined.nav_button.none_background") {
+      #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-background);
+      }
+      #nav-bar-customization-target > #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-hover-background) !important;
+        box-shadow: 0 1px 6px hsla(0deg, 0%, 0%, 0.1);
+        border-color: hsla(240deg, 5%, 5%, 0.35);
+      }
+      #nav-bar-customization-target > #back-button[open] > .toolbarbutton-icon,
+      #nav-bar-customization-target > #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
+        background-color: var(--uc-combined-circlebutton-active-background) !important;
+        border-color: hsla(240deg, 5%, 5%, 0.4);
+      }
+      #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
+        background-color: color-mix(
+          in srgb,
+          var(--toolbarbutton-hover-background),
+          var(--toolbar-field-background-color) 40%
+        ) !important;
+        fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+      }
+      @supports not -moz-bool-pref("userChrome.autohide.back_button") {
+        #nav-bar-customization-target > #back-button[disabled="true"][disabled="true"] {
+          opacity: 1 !important; /* Original: 0.4 */
+        }
+      }
     }
   }
   @supports -moz-bool-pref("userChrome.combined.nav_button.home_button") or -moz-bool-pref("userChrome.combined.urlbar.home_button") {

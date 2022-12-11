@@ -1,5 +1,5 @@
 //-- Mixin ---------------------------------------------------------------------
-@mixin _combined_nav_button_background() {
+@mixin _combined_nav_button_background($autohideOptionName) {
   > .toolbarbutton-icon {
     background-color: var(--uc-combined-circlebutton-background);
   }
@@ -19,7 +19,18 @@
       background-color:  color-mix(in srgb, var(--toolbarbutton-hover-background), var(--toolbar-field-background-color) 40%) !important;
       fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
     }
+    @include NotOption($autohideOptionName) {
+      &[disabled="true"] {
+        opacity: 1 !important; /* Original: 0.4 */
+      }
+    }
   }
+}
+@mixin _combined_forward_button_background() {
+  @include _combined_nav_button_background("userChrome.autohide.forward_button");
+}
+@mixin _combined_back_button_background() {
+  @include _combined_nav_button_background("userChrome.autohide.back_button");
 }
 
 @mixin _back_button_circle_shape() {
@@ -81,24 +92,14 @@
         padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
       }
       @include NotOption("userChrome.combined.urlbar.nav_button") {
-        @include NotOption("userChrome.combined.nav_button.none_forward_background") {
+        @include NotOption("userChrome.combined.nav_button.none_background") {
           @include Option("userChrome.combined.urlbar.home_button") {
             @include NotOption("userChrome.combined.nav_button.home_button") {
-              @include _combined_nav_button_background;
-              @include NotOption("userChrome.autohide.forward_button") {
-                &[disabled="true"] {
-                  opacity: 1 !important; /* Original: 0.4 */
-                }
-              }
+              @include _combined_forward_button_background;
             }
           }
           @include NotOption("userChrome.combined.urlbar.home_button") {
-            @include _combined_nav_button_background;
-            @include NotOption("userChrome.autohide.forward_button") {
-              &[disabled="true"] {
-                opacity: 1 !important; /* Original: 0.4 */
-              }
-            }
+            @include _combined_forward_button_background;
           }
         }
       }
@@ -117,10 +118,14 @@
   #back-button {
     position: relative;
 
-    @include _combined_nav_button_background;
-    @include NotOption("userChrome.autohide.back_button") {
-      &[disabled="true"] {
-        opacity: 1 !important; /* Original: 0.4 */
+    @include NotOption("userChrome.combined.urlbar.home_button") {
+      @include NotOption("userChrome.combined.nav_button.home_button") {
+        @include _combined_back_button_background;
+      }
+    }
+    @include Option("userChrome.combined.urlbar.home_button", "userChrome.combined.nav_button.home_button") {
+      @include NotOption("userChrome.combined.nav_button.none_background") {
+        @include _combined_back_button_background;
       }
     }
     @include Option("userChrome.combined.nav_button.home_button", "userChrome.combined.urlbar.home_button") {
