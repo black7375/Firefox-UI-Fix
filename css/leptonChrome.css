@@ -8215,7 +8215,6 @@
     #nav-bar-customization-target > #back-button {
       z-index: 2;
       margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
-      padding-inline-start: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
     }
     #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
       padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
@@ -8346,10 +8345,42 @@
   #nav-bar-customization-target > #forward-button {
     -moz-box-ordinal-group: 4;
   }
+  @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+    #nav-bar-customization-target
+      > :first-child:is(#back-button, #forward-button, #home-button)
+      + :is(toolbarbutton, toolbaritem):not(#back-button, #forward-button, #home-button),
+    #nav-bar-customization-target
+      > :first-child:is(#back-button, #forward-button, #home-button)
+      + :is(#back-button, #forward-button, #home-button)
+      + :is(toolbarbutton, toolbaritem):not(#back-button, #forward-button, #home-button),
+    #nav-bar-customization-target
+      > :first-child:is(#back-button, #forward-button, #home-button)
+      + :is(#back-button, #forward-button, #home-button)
+      + :is(#back-button, #forward-button, #home-button)
+      + :is(toolbarbutton, toolbaritem) {
+      padding-inline-start: var(--toolbar-start-end-padding) !important;
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.combined.urlbar.home_button") {
+    #nav-bar-customization-target
+      > :first-child:is(#back-button, #forward-button)
+      + :is(toolbarbutton, toolbaritem):not(#back-button, #forward-button),
+    #nav-bar-customization-target
+      > :first-child:is(#back-button, #forward-button)
+      + :is(#back-button, #forward-button)
+      + :is(toolbarbutton, toolbaritem) {
+      padding-inline-start: var(--toolbar-start-end-padding) !important;
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #home-button {
     -moz-box-ordinal-group: 3;
+  }
+  @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
+    #nav-bar-customization-target > #home-button:is(:first-child) + :is(toolbarbutton, toolbaritem) {
+      padding-inline-start: var(--toolbar-start-end-padding) !important;
+    }
   }
   #nav-bar-customization-target > #home-button {
     z-index: 3;
