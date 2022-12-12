@@ -123,12 +123,18 @@
         @include _combined_back_button_background;
       }
     }
-    @include Option("userChrome.combined.urlbar.home_button", "userChrome.combined.nav_button.home_button") {
+    @include Option(
+      "userChrome.combined.urlbar.home_button",
+      "userChrome.combined.nav_button.home_button"
+    ) {
       @include NotOption("userChrome.combined.nav_button.none_background") {
         @include _combined_back_button_background;
       }
     }
-    @include Option("userChrome.combined.nav_button.home_button", "userChrome.combined.urlbar.home_button") {
+    @include Option(
+      "userChrome.combined.nav_button.home_button",
+      "userChrome.combined.urlbar.home_button"
+    ) {
       z-index: 2;
 
       margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
