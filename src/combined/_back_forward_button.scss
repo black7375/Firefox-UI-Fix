@@ -75,7 +75,7 @@
 //------------------------------------------------------------------------------
 
 #nav-bar-customization-target > {
-  @include NotOption("userChrome.combined.nav_button.normal_forward") {
+  @include NotOption("userChrome.combined.nav_button.normal") {
     #forward-button {
       --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
 
@@ -124,25 +124,22 @@
       }
     }
     @include Option(
-      "userChrome.combined.urlbar.home_button",
-      "userChrome.combined.nav_button.home_button"
-    ) {
-      @include NotOption("userChrome.combined.nav_button.none_background") {
-        @include _combined_back_button_background;
-      }
-    }
-    @include Option(
       "userChrome.combined.nav_button.home_button",
       "userChrome.combined.urlbar.home_button"
     ) {
       z-index: 2;
 
-      margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
+      @include NotOption("userChrome.combined.nav_button.normal") {
+        margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
 
-      > .toolbarbutton-icon {
-        padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
-        padding-block: var(--urlbar-icon-padding) !important;
-        height: var(--uc-urlbar-icon-size) !important;
+        @include NotOption("userChrome.combined.nav_button.none_background") {
+          @include _combined_back_button_background;
+        }
+        > .toolbarbutton-icon {
+          padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
+          padding-block: var(--urlbar-icon-padding) !important;
+          height: var(--uc-urlbar-icon-size) !important;
+        }
       }
     }
 

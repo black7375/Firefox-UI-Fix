@@ -8059,7 +8059,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
-  @supports not -moz-bool-pref("userChrome.combined.nav_button.normal_forward") {
+  @supports not -moz-bool-pref("userChrome.combined.nav_button.normal") {
     #nav-bar-customization-target > #forward-button {
       --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
       z-index: 2;
@@ -8181,45 +8181,47 @@
       }
     }
   }
-  @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") or -moz-bool-pref("userChrome.combined.nav_button.home_button") {
-    @supports not -moz-bool-pref("userChrome.combined.nav_button.none_background") {
-      #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
-        background-color: var(--uc-combined-circlebutton-background);
-      }
-      #nav-bar-customization-target > #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
-        background-color: var(--uc-combined-circlebutton-hover-background) !important;
-        box-shadow: 0 1px 6px hsla(0deg, 0%, 0%, 0.1);
-        border-color: hsla(240deg, 5%, 5%, 0.35);
-      }
-      #nav-bar-customization-target > #back-button[open] > .toolbarbutton-icon,
-      #nav-bar-customization-target > #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
-        background-color: var(--uc-combined-circlebutton-active-background) !important;
-        border-color: hsla(240deg, 5%, 5%, 0.4);
-      }
-      #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
-        background-color: color-mix(
-          in srgb,
-          var(--toolbarbutton-hover-background),
-          var(--toolbar-field-background-color) 40%
-        ) !important;
-        fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
-      }
-      @supports not -moz-bool-pref("userChrome.autohide.back_button") {
-        #nav-bar-customization-target > #back-button[disabled="true"][disabled="true"] {
-          opacity: 1 !important; /* Original: 0.4 */
-        }
-      }
-    }
-  }
   @supports -moz-bool-pref("userChrome.combined.nav_button.home_button") or -moz-bool-pref("userChrome.combined.urlbar.home_button") {
     #nav-bar-customization-target > #back-button {
       z-index: 2;
-      margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
     }
-    #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
-      padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
-      padding-block: var(--urlbar-icon-padding) !important;
-      height: var(--uc-urlbar-icon-size) !important;
+    @supports not -moz-bool-pref("userChrome.combined.nav_button.normal") {
+      #nav-bar-customization-target > #back-button {
+        margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
+      }
+      @supports not -moz-bool-pref("userChrome.combined.nav_button.none_background") {
+        #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+          background-color: var(--uc-combined-circlebutton-background);
+        }
+        #nav-bar-customization-target > #back-button:not([disabled], [open]):hover > .toolbarbutton-icon {
+          background-color: var(--uc-combined-circlebutton-hover-background) !important;
+          box-shadow: 0 1px 6px hsla(0deg, 0%, 0%, 0.1);
+          border-color: hsla(240deg, 5%, 5%, 0.35);
+        }
+        #nav-bar-customization-target > #back-button[open] > .toolbarbutton-icon,
+        #nav-bar-customization-target > #back-button:not([disabled]):hover:active > .toolbarbutton-icon {
+          background-color: var(--uc-combined-circlebutton-active-background) !important;
+          border-color: hsla(240deg, 5%, 5%, 0.4);
+        }
+        #nav-bar-customization-target > #back-button[disabled="true"] > .toolbarbutton-icon {
+          background-color: color-mix(
+            in srgb,
+            var(--toolbarbutton-hover-background),
+            var(--toolbar-field-background-color) 40%
+          ) !important;
+          fill: color-mix(in srgb, var(--toolbarbutton-icon-fill), transparent 60%);
+        }
+        @supports not -moz-bool-pref("userChrome.autohide.back_button") {
+          #nav-bar-customization-target > #back-button[disabled="true"][disabled="true"] {
+            opacity: 1 !important; /* Original: 0.4 */
+          }
+        }
+      }
+      #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
+        padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
+        padding-block: var(--urlbar-icon-padding) !important;
+        height: var(--uc-urlbar-icon-size) !important;
+      }
     }
   }
   @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
