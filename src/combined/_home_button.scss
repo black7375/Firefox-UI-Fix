@@ -1,31 +1,13 @@
+@import "combined_circle_button";
+
 #nav-bar-customization-target > #home-button {
-  z-index: 3;
   position: relative;
+  @include circle_button_shape;
 
-  background-color: var(--toolbar-bgcolor) !important;
-  background-clip: content-box !important;
-  border-radius: 100%;
-
-  padding-block: 0 !important;
-  padding-inline-end: 0 !important;
-
-  > .toolbarbutton-icon {
-    background-color: var(--uc-combined-circlebutton-background);
-    background-origin: padding-box;
-    background-clip: padding-box;
-    border: 1px solid var(--uc-combined-circlebutton-border-color);
-    border-radius: 10000px !important;
-
-    padding-inline-end: var(--urlbar-icon-padding) !important;
-    height: auto !important
-  }
   &:hover > .toolbarbutton-icon {
-    background-color: var(--uc-combined-circlebutton-hover-background) !important;
-    box-shadow: 0 1px 6px hsla(0,0%,0%,.1);
-    border-color: hsla(240,5%,5%,.35);
+    @include circle_button_background_hover;
   }
   &:hover:active > .toolbarbutton-icon {
-    background-color: var(--uc-combined-circlebutton-active-background) !important;
-    border-color: hsla(240,5%,5%,.40);
+    @include circle_button_background_active;
   }
 }

@@ -8234,6 +8234,13 @@
           border-radius: 100%;
           padding-block: 0 !important;
         }
+        @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
+          @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
+            #nav-bar-customization-target > #back-button {
+              --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
+            }
+          }
+        }
         @supports not -moz-bool-pref("userChrome.autohide.back_button") {
           #nav-bar-customization-target > #back-button {
             padding-inline-end: 0 !important;
@@ -8245,13 +8252,6 @@
           }
           #nav-bar-customization-target > #back-button[disabled="true"] {
             padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
-          }
-        }
-        @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
-          @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
-            #nav-bar-customization-target > #back-button {
-              --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
-            }
           }
         }
         #nav-bar-customization-target > #back-button > menupopup {
@@ -8275,6 +8275,13 @@
         border-radius: 100%;
         padding-block: 0 !important;
       }
+      @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
+        @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
+          #nav-bar-customization-target > #back-button {
+            --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
+          }
+        }
+      }
       @supports not -moz-bool-pref("userChrome.autohide.back_button") {
         #nav-bar-customization-target > #back-button {
           padding-inline-end: 0 !important;
@@ -8286,13 +8293,6 @@
         }
         #nav-bar-customization-target > #back-button[disabled="true"] {
           padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
-        }
-      }
-      @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
-        @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
-          #nav-bar-customization-target > #back-button {
-            --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
-          }
         }
       }
       #nav-bar-customization-target > #back-button > menupopup {
@@ -8312,13 +8312,23 @@
 @supports -moz-bool-pref("userChrome.combined.nav_button") {
   @supports -moz-bool-pref("userChrome.combined.nav_button.home_button") {
     #nav-bar-customization-target > #home-button {
-      z-index: 3;
       position: relative;
+      z-index: 3 !important;
       background-color: var(--toolbar-bgcolor) !important;
       background-clip: content-box !important;
       border-radius: 100%;
       padding-block: 0 !important;
       padding-inline-end: 0 !important;
+    }
+    @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
+      @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
+        #nav-bar-customization-target > #home-button {
+          --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
+        }
+      }
+    }
+    #nav-bar-customization-target > #home-button > menupopup {
+      margin-top: -1px !important;
     }
     #nav-bar-customization-target > #home-button > .toolbarbutton-icon {
       background-color: var(--uc-combined-circlebutton-background);
@@ -8385,13 +8395,23 @@
     }
   }
   #nav-bar-customization-target > #home-button {
-    z-index: 3;
     position: relative;
+    z-index: 3 !important;
     background-color: var(--toolbar-bgcolor) !important;
     background-clip: content-box !important;
     border-radius: 100%;
     padding-block: 0 !important;
     padding-inline-end: 0 !important;
+  }
+  @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
+    @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
+      #nav-bar-customization-target > #home-button {
+        --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
+      }
+    }
+  }
+  #nav-bar-customization-target > #home-button > menupopup {
+    margin-top: -1px !important;
   }
   #nav-bar-customization-target > #home-button > .toolbarbutton-icon {
     background-color: var(--uc-combined-circlebutton-background);
