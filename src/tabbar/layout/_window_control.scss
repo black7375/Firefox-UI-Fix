@@ -32,7 +32,7 @@ See the above repository for updates as well as full license text. */
   }
 
   @include OS($win10) {
-    &[inactive="true"] > > .titlebar-buttonbox-container .titlebar-button {
+    &[inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
       stroke: var(--toolbar-color, currentColor) !important;
     }
   }
