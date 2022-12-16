@@ -8077,7 +8077,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
-  @supports not -moz-bool-pref("userChrome.combined.nav_button.normal") {
+  @supports not -moz-bool-pref("userChrome.combined.sub_button.as_normal") {
     #nav-bar-customization-target > #forward-button {
       --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
       z-index: 2;
@@ -8094,7 +8094,7 @@
       }
     }
     @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
-      @supports not -moz-bool-pref("userChrome.combined.nav_button.none_background") {
+      @supports not -moz-bool-pref("userChrome.combined.sub_button.none_background") {
         @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
           @supports not -moz-bool-pref("userChrome.combined.nav_button.home_button") {
             #nav-bar-customization-target > #forward-button > .toolbarbutton-icon {
@@ -8203,11 +8203,11 @@
     #nav-bar-customization-target > #back-button {
       z-index: 2;
     }
-    @supports not -moz-bool-pref("userChrome.combined.nav_button.normal") {
+    @supports not -moz-bool-pref("userChrome.combined.sub_button.as_normal") {
       #nav-bar-customization-target > #back-button {
         margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
       }
-      @supports not -moz-bool-pref("userChrome.combined.nav_button.none_background") {
+      @supports not -moz-bool-pref("userChrome.combined.sub_button.none_background") {
         #nav-bar-customization-target > #back-button > .toolbarbutton-icon {
           background-color: var(--uc-combined-circlebutton-background);
         }

@@ -39,7 +39,7 @@
 //------------------------------------------------------------------------------
 
 #nav-bar-customization-target > {
-  @include NotOption("userChrome.combined.nav_button.normal") {
+  @include NotOption("userChrome.combined.sub_button.as_normal") {
     #forward-button {
       --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
 
@@ -56,7 +56,7 @@
         padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
       }
       @include NotOption("userChrome.combined.urlbar.nav_button") {
-        @include NotOption("userChrome.combined.nav_button.none_background") {
+        @include NotOption("userChrome.combined.sub_button.none_background") {
           @include Option("userChrome.combined.urlbar.home_button") {
             @include NotOption("userChrome.combined.nav_button.home_button") {
               @include _combined_forward_button_background;
@@ -93,10 +93,10 @@
     ) {
       z-index: 2;
 
-      @include NotOption("userChrome.combined.nav_button.normal") {
+      @include NotOption("userChrome.combined.sub_button.as_normal") {
         margin-inline-end: calc(-1 * var(--uc-toolbarbutton-boundary) - 1px) !important;
 
-        @include NotOption("userChrome.combined.nav_button.none_background") {
+        @include NotOption("userChrome.combined.sub_button.none_background") {
           @include _combined_back_button_background;
         }
         > .toolbarbutton-icon {

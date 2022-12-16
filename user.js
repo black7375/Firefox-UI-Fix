@@ -112,11 +112,11 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.combined.nav_button",                 true);
 // user_pref("userChrome.combined.nav_button.home_button",     true);
-// user_pref("userChrome.combined.nav_button.normal",          true);
-// user_pref("userChrome.combined.nav_button.none_background", true);
 // user_pref("userChrome.combined.urlbar.nav_button",          true);
 // user_pref("userChrome.combined.urlbar.home_button",         true);
 // user_pref("userChrome.combined.urlbar.reload_button",       true);
+// user_pref("userChrome.combined.sub_button.none_background", true);
+// user_pref("userChrome.combined.sub_button.as_normal",       true);
 
 // user_pref("userChrome.rounding.square_button",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
