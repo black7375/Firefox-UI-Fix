@@ -35,24 +35,13 @@
     }
   }
 
-  /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
-       Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
-  /* Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
   &[visuallyselected="true"]:not(:focus),
   &[multiselected]:not([visuallyselected]) {
+    //  Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
+    //    Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
+    // Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
     --uc-tab-shadow-color: var(--toolbar-color);
   }
-}
-
-:root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
-  #TabsToolbar:not([brighttext])
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected], [multiselected])
-  > .tab-stack
-  > .tab-background {
-  --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
-  box-shadow: var(--uc-tab-background-shadow-soft) var(--uc-tab-shadow-color),
-    var(--uc-tab-additional-shadow) !important;
 }
 
 /* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
@@ -63,6 +52,7 @@
   .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
+  --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
   box-shadow: var(--uc-tab-background-shadow-hard) var(--uc-tab-shadow-color),
     var(--uc-tab-additional-shadow) !important;
 }

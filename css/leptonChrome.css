@@ -6033,14 +6033,6 @@
   :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab {
-    /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
-         Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
-    /* Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
-  }
-  :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
-    #TabsToolbar[brighttext]
-    #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([selected], [multiselected])
     > .tab-stack
     > .tab-background:-moz-lwtheme {
@@ -6056,15 +6048,6 @@
     .tabbrowser-tab[multiselected]:not([visuallyselected]) {
     --uc-tab-shadow-color: var(--toolbar-color);
   }
-  :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
-    #TabsToolbar:not([brighttext])
-    #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected], [multiselected])
-    > .tab-stack
-    > .tab-background {
-    --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
-    box-shadow: var(--uc-tab-background-shadow-soft) var(--uc-tab-shadow-color), var(--uc-tab-additional-shadow) !important;
-  }
   /* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
      around the tab to help themes that are dependent on tab_line to show the selected tab. */
   :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
@@ -6073,6 +6056,7 @@
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
     > .tab-stack
     > .tab-background:-moz-lwtheme {
+    --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
     box-shadow: var(--uc-tab-background-shadow-hard) var(--uc-tab-shadow-color), var(--uc-tab-additional-shadow) !important;
   }
   :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
