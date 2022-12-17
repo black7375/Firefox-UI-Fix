@@ -74,7 +74,7 @@
       }
       @include Option("userContent.page.field_border") {
         .search-wrapper .search-inner-wrapper:hover input,
-        .search-inner-wrapper:hover button {
+        .search-inner-wrapper:hover .search-handoff-button {
           border-color: var(--newtab-primary-action-background) !important;
           transition: border-color 0.5s var(--animation-easing-function);
         }
