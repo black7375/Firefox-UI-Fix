@@ -64,19 +64,32 @@
       }
 
       /* Search Bar */
-      .search-inner-wrapper input {
-        transition: 1s var(--animation-easing-function);
-        transition-property: border-color, box-shadow;
-      }
-      .search-wrapper .search-inner-wrapper:active input,
-      .search-wrapper input:focus {
-        transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
-      }
-      @include Option("userContent.page.field_border") {
-        .search-wrapper .search-inner-wrapper:hover input,
-        .search-inner-wrapper:hover .search-handoff-button {
-          border-color: var(--newtab-primary-action-background) !important;
-          transition: border-color 0.5s var(--animation-easing-function);
+      .search-wrapper .search-inner-wrapper {
+        // When `browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar`
+        // input(#newtab-search-text): false
+        // .search-handoff-button: true
+        $_activityStreamSearchbar: "> input, > .search-handoff-button";
+        $_activeSearchbar: selector.nest(":active", $_activityStreamSearchbar);
+        $_activeSearchbarResult: ();
+        @each $searchbarSelctor in $_activeSearchbar {
+          $_activeSearchbarResult: append($_activeSearchbarResult, "&" + $searchbarSelctor);
+        }
+
+        #{$_activityStreamSearchbar} {
+          transition: 1s var(--animation-easing-function);
+          transition-property: border-color, box-shadow;
+        }
+        #{$_activeSearchbarResult},
+        #{selector.append($_activityStreamSearchbar, ":focus")} {
+          transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
+        }
+        @include Option("userContent.page.field_border") {
+          &:hover {
+            #{$_activityStreamSearchbar} {
+              border-color: var(--newtab-primary-action-background) !important;
+              transition: border-color 0.5s var(--animation-easing-function);
+            }
+          }
         }
       }
     }
