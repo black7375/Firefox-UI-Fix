@@ -110,7 +110,7 @@
       display: block;
       position: absolute;
       z-index: -1;
-      bottom: 0;
+      bottom: -1px;
 
       /* Shape */
       width: var(--uc-tab-corner-size);
@@ -118,12 +118,7 @@
 
       /* Color */
       fill: transparent;
-      stroke: transparent;
-      -moz-context-properties: fill, stroke, stroke-opacity;
-      // For stroke
-      // box-shadow: 0 0 4px rgba(0,0,0,.4);
-      // box-shadow: 0 0 1px var(--toolbar-color) !important;
-      // box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))) !important
+      -moz-context-properties: fill;
 
       /* Image */
       // background-size: var(--tab-corner-rounding);
@@ -174,10 +169,6 @@
     &::before,
     &::after {
       fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
-
-      @include Option("userChrome.tab.box_shadow") {
-        stroke: var(--uc-tab-shadow-color);
-      }
     }
   }
   &:hover:not([visuallyselected], [multiselected]) .tab-background {
@@ -199,39 +190,25 @@
   --uc-tab-corner-bgimage: none;
 }
 
-:root {
-  &:is(
-    [lwtheme-mozlightdark],
-    [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
-    [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-  ) #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background {
+@include OS($linux) {
+  /* Fill color for GTK */
+  :root:not([lwtheme="true"]) .tabbrowser-tab {
     @include Option("userChrome.tab.box_shadow") {
+      --uc-tab-shadow-color: rgba(0,0,0, 0.4);
+    }
+    &[visuallyselected] .tab-background {
+      background-clip: content-box;
+
       &::before,
       &::after {
-        stroke-opacity: 0.3;
-      }
-    }
-  }
-  @include OS($linux) {
-    /* Fill color for GTK */
-    &:not([lwtheme="true"]) .tabbrowser-tab {
-      @include Option("userChrome.tab.box_shadow") {
-        --uc-tab-shadow-color: rgba(0,0,0, 0.4);
-      }
-      &[visuallyselected] .tab-background {
-        background-clip: content-box;
-
-        &::before,
-        &::after {
-          /* As GTK Toolbar's background-color + background-image
-           * --toolbar-non-lwt-bgcolor: -moz-dialog;
-           * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
-           */
-          --uc-tab-corner-bgimage: linear-gradient(var(--toolbar-non-lwt-bgcolor), var(--toolbar-non-lwt-bgcolor));
-          fill: rgba(255, 255, 255, .075);
-          @include NotOption("userChrome.tab.color_like_toolbar") {
-            fill: rgba(255, 255, 255, .15);
-          }
+        /* As GTK Toolbar's background-color + background-image
+         * --toolbar-non-lwt-bgcolor: -moz-dialog;
+         * --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15));
+         */
+        --uc-tab-corner-bgimage: linear-gradient(var(--toolbar-non-lwt-bgcolor), var(--toolbar-non-lwt-bgcolor));
+        fill: rgba(255, 255, 255, .075);
+        @include NotOption("userChrome.tab.color_like_toolbar") {
+          fill: rgba(255, 255, 255, .15);
         }
       }
     }
