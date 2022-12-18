@@ -8069,7 +8069,7 @@
     #appMenu-fullscreen-button2 {
       --arrowpanel-menuitem-padding-block: 0px;
     }
-    .subviewbutton[type="checkbox"]:not([checked="true"]) > .toolbarbutton-text {
+    .subviewbutton[type="checkbox"]:not([checked="true"], #allTabsMenu_sortTabsButton) > .toolbarbutton-text {
       margin-left: 16px !important;
     }
     /* Icons Color */
@@ -8528,6 +8528,10 @@
     /*= unified-extensions-view ===================================================*/
     #unified-extensions-manage-extensions {
       list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+    }
+    /*= Tab Mix Plus =============================================================*/
+    #allTabsMenu_sortTabsButton {
+      list-style-image: url("../icons/text-sort-ascending.svg");
     }
   }
   /** Menu - Icons Layout *******************************************************/
@@ -10072,6 +10076,9 @@
   @supports -moz-bool-pref("userChrome.icon.menu") {
     #menu_FileRestartItem {
       --menuitem-image: url("../icons/refresh-cw.svg");
+    }
+    #toggle_status-dummybar {
+      --menuitem-image: url("../icons/pulse-square.svg");
     }
     menuitem.privatetab-icon {
       --menuitem-image: url("../icons/private-favicon.svg");
