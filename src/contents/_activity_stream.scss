@@ -72,7 +72,7 @@
         $_activeSearchbar: selector.nest(":active", $_activityStreamSearchbar);
         $_activeSearchbarResult: ();
         @each $searchbarSelctor in $_activeSearchbar {
-          $_activeSearchbarResult: append($_activeSearchbarResult, "&" + $searchbarSelctor);
+          $_activeSearchbarResult: append($_activeSearchbarResult, "&" + $searchbarSelctor, $separator: comma);
         }
 
         #{$_activityStreamSearchbar} {

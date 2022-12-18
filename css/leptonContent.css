@@ -338,12 +338,8 @@
         transition: 1s var(--animation-easing-function);
         transition-property: border-color, box-shadow;
       }
-      .search-wrapper
-        .search-inner-wrapper:active
-        > input
-        .search-wrapper
-        .search-inner-wrapper:active
-        > .search-handoff-button,
+      .search-wrapper .search-inner-wrapper:active > input,
+      .search-wrapper .search-inner-wrapper:active > .search-handoff-button,
       .search-wrapper .search-inner-wrapper > input:focus,
       .search-wrapper .search-inner-wrapper > .search-handoff-button:focus {
         transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
