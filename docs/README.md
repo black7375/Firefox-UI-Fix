@@ -103,6 +103,7 @@ Start Guide:
 CSS, SASS Documents:
 - [MDN: CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [MDN: Introducing the CSS Cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade)
+- [MDN: Introducing the CSS Specific](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
 - [SASS(SCSS)](https://sass-lang.com/documentation)
 - [SASS Live Compile](https://www.sassmeister.com/)
 
