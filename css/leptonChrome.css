@@ -271,13 +271,13 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    menu[_moz-menuactive="true"],
-    menuitem[_moz-menuactive="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"] {
       background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
     }
-    menu[_moz-menuactive="true"][disabled="true"],
-    menuitem[_moz-menuactive="true"][disabled="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"][disabled="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
     }
@@ -293,15 +293,30 @@
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
-    menu[_moz-menuactive="true"],
-    menuitem[_moz-menuactive="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"] {
       background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 80%, transparent) !important;
     }
-    menu[_moz-menuactive="true"][disabled="true"],
-    menuitem[_moz-menuactive="true"][disabled="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"][disabled="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
+    }
+  }
+  /*= Windows 10 - Native Menu Active Color =====================================*/
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+    @media not (-moz-windows-non-native-menus) {
+      menu[_moz-menuactive="true"],
+      menuitem[_moz-menuactive="true"] {
+        background-color: #91c9f7 !important;
+        border-color: transparent !important;
+      }
+      menu[_moz-menuactive="true"][disabled="true"],
+      menuitem[_moz-menuactive="true"][disabled="true"] {
+        background-color: color-mix(in srgb, currentColor 9%, transparent) !important;
+        border-color: transparent !important;
+      }
     }
   }
   @media (-moz-gtk-csd-available) {
@@ -8680,6 +8695,12 @@
         --menu-background-padding-default: calc(
           var(--context-menu-background-padding) + var(--context-menu-text-padding)
         );
+      }
+      @media not (-moz-windows-non-native-menus) {
+        :root {
+          --context-menu-background-padding: 3px;
+          --menu-background-padding-default: 0px;
+        }
       }
       :not(menu, #ContentSelectDropdown, #context-navigation)
         > menupopup

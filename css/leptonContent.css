@@ -2833,6 +2833,12 @@
             var(--context-menu-background-padding) + var(--context-menu-text-padding)
           );
         }
+        @media not (-moz-windows-non-native-menus) {
+          :root {
+            --context-menu-background-padding: 3px;
+            --menu-background-padding-default: 0px;
+          }
+        }
         menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
           menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
         menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
