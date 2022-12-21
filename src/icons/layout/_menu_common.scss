@@ -97,6 +97,11 @@ $_initialMenus: selector.append(
     --context-menu-background-padding: 1em;
     --context-menu-text-padding: 24px; /* 16px + 8px */
     --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
+
+    @include Win10_NativeMenu() {
+      --context-menu-background-padding: 3px;
+      --menu-background-padding-default: 0px;
+    }
   }
 }
 @mixin _layout_init_win10() {

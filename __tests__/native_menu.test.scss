@@ -9,9 +9,15 @@
         @include native_menu.NativeMenu {
           @include example;
         }
+        @include native_menu.Win10_NativeMenu {
+          @include example;
+        }
       }
       @include expect {
         @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
+          @include example;
+        }
+        @media not (-moz-windows-non-native-menus) {
           @include example;
         }
       }

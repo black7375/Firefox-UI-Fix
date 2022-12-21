@@ -333,16 +333,20 @@
         transition: background 0.5s var(--animation-easing-function);
       }
       /* Search Bar */
-      .search-inner-wrapper input {
+      .search-wrapper .search-inner-wrapper > input,
+      .search-wrapper .search-inner-wrapper > .search-handoff-button {
         transition: 1s var(--animation-easing-function);
         transition-property: border-color, box-shadow;
       }
-      .search-wrapper .search-inner-wrapper:active input,
-      .search-wrapper input:focus {
+      .search-wrapper .search-inner-wrapper:active > input,
+      .search-wrapper .search-inner-wrapper:active > .search-handoff-button,
+      .search-wrapper .search-inner-wrapper > input:focus,
+      .search-wrapper .search-inner-wrapper > .search-handoff-button:focus {
         transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
       }
       @supports -moz-bool-pref("userContent.page.field_border") {
-        .search-wrapper .search-inner-wrapper:hover input {
+        .search-wrapper .search-inner-wrapper:hover > input,
+        .search-wrapper .search-inner-wrapper:hover > .search-handoff-button {
           border-color: var(--newtab-primary-action-background) !important;
           transition: border-color 0.5s var(--animation-easing-function);
         }
@@ -2828,6 +2832,12 @@
           --menu-background-padding-default: calc(
             var(--context-menu-background-padding) + var(--context-menu-text-padding)
           );
+        }
+        @media not (-moz-windows-non-native-menus) {
+          :root {
+            --context-menu-background-padding: 3px;
+            --menu-background-padding-default: 0px;
+          }
         }
         menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
           menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
