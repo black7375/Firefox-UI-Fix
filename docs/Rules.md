@@ -45,13 +45,15 @@ It comes from [#109](https://github.com/black7375/Firefox-UI-Fix/issues/109#issu
 
 Stable: Only bugfix, Documentation.
 - `master`: Common bugfix, documentation.
-- `photon-style`: Bugfix, documentation specified in `photon-style`.
-- `proton-style`: Bugfix, documentation specified in `proton-style`.
+- `photon-style`: Config, documentation specified in `photon-style`.
+- `proton-style`: Config, documentation specified in `proton-style`.
 
 Development: New Features.
 - `dev`: Common new features.
-- `photon-style-dev`: New features specified in `photon-style`.
-- `proton-style-dev`: New features specified in `proton-style`.
+- `photon-style-dev`: New config specified in `photon-style`.
+- `proton-style-dev`: New config specified in `proton-style`.
+
+After version [`v5.0.0`](https://github.com/black7375/Firefox-UI-Fix/releases/tag/v5.0.0), the distribution is just a [setting difference](https://github.com/black7375/Firefox-UI-Fix/wiki/Options#distribution-settings).
 
 ## Edit
 ### Modify only source file

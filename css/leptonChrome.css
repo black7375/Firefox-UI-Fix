@@ -177,6 +177,13 @@
     padding-inline-start: var(--tab-overflow-pinned-tabs-width) !important;
     margin-inline-start: 0 !important;
   }
+  @supports -moz-bool-pref("userChrome.tab.static_separator") {
+    #tabbrowser-tabs {
+      border-inline-start: none !important;
+      padding-inline-start: var(--tab-overflow-pinned-tabs-width) !important;
+      margin-inline-start: 0 !important;
+    }
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -264,13 +271,13 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    menu[_moz-menuactive="true"],
-    menuitem[_moz-menuactive="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"] {
       background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
     }
-    menu[_moz-menuactive="true"][disabled="true"],
-    menuitem[_moz-menuactive="true"][disabled="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"][disabled="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
     }
@@ -286,15 +293,30 @@
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
-    menu[_moz-menuactive="true"],
-    menuitem[_moz-menuactive="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"] {
       background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 80%, transparent) !important;
     }
-    menu[_moz-menuactive="true"][disabled="true"],
-    menuitem[_moz-menuactive="true"][disabled="true"] {
+    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"][disabled="true"],
+    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
+    }
+  }
+  /*= Windows 10 - Native Menu Active Color =====================================*/
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+    @media not (-moz-windows-non-native-menus) {
+      menu[_moz-menuactive="true"],
+      menuitem[_moz-menuactive="true"] {
+        background-color: #91c9f7 !important;
+        border-color: transparent !important;
+      }
+      menu[_moz-menuactive="true"][disabled="true"],
+      menuitem[_moz-menuactive="true"][disabled="true"] {
+        background-color: color-mix(in srgb, currentColor 9%, transparent) !important;
+        border-color: transparent !important;
+      }
     }
   }
   @media (-moz-gtk-csd-available) {
@@ -6836,6 +6858,7 @@
   :root,
   :root:is([uidensity="compact"], [uidensity="touch"]) {
     --arrowpanel-menuitem-margin: 0 !important;
+    --arrowpanel-menuitem-margin-inline: 0 !important;
     --arrowpanel-menuitem-padding-inline: calc(var(--arrowpanel-menuitem-padding-block) + 8px) !important;
   }
 }
@@ -8022,7 +8045,9 @@
     .subviewbutton > .toolbarbutton-text {
       padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
     }
-    .toolbaritem-combined-buttons > .subviewbutton:not(.subviewbutton-iconic) > .toolbarbutton-text {
+    .toolbaritem-combined-buttons:not(.unified-extensions-item)
+      > .subviewbutton:not(.subviewbutton-iconic)
+      > .toolbarbutton-text {
       padding-inline-start: 0 !important;
     }
     #panelMenu_bookmarksMenu .subviewbutton[disabled="true"] .toolbarbutton-text,
@@ -8061,7 +8086,7 @@
     #appMenu-fullscreen-button2 {
       --arrowpanel-menuitem-padding-block: 0px;
     }
-    .subviewbutton[type="checkbox"]:not([checked="true"]) > .toolbarbutton-text {
+    .subviewbutton[type="checkbox"]:not([checked="true"], #allTabsMenu_sortTabsButton) > .toolbarbutton-text {
       margin-left: 16px !important;
     }
     /* Icons Color */
@@ -8521,6 +8546,10 @@
     #unified-extensions-manage-extensions {
       list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
     }
+    /*= Tab Mix Plus =============================================================*/
+    #allTabsMenu_sortTabsButton {
+      list-style-image: url("../icons/text-sort-ascending.svg");
+    }
   }
   /** Menu - Icons Layout *******************************************************/
   @supports -moz-bool-pref("userChrome.icon.menu") {
@@ -8668,6 +8697,12 @@
         --menu-background-padding-default: calc(
           var(--context-menu-background-padding) + var(--context-menu-text-padding)
         );
+      }
+      @media not (-moz-windows-non-native-menus) {
+        :root {
+          --context-menu-background-padding: 3px;
+          --menu-background-padding-default: 0px;
+        }
       }
       :not(menu, #ContentSelectDropdown, #context-navigation)
         > menupopup
@@ -10064,6 +10099,9 @@
   @supports -moz-bool-pref("userChrome.icon.menu") {
     #menu_FileRestartItem {
       --menuitem-image: url("../icons/refresh-cw.svg");
+    }
+    #toggle_status-dummybar {
+      --menuitem-image: url("../icons/pulse-square.svg");
     }
     menuitem.privatetab-icon {
       --menuitem-image: url("../icons/private-favicon.svg");
