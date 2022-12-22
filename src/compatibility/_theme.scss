@@ -173,8 +173,19 @@ vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
 }
 
 /*= Firefox View Border #498 =================================================*/
-:root:not([privatebrowsingmode=temporary])[firefoxviewhidden] #firefox-view-button + #tabbrowser-tabs {
-  border-inline-start: none !important;
-  padding-inline-start: var(--tab-overflow-pinned-tabs-width) !important;
-  margin-inline-start: 0 !important;
+@mixin _firefox_view_border_remove() {
+  #tabbrowser-tabs {
+    border-inline-start: none !important;
+    padding-inline-start: var(--tab-overflow-pinned-tabs-width) !important;
+    margin-inline-start: 0 !important;
+  }
+}
+
+:root:not([privatebrowsingmode=temporary])[firefoxviewhidden] #firefox-view-button + {
+  @include _firefox_view_border_remove;
+}
+
+@include Option("userChrome.tab.static_separator") {
+  // #531
+  @include _firefox_view_border_remove;
 }

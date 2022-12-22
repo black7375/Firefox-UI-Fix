@@ -18,7 +18,7 @@ The overall structure of this project.
 root
 |- __tests__/: Mixin spec test
 |- icons/: Icons, illustrations
-|- css/: Build result of SCSS Files
+|- css/: Build result of SCSS Files (Don't modify directly!!)
 |- docs/: Development Documents
 |- src/: Source files
 |- src/leptonChrome.scss: Entry of SCSS for Browser UI
@@ -32,10 +32,12 @@ root
 |- package.json: Build setup, package dependency
 |- LEPTON: Meta infos (branch, version)
 |- user.js: about:config settings
-|- userChrome.css: Entry of css for Browser UI (Don't modify directly!!)
-|- userContent.css: Entry of css for Web pages (Don't modify directly!!)
+|- userChrome.css: Entry of css for Browser UI (Modify only when customizing!!)
+|- userContent.css: Entry of css for Web pages (Modify only when customizing!!)
 |- yarn.lock: Auto generated dependency (Don't modify directly!!)
 ```
+
+If you first come, it's a good idea to see the [`/src/leptonChrome.scss`](/src/leptonChrome.scss) and [`leptonContent.scss`](/src/leptonContent.scss) files to understand the flow.
 
 ## Icon files
 
