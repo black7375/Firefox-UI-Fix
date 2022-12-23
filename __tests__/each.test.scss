@@ -11,7 +11,7 @@
         }
       }
       @include expect {
-        @-moz-document url(about:home) {
+        @#{-moz-document} url(about:home) {
           @include example;
         }
       }
@@ -27,7 +27,7 @@
         }
       }
       @include expect {
-        @-moz-document url(about:home), url(about:newtab) {
+        @#{-moz-document} url(about:home), url(about:newtab) {
           @include example;
         }
       }

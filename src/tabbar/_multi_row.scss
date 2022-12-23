@@ -17,7 +17,7 @@ See the above repository for updates as well as full license text. */
   padding-inline-start: 0px !important;
 }
 
-@-moz-document url(chrome://browser/content/browser.xhtml) {
+@include moz-document(url "chrome://browser/content/browser.xhtml") {
   #scrollbutton-up ~ spacer,
   #scrollbutton-up,
   #scrollbutton-down {

@@ -1,5 +1,7 @@
-@-moz-document url("chrome://browser/content/places/places.xhtml"),
-               url("about:downloads") {
+@include moz-document(
+  url "chrome://browser/content/places/places.xhtml",
+  url "about:downloads"
+) {
   @import "../icons/layout/menu_contents";
 
   /*= Context Menu ===========================================================*/

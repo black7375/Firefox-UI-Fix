@@ -1626,13 +1626,7 @@
 /*= Proton Theme Mode ========================================================*/
 @supports -moz-bool-pref("userChrome.theme.proton_chrome") {
   /*= Proton Commons ===========================================================*/
-  @-moz-document url("chrome://global/content/commonDialog.xhtml"),
-  url("chrome://pippki/content/editcacert.xhtml"),
-  url("chrome://pippki/content/deletecert.xhtml"),
-  url("chrome://pippki/content/exceptionDialog.xhtml"),
-  url("chrome://mozapps/content/downloads/unknownContentType.xhtml"),
-  url("chrome://global/content/appPicker.xhtml"),
-  url("chrome://browser/content/pageinfo/pageInfo.xhtml")
+  @-moz-document url("chrome://global/content/commonDialog.xhtml"), url("chrome://pippki/content/editcacert.xhtml"), url("chrome://pippki/content/deletecert.xhtml"), url("chrome://pippki/content/exceptionDialog.xhtml"), url("chrome://mozapps/content/downloads/unknownContentType.xhtml"), url("chrome://global/content/appPicker.xhtml"), url("chrome://browser/content/pageinfo/pageInfo.xhtml")
   {
     /*- Overwrite --------------------------------------------------------------*/
     @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
@@ -2198,8 +2192,7 @@
       border: 1px solid var(--in-content-table-border-color) !important;
       border-radius: 4px !important;
     }
-  }
-  /*= Cert Exception Dialog ====================================================*/
+  } /*= Cert Exception Dialog ====================================================*/
   @-moz-document url("chrome://pippki/content/exceptionDialog.xhtml")
   {
     #locationTextBox {
@@ -5819,7 +5812,7 @@
     min-height: unset !important;
     padding-inline-start: 0px !important;
   }
-  @-moz-document url(chrome://browser/content/browser.xhtml)
+  @-moz-document url("chrome://browser/content/browser.xhtml")
   {
     #scrollbutton-up ~ spacer,
     #scrollbutton-up,

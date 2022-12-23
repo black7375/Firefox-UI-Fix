@@ -155,8 +155,7 @@ xul|search-textbox.tabsFilter,
 }
 
 /*- Expand - Synced Tabs ---------------------------------------------------*/
-@-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
-{
+@include moz-document(url "chrome://browser/content/syncedtabs/sidebar.xhtml") {
   .item-tabs-list {
     transition: transform 0.2s ease-out, opacity 0.2s ease-out;
     transform: translateY(0%);
@@ -177,8 +176,7 @@ xul|search-textbox.tabsFilter,
 }
 
 /*- Arrow - Synced Tabs ----------------------------------------------------*/
-@-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
-{
+@include moz-document(url "chrome://browser/content/syncedtabs/sidebar.xhtml") {
   /* treechildren::-moz-tree-twisty: Can't apply */
   #template-container .item.client {
     .item-twisty-container {
