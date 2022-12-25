@@ -1,13 +1,56 @@
-@use "each";
+@function _prefix($separator, $i) {
+  @if $i != 1 {
+    @return " " + $separator + " ";
+  }
+  @return "";
+}
+@function _pref($option) {
+  @return "-moz-bool-pref(\"#{$option}\")";
+}
+@function _not($str, $positive) {
+  @return if($positive, $str, "(not " + $str + ")");
+}
+
+@function _getOption($optionNames, $positive: true) {
+  $result: "";
+  @for $i from 1 through length($optionNames) {
+    $option: nth($optionNames, $i);
+    $separator: if(
+      list-separator($optionNames) == "comma", "or", if(
+        list-separator($optionNames) == "space", "and", null
+      )
+    );
+    $result: $result + _prefix($separator, $i);
+
+    @if type-of($option) == "list" {
+      $result: $result + "(" + _getOption($option, $positive) + ")";
+    }
+    @else {
+      $result: $result +  _not(_pref($option), $positive);
+    }
+  }
+  @return $result;
+}
+@function _optionWrapper($optionNames, $positive: true) {
+  // Test warning for top level `not`
+  @if length($optionNames) == 1 {
+    $option: nth($optionNames, 1);
+    @if not (type-of($option) == "list") {
+      $option: _pref($option);
+      @return if($positive, $option, "not " + $option);
+    }
+  }
+  @return _getOption($optionNames, $positive);
+}
 
 @mixin Option($optionNames...) {
-  @include each.AtEach("supports", $optionNames, "-moz-bool-pref", ("separator": " or ", "quoted": true)) {
+  @supports #{_optionWrapper($optionNames)} {
     @content;
   }
 }
 
 @mixin NotOption($optionNames...) {
-  @include each.AtEach("supports", $optionNames, "not -moz-bool-pref", ("separator": " or ", "quoted": true)) {
+  @supports #{_optionWrapper($optionNames, false)} {
     @content;
   }
 }

@@ -4402,7 +4402,8 @@
     }
     @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       @media screen and (max-width: 1100px) {
-        @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") or not -moz-bool-pref("userChrome.hidden.tabbar") {
+        @supports (not -moz-bool-pref("userChrome.tabbar.on_bottom")) or
+          (not -moz-bool-pref("userChrome.hidden.tabbar")) {
           :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
             --uc-window-drag-space-pre: 0px;
             --uc-window-control-space: 0px;
@@ -7825,7 +7826,8 @@
     display: block !important;
     visibility: visible !important;
   }
-} /*= Url View - Move icon to left =============================================*/
+}
+/*= Url View - Move icon to left =============================================*/
 @supports -moz-bool-pref("userChrome.urlView.move_icon_to_left") {
   .urlbarView-type-icon {
     min-width: 16px !important;
