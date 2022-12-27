@@ -8042,7 +8042,16 @@
   }
 }
 @supports -moz-bool-pref("userChrome.combined.nav_button") or -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
-  @supports not -moz-bool-pref("userChrome.combined.sub_button.as_normal") {
+  @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") or
+    (
+      not
+        (
+          -moz-bool-pref("userChrome.combined.sub_button.as_normal") and -moz-bool-pref(
+              "userChrome.combined.nav_button"
+            )
+            and -moz-bool-pref("userChrome.combined.urlbar.home_button")
+        )
+    ) {
     #nav-bar-customization-target > #forward-button {
       --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
       z-index: 2;
