@@ -3608,7 +3608,7 @@
     display: block;
     width: 2px;
     position: absolute;
-    background-image: linear-gradient(0, #9059ff 0%, #ff4aa2 52.08%, #ffbd4f 100%);
+    background-image: linear-gradient(0deg, #9059ff 0%, #ff4aa2 52.08%, #ffbd4f 100%);
     top: 0;
     inset-inline-start: 0;
     height: 100%;
@@ -6410,7 +6410,7 @@
       margin-left: var(--uc-tab-corner-half-size) !important;
     }
     .tabbrowser-tab[last-visible-tab] {
-      margin-right: vart(--uc-tab-corner-half-size) !important;
+      margin-right: var(--uc-tab-corner-half-size) !important;
     }
   }
 }
@@ -8610,7 +8610,6 @@
     margin-inline: 5px;
   }
   .findbar-closebutton {
-    box-sizing: padding-box;
     width: 30px !important; /* Original: 24px */
     margin: 0 !important;
     border-width: 0 1px 1px 0px;
