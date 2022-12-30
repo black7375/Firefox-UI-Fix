@@ -27,6 +27,12 @@
   }
 }
 
+@include Option("userChrome.hidden.titlebar_container") {
+  .titlebar-buttonbox-container {
+    display: none !important;
+  }
+}
+
 @include Option("userChrome.hidden.sidebar_header") {
   @include NotOption("userChrome.hidden.sidebar_header.vertical_tab_only") {
     #sidebar-header {
