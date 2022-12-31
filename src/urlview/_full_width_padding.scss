@@ -1,0 +1,34 @@
+$_borderSize: 2px;
+
+.urlbarView {
+  --uc-urlView-padding-double: calc(var(--uc-urlView-padding) * 2);
+  --uc-urlView-full-width-padding: var(--uc-urlView-padding-double);
+
+  @include NotOption("userChrome.urlView.as_commandbar") {
+  --uc-urlView-full-width-padding: var(--uc-urlView-padding);
+    width: 100% !important;
+  }
+}
+
+#urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
+  border-color: transparent !important;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-top: 1px solid var(--autocomplete-popup-separator-color);
+    transform: translate(-50%, -1px);
+    left: 50%;
+  }
+}
+
+#urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner::before,
+.urlbarView .search-one-offs {
+  width: calc(100% + $_borderSize - var(--uc-urlView-padding-double)) !important;
+}
+.urlbarView .search-one-offs {
+  margin-inline: var(--uc-urlView-full-width-padding) !important;
+}
+.urlbarView-row-inner {
+  padding-inline: calc(var(--uc-urlView-full-width-padding) + var(--urlbarView-item-inline-padding)) !important;
+}

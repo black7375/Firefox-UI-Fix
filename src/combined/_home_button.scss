@@ -1,0 +1,13 @@
+@import "combined_circle_button";
+
+#nav-bar-customization-target > #home-button {
+  position: relative;
+  @include circle_button_shape;
+
+  &:hover > .toolbarbutton-icon {
+    @include circle_button_background_hover;
+  }
+  &:hover:active > .toolbarbutton-icon {
+    @include circle_button_background_active;
+  }
+}

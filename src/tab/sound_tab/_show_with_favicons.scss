@@ -69,7 +69,7 @@
         --uc-sound-tab-label-position-x: 4px;
       }
       &[labeldirection=rtl],
-      :not([labeldirection]):-moz-locale-dir(rtl) {
+      &:not([labeldirection]):-moz-locale-dir(rtl) {
         --uc-sound-tab-label-position-x: -4px;
       }
 

@@ -1,6 +1,5 @@
 /*= Page Info ================================================================*/
-@-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml")
-{
+@include moz-document(url "chrome://browser/content/pageinfo/pageInfo.xhtml") {
   :root {
     --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
   }

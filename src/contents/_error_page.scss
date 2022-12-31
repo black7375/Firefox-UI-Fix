@@ -1,7 +1,10 @@
-@-moz-document url-prefix("about:neterror"),
-  url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"),
-  url("about:sessionrestore"),  url("chrome://browser/content/aboutSessionRestore.xhtml")
-{
+@include moz-document(
+  url-prefix "about:neterror",
+  url "about:restartrequired",
+  url "chrome://browser/content/aboutRestartRequired.xhtml",
+  url "about:sessionrestore",
+  url "chrome://browser/content/aboutSessionRestore.xhtml"
+) {
   /* Illustrations Position */
   #errorPageContainer,
   .neterror > .container,
@@ -66,50 +69,53 @@
 
 //------------------------------------------------------------------------------
 
-@-moz-document url-prefix("about:neterror?e=connectionFailure"),
-  url-prefix("about:neterror?e=netInterrupt"),
-  url-prefix("about:neterror?e=netReset"),
-  url-prefix("about:neterror?e=netTimeout"),
-  url-prefix("about:neterror?e=netOffline"),
-  url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
-{
+@include moz-document(
+  url-prefix "about:neterror?e=connectionFailure",
+  url-prefix "about:neterror?e=netInterrupt",
+  url-prefix "about:neterror?e=netReset",
+  url-prefix "about:neterror?e=netTimeout",
+  url-prefix "about:neterror?e=netOffline",
+  url "about:restartrequired",
+  url "chrome://browser/content/aboutRestartRequired.xhtml"
+) {
   @include _errorContainerImage("../icons/error-connection-failure.svg");
 }
-@-moz-document url-prefix("about:neterror?e=dnsNotFound") {
+@include moz-document(url-prefix "about:neterror?e=dnsNotFound") {
   @include _errorContainerImage("../icons/error-server-not-found.svg");
 }
-@-moz-document   url-prefix("about:neterror?e=blockedByPolicy"),
-  url-prefix("about:neterror?e=deniedPortAccess"),
-  url-prefix("about:neterror?e=malformedURI") {
+@include moz-document(
+  url-prefix "about:neterror?e=blockedByPolicy",
+  url-prefix "about:neterror?e=deniedPortAccess",
+  url-prefix "about:neterror?e=malformedURI"
+) {
   @include _errorContainerImage("chrome://browser/skin/illustrations/error-malformed-url.svg");
 }
-@-moz-document url-prefix("about:neterror?e=clockSkewError"),
-  url-prefix("about:neterror?e=nssFailure") {
+@include moz-document(
+  url-prefix "about:neterror?e=clockSkewError",
+  url-prefix "about:neterror?e=nssFailure"
+) {
   @include _errorContainerImage("../icons/blue-berror.svg") {
     background-size: 18.5em;
   }
 }
 
-@-moz-document url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml")
-{
+@include moz-document(url "about:sessionrestore" , url "chrome://browser/content/aboutSessionRestore.xhtml") {
   @include _errorDescriptionImage("../icons/error-session-restore.svg");
 }
 
-@-moz-document url-prefix("about:neterror?e=fileNotFound") {
+@include moz-document(url-prefix "about:neterror?e=fileNotFound") {
   @include _errorTitleImage("chrome://global/skin/icons/info.svg");
 
   #text-container {
     padding-inline-start: 0;
   }
 }
-@-moz-document url-prefix("about:tabcrashed") {
+@include moz-document(url-prefix "about:tabcrashed") {
   @include _errorTitleImage("chrome://browser/skin/tab-crashed.svg");
 }
-@-moz-document url("about:robots"), url("chrome://browser/content/aboutRobots.xhtml")
-{
+@include moz-document(url "about:robots", url "chrome://browser/content/aboutRobots.xhtml") {
   @include _errorTitleImage("chrome://browser/content/aboutRobots-icon.png");
 }
-@-moz-document url("about:welcomeBack"), url("chrome://browser/content/aboutWelcomeBack.xhtml")
-{
+@include moz-document(url "about:welcomeBack", url "chrome://browser/content/aboutWelcomeBack.xhtml") {
   @include _errorTitleImage("../icons/welcome-back.svg");
 }

@@ -1,5 +1,7 @@
-@-moz-document url-prefix("about:sync-log"),
-               regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+@include moz-document(
+  url-prefix "about:sync-log",
+  regexp "^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$"
+) {
   body {
     background-color: var(--in-content-box-background) !important;
     margin: 4em auto !important; /* Override to default */

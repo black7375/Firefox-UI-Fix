@@ -83,7 +83,8 @@ menu {
 }
 
 /*= Tab Separator Color ======================================================*/
-#TabsToolbar {
+#TabsToolbar,
+#nav-bar {
   --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent); /* 60% at v105 */
 }
 
@@ -115,8 +116,8 @@ menu {
 
 /* Navbar Border */
 #navigator-toolbox:-moz-lwtheme {
-  --tabs-border-color: rgba(0, 0, 0, 0.3); /* Legacy: v96 */
-  --lwt-tabs-border-color: rgba(0, 0, 0, 0.3);
+  --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
+  --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
 }
 
 /*= Findbar Border Color =====================================================*/
