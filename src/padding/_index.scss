@@ -20,6 +20,20 @@
 }
 
 /*= Tool Bar - Button Padding ================================================*/
+@include Option("userChrome.padding.toolbar_button", "userChrome.tab.newtab_button_smaller") {
+  :root {
+    --uc-small-toolbarbutton-inner-padding: 6px;
+    --uc-toolbarbutton-inner-padding-default: 8px;
+  }
+  :root[uidensity="compact"] {
+    --uc-small-toolbarbutton-inner-padding: 4px;
+    --uc-toolbarbutton-inner-padding-default: 6px;
+  }
+  :root[uidensity="touch"] #tabs-newtab-button > .toolbarbutton-icon {
+    --uc-small-toolbarbutton-inner-padding: 9px;
+    --uc-toolbarbutton-inner-padding-default: 9px;
+  }
+}
 @include Option("userChrome.padding.toolbar_button") {
   @import "toolbar_button";
 }
@@ -30,8 +44,23 @@
 }
 
 /*= URL Bar - Reduce Padding =================================================*/
-@include Option("userChrome.padding.urlbar") {
-  @import "urlbar";
+@include NotOption("userChrome.urlView.as_commandbar") {
+  @include Option("userChrome.padding.urlbar") {
+    @import "urlbar";
+  }
+}
+@include Option("userChrome.padding.urlView_expanding", "userChrome.urlView.as_commandbar") {
+  #urlbar[breakout][breakout-extend] {
+    top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  #urlbar[breakout][breakout-extend] > #urlbar-input-container {
+    height: var(--urlbar-height) !important;
+    padding-block: 0 !important;
+    padding-inline: var(--urlbar-container-padding, 0px) !important;
+  }
 }
 @include Option("userChrome.padding.urlView_expanding") {
   @import "urlview_expanding";

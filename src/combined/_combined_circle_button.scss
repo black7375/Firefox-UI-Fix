@@ -1,0 +1,62 @@
+@mixin circle_button_shape($backButton: false) {
+  z-index: 3 !important;
+
+  background-color: var(--toolbar-bgcolor) !important;
+  background-clip: content-box !important;
+  border-radius: 100%;
+
+  padding-block: 0 !important;
+
+  @include Option("userChrome.padding.toolbar_button") {
+    @include Option("userChrome.padding.toolbar_button.compact") {
+      --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
+    }
+  }
+
+  @if $backButton {
+    @include NotOption("userChrome.autohide.back_button") {
+      padding-inline-end: 0 !important;
+    }
+    @include Option("userChrome.autohide.back_button") {
+      &:not([disabled="true"]) {
+        padding-inline-end: 0 !important;
+      }
+      &[disabled="true"] {
+        padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
+      }
+    }
+  }
+  @else {
+    padding-inline-end: 0 !important;
+  }
+
+  > menupopup {
+    margin-top: -1px !important;
+  }
+
+  > .toolbarbutton-icon {
+    @if not $backButton {
+      @include circle_button_background;
+    }
+    background-origin: padding-box;
+    background-clip: padding-box;
+    border: 1px solid var(--uc-combined-circlebutton-border-color);
+    border-radius: 10000px !important;
+
+    padding-inline-end: var(--urlbar-icon-padding) !important;
+    height: auto !important
+  }
+}
+
+@mixin circle_button_background() {
+  background-color: var(--uc-combined-circlebutton-background);
+}
+@mixin circle_button_background_hover() {
+  background-color: var(--uc-combined-circlebutton-hover-background) !important;
+  box-shadow: 0 1px 6px hsla(0,0%,0%,.1);
+  border-color: hsla(240,5%,5%,.35);
+}
+@mixin circle_button_background_active() {
+  background-color: var(--uc-combined-circlebutton-active-background) !important;
+  border-color: hsla(240,5%,5%,.40);
+}

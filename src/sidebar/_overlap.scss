@@ -1,13 +1,16 @@
-@include Option("userChrome.sidebar.overlap", "userChrome.autohide.sidebar") {
-  #sidebar-box {
+@include Option(
+  "userChrome.sidebar.overlap",
+  "userChrome.autohide.sidebar",
+  "userChrome.navbar.as_sidebar"
+) {
+  :root {
     /* Original
     min-width: 14em;
     width: 18em;
     max-width: 36em;
    */
-
     --uc-sidebar-width: 40px;
-    --uc-sidebar-activate-width: 18em;
+    --uc-sidebar-activate-width: 18rem;
     --uc-sidebar-activate-width-reverse: calc(-1 * var(--uc-sidebar-activate-width));
     --uc-sidebar-fullscreen-width: 4px;
     --uc-sidebar-shadow-size: 1px;
@@ -19,6 +22,16 @@
     --uc-autohide-sidebar-speed: 750ms;
     --uc-autohide-fullscreen-sidebar-speed: 1s;
     --uc-autohide-sidebar-delay: 600ms; /* Wait 0.6s before hiding sidebar */
+  }
+
+  #sidebar-splitter {
+    display: none !important;
+  }
+}
+
+@include Option("userChrome.sidebar.overlap", "userChrome.autohide.sidebar") {
+  #sidebar-box {
+    --uc-sidebar-shadow-color: #28282F;
 
     z-index: 1 !important;
     position: relative !important;
@@ -31,10 +44,6 @@
 
   #sidebar {
     display: block;
-  }
-
-  #sidebar-splitter {
-    display: none !important;
   }
 }
 

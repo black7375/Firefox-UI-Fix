@@ -1,3 +1,9 @@
 :root[uidensity="compact"] {
   --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
 }
+
+@include Option("userChrome.padding.toolbar_button.compact") {
+  :root {
+    --toolbarbutton-inner-padding: var(--uc-small-toolbarbutton-inner-padding) !important;
+  }
+}

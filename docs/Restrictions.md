@@ -10,6 +10,7 @@
   * [`-moz-accent-color`](#-moz-accent-color)
   * [Fork Browsers](#fork-browsers)
   * [Add-ons](#add-ons)
+  * [SCSS](#scss)
 - [Internals](#internals)
   * [CSS Loading Order](#css-loading-order)
   * [DOM structure cannot be modified](#dom-structure-cannot-be-modified)
@@ -125,6 +126,14 @@ Legacy addons can be loaded by [Auto config's feature](./Preference.md#auto-conf
 
 List of legacy addons supported by this project:
 - [Tab Mix Plus](https://github.com/onemen/TabMixPlus)
+
+### SCSS
+
+Due to [various compatibility](#firefox-version) and [option dependency](https://github.com/black7375/Firefox-UI-Fix/wiki/Options) requirements, we are using a CSS preprocessor, [SCSS](https://sass-lang.com/).
+
+[`-moz-document`](https://developer.mozilla.org/en-US/docs/Web/CSS/@document) has been [deprecated in SCSS](https://sass-lang.com/documentation/breaking-changes/moz-document), and displays a lot of warnings.
+
+Unlike normal cases, this project works because it is [at the UA sheet level](https://bugzilla.mozilla.org/show_bug.cgi?id=1035091), and we have to [hide warnings](https://github.com/black7375/Firefox-UI-Fix/commit/300d3d9c77108520c3757a8898819d8af6a00c62) to show other critical errors.
 
 ## Internals
 ### CSS Loading Order

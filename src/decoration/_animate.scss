@@ -79,6 +79,15 @@
   }
 }
 
+@include Option("userChrome.combined.urlbar_with_reload") {
+  #nav-bar-customization-target > #stop-reload-button .toolbarbutton-icon {
+    transition: background-color 2.5s var(--animation-easing-function) !important;
+    &:hover {
+      transition: background-color 1.25s var(--animation-easing-function) !important;
+    }
+  }
+}
+
 /*- Border - Other Fields --------------------------------------------------*/
 #search-box,
 xul|search-textbox.tabsFilter,
@@ -146,8 +155,7 @@ xul|search-textbox.tabsFilter,
 }
 
 /*- Expand - Synced Tabs ---------------------------------------------------*/
-@-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
-{
+@include moz-document(url "chrome://browser/content/syncedtabs/sidebar.xhtml") {
   .item-tabs-list {
     transition: transform 0.2s ease-out, opacity 0.2s ease-out;
     transform: translateY(0%);
@@ -168,8 +176,7 @@ xul|search-textbox.tabsFilter,
 }
 
 /*- Arrow - Synced Tabs ----------------------------------------------------*/
-@-moz-document url("chrome://browser/content/syncedtabs/sidebar.xhtml")
-{
+@include moz-document(url "chrome://browser/content/syncedtabs/sidebar.xhtml") {
   /* treechildren::-moz-tree-twisty: Can't apply */
   #template-container .item.client {
     .item-twisty-container {

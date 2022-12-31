@@ -1,3 +1,32 @@
+/*= Url Bar - Icon box as Separator ==========================================*/
+@include Option("userChrome.urlbar.iconbox_with_separator") {
+  @import "iconbox_as_separator";
+}
+
+/*= Url View - Share Layout ==================================================*/
+@include Option("userChrome.urlView.as_commandbar", "userChrome.urlView.full_width_padding") {
+  .urlbarView {
+    --uc-urlView-padding: calc(5px + var(--urlbar-container-padding));
+
+    margin-inline: 0 !important; /* Original: calc(5px + var(--urlbar-container-padding)) */
+  }
+}
+
+/*= Url View - Looks like Launcher ===========================================*/
+@include Option("userChrome.urlView.as_commandbar") {
+  @import "as_launcher";
+}
+
+/*= Url View - Full Width Pddding ============================================*/
+@include Option("userChrome.urlView.full_width_padding") {
+  @import "full_width_padding";
+}
+
+/*= Url View - Always show page actions ======================================*/
+@include Option("userChrome.urlbar.always_show_page_actions") {
+  @import "always_show_page_actions";
+}
+
 /*= Url View - Move icon to left =============================================*/
 @include Option("userChrome.urlView.move_icon_to_left") {
   @import "move_icon_to_left";
@@ -8,7 +37,7 @@
   @import "go_button_when_typing";
 }
 
-/*= Url View - Always show page actions ======================================*/
-@include Option("userChrome.urlView.always_show_page_actions") {
-  @import "always_show_page_actions";
+/*= Url View - Item Focus Border =============================================*/
+@include Option("userChrome.urlView.focus_item_border") {
+  @import "focus_item_border";
 }

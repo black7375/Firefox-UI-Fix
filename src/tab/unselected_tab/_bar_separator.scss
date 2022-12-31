@@ -1,0 +1,55 @@
+// Using --tab-line-color at photon_line_contextline
+
+.tab-stack::before {
+  $barWidth: 3px;
+  $barMargin: $barWidth + 2px;
+
+  /* Box Model */
+  content: "";
+  display: block;
+  position: absolute;
+
+  /* Position */
+  top: 50%;
+  left: 0%;
+  transform: translateX(calc((var(--inline-tab-padding) - #{ $barMargin }) / 2)) translateY(calc(-50% + var(--tab-block-margin)));
+  z-index: 1;
+
+  /* Bar shape */
+  width: $barWidth;
+  height: 20px;
+
+  /* Bar Color */
+  background-color: var(--uc-bar-separator-color, var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255))));
+
+  @include Animate {
+    transition-property: opacity, background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
+  }
+}
+
+:root[sessionrestored] {
+  .tabbrowser-tab[busy] {
+    .tab-stack::before {
+      --uc-bar-separator-color: currentColor;
+      opacity: 0.7;
+    }
+
+    &[progress] .tab-stack::before {
+      --uc-bar-separator-color: var(--tab-loading-fill);
+      opacity: 1;
+    }
+  }
+  #TabsToolbar[brighttext] .tabbrowser-tab[busy] {
+    &[progress]:not([selected=true]) .tab-stack::before {
+      --uc-bar-separator-color: var(--lwt-tab-loading-fill-inactive, #84c1ff);
+    }
+  }
+
+  @include Option("userChrome.tab.unloaded") {
+    .tabbrowser-tab[pending] .tab-stack::before {
+      opacity: 0.7;
+    }
+  }
+}

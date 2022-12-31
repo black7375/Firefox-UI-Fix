@@ -15,11 +15,33 @@
 
 /*= Selected Tab - Bottom Rounded Corner =====================================*/
 @include Option("userChrome.tab.bottom_rounded_corner") {
-  @import "selected_tab/bottom_rounded_corner";
+  @include NotOption("userChrome.tab.bottom_rounded_corner.wave") {
+    @include NotOption("userChrome.tab.bottom_rounded_corner.australis") {
+      @include NotOption("userChrome.tab.bottom_rounded_corner.chrome") {
+        @include NotOption("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
+          @include NotOption("userChrome.tab.bottom_rounded_corner.edge") {
+            @import "selected_tab/bottom_rounded_corner";
+          }
+        }
+      }
+    }
+  }
+  @include Option(
+    "userChrome.tab.bottom_rounded_corner.wave",
+    "userChrome.tab.bottom_rounded_corner.australis",
+    "userChrome.tab.bottom_rounded_corner.chrome_legacy",
+    "userChrome.tab.bottom_rounded_corner.chrome",
+    "userChrome.tab.bottom_rounded_corner.edge"
+  ) {
+    @import "selected_tab/bottom_rounded_corner_others";
+  }
 }
 
 /*= Selected Tab - Photon like contextline ===================================*/
-@include Option("userChrome.tab.photon_like_contextline", "userChrome.tab.static_separator") {
+@include Option(
+  "userChrome.tab.photon_like_contextline",
+  "userChrome.tab.static_separator",
+  "userChrome.tab.bar_separator") {
   :root[lwtheme-mozlightdark] #tabbrowser-tabs, /* Legacy: v96 */
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {

@@ -1,5 +1,7 @@
-@-moz-document url-prefix("about:"),
-               url-prefix("chrome://browser/content/places/places.xhtml"),
-               regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+@include moz-document(
+  url-prefix "about:",
+  url-prefix "chrome://browser/content/places/places.xhtml",
+  regexp "^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$"
+) {
   @import "../theme/monospace";
 }

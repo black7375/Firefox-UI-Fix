@@ -2,13 +2,13 @@
   --toolbarseparator-color: color-mix(in srgb, currentColor 30%, transparent);
 }
 
-.tabbrowser-tab[first-visible-tab="true"] .tab-background::before,
-.tab-background::after {
+.tabbrowser-tab[first-visible-tab="true"] .tab-stack::before,
+.tab-stack::after {
   content: "";
 }
 
-.tab-background::before,
-.tab-background::after {
+.tab-stack::before,
+.tab-stack::after {
   /* Box Model */
   display: block;
   position: absolute;
@@ -24,13 +24,13 @@
   /* Bar Color */
   border-right: 1px solid var(--toolbarseparator-color);
 }
-.tab-background::after {
+.tab-stack::after {
   right: 0;
 }
 
-.tabbrowser-tab[visuallyselected] .tab-background::before,
-.tabbrowser-tab[visuallyselected] .tab-background::after,
-.tabbrowser-tab[beforeselected-visible] .tab-background::after {
+.tabbrowser-tab[visuallyselected] .tab-stack::before,
+.tabbrowser-tab[visuallyselected] .tab-stack::after,
+.tabbrowser-tab[beforeselected-visible] .tab-stack::after {
   @include Option("userChrome.tab.static_separator.selected_accent") {
     --toolbarseparator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
   }
@@ -41,8 +41,8 @@
 
 /* Animate */
 @include Animate {
-  .tab-background::before,
-  .tab-background::after {
+  .tab-stack::before,
+  .tab-stack::after {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
 }

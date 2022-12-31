@@ -1,0 +1,137 @@
+//-- Mixin ---------------------------------------------------------------------
+$_URL_ROW_INNER_PADDING: 6px; // .urlbarView-row-inner
+
+$_urlViewIcon: 32px;
+$_urlViewTypeIcon: 18px;
+$_urlViewTypeIconMargin: 2px;
+$_searchBarIcon: 20px;
+$_searchBarButton: 32px;
+@mixin _urlViewCompact() {
+  $_urlViewIcon: 24px;
+  $_urlViewTypeIcon: 16px;
+  $_urlViewTypeIconMargin: 0px;
+  $_searchBarIcon: 18px;
+  $_searchBarButton: 30px;
+
+  :root[uidensity="compact"] {
+    @content;
+  }
+}
+@mixin _urlViewCompactInit() {
+  --urlbarView-favicon-width: #{ $_urlViewIcon }; /* Original: 16px */
+  --uc-urlView-typeIcon-size: #{ $_urlViewTypeIcon };
+  --uc-urlView-icon-size-differ: #{ $_urlViewIcon - $_urlViewTypeIcon };
+
+  --uc-searchBar-icon-size: #{ $_searchBarIcon };
+  --uc-searchBar-button-size: #{ $_searchBarButton };
+}
+
+$_urlRowPadding: 2px; //.urlbarView-row
+@mixin _urlViewTouch() {
+  $_urlRowPadding: 11px;
+
+  :root[uidensity="touch"] {
+    @content;
+  }
+}
+@mixin _urlViewTouchInit() {
+  --uc-urlView-row-padding: #{ $_URL_ROW_INNER_PADDING + $_urlRowPadding };
+  --uc-urlView-row-bottom: #{ $_urlRowPadding };
+}
+
+//------------------------------------------------------------------------------
+
+/* Init & Base Layout */
+.urlbarView {
+  @include _urlViewCompactInit;
+  @include _urlViewTouchInit;
+
+  --uc-urlView-margin: calc(var(--uc-sidebar-activate-width, 18rem) + var(--toolbarbutton-inner-padding));
+
+  position: fixed !important;
+  left: 50vw;
+  transform: translateX(-50%);
+  top: 12vh !important;
+  width: calc(100vw - (var(--uc-urlView-margin) + var(--toolbarbutton-inner-padding))) !important;
+
+  /* paddding as margin */
+  @include NotOption("userChrome.urlView.full_width_padding") {
+    padding-inline: var(--uc-urlView-padding) !important;
+  }
+
+  /* background */
+  background-color: var(--toolbar-field-focus-background-color) !important;
+  background-clip: border-box;
+  border: 1px solid var(--arrowpanel-border-color) !important;
+  border-radius: var(--toolbarbutton-border-radius) !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.13);
+}
+.urlbarView-body-inner {
+  border-top: none !important;
+}
+
+/* Big icons */
+@include _urlViewCompact {
+  .urlbarView {
+    @include _urlViewCompactInit;
+  }
+}
+@include _urlViewTouch {
+  .urlbarView {
+    @include _urlViewTouchInit;
+  }
+}
+
+.urlbarView-row {
+  &:not([type="tip"], [type="dynamic"]) {
+    position: relative;
+    min-height: #{ calc(var(--urlbarView-favicon-width) + var(--uc-urlView-row-padding)) } !important;
+
+    .urlbarView-row-inner {
+      height: var(--urlbarView-favicon-width) !important;
+    }
+    .urlbarView-favicon {
+      position: absolute;
+      // padding-block: $_URL_ROW_INNER_PADDING;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .urlbarView-title {
+      padding-inline-start: calc(var(--urlbarView-item-inline-padding) + var(--identity-box-margin-inline) + var(--urlbarView-favicon-width)) !important;
+    }
+    .urlbarView-type-icon {
+      width: var(--uc-urlView-typeIcon-size) !important;
+      height: var(--uc-urlView-typeIcon-size) !important;
+      margin-inline-start: calc(var(--uc-urlView-icon-size-differ) + var(--urlbarView-item-inline-padding)) !important; /* Original: 8px */
+      bottom: var(--uc-urlView-row-bottom);
+    }
+  }
+
+  &[dynamicType="quickactions"] {
+    .urlbarView-favicon-img {
+      width: var(--urlbarView-favicon-width) !important; /* Original: 16px */
+      height: var(--urlbarView-favicon-width) !important; /* Original: 16px */
+    }
+    .urlbarView-label {
+      font-size: 0.95em !important; /* Original: 11px */
+    }
+  }
+}
+@include _urlViewTouch {
+  .urlbarView-row {
+    padding-block: $_URL_ROW_INNER_PADDING !important;
+  }
+  .urlbarView-row-inner {
+    padding-block: $_urlRowPadding !important;
+  }
+}
+
+#urlbar .searchbar-engine-one-off-item {
+  min-width: var(--uc-searchBar-button-size) !important; /* Original: 28px */
+  height: var(--uc-searchBar-button-size) !important;
+
+  > .button-box > .button-icon {
+    width: var(--uc-searchBar-icon-size) !important; /* Original: 16px */
+    height: var(--uc-searchBar-icon-size) !important;
+  }
+}

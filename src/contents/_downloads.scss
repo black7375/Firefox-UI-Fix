@@ -1,4 +1,4 @@
-@-moz-document url-prefix("about:downloads") {
+@include moz-document(url-prefix "about:downloads") {
   @include Animate {
     @include Option("userChrome.decoration.download_panel") {
       @import "../decoration/download_panel";

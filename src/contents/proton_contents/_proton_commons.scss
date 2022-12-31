@@ -1,10 +1,12 @@
 /*= abouts' common ===========================================================*/
-@-moz-document url-prefix("about:plugins"),
-               url-prefix("about:cache"),
-               url-prefix("about:checkerboard"),
-               url-prefix("about:sync-log"),
-               url-prefix("about:memory"),
-               regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+@include moz-document(
+  url-prefix "about:plugins",
+  url-prefix "about:cache",
+  url-prefix "about:checkerboard",
+  url-prefix "about:sync-log",
+  url-prefix "about:memory",
+  regexp "^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$"
+) {
   /* Base */
   html,
   body {
@@ -211,16 +213,20 @@
   }
 }
 
-@-moz-document url-prefix("about:plugins"),
-               url-prefix("about:cache"),
-               url-prefix("about:checkerboard") {
+@include moz-document(
+  url-prefix "about:plugins",
+  url-prefix "about:cache",
+  url-prefix "about:checkerboard"
+) {
   table {
     border: 1px solid var(--in-content-table-border-color) !important;
     border-radius: 0 !important;
   }
 }
-@-moz-document url-prefix("about:cache"),
-               url-prefix("about:checkerboard") {
+@include moz-document(
+  url-prefix "about:cache",
+  url-prefix "about:checkerboard"
+) {
   th,
   td {
     border: 1px solid var(--in-content-table-border-color) !important;

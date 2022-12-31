@@ -1,0 +1,17 @@
+menupopup[placespopup="true"] > menu.bookmark-item > .menu-right {
+  counter-reset: bookmark-counts 0;
+}
+menupopup[placespopup="true"] > menu.bookmark-item::after {
+  display: -moz-inline-box;
+  content: "(" counter(bookmark-counts) ")";
+}
+
+menupopup[placespopup="true"] > menu.bookmark-item > .menu-iconic-highlightable-text,
+menupopup[placespopup="true"] > menu.bookmark-item > .menu-accel-container,
+menupopup[placespopup="true"] > menu.bookmark-item > .menu-right {
+  -moz-box-ordinal-group: 2;
+}
+
+menu.bookmark-item > menupopup[placespopup="true"] > .bookmark-item {
+  counter-increment: bookmark-counts;
+}

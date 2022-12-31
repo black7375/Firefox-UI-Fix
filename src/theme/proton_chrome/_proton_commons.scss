@@ -1,12 +1,13 @@
 /*= Proton Commons ===========================================================*/
-@-moz-document url("chrome://global/content/commonDialog.xhtml"),
-  url("chrome://pippki/content/editcacert.xhtml"),
-  url("chrome://pippki/content/deletecert.xhtml"),
-  url("chrome://pippki/content/exceptionDialog.xhtml"),
-  url("chrome://mozapps/content/downloads/unknownContentType.xhtml"),
-  url("chrome://global/content/appPicker.xhtml"),
-  url("chrome://browser/content/pageinfo/pageInfo.xhtml")
-{
+@include moz-document(
+  url "chrome://global/content/commonDialog.xhtml",
+  url "chrome://pippki/content/editcacert.xhtml",
+  url "chrome://pippki/content/deletecert.xhtml",
+  url "chrome://pippki/content/exceptionDialog.xhtml",
+  url "chrome://mozapps/content/downloads/unknownContentType.xhtml",
+  url "chrome://global/content/appPicker.xhtml",
+  url "chrome://browser/content/pageinfo/pageInfo.xhtml"
+) {
   /*- Overwrite --------------------------------------------------------------*/
   @include Dark {
     :root {

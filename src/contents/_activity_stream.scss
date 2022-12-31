@@ -1,4 +1,4 @@
-@-moz-document url("about:home"), url("about:newtab") {
+@include moz-document(url "about:home", url "about:newtab") {
   /** Activity Stream - Search Focus Border: like URL *************************/
   @include Option("userContent.page.field_border") {
     /* At DarkMode, Color */
