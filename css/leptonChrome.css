@@ -273,13 +273,13 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"],
-    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"] {
+    menu[_moz-menuactive="true"],
+    menuitem[_moz-menuactive="true"] {
       background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
     }
-    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"][disabled="true"],
-    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"][disabled="true"] {
+    menu[_moz-menuactive="true"][disabled="true"],
+    menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
     }
@@ -295,13 +295,13 @@
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
-    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"],
-    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"] {
+    menu[_moz-menuactive="true"],
+    menuitem[_moz-menuactive="true"] {
       background-color: color-mix(in srgb, -moz-menuhover 17%, transparent) !important;
       border-color: color-mix(in srgb, -moz-menuhover 80%, transparent) !important;
     }
-    menupopup:not(#BMB_bookmarksPopup) menu[_moz-menuactive="true"][disabled="true"],
-    menupopup:not(#BMB_bookmarksPopup) menuitem[_moz-menuactive="true"][disabled="true"] {
+    menu[_moz-menuactive="true"][disabled="true"],
+    menuitem[_moz-menuactive="true"][disabled="true"] {
       background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
       border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
     }
@@ -309,13 +309,17 @@
   /*= Windows 10 - Native Menu Active Color =====================================*/
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
     @media not (-moz-windows-non-native-menus) {
-      menu[_moz-menuactive="true"],
-      menuitem[_moz-menuactive="true"] {
+      menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menu[_moz-menuactive="true"],
+      menupopup:not([placespopup="true"]) menu[_moz-menuactive="true"],
+      menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menuitem[_moz-menuactive="true"],
+      menupopup:not([placespopup="true"]) menuitem[_moz-menuactive="true"] {
         background-color: #91c9f7 !important;
         border-color: transparent !important;
       }
-      menu[_moz-menuactive="true"][disabled="true"],
-      menuitem[_moz-menuactive="true"][disabled="true"] {
+      menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menu[_moz-menuactive="true"][disabled="true"],
+      menupopup:not([placespopup="true"]) menu[_moz-menuactive="true"][disabled="true"],
+      menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menuitem[_moz-menuactive="true"][disabled="true"],
+      menupopup:not([placespopup="true"]) menuitem[_moz-menuactive="true"][disabled="true"] {
         background-color: color-mix(in srgb, currentColor 9%, transparent) !important;
         border-color: transparent !important;
       }
@@ -3566,6 +3570,7 @@
 @supports -moz-bool-pref("userChrome.padding.bookmarkbar") {
   :root[uidensity="compact"] #PersonalToolbar toolbarbutton {
     margin-top: 0px !important; /* Original: 2px */
+    margin-bottom: 1px !important;
   }
 }
 /*= Info Bar - Reduce Padding ================================================*/
@@ -9985,6 +9990,9 @@
       #appMenu-zoom-controls::before {
         content: url("../icons/screenshot.svg");
       }
+    }
+    #save-page-button {
+      list-style-image: url("../icons/toolbarButton-download.svg") !important;
     }
     #appMenu-settings-button {
       list-style-image: url("chrome://global/skin/icons/settings.svg");
