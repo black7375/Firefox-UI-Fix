@@ -10,29 +10,33 @@
 
 //------------------------------------------------------------------------------
 
-@include NotOption("userChrome.tabbar.one_liner") {
-  @include Option("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
-    @import "layout/window_control";
-  }
-}
-@include Option("userChrome.tabbar.one_liner") {
-  @include NotOption("userChrome.tabbar.one_liner.responsive") {
-    @include _oneLiner_windowControl() {
+@include NotOption("userChrome.hidden.titlebar_container") {
+  @include NotOption("userChrome.tabbar.one_liner") {
+    @include Option("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
       @import "layout/window_control";
     }
   }
-  @include Option("userChrome.tabbar.one_liner.responsive") {
-    @include Option("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
-      @media screen and (max-width: 1100px) {
-        @import "layout/window_control";
-      }
-    }
-    @media screen and (min-width: 1100px) {
+  @include Option("userChrome.tabbar.one_liner") {
+    @include NotOption("userChrome.tabbar.one_liner.responsive") {
       @include _oneLiner_windowControl() {
         @import "layout/window_control";
       }
     }
+    @include Option("userChrome.tabbar.one_liner.responsive") {
+      @include Option("userChrome.tabbar.on_bottom", "userChrome.hidden.tabbar") {
+        @media screen and (max-width: 1100px) {
+          @import "layout/window_control";
+        }
+      }
+      @media screen and (min-width: 1100px) {
+        @include _oneLiner_windowControl() {
+          @import "layout/window_control";
+        }
+      }
+    }
+  }
+
+  @include NotOption("userChrome.navbar.as_sidebar") {
+    @import "layout/navbar_padding";
   }
 }
-
-@import "layout/navbar_padding";

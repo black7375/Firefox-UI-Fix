@@ -3,14 +3,39 @@
   --uc-autohide-toolbar-delay: 600ms;
 }
 
-@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.tabbar.one_liner", "userChrome.hidden.tabbar") {
+@include Option(
+  "userChrome.autohide.tabbar",
+  "userChrome.autohide.navbar",
+  "userChrome.autohide.bookmarkbar",
+  "userChrome.tabbar.one_liner",
+  "userChrome.tabbar.on_bottom.menubar_on_top",
+  "userChrome.hidden.tabbar",
+  "userChrome.navbar.as_sidebar"
+) {
   :root {
-    --uc-tabbar-height: var(--tab-min-height); // calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
+    --uc-tabbar-height: var(--uc-tabbar-height-default);
+    --uc-tabbar-height-default: var(--tab-min-height); // calc((var(--tab-block-margin) * 2) + var(--tab-min-height));
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
-    --uc-navbar-height: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
+
+    --uc-navbar-height: var(--uc-navbar-height-default);
+    --uc-navbar-height-default: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
-    --uc-bm-height: calc(20px + (2 * var(--bookmark-block-padding, 4px))); /* 20px = 16px + (2px * 2) [margin block] */
+
+    --uc-bm-height: var(--uc-bm-height-default);
+    --uc-bm-height-default: calc(20px + (2 * var(--bookmark-block-padding, 4px))); /* 20px = 16px + (2px * 2) [margin block] */
     --uc-bm-hide-height: calc(-1 * var(--uc-bm-height));
+
+    // Mac - None exist
+    // https://github.com/mozilla/gecko-dev/blob/92d3050ecbbdd077ffa4cb78e0dffc4bd5021109/browser/base/content/browser.css#L131
+    // https://github.com/mozilla/gecko-dev/blob/92d3050ecbbdd077ffa4cb78e0dffc4bd5021109/browser/themes/linux/browser.css#L327
+    // https://github.com/mozilla/gecko-dev/blob/92d3050ecbbdd077ffa4cb78e0dffc4bd5021109/browser/themes/windows/browser-aero.css#L14
+    // https://github.com/mozilla/gecko-dev/blob/92d3050ecbbdd077ffa4cb78e0dffc4bd5021109/browser/themes/windows/browser.css#L65
+    $_menubarPadding: 1px * 2; // menubar padding block 1px
+    $_menubarHeightDefault: 1rem + 0.3rem * 2; // text 1rem, menu padding 0.3em
+    --uc-titlebar-buttonbox-height: #{ 32px + $_menubarPadding };
+    --uc-menubar-height: 0px;
+    --uc-menubar-height-default: #{ calc($_menubarHeightDefault + $_menubarPadding) };
+    --uc-menubar-inner-height: #{ calc($_menubarHeightDefault - $_menubarPadding) };
 
     @include Option("userChrome.hidden.tabbar") {
       @include OneLinerNavbarContent() {
@@ -22,13 +47,57 @@
     }
   }
   @include Has {
+    :root {
+      &:not([tabsintitlebar]):has(#toolbar-menubar) {
+        --uc-menubar-height: var(--uc-menubar-height-default); // text 1rem, menu padding 0.3em
+      }
+
+      &[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) {
+        @include OS($linux) {
+          --uc-menubar-height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin));
+        }
+        @include OS($win10) {
+          --uc-menubar-height: calc(var(--tab-min-height) - var(--tabs-navbar-shadow-size));
+        }
+        @include OS($win7, $win8) {
+          --uc-menubar-height: calc(var(--tab-min-height) + var(--tab-block-margin));
+        }
+      }
+      &[tabsintitlebar]:has(#toolbar-menubar[autohide="false"]) {
+        --uc-menubar-height: var(--uc-titlebar-buttonbox-height);
+      }
+
+      &:not([tabsintitlebar]),
+      &[tabsintitlebar] {
+        &:has(#toolbar-menubar[autohide="true"][inactive="true"]) {
+          --uc-menubar-height: 0px;
+        }
+      }
+    }
+
     #navigator-toolbox:has(#PersonalToolbar[collapsed="true"]) {
       --uc-bm-height: 0px;
+    }
+
+    @include Option("userChrome.navbar.as_sidebar") {
+      #navigator-toolbox:has(#PersonalToolbar[collapsed="false"]) #nav-bar {
+        --uc-bm-height: var(--uc-bm-height-default); // Re-calculate to force!!
+      }
+      @include Option("userChrome.autohide.bookmarkbar") {
+        #navigator-toolbox:has(#PersonalToolbar[collapsed="false"]):not(:hover) #nav-bar {
+          --uc-bm-height: 0px;
+        }
+      }
     }
   }
 }
 
-@include Option("userChrome.autohide.tabbar", "userChrome.autohide.navbar", "userChrome.autohide.bookmarkbar", "userChrome.autohide.infobar") {
+@include Option(
+  "userChrome.autohide.tabbar",
+  "userChrome.autohide.navbar",
+  "userChrome.autohide.bookmarkbar",
+  "userChrome.autohide.infobar"
+) {
   #navigator-toolbox {
     position: relative;
     &:is(:hover, :focus-within) {

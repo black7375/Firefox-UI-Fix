@@ -1,36 +1,35 @@
-#TabsToolbar[brighttext]
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab[visuallyselected="true"]:not(:focus)
-  > .tab-stack
-  > .tab-background:-moz-lwtheme {
-  /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
-       Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
-  box-shadow: 0 0 1px var(--toolbar-color) !important;
-}
-#TabsToolbar[brighttext]
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab[multiselected]:not([visuallyselected])
-  > .tab-stack
-  > .tab-background:-moz-lwtheme {
-  box-shadow: 0 0 1px color-mix(in srgb, var(--toolbar-color) 80%, transparent) !important;
+$ucTabBasicShadow: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
+$ucTabAdditionalShadow: drop-shadow(0 0 2px rgba(128, 128, 142, 0.5));
+$ucTabBackgroundShadowSoft: drop-shadow(0 0 1px var(--uc-tab-shadow-color, transparent));
+$ucTabBackgroundShadowHard: drop-shadow(-1px -0.5px 0px var(--uc-tab-shadow-color, transparent))
+                            drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent));
+
+#TabsToolbar {
+  --uc-tab-shadow-color: var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9))));
+  --uc-tab-shadow-color-bundle: var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9)));
 }
 
-/* Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
-#TabsToolbar:not([brighttext])
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-  > .tab-stack
-  > .tab-background {
-  box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))),
-    0 0 4px rgba(128, 128, 142, 0.5) !important;
+#tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+  box-shadow: unset !important;
+  filter: $ucTabBasicShadow;
 }
 
-#TabsToolbar[brighttext]
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
-  > .tab-stack
-  > .tab-background:-moz-lwtheme {
-  box-shadow: 0 0 1px var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9))) !important;
+:root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab {
+  &:is([selected], [multiselected]) {
+    > .tab-stack
+    > .tab-background:-moz-lwtheme {
+      filter: $ucTabBackgroundShadowSoft;
+    }
+  }
+
+  &[visuallyselected="true"]:not(:focus),
+  &[multiselected]:not([visuallyselected]) {
+    //  Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
+    //    Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
+    // Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
+    --uc-tab-shadow-color: var(--toolbar-color);
+  }
 }
 
 /* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
@@ -41,9 +40,9 @@
   .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
-  box-shadow: 0 0 0 1px
-      var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))),
-    0 0 4px rgba(128, 128, 142, 0.5) !important;
+  --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
+  filter: $ucTabBackgroundShadowHard
+          $ucTabAdditionalShadow;
 }
 
 :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
@@ -52,6 +51,5 @@
   .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
-  box-shadow: 0 0 0 1px
-    var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9)))) !important;
+  filter: $ucTabBackgroundShadowHard;
 }

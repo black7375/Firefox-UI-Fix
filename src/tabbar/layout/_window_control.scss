@@ -8,7 +8,13 @@ See the above repository for updates as well as full license text. */
 }
 
 #navigator-toolbox {
-  padding-top: calc(var(--uc-menubar-height, 0px) + var(--uc-titlebar-padding)) !important;
+  padding-top: var(--uc-titlebar-padding) !important;
+
+  @include Option("userChrome.tabbar.on_bottom") {
+    @include Option("userChrome.tabbar.on_bottom.menubar_on_top") {
+      padding-top: calc(max(var(--uc-menubar-height), var(--uc-menubar-height-default)) + var(--uc-titlebar-padding)) !important;
+    }
+  }
 }
 
 #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container,
@@ -26,7 +32,7 @@ See the above repository for updates as well as full license text. */
   }
 
   @include OS($win10) {
-    &[inactive="true"] > > .titlebar-buttonbox-container .titlebar-button {
+    &[inactive="true"] > .titlebar-buttonbox-container .titlebar-button {
       stroke: var(--toolbar-color, currentColor) !important;
     }
   }

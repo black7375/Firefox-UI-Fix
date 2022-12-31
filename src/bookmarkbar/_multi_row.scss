@@ -1,0 +1,34 @@
+// Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/multi-row_bookmarks.css made available under Mozilla Public License v. 2.0
+// See the above repository for updates as well as full license text.
+
+#PersonalToolbar {
+  --uc-multirow-bookmark-rows: 3;
+  --uc-multirow-bookmark-row-margin: 2px;
+  max-height: none !important;
+}
+
+#PlacesToolbar > hbox {
+  display: block;
+  width: 100vw;
+}
+
+#PlacesToolbarItems {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  max-height: calc(var(--uc-multirow-bookmark-rows) *
+                   (var(--uc-bm-height, calc(20px + (2 * var(--bookmark-block-padding, 4px)))) +
+                    (2 * var(--uc-multirow-bookmark-row-margin)))) !important;
+}
+
+// Hide the all-bookmarks button
+#PlacesChevron {
+  display: none;
+}
+
+// Add some spacing between rows
+#PlacesToolbarItems > .bookmark-item {
+  scroll-snap-align: start;
+  margin-block: var(--uc-multirow-bookmark-row-margin) !important;
+}

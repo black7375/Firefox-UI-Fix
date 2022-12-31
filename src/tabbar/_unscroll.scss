@@ -1,0 +1,53 @@
+// https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1744221
+
+// `layout.css.container-queries.enabled` to `true`
+// `layout.css.overflow-moz-hidden-unscrollable.enabled` to `true`
+// `browser.tabs.tabMinWidth` to `0`
+
+/* Disable scrollbox */
+spacer[part="overflow-start-indicator"] + .scrollbox-clip > scrollbox {
+  overflow: -moz-hidden-unscrollable !important;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] {
+  .tabbrowser-tab:not([pinned]):not([visuallyselected]) {
+    /* Set minimum width below which tabs will not shrink */
+    --tab-min-width: 16px; // or calc(16px + (var(--inline-tab-padding) * 2))
+
+    container-type: inline-size;
+    container-name: backgroundTab;
+
+    @container backgroundTab (max-width: 46px) {
+      .tab-content {
+        --inline-tab-padding: 0px;
+        justify-self: center;
+      }
+      .tab-icon-stack > * {
+        margin-inline-end: 0 !important;
+      }
+      .tab-label-container,
+      &:hover .tab-close-button {
+        visibility: collapse !important;
+      }
+    }
+  }
+
+  // New tab button
+  &[hasadjacentnewtabbutton="true"] {
+    #tabbrowser-arrowscrollbox-periphery {
+      position: absolute !important;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      > #tabs-newtab-button {
+        z-index: 2 !important;
+      }
+    }
+
+    #tabbrowser-arrowscrollbox {
+      padding-inline-end: calc(16px + (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)) * 2) !important;
+    }
+  }
+}

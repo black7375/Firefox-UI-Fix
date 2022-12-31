@@ -4,11 +4,5 @@
   margin-left: 1px;
 
   /* Original: calc((var(--tab-min-height) - 16px) / 2) = 10px */
-  --toolbarbutton-inner-padding: 6px;
-}
-:root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
-  --toolbarbutton-inner-padding: 4px; /* Photon: 6px */
-}
-:root[uidensity="touch"] #tabs-newtab-button > .toolbarbutton-icon {
-  --toolbarbutton-inner-padding: 9px; /* Photon: 9px */
+  --toolbarbutton-inner-padding: var(--uc-small-toolbarbutton-inner-padding);
 }

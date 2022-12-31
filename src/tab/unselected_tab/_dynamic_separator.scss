@@ -40,7 +40,7 @@
 }
 
 @include Option("userChrome.tab.newtab_button_like_tab") {
-  .tab-background::before,
+  .tab-stack::before,
   #tabs-newtab-button::before {
     @include _dynamicSeparatorShape;
 
@@ -50,29 +50,29 @@
 }
 
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
-  .tab-background::before,
+  .tab-stack::before,
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
-    .tab-background::after {
+    .tab-stack::after {
     @include _dynamicSeparatorShape;
   }
 
-  .tab-background::before {
+  .tab-stack::before {
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
-  .tabbrowser-tab[last-visible-tab] .tab-background::after {
+  .tabbrowser-tab[last-visible-tab] .tab-stack::after {
     right: 0;
     transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
 }
 
-.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-background::before {
+.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-stack::before {
   opacity: var(--tab-separator-opacity);
 }
 @include Option("userChrome.tabbar.one_liner") {
   @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
     @include OneLinerContent {
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-background::before {
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-stack::before {
         opacity: var(--tab-separator-opacity);
         transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
       }
@@ -87,29 +87,29 @@
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
   #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
-    .tab-background::after {
+    .tab-stack::after {
     opacity: var(--tab-separator-opacity);
   }
 }
 
 #navigator-toolbox:not([movingtab])
   .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
-  .tab-background::before,
+  .tab-stack::before,
 #navigator-toolbox:not([movingtab])
   #tabbrowser-arrowscrollbox[overflowing]
   tab.tabbrowser-tab[first-visible-unpinned-tab]
-  .tab-background::before {
+  .tab-stack::before {
   opacity: 0 !important;
 }
 @include Option("userChrome.tab.newtab_button_like_tab") {
   #navigator-toolbox:not([movingtab])
     .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab
-    .tab-background::before,
+    .tab-stack::before,
   #navigator-toolbox:not([movingtab])
     .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     ~ .tabbrowser-tab[afterhovered]
-    .tab-background::before,
+    .tab-stack::before,
   #navigator-toolbox:not([movingtab])
     .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
     ~ #tabs-newtab-button::before, /* Legacy - v103 */
@@ -122,7 +122,7 @@
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
   .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab:not([visuallyselected])
-    .tab-background::before {
+    .tab-stack::before {
     opacity: 0 !important;
   }
 
@@ -136,7 +136,7 @@
 
 /* Animate */
 @include Animate {
-  .tab-background::before {
+  .tab-stack::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
   @include Option("userChrome.tab.newtab_button_like_tab") {
@@ -147,7 +147,7 @@
   @include NotOption("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
-      .tab-background::after {
+      .tab-stack::after {
       transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     }
   }
