@@ -1,6 +1,27 @@
 @charset "UTF-8";
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
+/** Default Theme - Built In Color ********************************************/
+@supports -moz-bool-pref("userChrome.theme.built_in_color") {
+  /*= Lightmode ================================================================*/
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]),
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
+    --lwt-selected-tab-background-color: #fff !important; /* Original: white, rgb(255, 255, 255) */
+    --lwt-accent-color: #f0f0f4 !important; /* Original: rgb(237,237,241) */
+    --toolbar-bgcolor: #f9f9fb !important; /* white, rgb(255, 255, 255) */
+    --toolbar-field-background-color: #f0f0f4 !important; /* rgb(249, 249, 251) */
+  }
+  /*= Darkmode =================================================================*/
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"],
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
+    --lwt-selected-tab-background-color: rgb(66, 65, 77) !important; /* rgb(82, 82, 94) */
+    --toolbar-bgcolor: rgb(43, 42, 51) !important; /* rgb(82, 82, 94) */
+    --toolbar-field-background-color: rgb(28, 27, 34) !important; /* rgb(74, 74, 85) */
+    --toolbar-field-focus-background-color: rgb(66, 65, 77) !important; /* black rgba(0, 0, 0, 1) */
+    --button-hover-bgcolor: rgb(82, 82, 94) !important;
+    --button-active-bgcolor: rgb(91, 91, 102) !important;
+  }
+}
 /** Default Theme - Contrast **************************************************/
 @supports -moz-bool-pref("userChrome.theme.built_in_contrast") {
   /*= Lightmode - Color darker =================================================*/
@@ -7495,8 +7516,7 @@
   .tab-icon-image[crashed] {
     display: none !important;
   }
-}
-/** Nav Bar UI ****************************************************************/
+} /** Nav Bar UI ****************************************************************/
 /*= Nav Bar - Navbar comabine with sidebar===================================*/
 @supports -moz-bool-pref("userChrome.navbar.as_sidebar") {
   :root {

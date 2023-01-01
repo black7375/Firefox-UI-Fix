@@ -15,6 +15,11 @@
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";
 
+/** Default Theme - Built In Color ********************************************/
+@include Option("userChrome.theme.built_in_color") {
+  @import "theme/built_in_color";
+}
+
 /** Default Theme - Contrast **************************************************/
 @include Option("userChrome.theme.built_in_contrast") {
   @import "theme/built_in";
