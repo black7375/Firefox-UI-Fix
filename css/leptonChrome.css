@@ -5,7 +5,8 @@
 @supports -moz-bool-pref("userChrome.theme.built_in_color") {
   /*= Lightmode ================================================================*/
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]),
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
+  :root[style*="--lwt-accent-color: rgb(237, 237, 241); --lwt-text-color: rgba(21, 20, 26);"] {
     --lwt-selected-tab-background-color: #fff !important; /* Original: white, rgb(255, 255, 255) */
     --lwt-accent-color: #f0f0f4 !important; /* Original: rgb(237,237,241) */
     --toolbar-bgcolor: #f9f9fb !important; /* white, rgb(255, 255, 255) */
@@ -26,18 +27,21 @@
 @supports -moz-bool-pref("userChrome.theme.built_in_contrast") {
   /*= Lightmode - Color darker =================================================*/
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]),
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
+  :root[style*="--lwt-accent-color: rgb(237, 237, 241); --lwt-text-color: rgba(21, 20, 26);"] {
     --lwt-accent-color: rgb(229, 229, 235) !important; /* Original: rgb(240, 240, 244) */
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
     :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,
-    :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox {
+    :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox,
+    :root[style*="--lwt-accent-color: rgb(237, 237, 241); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox {
       background-color: var(--lwt-accent-color) !important;
     }
   }
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]) #navigator-toolbox,
-    :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox {
+    :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox,
+    :root[style*="--lwt-accent-color: rgb(237, 237, 241); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox {
       background-color: var(--lwt-accent-color) !important;
     }
   }
