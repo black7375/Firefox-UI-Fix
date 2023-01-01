@@ -762,15 +762,47 @@
       --button-active-bgcolor: var(--win-button-active-bgcolor) !important;
     }
     :root:not(:-moz-lwtheme)
-      toolbarbutton.subviewbutton:not([disabled], [open], :active, #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is(:hover),
+      toolbarbutton.subviewbutton:not(
+        [disabled],
+        [open],
+        :active,
+        #appMenu-fxa-label2,
+        #appMenu-zoomReduce-button2,
+        #appMenu-zoomReset-button2,
+        #appMenu-zoomEnlarge-button2,
+        #appMenu-fullscreen-button2
+      ):is(:hover),
     :root[lwt-default-theme-in-dark-mode]
-      toolbarbutton.subviewbutton:not([disabled], [open], :active, #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is(:hover) {
+      toolbarbutton.subviewbutton:not(
+        [disabled],
+        [open],
+        :active,
+        #appMenu-fxa-label2,
+        #appMenu-zoomReduce-button2,
+        #appMenu-zoomReset-button2,
+        #appMenu-zoomEnlarge-button2,
+        #appMenu-fullscreen-button2
+      ):is(:hover) {
       background-color: var(--win-hover-bgcolor) !important;
     }
     :root:not(:-moz-lwtheme)
-      toolbarbutton.subviewbutton:not([disabled], #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is([open], :hover:active),
+      toolbarbutton.subviewbutton:not(
+        [disabled],
+        #appMenu-fxa-label2,
+        #appMenu-zoomReduce-button2,
+        #appMenu-zoomReset-button2,
+        #appMenu-zoomEnlarge-button2,
+        #appMenu-fullscreen-button2
+      ):is([open], :hover:active),
     :root[lwt-default-theme-in-dark-mode]
-      toolbarbutton.subviewbutton:not([disabled], #appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2):is([open], :hover:active) {
+      toolbarbutton.subviewbutton:not(
+        [disabled],
+        #appMenu-fxa-label2,
+        #appMenu-zoomReduce-button2,
+        #appMenu-zoomReset-button2,
+        #appMenu-zoomEnlarge-button2,
+        #appMenu-fullscreen-button2
+      ):is([open], :hover:active) {
       background-color: var(--win-hover-active-bgcolor) !important;
     }
     /*- Others -----------------------------------------------------------------*/
@@ -796,7 +828,10 @@
       > .tabbrowser-tab
       > .tab-stack
       > .tab-background[multiselected]:not([selected]),
-    :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+    :root:is(
+        [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
+        [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+      )
       #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
@@ -1411,9 +1446,15 @@
   /* Default theme color preservation */
   :root[lwtheme-mozlightdark] menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
   :root[lwtheme-mozlightdark] menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup),
-  :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  :root:is(
+      [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
+      [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+    )
     menupopup:not(#BMB_bookmarksPopup, [placespopup="true"]),
-  :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  :root:is(
+      [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
+      [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+    )
     menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) {
     --menu-color: var(--toolbar-color, var(--in-content-page-color)) !important;
     --arrowpanel-background: var(
@@ -6067,7 +6108,10 @@
     box-shadow: unset !important;
     filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
   }
-  :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  :root:is(
+      [lwtheme-mozlightdark],
+      [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+    )
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([selected], [multiselected])
@@ -6075,11 +6119,17 @@
     > .tab-background:-moz-lwtheme {
     filter: drop-shadow(0 0 1px var(--uc-tab-shadow-color, transparent));
   }
-  :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  :root:is(
+      [lwtheme-mozlightdark],
+      [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+    )
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[visuallyselected="true"]:not(:focus),
-  :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  :root:is(
+      [lwtheme-mozlightdark],
+      [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+    )
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[multiselected]:not([visuallyselected]) {
@@ -6087,7 +6137,10 @@
   }
   /* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
      around the tab to help themes that are dependent on tab_line to show the selected tab. */
-  :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
+  :root:not(
+      [lwtheme-mozlightdark],
+      [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"]
+    )
     #TabsToolbar:not([brighttext])
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
@@ -6097,7 +6150,10 @@
     filter: drop-shadow(-1px -0.5px 0px var(--uc-tab-shadow-color, transparent))
       drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent)) drop-shadow(0 0 2px rgba(128, 128, 142, 0.5));
   }
-  :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+  :root:not(
+      [lwtheme-mozlightdark],
+      [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+    )
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
@@ -6204,12 +6260,18 @@
                 opacity: 0.3;
               }
             }
-            :root:not([customizing="true"])::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+            :root:not([customizing="true"])::is(
+                [lwtheme-mozlightdark],
+                [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+              )
               #TabsToolbar[brighttext]
               #tabbrowser-tabs:not([noshadowfortests])
               .tabbrowser-tab[visuallyselected]
               .tab-background:-moz-lwtheme::before,
-            :root:not([customizing="true"])::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+            :root:not([customizing="true"])::is(
+                [lwtheme-mozlightdark],
+                [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
+              )
               #TabsToolbar[brighttext]
               #tabbrowser-tabs:not([noshadowfortests])
               .tabbrowser-tab[visuallyselected]
@@ -7320,7 +7382,11 @@
       .tabbrowser-tab:not([image]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
         opacity: 0 !important; /* Favicon hidden */
       }
-      .tabbrowser-tab:not([image]):not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+      .tabbrowser-tab:not([image]):not([image]):not([pinned], [sharing], [crashed]):is(
+          [soundplaying],
+          [muted],
+          [activemedia-blocked]
+        )
         .tab-label-container
         > * {
         transform: translateX(var(--uc-sound-tab-no-icon-label-position-x));
@@ -7337,7 +7403,11 @@
         .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image:not([pinned]) {
           opacity: 0 !important; /* Favicon hidden */
         }
-        .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
+        .tabbrowser-tab:not([image]):not([pinned], [sharing], [crashed]):is(
+            [soundplaying],
+            [muted],
+            [activemedia-blocked]
+          )
           .tab-label-container
           > * {
           transform: translateX(var(--uc-sound-tab-no-icon-label-position-x));
@@ -9597,7 +9667,11 @@
     }
   }
   @supports -moz-bool-pref("userChrome.hidden.sidebar_header.vertical_tab_only") {
-    #sidebar-box:is([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"], [sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"], [sidebarcommand="sidebartabs_asamuzak_jp-sidebar-action"])
+    #sidebar-box:is(
+        [sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"],
+        [sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"],
+        [sidebarcommand="sidebartabs_asamuzak_jp-sidebar-action"]
+      )
       #sidebar-header {
       display: none !important;
     }
@@ -10373,9 +10447,29 @@
       > menupopup
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+    menupopup:is(
+        #menu_FilePopup,
+        #menu_EditPopup,
+        #menu_viewPopup,
+        #goPopup,
+        #historyMenuPopup,
+        #bookmarksMenuPopup,
+        #menu_ToolsPopup,
+        #windowPopup,
+        #menu_HelpPopup
+      )
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+    menupopup:is(
+        #menu_FilePopup,
+        #menu_EditPopup,
+        #menu_viewPopup,
+        #goPopup,
+        #historyMenuPopup,
+        #bookmarksMenuPopup,
+        #menu_ToolsPopup,
+        #windowPopup,
+        #menu_HelpPopup
+      )
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -10424,9 +10518,29 @@
     :not(menu, #ContentSelectDropdown, #context-navigation)
       > menupopup
       > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+    menupopup:is(
+        #menu_FilePopup,
+        #menu_EditPopup,
+        #menu_viewPopup,
+        #goPopup,
+        #historyMenuPopup,
+        #bookmarksMenuPopup,
+        #menu_ToolsPopup,
+        #windowPopup,
+        #menu_HelpPopup
+      )
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-    menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+    menupopup:is(
+        #menu_FilePopup,
+        #menu_EditPopup,
+        #menu_viewPopup,
+        #goPopup,
+        #historyMenuPopup,
+        #bookmarksMenuPopup,
+        #menu_ToolsPopup,
+        #windowPopup,
+        #menu_HelpPopup
+      )
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -10482,9 +10596,29 @@
       :not(menu, #ContentSelectDropdown, #context-navigation)
         > menupopup
         > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+      menupopup:is(
+          #menu_FilePopup,
+          #menu_EditPopup,
+          #menu_viewPopup,
+          #goPopup,
+          #historyMenuPopup,
+          #bookmarksMenuPopup,
+          #menu_ToolsPopup,
+          #windowPopup,
+          #menu_HelpPopup
+        )
         menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+      menupopup:is(
+          #menu_FilePopup,
+          #menu_EditPopup,
+          #menu_viewPopup,
+          #goPopup,
+          #historyMenuPopup,
+          #bookmarksMenuPopup,
+          #menu_ToolsPopup,
+          #windowPopup,
+          #menu_HelpPopup
+        )
         menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -10519,9 +10653,29 @@
       :not(menu, #ContentSelectDropdown, #context-navigation)
         > menupopup
         > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+      menupopup:is(
+          #menu_FilePopup,
+          #menu_EditPopup,
+          #menu_viewPopup,
+          #goPopup,
+          #historyMenuPopup,
+          #bookmarksMenuPopup,
+          #menu_ToolsPopup,
+          #windowPopup,
+          #menu_HelpPopup
+        )
         menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-      menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+      menupopup:is(
+          #menu_FilePopup,
+          #menu_EditPopup,
+          #menu_viewPopup,
+          #goPopup,
+          #historyMenuPopup,
+          #bookmarksMenuPopup,
+          #menu_ToolsPopup,
+          #windowPopup,
+          #menu_HelpPopup
+        )
         menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -10572,9 +10726,29 @@
       }
       /* Global Menu */
       @supports -moz-bool-pref("userChrome.icon.global_menu.mac") {
-        menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+        menupopup:is(
+            #menu_FilePopup,
+            #menu_EditPopup,
+            #menu_viewPopup,
+            #goPopup,
+            #historyMenuPopup,
+            #bookmarksMenuPopup,
+            #menu_ToolsPopup,
+            #windowPopup,
+            #menu_HelpPopup
+          )
           menuitem:not(.menuitem-iconic, .bookmark-item),
-        menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
+        menupopup:is(
+            #menu_FilePopup,
+            #menu_EditPopup,
+            #menu_viewPopup,
+            #goPopup,
+            #historyMenuPopup,
+            #bookmarksMenuPopup,
+            #menu_ToolsPopup,
+            #windowPopup,
+            #menu_HelpPopup
+          )
           menu:not(.menu-iconic) {
           list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
         }
