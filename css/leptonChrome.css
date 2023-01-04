@@ -9667,6 +9667,12 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.hidden.private_indicator") {
+  .private-browsing-indicator,
+  #private-browsing-indicator-with-label {
+    display: none;
+  }
+}
 @supports -moz-bool-pref("userChrome.hidden.titlebar_container") {
   .titlebar-buttonbox-container {
     display: none !important;

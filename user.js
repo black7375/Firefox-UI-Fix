@@ -94,6 +94,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.hidden.tab_icon.always",              true);
 // user_pref("userChrome.hidden.tabbar",                       true);
 // user_pref("userChrome.hidden.navbar",                       true);
+// user_pref("userChrome.hidden.private_indicator",            true);
 // user_pref("userChrome.hidden.titlebar_container",           true);
 // user_pref("userChrome.hidden.sidebar_header",               true);
 // user_pref("userChrome.hidden.sidebar_header.vertical_tab_only", true);
