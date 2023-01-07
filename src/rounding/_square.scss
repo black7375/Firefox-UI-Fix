@@ -35,6 +35,12 @@
   }
 }
 
+@include Option("userChrome.rounding.square_dialog") {
+  .dialogBox {
+    border-radius: 0 !important;
+  }
+}
+
 @include Option("userChrome.rounding.square_panel") {
   :root {
     --arrowpanel-border-radius: 0 !important;
