@@ -120,6 +120,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.combined.sub_button.as_normal",       true);
 
 // user_pref("userChrome.rounding.square_button",              true);
+// user_pref("userChrome.rounding.square_dialog",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
 // user_pref("userChrome.rounding.square_panelitem",           true);
 // user_pref("userChrome.rounding.square_menupopup",           true);

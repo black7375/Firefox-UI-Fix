@@ -3082,6 +3082,11 @@
     --tab-border-radius: var(--toolbarbutton-border-radius);
   }
 }
+@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+  .dialogBox {
+    border-radius: 0 !important;
+  }
+}
 @supports -moz-bool-pref("userChrome.rounding.square_panel") {
   :root {
     --arrowpanel-border-radius: 0 !important;
