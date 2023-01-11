@@ -20,21 +20,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Node cache
-        id: node-cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Package Install
-        if: steps.node-cache.outputs.cache-hit != 'true'
-        run: yarn install
+      - name: Setup
+        uses: ./.github/actions/node-setup
 
       - name: Build
         run: yarn build
