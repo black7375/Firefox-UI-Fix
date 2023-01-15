@@ -3774,6 +3774,9 @@
     --arrowpanel-menuitem-padding-block: 8px !important; /* Original: 8px */
     --arrowpanel-menuitem-padding-inline: 8px !important; /* Original: 8px */
   }
+  .all-tabs-item {
+    margin: var(--arrowpanel-menuitem-margin) !important;
+  }
   @supports not -moz-bool-pref("userChrome.icon.disabled") {
     @supports not -moz-bool-pref("userChrome.icon.panel") {
       .subviewbutton {
