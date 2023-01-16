@@ -8732,7 +8732,7 @@
 @supports -moz-bool-pref("userChrome.autohide.back_button") or -moz-bool-pref("userChrome.autohide.forward_button") {
   :root {
     --uc-toolbarbutton-hide-size: calc(
-      -1 * (16px + (2 * var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding)))
+      -1 * (16px + (2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding))))
     );
   }
 }
