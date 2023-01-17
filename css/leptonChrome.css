@@ -8736,35 +8736,38 @@
     );
   }
 }
-@supports -moz-bool-pref("userChrome.autohide.back_button") {
-  #back-button[disabled="true"] {
-    margin-left: var(--uc-toolbarbutton-hide-size) !important;
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    #back-button {
-      transition-property: background-color, opacity, margin-left !important;
-    }
+@-moz-document url("chrome://browser/content/browser.xhtml")
+{
+  @supports -moz-bool-pref("userChrome.autohide.back_button") {
     #back-button[disabled="true"] {
-      transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
-        margin-left 0.5s ease !important;
+      margin-left: var(--uc-toolbarbutton-hide-size) !important;
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #back-button {
+        transition-property: background-color, opacity, margin-left !important;
+      }
+      #back-button[disabled="true"] {
+        transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
+          margin-left 0.5s ease !important;
+      }
     }
   }
-}
-@supports -moz-bool-pref("userChrome.autohide.forward_button") {
-  #forward-button[disabled="true"] {
-    margin-left: var(--uc-toolbarbutton-hide-size) !important;
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    #forward-button {
-      transition-property: background-color, opacity, margin-left !important;
-    }
+  @supports -moz-bool-pref("userChrome.autohide.forward_button") {
     #forward-button[disabled="true"] {
-      transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
-        margin-left 0.5s ease !important;
+      margin-left: var(--uc-toolbarbutton-hide-size) !important;
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #forward-button {
+        transition-property: background-color, opacity, margin-left !important;
+      }
+      #forward-button[disabled="true"] {
+        transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
+          margin-left 0.5s ease !important;
+      }
     }
   }
 }

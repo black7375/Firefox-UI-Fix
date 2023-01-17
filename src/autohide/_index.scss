@@ -4,11 +4,14 @@
   }
 }
 
-@include Option("userChrome.autohide.back_button") {
-  @import "back_button";
-}
-@include Option("userChrome.autohide.forward_button") {
-  @import "forward_button";
+@include moz-document(url "chrome://browser/content/browser.xhtml")
+{
+  @include Option("userChrome.autohide.back_button") {
+    @import "back_button";
+  }
+  @include Option("userChrome.autohide.forward_button") {
+    @import "forward_button";
+  }
 }
 @include Option("userChrome.autohide.page_action") {
   @import "page_action";
