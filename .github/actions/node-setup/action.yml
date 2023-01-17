@@ -18,7 +18,6 @@ runs:
           "**/node_modules"
         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }
           ${{ runner.os }}-node-
 
     - name: Package Install
