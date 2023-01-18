@@ -3,6 +3,11 @@
   @import "system_default_theme";
 }
 
+/*= Private Theme Mode =======================================================*/
+@include Option("userChrome.theme.private") {
+  @import "private";
+}
+
 /*= Fully Theme Mode =========================================================*/
 // Default Themes
 //   https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json

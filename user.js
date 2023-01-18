@@ -68,6 +68,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
+// user_pref("userChrome.theme.private",                       true);
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
 // user_pref("userChrome.theme.monospace",                     true);
 

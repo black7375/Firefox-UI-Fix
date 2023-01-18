@@ -1830,14 +1830,7 @@
       outline: 2px solid var(--in-content-focus-outline-color) !important;
       outline-offset: -1px !important; /* Prevents antialiasing around the corners */
     }
-    input:is(
-        [type="email"],
-        [type="tel"],
-        [type="text"],
-        [type="password"],
-        [type="url"],
-        [type="number"]
-      ):-moz-ui-invalid,
+    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):-moz-ui-invalid,
     textarea:-moz-ui-invalid {
       border-color: transparent !important;
       outline: 2px solid var(--in-content-border-invalid) !important;
@@ -1873,14 +1866,7 @@
   @supports -moz-bool-pref("userContent.page.field_border") {
     @media (prefers-reduced-motion: no-preference) {
       @-moz-document url-prefix("about:") {
-        html|input:is(
-            [type="email"],
-            [type="tel"],
-            [type="text"],
-            [type="password"],
-            [type="url"],
-            [type="number"]
-          ):not(#newtab-search-text):hover,
+        html|input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(#newtab-search-text):hover,
         html|textarea:hover,
         xul|search-textbox:hover {
           border-color: var(--in-content-focus-outline-color) !important;
