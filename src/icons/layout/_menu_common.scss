@@ -97,10 +97,22 @@ $_initialMenus: selector.append(
     --context-menu-background-padding: 1em;
     --context-menu-text-padding: 24px; /* 16px + 8px */
     --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
-
-    @include Win10_NativeMenu() {
+  }
+  @include Win10_NativeMenu() {
+    :root {
       --context-menu-background-padding: 3px;
       --menu-background-padding-default: 0px;
+    }
+
+    .menuitem-iconic > .menu-iconic-left {
+      appearance: none !important;
+      padding-block: 0 !important;
+      padding-inline-start: 5px !important;
+      margin-inline-end: 8px !important;
+    }
+    .menu-accel, .menu-iconic-accel {
+      box-sizing: content-box;
+      min-height: 16px;
     }
   }
 }

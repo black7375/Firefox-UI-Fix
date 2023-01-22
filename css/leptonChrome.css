@@ -10501,6 +10501,17 @@
           --context-menu-background-padding: 3px;
           --menu-background-padding-default: 0px;
         }
+        .menuitem-iconic > .menu-iconic-left {
+          appearance: none !important;
+          padding-block: 0 !important;
+          padding-inline-start: 5px !important;
+          margin-inline-end: 8px !important;
+        }
+        .menu-accel,
+        .menu-iconic-accel {
+          box-sizing: content-box;
+          min-height: 16px;
+        }
       }
       :not(menu, #ContentSelectDropdown, #context-navigation)
         > menupopup
