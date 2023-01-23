@@ -10513,6 +10513,12 @@
           box-sizing: content-box;
           min-height: 16px;
         }
+        .menu-accel,
+        .menu-iconic-accel,
+        .menu-text,
+        .menu-iconic-text {
+          padding-block: 0 !important;
+        }
       }
       :not(menu, #ContentSelectDropdown, #context-navigation)
         > menupopup

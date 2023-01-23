@@ -2823,6 +2823,12 @@
             box-sizing: content-box;
             min-height: 16px;
           }
+          .menu-accel,
+          .menu-iconic-accel,
+          .menu-text,
+          .menu-iconic-text {
+            padding-block: 0 !important;
+          }
         }
         menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
           menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
