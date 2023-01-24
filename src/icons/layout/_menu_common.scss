@@ -104,11 +104,14 @@ $_initialMenus: selector.append(
       --menu-background-padding-default: 0px;
     }
 
-    .menuitem-iconic > .menu-iconic-left {
-      appearance: none !important;
-      padding-block: 0 !important;
-      padding-inline-start: 5px !important;
-      margin-inline-end: 8px !important;
+    .menu-iconic,
+    .menuitem-iconic {
+      > .menu-iconic-left {
+        appearance: none !important;
+        padding-block: 0 !important;
+        padding-inline-start: 5px !important;
+        margin-inline-end: 8px !important;
+      }
     }
     .menu-accel, .menu-iconic-accel {
       box-sizing: content-box;
