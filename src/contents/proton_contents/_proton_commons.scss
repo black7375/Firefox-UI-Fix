@@ -70,6 +70,10 @@
     margin: 4px 8px !important;
     /* Ensure font-size isn't overridden by widget styling (e.g. in forms.css) */
     font-size: 1em !important;
+
+    @include Option("userChrome.rounding.square_button") {
+      border-radius: 0 !important;
+    }
   }
   button {
     font-weight: 600 !important;
@@ -144,6 +148,10 @@
     border-radius: 2px !important;
     margin-inline: 0 6px !important;
     flex-shrink: 0 !important; /* avoid shrinking inside flex container */
+
+    @include Option("userChrome.rounding.square_checklabel") {
+      border-radius: 0 !important;
+    }
   }
   input[type="checkbox"]:enabled:hover {
     background-color: var(--checkbox-unchecked-hover-bgcolor) !important;
