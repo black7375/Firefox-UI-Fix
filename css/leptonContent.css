@@ -313,8 +313,7 @@
       width: 100% !important; /* Original: 48px */
       height: 100% !important; /* Original: 48px */
     }
-  }
-  /** Activity Stream - Animate ***********************************************/
+  } /** Activity Stream - Animate ***********************************************/
   @supports -moz-bool-pref("userContent.newTab.animate") {
     @media (prefers-reduced-motion: no-preference) {
       :root {
@@ -1708,6 +1707,13 @@
       /* Ensure font-size isn't overridden by widget styling (e.g. in forms.css) */
       font-size: 1em !important;
     }
+    @supports -moz-bool-pref("userChrome.rounding.square_button") {
+      button,
+      select,
+      input[type="color"] {
+        border-radius: 0 !important;
+      }
+    }
     button {
       font-weight: 600 !important;
       /* Use the same margin of other elements for the alignment */
@@ -1780,6 +1786,11 @@
       border-radius: 2px !important;
       margin-inline: 0 6px !important;
       flex-shrink: 0 !important; /* avoid shrinking inside flex container */
+    }
+    @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
+      input[type="checkbox"] {
+        border-radius: 0 !important;
+      }
     }
     input[type="checkbox"]:enabled:hover {
       background-color: var(--checkbox-unchecked-hover-bgcolor) !important;
@@ -2709,6 +2720,94 @@
           margin: var(--panel-separator-margin, 6px);
         }
       }
+    }
+  }
+}
+/** Rounding ******************************************************************/
+@supports -moz-bool-pref("userChrome.rounding.square_button") {
+  @-moz-document url-prefix("about:") {
+    button,
+    .close-icon,
+    .action-icon::before,
+    #categories > .category,
+    .sidebar-footer-link {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .sidebar-item {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("chrome://browser/content/places/places.xhtml"), url-prefix("about:downloads")
+  {
+    .downloadButton > .button-box {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:protections") {
+    #manage-protections,
+    #sign-up-for-monitor-link,
+    #get-proxy-extension-link,
+    #get-vpn-link,
+    #vpn-banner-link,
+    .monitor-partial-breaches-link-wrapper,
+    .monitor-breaches-link-wrapper {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+  @-moz-document url-prefix("about:") {
+    .dialogBox {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url("about:home"), url("about:newtab") {
+    .modal {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
+  @-moz-document url-prefix("about:") {
+    input[type="checkbox"]:not(.toggle-button),
+    .checkbox-check {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_field") {
+  @-moz-document url-prefix("about:") {
+    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+    textarea,
+    select,
+    menulist,
+    search-textbox {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .default-input {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url("about:home"), url("about:newtab") {
+    .search-wrapper .search-handoff-button,
+    .search-wrapper input {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
+  @-moz-document url-prefix("about:preferences") {
+    menupopup {
+      --panel-border-radius: 0 !important;
+    }
+  }
+  @-moz-document url("about:home"), url("about:newtab") {
+    .context-menu {
+      border-radius: 0 !important;
     }
   }
 }

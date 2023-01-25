@@ -1,0 +1,99 @@
+@include Option("userChrome.rounding.square_button") {
+  @include moz-document(url-prefix "about:") {
+    button,
+    .close-icon,
+    .action-icon::before,
+    #categories > .category,
+    .sidebar-footer-link {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url-prefix "about:debugging") {
+    .sidebar-item {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url-prefix "chrome://browser/content/places/places.xhtml", url-prefix "about:downloads") {
+    .downloadButton > .button-box {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url-prefix "about:protections") {
+    #manage-protections,
+    #sign-up-for-monitor-link,
+    #get-proxy-extension-link,
+    #get-vpn-link,
+    #vpn-banner-link,
+    .monitor-partial-breaches-link-wrapper,
+    .monitor-breaches-link-wrapper {
+      border-radius: 0 !important;
+    }
+  }
+}
+
+@include Option("userChrome.rounding.square_dialog") {
+  @include moz-document(url-prefix "about:") {
+    .dialogBox {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url "about:home", url "about:newtab") {
+    .modal {
+      border-radius: 0 !important;
+    }
+  }
+}
+
+@include Option("userChrome.rounding.square_checklabel") {
+  @include moz-document(url-prefix "about:") {
+    input[type="checkbox"]:not(.toggle-button),
+    .checkbox-check {
+      border-radius: 0 !important;
+    }
+  }
+}
+
+@include Option("userChrome.rounding.square_field") {
+  @include moz-document(url-prefix "about:") {
+    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+    textarea,
+    select,
+    menulist,
+    search-textbox {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url-prefix "about:debugging") {
+    .default-input {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url "about:home", url "about:newtab") {
+    .search-wrapper {
+      .search-handoff-button,
+      input {
+        border-radius: 0 !important;
+      }
+    }
+  }
+}
+
+@include Option("userChrome.rounding.square_menupopup") {
+  @include moz-document(url-prefix "about:preferences") {
+    menupopup {
+      --panel-border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url "about:home", url "about:newtab") {
+    .context-menu {
+      border-radius: 0 !important;
+    }
+  }
+}
