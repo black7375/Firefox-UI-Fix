@@ -313,7 +313,8 @@
       width: 100% !important; /* Original: 48px */
       height: 100% !important; /* Original: 48px */
     }
-  } /** Activity Stream - Animate ***********************************************/
+  }
+  /** Activity Stream - Animate ***********************************************/
   @supports -moz-bool-pref("userContent.newTab.animate") {
     @media (prefers-reduced-motion: no-preference) {
       :root {
@@ -2908,7 +2909,7 @@
         }
         @media not (-moz-windows-non-native-menus) {
           :root {
-            --context-menu-background-padding: 3px;
+            --context-menu-background-padding: 5px;
             --menu-background-padding-default: 0px;
           }
           .menu-iconic > .menu-iconic-left,
