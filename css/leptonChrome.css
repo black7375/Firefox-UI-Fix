@@ -9810,6 +9810,16 @@
     }
   }
   /** Panel - Icons *************************************************************/
+  :root {
+    --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
+    --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
+  }
+  @supports selector(:has(a)) {
+    :root:has(#sidebar-box[positionend="true"]) {
+      --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
+      --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
+    }
+  }
   @supports -moz-bool-pref("userChrome.icon.panel") {
     /*= Padding ==================================================================*/
     :root {
@@ -10270,6 +10280,12 @@
       list-style-image: url("chrome://global/skin/icons/settings.svg");
     }
     /*= BMB_bookmarksPopup =======================================================*/
+    #BMB_viewBookmarksSidebar {
+      --menuitem-image: var(--uc-sidebar-icon);
+    }
+    #BMB_viewBookmarksSidebar[data-l10n-args='{"isVisible":true}'] {
+      --menuitem-image: url("chrome://global/skin/icons/close.svg");
+    }
     #BMB_bookmarksShowAllTop,
     #BMB_bookmarksShowAll {
       --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
@@ -10332,11 +10348,7 @@
       list-style-image: url("chrome://browser/skin/tab.svg");
     }
     #sidebar-reverse-position {
-      list-style-image: url("chrome://browser/skin/sidebars-right.svg");
-    }
-    #sidebar-box[positionend="true"] #sidebar-reverse-position {
-      /* Can't apply this. shadow dom */
-      list-style-image: url("chrome://browser/skin/sidebars.svg");
+      list-style-image: var(--uc-sidebar-icon-reverse);
     }
     #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
       list-style-image: url("chrome://global/skin/icons/close.svg");
@@ -11674,7 +11686,7 @@
         --menuitem-image: url("../icons/toolbar.svg");
       }
       #viewSidebarMenuMenu {
-        --menuitem-image: url("chrome://browser/skin/sidebars.svg");
+        --menuitem-image: var(--uc-sidebar-icon);
       }
       #viewFullZoomMenu {
         --menuitem-image: url("../icons/screenshot.svg");

@@ -104,7 +104,8 @@ menu.share-tab-url-item {
   --menuitem-image: url("../icons/toolbar.svg");
 }
 #viewSidebarMenuMenu {
-  --menuitem-image: url("chrome://browser/skin/sidebars.svg");
+  // --menuitem-image: url("chrome://browser/skin/sidebars.svg");
+  --menuitem-image: var(--uc-sidebar-icon);
 }
 
 #viewFullZoomMenu {
