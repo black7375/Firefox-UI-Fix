@@ -102,6 +102,9 @@ $_initialMenus: selector.append(
     :root {
       --context-menu-background-padding: 3px;
       --menu-background-padding-default: 0px;
+      @include Option("userChrome.compatibility.os.win11") {
+        --context-menu-background-padding: 5px;
+      }
     }
 
     @include NativeMenuPopup {
@@ -112,6 +115,9 @@ $_initialMenus: selector.append(
           padding-block: 0 !important;
           padding-inline-start: 5px !important;
           margin-inline-end: 8px !important;
+          @include Option("userChrome.compatibility.os.win11") {
+            box-sizing: content-box;
+          }
         }
       }
       .menu-accel, .menu-iconic-accel {

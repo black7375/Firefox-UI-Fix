@@ -2912,6 +2912,11 @@
             --context-menu-background-padding: 3px;
             --menu-background-padding-default: 0px;
           }
+          @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+            :root {
+              --context-menu-background-padding: 5px;
+            }
+          }
           menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic > .menu-iconic-left,
           menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menuitem-iconic > .menu-iconic-left,
           menupopup:not([placespopup="true"]) .menu-iconic > .menu-iconic-left,
@@ -2920,6 +2925,14 @@
             padding-block: 0 !important;
             padding-inline-start: 5px !important;
             margin-inline-end: 8px !important;
+          }
+          @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+            menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic > .menu-iconic-left,
+            menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menuitem-iconic > .menu-iconic-left,
+            menupopup:not([placespopup="true"]) .menu-iconic > .menu-iconic-left,
+            menupopup:not([placespopup="true"]) .menuitem-iconic > .menu-iconic-left {
+              box-sizing: content-box;
+            }
           }
           menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-accel,
           menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic-accel,
