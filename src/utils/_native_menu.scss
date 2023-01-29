@@ -6,6 +6,13 @@
   }
 }
 
+@mixin NativeMenuPopup() {
+  menupopup:is(#historyMenuPopup, #bookmarksMenuPopup),
+  menupopup:not([placespopup="true"]) {
+    @content;
+  }
+}
+
 @mixin Win10_NativeMenu() {
   @media not (-moz-windows-non-native-menus) {
     @content;

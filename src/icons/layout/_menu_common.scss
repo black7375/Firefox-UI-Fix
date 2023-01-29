@@ -100,26 +100,28 @@ $_initialMenus: selector.append(
   }
   @include Win10_NativeMenu() {
     :root {
-      --context-menu-background-padding: 5px;
+      --context-menu-background-padding: 3px;
       --menu-background-padding-default: 0px;
     }
 
-    .menu-iconic,
-    .menuitem-iconic {
-      > .menu-iconic-left {
-        appearance: none !important;
-        padding-block: 0 !important;
-        padding-inline-start: 5px !important;
-        margin-inline-end: 8px !important;
+    @include NativeMenuPopup {
+      .menu-iconic,
+      .menuitem-iconic {
+        > .menu-iconic-left {
+          appearance: none !important;
+          padding-block: 0 !important;
+          padding-inline-start: 5px !important;
+          margin-inline-end: 8px !important;
+        }
       }
-    }
-    .menu-accel, .menu-iconic-accel {
-      box-sizing: content-box;
-      min-height: 16px;
-    }
-    .menu-accel, .menu-iconic-accel,
-    .menu-text, .menu-iconic-text {
-      padding-block: 0 !important;
+      .menu-accel, .menu-iconic-accel {
+        box-sizing: content-box;
+        min-height: 16px;
+      }
+      .menu-accel, .menu-iconic-accel,
+      .menu-text, .menu-iconic-text {
+        padding-block: 0 !important;
+      }
     }
   }
 }
