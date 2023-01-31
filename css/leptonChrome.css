@@ -9605,6 +9605,11 @@
     }
   }
   @supports -moz-bool-pref("userChrome.hidden.urlbar_iconbox.label_only") {
+    #identity-box[pageproxystate="valid"].notSecureText,
+    #identity-box[pageproxystate="valid"].chromeUI,
+    #identity-box[pageproxystate="valid"].extensionPage {
+      margin-inline-end: var(--identity-box-margin-inline) !important;
+    }
     #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box:not(:hover),
     #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box:not(:hover) {
       background-color: transparent !important;
