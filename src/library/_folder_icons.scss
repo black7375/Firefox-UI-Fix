@@ -9,7 +9,7 @@
 #editBMPanel_folderMenuList .folder-icon:not([id]),
 /* Download Popup */
 .downloadIconShow > .button-box > .button-icon {
-  list-style-image: url("../icons/folder.svg") !important;
+  list-style-image: url("../leptonIcons/folder.svg") !important;
 }
 
 /* Standard Folder - Open */
@@ -17,7 +17,7 @@
   .bookmark-item[container="true"]:not([query="true"], [tagContainer], [dayContainer])[open="true"],
 :-moz-any(#bookmarks-view, #historyTree, #editBMPanel_folderTree, #placesList, #placeContent)
   treechildren::-moz-tree-image(title, container, open) {
-  list-style-image: url("../icons/folder-open.svg") !important;
+  list-style-image: url("../leptonIcons/folder-open.svg") !important;
 }
 
 /*= Other Folder - Inbox Icon ================================================*/
@@ -30,7 +30,7 @@
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent) treechildren::-moz-tree-image(container, queryFolder_unfiled_____),
   #editBMPanel_unfiledRootItem,
   #editBMPanel_folderMenuList[selectedGuid="unfiled_____"] {
-  list-style-image: url("../icons/mail-inbox-all.svg") !important;
+  list-style-image: url("../leptonIcons/mail-inbox-all.svg") !important;
 }
 
 /* Other Folder - Open */
@@ -41,7 +41,7 @@
   treechildren::-moz-tree-image(container, open, OrganizerQuery_UnfiledBookmarks),
 :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
   treechildren::-moz-tree-image(container, open, queryFolder_unfiled_____) {
-  list-style-image: url("../icons/mail-inbox.svg") !important;
+  list-style-image: url("../leptonIcons/mail-inbox.svg") !important;
 }
 
 /*= Default Icon - Override ===================================================*/
@@ -100,7 +100,7 @@
 :-moz-any(#historyTree, #placesList, #placeContent) treechildren::-moz-tree-image(title, query, open, dayContainer),
 :-moz-any(#historyTree, #placesList, #placeContent)
   treechildren::-moz-tree-image(query, open, OrganizerQuery_history____v) {
-  list-style-image: url("../icons/history-reverse.svg") !important;
+  list-style-image: url("../leptonIcons/history-reverse.svg") !important;
 }
 
 /* Tag */
@@ -108,7 +108,7 @@
   .bookmark-item[container="true"][tagContainer="true"][open="true"],
 :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, open, tagContainer),
 :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, open, OrganizerQuery_tags_______v) {
-  list-style-image: url("../icons/tag-open.svg") !important;
+  list-style-image: url("../leptonIcons/tag-open.svg") !important;
 }
 
 /* Bookmark */
@@ -121,11 +121,11 @@
 #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
 :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
   treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
-  list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+  list-style-image: url("../leptonIcons/bookmarksToolbar-open.svg") !important;
 }
 
 /* Bookmark Menu */
 :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
   treechildren::-moz-tree-image(container, open, queryFolder_menu________) {
-  list-style-image: url("../icons/bookmarksMenu-open.svg") !important; /* or bookmarksMenu-open2.svg" */
+  list-style-image: url("../leptonIcons/bookmarksMenu-open.svg") !important; /* or bookmarksMenu-open2.svg" */
 }

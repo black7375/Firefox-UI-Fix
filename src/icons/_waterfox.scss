@@ -1,18 +1,18 @@
 @include Option("userChrome.icon.panel") {
   #appMenu-restart-button {
-    list-style-image: url("../icons/refresh-cw.svg") !important;
+    list-style-image: url("../leptonIcons/refresh-cw.svg") !important;
   }
 }
 @include Option("userChrome.icon.menu") {
   #menu_FileRestartItem {
-    --menuitem-image: url("../icons/refresh-cw.svg");
+    --menuitem-image: url("../leptonIcons/refresh-cw.svg");
   }
 
   #toggle_status-dummybar {
-    --menuitem-image: url("../icons/pulse-square.svg");
+    --menuitem-image: url("../leptonIcons/pulse-square.svg");
   }
 
   menuitem.privatetab-icon {
-    --menuitem-image: url("../icons/private-favicon.svg");
+    --menuitem-image: url("../leptonIcons/private-favicon.svg");
   }
 }

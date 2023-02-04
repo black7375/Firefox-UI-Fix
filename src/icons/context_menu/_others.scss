@@ -25,7 +25,7 @@
 /*= autohide-context =========================================================*/
 #autohide-context > menuitem[data-l10n-id="full-screen-autohide"] {
   /* checkbox */
-  --menuitem-image: url("../icons/eye-tracking-off.svg");
+  --menuitem-image: url("../leptonIcons/eye-tracking-off.svg");
 }
 
 #autohide-context > menuitem[data-l10n-id="full-screen-exit"] {
@@ -34,7 +34,7 @@
 
 /*= pictureInPictureToggleContextMenu ========================================*/
 #pictureInPictureToggleContextMenu > menuitem[oncommand="PictureInPicture.hideToggle();"] {
-  --menuitem-image: url("../icons/eye-hide.svg");
+  --menuitem-image: url("../leptonIcons/eye-hide.svg");
 }
 
 /*= pageActionContextMenu ====================================================*/
@@ -49,7 +49,7 @@
 
 /*= customizationPanelItemContextMenu ========================================*/
 #customizationPanelItemContextMenuUnpin {
-  --menuitem-image: url("../icons/unpin-tab.svg");
+  --menuitem-image: url("../leptonIcons/unpin-tab.svg");
 }
 .customize-context-removeFromPanel {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -71,12 +71,12 @@
 /*= downloads-button-autohide-panel ==========================================*/
 #downloads-button-autohide-checkbox {
   /* checkbox */
-  --menuitem-image: url("../icons/eye-tracking-off.svg");
+  --menuitem-image: url("../leptonIcons/eye-tracking-off.svg");
 }
 
 /*= SyncedTabsSidebarContext =================================================*/
 #syncedTabsOpenSelected {
-  --menuitem-image: url("../icons/link-square.svg");
+  --menuitem-image: url("../leptonIcons/link-square.svg");
 }
 #syncedTabsOpenSelectedInTab {
   --menuitem-image: url("chrome://browser/skin/new-tab.svg");
@@ -92,11 +92,11 @@
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #syncedTabsCopySelected {
-  --menuitem-image: url("../icons/link.svg");
+  --menuitem-image: url("../leptonIcons/link.svg");
 }
 
 #syncedTabsOpenAllInTabs {
-  --menuitem-image: url("../icons/movetowindow-16.svg");
+  --menuitem-image: url("../leptonIcons/movetowindow-16.svg");
 }
 #syncedTabsManageDevices {
   --menuitem-image: url("chrome://global/skin/icons/settings.svg");
@@ -107,13 +107,13 @@
 
 /*= SyncedTabsSidebarTabsFilterContext =======================================*/
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_undo"] {
-  --menuitem-image: url("../icons/undo.svg");
+  --menuitem-image: url("../leptonIcons/undo.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_copy"] {
-  --menuitem-image: url("../icons/edit-copy.svg");
+  --menuitem-image: url("../leptonIcons/edit-copy.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_paste"] {
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
@@ -123,7 +123,7 @@
 }
 
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_selectAll"] {
-  --menuitem-image: url("../icons/select-all-on.svg");
+  --menuitem-image: url("../leptonIcons/select-all-on.svg");
 }
 
 #syncedTabsRefreshFilter {
@@ -132,11 +132,11 @@
 
 /*= urlbar-input-container ===================================================*/
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_undo"] {
-  --menuitem-image: url("../icons/undo.svg");
+  --menuitem-image: url("../leptonIcons/undo.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_redo"] {
   @include Option("userChrome.icon.menu.full") {
-    --menuitem-image: url("../icons/redo.svg");
+    --menuitem-image: url("../leptonIcons/redo.svg");
   }
 }
 
@@ -144,31 +144,31 @@
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_copy"] {
-  --menuitem-image: url("../icons/edit-copy.svg");
+  --menuitem-image: url("../leptonIcons/edit-copy.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_paste"] {
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
 }
 #paste-and-go {
   @include Option("userChrome.icon.menu.full") {
-    --menuitem-image: url("../icons/edit-paste-go.svg");
+    --menuitem-image: url("../leptonIcons/edit-paste-go.svg");
   }
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_delete"] {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_selectAll"] {
-  --menuitem-image: url("../icons/select-all-on.svg");
+  --menuitem-image: url("../leptonIcons/select-all-on.svg");
 }
 
 /*= textbox-contextmenu ======================================================*/
 /* Browser's Searchbar, Library's Searchbar, Page Info */
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-undo"] {
-  --menuitem-image: url("../icons/undo.svg");
+  --menuitem-image: url("../leptonIcons/undo.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-redo"] {
   @include Option("userChrome.icon.menu.full") {
-    --menuitem-image: url("../icons/redo.svg");
+    --menuitem-image: url("../leptonIcons/redo.svg");
   }
 }
 
@@ -176,7 +176,7 @@
   --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-copy"] {
-  --menuitem-image: url("../icons/edit-copy.svg");
+  --menuitem-image: url("../leptonIcons/edit-copy.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
   --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
@@ -185,13 +185,13 @@
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-select-all"] {
-  --menuitem-image: url("../icons/select-all-on.svg");
+  --menuitem-image: url("../leptonIcons/select-all-on.svg");
 }
 
 /* Only searchbar */
 menuitem.searchbar-paste-and-search {
   @include Option("userChrome.icon.menu.full") {
-    --menuitem-image: url("../icons/edit-paste-search.svg");
+    --menuitem-image: url("../leptonIcons/edit-paste-search.svg");
   }
 }
 menuitem.searchbar-clear-history {
@@ -216,7 +216,7 @@ menuitem.searchbar-clear-history {
     --menuitem-image: url("chrome://browser/skin/device-vr.svg");
   }
   &[clientType=""] {
-    --menuitem-image: url("../icons/send-to-device.svg");
+    --menuitem-image: url("../leptonIcons/send-to-device.svg");
   }
   &:not([clientType]) {
     --menuitem-image: url("chrome://global/skin/icons/settings.svg");
@@ -234,5 +234,5 @@ menuitem.searchbar-clear-history {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 .unified-extensions-context-menu-report-extension {
-  --menuitem-image: url("../icons/send.svg");
+  --menuitem-image: url("../leptonIcons/send.svg");
 }

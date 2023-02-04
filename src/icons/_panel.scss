@@ -6,7 +6,7 @@
 }
 
 #appMenu-proton-update-banner::before {
-  content: url("../icons/whatsnew.svg");
+  content: url("../leptonIcons/whatsnew.svg");
 }
 #appMenu-fxa-status2::before {
   /* Don't exist img tag */
@@ -90,19 +90,19 @@
 }
 @include Option("userChrome.icon.panel_full") {
   #appMenu-save-file-button2 {
-    list-style-image: url("../icons/toolbarButton-download.svg");
+    list-style-image: url("../leptonIcons/toolbarButton-download.svg");
   }
   #appMenu-find-button2 {
     list-style-image: url("chrome://global/skin/icons/search-glass.svg");
   }
   #appMenu-zoom-controls2::before, /* Legacy v104 */
   #appMenu-zoom-controls::before {
-    content: url("../icons/screenshot.svg");
+    content: url("../leptonIcons/screenshot.svg");
   }
 }
 #save-page-button {
   // #496 #553
-  list-style-image: url("../icons/toolbarButton-download.svg") !important;
+  list-style-image: url("../leptonIcons/toolbarButton-download.svg") !important;
 }
 
 #appMenu-settings-button {
@@ -119,7 +119,7 @@
   }
 
   #appMenu-quit-button2 {
-    list-style-image: url("../icons/quit.svg");
+    list-style-image: url("../leptonIcons/quit.svg");
   }
 }
 
@@ -164,13 +164,13 @@
   list-style-image: url("chrome://browser/skin/fxa/add-device.svg");
 }
 #PanelUI-fxa-menu-sendtab-button {
-  list-style-image: url("../icons/send-to-device.svg");
+  list-style-image: url("../leptonIcons/send-to-device.svg");
 }
 #PanelUI-fxa-menu-sync-prefs-button {
   list-style-image: url("chrome://global/skin/icons/settings.svg");
 }
 #PanelUI-fxa-menu-account-signout-button {
-  list-style-image: url("../icons/sign-out.svg");
+  list-style-image: url("../leptonIcons/sign-out.svg");
 }
 #PanelUI-remotetabs-view-managedevices::before {
   /* Box */
@@ -211,7 +211,7 @@
 }
 .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""], /* Legacy */
   .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target[clientType=""] {
-  list-style-image: url("../icons/send-to-device.svg");
+  list-style-image: url("../leptonIcons/send-to-device.svg");
 }
 .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]), /* Legacy */
   .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]) {
@@ -246,7 +246,7 @@ panelMenuBookmarkThisPage[starred] {
 }
 #appMenuRestoreSession, /* Legacy - v103 */
 #appMenu-restoreSession {
-  list-style-image: url("../icons/restore-session.svg");
+  list-style-image: url("../leptonIcons/restore-session.svg");
 }
 #appMenuClearRecentHistory {
   list-style-image: url("chrome://browser/skin/forget.svg");
@@ -257,10 +257,10 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 #appMenu-library-recentlyClosedTabs {
-  list-style-image: url("../icons/movetowindow-16.svg");
+  list-style-image: url("../leptonIcons/movetowindow-16.svg");
 }
 #appMenu-library-recentlyClosedWindows {
-  list-style-image: url("../icons/restore-session.svg");
+  list-style-image: url("../leptonIcons/restore-session.svg");
 }
 
 /*= Panel - More tools =======================================================*/
@@ -271,27 +271,27 @@ panelMenuBookmarkThisPage[starred] {
 /* Web Developer Tools */
 #appmenu-developer-tools-view .subviewbutton:nth-child(1),
 #PanelUI-developer-tools-view .subviewbutton:nth-child(1) {
-  list-style-image: url("../icons/developer.svg");
+  list-style-image: url("../leptonIcons/developer.svg");
 }
 /* Task Manager */
 #appmenu-developer-tools-view .subviewbutton:nth-child(2),
 #PanelUI-developer-tools-view .subviewbutton:nth-child(2) {
-  list-style-image: url("../icons/performance.svg");
+  list-style-image: url("../leptonIcons/performance.svg");
 }
 /* Remote Debugging - Edge bug.svg */
 #appmenu-developer-tools-view .subviewbutton:nth-child(3),
 #PanelUI-developer-tools-view .subviewbutton:nth-child(3) {
-  list-style-image: url("../icons/bug.svg");
+  list-style-image: url("../leptonIcons/bug.svg");
 }
 /* Browser Toolbox - Edge webdeveloper.svg */
 #appmenu-developer-tools-view .subviewbutton:nth-child(4),
 #PanelUI-developer-tools-view .subviewbutton:nth-child(4) {
-  list-style-image: url("../icons/window-dev-tools.svg");
+  list-style-image: url("../leptonIcons/window-dev-tools.svg");
 }
 /* Browser Content Toolbox */
 #appmenu-developer-tools-view .subviewbutton:nth-child(5),
 #PanelUI-developer-tools-view .subviewbutton:nth-child(5) {
-  list-style-image: url("../icons/command-frames.svg");
+  list-style-image: url("../leptonIcons/command-frames.svg");
 }
 /* Browser Console */
 #appmenu-developer-tools-view .subviewbutton:nth-last-child(5),
@@ -301,7 +301,7 @@ panelMenuBookmarkThisPage[starred] {
 /* Responsive Design Mode */
 #appmenu-developer-tools-view .subviewbutton:nth-last-child(4),
 #PanelUI-developer-tools-view .subviewbutton:nth-last-child(4) {
-  list-style-image: url("../icons/command-responsivemode.svg");
+  list-style-image: url("../leptonIcons/command-responsivemode.svg");
 }
 /* Eyedropper */
 #appmenu-developer-tools-view .subviewbutton:nth-last-child(3),
@@ -311,7 +311,7 @@ panelMenuBookmarkThisPage[starred] {
 /* Page Source - Edge file-search.svg */
 #appmenu-developer-tools-view .subviewbutton:nth-last-child(2),
 #PanelUI-developer-tools-view .subviewbutton:nth-last-child(2) {
-  list-style-image: url("../icons/document-search.svg");
+  list-style-image: url("../leptonIcons/document-search.svg");
 }
 /* Extensions for Devel */
 #appmenu-developer-tools-view .subviewbutton:nth-last-child(1),
@@ -327,7 +327,7 @@ panelMenuBookmarkThisPage[starred] {
   list-style-image: url("chrome://global/skin/icons/help.svg");
 }
 #appMenu_feedbackPage {
-  list-style-image: url("../icons/send.svg");
+  list-style-image: url("../leptonIcons/send.svg");
 }
 #appMenu_helpSafeMode {
   list-style-image: url("chrome://devtools/skin/images/debugging-workers.svg");
@@ -371,17 +371,17 @@ panelMenuBookmarkThisPage[starred] {
 
 /*= Tabbar - All Tab Menu ====================================================*/
 #allTabsMenu-undoCloseTab {
-  list-style-image: url("../icons/undo.svg");
+  list-style-image: url("../leptonIcons/undo.svg");
 }
 #allTabsMenu-searchTabs {
   list-style-image: url("chrome://global/skin/icons/search-glass.svg");
 }
 #allTabsMenu-containerTabsButton {
-  list-style-image: url("../icons/container-openin-16.svg");
+  list-style-image: url("../leptonIcons/container-openin-16.svg");
 }
 
 #allTabsMenu-hiddenTabsButton {
-  list-style-image: url("../icons/eye-hide.svg")
+  list-style-image: url("../leptonIcons/eye-hide.svg")
 }
 
 #allTabsMenu-containerTabsView .subviewbutton:last-child {
@@ -416,10 +416,10 @@ panelMenuBookmarkThisPage[starred] {
 /* BMB_bookmarksToolbarPopup */
 #BMB_viewBookmarksToolbar {
   &[data-l10n-args='{"isVisible":true}'] {
-    --menuitem-image: url("../icons/eye-hide.svg")
+    --menuitem-image: url("../leptonIcons/eye-hide.svg")
   }
   &[data-l10n-args='{"isVisible":false}'] {
-    --menuitem-image: url("../icons/eye-show.svg")
+    --menuitem-image: url("../leptonIcons/eye-show.svg")
   }
 }
 
@@ -438,7 +438,7 @@ panelMenuBookmarkThisPage[starred] {
 
 #protections-popup-show-report-button > .protections-popup-show-report-icon {
   /* chrome://browser/skin/controlcenter/dashboard.svg */
-  list-style-image: url("../icons/dashboard.svg");
+  list-style-image: url("../leptonIcons/dashboard.svg");
 }
 
 /*= identity-popup ===========================================================*/
@@ -452,7 +452,7 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 #identity-popup-clear-sitedata-button {
-  list-style-image: url("../icons/broom.svg");
+  list-style-image: url("../leptonIcons/broom.svg");
 }
 
 /*= sidebarMenu-popup ========================================================*/
@@ -487,5 +487,5 @@ panelMenuBookmarkThisPage[starred] {
 
 /*= Tab Mix Plus =============================================================*/
 #allTabsMenu_sortTabsButton {
-  list-style-image: url("../icons/text-sort-ascending.svg");
+  list-style-image: url("../leptonIcons/text-sort-ascending.svg");
 }

@@ -2,10 +2,10 @@
 # https://github.com/WaterfoxCo/Waterfox/commit/f92e95c09ecd98f987bf54e1e6a1cf969b683277
 
 ## Replace Path
-# `./icons/` to `chrome://browser/skin/lepton/`
+# `./leptonIcons/` to `chrome://browser/skin/lepton/`
 replace_icon_path() {
   file=$1
-  sed -i "s/\.\.\/icons\//chrome:\/\/browser\/skin\/lepton\//g" "${file}"
+  sed -i "s/\.\.\/leptonIcons\//chrome:\/\/browser\/skin\/lepton\//g" "${file}"
 }
 replace_icon_path css/leptonChrome.css
 replace_icon_path css/leptonContent.css

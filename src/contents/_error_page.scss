@@ -78,10 +78,10 @@
   url "about:restartrequired",
   url "chrome://browser/content/aboutRestartRequired.xhtml"
 ) {
-  @include _errorContainerImage("../icons/error-connection-failure.svg");
+  @include _errorContainerImage("../leptonIcons/error-connection-failure.svg");
 }
 @include moz-document(url-prefix "about:neterror?e=dnsNotFound") {
-  @include _errorContainerImage("../icons/error-server-not-found.svg");
+  @include _errorContainerImage("../leptonIcons/error-server-not-found.svg");
 }
 @include moz-document(
   url-prefix "about:neterror?e=blockedByPolicy",
@@ -94,13 +94,13 @@
   url-prefix "about:neterror?e=clockSkewError",
   url-prefix "about:neterror?e=nssFailure"
 ) {
-  @include _errorContainerImage("../icons/blue-berror.svg") {
+  @include _errorContainerImage("../leptonIcons/blue-berror.svg") {
     background-size: 18.5em;
   }
 }
 
 @include moz-document(url "about:sessionrestore" , url "chrome://browser/content/aboutSessionRestore.xhtml") {
-  @include _errorDescriptionImage("../icons/error-session-restore.svg");
+  @include _errorDescriptionImage("../leptonIcons/error-session-restore.svg");
 }
 
 @include moz-document(url-prefix "about:neterror?e=fileNotFound") {
@@ -117,5 +117,5 @@
   @include _errorTitleImage("chrome://browser/content/aboutRobots-icon.png");
 }
 @include moz-document(url "about:welcomeBack", url "chrome://browser/content/aboutWelcomeBack.xhtml") {
-  @include _errorTitleImage("../icons/welcome-back.svg");
+  @include _errorTitleImage("../leptonIcons/welcome-back.svg");
 }

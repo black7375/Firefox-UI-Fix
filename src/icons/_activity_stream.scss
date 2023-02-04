@@ -1,8 +1,8 @@
 .context-menu-item span[data-l10n-id="newtab-menu-pin"] {
-  --menuitem-image: url("../icons/pin-tab.svg");
+  --menuitem-image: url("../leptonIcons/pin-tab.svg");
 }
 .context-menu-item span[data-l10n-id="newtab-menu-unpin"] {
-  --menuitem-image: url("../icons/unpin-tab.svg");
+  --menuitem-image: url("../leptonIcons/unpin-tab.svg");
 }
 .context-menu-item span[data-l10n-id="newtab-menu-edit-topsites"] {
   --menuitem-image: url("chrome://global/skin/icons/edit.svg");
@@ -14,15 +14,15 @@
   --menuitem-image: url("chrome://browser/skin/bookmark-hollow.svg");
 }
 .context-menu-item span[data-l10n-id="newtab-menu-save-to-pocket"] {
-  --menuitem-image: url("../icons/pocket-outline.svg");
+  --menuitem-image: url("../leptonIcons/pocket-outline.svg");
 }
 .context-menu-item span[data-l10n-id="newtab-menu-open-file"] {
-  --menuitem-image: url("../icons/fluid.svg");
+  --menuitem-image: url("../leptonIcons/fluid.svg");
 }
 .context-menu-item span[data-l10n-id="newtab-menu-show-file"] {
   --menuitem-image: url("chrome://global/skin/icons/folder.svg");
   @include Option("userChrome.icon.library") {
-    --menuitem-image: url("../icons/folder.svg");
+    --menuitem-image: url("../leptonIcons/folder.svg");
   }
 }
 
@@ -37,5 +37,5 @@
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 .context-menu-item span[data-l10n-id="newtab-menu-delete-history"] {
-  --menuitem-image: url("../icons/eraser.svg");
+  --menuitem-image: url("../leptonIcons/eraser.svg");
 }

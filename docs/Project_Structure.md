@@ -17,9 +17,9 @@ The overall structure of this project.
 ```
 root
 |- __tests__/: Mixin spec test
-|- icons/: Icons, illustrations
 |- css/: Build result of SCSS Files (Don't modify directly!!)
 |- docs/: Development Documents
+|- leptonIcons/: Icons, illustrations
 |- src/: Source files
 |- src/leptonChrome.scss: Entry of SCSS for Browser UI
 |- src/leptonContent.scss: Entry of SCSS for Web pages

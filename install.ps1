@@ -619,13 +619,13 @@ function Check-InstallType() {
 $checkLocalFiles = @(
   "userChrome.css",
   "userContent.css",
-  "icons"
+  "leptonIcons"
 )
 $checkReleaseFiles = @(
   "user.js"
   "chrome\userChrome.css"
   "chrome\userContent.css"
-  "chrome\icons"
+  "chrome\leptonIcons"
 )
 function Check-InstallTypes() {
   Check-InstallType $checkLocalFiles   "Local"

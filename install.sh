@@ -594,13 +594,13 @@ check_install_type() {
 checkLocalFiles=(
   userChrome.css
   userContent.css
-  icons
+  leptonIcons
 )
 checkReleaseFiles=(
   user.js
   chrome/userChrome.css
   chrome/userContent.css
-  chrome/icons
+  chrome/leptonIcons
 )
 check_install_types() {
   check_install_type checkLocalFiles   "Local"

@@ -6,34 +6,34 @@
   --menuitem-image: url("chrome://global/skin/media/play-fill.svg");
 }
 .downloadUnblockMenuItem {
-  --menuitem-image: url("../icons/checkmark-circle.svg");
+  --menuitem-image: url("../leptonIcons/checkmark-circle.svg");
 }
 .downloadUseSystemDefaultMenuItem {
   --menuitem-image: url("chrome://browser/skin/open.svg");
 }
 .downloadAlwaysUseSystemDefaultMenuItem {
   /* checkbox */
-  --menuitem-image: url("../icons/folder-globe.svg");
+  --menuitem-image: url("../leptonIcons/folder-globe.svg");
 }
 .downloadAlwaysOpenSimilarFilesMenuItem {
   /* checkbox */
-  --menuitem-image: url("../icons/fluid.svg");
+  --menuitem-image: url("../leptonIcons/fluid.svg");
 }
 .downloadShowMenuItem {
   --menuitem-image: url("chrome://global/skin/icons/folder.svg");
   @include Option("userChrome.icon.library") {
-    --menuitem-image: url("../icons/folder.svg");
+    --menuitem-image: url("../leptonIcons/folder.svg");
   }
 }
 
 #downloadsContextMenu > menuitem {
   &.downloadOpenReferrerMenuItem,
   &[command="downloadsCmd_openReferrer"] {
-    --menuitem-image: url("../icons/link-square.svg");
+    --menuitem-image: url("../leptonIcons/link-square.svg");
   }
   &.downloadCopyLocationMenuItem,
   &[command="downloadsCmd_copyLocation"] {
-    --menuitem-image: url("../icons/link.svg");
+    --menuitem-image: url("../leptonIcons/link.svg");
   }
 }
 
@@ -41,11 +41,11 @@
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
 .downloadRemoveFromHistoryMenuItem {
-  --menuitem-image: url("../icons/eraser.svg");
+  --menuitem-image: url("../leptonIcons/eraser.svg");
 }
 #downloadsContextMenu > menuitem {
   &[command="downloadsCmd_clearList"],
   &[command="downloadsCmd_clearDownloads"] {
-    --menuitem-image: url("../icons/broom.svg");
+    --menuitem-image: url("../leptonIcons/broom.svg");
   }
 }
