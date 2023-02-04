@@ -55,7 +55,7 @@
 }
 
 @include Option("userChrome.rounding.square_menupopup") {
-  xul|menupopup {
+  xul|menulist > xul|menupopup {
     --panel-border-radius: 0px !important;
     border-radius: 0 !important;
   }
@@ -72,6 +72,7 @@
   html|select[size][multiple],
   xul|listheader,
   xul|richlistbox,
+  xul|menulist,
   html|input {
     border-radius: 0 !important;
   }

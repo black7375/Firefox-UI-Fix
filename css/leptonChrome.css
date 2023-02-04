@@ -2243,7 +2243,6 @@
       --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
     }
     #viewGroup > radio {
-      border-radius: 8px !important;
       padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
       margin: 4px !important;
       list-style-image: none !important;
@@ -2254,6 +2253,11 @@
       -moz-context-properties: fill !important;
       fill: currentColor !important;
       color: var(--in-content-deemphasized-text) !important; /* FieldText */
+    }
+    @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+      #viewGroup > radio {
+        border-radius: 8px !important;
+      }
     }
     #viewGroup > radio:hover {
       background-color: var(--in-content-button-background-hover) !important; /* #E0E8F6; */
@@ -2439,7 +2443,11 @@
       #placesToolbar > toolbarbutton {
         appearance: none !important;
         padding: 5px !important;
-        border-radius: 4px !important;
+      }
+      @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+        #placesToolbar > toolbarbutton {
+          border-radius: 4px !important;
+        }
       }
       #placesToolbar > toolbarbutton[disabled] {
         opacity: 0.6 !important;
@@ -2463,10 +2471,14 @@
       #placesMenu > menu {
         appearance: none !important;
         color: var(--organizer-color) !important;
-        border-radius: 4px !important;
         padding-block: 5px !important;
         padding-inline-start: 5px !important;
         margin-inline-end: 2px !important;
+      }
+      @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+        #placesMenu > menu {
+          border-radius: 4px !important;
+        }
       }
       #placesMenu > menu[_moz-menuactive="true"],
       #placesMenu > menu:hover {
@@ -2489,10 +2501,15 @@
         background-color: var(--organizer-toolbar-field-background) !important;
         color: var(--organizer-color) !important;
         border: 1px solid var(--organizer-toolbar-field-border-color) !important;
-        border-radius: 4px !important;
         margin: 0 !important;
         padding-block: 2px !important;
         min-height: 24px !important;
+      }
+      @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+        #searchFilter,
+        #detailsPane html|input {
+          border-radius: 4px !important;
+        }
       }
       #searchFilter[focused] {
         box-shadow: var(--organizer-toolbar-field-focus-box-shadow) !important;
@@ -2629,11 +2646,16 @@
         margin: 0 !important;
         margin-inline-end: 4px !important;
         border: 1px solid var(--organizer-pane-field-border-color) !important;
-        border-radius: 4px !important;
         color: var(--organizer-color) !important;
         background-color: var(--organizer-content-background) !important;
         -moz-context-properties: fill !important;
         fill: currentColor !important;
+      }
+      @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+        #editBookmarkPanelRows .expander-up,
+        #editBookmarkPanelRows .expander-down {
+          border-radius: 4px !important;
+        }
       }
       #editBookmarkPanelRows .expander-up:hover,
       #editBookmarkPanelRows .expander-down:hover {
@@ -2662,11 +2684,15 @@
       }
       #places input {
         border: 1px solid var(--organizer-pane-field-border-color) !important;
-        border-radius: 4px !important;
         background-color: var(--organizer-content-background) !important;
         color: var(--organizer-color) !important;
         min-height: 20px !important;
         padding-inline: 4px !important;
+      }
+      @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+        #places input {
+          border-radius: 4px !important;
+        }
       }
       #places input:focus {
         outline: 2px solid var(--organizer-outline-color) !important;
@@ -2684,7 +2710,11 @@
         color: var(--organizer-color) !important;
         background-color: var(--organizer-content-background) !important;
         border: 1px solid var(--organizer-border-color) !important;
-        border-radius: 4px !important;
+      }
+      @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+        #editBMPanel_tagsSelectorRow > richlistbox {
+          border-radius: 4px !important;
+        }
       }
       #editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
         border: 1px solid transparent !important;
@@ -3100,7 +3130,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
-  xul|menupopup {
+  xul|menulist > xul|menupopup {
     --panel-border-radius: 0px !important;
     border-radius: 0 !important;
   }
@@ -3116,6 +3146,7 @@
   html|select[size][multiple],
   xul|listheader,
   xul|richlistbox,
+  xul|menulist,
   html|input {
     border-radius: 0 !important;
   }

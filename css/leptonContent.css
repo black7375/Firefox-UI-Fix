@@ -2244,7 +2244,11 @@
         #placesToolbar > toolbarbutton {
           appearance: none !important;
           padding: 5px !important;
-          border-radius: 4px !important;
+        }
+        @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+          #placesToolbar > toolbarbutton {
+            border-radius: 4px !important;
+          }
         }
         #placesToolbar > toolbarbutton[disabled] {
           opacity: 0.6 !important;
@@ -2268,10 +2272,14 @@
         #placesMenu > menu {
           appearance: none !important;
           color: var(--organizer-color) !important;
-          border-radius: 4px !important;
           padding-block: 5px !important;
           padding-inline-start: 5px !important;
           margin-inline-end: 2px !important;
+        }
+        @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+          #placesMenu > menu {
+            border-radius: 4px !important;
+          }
         }
         #placesMenu > menu[_moz-menuactive="true"],
         #placesMenu > menu:hover {
@@ -2294,10 +2302,15 @@
           background-color: var(--organizer-toolbar-field-background) !important;
           color: var(--organizer-color) !important;
           border: 1px solid var(--organizer-toolbar-field-border-color) !important;
-          border-radius: 4px !important;
           margin: 0 !important;
           padding-block: 2px !important;
           min-height: 24px !important;
+        }
+        @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+          #searchFilter,
+          #detailsPane html|input {
+            border-radius: 4px !important;
+          }
         }
         #searchFilter[focused] {
           box-shadow: var(--organizer-toolbar-field-focus-box-shadow) !important;
@@ -2434,11 +2447,16 @@
           margin: 0 !important;
           margin-inline-end: 4px !important;
           border: 1px solid var(--organizer-pane-field-border-color) !important;
-          border-radius: 4px !important;
           color: var(--organizer-color) !important;
           background-color: var(--organizer-content-background) !important;
           -moz-context-properties: fill !important;
           fill: currentColor !important;
+        }
+        @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+          #editBookmarkPanelRows .expander-up,
+          #editBookmarkPanelRows .expander-down {
+            border-radius: 4px !important;
+          }
         }
         #editBookmarkPanelRows .expander-up:hover,
         #editBookmarkPanelRows .expander-down:hover {
@@ -2467,11 +2485,15 @@
         }
         #places input {
           border: 1px solid var(--organizer-pane-field-border-color) !important;
-          border-radius: 4px !important;
           background-color: var(--organizer-content-background) !important;
           color: var(--organizer-color) !important;
           min-height: 20px !important;
           padding-inline: 4px !important;
+        }
+        @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+          #places input {
+            border-radius: 4px !important;
+          }
         }
         #places input:focus {
           outline: 2px solid var(--organizer-outline-color) !important;
@@ -2489,7 +2511,11 @@
           color: var(--organizer-color) !important;
           background-color: var(--organizer-content-background) !important;
           border: 1px solid var(--organizer-border-color) !important;
-          border-radius: 4px !important;
+        }
+        @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+          #editBMPanel_tagsSelectorRow > richlistbox {
+            border-radius: 4px !important;
+          }
         }
         #editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
           border: 1px solid transparent !important;
@@ -2726,7 +2752,8 @@
 }
 /** Rounding ******************************************************************/
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
-  @-moz-document url-prefix("about:") {
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  {
     button,
     .close-icon,
     .action-icon::before,
@@ -2771,7 +2798,8 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
-  @-moz-document url-prefix("about:") {
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
       border-radius: 0 !important;
@@ -2779,7 +2807,8 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_field") {
-  @-moz-document url-prefix("about:") {
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  {
     input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
     select,
@@ -2801,8 +2830,9 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
-  @-moz-document url-prefix("about:preferences") {
-    menupopup {
+  @-moz-document url-prefix("about:preferences"), url-prefix("chrome://browser/content/preferences/dialogs")
+  {
+    xul|menulist > xul|menupopup {
       --panel-border-radius: 0 !important;
     }
   }
