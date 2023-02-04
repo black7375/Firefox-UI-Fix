@@ -80,7 +80,10 @@
   > toolbarbutton {
     appearance: none !important;
     padding: 5px !important;
-    border-radius: 4px !important;
+
+    @include NotOption("userChrome.rounding.square_button") {
+      border-radius: 4px !important;
+    }
 
     &[disabled] {
       opacity: 0.6 !important;
@@ -108,10 +111,13 @@
   > menu {
     appearance: none !important;
     color: var(--organizer-color) !important;
-    border-radius: 4px !important;
     padding-block: 5px !important;
     padding-inline-start: 5px !important;
     margin-inline-end: 2px !important;
+
+    @include NotOption("userChrome.rounding.square_button") {
+      border-radius: 4px !important;
+    }
 
     &[_moz-menuactive="true"],
     &:hover {
@@ -137,10 +143,13 @@
   background-color: var(--organizer-toolbar-field-background) !important;
   color: var(--organizer-color) !important;
   border: 1px solid var(--organizer-toolbar-field-border-color) !important;
-  border-radius: 4px !important;
   margin: 0 !important;
   padding-block: 2px !important;
   min-height: 24px !important;
+
+  @include NotOption("userChrome.rounding.square_field") {
+    border-radius: 4px !important;
+  }
 }
 
 #searchFilter[focused] {
@@ -298,11 +307,14 @@ treechildren {
   margin: 0 !important;
   margin-inline-end: 4px !important;
   border: 1px solid var(--organizer-pane-field-border-color) !important;
-  border-radius: 4px !important;
   color: var(--organizer-color) !important;
   background-color: var(--organizer-content-background) !important;
   -moz-context-properties: fill !important;
   fill: currentColor !important;
+
+  @include NotOption("userChrome.rounding.square_button") {
+    border-radius: 4px !important;
+  }
 
   &:hover {
     background-color: var(--organizer-hover-background) !important;
@@ -334,11 +346,14 @@ treechildren {
 
 #places input {
   border: 1px solid var(--organizer-pane-field-border-color) !important;
-  border-radius: 4px !important;
   background-color: var(--organizer-content-background) !important;
   color: var(--organizer-color) !important;
   min-height: 20px !important;
   padding-inline: 4px !important;
+
+  @include NotOption("userChrome.rounding.square_field") {
+    border-radius: 4px !important;
+  }
 
   &:focus {
     outline: 2px solid var(--organizer-outline-color) !important;
@@ -359,7 +374,10 @@ treechildren {
   color: var(--organizer-color) !important;
   background-color: var(--organizer-content-background) !important;
   border: 1px solid var(--organizer-border-color) !important;
-  border-radius: 4px !important;
+
+  @include NotOption("userChrome.rounding.square_field") {
+    border-radius: 4px !important;
+  }
 
   > richlistitem {
     border: 1px solid transparent !important;

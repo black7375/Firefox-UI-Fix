@@ -1,5 +1,5 @@
 @include Option("userChrome.rounding.square_button") {
-  @include moz-document(url-prefix "about:") {
+  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
     button,
     .close-icon,
     .action-icon::before,
@@ -49,7 +49,7 @@
 }
 
 @include Option("userChrome.rounding.square_checklabel") {
-  @include moz-document(url-prefix "about:") {
+  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
       border-radius: 0 !important;
@@ -58,7 +58,7 @@
 }
 
 @include Option("userChrome.rounding.square_field") {
-  @include moz-document(url-prefix "about:") {
+  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
     input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
     select,
@@ -85,8 +85,8 @@
 }
 
 @include Option("userChrome.rounding.square_menupopup") {
-  @include moz-document(url-prefix "about:preferences") {
-    menupopup {
+  @include moz-document(url-prefix "about:preferences", url-prefix "chrome://browser/content/preferences/dialogs") {
+    xul|menulist > xul|menupopup {
       --panel-border-radius: 0 !important;
     }
   }
