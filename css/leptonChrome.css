@@ -3791,12 +3791,16 @@
 /*= Panel - Reduce padding ===================================================*/
 @supports -moz-bool-pref("userChrome.padding.panel") {
   :root {
+    --arrowpanel-menuitem-margin-block: 0; /* FF 102 compatibility */
+    --arrowpanel-menuitem-margin-inline: 8px;
+    --arrowpanel-menuitem-margin: var(--arrowpanel-menuitem-margin-block) var(--arrowpanel-menuitem-margin-inline) !important; /* Original: 0 8px */
     --arrowpanel-menuitem-padding-block: 5px !important; /* Original: 8px */
     --arrowpanel-menuitem-padding-inline: 5px !important; /* Original: 8px */
     --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline) !important; /* Compatibility */
     --arrowpanel-padding: 0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
   }
   :root[uidensity="compact"] {
+    --arrowpanel-menuitem-margin-inline: 4px; /* FF 102 compatibility */
     --arrowpanel-menuitem-padding-block: 3px !important;
     --arrowpanel-menuitem-padding-inline: 3px !important;
   }
