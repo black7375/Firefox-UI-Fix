@@ -85,8 +85,8 @@
 }
 
 @include Option("userChrome.rounding.square_menupopup") {
-  @include moz-document(url-prefix "about:preferences", url-prefix "chrome://browser/content/preferences/dialogs") {
-    xul|menulist > xul|menupopup {
+  @include moz-document(url-prefix "about:", url-prefix "chrome://") {
+    menupopup {
       --panel-border-radius: 0 !important;
     }
   }

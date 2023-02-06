@@ -38,6 +38,11 @@
 /** Rounding ******************************************************************/
 @import "contents/rounding";
 
+// Put here to include library as a tab
+@include moz-document(url "chrome://browser/content/places/places.xhtml") {
+  @import "rounding/library";
+}
+
 /** Monospace *****************************************************************/
 @include Option("userContent.page.monospace") {
   @import "contents/monospace";
