@@ -2764,15 +2764,10 @@
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info,
   #unified-extensions-manage-extensions,
-  .unified-extensions-item-open-menu {
+  .unified-extensions-item-open-menu,
+  .unified-extensions-item-menu-button.subviewbutton {
     cursor: pointer !important;
   }
-  /* TODO: For now, fxa-menu doesn't show any status.
-             (JS required, observe .syncNowBtn status)
-    #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] {
-      cursor: progress !important;
-    }
-    */
 }
 /*= Panel UI Button Separator ================================================*/
 @supports -moz-bool-pref("userChrome.decoration.panel_button_separator") {
@@ -3817,6 +3812,9 @@
         min-height: calc(16px + var(--arrowpanel-menuitem-padding-block) * 2) !important;
       }
     }
+  }
+  .unified-extensions-item-menu-button.subviewbutton {
+    padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
   }
 }
 @supports -moz-bool-pref("userChrome.padding.panel_header") {

@@ -29,3 +29,12 @@
     }
   }
 }
+
+// #603
+.unified-extensions-item-menu-button.subviewbutton {
+  padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
+}
+// Or
+// toolbaritem.unified-extensions-item[unified-extensions="true"] .unified-extensions-item-menu-button.subviewbutton {
+//   padding: var(--arrowpanel-menuitem-padding-inline) !important;
+// }
