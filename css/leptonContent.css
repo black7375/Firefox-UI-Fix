@@ -2908,6 +2908,11 @@
         :root {
           --context-menu-background-padding-default: 2px;
         }
+        @media (-moz-windows-classic) {
+          :root {
+            --context-menu-background-padding-default: -0.5px;
+          }
+        }
       }
       @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
         :root {

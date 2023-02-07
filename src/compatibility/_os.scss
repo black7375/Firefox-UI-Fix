@@ -104,18 +104,20 @@
 //------------------------------------------------------------------------------
 
 @include OS($win7) {
-  @include _os_menuEmulate(5%, 60%);
+  @media (-moz-windows-classic: 0) {
+    @include _os_menuEmulate(5%, 60%);
 
-  /* Remove text shadow */
-  :root:-moz-lwtheme #toolbar-menubar {
-    text-shadow: unset !important;
-    /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
-  }
+    /* Remove text shadow */
+    :root:-moz-lwtheme #toolbar-menubar {
+      text-shadow: unset !important;
+      /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
+    }
 
-  /* Remove Color */
-  :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
-    background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
-    color: unset !important; /* Original: black */
+    /* Remove Color */
+    :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
+      background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
+      color: unset !important; /* Original: black */
+    }
   }
 }
 @include OS($win8) {

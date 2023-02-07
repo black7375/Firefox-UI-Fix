@@ -79,6 +79,9 @@ $_initialMenus: selector.append(
   @include OS($win7) {
     :root {
       --context-menu-background-padding-default: 2px;
+      @media (-moz-windows-classic) {
+        --context-menu-background-padding-default: -0.5px;
+      }
     }
   }
   @include OS($win8) {

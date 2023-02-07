@@ -273,25 +273,27 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    menu[_moz-menuactive="true"],
-    menuitem[_moz-menuactive="true"] {
-      background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
-      border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
-    }
-    menu[_moz-menuactive="true"][disabled="true"],
-    menuitem[_moz-menuactive="true"][disabled="true"] {
-      background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
-      border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
-    }
-    /* Remove text shadow */
-    :root:-moz-lwtheme #toolbar-menubar {
-      text-shadow: unset !important;
-      /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
-    }
-    /* Remove Color */
-    :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
-      background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
-      color: unset !important; /* Original: black */
+    @media (-moz-windows-classic: 0) {
+      menu[_moz-menuactive="true"],
+      menuitem[_moz-menuactive="true"] {
+        background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
+        border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
+      }
+      menu[_moz-menuactive="true"][disabled="true"],
+      menuitem[_moz-menuactive="true"][disabled="true"] {
+        background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
+        border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
+      }
+      /* Remove text shadow */
+      :root:-moz-lwtheme #toolbar-menubar {
+        text-shadow: unset !important;
+        /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
+      }
+      /* Remove Color */
+      :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
+        background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
+        color: unset !important; /* Original: black */
+      }
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
@@ -10503,6 +10505,11 @@
     @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
       :root {
         --context-menu-background-padding-default: 2px;
+      }
+      @media (-moz-windows-classic) {
+        :root {
+          --context-menu-background-padding-default: -0.5px;
+        }
       }
     }
     @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
