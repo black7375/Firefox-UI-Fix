@@ -77,6 +77,12 @@
       }
     }
     @include Option("userChrome.hidden.urlbar_iconbox.label_only") {
+      &.notSecureText,
+      &.chromeUI,
+      &.extensionPage {
+        margin-inline-end: var(--identity-box-margin-inline) !important;
+      }
+
       &.chromeUI #identity-icon-box,
       &.extensionPage #identity-icon-box {
         &:not(:hover) {

@@ -146,16 +146,32 @@ Customizations that cannot be done with add-on and [`User Custom CSS`](./README.
 - [Bug 1432901 - Prototype loading ES6 Module as JSM](https://bugzilla.mozilla.org/show_bug.cgi?id=1432901)
 
 **How to**
+- `<FIREFOX_DIR>/defaults/pref/autoconfig.js`
 ```javascript
 pref("general.config.filename", "config.js"); // alternative to "firefox.cfg", for using highlight
 pref("general.config.obscure_value", 0);
+pref("general.config.sandbox_enabled", false); // Sandbox needs to be disabled in release and Beta versions
+```
+
+- `<FIREFOX_DIR>/config.js`
+```javascript
+// skip 1st line
+try {
+  const cmanifest = Cc['@mozilla.org/file/directory_service;1'].getService(Ci.nsIProperties).get('UChrm', Ci.nsIFile);
+  cmanifest.append('utils');
+  cmanifest.append('chrome.manifest');
+
+  if(cmanifest.exists()){
+    Components.manager.QueryInterface(Ci.nsIComponentRegistrar).autoRegister(cmanifest);
+    ChromeUtils.import('chrome://userchromejs/content/boot.jsm');
+  }
+
+} catch(ex) {};
 ```
 
 **Example**
-```javascript
-pref("general.config.filename", "config.js"); // alternative to "firefox.cfg", for using highlight
-pref("general.config.obscure_value", 0);
-```
+- [MrOtherGuy/fx-autoconfig](https://github.com/MrOtherGuy/fx-autoconfig)
+- [xiaoxiaoflood/firefox-scripts](https://github.com/xiaoxiaoflood/firefox-scripts)
 
 ## Using with User Custom CSS
 **Related Docs**

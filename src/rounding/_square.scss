@@ -15,6 +15,7 @@
   .urlbarView-button,
   .urlbarView-tip-button,
   .urlbarView-action,
+  .tab-close-button,
   toolbarbutton.bookmark-item:not(.subviewbutton),
   #sidebar-switcher-target {
     --toolbarbutton-border-radius: 0;  /* Original: 4px */
@@ -22,7 +23,8 @@
 
   button,
   findbar toolbarbutton,
-  .notification-button {
+  .notification-button,
+  #main-menubar > menu {
     border-radius: 0 !important;
   }
 }
@@ -31,6 +33,12 @@
   #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button),
   .tab-close-button {
     --tab-border-radius: var(--toolbarbutton-border-radius);
+  }
+}
+
+@include Option("userChrome.rounding.square_dialog") {
+  .dialogBox {
+    border-radius: 0 !important;
   }
 }
 
@@ -47,7 +55,7 @@
 }
 
 @include Option("userChrome.rounding.square_menupopup") {
-  xul|menupopup {
+  menupopup {
     --panel-border-radius: 0px !important;
     border-radius: 0 !important;
   }
@@ -64,6 +72,7 @@
   html|select[size][multiple],
   xul|listheader,
   xul|richlistbox,
+  xul|menulist,
   html|input {
     border-radius: 0 !important;
   }
@@ -82,8 +91,7 @@
 }
 
 @include Option("userChrome.rounding.square_checklabel") {
-  .checkbox-check,
-  xul|*.radio-check {
+  .checkbox-check {
     border-radius: 0 !important;
   }
 }

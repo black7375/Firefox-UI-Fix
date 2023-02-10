@@ -73,6 +73,12 @@
   #widget-overflow-mainView #zoom-in-button > .toolbarbutton-icon {
     padding-inline-start: 0px !important;
   }
+  /*= Subview button, Menu's right padding #597 ================================*/
+  .subviewbutton.toolbaritem-combined-buttons:not([shortcut]),
+  .subviewbutton.subviewbutton-nav:not([shortcut]),
+  menu.subviewbutton {
+    padding-inline-end: 0 !important;
+  }
   /*= Icon Fill Color ==========================================================*/
   :root:-moz-lwtheme {
     /* Auto create --lwt-toolbarbutton-icon-fill-attention, fix for nightly default theme
@@ -297,25 +303,27 @@
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-    menu[_moz-menuactive="true"],
-    menuitem[_moz-menuactive="true"] {
-      background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
-      border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
-    }
-    menu[_moz-menuactive="true"][disabled="true"],
-    menuitem[_moz-menuactive="true"][disabled="true"] {
-      background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
-      border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
-    }
-    /* Remove text shadow */
-    :root:-moz-lwtheme #toolbar-menubar {
-      text-shadow: unset !important;
-      /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
-    }
-    /* Remove Color */
-    :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
-      background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
-      color: unset !important; /* Original: black */
+    @media (-moz-windows-classic: 0) {
+      menu[_moz-menuactive="true"],
+      menuitem[_moz-menuactive="true"] {
+        background-color: color-mix(in srgb, -moz-menuhover 5%, transparent) !important;
+        border-color: color-mix(in srgb, -moz-menuhover 60%, transparent) !important;
+      }
+      menu[_moz-menuactive="true"][disabled="true"],
+      menuitem[_moz-menuactive="true"][disabled="true"] {
+        background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
+        border-color: color-mix(in srgb, currentColor 60%, transparent) !important;
+      }
+      /* Remove text shadow */
+      :root:-moz-lwtheme #toolbar-menubar {
+        text-shadow: unset !important;
+        /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
+      }
+      /* Remove Color */
+      :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
+        background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
+        color: unset !important; /* Original: black */
+      }
     }
   }
   @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
@@ -334,15 +342,15 @@
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
     @media not (-moz-windows-non-native-menus) {
       menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menu[_moz-menuactive="true"],
-      menupopup:not([placespopup="true"]) menu[_moz-menuactive="true"],
       menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menuitem[_moz-menuactive="true"],
+      menupopup:not([placespopup="true"]) menu[_moz-menuactive="true"],
       menupopup:not([placespopup="true"]) menuitem[_moz-menuactive="true"] {
         background-color: #91c9f7 !important;
         border-color: transparent !important;
       }
       menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menu[_moz-menuactive="true"][disabled="true"],
-      menupopup:not([placespopup="true"]) menu[_moz-menuactive="true"][disabled="true"],
       menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) menuitem[_moz-menuactive="true"][disabled="true"],
+      menupopup:not([placespopup="true"]) menu[_moz-menuactive="true"][disabled="true"],
       menupopup:not([placespopup="true"]) menuitem[_moz-menuactive="true"][disabled="true"] {
         background-color: color-mix(in srgb, currentColor 9%, transparent) !important;
         border-color: transparent !important;
@@ -2379,7 +2387,6 @@
       --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
     }
     #viewGroup > radio {
-      border-radius: 8px !important;
       padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
       margin: 4px !important;
       list-style-image: none !important;
@@ -2390,6 +2397,11 @@
       -moz-context-properties: fill !important;
       fill: currentColor !important;
       color: var(--in-content-deemphasized-text) !important; /* FieldText */
+    }
+    @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+      #viewGroup > radio {
+        border-radius: 8px !important;
+      }
     }
     #viewGroup > radio:hover {
       background-color: var(--in-content-button-background-hover) !important; /* #E0E8F6; */
@@ -2577,6 +2589,11 @@
         padding: 5px !important;
         border-radius: 4px !important;
       }
+      @supports -moz-bool-pref("userChrome.rounding.square_button") {
+        #placesToolbar > toolbarbutton {
+          border-radius: 0 !important;
+        }
+      }
       #placesToolbar > toolbarbutton[disabled] {
         opacity: 0.6 !important;
       }
@@ -2599,10 +2616,15 @@
       #placesMenu > menu {
         appearance: none !important;
         color: var(--organizer-color) !important;
-        border-radius: 4px !important;
         padding-block: 5px !important;
         padding-inline-start: 5px !important;
+        border-radius: 4px !important;
         margin-inline-end: 2px !important;
+      }
+      @supports -moz-bool-pref("userChrome.rounding.square_button") {
+        #placesMenu > menu {
+          border-radius: 0 !important;
+        }
       }
       #placesMenu > menu[_moz-menuactive="true"],
       #placesMenu > menu:hover {
@@ -2629,6 +2651,12 @@
         margin: 0 !important;
         padding-block: 2px !important;
         min-height: 24px !important;
+      }
+      @supports -moz-bool-pref("userChrome.rounding.square_field") {
+        #searchFilter,
+        #detailsPane html|input {
+          border-radius: 0 !important;
+        }
       }
       #searchFilter[focused] {
         box-shadow: var(--organizer-toolbar-field-focus-box-shadow) !important;
@@ -2771,6 +2799,12 @@
         -moz-context-properties: fill !important;
         fill: currentColor !important;
       }
+      @supports -moz-bool-pref("userChrome.rounding.square_button") {
+        #editBookmarkPanelRows .expander-up,
+        #editBookmarkPanelRows .expander-down {
+          border-radius: 0 !important;
+        }
+      }
       #editBookmarkPanelRows .expander-up:hover,
       #editBookmarkPanelRows .expander-down:hover {
         background-color: var(--organizer-hover-background) !important;
@@ -2804,6 +2838,11 @@
         min-height: 20px !important;
         padding-inline: 4px !important;
       }
+      @supports -moz-bool-pref("userChrome.rounding.square_field") {
+        #places input {
+          border-radius: 0 !important;
+        }
+      }
       #places input:focus {
         outline: 2px solid var(--organizer-outline-color) !important;
         outline-offset: -1px !important;
@@ -2821,6 +2860,11 @@
         background-color: var(--organizer-content-background) !important;
         border: 1px solid var(--organizer-border-color) !important;
         border-radius: 4px !important;
+      }
+      @supports -moz-bool-pref("userChrome.rounding.square_field") {
+        #editBMPanel_tagsSelectorRow > richlistbox {
+          border-radius: 0 !important;
+        }
       }
       #editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
         border: 1px solid transparent !important;
@@ -2870,15 +2914,10 @@
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info,
   #unified-extensions-manage-extensions,
-  .unified-extensions-item-open-menu {
+  .unified-extensions-item-open-menu,
+  .unified-extensions-item-menu-button.subviewbutton {
     cursor: pointer !important;
   }
-  /* TODO: For now, fxa-menu doesn't show any status.
-             (JS required, observe .syncNowBtn status)
-    #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] {
-      cursor: progress !important;
-    }
-    */
 }
 /*= Panel UI Button Separator ================================================*/
 @supports -moz-bool-pref("userChrome.decoration.panel_button_separator") {
@@ -3200,13 +3239,15 @@
   .urlbarView-button,
   .urlbarView-tip-button,
   .urlbarView-action,
+  .tab-close-button,
   toolbarbutton.bookmark-item:not(.subviewbutton),
   #sidebar-switcher-target {
     --toolbarbutton-border-radius: 0; /* Original: 4px */
   }
   button,
   findbar toolbarbutton,
-  .notification-button {
+  .notification-button,
+  #main-menubar > menu {
     border-radius: 0 !important;
   }
 }
@@ -3215,6 +3256,11 @@
   #TabsToolbar .toolbarbutton-1:not(#tabs-newtab-button),
   .tab-close-button {
     --tab-border-radius: var(--toolbarbutton-border-radius);
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+  .dialogBox {
+    border-radius: 0 !important;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_panel") {
@@ -3229,7 +3275,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
-  xul|menupopup {
+  menupopup {
     --panel-border-radius: 0px !important;
     border-radius: 0 !important;
   }
@@ -3245,6 +3291,7 @@
   html|select[size][multiple],
   xul|listheader,
   xul|richlistbox,
+  xul|menulist,
   html|input {
     border-radius: 0 !important;
   }
@@ -3260,8 +3307,23 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
-  .checkbox-check,
-  xul|*.radio-check {
+  .checkbox-check {
+    border-radius: 0 !important;
+  }
+}
+/*= Library ==============================================================*/
+@supports -moz-bool-pref("userChrome.rounding.square_button") {
+  #placesToolbar > toolbarbutton,
+  #placesMenu > menu,
+  #editBookmarkPanelRows .expander-up,
+  #editBookmarkPanelRows .expander-down {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_field") {
+  #searchFilter,
+  #detailsPane html|input,
+  #places input #editBMPanel_tagsSelectorRow > richlistbox {
     border-radius: 0 !important;
   }
 }
@@ -3890,13 +3952,16 @@
 /*= Panel - Reduce padding ===================================================*/
 @supports -moz-bool-pref("userChrome.padding.panel") {
   :root {
-    --arrowpanel-menuitem-margin: 0 var(--arrowpanel-menuicon-padding, 8px) !important; /* Original: 0 8px */
+    --arrowpanel-menuitem-margin-block: 0; /* FF 102 compatibility */
+    --arrowpanel-menuitem-margin-inline: 8px;
+    --arrowpanel-menuitem-margin: var(--arrowpanel-menuitem-margin-block) var(--arrowpanel-menuitem-margin-inline) !important; /* Original: 0 8px */
     --arrowpanel-menuitem-padding-block: 5px !important; /* Original: 8px */
     --arrowpanel-menuitem-padding-inline: 5px !important; /* Original: 8px */
     --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block) var(--arrowpanel-menuitem-padding-inline) !important; /* Compatibility */
     --arrowpanel-padding: 0.8em !important; /* Original: 16px or .cui-widget-panel, .cui-widget-panel::part(arrowcontent) => 4px 0 */
   }
   :root[uidensity="compact"] {
+    --arrowpanel-menuitem-margin-inline: 4px; /* FF 102 compatibility */
     --arrowpanel-menuitem-padding-block: 3px !important;
     --arrowpanel-menuitem-padding-inline: 3px !important;
   }
@@ -3904,12 +3969,18 @@
     --arrowpanel-menuitem-padding-block: 8px !important; /* Original: 8px */
     --arrowpanel-menuitem-padding-inline: 8px !important; /* Original: 8px */
   }
+  .all-tabs-item {
+    margin: var(--arrowpanel-menuitem-margin) !important;
+  }
   @supports not -moz-bool-pref("userChrome.icon.disabled") {
     @supports not -moz-bool-pref("userChrome.icon.panel") {
       .subviewbutton {
         min-height: calc(16px + var(--arrowpanel-menuitem-padding-block) * 2) !important;
       }
     }
+  }
+  .unified-extensions-item-menu-button.subviewbutton {
+    padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
   }
 }
 @supports -moz-bool-pref("userChrome.padding.panel_header") {
@@ -8870,39 +8941,42 @@
 @supports -moz-bool-pref("userChrome.autohide.back_button") or -moz-bool-pref("userChrome.autohide.forward_button") {
   :root {
     --uc-toolbarbutton-hide-size: calc(
-      -1 * (16px + (2 * var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding)))
+      -1 * (16px + (2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding))))
     );
   }
 }
-@supports -moz-bool-pref("userChrome.autohide.back_button") {
-  #back-button[disabled="true"] {
-    margin-left: var(--uc-toolbarbutton-hide-size) !important;
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    #back-button {
-      transition-property: background-color, opacity, margin-left !important;
+@-moz-document url("chrome://browser/content/browser.xhtml")
+{
+  @supports -moz-bool-pref("userChrome.autohide.back_button") {
+    :root:not([customizing="true"]) #back-button[disabled="true"] {
+      margin-left: var(--uc-toolbarbutton-hide-size) !important;
+      opacity: 0 !important;
+      pointer-events: none;
     }
-    #back-button[disabled="true"] {
-      transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
-        margin-left 0.5s ease !important;
+    @media (prefers-reduced-motion: no-preference) {
+      #back-button {
+        transition-property: background-color, opacity, margin-left !important;
+      }
+      #back-button[disabled="true"] {
+        transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
+          margin-left 0.5s ease !important;
+      }
     }
   }
-}
-@supports -moz-bool-pref("userChrome.autohide.forward_button") {
-  #forward-button[disabled="true"] {
-    margin-left: var(--uc-toolbarbutton-hide-size) !important;
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    #forward-button {
-      transition-property: background-color, opacity, margin-left !important;
+  @supports -moz-bool-pref("userChrome.autohide.forward_button") {
+    :root:not([customizing="true"]) #forward-button[disabled="true"] {
+      margin-left: var(--uc-toolbarbutton-hide-size) !important;
+      opacity: 0 !important;
+      pointer-events: none;
     }
-    #forward-button[disabled="true"] {
-      transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
-        margin-left 0.5s ease !important;
+    @media (prefers-reduced-motion: no-preference) {
+      #forward-button {
+        transition-property: background-color, opacity, margin-left !important;
+      }
+      #forward-button[disabled="true"] {
+        transition: background-color 1s var(--animation-easing-function), opacity 1s var(--animation-easing-function),
+          margin-left 0.5s ease !important;
+      }
     }
   }
 }
@@ -9745,6 +9819,11 @@
     }
   }
   @supports -moz-bool-pref("userChrome.hidden.urlbar_iconbox.label_only") {
+    #identity-box[pageproxystate="valid"].notSecureText,
+    #identity-box[pageproxystate="valid"].chromeUI,
+    #identity-box[pageproxystate="valid"].extensionPage {
+      margin-inline-end: var(--identity-box-margin-inline) !important;
+    }
     #identity-box[pageproxystate="valid"].chromeUI #identity-icon-box:not(:hover),
     #identity-box[pageproxystate="valid"].extensionPage #identity-icon-box:not(:hover) {
       background-color: transparent !important;
@@ -9950,6 +10029,16 @@
     }
   }
   /** Panel - Icons *************************************************************/
+  :root {
+    --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
+    --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
+  }
+  @supports selector(:has(a)) {
+    :root:has(#sidebar-box[positionend="true"]) {
+      --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
+      --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
+    }
+  }
   @supports -moz-bool-pref("userChrome.icon.panel") {
     /*= Padding ==================================================================*/
     :root {
@@ -10410,6 +10499,12 @@
       list-style-image: url("chrome://global/skin/icons/settings.svg");
     }
     /*= BMB_bookmarksPopup =======================================================*/
+    #BMB_viewBookmarksSidebar {
+      --menuitem-image: var(--uc-sidebar-icon);
+    }
+    #BMB_viewBookmarksSidebar[data-l10n-args='{"isVisible":true}'] {
+      --menuitem-image: url("chrome://global/skin/icons/close.svg");
+    }
     #BMB_bookmarksShowAllTop,
     #BMB_bookmarksShowAll {
       --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
@@ -10472,11 +10567,7 @@
       list-style-image: url("chrome://browser/skin/tab.svg");
     }
     #sidebar-reverse-position {
-      list-style-image: url("chrome://browser/skin/sidebars-right.svg");
-    }
-    #sidebar-box[positionend="true"] #sidebar-reverse-position {
-      /* Can't apply this. shadow dom */
-      list-style-image: url("chrome://browser/skin/sidebars.svg");
+      list-style-image: var(--uc-sidebar-icon-reverse);
     }
     #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
       list-style-image: url("chrome://global/skin/icons/close.svg");
@@ -10596,6 +10687,11 @@
       :root {
         --context-menu-background-padding-default: 2px;
       }
+      @media (-moz-windows-classic) {
+        :root {
+          --context-menu-background-padding-default: -0.5px;
+        }
+      }
     }
     @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
       :root {
@@ -10641,6 +10737,45 @@
         :root {
           --context-menu-background-padding: 3px;
           --menu-background-padding-default: 0px;
+        }
+        @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+          :root {
+            --context-menu-background-padding: 5px;
+          }
+        }
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic > .menu-iconic-left,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menuitem-iconic > .menu-iconic-left,
+        menupopup:not([placespopup="true"]) .menu-iconic > .menu-iconic-left,
+        menupopup:not([placespopup="true"]) .menuitem-iconic > .menu-iconic-left {
+          appearance: none !important;
+          padding-block: 0 !important;
+          padding-inline-start: 5px !important;
+          margin-inline-end: 8px !important;
+        }
+        @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+          menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic > .menu-iconic-left,
+          menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menuitem-iconic > .menu-iconic-left,
+          menupopup:not([placespopup="true"]) .menu-iconic > .menu-iconic-left,
+          menupopup:not([placespopup="true"]) .menuitem-iconic > .menu-iconic-left {
+            box-sizing: content-box;
+          }
+        }
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-accel,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic-accel,
+        menupopup:not([placespopup="true"]) .menu-accel,
+        menupopup:not([placespopup="true"]) .menu-iconic-accel {
+          box-sizing: content-box;
+          min-height: 16px;
+        }
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-accel,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic-accel,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-text,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic-text,
+        menupopup:not([placespopup="true"]) .menu-accel,
+        menupopup:not([placespopup="true"]) .menu-iconic-accel,
+        menupopup:not([placespopup="true"]) .menu-text,
+        menupopup:not([placespopup="true"]) .menu-iconic-text {
+          padding-block: 0 !important;
         }
       }
       :not(menu, #ContentSelectDropdown, #context-navigation)
@@ -10763,9 +10898,14 @@
       menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
       #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
       #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-        margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
-        padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
-        background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
+        --arrowpanel-bookmark-menuicon-padding: calc(
+          var(--arrowpanel-menuicon-padding) - var(--arrowpanel-menuitem-margin-inline)
+        );
+        margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
+        padding-inline-start: calc(
+          var(--arrowpanel-bookmark-menuicon-padding) + var(--context-menu-text-padding)
+        ) !important;
+        background-position: var(--uc-menu-background-position) var(--arrowpanel-bookmark-menuicon-padding) center !important;
       }
     }
     /* Linux */
@@ -11796,7 +11936,7 @@
         --menuitem-image: url("../icons/toolbar.svg");
       }
       #viewSidebarMenuMenu {
-        --menuitem-image: url("chrome://browser/skin/sidebars.svg");
+        --menuitem-image: var(--uc-sidebar-icon);
       }
       #viewFullZoomMenu {
         --menuitem-image: url("../icons/screenshot.svg");

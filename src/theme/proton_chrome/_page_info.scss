@@ -5,7 +5,6 @@
   }
 
   #viewGroup > radio {
-    border-radius: 8px !important;
     padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
     margin: 4px !important;
 
@@ -18,6 +17,11 @@
     -moz-context-properties: fill !important;
     fill: currentColor !important;
     color: var(--in-content-deemphasized-text) !important; /* FieldText */
+
+    @include NotOption("userChrome.rounding.square_button") {
+      border-radius: 8px !important;
+    }
+
     &:hover {
       background-color: var(--in-content-button-background-hover) !important; /* #E0E8F6; */
     }

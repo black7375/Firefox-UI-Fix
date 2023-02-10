@@ -23,13 +23,13 @@ menuitem.openintabs-menuitem,
 #identity-popup-clear-sitedata-button,
 #identity-popup-more-info,
 #unified-extensions-manage-extensions,
-.unified-extensions-item-open-menu {
+.unified-extensions-item-open-menu,
+.unified-extensions-item-menu-button.subviewbutton {
   cursor: pointer !important;
 }
 
-/* TODO: For now, fxa-menu doesn't show any status.
-           (JS required, observe .syncNowBtn status)
-  #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] {
-    cursor: progress !important;
-  }
-  */
+// TODO: For now, fxa-menu doesn't show any status.
+//          (JS required, observe .syncNowBtn status)
+// #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] {
+//   cursor: progress !important;
+// }

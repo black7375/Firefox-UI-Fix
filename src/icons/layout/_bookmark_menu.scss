@@ -80,9 +80,11 @@ $_bookmarkToolbarMenus: selector.nest(
 @include OS($win10) {
   /* Bookmark Popup - None icon menu */
   @include _layoutBookmarkMenu() {
-    margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
-    padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding)) !important;
-    background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
+    --arrowpanel-bookmark-menuicon-padding: calc(var(--arrowpanel-menuicon-padding) - var(--arrowpanel-menuitem-margin-inline));
+
+    margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
+    padding-inline-start: calc(var(--arrowpanel-bookmark-menuicon-padding) + var(--context-menu-text-padding)) !important;
+    background-position: var(--uc-menu-background-position) var(--arrowpanel-bookmark-menuicon-padding) center !important;
   }
 }
 
