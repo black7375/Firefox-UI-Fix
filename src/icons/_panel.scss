@@ -390,6 +390,10 @@ panelMenuBookmarkThisPage[starred] {
 
 /*= BMB_bookmarksPopup =======================================================*/
 #BMB_viewBookmarksSidebar {
+  --menuitem-image: var(--uc-sidebar-icon);
+  &[data-l10n-args='{"isVisible":true}'] {
+    --menuitem-image: url("chrome://global/skin/icons/close.svg");
+  }
 }
 #BMB_bookmarksShowAllTop,
 #BMB_bookmarksShowAll {
@@ -469,11 +473,7 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 #sidebar-reverse-position {
-  list-style-image: url("chrome://browser/skin/sidebars-right.svg");
-}
-#sidebar-box[positionend="true"] #sidebar-reverse-position {
-  /* Can't apply this. shadow dom */
-  list-style-image: url("chrome://browser/skin/sidebars.svg");
+  list-style-image: var(--uc-sidebar-icon-reverse);
 }
 
 #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
