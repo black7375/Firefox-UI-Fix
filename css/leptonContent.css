@@ -2244,10 +2244,11 @@
         #placesToolbar > toolbarbutton {
           appearance: none !important;
           padding: 5px !important;
+          border-radius: 4px !important;
         }
-        @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+        @supports -moz-bool-pref("userChrome.rounding.square_button") {
           #placesToolbar > toolbarbutton {
-            border-radius: 4px !important;
+            border-radius: 0 !important;
           }
         }
         #placesToolbar > toolbarbutton[disabled] {
@@ -2274,11 +2275,12 @@
           color: var(--organizer-color) !important;
           padding-block: 5px !important;
           padding-inline-start: 5px !important;
+          border-radius: 4px !important;
           margin-inline-end: 2px !important;
         }
-        @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+        @supports -moz-bool-pref("userChrome.rounding.square_button") {
           #placesMenu > menu {
-            border-radius: 4px !important;
+            border-radius: 0 !important;
           }
         }
         #placesMenu > menu[_moz-menuactive="true"],
@@ -2302,14 +2304,15 @@
           background-color: var(--organizer-toolbar-field-background) !important;
           color: var(--organizer-color) !important;
           border: 1px solid var(--organizer-toolbar-field-border-color) !important;
+          border-radius: 4px !important;
           margin: 0 !important;
           padding-block: 2px !important;
           min-height: 24px !important;
         }
-        @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+        @supports -moz-bool-pref("userChrome.rounding.square_field") {
           #searchFilter,
           #detailsPane html|input {
-            border-radius: 4px !important;
+            border-radius: 0 !important;
           }
         }
         #searchFilter[focused] {
@@ -2447,15 +2450,16 @@
           margin: 0 !important;
           margin-inline-end: 4px !important;
           border: 1px solid var(--organizer-pane-field-border-color) !important;
+          border-radius: 4px !important;
           color: var(--organizer-color) !important;
           background-color: var(--organizer-content-background) !important;
           -moz-context-properties: fill !important;
           fill: currentColor !important;
         }
-        @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+        @supports -moz-bool-pref("userChrome.rounding.square_button") {
           #editBookmarkPanelRows .expander-up,
           #editBookmarkPanelRows .expander-down {
-            border-radius: 4px !important;
+            border-radius: 0 !important;
           }
         }
         #editBookmarkPanelRows .expander-up:hover,
@@ -2485,14 +2489,15 @@
         }
         #places input {
           border: 1px solid var(--organizer-pane-field-border-color) !important;
+          border-radius: 4px !important;
           background-color: var(--organizer-content-background) !important;
           color: var(--organizer-color) !important;
           min-height: 20px !important;
           padding-inline: 4px !important;
         }
-        @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+        @supports -moz-bool-pref("userChrome.rounding.square_field") {
           #places input {
-            border-radius: 4px !important;
+            border-radius: 0 !important;
           }
         }
         #places input:focus {
@@ -2511,10 +2516,11 @@
           color: var(--organizer-color) !important;
           background-color: var(--organizer-content-background) !important;
           border: 1px solid var(--organizer-border-color) !important;
+          border-radius: 4px !important;
         }
-        @supports not -moz-bool-pref("userChrome.rounding.square_field") {
+        @supports -moz-bool-pref("userChrome.rounding.square_field") {
           #editBMPanel_tagsSelectorRow > richlistbox {
-            border-radius: 4px !important;
+            border-radius: 0 !important;
           }
         }
         #editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
@@ -2830,14 +2836,33 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
-  @-moz-document url-prefix("about:preferences"), url-prefix("chrome://browser/content/preferences/dialogs")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://")
   {
-    xul|menulist > xul|menupopup {
+    menupopup {
       --panel-border-radius: 0 !important;
     }
   }
   @-moz-document url("about:home"), url("about:newtab") {
     .context-menu {
+      border-radius: 0 !important;
+    }
+  }
+}
+@-moz-document url("chrome://browser/content/places/places.xhtml")
+{
+  /*= Library ==============================================================*/
+  @supports -moz-bool-pref("userChrome.rounding.square_button") {
+    #placesToolbar > toolbarbutton,
+    #placesMenu > menu,
+    #editBookmarkPanelRows .expander-up,
+    #editBookmarkPanelRows .expander-down {
+      border-radius: 0 !important;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.rounding.square_field") {
+    #searchFilter,
+    #detailsPane html|input,
+    #places input #editBMPanel_tagsSelectorRow > richlistbox {
       border-radius: 0 !important;
     }
   }
