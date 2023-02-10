@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        fetch-depth: 0
+        with:
+          fetch-depth: 0
 
       - name: Merge master -> photon-style
         uses: devmasx/merge-branch@1.4.0
