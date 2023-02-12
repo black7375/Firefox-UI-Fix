@@ -1,5 +1,9 @@
 @include Option("userChrome.rounding.square_button") {
-  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
+  @include moz-document(
+    url-prefix "about:",
+    url-prefix "chrome://browser/content/",
+    url-prefix "chrome://pippki/content/"
+  ) {
     button,
     .close-icon,
     .action-icon::before,
@@ -50,7 +54,11 @@
 }
 
 @include Option("userChrome.rounding.square_checklabel") {
-  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
+  @include moz-document(
+    url-prefix "about:",
+    url-prefix "chrome://browser/content/",
+    url-prefix "chrome://pippki/content/"
+  ) {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
       border-radius: 0 !important;
@@ -59,7 +67,11 @@
 }
 
 @include Option("userChrome.rounding.square_field") {
-  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
+  @include moz-document(
+    url-prefix "about:",
+    url-prefix "chrome://browser/content/",
+    url-prefix "chrome://pippki/content/"
+  ) {
     input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
     select,
