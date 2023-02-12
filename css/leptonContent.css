@@ -2843,6 +2843,16 @@
       --panel-border-radius: 0 !important;
     }
   }
+  @-moz-document url-prefix("about:addons") {
+    panel-list {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:logins") {
+    .menu {
+      border-radius: 0 !important;
+    }
+  }
   @-moz-document url("about:home"), url("about:newtab") {
     .context-menu {
       border-radius: 0 !important;
