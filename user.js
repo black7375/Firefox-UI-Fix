@@ -213,7 +213,6 @@ user_pref("userChrome.rounding.square_tab",           false);
 user_pref("userChrome.compatibility.theme",       true);
 user_pref("userChrome.compatibility.os",          true);
 
-user_pref("userChrome.theme.built_in_color",      true);
 user_pref("userChrome.theme.built_in_contrast",   true);
 user_pref("userChrome.theme.system_default",      true);
 user_pref("userChrome.theme.proton_color",        true);
