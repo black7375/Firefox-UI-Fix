@@ -2758,11 +2758,12 @@
 }
 /** Rounding ******************************************************************/
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
   {
     button,
     .close-icon,
     .action-icon::before,
+    .web-appearance-choice,
     #categories > .category,
     .sidebar-footer-link {
       border-radius: 0 !important;
@@ -2804,7 +2805,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
   {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
@@ -2813,7 +2814,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_field") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
   {
     input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
@@ -2840,6 +2841,16 @@
   {
     menupopup {
       --panel-border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:addons") {
+    panel-list {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:logins") {
+    .menu {
+      border-radius: 0 !important;
     }
   }
   @-moz-document url("about:home"), url("about:newtab") {
