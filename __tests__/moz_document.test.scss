@@ -6,6 +6,9 @@
   @include test("simple") {
     @include assert {
       @include output {
+        @include moz-document(unobservable-document) {
+          @include example;
+        }
         @include moz-document(url "about:downloads") {
           @include example;
         }
@@ -17,6 +20,9 @@
         }
       }
       @include expect {
+        @-moz-document #{unobservable-document()} { // Invalid function name.
+          @include example;
+        }
         @-moz-document url("about:downloads") {
           @include example;
         }

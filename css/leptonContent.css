@@ -1640,6 +1640,23 @@
         box-shadow: 0 0 0 3px color-mix(in srgb, var(--in-content-primary-button-background-hover) 80%, transparent) !important;
       }
     }
+    @supports -moz-bool-pref("userContent.page.dark_mode.pdf") {
+      @-moz-document unobservable-document() {
+        @-moz-document regexp("^(?!.*\\.pdf\\?n).*") {
+          #outerContainer {
+            --sidebaritem-bg-color: #38383d;
+            --uc-pdf-dark-filter: grayscale(10%) invert(90%);
+          }
+          #sidebarContainer > #sidebarContent > #thumbnailView .thumbnailImage {
+            filter: var(--uc-pdf-dark-filter);
+            box-shadow: 0 0 0 1px hsla(0deg, 0%, 100%, 0.5), 0 2px 8px hsla(0deg, 0%, 100%, 0.3) !important;
+          }
+          #viewerContainer > #viewer > .page > .canvasWrapper > canvas {
+            filter: var(--uc-pdf-dark-filter);
+          }
+        }
+      }
+    }
   }
 }
 /** Fully Proton Mode *********************************************************/

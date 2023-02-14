@@ -2,4 +2,23 @@
   @import "dark_mode/addons_org";
   @import "dark_mode/support_org";
   @import "dark_mode/accounts_com";
+
+  @include Option("userContent.page.dark_mode.pdf") {
+    @include moz-document(unobservable-document) {
+      @include moz-document(regexp "^(?!.*\\.pdf\\?n).*") {
+        #outerContainer {
+          --sidebaritem-bg-color: #38383D;
+          --uc-pdf-dark-filter: grayscale(10%) invert(90%);
+        }
+
+        #sidebarContainer > #sidebarContent > #thumbnailView .thumbnailImage {
+          filter: var(--uc-pdf-dark-filter);
+          box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.5), 0 2px 8px hsla(0, 0%, 100%, 0.3) !important;
+        }
+        #viewerContainer > #viewer > .page > .canvasWrapper > canvas {
+          filter: var(--uc-pdf-dark-filter);
+        }
+      }
+    }
+  }
 }
