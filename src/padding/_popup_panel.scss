@@ -15,40 +15,45 @@
 }
 
 /** Popup panel - Compact mode  */
-/* Footer Button Height */
-:root[uidensity="compact"] .panel-footer.panel-footer-menulike > button {
-  padding: 3px 8px !important;
-}
-/* Footer Button Height */
-:root[uidensity="compact"] #protections-popup-trackersView-settings-button {
-  margin: 4px 8px 0 !important;
-}
-/* not cut off for Protection popup Footer on windows */
-:root[uidensity="compact"] #protections-popup-multiView #protections-popup-footer {
-  padding-block-start: 0 !important;
-  padding-block-end: 4px !important;
-}
-:root[uidensity="compact"] #protections-popup-content {
-  margin-block: 0 !important;
-}
-/* Button and disabled category in Protection popup */
-:root[uidensity="compact"] #protections-popup-multiView .protections-popup-footer-button,
-:root[uidensity="compact"] #protections-popup-multiView .protections-popup-category {
-  min-height: 20px !important;
-}
-/* Footer Button in Tracking Content Panel */
-:root[uidensity="compact"] #protections-popup-multiView .panel-footer.panel-footer-menulike {
-  margin: 0 0 3px !important;
-}
-/* Identity popup header padding */
-:root[uidensity="compact"] #identity-popup-multiView #identity-popup-mainView-panel-header {
-  padding: 2px 5px !important;
-}
-/* Text When There is no trackers */
-:root[uidensity="compact"] #protections-popup-no-trackers-found-description {
-  margin: 2em 4em !important;
-}
-/* Download Item margin */
-:root[uidensity="compact"] #downloadsListBox {
-  margin: 0 !important;
+:root[uidensity="compact"] {
+  #protections-popup-content {
+    // not cut off for Protection popup Footer on windows
+    margin-block: 0 !important;
+  }
+  #protections-popup-multiView {
+    #protections-popup-footer {
+      padding-block-start: 0 !important;
+      padding-block-end: 4px !important;
+    }
+
+    .protections-popup-footer-button,
+    .protections-popup-category {
+      // Button and disabled category in Protection popup
+      min-height: 20px !important;
+    }
+    .panel-footer.panel-footer-menulike {
+      // Footer Button in Tracking Content Panel
+      margin: 0 0 3px !important;
+      > button {
+        padding: 3px 8px !important;
+      }
+    }
+  }
+
+  #protections-popup-trackersView-settings-button {
+    // Footer Button Height
+    margin: 4px 8px 0 !important;
+  }
+  #identity-popup-multiView #identity-popup-mainView-panel-header {
+    // Identity popup header padding
+    padding: 2px 5px !important;
+  }
+  // Text When There is no trackers
+  #protections-popup-no-trackers-found-description {
+    margin: 2em 4em !important;
+  }
+  // Download Item margin
+  #downloadsListBox {
+    margin: 0 !important;
+  }
 }
