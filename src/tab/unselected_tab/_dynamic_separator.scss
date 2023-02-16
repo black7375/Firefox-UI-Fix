@@ -107,10 +107,6 @@
     + .tabbrowser-tab
     .tab-stack::before,
   #navigator-toolbox:not([movingtab])
-    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
-    ~ .tabbrowser-tab[afterhovered]
-    .tab-stack::before,
-  #navigator-toolbox:not([movingtab])
     .tabbrowser-tab:last-child:is([visuallyselected], [multiselected], :hover)
     ~ #tabs-newtab-button::before, /* Legacy - v103 */
   #navigator-toolbox:not([movingtab])
