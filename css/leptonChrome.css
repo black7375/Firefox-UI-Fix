@@ -3363,7 +3363,7 @@
       }
     }
     @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
-      #TabsToolbar:not([multibar]) .tabbrowser-tab:not(:last-child) {
+      #TabsToolbar:not([multibar]) .tabbrowser-tab:not(:last-of-type) {
         margin-inline-end: -1px !important;
       }
     }
@@ -6483,11 +6483,11 @@
       }
     }
     #tabbrowser-tabs[positionpinnedtabs],
-    #tabbrowser-tabs:not([overflow]) .tabbrowser-tab:first-child,
+    #tabbrowser-tabs:not([overflow]) .tabbrowser-tab:first-of-type,
     #tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
       margin-left: var(--uc-tab-corner-half-size) !important;
     }
-    .tabbrowser-tab:last-child {
+    .tabbrowser-tab:last-of-type {
       margin-right: var(--uc-tab-corner-half-size) !important;
     }
   }
@@ -6618,7 +6618,7 @@
   @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     .tab-stack::before,
     #tabbrowser-arrowscrollbox:not([overflowing])
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-child
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       /* Box Model */
       content: "";
@@ -6636,7 +6636,7 @@
     @supports -moz-bool-pref("userChrome.compatibility.dynamic_separator") {
       .tab-stack::before,
       #tabbrowser-arrowscrollbox:not([overflowing])
-        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-child
+        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
         .tab-stack::after {
         background-color: var(--tabs-border-color);
       }
@@ -6644,25 +6644,25 @@
     .tab-stack::before {
       transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
-    .tabbrowser-tab:last-child .tab-stack::after {
+    .tabbrowser-tab:last-of-type .tab-stack::after {
       right: 0;
       transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
   }
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-stack::before {
+  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
     opacity: var(--tab-separator-opacity);
   }
   @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
     @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
-        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-stack::before {
+        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
           opacity: var(--tab-separator-opacity);
           transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
         }
       }
       @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         @media screen and (min-width: 1100px) {
-          .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-stack::before {
+          .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
             opacity: var(--tab-separator-opacity);
             transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
           }
@@ -6677,7 +6677,7 @@
   }
   @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox:not([overflowing])
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-child
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       opacity: var(--tab-separator-opacity);
     }
@@ -6697,10 +6697,10 @@
       + .tabbrowser-tab
       .tab-stack::before,
     #navigator-toolbox:not([movingtab])
-      .tabbrowser-tab:last-child:is([visuallyselected], [multiselected], :hover)
+      .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
       ~ #tabs-newtab-button::before,
     #navigator-toolbox:not([movingtab])
-      .tabbrowser-tab:last-child:is([visuallyselected], [multiselected], :hover)
+      .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
       ~ #tabbrowser-arrowscrollbox-periphery
       #tabs-newtab-button::before {
       opacity: 0 !important;
@@ -6731,14 +6731,14 @@
     }
     @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
       #tabbrowser-arrowscrollbox:not([overflowing])
-        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-child
+        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
         .tab-stack::after {
         transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
       }
     }
   }
   /* Latest Tab & New tab margin */
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-child {
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
     margin-inline-end: 1px !important;
   }
 }
@@ -6747,7 +6747,7 @@
   #TabsToolbar {
     --toolbarseparator-color: color-mix(in srgb, currentColor 30%, transparent);
   }
-  .tabbrowser-tab:first-child .tab-stack::before,
+  .tabbrowser-tab:first-of-type .tab-stack::before,
   .tab-stack::after {
     content: "";
   }

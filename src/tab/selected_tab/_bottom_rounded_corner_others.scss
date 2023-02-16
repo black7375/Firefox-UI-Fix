@@ -217,11 +217,11 @@
 
 #tabbrowser-tabs {
   &[positionpinnedtabs],
-  &:not([overflow]) .tabbrowser-tab:first-child ,
+  &:not([overflow]) .tabbrowser-tab:first-of-type,
   &[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
     margin-left: var(--uc-tab-corner-half-size) !important;
   }
 }
-.tabbrowser-tab:last-child {
+.tabbrowser-tab:last-of-type {
   margin-right: var(--uc-tab-corner-half-size) !important;
 }
