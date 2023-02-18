@@ -6430,7 +6430,7 @@
       background-image: var(--uc-tab-corner-right-side-svg), var(--uc-tab-corner-bgimage);
       clip-path: var(--uc-tab-corner-right-side-clipPath);
     }
-    .tabbrowser-tab[beforeselected-visible] .tab-background::after {
+    .tabbrowser-tab:has(+ .tabbrowser-tab[visuallyselected]) .tab-background::after {
       --uc-tab-corner-right-side-svg: var(--uc-tab-corner-right-side-svg-clipped);
     }
     .tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-background::before {
@@ -6747,8 +6747,8 @@
   #TabsToolbar {
     --toolbarseparator-color: color-mix(in srgb, currentColor 30%, transparent);
   }
-  .tabbrowser-tab:first-of-type .tab-stack::before,
-  .tab-stack::after {
+  .tab-stack::before,
+  .tabbrowser-tab:last-of-type .tab-stack::after {
     content: "";
   }
   .tab-stack::before,
@@ -6759,6 +6759,7 @@
     /* Position */
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1;
     /* Bar shape */
     width: 0px;
     height: 100%;
@@ -6770,15 +6771,15 @@
   }
   @supports -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
     .tabbrowser-tab[visuallyselected] .tab-stack::before,
-    .tabbrowser-tab[visuallyselected] .tab-stack::after,
-    .tabbrowser-tab[beforeselected-visible] .tab-stack::after {
+    .tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-stack::before,
+    .tabbrowser-tab[visuallyselected] .tab-stack::after {
       --toolbarseparator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
     }
   }
   @supports not -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
     .tabbrowser-tab[visuallyselected] .tab-stack::before,
-    .tabbrowser-tab[visuallyselected] .tab-stack::after,
-    .tabbrowser-tab[beforeselected-visible] .tab-stack::after {
+    .tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-stack::before,
+    .tabbrowser-tab[visuallyselected] .tab-stack::after {
       opacity: 0;
     }
   }
