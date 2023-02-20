@@ -72,10 +72,14 @@
     url-prefix "chrome://browser/content/",
     url-prefix "chrome://pippki/content/"
   ) {
-    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+    input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
     select,
     menulist,
+    tree,
+    treecols,
+    listheader,
+    richlistbox,
     search-textbox {
       border-radius: 0 !important;
     }

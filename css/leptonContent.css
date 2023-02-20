@@ -1997,6 +1997,27 @@
       vertical-align: bottom !important;
     }
   }
+  /*= about:preferences ========================================================*/
+  @-moz-document url-prefix("chrome://browser/content")
+  {
+    #sanitizeEverythingWarningIcon {
+      list-style-image: url("chrome://global/skin/icons/warning.svg") !important;
+      -moz-context-properties: fill;
+      fill: #ffa436;
+      width: 48px;
+      height: 48px;
+    }
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      #sanitizeEverythingWarningIcon {
+        fill: #ffbd4f;
+      }
+    }
+    @media (prefers-contrast) {
+      #sanitizeEverythingWarningIcon {
+        fill: var(--in-content-page-color);
+      }
+    }
+  }
   /*= chrome://browser/content/places/places.xhtml =============================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
@@ -2816,10 +2837,14 @@
 @supports -moz-bool-pref("userChrome.rounding.square_field") {
   @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
   {
-    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+    input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
     select,
     menulist,
+    tree,
+    treecols,
+    listheader,
+    richlistbox,
     search-textbox {
       border-radius: 0 !important;
     }
