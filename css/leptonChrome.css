@@ -1474,7 +1474,6 @@
     appearance: none !important;
     padding: 5px 8px !important;
     border: 1px solid var(--input-bgcolor) !important;
-    border-radius: 4px;
     background-color: var(--lwt-sidebar-background-color, Field) !important;
     color: var(--lwt-sidebar-text-color, FieldText) !important;
   }
@@ -3103,12 +3102,14 @@
   .urlbarView-button,
   .urlbarView-tip-button,
   .urlbarView-action,
-  .tab-close-button,
   toolbarbutton.bookmark-item:not(.subviewbutton),
   #sidebar-switcher-target {
     --toolbarbutton-border-radius: 0; /* Original: 4px */
   }
   button,
+  .close-icon,
+  input[type="number"].photon-number::-moz-number-spin-box,
+  .toggle-group-label,
   findbar toolbarbutton,
   .notification-button,
   #main-menubar > menu {
@@ -3152,11 +3153,16 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_field") {
-  html|select[size][multiple],
-  xul|listheader,
-  xul|richlistbox,
-  xul|menulist,
-  html|input {
+  input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+  textarea,
+  select,
+  menulist,
+  tree,
+  treecols,
+  listheader,
+  richlistbox,
+  search-textbox,
+  .subviewradio {
     border-radius: 0 !important;
   }
   #urlbar-input-container,
@@ -3171,6 +3177,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
+  input[type="checkbox"],
   .checkbox-check {
     border-radius: 0 !important;
   }
@@ -3364,7 +3371,7 @@
       }
     }
     @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
-      #TabsToolbar:not([multibar]) .tabbrowser-tab:not([last-visible-tab]) {
+      #TabsToolbar:not([multibar]) .tabbrowser-tab:not(:last-of-type) {
         margin-inline-end: -1px !important;
       }
     }
@@ -3869,37 +3876,32 @@
     height: unset !important;
   }
   /** Popup panel - Compact mode  */
-  /* Footer Button Height */
-  :root[uidensity="compact"] .panel-footer.panel-footer-menulike > button {
-    padding: 3px 8px !important;
+  :root[uidensity="compact"] #protections-popup-content {
+    margin-block: 0 !important;
   }
-  /* Footer Button Height */
-  :root[uidensity="compact"] #protections-popup-trackersView-settings-button {
-    margin: 4px 8px 0 !important;
-  }
-  /* not cut off for Protection popup Footer on windows */
   :root[uidensity="compact"] #protections-popup-multiView #protections-popup-footer {
-    padding: 0 !important;
+    padding-block-start: 0 !important;
+    padding-block-end: 4px !important;
   }
-  /* Button and disabled category in Protection popup */
   :root[uidensity="compact"] #protections-popup-multiView .protections-popup-footer-button,
   :root[uidensity="compact"] #protections-popup-multiView .protections-popup-category {
-    height: 20px !important;
     min-height: 20px !important;
   }
-  /* Footer Button in Tracking Content Panel */
   :root[uidensity="compact"] #protections-popup-multiView .panel-footer.panel-footer-menulike {
     margin: 0 0 3px !important;
   }
-  /* Identity popup header padding */
+  :root[uidensity="compact"] #protections-popup-multiView .panel-footer.panel-footer-menulike > button {
+    padding: 3px 8px !important;
+  }
+  :root[uidensity="compact"] #protections-popup-trackersView-settings-button {
+    margin: 4px 8px 0 !important;
+  }
   :root[uidensity="compact"] #identity-popup-multiView #identity-popup-mainView-panel-header {
     padding: 2px 5px !important;
   }
-  /* Text When There is no trackers */
   :root[uidensity="compact"] #protections-popup-no-trackers-found-description {
     margin: 2em 4em !important;
   }
-  /* Download Item margin */
   :root[uidensity="compact"] #downloadsListBox {
     margin: 0 !important;
   }
@@ -6436,7 +6438,7 @@
       background-image: var(--uc-tab-corner-right-side-svg), var(--uc-tab-corner-bgimage);
       clip-path: var(--uc-tab-corner-right-side-clipPath);
     }
-    .tabbrowser-tab[beforeselected-visible] .tab-background::after {
+    .tabbrowser-tab:has(+ .tabbrowser-tab[visuallyselected]) .tab-background::after {
       --uc-tab-corner-right-side-svg: var(--uc-tab-corner-right-side-svg-clipped);
     }
     .tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-background::before {
@@ -6489,11 +6491,11 @@
       }
     }
     #tabbrowser-tabs[positionpinnedtabs],
-    #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[first-visible-tab],
+    #tabbrowser-tabs:not([overflow]) .tabbrowser-tab:first-of-type,
     #tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
       margin-left: var(--uc-tab-corner-half-size) !important;
     }
-    .tabbrowser-tab[last-visible-tab] {
+    .tabbrowser-tab:last-of-type {
       margin-right: var(--uc-tab-corner-half-size) !important;
     }
   }
@@ -6624,7 +6626,7 @@
   @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     .tab-stack::before,
     #tabbrowser-arrowscrollbox:not([overflowing])
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       /* Box Model */
       content: "";
@@ -6642,7 +6644,7 @@
     @supports -moz-bool-pref("userChrome.compatibility.dynamic_separator") {
       .tab-stack::before,
       #tabbrowser-arrowscrollbox:not([overflowing])
-        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
         .tab-stack::after {
         background-color: var(--tabs-border-color);
       }
@@ -6650,25 +6652,25 @@
     .tab-stack::before {
       transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
-    .tabbrowser-tab[last-visible-tab] .tab-stack::after {
+    .tabbrowser-tab:last-of-type .tab-stack::after {
       right: 0;
       transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
   }
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-stack::before {
+  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
     opacity: var(--tab-separator-opacity);
   }
   @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
     @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
-        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-stack::before {
+        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
           opacity: var(--tab-separator-opacity);
           transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
         }
       }
       @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
         @media screen and (min-width: 1100px) {
-          .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-stack::before {
+          .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
             opacity: var(--tab-separator-opacity);
             transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
           }
@@ -6683,7 +6685,7 @@
   }
   @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox:not([overflowing])
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       opacity: var(--tab-separator-opacity);
     }
@@ -6703,14 +6705,10 @@
       + .tabbrowser-tab
       .tab-stack::before,
     #navigator-toolbox:not([movingtab])
-      .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
-      ~ .tabbrowser-tab[afterhovered]
-      .tab-stack::before,
-    #navigator-toolbox:not([movingtab])
-      .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+      .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
       ~ #tabs-newtab-button::before,
     #navigator-toolbox:not([movingtab])
-      .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+      .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
       ~ #tabbrowser-arrowscrollbox-periphery
       #tabs-newtab-button::before {
       opacity: 0 !important;
@@ -6741,14 +6739,14 @@
     }
     @supports not -moz-bool-pref("userChrome.tab.newtab_button_like_tab") {
       #tabbrowser-arrowscrollbox:not([overflowing])
-        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
         .tab-stack::after {
         transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
       }
     }
   }
   /* Latest Tab & New tab margin */
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
+  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
     margin-inline-end: 1px !important;
   }
 }
@@ -6757,8 +6755,8 @@
   #TabsToolbar {
     --toolbarseparator-color: color-mix(in srgb, currentColor 30%, transparent);
   }
-  .tabbrowser-tab[first-visible-tab="true"] .tab-stack::before,
-  .tab-stack::after {
+  .tab-stack::before,
+  .tabbrowser-tab:last-of-type .tab-stack::after {
     content: "";
   }
   .tab-stack::before,
@@ -6769,6 +6767,7 @@
     /* Position */
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1;
     /* Bar shape */
     width: 0px;
     height: 100%;
@@ -6780,15 +6779,15 @@
   }
   @supports -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
     .tabbrowser-tab[visuallyselected] .tab-stack::before,
-    .tabbrowser-tab[visuallyselected] .tab-stack::after,
-    .tabbrowser-tab[beforeselected-visible] .tab-stack::after {
+    .tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-stack::before,
+    .tabbrowser-tab[visuallyselected] .tab-stack::after {
       --toolbarseparator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
     }
   }
   @supports not -moz-bool-pref("userChrome.tab.static_separator.selected_accent") {
     .tabbrowser-tab[visuallyselected] .tab-stack::before,
-    .tabbrowser-tab[visuallyselected] .tab-stack::after,
-    .tabbrowser-tab[beforeselected-visible] .tab-stack::after {
+    .tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-stack::before,
+    .tabbrowser-tab[visuallyselected] .tab-stack::after {
       opacity: 0;
     }
   }
@@ -10457,6 +10456,7 @@
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
+      stroke: transparent;
       /* Layout */
       background-size: 16px !important;
       background-repeat: no-repeat !important;

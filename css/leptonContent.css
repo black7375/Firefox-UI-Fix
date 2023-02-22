@@ -252,6 +252,7 @@
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
+      stroke: transparent;
       /* Layout */
       background-size: 16px !important;
       background-repeat: no-repeat !important;
@@ -1997,6 +1998,27 @@
       vertical-align: bottom !important;
     }
   }
+  /*= about:preferences ========================================================*/
+  @-moz-document url-prefix("chrome://browser/content")
+  {
+    #sanitizeEverythingWarningIcon {
+      list-style-image: url("chrome://global/skin/icons/warning.svg") !important;
+      -moz-context-properties: fill;
+      fill: #ffa436;
+      width: 48px;
+      height: 48px;
+    }
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      #sanitizeEverythingWarningIcon {
+        fill: #ffbd4f;
+      }
+    }
+    @media (prefers-contrast) {
+      #sanitizeEverythingWarningIcon {
+        fill: var(--in-content-page-color);
+      }
+    }
+  }
   /*= chrome://browser/content/places/places.xhtml =============================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
@@ -2758,11 +2780,12 @@
 }
 /** Rounding ******************************************************************/
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
   {
     button,
     .close-icon,
     .action-icon::before,
+    .web-appearance-choice,
     #categories > .category,
     .sidebar-footer-link {
       border-radius: 0 !important;
@@ -2804,7 +2827,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
   {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
@@ -2813,12 +2836,16 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_field") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/preferences/dialogs")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
   {
-    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+    input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
     select,
     menulist,
+    tree,
+    treecols,
+    listheader,
+    richlistbox,
     search-textbox {
       border-radius: 0 !important;
     }
@@ -2840,6 +2867,16 @@
   {
     menupopup {
       --panel-border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:addons") {
+    panel-list {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:logins") {
+    .menu {
+      border-radius: 0 !important;
     }
   }
   @-moz-document url("about:home"), url("about:newtab") {
@@ -2895,6 +2932,7 @@
         /* Color */
         -moz-context-properties: fill, fill-opacity, stroke !important;
         fill: currentColor !important;
+        stroke: transparent;
         /* Layout */
         background-size: 16px !important;
         background-repeat: no-repeat !important;

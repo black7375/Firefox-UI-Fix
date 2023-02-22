@@ -1,8 +1,13 @@
 @include Option("userChrome.rounding.square_button") {
-  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
+  @include moz-document(
+    url-prefix "about:",
+    url-prefix "chrome://browser/content/",
+    url-prefix "chrome://pippki/content/"
+  ) {
     button,
     .close-icon,
     .action-icon::before,
+    .web-appearance-choice,
     #categories > .category,
     .sidebar-footer-link {
       border-radius: 0 !important;
@@ -49,7 +54,11 @@
 }
 
 @include Option("userChrome.rounding.square_checklabel") {
-  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
+  @include moz-document(
+    url-prefix "about:",
+    url-prefix "chrome://browser/content/",
+    url-prefix "chrome://pippki/content/"
+  ) {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
       border-radius: 0 !important;
@@ -58,11 +67,19 @@
 }
 
 @include Option("userChrome.rounding.square_field") {
-  @include moz-document(url-prefix "about:", url-prefix "chrome://browser/content/preferences/dialogs") {
-    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+  @include moz-document(
+    url-prefix "about:",
+    url-prefix "chrome://browser/content/",
+    url-prefix "chrome://pippki/content/"
+  ) {
+    input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
     select,
     menulist,
+    tree,
+    treecols,
+    listheader,
+    richlistbox,
     search-textbox {
       border-radius: 0 !important;
     }
@@ -88,6 +105,18 @@
   @include moz-document(url-prefix "about:", url-prefix "chrome://") {
     menupopup {
       --panel-border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url-prefix "about:addons") {
+    panel-list {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url-prefix "about:logins") {
+    .menu {
+      border-radius: 0 !important;
     }
   }
 
