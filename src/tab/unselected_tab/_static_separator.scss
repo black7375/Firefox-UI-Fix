@@ -2,8 +2,8 @@
   --toolbarseparator-color: color-mix(in srgb, currentColor 30%, transparent);
 }
 
-.tabbrowser-tab[first-visible-tab="true"] .tab-stack::before,
-.tab-stack::after {
+.tab-stack::before,
+.tabbrowser-tab:last-of-type .tab-stack::after {
   content: "";
 }
 
@@ -16,6 +16,7 @@
   /* Position */
   top: 50%;
   transform:  translateY(-50%);
+  z-index: 1;
 
   /* Bar shape */
   width: 0px;
@@ -29,8 +30,8 @@
 }
 
 .tabbrowser-tab[visuallyselected] .tab-stack::before,
-.tabbrowser-tab[visuallyselected] .tab-stack::after,
-.tabbrowser-tab[beforeselected-visible] .tab-stack::after {
+.tabbrowser-tab[visuallyselected] + .tabbrowser-tab .tab-stack::before,
+.tabbrowser-tab[visuallyselected] .tab-stack::after {
   @include Option("userChrome.tab.static_separator.selected_accent") {
     --toolbarseparator-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255)));
   }
