@@ -528,6 +528,24 @@
         --win-accent-active-color: -moz-accent-color;
       }
     }
+    @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+      :root:not(:-moz-lwtheme) {
+        --win-text-color: #1a1a1a;
+        --win-bgcolor: #e8e8e8;
+        --win-hover-bgcolor: #eaeaea; /* also button-bgcolor */
+        --win-disabled-color: #9f9f9f;
+        --win-hover-active-bgcolor: #d9d9d9; /* also button-active-color */
+        --win-button-hover-bgcolor: #d9d9d9;
+        --win-button-active-bgcolor: rgba(46, 46, 46, 0.66);
+        --win-component-bgcolor: #f8f8f8;
+        --win-border-color: #e9e9e9;
+        --win-tab-separator-color: #dadada;
+        --win-sidebar-bgcolor: #ffffff;
+        --win-button-border: var(--win-border-color);
+        --win11-chrome-separator-color: #d6d6d6;
+        --win11-tab-border-color: #dadada;
+      }
+    }
     @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :root:not(:-moz-lwtheme),
       :root[lwt-default-theme-in-dark-mode] {
@@ -563,6 +581,25 @@
           --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
           --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, -moz-accent-color);
           --win-accent-active-color: -moz-accent-color;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+        :root:not(:-moz-lwtheme),
+        :root[lwt-default-theme-in-dark-mode] {
+          --win-bgcolor: #202020;
+          --win-hover-bgcolor: #383838; /* also button-bgcolor */
+          --win-disabled-color: #797979;
+          --win-hover-active-bgcolor: #454545; /* also button-active-color */
+          --win-button-hover-bgcolor: #454545;
+          --win-button-active-bgcolor: rgba(46, 46, 46, 0.66);
+          --win-field-bgcolor: #232323;
+          --win-component-bgcolor: #2c2c2c;
+          --win-border-color: #3d3d3d;
+          --win-tab-separator-color: #323232;
+          --win-sidebar-bgcolor: var(--win-component-bgcolor);
+          --win-button-border: var(--win-border-color);
+          --win11-chrome-separator-color: #3a3a3a;
+          --win11-tab-border-color: #1d1d1d;
         }
       }
     }
@@ -687,6 +724,15 @@
         :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
           --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* As default */
         }
+      }
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+      :root:not(:-moz-lwtheme),
+      :root[lwt-default-theme-in-dark-mode] {
+        --chrome-content-separator-color: var(--win11-chrome-separator-color) !important;
+      }
+      #nav-bar {
+        --lwt-tabs-border-color: var(--win11-tab-border-color) !important;
       }
     }
     /*- Proton Tab Selected ----------------------------------------------------*/
