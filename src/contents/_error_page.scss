@@ -119,3 +119,13 @@
 @include moz-document(url "about:welcomeBack", url "chrome://browser/content/aboutWelcomeBack.xhtml") {
   @include _errorTitleImage("../icons/welcome-back.svg");
 }
+
+@include moz-document(url-prefix "about:preferences") {
+  #no-results-message::after {
+    content: url("../icons/no-search-results.svg");
+    width: 380px;
+    height: 293px;
+    margin-top: 64px;
+    margin-inline: auto;
+  }
+}
