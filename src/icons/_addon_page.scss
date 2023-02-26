@@ -1,40 +1,41 @@
-button[role="menuitem"][part="button"] {
-  background-image: var(--menuitem-image, url("../icons/blank.svg")); /* Don't use !important. because of [checked] */
+// https://github.com/mozilla/gecko-dev/commit/260e4270fca18f2f6f59a1ffe4deccb5080a15f7
+button[role="menuitem"] {
+  background-image: var(--icon, url("../icons/blank.svg")); /* Don't use !important. because of [checked] */
 }
 
 panel-item {
   &[action="check-for-updates"] {
-    // --menuitem-image: url("chrome://global/skin/icons/update-icon.svg");
-    // --menuitem-image: url("chrome://mozapps/skin/extensions/category-recent.svg");
-    // --menuitem-image: url("chrome://browser/skin/sync.svg");
-    --menuitem-image: url("../icons/refresh-cw.svg");
+    // --icon: url("chrome://global/skin/icons/update-icon.svg");
+    // --icon: url("chrome://mozapps/skin/extensions/category-recent.svg");
+    // --icon: url("chrome://browser/skin/sync.svg");
+    --icon: url("../icons/refresh-cw.svg");
   }
 
   &[action="view-recent-updates"] {
-    // --menuitem-image: url("chrome://browser/skin/controlcenter/dashboard.svg");
-    --menuitem-image: url("chrome://global/skin/icons/info.svg");
+    // --icon: url("chrome://browser/skin/controlcenter/dashboard.svg");
+    --icon: url("chrome://global/skin/icons/info.svg");
   }
 
   &[action="install-from-file"] {
-    // --menuitem-image: url("chrome://browser/skin/import.svg");
-    --menuitem-image: url("chrome://devtools/skin/images/import.svg");
+    // --icon: url("chrome://browser/skin/import.svg");
+    --icon: url("chrome://devtools/skin/images/import.svg");
   }
 
   &[action="debug-addons"] {
-    --menuitem-image: url("../icons/bug.svg");
+    --icon: url("../icons/bug.svg");
   }
 
   &[action="set-update-automatically"] {
-    --menuitem-image: url("chrome://devtools/skin/images/profiler-stopwatch.svg");
+    --icon: url("chrome://devtools/skin/images/profiler-stopwatch.svg");
   }
 
   &[action="reset-update-states"] {
-    --menuitem-image: url("chrome://devtools/skin/images/debugging-workers.svg");
+    --icon: url("chrome://devtools/skin/images/debugging-workers.svg");
   }
 
   &[action="manage-shortcuts"],
   &[data-l10n-id="preferences-addon-button"],
   &[data-l10n-id="manage-addon-button"] {
-    --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+    --icon: url("chrome://global/skin/icons/settings.svg");
   }
 }
