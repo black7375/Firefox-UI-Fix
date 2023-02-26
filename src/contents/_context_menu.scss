@@ -14,3 +14,9 @@
     @import "../icons/library";
   }
 }
+
+@include moz-document(url-prefix "about:addons") {
+  @include Option("userChrome.icon.context_menu") {
+    @import "../icons/addon_page";
+  }
+}

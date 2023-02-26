@@ -3313,6 +3313,39 @@
         }
       }
     }
+    @-moz-document url-prefix("about:addons") {
+      @supports -moz-bool-pref("userChrome.icon.context_menu") {
+        button[role="menuitem"][part="button"] {
+          background-image: var(
+            --menuitem-image,
+            url("../icons/blank.svg")
+          ); /* Don't use !important. because of [checked] */
+        }
+        panel-item[action="check-for-updates"] {
+          --menuitem-image: url("../icons/refresh-cw.svg");
+        }
+        panel-item[action="view-recent-updates"] {
+          --menuitem-image: url("chrome://global/skin/icons/info.svg");
+        }
+        panel-item[action="install-from-file"] {
+          --menuitem-image: url("chrome://devtools/skin/images/import.svg");
+        }
+        panel-item[action="debug-addons"] {
+          --menuitem-image: url("../icons/bug.svg");
+        }
+        panel-item[action="set-update-automatically"] {
+          --menuitem-image: url("chrome://devtools/skin/images/profiler-stopwatch.svg");
+        }
+        panel-item[action="reset-update-states"] {
+          --menuitem-image: url("chrome://devtools/skin/images/debugging-workers.svg");
+        }
+        panel-item[action="manage-shortcuts"],
+        panel-item[data-l10n-id="preferences-addon-button"],
+        panel-item[data-l10n-id="manage-addon-button"] {
+          --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+        }
+      }
+    }
   }
 }
 /** Download Panel ************************************************************/
