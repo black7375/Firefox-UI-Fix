@@ -71,7 +71,7 @@
 }
 
 @include Option("userChrome.rounding.square_field") {
-  input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
+  input:not([type="radio"], [type="checkbox"]),
   textarea,
   select,
   menulist,
