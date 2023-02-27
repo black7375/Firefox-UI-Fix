@@ -456,6 +456,16 @@
       padding-top: 0 !important;
     }
   }
+  /** Activity Stream - Hide Firefox's logo ***********************************/
+  @supports -moz-bool-pref("userContent.newTab.background_image") {
+    body {
+      background-image: var(--uc-newTab-wallpaper);
+      background-size: cover; /* or auto auto */
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-attachment: fixed;
+    }
+  }
 }
 /** Error Page - Restore illustrations ****************************************/
 @supports -moz-bool-pref("userContent.page.illustration") {

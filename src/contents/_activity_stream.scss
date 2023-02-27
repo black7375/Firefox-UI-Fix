@@ -217,4 +217,15 @@
       padding-top: 0 !important;
     }
   }
+
+  /** Activity Stream - Hide Firefox's logo ***********************************/
+  @include Option("userContent.newTab.background_image") {
+    body {
+      background-image: var(--uc-newTab-wallpaper);
+      background-size: cover; /* or auto auto */
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-attachment: fixed;
+    }
+  }
 }
