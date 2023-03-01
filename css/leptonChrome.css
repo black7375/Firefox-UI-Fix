@@ -10745,14 +10745,11 @@
       menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
       #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
       #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-        --arrowpanel-bookmark-menuicon-padding: calc(
-          var(--arrowpanel-menuicon-padding) - var(--arrowpanel-menuitem-margin-inline)
-        );
         margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
         padding-inline-start: calc(
-          var(--arrowpanel-bookmark-menuicon-padding) + var(--context-menu-text-padding)
+          var(--arrowpanel-menuitem-padding-inline) + var(--context-menu-text-padding)
         ) !important;
-        background-position: var(--uc-menu-background-position) var(--arrowpanel-bookmark-menuicon-padding) center !important;
+        background-position: var(--uc-menu-background-position) var(--arrowpanel-menuitem-padding-inline) center !important;
       }
     }
     /* Linux */
