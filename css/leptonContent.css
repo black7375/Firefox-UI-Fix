@@ -2822,6 +2822,14 @@
       border-radius: 0 !important;
     }
   }
+  @-moz-document regexp(".*.pdf$") {
+    .toolbarButton,
+    .dropdownToolbarButton,
+    .secondaryToolbarButton,
+    .dialogButton {
+      border-radius: 0 !important;
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_dialog") {
   @-moz-document url-prefix("about:") {
@@ -2831,6 +2839,11 @@
   }
   @-moz-document url("about:home"), url("about:newtab") {
     .modal {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document regexp(".*.pdf$") {
+    dialog {
       border-radius: 0 !important;
     }
   }
@@ -2870,6 +2883,12 @@
       border-radius: 0 !important;
     }
   }
+  @-moz-document regexp(".*.pdf$") {
+    .toolbarField,
+    .thumbnailSelectionRing {
+      border-radius: 0 !important;
+    }
+  }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
   @-moz-document url-prefix("about:"), url-prefix("chrome://")
@@ -2890,6 +2909,12 @@
   }
   @-moz-document url("about:home"), url("about:newtab") {
     .context-menu {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document regexp(".*.pdf$") {
+    .doorHanger,
+    .doorHangerRight {
       border-radius: 0 !important;
     }
   }
