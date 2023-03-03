@@ -37,6 +37,15 @@
       border-radius: 0 !important;
     }
   }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    .toolbarButton,
+    .dropdownToolbarButton,
+    .secondaryToolbarButton,
+    .dialogButton {
+      border-radius: 0 !important;
+    }
+  }
 }
 
 @include Option("userChrome.rounding.square_dialog") {
@@ -48,6 +57,12 @@
 
   @include moz-document(url "about:home", url "about:newtab") {
     .modal {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    dialog {
       border-radius: 0 !important;
     }
   }
@@ -99,6 +114,13 @@
       }
     }
   }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    .toolbarField,
+    .thumbnailSelectionRing {
+      border-radius: 0 !important;
+    }
+  }
 }
 
 @include Option("userChrome.rounding.square_menupopup") {
@@ -122,6 +144,13 @@
 
   @include moz-document(url "about:home", url "about:newtab") {
     .context-menu {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    .doorHanger,
+    .doorHangerRight {
       border-radius: 0 !important;
     }
   }
