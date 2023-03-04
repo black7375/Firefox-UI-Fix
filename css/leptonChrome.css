@@ -1186,6 +1186,7 @@
     --card-shadow: var(--shadow-10);
     --card-outline-color: var(--grey-30);
     --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
+    --uc-warning-icon-bgcolor: #ffa436;
   }
   @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
     :host,
@@ -1222,6 +1223,13 @@
       --in-content-link-color-visited: var(--in-content-link-color);
       --card-outline-color: var(--grey-60);
       --dialog-warning-text-color: var(--red-40);
+      --uc-warning-icon-bgcolor: #ffbd4f;
+    }
+  }
+  @media (prefers-contrast) {
+    :host,
+    :root {
+      --uc-warning-icon-bgcolor: var(--in-content-page-color);
     }
   }
   @supports -moz-bool-pref("userChrome.theme.proton_color.dark_blue_accent") {
@@ -2741,6 +2749,13 @@
         color: var(--organizer-selected-color) !important;
       }
     }
+  }
+  #sanitizeEverythingWarningIcon {
+    list-style-image: url("chrome://global/skin/icons/warning.svg") !important;
+    -moz-context-properties: fill;
+    fill: var(--uc-warning-icon-bgcolor);
+    width: 48px;
+    height: 48px;
   }
 }
 /*= Monospace ================================================================*/
