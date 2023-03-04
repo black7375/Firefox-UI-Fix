@@ -460,7 +460,7 @@
 }
 /** Error Page - Restore illustrations ****************************************/
 @supports -moz-bool-pref("userContent.page.illustration") {
-  @-moz-document url-prefix("about:neterror"), url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"), url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml")
+  @-moz-document url-prefix("about:neterror"), url-prefix("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"), url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml")
   {
     /* Illustrations Position */
     #errorPageContainer,
@@ -490,7 +490,7 @@
       padding-inline-start: 38%;
     }
   }
-  @-moz-document url-prefix("about:neterror?e=connectionFailure"), url-prefix("about:neterror?e=netInterrupt"), url-prefix("about:neterror?e=netReset"), url-prefix("about:neterror?e=netTimeout"), url-prefix("about:neterror?e=netOffline"), url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
+  @-moz-document url-prefix("about:neterror?e=connectionFailure"), url-prefix("about:neterror?e=netInterrupt"), url-prefix("about:neterror?e=netReset"), url-prefix("about:neterror?e=netTimeout"), url-prefix("about:neterror?e=netOffline"), url-prefix("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
   {
     :root {
       --uc-error-llustration: url(../icons/error-connection-failure.svg);

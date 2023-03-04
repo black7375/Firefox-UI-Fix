@@ -1,6 +1,6 @@
 @include moz-document(
   url-prefix "about:neterror",
-  url "about:restartrequired",
+  url-prefix "about:restartrequired",
   url "chrome://browser/content/aboutRestartRequired.xhtml",
   url "about:sessionrestore",
   url "chrome://browser/content/aboutSessionRestore.xhtml"
@@ -75,7 +75,7 @@
   url-prefix "about:neterror?e=netReset",
   url-prefix "about:neterror?e=netTimeout",
   url-prefix "about:neterror?e=netOffline",
-  url "about:restartrequired",
+  url-prefix "about:restartrequired",
   url "chrome://browser/content/aboutRestartRequired.xhtml"
 ) {
   @include _errorContainerImage("../icons/error-connection-failure.svg");
