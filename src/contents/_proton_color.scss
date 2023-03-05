@@ -1,11 +1,11 @@
 @include moz-document(
   url-prefix "about:",
-  url-prefix "chrome://browser/content/places/places.xhtml",
+  url-prefix "chrome://",
   url-prefix "https://addons.mozilla.org",
   url-prefix "https://support.mozilla.org",
   url-prefix "https://accounts.firefox.com",
   url-prefix "view-source",
-  regexp "^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$"
+  regexp "^((jar:)?file:\/\/\/).*\/$"
 ) {
   @import "../theme/proton_color";
 

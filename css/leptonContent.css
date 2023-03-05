@@ -567,7 +567,7 @@
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @supports -moz-bool-pref("userContent.page.proton_color") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/places/places.xhtml"), url-prefix("https://addons.mozilla.org"), url-prefix("https://support.mozilla.org"), url-prefix("https://accounts.firefox.com"), url-prefix("view-source"), regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://"), url-prefix("https://addons.mozilla.org"), url-prefix("https://support.mozilla.org"), url-prefix("https://accounts.firefox.com"), url-prefix("view-source"), regexp("^((jar:)?file:///).*/$")
   {
     /*= Default Colors - Hard Coded ==============================================*/
     /* Based on chrome://global/skin/in-content/common.css */
@@ -2938,7 +2938,7 @@
 }
 /** Monospace *****************************************************************/
 @supports -moz-bool-pref("userContent.page.monospace") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/places/places.xhtml"), regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://"), regexp("^((jar:)?file:///).*/$")
   {
     * {
       font-family: -moz-fixed;
