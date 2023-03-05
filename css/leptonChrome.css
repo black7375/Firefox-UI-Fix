@@ -10667,6 +10667,7 @@
     @media (-moz-gtk-csd-available) {
       :root {
         --context-menu-background-padding-default: 6px;
+        --context-menu-text-padding: 21px;
       }
       #main-menubar > menu > .menubar-text {
         padding-inline-start: 3px;
@@ -10776,20 +10777,20 @@
       /* Bookmark Popup - Iconic menu */
       #BMB_bookmarksPopup .menu-iconic-text,
       #PersonalToolbar menupopup[placespopup="true"] .bookmark-item .menu-iconic-text {
-        padding-inline-start: 1px !important;
+        margin-inline-start: -1px !important;
       }
       /* Bookmark Popup - None icon menu */
       menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
       menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
       #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
       #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-        padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+        padding-inline-start: calc(var(--context-menu-background-padding) + 2px) !important;
       }
       menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]) .menu-text,
       menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) .menu-text,
       #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) .menu-text,
       #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) .menu-text {
-        margin-inline-start: 21px !important;
+        margin-inline-start: var(--context-menu-text-padding) !important;
       }
     }
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {

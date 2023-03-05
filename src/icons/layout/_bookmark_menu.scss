@@ -96,16 +96,14 @@ $_bookmarkToolbarMenus: selector.nest(
   /* Bookmark Popup - Iconic menu */
   #BMB_bookmarksPopup .menu-iconic-text,
   #PersonalToolbar menupopup[placespopup="true"] .bookmark-item .menu-iconic-text {
-    padding-inline-start: 1px !important;
+    margin-inline-start: -1px !important;
   }
   /* Bookmark Popup - None icon menu */
   @include _layoutBookmarkMenu() {
-    padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
+    padding-inline-start: calc(var(--context-menu-background-padding) + 2px) !important;
 
     .menu-text {
-      // https://github.com/mozilla/gecko-dev/commit/e54707888510dec75db59a170b287d1db031505a
-      // https://github.com/mozilla/gecko-dev/blob/e54707888510dec75db59a170b287d1db031505a/toolkit/themes/linux/global/menu.css#L103
-      margin-inline-start: 21px !important;
+      margin-inline-start: var(--context-menu-text-padding) !important;
     }
   }
 }

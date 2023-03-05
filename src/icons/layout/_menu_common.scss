@@ -143,6 +143,10 @@ $_initialMenus: selector.append(
 @mixin _layout_root_linux() {
   :root {
     --context-menu-background-padding-default: 6px;
+
+    // https://github.com/mozilla/gecko-dev/commit/e54707888510dec75db59a170b287d1db031505a
+    // https://github.com/mozilla/gecko-dev/blob/e54707888510dec75db59a170b287d1db031505a/toolkit/themes/linux/global/menu.css#L103
+    --context-menu-text-padding: 21px;
   }
 }
 @mixin _layout_init_linux() {
