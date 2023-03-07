@@ -76,17 +76,32 @@ $_initialMenus: selector.append(
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
 
+@mixin _layout_win_native_context_text_padding() {
+  --context-menu-text-padding: calc(1.45em + 8px);
+  --bookmark-menu-icon-align-padding: calc((1.45em - 16px) / 2 + 1px);
+}
+
+@mixin _layout_root_win() {
+  :root {
+    @include OS($win) {
+      --bookmark-menu-icon-text-padding: calc(var(--context-menu-text-padding) + var(--arrowpanel-menuitem-padding-inline));
+      --bookmark-menu-icon-background-padding: calc(var(--arrowpanel-menuitem-padding-inline) + var(--bookmark-menu-icon-align-padding));
+    }
+  }
+}
+
 @mixin _layout_root_win7_8() {
-  @include OS($win7) {
-    :root {
+  :root {
+    @include OS($win7, $win8) {
+      @include _layout_win_native_context_text_padding;
+    }
+    @include OS($win7) {
       --context-menu-background-padding-default: 2px;
       @media (-moz-windows-classic) {
         --context-menu-background-padding-default: -0.5px;
       }
     }
-  }
-  @include OS($win8) {
-    :root {
+    @include OS($win8) {
       --context-menu-background-padding-default: 3px;
     }
   }
@@ -99,13 +114,18 @@ $_initialMenus: selector.append(
 @mixin _layout_root_win10() {
   :root {
     --context-menu-background-padding: 1em;
-    --context-menu-text-padding: 24px; /* 16px + 8px */
+    --context-menu-text-padding: #{ 16px + 8px };
     --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
+
+    @include Win10_NonNativeMenu() {
+      --bookmark-menu-icon-align-padding: 0px;
+    }
   }
   @include Win10_NativeMenu() {
     :root {
       --context-menu-background-padding: 3px;
       --menu-background-padding-default: 0px;
+      @include _layout_win_native_context_text_padding;
       @include Option("userChrome.compatibility.os.win11") {
         --context-menu-background-padding: 5px;
       }

@@ -2999,6 +2999,15 @@
         padding-inline-start: var(--context-menu-background-padding) !important;
       }
       /* Padding - Windows */
+      @media (-moz-os-version: windows-win7),
+        (-moz-platform: windows-win7),
+        (-moz-os-version: windows-win8),
+        (-moz-platform: windows-win8) {
+        :root {
+          --context-menu-text-padding: calc(1.45em + 8px);
+          --bookmark-menu-icon-align-padding: calc((1.45em - 16px) / 2 + 1px);
+        }
+      }
       @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
         :root {
           --context-menu-background-padding-default: 2px;
@@ -3032,15 +3041,22 @@
       @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
         :root {
           --context-menu-background-padding: 1em;
-          --context-menu-text-padding: 24px; /* 16px + 8px */
+          --context-menu-text-padding: 24px;
           --menu-background-padding-default: calc(
             var(--context-menu-background-padding) + var(--context-menu-text-padding)
           );
+        }
+        @media (-moz-windows-non-native-menus) {
+          :root {
+            --bookmark-menu-icon-align-padding: 0px;
+          }
         }
         @media not (-moz-windows-non-native-menus) {
           :root {
             --context-menu-background-padding: 3px;
             --menu-background-padding-default: 0px;
+            --context-menu-text-padding: calc(1.45em + 8px);
+            --bookmark-menu-icon-align-padding: calc((1.45em - 16px) / 2 + 1px);
           }
           @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
             :root {

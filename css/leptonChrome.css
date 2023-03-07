@@ -10545,6 +10545,30 @@
       }
     }
     /* Padding - Windows */
+    @media (-moz-os-version: windows-win7),
+      (-moz-platform: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-platform: windows-win8),
+      (-moz-os-version: windows-win10),
+      (-moz-platform: windows-win10) {
+      :root {
+        --bookmark-menu-icon-text-padding: calc(
+          var(--context-menu-text-padding) + var(--arrowpanel-menuitem-padding-inline)
+        );
+        --bookmark-menu-icon-background-padding: calc(
+          var(--arrowpanel-menuitem-padding-inline) + var(--bookmark-menu-icon-align-padding)
+        );
+      }
+    }
+    @media (-moz-os-version: windows-win7),
+      (-moz-platform: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-platform: windows-win8) {
+      :root {
+        --context-menu-text-padding: calc(1.45em + 8px);
+        --bookmark-menu-icon-align-padding: calc((1.45em - 16px) / 2 + 1px);
+      }
+    }
     @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
       :root {
         --context-menu-background-padding-default: 2px;
@@ -10590,15 +10614,22 @@
     @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
       :root {
         --context-menu-background-padding: 1em;
-        --context-menu-text-padding: 24px; /* 16px + 8px */
+        --context-menu-text-padding: 24px;
         --menu-background-padding-default: calc(
           var(--context-menu-background-padding) + var(--context-menu-text-padding)
         );
+      }
+      @media (-moz-windows-non-native-menus) {
+        :root {
+          --bookmark-menu-icon-align-padding: 0px;
+        }
       }
       @media not (-moz-windows-non-native-menus) {
         :root {
           --context-menu-background-padding: 3px;
           --menu-background-padding-default: 0px;
+          --context-menu-text-padding: calc(1.45em + 8px);
+          --bookmark-menu-icon-align-padding: calc((1.45em - 16px) / 2 + 1px);
         }
         @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
           :root {
@@ -10722,6 +10753,23 @@
     #PersonalToolbar {
       --context-menu-background-padding: var(--arrowpanel-menuitem-padding-inline);
     }
+    /* Windows */
+    @media (-moz-os-version: windows-win7),
+      (-moz-platform: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-platform: windows-win8),
+      (-moz-os-version: windows-win10),
+      (-moz-platform: windows-win10) {
+      /* Bookmark Popup - None icon menu */
+      menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
+      menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
+      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+        margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
+        padding-inline-start: var(--bookmark-menu-icon-text-padding) !important;
+        background-position: var(--uc-menu-background-position) var(--bookmark-menu-icon-background-padding) center !important;
+      }
+    }
     /* Windows 7, 8 */
     @media (-moz-os-version: windows-win7),
       (-moz-platform: windows-win7),
@@ -10730,42 +10778,6 @@
       /* Global Menu */
       menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
         padding-inline-start: 0 !important;
-      }
-      /* Bookmark Popup - None icon menu */
-      #BMB_bookmarksPopup,
-      #PersonalToolbar {
-        --arrowpanel-menuicon-padding: 9px;
-      }
-      menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-      menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-        margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
-        background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
-      }
-      menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-      menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic) {
-        padding-inline-start: calc(
-          var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding) + 2px
-        ) !important;
-      }
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-        padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
-      }
-    }
-    /* Windows */
-    @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-      /* Bookmark Popup - None icon menu */
-      menupopup:is(#BMB_bookmarksPopup) menuitem:not(.menuitem-iconic, [disabled="true"]),
-      menupopup:is(#BMB_bookmarksPopup) menu:not(.menu-iconic),
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
-        margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
-        padding-inline-start: calc(
-          var(--arrowpanel-menuitem-padding-inline) + var(--context-menu-text-padding)
-        ) !important;
-        background-position: var(--uc-menu-background-position) var(--arrowpanel-menuitem-padding-inline) center !important;
       }
     }
     /* Linux */

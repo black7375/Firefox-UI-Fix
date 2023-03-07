@@ -18,3 +18,9 @@
     @content;
   }
 }
+
+@mixin Win10_NonNativeMenu() {
+  @media (-moz-windows-non-native-menus) {
+    @content;
+  }
+}

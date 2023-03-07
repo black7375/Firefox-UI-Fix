@@ -52,37 +52,21 @@ $_bookmarkToolbarMenus: selector.nest(
 
 //------------------------------------------------------------------------------
 
+/* Windows */
+@include OS($win) {
+  /* Bookmark Popup - None icon menu */
+  @include _layoutBookmarkMenu() {
+    margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
+    padding-inline-start: var(--bookmark-menu-icon-text-padding) !important;
+    background-position: var(--uc-menu-background-position) var(--bookmark-menu-icon-background-padding) center !important;
+  }
+}
+
 /* Windows 7, 8 */
 @include OS($win7, $win8) {
   /* Global Menu */
   menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item {
     padding-inline-start: 0 !important;
-  }
-
-  /* Bookmark Popup - None icon menu */
-  #BMB_bookmarksPopup,
-  #PersonalToolbar {
-    --arrowpanel-menuicon-padding: 9px;
-  }
-  @include _layoutBookmarkMenu() {
-    margin-inline: var(--arrowpanel-menuitem-padding-inline) !important;
-    background-position: var(--uc-menu-background-position) calc(var(--arrowpanel-menuicon-padding)) center !important;
-  }
-  @include _layoutBookmarkPopup() {
-    padding-inline-start: calc(var(--arrowpanel-menuicon-padding) + var(--context-menu-text-padding) + 2px) !important;
-  }
-  @include _layoutBookmarkToolbar() {
-    padding-inline-start: var(--arrowpanel-menuicon-padding) !important;
-  }
-}
-
-/* Windows */
-@include OS($win10) {
-  /* Bookmark Popup - None icon menu */
-  @include _layoutBookmarkMenu() {
-    margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
-    padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + var(--context-menu-text-padding)) !important;
-    background-position: var(--uc-menu-background-position) var(--arrowpanel-menuitem-padding-inline) center !important;
   }
 }
 
