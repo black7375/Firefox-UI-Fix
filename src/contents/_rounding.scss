@@ -1,8 +1,7 @@
 @include Option("userChrome.rounding.square_button") {
   @include moz-document(
     url-prefix "about:",
-    url-prefix "chrome://browser/content/",
-    url-prefix "chrome://pippki/content/"
+    regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"
   ) {
     button,
     .close-icon,
@@ -71,8 +70,7 @@
 @include Option("userChrome.rounding.square_checklabel") {
   @include moz-document(
     url-prefix "about:",
-    url-prefix "chrome://browser/content/",
-    url-prefix "chrome://pippki/content/"
+    regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"
   ) {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
@@ -84,8 +82,7 @@
 @include Option("userChrome.rounding.square_field") {
   @include moz-document(
     url-prefix "about:",
-    url-prefix "chrome://browser/content/",
-    url-prefix "chrome://pippki/content/"
+    regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"
   ) {
     input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,

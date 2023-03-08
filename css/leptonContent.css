@@ -2787,7 +2787,7 @@
 }
 /** Rounding ******************************************************************/
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
     button,
     .close-icon,
@@ -2847,7 +2847,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
@@ -2856,7 +2856,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_field") {
-  @-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/"), url-prefix("chrome://pippki/content/")
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
     input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
