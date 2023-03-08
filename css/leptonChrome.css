@@ -10452,9 +10452,11 @@
     /* Icon */
     #main-menubar > menu,
     :not(menu, #ContentSelectDropdown)
-      > menupopup
+      > menupopup:not(.in-menulist)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-    :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+    :not(menu, #ContentSelectDropdown)
+      > menupopup:not(.in-menulist)
+      > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
@@ -10484,9 +10486,11 @@
     /* For native context menus */
     @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
       :not(menu, #ContentSelectDropdown)
-        > menupopup
+        > menupopup:not(.in-menulist)
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-      :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
+      :not(menu, #ContentSelectDropdown)
+        > menupopup:not(.in-menulist)
+        > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
         list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
       }
     }
@@ -10499,13 +10503,15 @@
     :root:-moz-locale-dir(rtl) {
       --uc-menu-background-position: right;
     }
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem:not(.menuitem-iconic),
-    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu:not(.menu-iconic),
     :not(menu, #ContentSelectDropdown, #context-navigation)
-      > menupopup
+      > menupopup:not(.in-menulist)
+      > menuitem:not(.menuitem-iconic),
+    :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup:not(.in-menulist) > menu:not(.menu-iconic),
+    :not(menu, #ContentSelectDropdown, #context-navigation)
+      > menupopup:not(.in-menulist)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     :not(menu, #ContentSelectDropdown, #context-navigation)
-      > menupopup
+      > menupopup:not(.in-menulist)
       > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -10589,10 +10595,10 @@
       (-moz-os-version: windows-win8),
       (-moz-platform: windows-win8) {
       :not(menu, #ContentSelectDropdown, #context-navigation)
-        > menupopup
+        > menupopup:not(.in-menulist)
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       :not(menu, #ContentSelectDropdown, #context-navigation)
-        > menupopup
+        > menupopup:not(.in-menulist)
         > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
         menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -10672,10 +10678,10 @@
         }
       }
       :not(menu, #ContentSelectDropdown, #context-navigation)
-        > menupopup
+        > menupopup:not(.in-menulist)
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       :not(menu, #ContentSelectDropdown, #context-navigation)
-        > menupopup
+        > menupopup:not(.in-menulist)
         > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)
         menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -10712,21 +10718,23 @@
       }
       /* context menu width */
       :not(menu, #ContentSelectDropdown, #context-navigation)
-        > menupopup
+        > menupopup:not(.in-menulist)
         > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       :not(menu, #ContentSelectDropdown, #context-navigation)
-        > menupopup
+        > menupopup:not(.in-menulist)
         > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       #blockedPopupDontShowMessage {
         padding-inline-end: var(--context-menu-background-padding) !important;
       }
       /* text position */
-      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem > .menu-text,
-      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menu > .menu-text {
+      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup:not(.in-menulist) > menuitem > .menu-text,
+      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup:not(.in-menulist) > menu > .menu-text {
         padding-inline-start: var(--context-menu-mac-padding) !important;
       }
       /* Checkbox menuitem, None iconic menu */
-      :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup > menuitem[type="checkbox"] {
+      :not(menu, #ContentSelectDropdown, #context-navigation)
+        > menupopup:not(.in-menulist)
+        > menuitem[type="checkbox"] {
         padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
       }
       /* Global Menu */
