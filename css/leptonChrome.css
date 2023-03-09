@@ -314,6 +314,19 @@
       border-color: color-mix(in srgb, currentColor 80%, transparent) !important;
     }
   }
+  /*= Windows - UI Density Menu Item Padding #649 ===============================*/
+  @media (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win10),
+    (-moz-platform: windows-win10) {
+    @media not (-moz-windows-non-native-menus) {
+      .customization-uidensity-menuitem > .menu-iconic-left {
+        width: unset !important;
+      }
+    }
+  }
   /*= Windows 10 - Native Menu Active Color =====================================*/
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
     @media not (-moz-windows-non-native-menus) {

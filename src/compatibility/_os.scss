@@ -124,6 +124,15 @@
   @include _os_menuEmulate(17%, 80%);
 }
 
+/*= Windows - UI Density Menu Item Padding #649 ===============================*/
+@include OS($win) {
+  @include Win10_NativeMenu() {
+    .customization-uidensity-menuitem > .menu-iconic-left {
+      width: unset !important;
+    }
+  }
+}
+
 /*= Windows 10 - Native Menu Active Color =====================================*/
 @include OS($win10) {
   @include Win10_NativeMenu() {
