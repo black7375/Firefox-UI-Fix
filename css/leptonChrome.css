@@ -3163,7 +3163,8 @@
 @supports -moz-bool-pref("userChrome.rounding.square_menuitem") {
   xul|menulist:not([native]),
   xul|menulist > xul|menupopup xul|menu,
-  xul|menulist > xul|menupopup xul|menuitem {
+  xul|menulist > xul|menupopup xul|menuitem,
+  .customization-uidensity-menuitem {
     border-radius: 0 !important;
   }
 }
