@@ -3066,6 +3066,18 @@
             :root {
               --context-menu-background-padding: 5px;
             }
+            #main-menubar {
+              --context-menu-background-padding: calc(5px + ((1.45em - 16px) / 2));
+            }
+            menuitem:is([type="checkbox"], [type="radio"]) {
+              --menu-padding: 0px;
+            }
+            menuitem[checked="true"] {
+              --context-menu-background-padding: 0px;
+            }
+            menuitem[checked="true"] > .menu-iconic-left {
+              transform: translateX(2px);
+            }
           }
           menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic > .menu-iconic-left,
           menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menuitem-iconic > .menu-iconic-left,

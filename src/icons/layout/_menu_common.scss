@@ -127,8 +127,24 @@ $_initialMenus: selector.append(
       --context-menu-background-padding: 3px;
       --menu-background-padding-default: 0px;
       @include _layout_win_native_context_text_padding;
-      @include Option("userChrome.compatibility.os.win11") {
+    }
+    @include Option("userChrome.compatibility.os.win11") {
+      :root {
         --context-menu-background-padding: 5px;
+      }
+      #main-menubar {
+        --context-menu-background-padding: calc(5px + ((1.45em - 16px) / 2));
+      }
+      menuitem {
+        &:is([type="checkbox"], [type="radio"]) {
+          --menu-padding: 0px;
+        }
+        &[checked="true"] {
+          --context-menu-background-padding: 0px;
+          > .menu-iconic-left {
+            transform: translateX(2px);
+          }
+        }
       }
     }
 
