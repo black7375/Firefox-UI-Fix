@@ -21,7 +21,7 @@ $_bookmarkMenuitem: "menuitem:not(.menuitem-iconic, [disabled=\"true\"])";
 $_bookmarkMenu: "menu:not(.menu-iconic)";
 
 // Components
-$_bookmarkPopup: "menupopup:is(#BMB_bookmarksPopup)";
+$_bookmarkPopup: "menupopup:is(#BMB_bookmarksPopup)[placespopup=\"true\"]";
 $_bookmarkToolbar: "#PersonalToolbar menupopup[placespopup=\"true\"]";
 
 $_bookmarkPopupMenus: selector.nest(
