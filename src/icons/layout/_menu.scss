@@ -80,17 +80,9 @@ $_layoutCommonMenus: (
 
 /* Padding - Windows */
 @include _layout_root_win;
-@include _layout_root_win7_8;
-@include OS($win7, $win8) {
+@include OS($win) {
   @include _layoutIconMenus {
-    @include _layout_init_win7_8();
-  }
-}
-@include OS($win10) {
-  @include _layout_root_win10;
-
-  @include _layoutIconMenus {
-    @include _layout_init_win10;
+    @include _layout_init_win();
   }
 }
 
