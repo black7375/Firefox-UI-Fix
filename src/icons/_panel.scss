@@ -469,7 +469,7 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 #sidebar-switcher-tabs {
-  list-style-image: url("chrome://browser/skin/tab.svg");
+  list-style-image: url("../icons/synced-tabs.svg");
 }
 
 #sidebar-reverse-position {
@@ -483,6 +483,15 @@ panelMenuBookmarkThisPage[starred] {
 /*= unified-extensions-view ===================================================*/
 #unified-extensions-manage-extensions {
   list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+}
+
+/*= Compatibility ============================================================*/
+// https://github.com/mozilla/gecko-dev/commit/d8ad6ecc983133a46a30cc998073d30a5e0e5f00
+.sync-engine-tabs .checkbox-icon,
+.sync-engine-tabs.sync-engine-image,
+#sidebar-box[sidebarcommand="viewTabsSidebar"] > #sidebar-header > #sidebar-switcher-target > #sidebar-icon,
+#sync-button {
+  list-style-image: url("../icons/synced-tabs.svg") !important;
 }
 
 /*= Tab Mix Plus =============================================================*/

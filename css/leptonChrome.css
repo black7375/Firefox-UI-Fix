@@ -10446,7 +10446,7 @@
       list-style-image: url("chrome://browser/skin/history.svg");
     }
     #sidebar-switcher-tabs {
-      list-style-image: url("chrome://browser/skin/tab.svg");
+      list-style-image: url("../icons/synced-tabs.svg");
     }
     #sidebar-reverse-position {
       list-style-image: var(--uc-sidebar-icon-reverse);
@@ -10457,6 +10457,13 @@
     /*= unified-extensions-view ===================================================*/
     #unified-extensions-manage-extensions {
       list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+    }
+    /*= Compatibility ============================================================*/
+    .sync-engine-tabs .checkbox-icon,
+    .sync-engine-tabs.sync-engine-image,
+    #sidebar-box[sidebarcommand="viewTabsSidebar"] > #sidebar-header > #sidebar-switcher-target > #sidebar-icon,
+    #sync-button {
+      list-style-image: url("../icons/synced-tabs.svg") !important;
     }
     /*= Tab Mix Plus =============================================================*/
     #allTabsMenu_sortTabsButton {
