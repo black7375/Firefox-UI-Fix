@@ -1829,6 +1829,7 @@
     /* From checkbox.css */
     checkbox {
       appearance: none !important;
+      align-items: center !important;
       -moz-box-align: center !important;
       margin: 4px 2px !important;
     }
@@ -2001,6 +2002,7 @@
       }
     }
     #label-box {
+      align-items: center !important;
       -moz-box-align: center !important;
       -moz-box-pack: center !important;
       font-weight: 600 !important;
@@ -4238,6 +4240,7 @@
       }
       #nav-bar,
       #nav-bar-customization-target {
+        align-items: center;
         -moz-box-align: center;
       }
       #urlbar-container {
@@ -4339,6 +4342,7 @@
         }
         #nav-bar,
         #nav-bar-customization-target {
+          align-items: center;
           -moz-box-align: center;
         }
         #urlbar-container {
@@ -6892,6 +6896,7 @@
   @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
     #tabs-newtab-button {
       /* Size */
+      align-items: stretch !important;
       -moz-box-align: stretch !important;
       padding-top: var(--tab-block-margin) !important;
     }

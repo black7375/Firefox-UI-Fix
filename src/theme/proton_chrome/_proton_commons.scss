@@ -278,7 +278,7 @@
   }
 
   #label-box {
-    -moz-box-align: center !important;
+    @include BoxAlign("center", true);
     -moz-box-pack: center !important;
     font-weight: 600 !important;
   }
