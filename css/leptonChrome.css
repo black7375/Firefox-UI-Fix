@@ -3969,12 +3969,12 @@
     See the above repository for updates as well as full license text. */
     /*= Tabbar - Move to bottom ==================================================*/
     #titlebar {
-      order: 2; /* When userChrome.fullscreen.overlap */
+      order: 2;
       -moz-box-ordinal-group: 2;
       --tabs-navbar-shadow-size: 0px;
     }
     #tab-notification-deck {
-      order: 2; /* When userChrome.fullscreen.overlap */
+      order: 2;
       -moz-box-ordinal-group: 2;
     }
     #TabsToolbar .titlebar-spacer {
@@ -3985,7 +3985,7 @@
     }
     @supports -moz-bool-pref("userChrome.tabbar.on_bottom.above_bookmark") {
       #PersonalToolbar {
-        order: 2; /* When userChrome.fullscreen.overlap */
+        order: 2;
         -moz-box-ordinal-group: 2;
       }
     }
@@ -4081,12 +4081,12 @@
         See the above repository for updates as well as full license text. */
         /*= Tabbar - Move to bottom ==================================================*/
         #titlebar {
-          order: 2; /* When userChrome.fullscreen.overlap */
+          order: 2;
           -moz-box-ordinal-group: 2;
           --tabs-navbar-shadow-size: 0px;
         }
         #tab-notification-deck {
-          order: 2; /* When userChrome.fullscreen.overlap */
+          order: 2;
           -moz-box-ordinal-group: 2;
         }
         #TabsToolbar .titlebar-spacer {
@@ -4097,7 +4097,7 @@
         }
         @supports -moz-bool-pref("userChrome.tabbar.on_bottom.above_bookmark") {
           #PersonalToolbar {
-            order: 2; /* When userChrome.fullscreen.overlap */
+            order: 2;
             -moz-box-ordinal-group: 2;
           }
         }
@@ -7215,6 +7215,7 @@
     .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy])
       .tab-close-button {
       display: -moz-box !important;
+      order: 0 !important;
       -moz-box-ordinal-group: 0 !important;
       /* Looks like hover */
       width: var(--uc-close-button-size) !important;
@@ -7233,6 +7234,7 @@
     @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.always") {
       .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
         display: -moz-box !important;
+        order: 0 !important;
         -moz-box-ordinal-group: 0 !important;
         /* Looks like hover */
         width: var(--uc-close-button-size) !important;
@@ -7252,6 +7254,7 @@
     @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.background") {
       .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
         display: -moz-box !important;
+        order: 0 !important;
         -moz-box-ordinal-group: 0 !important;
         /* Looks like hover */
         width: var(--uc-close-button-size) !important;
@@ -7474,6 +7477,7 @@
     width: 14px;
     height: 14px;
     background-size: 14px;
+    order: 1 !important;
     -moz-box-ordinal-group: 1 !important;
     /* Color */
     fill: currentColor;
@@ -7487,6 +7491,7 @@
   }
   /* Close Button's position */
   .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-close-button {
+    order: 2 !important;
     -moz-box-ordinal-group: 2 !important;
   }
   #tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-close-button {
@@ -8107,12 +8112,15 @@
     --uc-combined-circlebutton-active-background: color-mix(in srgb, currentColor 20%, transparent);
   }
   #nav-bar-customization-target > * {
+    order: 1;
     -moz-box-ordinal-group: 1;
   }
   #nav-bar-customization-target > #urlbar-container {
+    order: 5;
     -moz-box-ordinal-group: 5;
   }
   #nav-bar-customization-target > #urlbar-container ~ * {
+    order: 7;
     -moz-box-ordinal-group: 7;
   }
 }
@@ -8464,9 +8472,11 @@
 }
 @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
   #nav-bar-customization-target > #back-button {
+    order: 2;
     -moz-box-ordinal-group: 2;
   }
   #nav-bar-customization-target > #forward-button {
+    order: 4;
     -moz-box-ordinal-group: 4;
   }
   @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
@@ -8499,6 +8509,7 @@
 }
 @supports -moz-bool-pref("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #home-button {
+    order: 3;
     -moz-box-ordinal-group: 3;
   }
   @supports not -moz-bool-pref("userChrome.combined.urlbar.nav_button") {
@@ -8546,6 +8557,7 @@
 }
 @supports -moz-bool-pref("userChrome.combined.urlbar.reload_button") {
   #nav-bar-customization-target > #stop-reload-button {
+    order: 6;
     -moz-box-ordinal-group: 6;
   }
   #urlbar {
@@ -8672,6 +8684,7 @@
   menupopup[placespopup="true"] > menu.bookmark-item > .menu-iconic-highlightable-text,
   menupopup[placespopup="true"] > menu.bookmark-item > .menu-accel-container,
   menupopup[placespopup="true"] > menu.bookmark-item > .menu-right {
+    order: 2;
     -moz-box-ordinal-group: 2;
   }
   menu.bookmark-item > menupopup[placespopup="true"] > .bookmark-item {
@@ -8686,6 +8699,7 @@
     z-index: 1;
   }
   findbar {
+    order: 0;
     -moz-box-ordinal-group: 0;
     position: relative;
     height: 0 !important;
@@ -9571,6 +9585,7 @@
 }
 @supports -moz-bool-pref("userChrome.autohide.fill_urlbar") {
   #nav-bar:not(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
+    order: 0;
     -moz-box-ordinal-group: 0;
     min-width: calc(
       var(--uc-navbar-width, 100vw) -
@@ -10022,6 +10037,7 @@
     #appMenu-proton-addon-banners > .addon-banner-item > .toolbarbutton-icon {
       display: -moz-inline-box !important;
       margin-inline-start: var(--arrowpanel-menuicon-padding);
+      order: 0 !important;
       -moz-box-ordinal-group: 0 !important;
     }
     #appMenu-proton-update-banner::before {
@@ -10154,6 +10170,7 @@
     }
     @supports -moz-bool-pref("userChrome.icon.account_image_to_right") {
       #fxa-manage-account-button::before {
+        order: 2 !important;
         -moz-box-ordinal-group: 2 !important;
       }
     }
@@ -10165,6 +10182,7 @@
     }
     .syncNowBtn {
       visibility: visible !important;
+      order: 1 !important;
       -moz-box-ordinal-group: 1 !important;
       margin-inline-end: var(--arrowpanel-menuicon-padding);
     }
@@ -10213,6 +10231,7 @@
       padding: 0;
     }
     #PanelUI-fxa-menu > :first-child {
+      order: 0;
       -moz-box-ordinal-group: 0;
     }
     #PanelUI-sign-out-separator {
