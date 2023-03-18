@@ -93,6 +93,7 @@
 }
 
 @include Option("userChrome.rounding.square_urlView_item") {
+  .urlbarView-row, // At FF v111 #668
   .urlbarView-row-inner {
     --toolbarbutton-border-radius: 0;
   }
