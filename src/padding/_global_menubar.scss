@@ -1,6 +1,6 @@
 /* Vertical Align - Center & Height: 100%  */
 #main-menubar {
-  -moz-box-flex: 1 !important;
+  @include BoxFlex(1, true);
 }
 
 /* Rounding */
