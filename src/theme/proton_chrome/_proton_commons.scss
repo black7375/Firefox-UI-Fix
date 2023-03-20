@@ -279,7 +279,7 @@
 
   #label-box {
     @include BoxAlign("center", true);
-    -moz-box-pack: center !important;
+    @include BoxPack("center", true);
     font-weight: 600 !important;
   }
 
