@@ -42,7 +42,7 @@ findbar {
 }
 
 .findbar-container {
-  -moz-box-direction: reverse;
+  @include BoxDirection("reverse");
   border-width: 0 0 1px 1px;
   border-radius: var(--toolbarbutton-border-radius) 0 0 var(--toolbarbutton-border-radius) !important;
 
