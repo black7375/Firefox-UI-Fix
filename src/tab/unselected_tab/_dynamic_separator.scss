@@ -47,6 +47,9 @@
     /* More position */
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y));
   }
+  #tabs-newtab-button::before {
+    left: calc(50%  - (8px + var(--toolbarbutton-inner-padding)));
+  }
 }
 
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
