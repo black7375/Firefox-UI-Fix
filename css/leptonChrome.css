@@ -6187,7 +6187,7 @@
     > .tab-stack
     > .tab-background:-moz-lwtheme {
     --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
-    filter: drop-shadow(-1px -0.5px 0px var(--uc-tab-shadow-color, transparent))
+    filter: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
       drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent)) drop-shadow(0 0 2px rgba(128, 128, 142, 0.5));
   }
   :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
@@ -6196,7 +6196,7 @@
     .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
     > .tab-stack
     > .tab-background:-moz-lwtheme {
-    filter: drop-shadow(-1px -0.5px 0px var(--uc-tab-shadow-color, transparent))
+    filter: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
       drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent));
   }
 }
