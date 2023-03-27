@@ -107,11 +107,13 @@
   --card-shadow: var(--shadow-10);
   --card-outline-color: var(--grey-30);
   --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
-}
 
-@include Dark {
-  :host,
-  :root {
+  // Lepton color
+  // https://github.com/mozilla/gecko-dev/blob/master/browser/themes/shared/toolbarbutton-icons.css
+  // https://github.com/mozilla/gecko-dev/blob/master/toolkit/themes/shared/aboutNetError.css
+  --uc-warning-icon-bgcolor: #ffa436; // or #fcd100
+
+  @include Dark {
     /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
     --in-content-page-background: rgb(28, 27, 34);
     --in-content-page-color: rgb(251, 251, 254);
@@ -154,5 +156,12 @@
     --card-outline-color: var(--grey-60);
 
     --dialog-warning-text-color: var(--red-40);
+
+    // Lepton color
+    --uc-warning-icon-bgcolor: #ffbd4f;
+  }
+
+  @include Contrast {
+    --uc-warning-icon-bgcolor: var(--in-content-page-color);
   }
 }

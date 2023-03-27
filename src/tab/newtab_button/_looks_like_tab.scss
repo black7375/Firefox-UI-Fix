@@ -1,7 +1,7 @@
 #tabs-newtab-button {
   @include Option("userChrome.tab.connect_to_window") {
     /* Size */
-    -moz-box-align: stretch !important;
+    @include BoxAlign("stretch", true);
     padding-top: var(--tab-block-margin) !important;
   }
 

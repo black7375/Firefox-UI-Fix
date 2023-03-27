@@ -37,6 +37,7 @@
     &:not([collapsed]) {
       /* -moz-box-flex may be caused #tabbrowser-tabs[closebuttons] */
       transition: -moz-box-flex 0.2s var(--animation-easing-function),
+        flex 0.2s var(--animation-easing-function),
         margin-inline-start 0.2s var(--animation-easing-function), min-width 0.1s ease-out, max-width 0.1s ease-out !important;
     }
     &[pinned] {

@@ -9,7 +9,7 @@ menupopup[placespopup="true"] > menu.bookmark-item::after {
 menupopup[placespopup="true"] > menu.bookmark-item > .menu-iconic-highlightable-text,
 menupopup[placespopup="true"] > menu.bookmark-item > .menu-accel-container,
 menupopup[placespopup="true"] > menu.bookmark-item > .menu-right {
-  -moz-box-ordinal-group: 2;
+  @include BoxOrder(2);
 }
 
 menu.bookmark-item > menupopup[placespopup="true"] > .bookmark-item {
