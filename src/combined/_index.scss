@@ -30,18 +30,18 @@
   }
 
   #nav-bar-customization-target > * {
-    -moz-box-ordinal-group: 1;
+    @include BoxOrder(1);
   }
   // Preserve
   // `back`    -> 2
   // `home`    -> 3
   // `forward` -> 4
   #nav-bar-customization-target > #urlbar-container {
-    -moz-box-ordinal-group: 5;
+    @include BoxOrder(5);
   }
   // `reload`  -> 6
   #nav-bar-customization-target > #urlbar-container ~ * {
-    -moz-box-ordinal-group: 7;
+    @include BoxOrder(7);
   }
 }
 
@@ -97,10 +97,10 @@
 @include Option("userChrome.combined.urlbar.nav_button") {
   #nav-bar-customization-target > {
     #back-button {
-      -moz-box-ordinal-group: 2;
+      @include BoxOrder(2);
     }
     #forward-button {
-      -moz-box-ordinal-group: 4;
+      @include BoxOrder(4);
     }
 
     $button: ":is(toolbarbutton, toolbaritem)";
@@ -133,7 +133,7 @@
 }
 @include Option("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #home-button {
-    -moz-box-ordinal-group: 3;
+    @include BoxOrder(3);
 
     @include NotOption("userChrome.combined.urlbar.nav_button") {
       &:is(:first-child) + :is(toolbarbutton, toolbaritem) {
@@ -145,7 +145,7 @@
 }
 @include Option("userChrome.combined.urlbar.reload_button") {
   #nav-bar-customization-target > #stop-reload-button {
-    -moz-box-ordinal-group: 6;
+    @include BoxOrder(6);
   }
 
   @import "reload_button";

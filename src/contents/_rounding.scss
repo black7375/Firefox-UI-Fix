@@ -1,13 +1,14 @@
 @include Option("userChrome.rounding.square_button") {
   @include moz-document(
     url-prefix "about:",
-    url-prefix "chrome://browser/content/",
-    url-prefix "chrome://pippki/content/"
+    regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"
   ) {
     button,
     .close-icon,
     .action-icon::before,
     .web-appearance-choice,
+    .page-section-header > .twisty,
+    .closed-tab-li-main,
     #categories > .category,
     .sidebar-footer-link {
       border-radius: 0 !important;
@@ -37,6 +38,15 @@
       border-radius: 0 !important;
     }
   }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    .toolbarButton,
+    .dropdownToolbarButton,
+    .secondaryToolbarButton,
+    .dialogButton {
+      border-radius: 0 !important;
+    }
+  }
 }
 
 @include Option("userChrome.rounding.square_dialog") {
@@ -51,13 +61,18 @@
       border-radius: 0 !important;
     }
   }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    dialog {
+      border-radius: 0 !important;
+    }
+  }
 }
 
 @include Option("userChrome.rounding.square_checklabel") {
   @include moz-document(
     url-prefix "about:",
-    url-prefix "chrome://browser/content/",
-    url-prefix "chrome://pippki/content/"
+    regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"
   ) {
     input[type="checkbox"]:not(.toggle-button),
     .checkbox-check {
@@ -69,8 +84,7 @@
 @include Option("userChrome.rounding.square_field") {
   @include moz-document(
     url-prefix "about:",
-    url-prefix "chrome://browser/content/",
-    url-prefix "chrome://pippki/content/"
+    regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"
   ) {
     input:is([type="color"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]),
     textarea,
@@ -99,6 +113,13 @@
       }
     }
   }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    .toolbarField,
+    .thumbnailSelectionRing {
+      border-radius: 0 !important;
+    }
+  }
 }
 
 @include Option("userChrome.rounding.square_menupopup") {
@@ -122,6 +143,13 @@
 
   @include moz-document(url "about:home", url "about:newtab") {
     .context-menu {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(regexp ".*\.pdf$") {
+    .doorHanger,
+    .doorHangerRight {
       border-radius: 0 !important;
     }
   }
