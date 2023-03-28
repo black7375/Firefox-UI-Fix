@@ -51,7 +51,7 @@
   }
 }
 
-/*= Windows 7, 8 - Menu Active Color =========================================*/
+/*= Windows 7, 8 - Menu Bar ==================================================*/
 @include OS($win7, $win8) {
   menupopup > menu,
   menupopup > menuitem,
@@ -68,76 +68,88 @@
     color: inherit !important; /* Original: -moz-menubarhovertext */
     background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
   }
+}
 
-  menulist > menupopup > menuitem[_moz-menuactive="true"],
-  menulist > menupopup > menu[_moz-menuactive="true"] {
-    background-color: highlight !important;
-    color: highlighttext !important;
-  }
+/*= Windows - Native Menu ====================================================*/
+//-- Mixin ---------------------------------------------------------------------
+@mixin _os_menuEmulateActive($activeBg, $activeBd, $disabledBg, $disabledBd) {
+  menu[_moz-menuactive="true"],
+  menuitem[_moz-menuactive="true"] {
+    background-color: $activeBg !important;
+    border-color: $activeBd !important;
 
-  #PlacesToolbar menu,
-  #PlacesToolbar menuitem,
-  #BMB_bookmarksPopup menu,
-  #BMB_bookmarksPopup menuitem {
-    border: none !important; /* Remove border */
-
-    &:not([disabled], :active)[_moz-menuactive="true"] {
-      background-color: var(--button-hover-bgcolor) !important;
+    &[disabled="true"] {
+      background-color: $disabledBg !important;
+      border-color: $disabledBd !important;
     }
   }
 }
-
-//-- Mixin ---------------------------------------------------------------------
 @mixin _os_menuEmulate($bgRate, $bdRate) {
-  menu[_moz-menuactive="true"],
-  menuitem[_moz-menuactive="true"] {
-    background-color: color-mix(in srgb, -moz-menuhover $bgRate, transparent) !important;
-    border-color: color-mix(in srgb, -moz-menuhover $bdRate, transparent) !important;
-
-    &[disabled="true"] {
-      background-color: color-mix(in srgb, currentColor $bgRate, transparent) !important;
-      border-color: color-mix(in srgb, currentColor $bdRate, transparent) !important;
-    }
-  }
+  @include _os_menuEmulateActive(
+    color-mix(in srgb, -moz-menuhover $bgRate, transparent),
+    color-mix(in srgb, -moz-menuhover $bdRate, transparent),
+    color-mix(in srgb, currentColor $bgRate, transparent),
+    color-mix(in srgb, currentColor $bdRate, transparent)
+  );
 }
 
 //------------------------------------------------------------------------------
 
-@include OS($win7) {
-  @media (-moz-windows-classic: 0) {
-    @include _os_menuEmulate(5%, 60%);
-
-    /* Remove text shadow */
-    :root:-moz-lwtheme #toolbar-menubar {
-      text-shadow: unset !important;
-      /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
+@include WinNativeMenu() {
+  @include OS($win) {
+    // UI Density Menu Item Padding #649
+    .customization-uidensity-menuitem > .menu-iconic-left {
+      width: unset !important;
     }
 
-    /* Remove Color */
-    :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
-      background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
-      color: unset !important; /* Original: black */
+    menulist > menupopup > menuitem[_moz-menuactive="true"],
+    menulist > menupopup > menu[_moz-menuactive="true"] {
+      background-color: highlight !important;
+      color: highlighttext !important;
+    }
+
+    #PlacesToolbar menu,
+    #PlacesToolbar menuitem,
+    #BMB_bookmarksPopup menu,
+    #BMB_bookmarksPopup menuitem {
+      border: none !important; /* Remove border */
+
+      &:not([disabled], :active)[_moz-menuactive="true"] {
+        background-color: var(--button-hover-bgcolor) !important;
+      }
     }
   }
-}
-@include OS($win8) {
-  @include _os_menuEmulate(17%, 80%);
-}
 
-/*= Windows 10 - Native Menu Active Color =====================================*/
-@include OS($win10) {
-  @include Win10_NativeMenu() {
-    @include NativeMenuPopup {
-      menu[_moz-menuactive="true"],
-      menuitem[_moz-menuactive="true"] {
-        background-color: #91c9f7 !important; // color-mix(in srgb, -moz-menuhover 40%, transparent)
-        border-color: transparent !important;
+  @include OS($win7) {
+    @media (-moz-windows-classic: 0) {
+      @include _os_menuEmulate(5%, 60%);
 
-        &[disabled="true"] {
-          background-color: color-mix(in srgb, currentColor 9%, transparent) !important;
-          border-color: transparent !important;
-        }
+      /* Remove text shadow */
+      :root:-moz-lwtheme #toolbar-menubar {
+        text-shadow: unset !important;
+        /* Original: 0 0 .5em white, 0 0 .5em white, 0 1px 0 rgba(255, 255, 255, .4) */
       }
+
+      /* Remove Color */
+      :root:-moz-lwtheme #main-menubar:not(:-moz-window-inactive) {
+        background-color: unset !important; /* Original: rgba(255, 255, 255, .5) */
+        color: unset !important; /* Original: black */
+      }
+    }
+  }
+
+  @include OS($win8) {
+    @include _os_menuEmulate(17%, 80%);
+  }
+
+  @include OS($win10) {
+    @include NativeMenuPopup {
+      @include _os_menuEmulateActive(
+        #91c9f7, // color-mix(in srgb, -moz-menuhover 40%, transparent)
+        transparent,
+        color-mix(in srgb, currentColor 9%, transparent),
+        transparent
+      );
     }
   }
 }

@@ -35,7 +35,7 @@ spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
   // padding-inline-start: calc(var(--tab-shadow-max-size) + 1px) !important;
 
   &[pinned="true"] {
-    -moz-box-flex: 100;
+    @include BoxFlex(100);
     max-width: var(--tab-max-width) !important;
   }
   .tab-label-container {

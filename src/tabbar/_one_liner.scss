@@ -51,7 +51,7 @@
 
   #nav-bar,
   #nav-bar-customization-target {
-    -moz-box-align: center;
+    @include BoxAlign("center");
   }
 
   #urlbar-container {

@@ -1,6 +1,6 @@
 @include moz-document(
   url-prefix "about:neterror",
-  url "about:restartrequired",
+  url-prefix "about:restartrequired",
   url "chrome://browser/content/aboutRestartRequired.xhtml",
   url "about:sessionrestore",
   url "chrome://browser/content/aboutSessionRestore.xhtml"
@@ -75,7 +75,7 @@
   url-prefix "about:neterror?e=netReset",
   url-prefix "about:neterror?e=netTimeout",
   url-prefix "about:neterror?e=netOffline",
-  url "about:restartrequired",
+  url-prefix "about:restartrequired",
   url "chrome://browser/content/aboutRestartRequired.xhtml"
 ) {
   @include _errorContainerImage("../icons/error-connection-failure.svg");
@@ -118,4 +118,14 @@
 }
 @include moz-document(url "about:welcomeBack", url "chrome://browser/content/aboutWelcomeBack.xhtml") {
   @include _errorTitleImage("../icons/welcome-back.svg");
+}
+
+@include moz-document(url-prefix "about:preferences") {
+  #no-results-message::after {
+    content: url("../icons/no-search-results.svg");
+    width: 380px;
+    height: 293px;
+    margin-top: 64px;
+    margin-inline: auto;
+  }
 }

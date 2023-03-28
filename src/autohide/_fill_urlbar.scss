@@ -1,5 +1,5 @@
 #nav-bar:not(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
-  -moz-box-ordinal-group: 0;
+  @include BoxOrder(0);
   min-width: calc(var(--uc-navbar-width, 100vw) - ((2 * var(--urlbar-margin-inline)) + var(--uc-window-drag-space-pre, 0px) + var(--uc-navbar-gap, 0px))) !important;
 }
 

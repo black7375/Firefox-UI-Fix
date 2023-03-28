@@ -15,13 +15,15 @@
   .urlbarView-button,
   .urlbarView-tip-button,
   .urlbarView-action,
-  .tab-close-button,
   toolbarbutton.bookmark-item:not(.subviewbutton),
   #sidebar-switcher-target {
     --toolbarbutton-border-radius: 0;  /* Original: 4px */
   }
 
   button,
+  .close-icon,
+  input[type="number"].photon-number::-moz-number-spin-box,
+  .toggle-group-label,
   findbar toolbarbutton,
   .notification-button,
   #main-menubar > menu {
@@ -63,17 +65,23 @@
 @include Option("userChrome.rounding.square_menuitem") {
   xul|menulist:not([native]),
   xul|menulist > xul|menupopup xul|menu,
-  xul|menulist > xul|menupopup xul|menuitem {
+  xul|menulist > xul|menupopup xul|menuitem,
+  .customization-uidensity-menuitem {
     border-radius: 0 !important;
   }
 }
 
 @include Option("userChrome.rounding.square_field") {
-  html|select[size][multiple],
-  xul|listheader,
-  xul|richlistbox,
-  xul|menulist,
-  html|input {
+  input:not([type="radio"], [type="checkbox"]),
+  textarea,
+  select,
+  menulist,
+  tree,
+  treecols,
+  listheader,
+  richlistbox,
+  search-textbox,
+  .subviewradio {
     border-radius: 0 !important;
   }
 
@@ -85,12 +93,14 @@
 }
 
 @include Option("userChrome.rounding.square_urlView_item") {
+  .urlbarView-row, // At FF v111 #668
   .urlbarView-row-inner {
     --toolbarbutton-border-radius: 0;
   }
 }
 
 @include Option("userChrome.rounding.square_checklabel") {
+  input[type="checkbox"],
   .checkbox-check {
     border-radius: 0 !important;
   }

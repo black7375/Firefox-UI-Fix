@@ -1,8 +1,11 @@
+//-- Mixin ---------------------------------------------------------------------
 $ucTabBasicShadow: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
 $ucTabAdditionalShadow: drop-shadow(0 0 2px rgba(128, 128, 142, 0.5));
 $ucTabBackgroundShadowSoft: drop-shadow(0 0 1px var(--uc-tab-shadow-color, transparent));
-$ucTabBackgroundShadowHard: drop-shadow(-1px -0.5px 0px var(--uc-tab-shadow-color, transparent))
+$ucTabBackgroundShadowHard: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
                             drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent));
+
+//------------------------------------------------------------------------------
 
 #TabsToolbar {
   --uc-tab-shadow-color: var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9))));

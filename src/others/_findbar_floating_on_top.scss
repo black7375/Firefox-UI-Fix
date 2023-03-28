@@ -9,7 +9,7 @@ See the above repository for updates as well as full license text. */
 }
 
 findbar {
-  -moz-box-ordinal-group: 0;
+  @include BoxOrder(0);
   position: relative;
 
   height: 0 !important;
@@ -28,7 +28,7 @@ findbar {
   &::before {
     content:"";
     display: -moz-box;
-    -moz-box-flex: 200;
+    @include BoxFlex(200);
   }
 }
 
@@ -42,7 +42,7 @@ findbar {
 }
 
 .findbar-container {
-  -moz-box-direction: reverse;
+  @include BoxDirection("reverse");
   border-width: 0 0 1px 1px;
   border-radius: var(--toolbarbutton-border-radius) 0 0 var(--toolbarbutton-border-radius) !important;
 
@@ -54,7 +54,7 @@ findbar {
     display: -moz-box;
     overflow: hidden;
     text-overflow: ellipsis;
-    -moz-box-flex: 1;
+    @include BoxFlex(1);
   }
   > hbox {
     margin-inline: 5px;

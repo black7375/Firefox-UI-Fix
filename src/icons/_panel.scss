@@ -2,7 +2,7 @@
 #appMenu-proton-addon-banners > .addon-banner-item > .toolbarbutton-icon {
   display: -moz-inline-box !important;
   margin-inline-start: var(--arrowpanel-menuicon-padding);
-  -moz-box-ordinal-group: 0 !important;
+  @include BoxOrder(0, true);
 }
 
 #appMenu-proton-update-banner::before {
@@ -142,7 +142,7 @@
   margin-inline-end: var(--arrowpanel-menuicon-padding);
 
   @include Option("userChrome.icon.account_image_to_right") {
-    -moz-box-ordinal-group: 2 !important;
+    @include BoxOrder(2, true);
   }
 }
 @include Option("userChrome.icon.account_label_to_right") {
@@ -153,7 +153,8 @@
 
 .syncNowBtn {
   visibility: visible !important;
-  -moz-box-ordinal-group: 1 !important;
+  @include BoxOrder(1, true);
+
   margin-inline-end: var(--arrowpanel-menuicon-padding);
 }
 #PanelUI-fxa-menu-setup-sync-button {
@@ -204,7 +205,7 @@
   padding: 0;
 }
 #PanelUI-fxa-menu > :first-child {
-  -moz-box-ordinal-group: 0;
+  @include BoxOrder(0);
 }
 #PanelUI-sign-out-separator {
   display: none;
@@ -469,7 +470,7 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 #sidebar-switcher-tabs {
-  list-style-image: url("chrome://browser/skin/tab.svg");
+  list-style-image: url("../icons/synced-tabs.svg");
 }
 
 #sidebar-reverse-position {
@@ -483,6 +484,15 @@ panelMenuBookmarkThisPage[starred] {
 /*= unified-extensions-view ===================================================*/
 #unified-extensions-manage-extensions {
   list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+}
+
+/*= Compatibility ============================================================*/
+// https://github.com/mozilla/gecko-dev/commit/d8ad6ecc983133a46a30cc998073d30a5e0e5f00
+.sync-engine-tabs .checkbox-icon,
+.sync-engine-tabs.sync-engine-image,
+#sidebar-box[sidebarcommand="viewTabsSidebar"] > #sidebar-header > #sidebar-switcher-target > #sidebar-icon,
+#sync-button {
+  list-style-image: url("../icons/synced-tabs.svg") !important;
 }
 
 /*= Tab Mix Plus =============================================================*/
