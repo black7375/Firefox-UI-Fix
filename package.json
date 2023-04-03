@@ -19,6 +19,25 @@
     "test": "jest",
     "validate": "csstree-validator css/leptonChrome.css; csstree-validator css/leptonContent.css"
   },
+  "webExt": {
+    "verbose": true,
+    "sourceDir": "addon",
+    "build": {
+      "overwriteDest": true,
+    }
+    "run": {
+      "firefox": "nightly",
+      "pref": [
+        "extensions.experiments.enabled=true"
+      ]
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@example.com",
+      "strict_min_version": "89.0"
+    }
+  },
   "devDependencies": {
     "csstree-validator": "^3.0.0",
     "fast-glob": "^3.2.12",
@@ -26,7 +45,8 @@
     "jest-environment-node-single-context": "^29.0.0",
     "prettier": "^2.8.1",
     "sass": "^1.57.1",
-    "sass-true": "^7.0.0"
+    "sass-true": "^7.0.0",
+    "web-ext": "^7.6.0"
   },
   "jest": {
     "testEnvironment": "jest-environment-node-single-context"
