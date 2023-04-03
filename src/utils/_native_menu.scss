@@ -1,4 +1,5 @@
 @use "option" as *;
+@use "os" as *;
 
 @mixin NativeMenu() {
   @include Option("widget.macos.native-context-menus", "widget.gtk.native-context-menus") {
@@ -10,6 +11,17 @@
   menupopup:is(#historyMenuPopup, #bookmarksMenuPopup),
   menupopup:not([placespopup="true"]) {
     @content;
+  }
+}
+
+@mixin NonNativeMenu() {
+  @media (-moz-windows-non-native-menus) {
+    @content;
+  }
+  @include Option("userChrome.theme.non_native_menu") {
+    @include OS("linux") {
+      @content;
+    }
   }
 }
 

@@ -12,6 +12,9 @@
         @include native_menu.NativeMenuPopup {
           @include example;
         }
+        @include native_menu.NonNativeMenu {
+          @include example;
+        }
         @include native_menu.WinNativeMenu {
           @include example;
         }
@@ -26,6 +29,14 @@
         menupopup:is(#historyMenuPopup, #bookmarksMenuPopup),
         menupopup:not([placespopup="true"]) {
           @include example;
+        }
+        @media (-moz-windows-non-native-menus) {
+          @include example;
+        }
+        @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+          @media (-moz-gtk-csd-available) {
+            @include example;
+          }
         }
         @media not (-moz-windows-non-native-menus) {
           @include example;

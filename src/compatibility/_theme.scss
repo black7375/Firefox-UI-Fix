@@ -144,7 +144,7 @@ vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
 }
 
 /*= Menu color #477 ==========================================================*/
-@media (-moz-windows-non-native-menus) {
+@include NonNativeMenu {
   :root {
     /* Override some menu color variables for light browser themes. */
     --menuitem-hover-background-color: #e0e0e6;

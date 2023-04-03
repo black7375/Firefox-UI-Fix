@@ -8,6 +8,11 @@
   @import "private";
 }
 
+/*= None Native Menu =========================================================*/
+@include Option("userChrome.theme.non_native_menu") {
+  @import "non_native_menu";
+}
+
 /*= Fully Theme Mode =========================================================*/
 // Default Themes
 //   https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json

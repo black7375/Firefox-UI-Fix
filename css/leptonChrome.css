@@ -179,6 +179,40 @@
       --menu-icon-opacity: var(--dark-menu-icon-opacity);
     }
   }
+  @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+    @media (-moz-gtk-csd-available) {
+      :root {
+        /* Override some menu color variables for light browser themes. */
+        --menuitem-hover-background-color: #e0e0e6;
+        --menu-background-color: #f9f9fb;
+        --menu-color: #15141a;
+        --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
+        --menu-disabled-color: rgba(21, 20, 26, 0.4);
+        --menu-border-color: #cfcfd8;
+        --menu-icon-opacity: 0.7;
+        /* Declare menu colors for dark themes, but don't override anything yet. */
+        --dark-menuitem-hover-background-color: #52525e;
+        --dark-menu-background-color: #2b2a33;
+        --dark-menu-color: #fbfbfe;
+        --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
+        --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
+        --dark-menu-border-color: #5b5b66;
+        --dark-menu-icon-opacity: 1;
+      }
+      /* Override the menu color variables for dark browser themes. */
+      @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+        :root {
+          --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
+          --menu-background-color: var(--dark-menu-background-color);
+          --menu-color: var(--dark-menu-color);
+          --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
+          --menu-disabled-color: var(--dark-menu-disabled-color);
+          --menu-border-color: var(--dark-menu-border-color);
+          --menu-icon-opacity: var(--dark-menu-icon-opacity);
+        }
+      }
+    }
+  }
   /*= Firefox View Border #498 =================================================*/
   :root:not([privatebrowsingmode="temporary"])[firefoxviewhidden] #firefox-view-button + #tabbrowser-tabs {
     border-inline-start: none !important;
@@ -1269,6 +1303,232 @@
     --menuitem-disabled-hover-background-color: #ffffff00 !important;
     --menu-disabled-color: #ffffff50 !important;
     --menu-border-color: #322560 !important;
+  }
+}
+/*= None Native Menu =========================================================*/
+@supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+  @media (-moz-gtk-csd-available) {
+    :root {
+      /* Override some menu color variables for light browser themes. */
+      --menu-icon-opacity: 0.7;
+      --nested-margin: -10px;
+      --windows-panel-box-shadow: 0 0 4px hsla(0, 0%, 0%, 0.2);
+    }
+    /* Override the menu color variables for dark browser themes. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --menu-icon-opacity: 1;
+      }
+    }
+    /* For Windows 10, prevent using native OS drawing of certain menu elements,
+       especially background colors and shadows. */
+    menu,
+    menuitem,
+    menucaption {
+      appearance: none !important;
+    }
+    /* Menu item text also needs native drawing disabled. */
+    menu > .menu-text,
+    menuitem > .menu-text,
+    menu > .menu-iconic-text,
+    menuitem > .menu-iconic-text {
+      appearance: none !important;
+      margin-inline-start: 0 !important; /* need !important to override the other !important below... */
+      padding-inline-end: 0;
+    }
+    menu[_moz-menuactive="true"]:not([disabled="true"]),
+    menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
+      background-color: var(--menuitem-hover-background-color) !important;
+      color: var(--menu-color) !important;
+    }
+    menu:where([_moz-menuactive="true"][disabled="true"]),
+    menuitem:where([_moz-menuactive="true"][disabled="true"]) {
+      background-color: transparent !important;
+    }
+    .menu-text {
+      padding-inline-start: 0 !important;
+    }
+    .menu-right {
+      appearance: none !important;
+      width: unset !important;
+      list-style-image: url("chrome://global/skin/icons/arrow-right.svg") !important;
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+      fill-opacity: var(--menu-icon-opacity) !important;
+      margin-inline-end: 1em !important;
+      padding-top: 0 !important;
+    }
+    .menu-right > image {
+      /* Do not make this smaller than the size of the svg, but upscale for
+       * people with large fonts. */
+      width: max(1em, 16px) !important;
+    }
+    .menu-right:-moz-locale-dir(rtl) {
+      list-style-image: url("chrome://global/skin/icons/arrow-left.svg") !important;
+    }
+    menulist > menupopup > menuitem {
+      padding-inline-end: 1em !important;
+    }
+    menupopup[needsgutter] menu:not([icon], .menu-iconic),
+    menupopup[needsgutter] menuitem:not([type="checkbox"], [icon], .menuitem-iconic) {
+      padding-inline-start: 36px !important;
+    }
+    /* For Windows 10, checkbox, radio and iconified menuitems need the default
+       appearance disabled so they pick up our custom styles instead. */
+    .menu-iconic-left,
+    menuitem[type="checkbox"],
+    menuitem[type="radio"] {
+      appearance: none !important; /* to override more specific selectors above. */
+      width: unset !important;
+    }
+    .menu-iconic > .menu-iconic-left,
+    .menuitem-iconic > .menu-iconic-left {
+      margin-inline-end: 8px !important;
+    }
+    menuitem[checked="true"] {
+      padding-inline-start: 12px !important;
+    }
+    /* We need to do something to override the default style for selected
+       checkboxes and radio buttons because the native drawing we use on other
+       Windows versions looks pretty bad with the Win10 styles, so for now we'll
+       insert a generic checkmark icon for both types. */
+    menuitem[checked="true"] > .menu-iconic-left {
+      -moz-context-properties: fill, fill-opacity !important;
+      fill: currentColor !important;
+      fill-opacity: var(--menu-icon-opacity) !important;
+      list-style-image: url("../icons/menu-check.svg") !important;
+      width: 16px !important;
+      margin-inline-end: 8px !important;
+    }
+    menuitem[checked="true"] > .menu-iconic-left > .menu-iconic-icon {
+      display: initial !important;
+    }
+    menuseparator {
+      appearance: none !important;
+      border-top: 1px solid var(--menu-border-color) !important;
+      border-bottom: none !important;
+      padding: 0 !important;
+      /* The side margins should align with the start of the menu item text. */
+      margin: 2px 1em !important;
+    }
+    menupopup {
+      /* Disable the default appearance so we can override the native styling. */
+      appearance: none !important !important;
+      /* Prevent any background or border around the outside of the shadow. */
+      background-color: transparent !important;
+      border: none !important;
+      /* To account for the box-shadow below */
+      margin: -4px !important;
+    }
+    menupopup > menuitem,
+    menupopup > menu {
+      padding-block: 0.5em !important;
+      padding-inline-start: 1em !important;
+    }
+    .menupopup-arrowscrollbox[part*="content"] {
+      box-shadow: var(--windows-panel-box-shadow) !important;
+      margin: 4px !important;
+      padding: 4px 0 !important;
+      color: var(--menu-color) !important;
+      background: var(--menu-background-color) !important;
+      border-radius: 4px !important;
+      border: 1px solid var(--menu-border-color) !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+    }
+    @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
+      .menupopup-arrowscrollbox[part*="content"] {
+        border-radius: 0px !important;
+      }
+    }
+    menupopup > menu > menupopup {
+      /* align submenus */
+      margin-inline-start: var(--nested-margin) !important;
+      margin-top: var(--nested-margin) !important;
+    }
+    /* :not([hidden]) to avoid the display: flex unhiding the item. */
+    #context-navigation:not([hidden]) {
+      /* The Windows 10 version of the navigation area needs the scrollbox's
+         background color, not the builtin "menu" color. */
+      background-color: inherit !important;
+      /* Match the inner top padding of the menupopup to center the icons visually. */
+      padding-bottom: 4px !important;
+      /* Use modern flex box so we can use percentage widths to redistribute
+       * spacing manually. */
+      display: flex !important;
+      flex-direction: row !important;
+      /* We want the first and last icons to align with the text items which
+       * have 1em inline padding, and for icons to be centered within their
+       * hover state, so each icon of 16px needs 1em padding on both sides:
+       */
+      --menuitem-min-width: calc(2em + 16px) !important;
+      /* The total width of the container should then be at least 4 times that: */
+      min-width: calc(4 * var(--menuitem-min-width)) !important;
+    }
+    #context-navigation > .menuitem-iconic {
+      flex: 1 0 auto !important;
+      padding: 0 !important;
+    }
+    #context-navigation > .menuitem-iconic[_moz-menuactive="true"] {
+      /* We only show hover state on the icons. This ensures there is no
+       * dead space between icons, but the visible hover state is only
+       * around the icons, and all the icons' hover states match each other.
+       */
+      background-color: transparent !important;
+    }
+    #context-navigation > .menuitem-iconic > .menu-iconic-left {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    /* override styles from shared/contextmenu.inc.css */
+    #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon {
+      width: var(--menuitem-min-width) !important;
+      height: 32px !important;
+      padding: 8px 1em !important;
+      margin: 0 !important;
+    }
+    #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-iconic-left > .menu-iconic-icon {
+      background-color: var(--menuitem-hover-background-color) !important;
+    }
+    #context-navigation
+      > .menuitem-iconic[_moz-menuactive="true"][disabled="true"]
+      > .menu-iconic-left
+      > .menu-iconic-icon {
+      background-color: transparent !important;
+    }
+    /* If the menu is wider than the icons strictly need, the <menuitem> elements
+     * will stretch to pick up the extra space. In that case, the outer icons
+     * should align to the start/end of their containing <menuitem>: */
+    #context-navigation > .menuitem-iconic:first-child {
+      justify-content: flex-start !important;
+      -moz-box-pack: start !important;
+    }
+    #context-navigation > .menuitem-iconic:last-child {
+      justify-content: flex-end !important;
+      -moz-box-pack: end !important;
+    }
+    #context-navigation > .menuitem-iconic:last-child,
+    #context-navigation > .menuitem-iconic:first-child {
+      flex-grow: 0 !important;
+      /* The first and last items start off as 16px + 2em, like the other ones.
+       * 100% is the width of the parent, which will be at least 4 * the width of
+       * an individual item (16px + 2em)
+       * So 100% - 4 item widths gets us the remaining available space if
+       * #context-navigation is wider than that.
+       * Then divide by 6 to get the 1/6 of that extra space, and add this space
+       * to the width of the first/last items.
+       * This ensures that the 3 visual gaps between the 4 icons are all the same
+       * size, with each 1/3 of the available space evenly distributed between
+       * the 2 items on either side of the gap.
+       */
+      width: calc(var(--menuitem-min-width) + (100% - 4 * var(--menuitem-min-width)) / 6) !important;
+    }
+    /* Other menu separators don't extend all the way to the menu edges, but the
+       one below the navigation buttons in the content context menu should. */
+    #context-sep-navigation {
+      margin-top: 0 !important;
+      margin-inline: 0 !important;
+    }
   }
 }
 /*= Fully Theme Mode =========================================================*/
