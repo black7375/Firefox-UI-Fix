@@ -3,11 +3,6 @@
   @import "system_default_theme";
 }
 
-/*= Private Theme Mode =======================================================*/
-@include Option("userChrome.theme.private") {
-  @import "private";
-}
-
 /*= None Native Menu =========================================================*/
 @include Option("userChrome.theme.non_native_menu") {
   @import "non_native_menu";
@@ -25,6 +20,10 @@
     @import "dark_blue_accent";
   }
 }
+@include Option("userChrome.theme.private") {
+  @import "private";
+}
+
 @include Option("userChrome.theme.fully_color") {
   @import "fully_color";
   @import "waterfox";

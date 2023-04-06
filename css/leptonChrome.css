@@ -145,74 +145,6 @@
   #bookmarksPanel[lwt-sidebar="true"] {
     --focus-outline-color: var(--in-content-focus-outline-color, AccentColor) !important;
   }
-  /*= Menu color #477 ==========================================================*/
-  @media (-moz-windows-non-native-menus) {
-    :root {
-      /* Override some menu color variables for light browser themes. */
-      --menuitem-hover-background-color: #e0e0e6;
-      --menu-background-color: #f9f9fb;
-      --menu-color: #15141a;
-      --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
-      --menu-disabled-color: rgba(21, 20, 26, 0.4);
-      --menu-border-color: #cfcfd8;
-      --menu-icon-opacity: 0.7;
-      /* Declare menu colors for dark themes, but don't override anything yet. */
-      --dark-menuitem-hover-background-color: #52525e;
-      --dark-menu-background-color: #2b2a33;
-      --dark-menu-color: #fbfbfe;
-      --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
-      --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
-      --dark-menu-border-color: #5b5b66;
-      --dark-menu-icon-opacity: 1;
-    }
-    /* Override the menu color variables for dark browser themes. */
-  }
-  @media (-moz-windows-non-native-menus) and (-moz-toolbar-prefers-color-scheme: dark),
-    (-moz-windows-non-native-menus) and (prefers-color-scheme: dark) {
-    :root {
-      --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
-      --menu-background-color: var(--dark-menu-background-color);
-      --menu-color: var(--dark-menu-color);
-      --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
-      --menu-disabled-color: var(--dark-menu-disabled-color);
-      --menu-border-color: var(--dark-menu-border-color);
-      --menu-icon-opacity: var(--dark-menu-icon-opacity);
-    }
-  }
-  @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
-    @media (-moz-gtk-csd-available) {
-      :root {
-        /* Override some menu color variables for light browser themes. */
-        --menuitem-hover-background-color: #e0e0e6;
-        --menu-background-color: #f9f9fb;
-        --menu-color: #15141a;
-        --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
-        --menu-disabled-color: rgba(21, 20, 26, 0.4);
-        --menu-border-color: #cfcfd8;
-        --menu-icon-opacity: 0.7;
-        /* Declare menu colors for dark themes, but don't override anything yet. */
-        --dark-menuitem-hover-background-color: #52525e;
-        --dark-menu-background-color: #2b2a33;
-        --dark-menu-color: #fbfbfe;
-        --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
-        --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
-        --dark-menu-border-color: #5b5b66;
-        --dark-menu-icon-opacity: 1;
-      }
-      /* Override the menu color variables for dark browser themes. */
-      @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
-        :root {
-          --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
-          --menu-background-color: var(--dark-menu-background-color);
-          --menu-color: var(--dark-menu-color);
-          --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
-          --menu-disabled-color: var(--dark-menu-disabled-color);
-          --menu-border-color: var(--dark-menu-border-color);
-          --menu-icon-opacity: var(--dark-menu-icon-opacity);
-        }
-      }
-    }
-  }
   /*= Firefox View Border #498 =================================================*/
   :root:not([privatebrowsingmode="temporary"])[firefoxviewhidden] #firefox-view-button + #tabbrowser-tabs {
     border-inline-start: none !important;
@@ -1206,105 +1138,6 @@
     }
   }
 }
-/*= Private Theme Mode =======================================================*/
-@supports -moz-bool-pref("userChrome.theme.private") {
-  :root[privatebrowsingmode="temporary"],
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"],
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"],
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"],
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"] {
-    --lwt-additional-images: none !important;
-    --lwt-header-image: none !important;
-    --lwt-tab-text: rgba(232, 224, 255) !important;
-    --lwt-text-color: var(--lwt-tab-text) !important;
-    --toolbar-color: var(--lwt-tab-text) !important;
-    --toolbar-non-lwt-textcolor: var(--lwt-tab-text) !important;
-    --arrowpanel-color: var(--lwt-tab-text) !important;
-    --focus-outline-color: rgb(172, 112, 255) !important;
-    --toolbar-bgcolor: #322560 !important;
-    --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
-    --lwt-accent-color: #19162f !important;
-    --in-content-page-background: var(--lwt-accent-color) !important;
-    --toolbar-field-background-color: #0b0724 !important;
-    --lwt-selected-tab-background-color: var(--toolbar-bgcolor) !important;
-    --toolbarbutton-hover-background: rgba(255, 255, 255, 0.05) !important;
-    --toolbarbutton-active-background: #4d4175 !important;
-    --arrowpanel-background: #1d1935 !important;
-    --arrowpanel-border-color: #322560 !important;
-    --chrome-content-separator-color: none !important;
-    --toolbar-field-focus-background-color: var(--toolbar-field-background-color) !important;
-    --autocomplete-popup-hover-background: #1d1935 !important;
-    --autocomplete-popup-highlight-background: rgba(65, 48, 117, 0.5) !important;
-    --button-bgcolor: color-mix(in srgb, currentColor 13%, transparent) !important;
-    --button-hover-bgcolor: color-mix(in srgb, currentColor 17%, transparent) !important;
-    --button-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
-    --urlbar-box-bgcolor: color-mix(in srgb, currentColor 16%, transparent) !important;
-  }
-  :root[privatebrowsingmode="temporary"] #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme {
-    --lwt-tabs-border-color: var(--focus-outline-color) !important;
-  }
-  :root[privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[privatebrowsingmode="temporary"][lwtheme-image] #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme {
-    background-color: var(--lwt-accent-color) !important;
-  }
-  :root[privatebrowsingmode="temporary"] #TabsToolbar,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] #TabsToolbar,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
-    #TabsToolbar,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] #TabsToolbar,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
-    #TabsToolbar {
-    --lwt-tab-line-color: var(--focus-outline-color) !important;
-  }
-  :root[privatebrowsingmode="temporary"] notification-message[message-bar-type="infobar"],
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]
-    notification-message[message-bar-type="infobar"],
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
-    notification-message[message-bar-type="infobar"],
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]
-    notification-message[message-bar-type="infobar"],
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
-    notification-message[message-bar-type="infobar"] {
-    --message-bar-text-color: var(--lwt-tab-text) !important;
-    --in-content-page-color: var(--lwt-tab-text) !important;
-  }
-  :root[privatebrowsingmode="temporary"] menupopup,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] menupopup,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
-    menupopup,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] menupopup,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
-    menupopup {
-    --menuitem-hover-background-color: #413d54 !important;
-    --menu-background-color: #1d1935 !important;
-    --menu-color: #eeeeee !important;
-    --menuitem-disabled-hover-background-color: #ffffff00 !important;
-    --menu-disabled-color: #ffffff50 !important;
-    --menu-border-color: #322560 !important;
-  }
-}
 /*= None Native Menu =========================================================*/
 @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
   @media (-moz-gtk-csd-available) {
@@ -1314,9 +1147,9 @@
       --nested-margin: -10px;
       --windows-panel-box-shadow: 0 0 4px hsla(0, 0%, 0%, 0.2);
     }
-    /* Override the menu color variables for dark browser themes. */
-    @media (prefers-color-scheme: dark) {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :root {
+        /* Override the menu color variables for dark browser themes. */
         --menu-icon-opacity: 1;
       }
     }
@@ -1335,6 +1168,20 @@
       appearance: none !important;
       margin-inline-start: 0 !important; /* need !important to override the other !important below... */
       padding-inline-end: 0;
+    }
+    menu > .menu-text::before,
+    menuitem > .menu-text::before,
+    menu > .menu-iconic-text::before,
+    menuitem > .menu-iconic-text::before {
+      box-sizing: border-box !important;
+      height: calc(2px + 1.2em) !important;
+      padding: 1px 0 !important;
+    }
+    menu > .menu-text[value*="…"]::before,
+    menuitem > .menu-text[value*="…"]::before,
+    menu > .menu-iconic-text[value*="…"]::before,
+    menuitem > .menu-iconic-text[value*="…"]::before {
+      padding: 0 !important;
     }
     menu[_moz-menuactive="true"]:not([disabled="true"]),
     menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
@@ -1370,7 +1217,7 @@
       padding-inline-end: 1em !important;
     }
     menupopup[needsgutter] menu:not([icon], .menu-iconic),
-    menupopup[needsgutter] menuitem:not([type="checkbox"], [icon], .menuitem-iconic) {
+    menupopup[needsgutter] menuitem:not([type="checkbox"], [type="radio"], [icon], .menuitem-iconic) {
       padding-inline-start: 36px !important;
     }
     /* For Windows 10, checkbox, radio and iconified menuitems need the default
@@ -1682,6 +1529,74 @@
       --uc-warning-icon-bgcolor: var(--in-content-page-color);
     }
   }
+  /*= Menu color #477 ==========================================================*/
+  @media (-moz-windows-non-native-menus) {
+    :root {
+      /* Override some menu color variables for light browser themes. */
+      --menuitem-hover-background-color: #e0e0e6;
+      --menu-background-color: #f9f9fb;
+      --menu-color: #15141a;
+      --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
+      --menu-disabled-color: rgba(21, 20, 26, 0.4);
+      --menu-border-color: #cfcfd8;
+      --menu-icon-opacity: 0.7;
+      /* Declare menu colors for dark themes, but don't override anything yet. */
+      --dark-menuitem-hover-background-color: #52525e;
+      --dark-menu-background-color: #2b2a33;
+      --dark-menu-color: #fbfbfe;
+      --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
+      --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
+      --dark-menu-border-color: #5b5b66;
+      --dark-menu-icon-opacity: 1;
+    }
+    /* Override the menu color variables for dark browser themes. */
+  }
+  @media (-moz-windows-non-native-menus) and (-moz-toolbar-prefers-color-scheme: dark),
+    (-moz-windows-non-native-menus) and (prefers-color-scheme: dark) {
+    :root {
+      --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
+      --menu-background-color: var(--dark-menu-background-color);
+      --menu-color: var(--dark-menu-color);
+      --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
+      --menu-disabled-color: var(--dark-menu-disabled-color);
+      --menu-border-color: var(--dark-menu-border-color);
+      --menu-icon-opacity: var(--dark-menu-icon-opacity);
+    }
+  }
+  @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+    @media (-moz-gtk-csd-available) {
+      :root {
+        /* Override some menu color variables for light browser themes. */
+        --menuitem-hover-background-color: #e0e0e6;
+        --menu-background-color: #f9f9fb;
+        --menu-color: #15141a;
+        --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
+        --menu-disabled-color: rgba(21, 20, 26, 0.4);
+        --menu-border-color: #cfcfd8;
+        --menu-icon-opacity: 0.7;
+        /* Declare menu colors for dark themes, but don't override anything yet. */
+        --dark-menuitem-hover-background-color: #52525e;
+        --dark-menu-background-color: #2b2a33;
+        --dark-menu-color: #fbfbfe;
+        --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
+        --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
+        --dark-menu-border-color: #5b5b66;
+        --dark-menu-icon-opacity: 1;
+      }
+      /* Override the menu color variables for dark browser themes. */
+      @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+        :root {
+          --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
+          --menu-background-color: var(--dark-menu-background-color);
+          --menu-color: var(--dark-menu-color);
+          --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
+          --menu-disabled-color: var(--dark-menu-disabled-color);
+          --menu-border-color: var(--dark-menu-border-color);
+          --menu-icon-opacity: var(--dark-menu-icon-opacity);
+        }
+      }
+    }
+  }
   @supports -moz-bool-pref("userChrome.theme.proton_color.dark_blue_accent") {
     @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :host,
@@ -1759,6 +1674,104 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.theme.private") {
+  :root[privatebrowsingmode="temporary"],
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"],
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"],
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"],
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"] {
+    --lwt-additional-images: none !important;
+    --lwt-header-image: none !important;
+    --lwt-tab-text: rgba(232, 224, 255) !important;
+    --lwt-text-color: var(--lwt-tab-text) !important;
+    --toolbar-color: var(--lwt-tab-text) !important;
+    --toolbar-non-lwt-textcolor: var(--lwt-tab-text) !important;
+    --arrowpanel-color: var(--lwt-tab-text) !important;
+    --focus-outline-color: rgb(172, 112, 255) !important;
+    --toolbar-bgcolor: #322560 !important;
+    --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
+    --lwt-accent-color: #19162f !important;
+    --in-content-page-background: var(--lwt-accent-color) !important;
+    --toolbar-field-background-color: #0b0724 !important;
+    --lwt-selected-tab-background-color: var(--toolbar-bgcolor) !important;
+    --toolbarbutton-hover-background: rgba(255, 255, 255, 0.05) !important;
+    --toolbarbutton-active-background: #4d4175 !important;
+    --arrowpanel-background: #1d1935 !important;
+    --arrowpanel-border-color: #322560 !important;
+    --chrome-content-separator-color: none !important;
+    --toolbar-field-focus-background-color: var(--toolbar-field-background-color) !important;
+    --autocomplete-popup-hover-background: #1d1935 !important;
+    --autocomplete-popup-highlight-background: rgba(65, 48, 117, 0.5) !important;
+    --button-bgcolor: color-mix(in srgb, currentColor 13%, transparent) !important;
+    --button-hover-bgcolor: color-mix(in srgb, currentColor 17%, transparent) !important;
+    --button-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
+    --urlbar-box-bgcolor: color-mix(in srgb, currentColor 16%, transparent) !important;
+  }
+  :root[privatebrowsingmode="temporary"] #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]
+    #navigator-toolbox:-moz-lwtheme,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
+    #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]
+    #navigator-toolbox:-moz-lwtheme,
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
+    #navigator-toolbox:-moz-lwtheme {
+    --lwt-tabs-border-color: var(--focus-outline-color) !important;
+  }
+  :root[privatebrowsingmode="temporary"] #navigator-toolbox,
+  :root[privatebrowsingmode="temporary"][lwtheme-image] #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] #navigator-toolbox,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"][lwtheme-image]
+    #navigator-toolbox:-moz-lwtheme,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
+    #navigator-toolbox,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"][lwtheme-image]
+    #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] #navigator-toolbox,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"][lwtheme-image]
+    #navigator-toolbox:-moz-lwtheme,
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
+    #navigator-toolbox,
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"][lwtheme-image]
+    #navigator-toolbox:-moz-lwtheme {
+    background-color: var(--lwt-accent-color) !important;
+  }
+  :root[privatebrowsingmode="temporary"] #TabsToolbar,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] #TabsToolbar,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
+    #TabsToolbar,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] #TabsToolbar,
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
+    #TabsToolbar {
+    --lwt-tab-line-color: var(--focus-outline-color) !important;
+  }
+  :root[privatebrowsingmode="temporary"] notification-message[message-bar-type="infobar"],
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]
+    notification-message[message-bar-type="infobar"],
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
+    notification-message[message-bar-type="infobar"],
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]
+    notification-message[message-bar-type="infobar"],
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
+    notification-message[message-bar-type="infobar"] {
+    --message-bar-text-color: var(--lwt-tab-text) !important;
+    --in-content-page-color: var(--lwt-tab-text) !important;
+  }
+  :root[privatebrowsingmode="temporary"] menupopup,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] menupopup,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
+    menupopup,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] menupopup,
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
+    menupopup {
+    --menuitem-hover-background-color: #413d54 !important;
+    --menu-background-color: #1d1935 !important;
+    --menu-color: #eeeeee !important;
+    --menuitem-disabled-hover-background-color: #ffffff00 !important;
+    --menu-disabled-color: #ffffff50 !important;
+    --menu-border-color: #322560 !important;
+  }
+}
 @supports -moz-bool-pref("userChrome.theme.fully_color") {
   /*== Menu Color ==============================================================*/
   html#main-window menupopup:not(.in-menulist) {
@@ -1824,6 +1837,53 @@
     (-moz-windows-non-native-menus) and (prefers-color-scheme: light) {
     :root[style*="background-noodles-right"] menupopup {
       --toolbarbutton-hover-background: rgba(232, 224, 255, 0.11999999731779099) !important;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+    @media (-moz-gtk-csd-available) {
+      html#main-window menupopup:not(.in-menulist) {
+        /* Above FF v105 #466 */
+        --panel-color: var(--menu-color) !important;
+        --panel-background: var(--menu-background-color) !important;
+        --panel-border-color: var(--menu-border-color) !important;
+      }
+      html#main-window menupopup:not(.in-menulist):not([placespopup]) menuseparator,
+      html#main-window menupopup:not(.in-menulist)[placespopup] menuseparator::before {
+        border-top: 1px solid var(--menu-border-color) !important;
+      }
+      html#main-window menupopup:not(.in-menulist) menu[disabled="true"],
+      html#main-window menupopup:not(.in-menulist) menu[_moz-menuactive="true"][disabled="true"],
+      html#main-window menupopup:not(.in-menulist) menuitem[disabled="true"],
+      html#main-window menupopup:not(.in-menulist) menuitem[_moz-menuactive="true"][disabled="true"] {
+        color: var(--menu-disabled-color) !important;
+      }
+      html#main-window menupopup:not(.in-menulist) menu[_moz-menuactive="true"]:not([disabled="true"]),
+      html#main-window menupopup:not(.in-menulist) menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
+        background-color: var(--menuitem-hover-background-color) !important;
+        color: var(--menu-color) !important;
+      }
+      html#main-window
+        menupopup
+        #context-navigation
+        > .menuitem-iconic[_moz-menuactive="true"]
+        > .menu-iconic-left
+        > .menu-iconic-icon {
+        background-color: var(--menuitem-hover-background-color) !important;
+      }
+      html#main-window menupopup #context-navigation > .menuitem-iconic[_moz-menuactive="true"],
+      html#main-window
+        menupopup
+        #context-navigation
+        > .menuitem-iconic[_moz-menuactive="true"][disabled="true"]
+        > .menu-iconic-left
+        > .menu-iconic-icon {
+        background-color: transparent !important;
+      }
+      @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+        :root[style*="background-noodles-right"] menupopup {
+          --toolbarbutton-hover-background: rgba(232, 224, 255, 0.11999999731779099) !important;
+        }
+      }
     }
   }
   @media not all and (-moz-gtk-csd-available) {
@@ -11151,6 +11211,130 @@
         }
       }
     }
+    /* Padding - Non Native */
+    @media (-moz-gtk-csd-available),
+      (-moz-os-version: windows-win7),
+      (-moz-platform: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-platform: windows-win8),
+      (-moz-os-version: windows-win10),
+      (-moz-platform: windows-win10) {
+      @media (-moz-windows-non-native-menus) {
+        :root {
+          --context-menu-background-padding: 1em;
+          --context-menu-text-padding: 24px;
+          --menu-background-padding-default: calc(
+            var(--context-menu-background-padding) + var(--context-menu-text-padding)
+          );
+          --bookmark-menu-icon-align-padding: 0px;
+        }
+        :not(menu, #ContentSelectDropdown, #context-navigation)
+          > menupopup:not(.in-menulist)
+          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        :not(menu, #ContentSelectDropdown, #context-navigation)
+          > menupopup:not(.in-menulist)
+          > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+        menupopup:is(
+            #menu_FilePopup,
+            #menu_EditPopup,
+            #menu_viewPopup,
+            #goPopup,
+            #historyMenuPopup,
+            #bookmarksMenuPopup,
+            #menu_ToolsPopup,
+            #windowPopup,
+            #menu_HelpPopup
+          )
+          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(
+            #menu_FilePopup,
+            #menu_EditPopup,
+            #menu_viewPopup,
+            #goPopup,
+            #historyMenuPopup,
+            #bookmarksMenuPopup,
+            #menu_ToolsPopup,
+            #windowPopup,
+            #menu_HelpPopup
+          )
+          menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+        menupopup:is(
+            #context_sendTabToDevicePopupMenu,
+            #context-sendpagetodevice-popup,
+            #context-sendlinktodevice-popup
+          )
+          > menuitem,
+        .openintabs-menuitem,
+        #blockedPopupDontShowMessage,
+        #BMB_viewBookmarksToolbar,
+        #context_openANewTab.tabmix-newtab-menu-icon {
+          padding-inline-start: var(--menu-background-padding-default) !important;
+          margin-left: 0 !important;
+        }
+      }
+      @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+        @media (-moz-gtk-csd-available) {
+          :root {
+            --context-menu-background-padding: 1em;
+            --context-menu-text-padding: 24px;
+            --menu-background-padding-default: calc(
+              var(--context-menu-background-padding) + var(--context-menu-text-padding)
+            );
+            --bookmark-menu-icon-align-padding: 0px;
+          }
+          :not(menu, #ContentSelectDropdown, #context-navigation)
+            > menupopup:not(.in-menulist)
+            > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+          :not(menu, #ContentSelectDropdown, #context-navigation)
+            > menupopup:not(.in-menulist)
+            > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+          menupopup:is(
+              #menu_FilePopup,
+              #menu_EditPopup,
+              #menu_viewPopup,
+              #goPopup,
+              #historyMenuPopup,
+              #bookmarksMenuPopup,
+              #menu_ToolsPopup,
+              #windowPopup,
+              #menu_HelpPopup
+            )
+            menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+          menupopup:is(
+              #menu_FilePopup,
+              #menu_EditPopup,
+              #menu_viewPopup,
+              #goPopup,
+              #historyMenuPopup,
+              #bookmarksMenuPopup,
+              #menu_ToolsPopup,
+              #windowPopup,
+              #menu_HelpPopup
+            )
+            menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+          menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+            > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+          menupopup:is(#viewMenuPopup, #maintenanceButtonPopup)
+            > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+          menupopup:is(
+              #context_sendTabToDevicePopupMenu,
+              #context-sendpagetodevice-popup,
+              #context-sendlinktodevice-popup
+            )
+            > menuitem,
+          .openintabs-menuitem,
+          #blockedPopupDontShowMessage,
+          #BMB_viewBookmarksToolbar,
+          #context_openANewTab.tabmix-newtab-menu-icon {
+            padding-inline-start: var(--menu-background-padding-default) !important;
+            margin-left: 0 !important;
+          }
+        }
+      }
+    }
     /* Padding - Windows */
     @media (-moz-os-version: windows-win7),
       (-moz-platform: windows-win7),
@@ -11165,16 +11349,6 @@
         --bookmark-menu-icon-background-padding: calc(
           var(--arrowpanel-menuitem-padding-inline) + var(--bookmark-menu-icon-align-padding)
         );
-      }
-      @media (-moz-windows-non-native-menus) {
-        :root {
-          --context-menu-background-padding: 1em;
-          --context-menu-text-padding: 24px;
-          --menu-background-padding-default: calc(
-            var(--context-menu-background-padding) + var(--context-menu-text-padding)
-          );
-          --bookmark-menu-icon-align-padding: 0px;
-        }
       }
       @media not (-moz-windows-non-native-menus) {
         :root {
@@ -11307,54 +11481,6 @@
         #context_openANewTab.tabmix-newtab-menu-icon {
           background-position: left var(--context-menu-background-padding) center !important;
           padding-inline-start: 0 !important;
-        }
-      }
-      @media (-moz-windows-non-native-menus) {
-        :not(menu, #ContentSelectDropdown, #context-navigation)
-          > menupopup:not(.in-menulist)
-          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        :not(menu, #ContentSelectDropdown, #context-navigation)
-          > menupopup:not(.in-menulist)
-          > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-        menupopup:is(
-            #menu_FilePopup,
-            #menu_EditPopup,
-            #menu_viewPopup,
-            #goPopup,
-            #historyMenuPopup,
-            #bookmarksMenuPopup,
-            #menu_ToolsPopup,
-            #windowPopup,
-            #menu_HelpPopup
-          )
-          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        menupopup:is(
-            #menu_FilePopup,
-            #menu_EditPopup,
-            #menu_viewPopup,
-            #goPopup,
-            #historyMenuPopup,
-            #bookmarksMenuPopup,
-            #menu_ToolsPopup,
-            #windowPopup,
-            #menu_HelpPopup
-          )
-          menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
-          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-        menupopup:is(
-            #context_sendTabToDevicePopupMenu,
-            #context-sendpagetodevice-popup,
-            #context-sendlinktodevice-popup
-          )
-          > menuitem,
-        .openintabs-menuitem,
-        #blockedPopupDontShowMessage,
-        #BMB_viewBookmarksToolbar,
-        #context_openANewTab.tabmix-newtab-menu-icon {
-          padding-inline-start: var(--menu-background-padding-default) !important;
-          margin-left: 0 !important;
         }
       }
     }

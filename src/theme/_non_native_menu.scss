@@ -9,11 +9,8 @@
     --menu-icon-opacity: 0.7;
     --nested-margin: -10px;
     --windows-panel-box-shadow: 0 0 4px hsla(0,0%,0%,.2);
-  }
-
-  /* Override the menu color variables for dark browser themes. */
-  @media (prefers-color-scheme: dark) {
-    :root {
+    @include Dark {
+      /* Override the menu color variables for dark browser themes. */
       --menu-icon-opacity: 1;
     }
   }
@@ -33,6 +30,16 @@
     appearance: none !important;
     margin-inline-start: 0 !important; /* need !important to override the other !important below... */
     padding-inline-end: 0;
+
+    // Align
+    &::before {
+      box-sizing: border-box !important;
+      height: calc(2px + 1.2em) !important;
+      padding: 1px 0 !important;
+    }
+    &[value*="…"]::before {
+      padding: 0 !important;
+    }
   }
 
   menu[_moz-menuactive="true"]:not([disabled="true"]),
@@ -75,7 +82,7 @@
   }
 
   menupopup[needsgutter] menu:not([icon], .menu-iconic),
-  menupopup[needsgutter] menuitem:not([type="checkbox"], [icon], .menuitem-iconic) {
+  menupopup[needsgutter] menuitem:not([type="checkbox"], [type="radio"], [icon], .menuitem-iconic) {
     padding-inline-start: 36px !important;
   }
 

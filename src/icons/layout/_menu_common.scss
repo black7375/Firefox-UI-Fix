@@ -77,6 +77,21 @@ $_initialMenus: selector.append(
   padding-inline-start: var(--context-menu-background-padding) !important;
 }
 
+@mixin _layout_root_non_native() {
+  :root {
+    --context-menu-background-padding: 1em;
+    --context-menu-text-padding: #{ 16px + 8px };
+    --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
+
+    --bookmark-menu-icon-align-padding: 0px;
+  }
+}
+
+@mixin _layout_init_non_native() {
+  padding-inline-start: var(--menu-background-padding-default) !important;
+  margin-left: 0 !important;
+}
+
 @mixin _layout_win_native_menu_popup() {
   @include NativeMenuPopup {
     .menu-iconic,
@@ -107,14 +122,6 @@ $_initialMenus: selector.append(
     :root {
       --bookmark-menu-icon-text-padding: calc(var(--context-menu-text-padding) + var(--arrowpanel-menuitem-padding-inline));
       --bookmark-menu-icon-background-padding: calc(var(--arrowpanel-menuitem-padding-inline) + var(--bookmark-menu-icon-align-padding));
-
-      @include WinNonNativeMenu() {
-        --context-menu-background-padding: 1em;
-        --context-menu-text-padding: #{ 16px + 8px };
-        --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
-
-        --bookmark-menu-icon-align-padding: 0px;
-      }
     }
 
     @include WinNativeMenu() {
@@ -169,10 +176,6 @@ $_initialMenus: selector.append(
   @include WinNativeMenu() {
     background-position: left var(--context-menu-background-padding) center !important;
     padding-inline-start: 0 !important;
-  }
-  @include WinNonNativeMenu() {
-    padding-inline-start: var(--menu-background-padding-default) !important;
-    margin-left: 0 !important;
   }
 }
 
