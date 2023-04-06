@@ -80,7 +80,8 @@ $_initialMenus: selector.append(
 @mixin _layout_root_non_native() {
   :root {
     --context-menu-background-padding: 1em;
-    --context-menu-text-padding: #{ 16px + 8px };
+    --context-menu-text-padding-default: #{ 16px + 8px };
+    --context-menu-text-padding: var(--context-menu-text-padding-default);
     --menu-background-padding-default: calc(var(--context-menu-background-padding) + var(--context-menu-text-padding));
 
     --bookmark-menu-icon-align-padding: 0px;

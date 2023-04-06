@@ -1146,6 +1146,7 @@
       --menu-icon-opacity: 0.7;
       --nested-margin: -10px;
       --windows-panel-box-shadow: 0 0 4px hsla(0, 0%, 0%, 0.2);
+      --menu-checkbox-padding: 12px;
     }
     @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :root {
@@ -1202,7 +1203,7 @@
       -moz-context-properties: fill, fill-opacity !important;
       fill: currentColor !important;
       fill-opacity: var(--menu-icon-opacity) !important;
-      margin-inline-end: 1em !important;
+      margin-inline-end: 1px !important;
       padding-top: 0 !important;
     }
     .menu-right > image {
@@ -1214,7 +1215,7 @@
       list-style-image: url("chrome://global/skin/icons/arrow-left.svg") !important;
     }
     menulist > menupopup > menuitem {
-      padding-inline-end: 1em !important;
+      padding-inline-end: 1px !important;
     }
     menupopup[needsgutter] menu:not([icon], .menu-iconic),
     menupopup[needsgutter] menuitem:not([type="checkbox"], [type="radio"], [icon], .menuitem-iconic) {
@@ -1230,10 +1231,19 @@
     }
     .menu-iconic > .menu-iconic-left,
     .menuitem-iconic > .menu-iconic-left {
+      padding-inline-end: 0 !important;
       margin-inline-end: 8px !important;
     }
+    menuitem[type="checkbox"],
+    menuitem[type="radio"] {
+      --menu-background-padding-default: var(--menu-checkbox-padding);
+    }
     menuitem[checked="true"] {
-      padding-inline-start: 12px !important;
+      padding-inline-start: var(--menu-checkbox-padding) !important;
+    }
+    menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item .menu-iconic-left {
+      padding-inline-end: 0 !important;
+      margin-inline-end: 6px !important;
     }
     /* We need to do something to override the default style for selected
        checkboxes and radio buttons because the native drawing we use on other
@@ -1267,9 +1277,9 @@
       /* To account for the box-shadow below */
       margin: -4px !important;
     }
-    menupopup > menuitem,
-    menupopup > menu {
-      padding-block: 0.5em !important;
+    menupopup:not([placespopup="true"]) > menuitem,
+    menupopup:not([placespopup="true"]) > menu {
+      padding-block: var(--menu-padding, 0.5em) !important;
       padding-inline-start: 1em !important;
     }
     .menupopup-arrowscrollbox[part*="content"] {
@@ -1292,6 +1302,11 @@
       /* align submenus */
       margin-inline-start: var(--nested-margin) !important;
       margin-top: var(--nested-margin) !important;
+    }
+    #mainPopupSet {
+      --menu-background-padding-default: calc(
+        var(--context-menu-background-padding) + var(--context-menu-text-padding-default)
+      );
     }
     /* :not([hidden]) to avoid the display: flex unhiding the item. */
     #context-navigation:not([hidden]) {
@@ -11222,7 +11237,8 @@
       @media (-moz-windows-non-native-menus) {
         :root {
           --context-menu-background-padding: 1em;
-          --context-menu-text-padding: 24px;
+          --context-menu-text-padding-default: 24px;
+          --context-menu-text-padding: var(--context-menu-text-padding-default);
           --menu-background-padding-default: calc(
             var(--context-menu-background-padding) + var(--context-menu-text-padding)
           );
@@ -11279,7 +11295,8 @@
         @media (-moz-gtk-csd-available) {
           :root {
             --context-menu-background-padding: 1em;
-            --context-menu-text-padding: 24px;
+            --context-menu-text-padding-default: 24px;
+            --context-menu-text-padding: var(--context-menu-text-padding-default);
             --menu-background-padding-default: calc(
               var(--context-menu-background-padding) + var(--context-menu-text-padding)
             );
@@ -11609,6 +11626,14 @@
       #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
       #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
         padding-inline-start: calc(var(--context-menu-background-padding) + 2px) !important;
+      }
+      @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+        menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+        menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
+        #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
+        #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+          margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
+        }
       }
       menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
         menuitem:not(.menuitem-iconic, [disabled="true"])

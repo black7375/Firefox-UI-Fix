@@ -3131,7 +3131,8 @@
         @media (-moz-windows-non-native-menus) {
           :root {
             --context-menu-background-padding: 1em;
-            --context-menu-text-padding: 24px;
+            --context-menu-text-padding-default: 24px;
+            --context-menu-text-padding: var(--context-menu-text-padding-default);
             --menu-background-padding-default: calc(
               var(--context-menu-background-padding) + var(--context-menu-text-padding)
             );
@@ -3153,7 +3154,8 @@
           @media (-moz-gtk-csd-available) {
             :root {
               --context-menu-background-padding: 1em;
-              --context-menu-text-padding: 24px;
+              --context-menu-text-padding-default: 24px;
+              --context-menu-text-padding: var(--context-menu-text-padding-default);
               --menu-background-padding-default: calc(
                 var(--context-menu-background-padding) + var(--context-menu-text-padding)
               );

@@ -9,6 +9,8 @@
     --menu-icon-opacity: 0.7;
     --nested-margin: -10px;
     --windows-panel-box-shadow: 0 0 4px hsla(0,0%,0%,.2);
+
+    --menu-checkbox-padding: 12px;
     @include Dark {
       /* Override the menu color variables for dark browser themes. */
       --menu-icon-opacity: 1;
@@ -63,7 +65,7 @@
     -moz-context-properties: fill, fill-opacity !important;
     fill: currentColor !important;
     fill-opacity: var(--menu-icon-opacity) !important;
-    margin-inline-end: 1em !important;
+    margin-inline-end: 1px !important;
     padding-top: 0 !important;
   }
 
@@ -78,7 +80,7 @@
   }
 
   menulist > menupopup > menuitem {
-    padding-inline-end: 1em !important;
+    padding-inline-end: 1px !important;
   }
 
   menupopup[needsgutter] menu:not([icon], .menu-iconic),
@@ -97,11 +99,21 @@
 
   .menu-iconic > .menu-iconic-left,
   .menuitem-iconic > .menu-iconic-left {
+    padding-inline-end: 0 !important;
     margin-inline-end: 8px !important;
   }
 
+  menuitem[type="checkbox"],
+  menuitem[type="radio"] {
+    --menu-background-padding-default: var(--menu-checkbox-padding);
+  }
   menuitem[checked="true"] {
-    padding-inline-start: 12px !important;
+    padding-inline-start: var(--menu-checkbox-padding) !important;
+  }
+
+  menupopup:is(#goPopup, #historyMenuPopup, #bookmarksMenuPopup) .bookmark-item .menu-iconic-left {
+    padding-inline-end: 0 !important;
+    margin-inline-end: 6px !important;
   }
 
   /* We need to do something to override the default style for selected
@@ -142,10 +154,12 @@
     margin: -4px !important;
   }
 
-  menupopup > menuitem,
-  menupopup > menu {
-    padding-block: 0.5em !important;
-    padding-inline-start: 1em !important;
+  menupopup:not([placespopup="true"]) > {
+    menuitem,
+    menu {
+      padding-block: var(--menu-padding, 0.5em) !important;
+      padding-inline-start: 1em !important;
+    }
   }
   .menupopup-arrowscrollbox[part*="content"] {
     box-shadow: var(--windows-panel-box-shadow) !important;
@@ -170,6 +184,10 @@
   }
 
   //-- Browser -----------------------------------------------------------------
+  #mainPopupSet {
+    --menu-background-padding-default: calc( var(--context-menu-background-padding) + var(--context-menu-text-padding-default) );
+  }
+
   /* :not([hidden]) to avoid the display: flex unhiding the item. */
   #context-navigation:not([hidden]) {
     /* The Windows 10 version of the navigation area needs the scrollbox's
@@ -250,7 +268,6 @@
      */
     width: calc(var(--menuitem-min-width) + calc(100% - 4 * var(--menuitem-min-width)) / 6) !important;
   }
-
 
   /* Other menu separators don't extend all the way to the menu edges, but the
      one below the navigation buttons in the content context menu should. */
