@@ -1,0 +1,85 @@
+// Frame
+:root:not(:-moz-lwtheme) {
+  --lwt-accent-color: Window !important;
+  --lwt-text-color: WindowText !important;
+}
+:root[style*="--focus-outline-color: rgb(172, 112, 255); --panel-separator-zap-gradient: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%);"] {
+  // Alpenglow theme
+  --lwt-accent-color: rgb(45, 36, 91) !important;
+}
+
+#main-window,
+#navigator-toolbox-background {
+  background-color: transparent !important;
+  appearance: auto !important;
+  -moz-default-appearance: -moz-win-borderless-glass !important;
+}
+
+#navigator-toolbox {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+#nav-bar,
+#PersonalToolbar {
+  background-image: linear-gradient(
+    var(--toolbar-bgcolor),
+    var(--toolbar-bgcolor)
+  ), var(--lwt-additional-images);
+  background-repeat: repeat-x, var(--lwt-background-tiling);
+  background-position: 0 0, var(--lwt-background-alignment);
+  background-attachment: scroll, fixed !important;
+  background-size: auto 100%, auto auto;
+}
+
+#appcontent {
+  appearance: auto !important;
+  -moz-default-appearance: -moz-win-exclude-glass !important;
+}
+
+// Set Colors
+@function frameTransparent($per: 60%, $transparent: transparent) {
+  @return color-mix(
+    in srgb,
+    var(--lwt-accent-color, Window) $per,
+    $transparent
+  );
+}
+
+#titlebar {
+  --uc-frame-element-background: #{ frameTransparent() };
+  --toolbarbutton-hover-background: #{ frameTransparent(85%) };
+
+  @include Dark {
+    --toolbarbutton-hover-background: #{ frameTransparent(40%, rgba(255, 255, 255, 0.25)) };
+  }
+}
+
+#main-menubar:not(:-moz-window-inactive),
+.titlebar-buttonbox-container:not(:-moz-window-inactive) {
+  background-color: var(--uc-frame-element-background);
+  border-radius: 4px;
+}
+
+#TabsToolbar {
+  --toolbarseparator-color: transparent;
+
+  .tabbrowser-tab
+  > .tab-stack
+  > .tab-background:not([selected="true"], [multiselected]) {
+    background-color: var(--uc-frame-element-background);
+  }
+
+  #firefox-view-button:hover:not([open]) > .toolbarbutton-icon,
+  .tabbrowser-tab:hover
+  > .tab-stack
+  > .tab-background:not([selected="true"], [multiselected]) {
+    background-color: var(--toolbarbutton-hover-background) !important; /* Original: color-mix(in srgb, currentColor 11%, transparent) */
+  }
+}
+
+#scrollbutton-up,
+#scrollbutton-down,
+#alltabs-button > .toolbarbutton-badge-stack,
+#TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon {
+  background-color: var(--uc-frame-element-background);
+}

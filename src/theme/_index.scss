@@ -34,6 +34,13 @@
   @import "fully_dark";
 }
 
+/*= Transparent ==============================================================*/
+@include Option("userChrome.theme.transparent.frame") {
+  @include OS($linux) {
+    @import "transparent/general";
+  }
+}
+
 /*= Proton Theme Mode ========================================================*/
 @include Option("userChrome.theme.proton_chrome") {
   @import "proton_chrome";
