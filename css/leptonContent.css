@@ -2790,7 +2790,7 @@
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
   @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
-    button,
+    button:not(.toggle-button),
     .close-icon,
     .action-icon::before,
     .web-appearance-choice,
