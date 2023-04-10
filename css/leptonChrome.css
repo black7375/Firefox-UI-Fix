@@ -2242,6 +2242,27 @@
       background-color: var(--uc-frame-element-background);
     }
   }
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    :root:not(:-moz-window-inactive) #navigator-toolbox {
+      background-color: transparent !important;
+    }
+    #TabsToolbar,
+    #titlebar,
+    #nav-bar,
+    #PersonalToolbar,
+    #tabbrowser-tabs {
+      -moz-appearance: -moz-mac-source-list !important;
+      background-color: transparent !important;
+    }
+    /* De-emphasize tab icons and names when window is unfocused */
+    :root:-moz-window-inactive .tab-content,
+    :root:-moz-window-inactive #urlbar {
+      opacity: 0.6;
+    }
+    :root:-moz-window-inactive #urlbar-background {
+      background-color: transparent !important;
+    }
+  }
 }
 /*= Proton Theme Mode ========================================================*/
 @supports -moz-bool-pref("userChrome.theme.proton_chrome") {

@@ -39,6 +39,9 @@
   @include OS($linux) {
     @import "transparent/general";
   }
+  @include OS($mac) {
+    @import "transparent/mac";
+  }
 }
 
 /*= Proton Theme Mode ========================================================*/
