@@ -8704,7 +8704,7 @@
     z-index: 1;
   }
   findbar {
-    order: 0;
+    order: -1;
     -moz-box-ordinal-group: 0;
     position: relative;
     height: 0 !important;
@@ -8720,6 +8720,7 @@
   findbar::before {
     content: "";
     display: -moz-box;
+    position: absolute;
     flex: 200;
     -moz-box-flex: 200;
   }

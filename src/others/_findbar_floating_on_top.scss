@@ -9,7 +9,8 @@ See the above repository for updates as well as full license text. */
 }
 
 findbar {
-  @include BoxOrder(0);
+  order: -1; // @include BoxOrder(0);
+  -moz-box-ordinal-group: 0;
   position: relative;
 
   height: 0 !important;
@@ -28,6 +29,7 @@ findbar {
   &::before {
     content:"";
     display: -moz-box;
+    position: absolute;
     @include BoxFlex(200);
   }
 }
