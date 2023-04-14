@@ -1,0 +1,12 @@
+@include OS($win10, $linux) {
+  @import "transparent/general";
+}
+@include OS($win10) {
+  @import "transparent/win11";
+}
+@include OS($linux) {
+  @import "transparent/linux";
+}
+@include OS($mac) {
+  @import "transparent/mac";
+}

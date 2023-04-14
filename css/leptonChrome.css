@@ -2175,14 +2175,7 @@
 }
 /*= Transparent ==============================================================*/
 @supports -moz-bool-pref("userChrome.theme.transparent.frame") {
-  @media (-moz-gtk-csd-available) {
-    :root:not(:-moz-lwtheme) {
-      --lwt-accent-color: Window !important;
-      --lwt-text-color: WindowText !important;
-    }
-    :root[style*="--focus-outline-color: rgb(172, 112, 255); --panel-separator-zap-gradient: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%);"] {
-      --lwt-accent-color: rgb(45, 36, 91) !important;
-    }
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10), (-moz-gtk-csd-available) {
     #main-window,
     #navigator-toolbox-background {
       background-color: transparent !important;
@@ -2204,6 +2197,35 @@
     #appcontent {
       appearance: auto !important;
       -moz-default-appearance: -moz-win-exclude-glass !important;
+    }
+  }
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+    :root,
+    #navigator-toolbox {
+      --lwt-accent-color: transparent !important;
+      --lwt-text-color: WindowText !important;
+    }
+    #titlebar .toolbarbutton-1 {
+      --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
+    }
+    :root:not([sizemode="fullscreen"]) .titlebar-buttonbox-container .titlebar-button:not(.titlebar-close:hover) {
+      list-style-image: none !important;
+    }
+    :root:not([sizemode="fullscreen"])
+      #toolbar-menubar[autohide="true"][inactive="true"]
+      + #TabsToolbar
+      .titlebar-button:is(.titlebar-close:hover)
+      .toolbarbutton-icon {
+      transform: translateY(-7px) !important;
+    }
+  }
+  @media (-moz-gtk-csd-available) {
+    :root:not(:-moz-lwtheme) {
+      --lwt-accent-color: Window !important;
+      --lwt-text-color: WindowText !important;
+    }
+    :root[style*="--focus-outline-color: rgb(172, 112, 255); --panel-separator-zap-gradient: linear-gradient(90deg, #9059FF 0%, #FF4AA2 52.08%, #FFBD4F 100%);"] {
+      --lwt-accent-color: rgb(45, 36, 91) !important;
     }
     #titlebar {
       --uc-frame-element-background: color-mix(in srgb, var(--lwt-accent-color, Window) 60%, transparent);
