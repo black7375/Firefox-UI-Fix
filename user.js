@@ -72,6 +72,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
 // user_pref("userChrome.theme.monospace",                     true);
 // user_pref("userChrome.theme.transparent.frame",             true);
+// user_pref("userChrome.theme.transparent.menu",              true);
 // user_pref("userChrome.theme.non_native_menu",               true); // only for linux
 // user_pref("userChrome.compatibility.os.win11",              true);
 

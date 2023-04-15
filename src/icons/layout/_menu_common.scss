@@ -56,7 +56,7 @@ $_initialMenus: selector.append(
 }
 
 @mixin _layout_icon_native_menus() {
-  @include NativeMenu {
+  @include NativeToolkitMenu {
     list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
   }
 }

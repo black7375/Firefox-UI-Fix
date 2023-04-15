@@ -2336,6 +2336,30 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.theme.transparent.menu") {
+  .menupopup-arrowscrollbox[part*="content"] {
+    background: color-mix(in srgb, var(--menu-background-color, Menu) 90%, transparent) !important;
+  }
+  @media not (-moz-windows-non-native-menus) {
+    @media (-moz-os-version: windows-win7),
+      (-moz-platform: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-platform: windows-win8),
+      (-moz-os-version: windows-win10),
+      (-moz-platform: windows-win10) {
+      html#main-window #mainPopupSet menupopup:not(.in-menulist) {
+        --menu-background-color: Menu !important;
+      }
+    }
+  }
+  @supports not -moz-bool-pref("userChrome.theme.non_native_menu") {
+    @media (-moz-gtk-csd-available) {
+      html#main-window #mainPopupSet menupopup:not(.in-menulist) {
+        --menu-background-color: Menu !important;
+      }
+    }
+  }
+}
 /*= Proton Theme Mode ========================================================*/
 @supports -moz-bool-pref("userChrome.theme.proton_chrome") {
   /*= Proton Commons ===========================================================*/

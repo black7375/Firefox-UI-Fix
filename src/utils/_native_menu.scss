@@ -1,7 +1,7 @@
 @use "option" as *;
 @use "os" as *;
 
-@mixin NativeMenu() {
+@mixin NativeToolkitMenu() {
   @include Option("widget.macos.native-context-menus", "widget.gtk.native-context-menus") {
     @content;
   }
@@ -14,25 +14,56 @@
   }
 }
 
-@mixin NonNativeMenu() {
-  @media (-moz-windows-non-native-menus) {
+@mixin _WinMedia($win-media: false) {
+  @if $win-media {
+    @include OS($win) {
+      @content;
+    }
+  }
+  @else {
     @content;
   }
-  @include Option("userChrome.theme.non_native_menu") {
-    @include OS("linux") {
+}
+
+@mixin NativeMenu($win-media: false) {
+  @media not (-moz-windows-non-native-menus) {
+    @include _WinMedia($win-media) {
+      @content;
+    }
+  }
+  @include NotOption("userChrome.theme.non_native_menu") {
+    @include OS($linux) {
       @content;
     }
   }
 }
 
-@mixin WinNativeMenu() {
-  @media not (-moz-windows-non-native-menus) {
-    @content;
+
+@mixin NonNativeMenu($win-media: false) {
+  @media (-moz-windows-non-native-menus) {
+    @include _WinMedia($win-media) {
+      @content;
+    }
+  }
+  @include Option("userChrome.theme.non_native_menu") {
+    @include OS($linux) {
+      @content;
+    }
   }
 }
 
-@mixin WinNonNativeMenu() {
+@mixin WinNativeMenu($win-media: false) {
+  @media not (-moz-windows-non-native-menus) {
+    @include _WinMedia($win-media) {
+      @content;
+    }
+  }
+}
+
+@mixin WinNonNativeMenu($win-media: false) {
   @media (-moz-windows-non-native-menus) {
-    @content;
+    @include _WinMedia($win-media) {
+      @content;
+    }
   }
 }

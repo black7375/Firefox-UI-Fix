@@ -38,6 +38,9 @@
 @include Option("userChrome.theme.transparent.frame") {
   @import "transparent";
 }
+@include Option("userChrome.theme.transparent.menu") {
+  @import "transparent/menu";
+}
 
 /*= Proton Theme Mode ========================================================*/
 @include Option("userChrome.theme.proton_chrome") {
