@@ -26,10 +26,23 @@
   }
 }
 
-#main-menubar:not(:-moz-window-inactive),
-.titlebar-buttonbox-container:not(:-moz-window-inactive) {
-  background-color: var(--uc-frame-element-background) !important;
+#main-menubar {
   border-radius: 4px;
+
+  &:not(:-moz-window-inactive) {
+    background-color: var(--uc-frame-element-background) !important;
+  }
+  @include OS($win8) {
+    &:-moz-window-inactive {
+      background-color: var(--uc-frame-element-background) !important;
+    }
+  }
+}
+@include OS($linux) {
+  .titlebar-buttonbox-container:not(:-moz-window-inactive) {
+    background-color: var(--uc-frame-element-background) !important;
+    border-radius: 4px;
+  }
 }
 
 #TabsToolbar {

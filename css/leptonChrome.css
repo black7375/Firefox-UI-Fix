@@ -2182,6 +2182,8 @@
 @supports -moz-bool-pref("userChrome.theme.transparent.frame") {
   @media (-moz-os-version: windows-win10),
     (-moz-platform: windows-win10),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
     (-moz-os-version: windows-win7),
     (-moz-platform: windows-win7),
     (-moz-gtk-csd-available) {
@@ -2208,7 +2210,11 @@
       -moz-default-appearance: -moz-win-exclude-glass !important;
     }
   }
-  @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-gtk-csd-available) {
+  @media (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-gtk-csd-available) {
     :root:not(:-moz-lwtheme) {
       --lwt-accent-color: Window !important;
       --lwt-text-color: WindowText !important;
@@ -2229,10 +2235,22 @@
         );
       }
     }
-    #main-menubar:not(:-moz-window-inactive),
-    .titlebar-buttonbox-container:not(:-moz-window-inactive) {
-      background-color: var(--uc-frame-element-background) !important;
+    #main-menubar {
       border-radius: 4px;
+    }
+    #main-menubar:not(:-moz-window-inactive) {
+      background-color: var(--uc-frame-element-background) !important;
+    }
+    @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
+      #main-menubar:-moz-window-inactive {
+        background-color: var(--uc-frame-element-background) !important;
+      }
+    }
+    @media (-moz-gtk-csd-available) {
+      .titlebar-buttonbox-container:not(:-moz-window-inactive) {
+        background-color: var(--uc-frame-element-background) !important;
+        border-radius: 4px;
+      }
     }
     #TabsToolbar {
       --toolbarseparator-color: transparent;
@@ -2273,7 +2291,10 @@
       transform: translateY(-7px) !important;
     }
   }
-  @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
+  @media (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7) {
     :root:not([lwtheme-image]):-moz-lwtheme {
       background-color: transparent !important;
       background-image: none !important;
