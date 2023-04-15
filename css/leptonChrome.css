@@ -185,9 +185,14 @@
     (-moz-platform: windows-win7),
     (-moz-os-version: windows-win8),
     (-moz-platform: windows-win8) {
-    /* Header Color */
-    :root:not([lwtheme-image]):-moz-lwtheme {
-      background-color: var(--lwt-accent-color) !important;
+    @supports not -moz-bool-pref("userChrome.theme.transparent.frame") {
+      /* Header Color */
+      :root:not([lwtheme-image]):-moz-lwtheme {
+        background-color: var(--lwt-accent-color) !important;
+      }
+      :root:not([lwtheme-image]):-moz-lwtheme:-moz-window-inactive {
+        background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
+      }
     }
   }
   @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
@@ -2175,7 +2180,11 @@
 }
 /*= Transparent ==============================================================*/
 @supports -moz-bool-pref("userChrome.theme.transparent.frame") {
-  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10), (-moz-gtk-csd-available) {
+  @media (-moz-os-version: windows-win10),
+    (-moz-platform: windows-win10),
+    (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-gtk-csd-available) {
     #main-window,
     #navigator-toolbox-background {
       background-color: transparent !important;
@@ -2199,27 +2208,7 @@
       -moz-default-appearance: -moz-win-exclude-glass !important;
     }
   }
-  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root,
-    #navigator-toolbox {
-      --lwt-accent-color: transparent !important;
-      --lwt-text-color: WindowText !important;
-    }
-    #titlebar .toolbarbutton-1 {
-      --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
-    }
-    :root:not([sizemode="fullscreen"]) .titlebar-buttonbox-container .titlebar-button:not(.titlebar-close:hover) {
-      list-style-image: none !important;
-    }
-    :root:not([sizemode="fullscreen"])
-      #toolbar-menubar[autohide="true"][inactive="true"]
-      + #TabsToolbar
-      .titlebar-button:is(.titlebar-close:hover)
-      .toolbarbutton-icon {
-      transform: translateY(-7px) !important;
-    }
-  }
-  @media (-moz-gtk-csd-available) {
+  @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-gtk-csd-available) {
     :root:not(:-moz-lwtheme) {
       --lwt-accent-color: Window !important;
       --lwt-text-color: WindowText !important;
@@ -2242,7 +2231,7 @@
     }
     #main-menubar:not(:-moz-window-inactive),
     .titlebar-buttonbox-container:not(:-moz-window-inactive) {
-      background-color: var(--uc-frame-element-background);
+      background-color: var(--uc-frame-element-background) !important;
       border-radius: 4px;
     }
     #TabsToolbar {
@@ -2262,6 +2251,46 @@
     #alltabs-button > .toolbarbutton-badge-stack,
     #TabsToolbar .toolbarbutton-1 > .toolbarbutton-icon {
       background-color: var(--uc-frame-element-background);
+    }
+  }
+  @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+    :root,
+    #navigator-toolbox {
+      --lwt-accent-color: transparent !important;
+      --lwt-text-color: WindowText !important;
+    }
+    #titlebar .toolbarbutton-1 {
+      --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
+    }
+    :root:not([sizemode="fullscreen"]) .titlebar-buttonbox-container .titlebar-button:not(.titlebar-close:hover) {
+      list-style-image: none !important;
+    }
+    :root:not([sizemode="fullscreen"])
+      #toolbar-menubar[autohide="true"][inactive="true"]
+      + #TabsToolbar
+      .titlebar-button:is(.titlebar-close:hover)
+      .toolbarbutton-icon {
+      transform: translateY(-7px) !important;
+    }
+  }
+  @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
+    :root:not([lwtheme-image]):-moz-lwtheme {
+      background-color: transparent !important;
+      background-image: none !important;
+    }
+    #main-menubar:not(:-moz-window-inactive) {
+      color: var(--lwt-text-color) !important;
+    }
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      #toolbar-menubar:not(:-moz-window-inactive) {
+        text-shadow: unset !important;
+      }
+    }
+    @media (-moz-windows-default-theme) {
+      #TabsToolbar {
+        color: inherit !important;
+        background-image: unset !important;
+      }
     }
   }
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
