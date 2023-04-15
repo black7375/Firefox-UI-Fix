@@ -20,7 +20,12 @@
   $important: _important($important);
 
   // -moz-box-ordinal-group is always positive
-  order: $num $important;
+  @if $num == 0 {
+    order: -1 $important;
+  }
+  @else {
+    order: $num $important;
+  }
   -moz-box-ordinal-group: $num $important;
 }
 

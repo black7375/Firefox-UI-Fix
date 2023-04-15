@@ -7226,7 +7226,7 @@
     .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy])
       .tab-close-button {
       display: -moz-box !important;
-      order: 0 !important;
+      order: -1 !important;
       -moz-box-ordinal-group: 0 !important;
       /* Looks like hover */
       width: var(--uc-close-button-size) !important;
@@ -7245,7 +7245,7 @@
     @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.always") {
       .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
         display: -moz-box !important;
-        order: 0 !important;
+        order: -1 !important;
         -moz-box-ordinal-group: 0 !important;
         /* Looks like hover */
         width: var(--uc-close-button-size) !important;
@@ -7265,7 +7265,7 @@
     @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.background") {
       .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
         display: -moz-box !important;
-        order: 0 !important;
+        order: -1 !important;
         -moz-box-ordinal-group: 0 !important;
         /* Looks like hover */
         width: var(--uc-close-button-size) !important;
@@ -9595,7 +9595,7 @@
 }
 @supports -moz-bool-pref("userChrome.autohide.fill_urlbar") {
   #nav-bar:not(:hover, :focus-within, [urlbar-exceeds-toolbar-bounds="true"]) #urlbar-container {
-    order: 0;
+    order: -1;
     -moz-box-ordinal-group: 0;
     min-width: calc(
       var(--uc-navbar-width, 100vw) -
@@ -10047,7 +10047,7 @@
     #appMenu-proton-addon-banners > .addon-banner-item > .toolbarbutton-icon {
       display: -moz-inline-box !important;
       margin-inline-start: var(--arrowpanel-menuicon-padding);
-      order: 0 !important;
+      order: -1 !important;
       -moz-box-ordinal-group: 0 !important;
     }
     #appMenu-proton-update-banner::before {
@@ -10241,7 +10241,7 @@
       padding: 0;
     }
     #PanelUI-fxa-menu > :first-child {
-      order: 0;
+      order: -1;
       -moz-box-ordinal-group: 0;
     }
     #PanelUI-sign-out-separator {
