@@ -71,6 +71,14 @@
   }
 }
 
+@include Option("userChrome.rounding.square_infobox") {
+  .container.infobar,
+  .container.infobar::before,
+  notification-message {
+    border-radius: 0 !important;
+  }
+}
+
 @include Option("userChrome.rounding.square_field") {
   input:not([type="radio"], [type="checkbox"]),
   textarea,

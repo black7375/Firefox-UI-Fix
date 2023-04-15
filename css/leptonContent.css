@@ -2920,6 +2920,28 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
+  {
+    /*
+     * .container is inside shadow DOM,
+     * and it does not have any other classes,
+     * but there may be other elements with the same class,
+     * hence the weird selector.
+     */
+    link[href="chrome://global/content/elements/message-bar.css"] + .container,
+    .info-box-container,
+    .options-container,
+    #sanitizeEverythingWarningBox {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .message {
+      border-radius: 0 !important;
+    }
+  }
+}
 @-moz-document url("chrome://browser/content/places/places.xhtml")
 {
   /*= Library ==============================================================*/

@@ -3181,6 +3181,13 @@
     border-radius: 0 !important;
   }
 }
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  .container.infobar,
+  .container.infobar::before,
+  notification-message {
+    border-radius: 0 !important;
+  }
+}
 @supports -moz-bool-pref("userChrome.rounding.square_field") {
   input:not([type="radio"], [type="checkbox"]),
   textarea,
