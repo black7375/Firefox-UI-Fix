@@ -7073,6 +7073,12 @@
       background-color: transparent !important;
     }
   }
+  /* Fix tab overlap #678 */
+  @supports -moz-bool-pref("userChrome.tab.bottom_rounded_corner") {
+    tab:where([visuallyselected="true"]) {
+      z-index: 1;
+    }
+  }
 }
 /*= New tab button - Smaller button ==========================================*/
 @supports -moz-bool-pref("userChrome.tab.newtab_button_smaller") {
