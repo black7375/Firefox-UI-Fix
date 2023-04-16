@@ -41,6 +41,9 @@
 @include Option("userChrome.theme.transparent.menu") {
   @import "transparent/menu";
 }
+@include Option("userChrome.theme.transparent.panel") {
+  @import "transparent/panel";
+}
 
 /*= Proton Theme Mode ========================================================*/
 @include Option("userChrome.theme.proton_chrome") {

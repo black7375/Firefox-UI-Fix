@@ -2360,6 +2360,14 @@
     }
   }
 }
+@supports -moz-bool-pref("userChrome.theme.transparent.panel") {
+  panel[type="arrow"] {
+    --panel-background: transparent !important;
+  }
+  panelview {
+    background: color-mix(in srgb, var(--arrowpanel-background) 90%, transparent) !important;
+  }
+}
 /*= Proton Theme Mode ========================================================*/
 @supports -moz-bool-pref("userChrome.theme.proton_chrome") {
   /*= Proton Commons ===========================================================*/
