@@ -1,0 +1,10 @@
+// Menu
+.menupopup-arrowscrollbox[part*="content"] {
+  background: color-mix(in srgb, var(--menu-background-color, Menu) 90%, transparent) !important;
+}
+
+@include NativeMenu(true) {
+  html#main-window #mainPopupSet menupopup:not(.in-menulist) {
+    --menu-background-color: Menu !important;
+  }
+}
