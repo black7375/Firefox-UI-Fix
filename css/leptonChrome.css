@@ -2282,6 +2282,9 @@
       fill: currentColor !important;
       color: var(--in-content-deemphasized-text) !important; /* FieldText */
     }
+    #viewGroup > radio .radio-icon {
+      background-image: none !important;
+    }
     @supports not -moz-bool-pref("userChrome.rounding.square_button") {
       #viewGroup > radio {
         border-radius: 8px !important;
