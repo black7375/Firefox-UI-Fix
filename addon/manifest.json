@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name": "Lepton",
+  "version": "7.0.0",
+  "description": "I respect proton UI and aim to improve it. ",
+  "author": "alstjr7375 <alstjr7375@daum.net>",
+  "homepage_url": "https://github.com/black7375/Firefox-UI-Fix",
+  "applications": {
+    "gecko": {
+      "id": "lepton@black7375",
+      "strict_min_version": "89.0"
+    }
+  },
+  "icons": {
+    "16": "icons/default16.png",
+    "48": "icons/default48.png",
+    "128": "icons/default128.png"
+  },
+  "permissions": [
+    "idle",
+    "management",
+    "storage",
+    "tabs",
+    "theme"
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "experiment_apis": {
+    "stylesheet": {
+      "schema": "stylesheet-api-experiment/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["stylesheet"]],
+        "script": "stylesheet-api-experiment/api.js"
+      }
+    }
+  }
+}
