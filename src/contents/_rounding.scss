@@ -6,7 +6,6 @@
     button:not(.toggle-button),
     .close-icon,
     .action-icon::before,
-    .web-appearance-choice,
     .page-section-header > .twisty,
     .closed-tab-li-main,
     #categories > .category,
@@ -94,7 +93,9 @@
     treecols,
     listheader,
     richlistbox,
-    search-textbox {
+    search-textbox,
+    .web-appearance-choice,
+    .content-blocking-category {
       border-radius: 0 !important;
     }
   }
@@ -167,7 +168,7 @@
      * hence the weird selector.
      */
     link[href="chrome://global/content/elements/message-bar.css"] + .container,
-    .info-box-container,
+    .info-box-container:not(.content-blocking-category),
     .options-container,
     #sanitizeEverythingWarningBox {
       border-radius: 0 !important;
