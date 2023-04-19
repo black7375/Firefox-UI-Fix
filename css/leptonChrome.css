@@ -1542,7 +1542,8 @@
   }
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,
-  #PopupAutoComplete > richlistbox > richlistitem[originaltype="login"] > .ac-site-icon {
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="login"] > .ac-site-icon,
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="insecureWarning"] > .ac-site-icon {
     fill: GrayText !important;
   }
   #PopupAutoComplete > richlistbox > richlistitem[originaltype="loginsFooter"] {
@@ -1557,6 +1558,15 @@
       --arrowpanel-dimmed-further,
       hsla(0deg, 0%, 80%, 0.5)
     ) !important; /* Original: hsla(0,0%,80%,.5), match arrowpanel-dimmed-further */
+  }
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="insecureWarning"] {
+    background-color: var(--panel-bgcolor) !important; /* Original: var(--arrowpanel-dimmed) */
+  }
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="insecureWarning"]:hover {
+    background-color: var(--arrowpanel-dimmed, hsla(0deg, 0%, 80%, 0.35)) !important;
+  }
+  #PopupAutoComplete > richlistbox > richlistitem[originaltype="insecureWarning"] > .ac-title {
+    color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: var(--grey-60) */
   }
   /* New Folder Button */
   #editBMPanel_newFolderButton {
@@ -2809,7 +2819,13 @@
   #identity-popup-more-info,
   #unified-extensions-manage-extensions,
   .unified-extensions-item-open-menu,
-  .unified-extensions-item-menu-button.subviewbutton {
+  .unified-extensions-item-menu-button.subviewbutton,
+  #PopupAutoComplete
+    > richlistbox
+    > richlistitem[originaltype="insecureWarning"]
+    > .ac-title
+    > .ac-text-overflow-container
+    > .ac-title-text {
     cursor: pointer !important;
   }
 }

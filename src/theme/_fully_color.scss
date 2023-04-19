@@ -239,7 +239,8 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
 #PopupAutoComplete > richlistbox > richlistitem {
   &[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
   &[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,
-  &[originaltype="login"] > .ac-site-icon {
+  &[originaltype="login"] > .ac-site-icon,
+  &[originaltype="insecureWarning"] > .ac-site-icon {
     fill: GrayText !important;
   }
 
@@ -256,5 +257,16 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
       --arrowpanel-dimmed-further,
       hsla(0, 0%, 80%, 0.5)
     ) !important; /* Original: hsla(0,0%,80%,.5), match arrowpanel-dimmed-further */
+  }
+
+  &[originaltype="insecureWarning"] {
+    background-color: var(--panel-bgcolor) !important; /* Original: var(--arrowpanel-dimmed) */
+    &:hover {
+      background-color: var(--arrowpanel-dimmed, hsla(0deg, 0%, 80%, 0.35)) !important;
+    }
+
+    > .ac-title {
+      color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: var(--grey-60) */
+    }
   }
 }
