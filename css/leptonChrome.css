@@ -10566,7 +10566,7 @@
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
-      stroke: transparent;
+      stroke: currentColor;
       /* Layout */
       background-size: 16px !important;
       background-repeat: no-repeat !important;
@@ -10971,6 +10971,7 @@
       #tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab,
       #sidebartabs_asamuzak_jp-menuitem-_muteTab {
         --menuitem-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
+        stroke: transparent !important;
       }
       #context_toggleMuteTab[muted],
       #context_toggleMuteSelectedTabs[muted],
@@ -11975,9 +11976,11 @@
       /* viewFullZoomMenu sub menu */
       #menu_zoomEnlarge {
         --menuitem-image: url("chrome://browser/skin/add-circle-fill.svg");
+        stroke: transparent !important;
       }
       #menu_zoomReduce {
         --menuitem-image: url("chrome://browser/skin/subtract-circle-fill.svg");
+        stroke: transparent !important;
       }
       #menu_zoomReset {
         --menuitem-image: url("../icons/resize.svg");
