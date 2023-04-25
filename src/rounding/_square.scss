@@ -71,11 +71,15 @@
   }
 }
 
-@include Option("userChrome.rounding.square_infobox") {
+@include Option("userChrome.rounding.square_toolbar") {
+  :root {
+    --uc-rounding-toolbar: 0;
+  }
+
   .container.infobar,
   .container.infobar::before,
   notification-message {
-    border-radius: 0 !important;
+    border-radius: var(--uc-rounding-toolbar) !important;
   }
 }
 

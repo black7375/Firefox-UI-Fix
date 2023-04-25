@@ -45,7 +45,7 @@ findbar {
 .findbar-container {
   @include BoxDirection("reverse");
   border-width: 0 0 1px 1px;
-  border-radius: var(--toolbarbutton-border-radius) 0 0 var(--toolbarbutton-border-radius) !important;
+  border-radius: var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) 0 0 var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) !important;
 
   > .findbar-find-fast {
     padding: var(--toolbarbutton-inner-padding) 1px;
