@@ -410,6 +410,7 @@
     }
     #contentSearchSettingsButton::before {
       content: url("chrome://global/skin/icons/settings.svg") !important;
+      display: inline-flex;
       display: -moz-inline-box;
       /* Color */
       -moz-context-properties: fill, fill-opacity !important;
@@ -2171,6 +2172,7 @@
         list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
       }
       #clearDownloadsButton > .toolbarbutton-icon {
+        display: inline-flex !important;
         display: -moz-inline-box !important;
         margin-top: 0;
         margin-bottom: 0;

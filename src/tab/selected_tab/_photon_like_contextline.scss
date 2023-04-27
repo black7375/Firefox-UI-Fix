@@ -1,5 +1,5 @@
 .tab-context-line {
-  display: -moz-inline-box !important;
+  @include InlineBox(true);
   height: 2px !important;
   border-radius: var(--tab-border-radius, 4px) var(--tab-border-radius, 4px) 0 0 !important;
 }

@@ -44,7 +44,7 @@
 
 #appMenu-multiView .subviewbutton::before,
 #appMenu-proton-update-banner::before {
-  display: -moz-inline-box;
+  @include InlineBox;
   margin-inline-end: var(--arrowpanel-menuicon-padding);
   width: 16px;
   height: 16px;

@@ -2019,6 +2019,7 @@
       font-weight: 600 !important;
     }
     dropmarker {
+      display: flex !important;
       display: -moz-box !important;
       appearance: none !important;
       width: 12px !important;
@@ -2198,6 +2199,7 @@
         font-size: inherit !important;
       }
       xul|menulist::part(dropmarker) {
+        display: flex;
         display: -moz-box;
         margin-block: 6px !important;
       }
@@ -2211,6 +2213,7 @@
         display: none !important;
       }
       xul|menulist::part(dropmarker) {
+        display: flex !important;
         display: -moz-box !important;
         margin-block: 1px !important;
       }
@@ -3049,6 +3052,7 @@
         will-change: margin-inline-start, opacity, visibility;
       }
       #sidebar-box[hidden="true"] {
+        display: flex !important;
         display: -moz-box !important;
         margin-inline-start: -18em;
         opacity: 0;
@@ -5956,6 +5960,7 @@
     :root:not([tabsintitlebar="true"])
       #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow="true"])
       ~ #new-tab-button {
+      display: flex !important;
       display: -moz-box !important;
     }
   }
@@ -6011,6 +6016,7 @@
     > #tabbrowser-arrowscrollbox
     > #tabbrowser-arrowscrollbox-periphery
     > #tabs-newtab-button {
+    display: flex !important;
     display: -moz-box !important;
   }
   #alltabs-button,
@@ -6590,6 +6596,7 @@
 }
 @supports -moz-bool-pref("userChrome.tab.photon_like_contextline") {
   .tab-context-line {
+    display: inline-flex !important;
     display: -moz-inline-box !important;
     height: 2px !important;
     border-radius: var(--tab-border-radius, 4px) var(--tab-border-radius, 4px) 0 0 !important;
@@ -7173,6 +7180,7 @@
     > .tab-stack
     > .tab-content
     > .tab-close-button:not([selected="true"]) {
+    display: inline-flex !important;
     display: -moz-inline-box !important;
   }
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([visuallyselected]) .tab-close-button {
@@ -7260,6 +7268,7 @@
     }
     .tabbrowser-tab[pinned][visuallyselected]:not([style*="transform: translateX"]):hover:not([busy])
       .tab-close-button {
+      display: flex !important;
       display: -moz-box !important;
       order: -1 !important;
       -moz-box-ordinal-group: 0 !important;
@@ -7279,6 +7288,7 @@
     }
     @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.always") {
       .tabbrowser-tab[pinned][visuallyselected]:not([busy]) .tab-close-button {
+        display: flex !important;
         display: -moz-box !important;
         order: -1 !important;
         -moz-box-ordinal-group: 0 !important;
@@ -7299,6 +7309,7 @@
     }
     @supports -moz-bool-pref("userChrome.tab.close_button_at_pinned.background") {
       .tabbrowser-tab[pinned]:not([style*="transform: translateX"]):hover:not([busy]) .tab-close-button {
+        display: flex !important;
         display: -moz-box !important;
         order: -1 !important;
         -moz-box-ordinal-group: 0 !important;
@@ -7327,6 +7338,7 @@
 /** Clipped tabs - Always show tab icon ***************************************/
 @supports -moz-bool-pref("userChrome.tab.always_show_tab_icon") {
   .tab-icon-image:not([src], [pinned], [crashed], [busy]) {
+    display: inline-flex !important;
     display: -moz-inline-box !important;
   }
 }
@@ -7342,6 +7354,7 @@
 /*= Sound Tab - Show Label ===================================================*/
 @supports -moz-bool-pref("userChrome.tab.sound_show_label") {
   .tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) {
+    display: flex !important;
     display: -moz-box !important;
   }
 }
@@ -7519,6 +7532,7 @@
   }
   .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-content::after {
     /* Shape */
+    display: inline-flex !important;
     display: -moz-inline-box !important;
     width: 14px;
     height: 14px;
@@ -8718,6 +8732,7 @@
     counter-reset: bookmark-counts 0;
   }
   menupopup[placespopup="true"] > menu.bookmark-item::after {
+    display: inline-flex;
     display: -moz-inline-box;
     content: "(" counter(bookmark-counts) ")";
   }
@@ -8754,6 +8769,7 @@
   }
   findbar::before {
     content: "";
+    display: flex;
     display: -moz-box;
     position: absolute;
     flex: 200;
@@ -8779,6 +8795,7 @@
     margin: 0 !important;
   }
   .findbar-container > .findbar-find-status {
+    display: flex;
     display: -moz-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -9952,6 +9969,7 @@
           list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
         }
         #clearDownloadsButton > .toolbarbutton-icon {
+          display: inline-flex !important;
           display: -moz-inline-box !important;
           margin-top: 0;
           margin-bottom: 0;
@@ -10029,6 +10047,7 @@
     }
     #appMenu-multiView .subviewbutton::before,
     #appMenu-proton-update-banner::before {
+      display: inline-flex;
       display: -moz-inline-box;
       margin-inline-end: var(--arrowpanel-menuicon-padding);
       width: 16px;
@@ -10081,6 +10100,7 @@
     }
     /*= Panel - Main =============================================================*/
     #appMenu-proton-addon-banners > .addon-banner-item > .toolbarbutton-icon {
+      display: inline-flex !important;
       display: -moz-inline-box !important;
       margin-inline-start: var(--arrowpanel-menuicon-padding);
       order: -1 !important;
@@ -10206,6 +10226,7 @@
     /* Default */
     #fxa-manage-account-button::before {
       content: "";
+      display: inline-flex;
       display: -moz-inline-box;
       width: 32px !important;
       height: 32px !important;
@@ -10271,6 +10292,7 @@
     /* Change Separator */
     #PanelUI-fxa-menu::before {
       content: "";
+      display: flex;
       display: -moz-box;
       border-bottom: 1px solid var(--panel-separator-color);
       margin: var(--panel-separator-margin);
@@ -10424,6 +10446,7 @@
       list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
     }
     #downloadsHistory .box-inherit.button-box {
+      display: inline-flex !important;
       display: -moz-inline-box !important;
     }
     /*= Toolbar - Overflow Menu ==================================================*/
@@ -10468,6 +10491,7 @@
         list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg") !important;
       }
       #BMB_bookmarksShowAllTop > .menu-iconic-left {
+        display: flex !important;
         display: -moz-box !important;
       }
     }

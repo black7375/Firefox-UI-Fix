@@ -24,7 +24,7 @@
   list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
 }
 #clearDownloadsButton > .toolbarbutton-icon {
-  display: -moz-inline-box !important;
+  @include InlineBox(true);
   margin-top: 0;
   margin-bottom: 0;
   margin-inline-start: 0;

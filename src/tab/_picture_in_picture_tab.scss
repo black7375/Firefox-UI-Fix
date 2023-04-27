@@ -4,7 +4,7 @@
 }
 .tabbrowser-tab[pictureinpicture]:not([pinned]) .tab-content::after {
   /* Shape */
-  display: -moz-inline-box !important;
+  @include InlineBox(true);
   width: 14px;
   height: 14px;
   background-size: 14px;

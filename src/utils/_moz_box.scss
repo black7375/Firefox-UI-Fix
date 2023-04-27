@@ -110,3 +110,17 @@
     -moz-box-direction: reverse $important;
   }
 }
+
+@mixin Box($important: false) {
+  $important: _important($important);
+
+  display: flex $important;
+  display: -moz-box $important;
+}
+
+@mixin InlineBox($important: false) {
+  $important: _important($important);
+
+  display: inline-flex $important;
+  display: -moz-inline-box $important;
+}
