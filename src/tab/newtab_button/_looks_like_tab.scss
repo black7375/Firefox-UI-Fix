@@ -143,3 +143,10 @@
     // background-position: center;
   }
 }
+
+/* Fix tab overlap #678 */
+@include Option("userChrome.tab.bottom_rounded_corner") {
+  tab:where([visuallyselected="true"]) {
+    z-index: 1;
+  }
+}

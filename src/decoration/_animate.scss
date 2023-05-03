@@ -115,7 +115,7 @@ xul|search-textbox.tabsFilter,
     will-change: margin-inline-start, opacity, visibility;
 
     &[hidden="true"] {
-      display: -moz-box !important;
+      @include Box(true);
       margin-inline-start: -18em;
       opacity: 0;
       visibility: collapse;

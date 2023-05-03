@@ -284,7 +284,7 @@
   }
 
   dropmarker {
-    display: -moz-box !important;
+    @include Box(true);
     appearance: none !important;
     width: 12px !important;
     height: 12px !important;
@@ -486,7 +486,7 @@
       font-size: inherit !important;
     }
     xul|menulist::part(dropmarker) {
-      display: -moz-box;
+      @include Box;
       margin-block: 6px !important;
     }
     xul|menulist:-moz-focusring::part(label-box) {
@@ -501,7 +501,7 @@
     }
 
     xul|menulist::part(dropmarker) {
-      display: -moz-box !important;
+      @include Box(true);
       margin-block: 1px !important;
     }
 
