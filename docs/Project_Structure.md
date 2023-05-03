@@ -45,7 +45,7 @@ Most of them are made in SVG.
 
 Except for illustrations, there must be an `fill="context-fill" fill-opacity="context-fill-opacity"` property to dynamically determine color and transparency.
 
-Icons are mainly [FirefoxUX/photon-icons](https://github.com/FirefoxUX/photon-icons)
+Icons are mainly [FirefoxUX/acorn-icons](https://github.com/FirefoxUX/acorn-icons), [FirefoxUX/photon-icons](https://github.com/FirefoxUX/photon-icons)
 or [microsoft/fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).  
 Although not yet used, [tabler/tabler-icons](https://github.com/tabler/tabler-icons) and [feathericons/feather](https://github.com/feathericons/feather) can also be referred to.
 

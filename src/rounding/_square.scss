@@ -71,6 +71,18 @@
   }
 }
 
+@include Option("userChrome.rounding.square_toolbar") {
+  :root {
+    --uc-rounding-toolbar: 0;
+  }
+
+  .container.infobar,
+  .container.infobar::before,
+  notification-message {
+    border-radius: var(--uc-rounding-toolbar) !important;
+  }
+}
+
 @include Option("userChrome.rounding.square_field") {
   input:not([type="radio"], [type="checkbox"]),
   textarea,

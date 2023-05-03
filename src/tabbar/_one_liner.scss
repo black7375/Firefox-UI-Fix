@@ -46,7 +46,7 @@
 
   #nav-bar {
     --toolbarbutton-inner-padding: 6px; /* Original: 8px */
-    border-radius: var(--tab-border-radius, 4px);
+    border-radius: var(--uc-rounding-toolbar, var(--tab-border-radius, 4px));
   }
 
   #nav-bar,

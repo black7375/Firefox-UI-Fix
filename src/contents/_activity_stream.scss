@@ -159,7 +159,7 @@
 
     #contentSearchSettingsButton::before {
       content: url("chrome://global/skin/icons/settings.svg") !important;
-      display: -moz-inline-box;
+      @include InlineBox;
 
       /* Color */
       -moz-context-properties: fill, fill-opacity !important;

@@ -18,6 +18,10 @@
     fill: currentColor !important;
     color: var(--in-content-deemphasized-text) !important; /* FieldText */
 
+    .radio-icon {
+      background-image: none !important; // #680
+    }
+
     @include NotOption("userChrome.rounding.square_button") {
       border-radius: 8px !important;
     }

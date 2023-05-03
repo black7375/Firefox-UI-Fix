@@ -11,7 +11,7 @@
 //-- Mixin ---------------------------------------------------------------------
 @mixin pinnedCloseButtonShow($prefix: "") {
   #{$prefix}:not([busy]) .tab-close-button {
-    display: -moz-box !important;
+    @include Box(true);
     @include BoxOrder(0, true);
 
     /* Looks like hover */
