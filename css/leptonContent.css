@@ -252,7 +252,7 @@
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
-      stroke: transparent;
+      stroke: currentColor;
       /* Layout */
       background-size: 16px !important;
       background-repeat: no-repeat !important;
@@ -410,6 +410,7 @@
     }
     #contentSearchSettingsButton::before {
       content: url("chrome://global/skin/icons/settings.svg") !important;
+      display: inline-flex;
       display: -moz-inline-box;
       /* Color */
       -moz-context-properties: fill, fill-opacity !important;
@@ -2280,6 +2281,7 @@
         list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
       }
       #clearDownloadsButton > .toolbarbutton-icon {
+        display: inline-flex !important;
         display: -moz-inline-box !important;
         margin-top: 0;
         margin-bottom: 0;
@@ -2899,10 +2901,9 @@
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
   @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
-    button,
+    button:not(.toggle-button),
     .close-icon,
     .action-icon::before,
-    .web-appearance-choice,
     .page-section-header > .twisty,
     .closed-tab-li-main,
     #categories > .category,
@@ -2986,7 +2987,9 @@
     treecols,
     listheader,
     richlistbox,
-    search-textbox {
+    search-textbox,
+    .web-appearance-choice,
+    .content-blocking-category {
       border-radius: 0 !important;
     }
   }
@@ -3033,6 +3036,28 @@
   @-moz-document regexp(".*.pdf$") {
     .doorHanger,
     .doorHangerRight {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
+  {
+    /*
+     * .container is inside shadow DOM,
+     * and it does not have any other classes,
+     * but there may be other elements with the same class,
+     * hence the weird selector.
+     */
+    link[href="chrome://global/content/elements/message-bar.css"] + .container,
+    .info-box-container:not(.content-blocking-category),
+    .options-container,
+    #sanitizeEverythingWarningBox {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .message {
       border-radius: 0 !important;
     }
   }
@@ -3084,7 +3109,7 @@
         /* Color */
         -moz-context-properties: fill, fill-opacity, stroke !important;
         fill: currentColor !important;
-        stroke: transparent;
+        stroke: currentColor;
         /* Layout */
         background-size: 16px !important;
         background-repeat: no-repeat !important;

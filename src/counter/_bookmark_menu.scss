@@ -2,7 +2,7 @@ menupopup[placespopup="true"] > menu.bookmark-item > .menu-right {
   counter-reset: bookmark-counts 0;
 }
 menupopup[placespopup="true"] > menu.bookmark-item::after {
-  display: -moz-inline-box;
+  @include InlineBox;
   content: "(" counter(bookmark-counts) ")";
 }
 
