@@ -65,13 +65,17 @@ user_pref("userChrome.rounding.square_tab",           false);
 
 // user_pref("userChrome.compatibility.os.linux_non_native_titlebar_button", true);
 // user_pref("userChrome.compatibility.os.windows_maximized", true);
+// user_pref("userChrome.compatibility.os.win11",             true);
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
 // user_pref("userChrome.theme.private",                       true);
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
 // user_pref("userChrome.theme.monospace",                     true);
-// user_pref("userChrome.compatibility.os.win11",              true);
+// user_pref("userChrome.theme.transparent.frame",             true);
+// user_pref("userChrome.theme.transparent.menu",              true);
+// user_pref("userChrome.theme.transparent.panel",             true);
+// user_pref("userChrome.theme.non_native_menu",               true); // only for linux
 
 // user_pref("userChrome.decoration.disable_panel_animate",    true);
 // user_pref("userChrome.decoration.disable_sidebar_animate",  true);
@@ -128,6 +132,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.rounding.square_panelitem",           true);
 // user_pref("userChrome.rounding.square_menupopup",           true);
 // user_pref("userChrome.rounding.square_menuitem",            true);
+// user_pref("userChrome.rounding.square_infobox",             true);
+// user_pref("userChrome.rounding.square_toolbar",             true);
 // user_pref("userChrome.rounding.square_field",               true);
 // user_pref("userChrome.rounding.square_urlView_item",        true);
 // user_pref("userChrome.rounding.square_checklabel",          true);
@@ -179,6 +185,8 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.tab.close_button_at_hover.always",    true); // Need close_button_at_hover
 // user_pref("userChrome.tab.close_button_at_hover.with_selected", true);  // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
+// user_pref("userChrome.tab.container.on_top",                true);
+// user_pref("userChrome.tab.sound_with_favicons.with_text",   true);
 // user_pref("userChrome.tab.selected_bold",                   true);
 
 // user_pref("userChrome.navbar.as_sidebar",                   true);

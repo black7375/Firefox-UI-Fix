@@ -20,9 +20,15 @@
 
 /*= Windows 7, 8 - Tab Bar Background *****************************************/
 @include OS($win7, $win8) {
-  /* Header Color */
-  :root:not([lwtheme-image]):-moz-lwtheme {
-    background-color: var(--lwt-accent-color) !important;
+  @include NotOption("userChrome.theme.transparent.frame") {
+    /* Header Color */
+    :root:not([lwtheme-image]):-moz-lwtheme {
+      background-color: var(--lwt-accent-color) !important;
+
+      &:-moz-window-inactive {
+        background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
+      }
+    }
   }
 }
 

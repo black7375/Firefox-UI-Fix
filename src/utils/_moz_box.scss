@@ -20,7 +20,12 @@
   $important: _important($important);
 
   // -moz-box-ordinal-group is always positive
-  order: $num $important;
+  @if $num == 0 {
+    order: -1 $important;
+  }
+  @else {
+    order: $num $important;
+  }
   -moz-box-ordinal-group: $num $important;
 }
 
@@ -104,4 +109,18 @@
     flex-direction: row-reverse $important;
     -moz-box-direction: reverse $important;
   }
+}
+
+@mixin Box($important: false) {
+  $important: _important($important);
+
+  display: flex $important;
+  display: -moz-box $important;
+}
+
+@mixin InlineBox($important: false) {
+  $important: _important($important);
+
+  display: inline-flex $important;
+  display: -moz-inline-box $important;
 }

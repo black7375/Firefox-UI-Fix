@@ -1,0 +1,28 @@
+// https://github.com/te6-in/lepton-custom/blob/26110f0de64dd70d6396b5d101e1907cf441b110/te6-custom.css#L138
+// https://github.com/Tnings/MacosVibrant/blob/main/userChrome.css
+
+:root:not(:-moz-window-inactive) #navigator-toolbox {
+  background-color: transparent !important;
+}
+
+#TabsToolbar,
+#titlebar,
+#nav-bar,
+#PersonalToolbar,
+#tabbrowser-tabs {
+  // Before FF v103: -moz-mac-vibrant-titlebar-light, -moz-mac-vibrant-titlebar-dark
+  -moz-appearance: -moz-mac-source-list !important;
+  background-color: transparent !important;
+}
+
+/* De-emphasize tab icons and names when window is unfocused */
+:root:-moz-window-inactive {
+  .tab-content,
+  #urlbar {
+    opacity: 0.6;
+  }
+
+  #urlbar-background {
+    background-color: transparent !important;
+  }
+}

@@ -1,0 +1,21 @@
+:root:not([lwtheme-image]):-moz-lwtheme {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+#main-menubar:not(:-moz-window-inactive) {
+  color: var(--lwt-text-color) !important;
+}
+
+@include Dark {
+  #toolbar-menubar:not(:-moz-window-inactive) {
+    text-shadow: unset !important;
+  }
+}
+
+@media (-moz-windows-default-theme) {
+  #TabsToolbar {
+    color: inherit !important;
+    background-image: unset !important;
+  }
+}

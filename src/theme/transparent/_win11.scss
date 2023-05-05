@@ -1,0 +1,19 @@
+// @media (-moz-windows-accent-color-in-titlebar: 0) {
+// }
+
+:root,
+#navigator-toolbox {
+  --lwt-accent-color: transparent !important; // Window
+  --lwt-text-color: WindowText !important;
+}
+
+#titlebar .toolbarbutton-1 {
+  --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
+}
+
+:root:not([sizemode="fullscreen"]) .titlebar-buttonbox-container .titlebar-button:not(.titlebar-close:hover) {
+  list-style-image: none !important;
+}
+:root:not([sizemode="fullscreen"]) #toolbar-menubar[autohide="true"][inactive="true"] + #TabsToolbar .titlebar-button:is(.titlebar-close:hover) .toolbarbutton-icon {
+  transform: translateY(-7px) !important;
+}

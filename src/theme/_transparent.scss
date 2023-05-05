@@ -1,0 +1,15 @@
+@include OS($win10, $win8, $win7, $linux) {
+  @import "transparent/general";
+}
+@include OS($win8, $win7, $linux) {
+  @import "transparent/general_element_background";
+}
+@include OS($win10) {
+  @import "transparent/win11";
+}
+@include OS($win8, $win7) {
+  @import "transparent/win7_8";
+}
+@include OS($mac) {
+  @import "transparent/mac";
+}

@@ -252,7 +252,7 @@
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
-      stroke: transparent;
+      stroke: currentColor;
       /* Layout */
       background-size: 16px !important;
       background-repeat: no-repeat !important;
@@ -410,6 +410,7 @@
     }
     #contentSearchSettingsButton::before {
       content: url("chrome://global/skin/icons/settings.svg") !important;
+      display: inline-flex;
       display: -moz-inline-box;
       /* Color */
       -moz-context-properties: fill, fill-opacity !important;
@@ -728,6 +729,74 @@
       :host,
       :root {
         --uc-warning-icon-bgcolor: var(--in-content-page-color);
+      }
+    }
+    /*= Menu color #477 ==========================================================*/
+    @media (-moz-windows-non-native-menus) {
+      :root {
+        /* Override some menu color variables for light browser themes. */
+        --menuitem-hover-background-color: #e0e0e6;
+        --menu-background-color: #f9f9fb;
+        --menu-color: #15141a;
+        --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
+        --menu-disabled-color: rgba(21, 20, 26, 0.4);
+        --menu-border-color: #cfcfd8;
+        --menu-icon-opacity: 0.7;
+        /* Declare menu colors for dark themes, but don't override anything yet. */
+        --dark-menuitem-hover-background-color: #52525e;
+        --dark-menu-background-color: #2b2a33;
+        --dark-menu-color: #fbfbfe;
+        --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
+        --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
+        --dark-menu-border-color: #5b5b66;
+        --dark-menu-icon-opacity: 1;
+      }
+      /* Override the menu color variables for dark browser themes. */
+    }
+    @media (-moz-windows-non-native-menus) and (-moz-toolbar-prefers-color-scheme: dark),
+      (-moz-windows-non-native-menus) and (prefers-color-scheme: dark) {
+      :root {
+        --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
+        --menu-background-color: var(--dark-menu-background-color);
+        --menu-color: var(--dark-menu-color);
+        --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
+        --menu-disabled-color: var(--dark-menu-disabled-color);
+        --menu-border-color: var(--dark-menu-border-color);
+        --menu-icon-opacity: var(--dark-menu-icon-opacity);
+      }
+    }
+    @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+      @media (-moz-gtk-csd-available) {
+        :root {
+          /* Override some menu color variables for light browser themes. */
+          --menuitem-hover-background-color: #e0e0e6;
+          --menu-background-color: #f9f9fb;
+          --menu-color: #15141a;
+          --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
+          --menu-disabled-color: rgba(21, 20, 26, 0.4);
+          --menu-border-color: #cfcfd8;
+          --menu-icon-opacity: 0.7;
+          /* Declare menu colors for dark themes, but don't override anything yet. */
+          --dark-menuitem-hover-background-color: #52525e;
+          --dark-menu-background-color: #2b2a33;
+          --dark-menu-color: #fbfbfe;
+          --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
+          --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
+          --dark-menu-border-color: #5b5b66;
+          --dark-menu-icon-opacity: 1;
+        }
+        /* Override the menu color variables for dark browser themes. */
+        @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+          :root {
+            --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
+            --menu-background-color: var(--dark-menu-background-color);
+            --menu-color: var(--dark-menu-color);
+            --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
+            --menu-disabled-color: var(--dark-menu-disabled-color);
+            --menu-border-color: var(--dark-menu-border-color);
+            --menu-icon-opacity: var(--dark-menu-icon-opacity);
+          }
+        }
       }
     }
     @supports -moz-bool-pref("userContent.page.proton_color.dark_blue_accent") {
@@ -2212,6 +2281,7 @@
         list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
       }
       #clearDownloadsButton > .toolbarbutton-icon {
+        display: inline-flex !important;
         display: -moz-inline-box !important;
         margin-top: 0;
         margin-bottom: 0;
@@ -2831,10 +2901,9 @@
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
   @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
-    button,
+    button:not(.toggle-button),
     .close-icon,
     .action-icon::before,
-    .web-appearance-choice,
     .page-section-header > .twisty,
     .closed-tab-li-main,
     #categories > .category,
@@ -2918,7 +2987,9 @@
     treecols,
     listheader,
     richlistbox,
-    search-textbox {
+    search-textbox,
+    .web-appearance-choice,
+    .content-blocking-category {
       border-radius: 0 !important;
     }
   }
@@ -2965,6 +3036,28 @@
   @-moz-document regexp(".*.pdf$") {
     .doorHanger,
     .doorHangerRight {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
+  {
+    /*
+     * .container is inside shadow DOM,
+     * and it does not have any other classes,
+     * but there may be other elements with the same class,
+     * hence the weird selector.
+     */
+    link[href="chrome://global/content/elements/message-bar.css"] + .container,
+    .info-box-container:not(.content-blocking-category),
+    .options-container,
+    #sanitizeEverythingWarningBox {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .message {
       border-radius: 0 !important;
     }
   }
@@ -3016,7 +3109,7 @@
         /* Color */
         -moz-context-properties: fill, fill-opacity, stroke !important;
         fill: currentColor !important;
-        stroke: transparent;
+        stroke: currentColor;
         /* Layout */
         background-size: 16px !important;
         background-repeat: no-repeat !important;
@@ -3052,6 +3145,61 @@
         background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
         padding-inline-start: var(--context-menu-background-padding) !important;
       }
+      /* Padding - Non Native */
+      @media (-moz-gtk-csd-available),
+        (-moz-os-version: windows-win7),
+        (-moz-platform: windows-win7),
+        (-moz-os-version: windows-win8),
+        (-moz-platform: windows-win8),
+        (-moz-os-version: windows-win10),
+        (-moz-platform: windows-win10) {
+        @media (-moz-windows-non-native-menus) {
+          :root {
+            --context-menu-background-padding: 1em;
+            --context-menu-text-padding-default: 24px;
+            --context-menu-text-padding: var(--context-menu-text-padding-default);
+            --menu-background-padding-default: calc(
+              var(--context-menu-background-padding) + var(--context-menu-text-padding)
+            );
+            --bookmark-menu-icon-align-padding: 0px;
+          }
+          menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+            menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+          menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+            menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+          menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+            > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+          menupopup:is(#viewMenuPopup, #maintenanceButtonPopup)
+            > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
+            padding-inline-start: var(--menu-background-padding-default) !important;
+            margin-left: 0 !important;
+          }
+        }
+        @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+          @media (-moz-gtk-csd-available) {
+            :root {
+              --context-menu-background-padding: 1em;
+              --context-menu-text-padding-default: 24px;
+              --context-menu-text-padding: var(--context-menu-text-padding-default);
+              --menu-background-padding-default: calc(
+                var(--context-menu-background-padding) + var(--context-menu-text-padding)
+              );
+              --bookmark-menu-icon-align-padding: 0px;
+            }
+            menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+              menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+            menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+              menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+            menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+              > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+            menupopup:is(#viewMenuPopup, #maintenanceButtonPopup)
+              > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
+              padding-inline-start: var(--menu-background-padding-default) !important;
+              margin-left: 0 !important;
+            }
+          }
+        }
+      }
       /* Padding - Windows */
       @media (-moz-os-version: windows-win7),
         (-moz-platform: windows-win7),
@@ -3066,16 +3214,6 @@
           --bookmark-menu-icon-background-padding: calc(
             var(--arrowpanel-menuitem-padding-inline) + var(--bookmark-menu-icon-align-padding)
           );
-        }
-        @media (-moz-windows-non-native-menus) {
-          :root {
-            --context-menu-background-padding: 1em;
-            --context-menu-text-padding: 24px;
-            --menu-background-padding-default: calc(
-              var(--context-menu-background-padding) + var(--context-menu-text-padding)
-            );
-            --bookmark-menu-icon-align-padding: 0px;
-          }
         }
         @media not (-moz-windows-non-native-menus) {
           :root {
@@ -3173,19 +3311,6 @@
             > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
             background-position: left var(--context-menu-background-padding) center !important;
             padding-inline-start: 0 !important;
-          }
-        }
-        @media (-moz-windows-non-native-menus) {
-          menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
-            menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-          menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
-            menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-          menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
-            > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-          menupopup:is(#viewMenuPopup, #maintenanceButtonPopup)
-            > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
-            padding-inline-start: var(--menu-background-padding-default) !important;
-            margin-left: 0 !important;
           }
         }
       }
