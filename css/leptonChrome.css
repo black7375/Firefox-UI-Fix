@@ -3986,7 +3986,6 @@
   /* Don't use display: flex at not fullscreen!! side effect #372 */
   :root[sizemode="fullscreen"] #navigator-toolbox {
     display: flex !important; /* Needed for content to take up entire height, compatibility with tabs on bottom */
-    flex-wrap: wrap;
   }
   :root[sizemode="fullscreen"] #titlebar,
   :root[sizemode="fullscreen"] #nav-bar,
@@ -10335,6 +10334,9 @@
     }
     #appMenuRecentlyClosedWindows {
       list-style-image: url("chrome://browser/skin/window.svg");
+    }
+    #appMenuSearchHistory {
+      list-style-image: url("chrome://global/skin/icons/search-glass.svg");
     }
     #appMenuRestoreSession,
     #appMenu-restoreSession {
