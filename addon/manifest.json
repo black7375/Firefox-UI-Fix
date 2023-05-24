@@ -27,6 +27,14 @@
     "page": "background.html"
   },
   "experiment_apis": {
+    "prefs": {
+      "schema": "prefs-api-experiment/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["prefs"]],
+        "script": "prefs-api-experiment/api.js"
+      }
+    },
     "stylesheet": {
       "schema": "stylesheet-api-experiment/schema.json",
       "parent": {

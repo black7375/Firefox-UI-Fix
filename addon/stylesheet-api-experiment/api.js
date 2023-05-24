@@ -7,9 +7,7 @@ let ios = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
 
 let sheetsMap = new WeakMap();
 
-
 this.stylesheet = class extends ExtensionAPI {
-
   onShutdown(reason) {
     let {extension} = this;
     for (let sheet of sheetsMap.get(extension)) {
@@ -34,6 +32,7 @@ this.stylesheet = class extends ExtensionAPI {
             loadedSheets.push({uri: uri, type: type});
           }
         },
+
         async unload(uri, type) {
           let uriObj = ios.newURI(uri, null, null);
           if (sss.sheetRegistered(uriObj, sss[type])) {
@@ -42,6 +41,7 @@ this.stylesheet = class extends ExtensionAPI {
             loadedSheets.splice(index, 1);
           }
         },
+
         async isLoaded(uri, type) {
           let uriObj = ios.newURI(uri, null, null);
           return sss.sheetRegistered(uriObj, sss[type]);

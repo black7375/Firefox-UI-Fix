@@ -1,0 +1,120 @@
+[
+  {
+    "namespace": "prefs",
+    "description": "Get / Set for preference",
+    "functions": [
+      {
+        "name": "get",
+        "type": "function",
+        "description": "Get pref value",
+        "async": true,
+        "parameters": [
+          {
+            "name": "prefName",
+            "type": "string"
+          },
+          {
+            "name": "isDefault",
+            "type": "boolean",
+            "default": false,
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "set",
+        "type": "function",
+        "description": "Set pref value",
+        "async": true,
+        "parameters": [
+          {
+            "name": "prefName",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "type": "any"
+          },
+          {
+            "name": "isDefault",
+            "type": "boolean",
+            "default": false,
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "lock",
+        "type": "function",
+        "description": "Pref to locked",
+        "async": true,
+        "parameters": [
+          {
+            "name": "prefName",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "type": "any"
+          }
+        ]
+      },
+      {
+        "name": "unlock",
+        "type": "function",
+        "description": "Pref to unlock",
+        "async": true,
+        "parameters": [
+          {
+            "name": "prefName",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "clear",
+        "type": "function",
+        "description": "Clear pref",
+        "async": true,
+        "parameters": [
+          {
+            "name": "prefName",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "addListener",
+        "type": "function",
+        "description": "Add pref listener",
+        "async": true,
+        "parameters": [
+          {
+            "name": "prefName",
+            "type": "string"
+          },
+          {
+            "name": "callback",
+            "type": "any"
+          }
+        ]
+      },
+      {
+        "name": "removeListener",
+        "type": "function",
+        "description": "Remove pref listener",
+        "async": true,
+        "parameters": [
+          {
+            "name": "prefName",
+            "type": "string"
+          },
+          {
+            "name": "observer",
+            "type": "any"
+          }
+        ]
+      }
+    ]
+  }
+]
