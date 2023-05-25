@@ -92,12 +92,13 @@
 @include NotOption("userChrome.tab.photon_like_padding") {
   @include Option("userChrome.tab.lepton_like_padding") {
     .tabbrowser-tab {
-      padding-inline: 1px !important;
+      // Original: padding-inline 2px, margin-inline 0px #643
+      margin-inline: -1px !important;
     }
   }
   @include NotOption("userChrome.tabbar.multi_row") {
     #TabsToolbar:not([multibar]) .tabbrowser-tab:not(:last-of-type) {
-      margin-inline-end: -1px !important;
+      margin-inline-end: -2px !important;
     }
   }
 }
