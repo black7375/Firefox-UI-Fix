@@ -93,7 +93,12 @@
   @include Option("userChrome.tab.lepton_like_padding") {
     .tabbrowser-tab {
       // Original: padding-inline 2px, margin-inline 0px #643
-      margin-inline: -1px !important;
+      &[pinned] {
+        padding-inline: 1px !important;
+      }
+      &:not([pinned]) {
+        margin-inline: -1px !important;
+      }
     }
   }
   @include NotOption("userChrome.tabbar.multi_row") {

@@ -3429,7 +3429,10 @@
   /* neighbouring tabs should "pinch" together */
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") {
-      .tabbrowser-tab {
+      .tabbrowser-tab[pinned] {
+        padding-inline: 1px !important;
+      }
+      .tabbrowser-tab:not([pinned]) {
         margin-inline: -1px !important;
       }
     }
