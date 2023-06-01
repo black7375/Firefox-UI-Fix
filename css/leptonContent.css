@@ -2887,6 +2887,7 @@
 @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
   @-moz-document url-prefix("about:"), url-prefix("chrome://")
   {
+    panel,
     menupopup {
       --panel-border-radius: 0 !important;
     }

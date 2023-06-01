@@ -113,6 +113,7 @@
 
 @include Option("userChrome.rounding.square_menupopup") {
   @include moz-document(url-prefix "about:", url-prefix "chrome://") {
+    panel,
     menupopup {
       --panel-border-radius: 0 !important;
     }
