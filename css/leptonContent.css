@@ -2834,18 +2834,8 @@
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_dialog") {
-  @-moz-document url-prefix("about:") {
-    .dialogBox {
-      border-radius: 0 !important;
-    }
-  }
   @-moz-document url("about:home"), url("about:newtab") {
     .modal {
-      border-radius: 0 !important;
-    }
-  }
-  @-moz-document regexp(".*.pdf$") {
-    dialog {
       border-radius: 0 !important;
     }
   }
@@ -2941,6 +2931,14 @@
   }
   @-moz-document url-prefix("about:debugging") {
     .message {
+      border-radius: 0 !important;
+    }
+  }
+}
+@-moz-document url-prefix("about:"), regexp(".*.pdf$") {
+  @supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+    dialog,
+    .dialogBox {
       border-radius: 0 !important;
     }
   }

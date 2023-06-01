@@ -49,20 +49,8 @@
 }
 
 @include Option("userChrome.rounding.square_dialog") {
-  @include moz-document(url-prefix "about:") {
-    .dialogBox {
-      border-radius: 0 !important;
-    }
-  }
-
   @include moz-document(url "about:home", url "about:newtab") {
     .modal {
-      border-radius: 0 !important;
-    }
-  }
-
-  @include moz-document(regexp ".*\.pdf$") {
-    dialog {
       border-radius: 0 !important;
     }
   }
