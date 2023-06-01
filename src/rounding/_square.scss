@@ -65,6 +65,12 @@
   }
 }
 
+@include Option("userChrome.rounding.square_infobox") {
+  #sanitizeEverythingWarningBox {
+    border-radius: 0 !important;
+  }
+}
+
 @include Option("userChrome.rounding.square_toolbar") {
   :root {
     --uc-rounding-toolbar: 0;

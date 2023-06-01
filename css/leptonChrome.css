@@ -3199,6 +3199,11 @@
     border-radius: 0 !important;
   }
 }
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  #sanitizeEverythingWarningBox {
+    border-radius: 0 !important;
+  }
+}
 @supports -moz-bool-pref("userChrome.rounding.square_toolbar") {
   :root {
     --uc-rounding-toolbar: 0;
