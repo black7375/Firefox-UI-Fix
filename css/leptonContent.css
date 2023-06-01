@@ -2935,6 +2935,15 @@
       border-radius: 0 !important;
     }
   }
+  @-moz-document url-prefix("about:firefoxview") {
+    .card,
+    .card::before,
+    .empty-container,
+    .synced-tab-a,
+    .synced-tab-li-placeholder {
+      border-radius: 0 !important;
+    }
+  }
 }
 @-moz-document url-prefix("about:"), regexp(".*.pdf$") {
   @supports -moz-bool-pref("userChrome.rounding.square_dialog") {

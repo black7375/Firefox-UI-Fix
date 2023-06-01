@@ -169,4 +169,14 @@
       border-radius: 0 !important;
     }
   }
+
+  @include moz-document(url-prefix "about:firefoxview") {
+    .card,
+    .card::before, // .zap-card border
+    .empty-container,
+    .synced-tab-a,
+    .synced-tab-li-placeholder {
+      border-radius: 0 !important;
+    }
+  }
 }
