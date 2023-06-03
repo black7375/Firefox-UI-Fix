@@ -3174,11 +3174,6 @@
     --tab-border-radius: var(--toolbarbutton-border-radius);
   }
 }
-@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
-  .dialogBox {
-    border-radius: 0 !important;
-  }
-}
 @supports -moz-bool-pref("userChrome.rounding.square_panel") {
   :root {
     --arrowpanel-border-radius: 0 !important;
@@ -3201,6 +3196,11 @@
   xul|menulist > xul|menupopup xul|menu,
   xul|menulist > xul|menupopup xul|menuitem,
   .customization-uidensity-menuitem {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  #sanitizeEverythingWarningBox {
     border-radius: 0 !important;
   }
 }
@@ -3242,6 +3242,12 @@
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
   input[type="checkbox"],
   .checkbox-check {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+  dialog,
+  .dialogBox {
     border-radius: 0 !important;
   }
 }
