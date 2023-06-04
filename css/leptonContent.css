@@ -2987,7 +2987,9 @@
     @-moz-document url("chrome://browser/content/places/places.xhtml"), url("about:downloads")
     {
       menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
-      menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) {
+      menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]),
+      menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) .menu-iconic-icon,
+      menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) .menu-iconic-icon {
         -moz-appearance: none !important; /* Linux: menulist */
       }
       menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)

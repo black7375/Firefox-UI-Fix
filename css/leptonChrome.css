@@ -10584,6 +10584,8 @@
   @supports -moz-bool-pref("userChrome.icon.menu") {
     menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
     menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]),
+    menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) .menu-iconic-icon,
+    menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) .menu-iconic-icon,
     #main-menubar > menu {
       -moz-appearance: none !important; /* Linux: menulist */
     }
