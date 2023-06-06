@@ -12227,7 +12227,8 @@
       }
     }
   }
-  /** Waterfox ******************************************************************/
+  /** Icons for fork browsers ***************************************************/
+  /*= Waterfox =================================================================*/
   @supports -moz-bool-pref("userChrome.icon.panel") {
     #appMenu-restart-button {
       list-style-image: url("../icons/refresh-cw.svg") !important;
@@ -12244,7 +12245,7 @@
       --menuitem-image: url("../icons/private-favicon.svg");
     }
   }
-  /** Tor Browser ***************************************************************/
+  /*= Tor Browser ==============================================================*/
   @supports -moz-bool-pref("userChrome.icon.panel") {
     #appMenuNewIdentity {
       list-style-image: url("chrome://browser/skin/new_identity.svg");
@@ -12265,6 +12266,20 @@
     }
     #torBrowserUserManual {
       --menuitem-image: url("chrome://browser/skin/onion.svg");
+    }
+  }
+  /*= Floorp Browser ===========================================================*/
+  @supports -moz-bool-pref("userChrome.icon.panel") {
+    #rebootappmenu {
+      list-style-image: url("../icons/refresh-cw.svg");
+    }
+    #openprofiledir {
+      list-style-image: url("../icons//folder.svg");
+    }
+  }
+  @supports -moz-bool-pref("userChrome.icon.menu") {
+    #usercssloader-menu {
+      --menuitem-image: url("../icons/developer.svg");
     }
   }
 }

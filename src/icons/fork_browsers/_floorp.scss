@@ -1,0 +1,13 @@
+@include Option("userChrome.icon.panel") {
+  #rebootappmenu {
+    list-style-image: url("../icons/refresh-cw.svg");
+  }
+  #openprofiledir {
+    list-style-image: url("../icons//folder.svg");
+  }
+}
+@include Option("userChrome.icon.menu") {
+  #usercssloader-menu {
+    --menuitem-image: url("../icons/developer.svg");
+  }
+}
