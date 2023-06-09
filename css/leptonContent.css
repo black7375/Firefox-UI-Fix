@@ -1,5 +1,11 @@
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
+/** Compatibility *************************************************************/
+@-moz-document url-prefix("about:preferences") {
+  .content-blocking-warning.info-box-container > hbox > .content-blocking-warning-image {
+    margin-inline-start: -12px !important;
+  }
+}
 /** Video player **************************************************************/
 /* Control Bar Size */
 @supports -moz-bool-pref("userContent.player.size") {
