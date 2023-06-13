@@ -3377,14 +3377,14 @@
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
       > #tabbrowser-arrowscrollbox
-      > .tabbrowser-tab[first-visible-unpinned-tab] {
+      > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
       margin-inline-start: 1px !important;
     }
   }
   @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
     #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
       > #tabbrowser-arrowscrollbox
-      > .tabbrowser-tab[first-visible-unpinned-tab] {
+      > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
       margin-inline-start: 0 !important;
     }
   }
@@ -6579,7 +6579,8 @@
     }
     #tabbrowser-tabs[positionpinnedtabs],
     #tabbrowser-tabs:not([overflow]) .tabbrowser-tab:first-of-type,
-    #tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
+    #tabbrowser-tabs[overflow]
+      .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
       margin-left: var(--uc-tab-corner-half-size) !important;
     }
     .tabbrowser-tab:last-of-type {
@@ -6782,11 +6783,13 @@
     }
   }
   #navigator-toolbox:not([movingtab])
-    .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
+    .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1
+        of
+        :not([pinned], [hidden]))):is([visuallyselected], [multiselected], :hover)
     .tab-stack::before,
   #navigator-toolbox:not([movingtab])
     #tabbrowser-arrowscrollbox[overflowing]
-    tab.tabbrowser-tab[first-visible-unpinned-tab]
+    tab.tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden])))
     .tab-stack::before {
     opacity: 0 !important;
   }

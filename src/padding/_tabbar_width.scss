@@ -42,14 +42,14 @@
 @include NotOption("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
     margin-inline-start: 1px !important;
   }
 }
 @include Option("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
     margin-inline-start: 0 !important;
   }
 }
