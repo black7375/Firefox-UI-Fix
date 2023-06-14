@@ -3936,6 +3936,9 @@
   .unified-extensions-item-menu-button.subviewbutton {
     padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
   }
+  :root[uidensity="compact"] :is(.unified-extensions-item, .unified-extensions-item-action-button) {
+    padding-block: 0 !important;
+  }
 }
 @supports -moz-bool-pref("userChrome.padding.panel_header") {
   .panel-header {
