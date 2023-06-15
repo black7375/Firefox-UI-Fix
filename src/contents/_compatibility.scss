@@ -1,5 +1,7 @@
 @include moz-document(url-prefix "about:preferences") {
   .content-blocking-warning.info-box-container > hbox > .content-blocking-warning-image {
-    margin-inline-start: -12px !important;
+    margin-inline-start: -7px !important;
+    margin-inline-end: 8px !important; // Original: 6px
+    width: 20px !important; // ESR(102): 16px, Nightly(116): 27px
   }
 }
