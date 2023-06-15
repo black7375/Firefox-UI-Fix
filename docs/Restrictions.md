@@ -40,6 +40,8 @@ Complex UI emulation is quite tricky. [[Linux's Proton UI Library Chrome](https:
 
 [Bookmark menu](https://github.com/black7375/Firefox-UI-Fix/issues/136) is also similar example([code](https://github.com/black7375/Firefox-UI-Fix/blob/36e9c94844fee2417662251cbd50c2b874d5b576/userChrome.css#L4745-L4840)).
 
+In the case of the Mac native menu, there may be a menu that [cannot be displayed icon or added at the OS level](https://github.com/black7375/Firefox-UI-Fix/issues/699).
+
 ### Firefox Version
 There may be changes that change by version of Firefox.
 
@@ -62,6 +64,7 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 - `:root[lwtheme-mozlightdark]` is removed [#288](https://github.com/black7375/Firefox-UI-Fix/issues/288)
 - `-moz-os-version` -> `-moz-platform` [#331](https://github.com/black7375/Firefox-UI-Fix/issues/331)
 - Breaking change with `-moz-accent-color`/`-moz-accent-color-foreground` -> `AccentColor`/`AccentColorText` [#433](https://github.com/black7375/Firefox-UI-Fix/issues/433)
+- `-moz-box` to `flex` layout [670](https://github.com/black7375/Firefox-UI-Fix/issues/670)
 
 ### Side Effect
 Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).  
@@ -98,6 +101,7 @@ Fork browsers have a different installation location ([bash](https://github.com/
 
 List of fork browsers supported by this project:
 - [Waterfox](https://www.waterfox.net/)
+- [Floorp](https://floorp.app/)
 - [LibreWolf](https://librewolf.net/)
 - [Tor Browser](https://www.torproject.org/download/)
 - [Pulse Browser](https://pulsebrowser.app/)

@@ -49,20 +49,8 @@
 }
 
 @include Option("userChrome.rounding.square_dialog") {
-  @include moz-document(url-prefix "about:") {
-    .dialogBox {
-      border-radius: 0 !important;
-    }
-  }
-
   @include moz-document(url "about:home", url "about:newtab") {
     .modal {
-      border-radius: 0 !important;
-    }
-  }
-
-  @include moz-document(regexp ".*\.pdf$") {
-    dialog {
       border-radius: 0 !important;
     }
   }
@@ -125,6 +113,7 @@
 
 @include Option("userChrome.rounding.square_menupopup") {
   @include moz-document(url-prefix "about:", url-prefix "chrome://") {
+    panel,
     menupopup {
       --panel-border-radius: 0 !important;
     }
@@ -177,6 +166,16 @@
 
   @include moz-document(url-prefix "about:debugging") {
     .message {
+      border-radius: 0 !important;
+    }
+  }
+
+  @include moz-document(url-prefix "about:firefoxview") {
+    .card,
+    .card::before, // .zap-card border
+    .empty-container,
+    .synced-tab-a,
+    .synced-tab-li-placeholder {
       border-radius: 0 !important;
     }
   }

@@ -95,6 +95,9 @@
   #appMenu-find-button2 {
     list-style-image: url("chrome://global/skin/icons/search-glass.svg");
   }
+  #appMenu-translate-button {
+    list-style-image: url(chrome://browser/skin/translations.svg);
+  }
   #appMenu-zoom-controls2::before, /* Legacy v104 */
   #appMenu-zoom-controls::before {
     content: url("../icons/screenshot.svg");
@@ -245,6 +248,9 @@ panelMenuBookmarkThisPage[starred] {
 #appMenuRecentlyClosedWindows {
   list-style-image: url("chrome://browser/skin/window.svg");
 }
+#appMenuSearchHistory {
+  list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+}
 #appMenuRestoreSession, /* Legacy - v103 */
 #appMenu-restoreSession {
   list-style-image: url("../icons/restore-session.svg");
@@ -341,6 +347,9 @@ panelMenuBookmarkThisPage[starred] {
 }
 #appMenu_menu_HelpPopup_reportPhishingtoolmenu {
   list-style-image: url("chrome://global/skin/icons/warning.svg");
+}
+#appMenu_helpSwitchDevice {
+  list-style-image: url("../icons/add-device.svg");
 }
 #appMenu_aboutName {
   list-style-image: url("chrome://global/skin/icons/info.svg");

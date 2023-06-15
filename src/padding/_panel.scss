@@ -30,11 +30,18 @@
   }
 }
 
-// #603
-.unified-extensions-item-menu-button.subviewbutton {
-  padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
+.unified-extensions-item {
+  // #603
+  &-menu-button.subviewbutton {
+    padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
+  }
+  // Or
+  // toolbaritem.unified-extensions-item[unified-extensions="true"] .unified-extensions-item-menu-button.subviewbutton {
+  //   padding: var(--arrowpanel-menuitem-padding-inline) !important;
+  // }
+
+  // #711
+  :root[uidensity="compact"] :is(&, &-action-button) {
+    padding-block: 0 !important;
+  }
 }
-// Or
-// toolbaritem.unified-extensions-item[unified-extensions="true"] .unified-extensions-item-menu-button.subviewbutton {
-//   padding: var(--arrowpanel-menuitem-padding-inline) !important;
-// }

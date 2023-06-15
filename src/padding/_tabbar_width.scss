@@ -42,14 +42,14 @@
 @include NotOption("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
     margin-inline-start: 1px !important;
   }
 }
 @include Option("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
     margin-inline-start: 0 !important;
   }
 }
@@ -92,12 +92,18 @@
 @include NotOption("userChrome.tab.photon_like_padding") {
   @include Option("userChrome.tab.lepton_like_padding") {
     .tabbrowser-tab {
-      padding-inline: 1px !important;
+      // Original: padding-inline 2px, margin-inline 0px #643
+      &[pinned] {
+        padding-inline: 1px !important;
+      }
+      &:not([pinned]) {
+        margin-inline: -1px !important;
+      }
     }
   }
   @include NotOption("userChrome.tabbar.multi_row") {
     #TabsToolbar:not([multibar]) .tabbrowser-tab:not(:last-of-type) {
-      margin-inline-end: -1px !important;
+      margin-inline-end: -2px !important;
     }
   }
 }
