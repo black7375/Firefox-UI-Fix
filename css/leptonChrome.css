@@ -3890,11 +3890,6 @@
     --tab-border-radius: var(--toolbarbutton-border-radius);
   }
 }
-@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
-  .dialogBox {
-    border-radius: 0 !important;
-  }
-}
 @supports -moz-bool-pref("userChrome.rounding.square_panel") {
   :root {
     --arrowpanel-border-radius: 0 !important;
@@ -3917,6 +3912,11 @@
   xul|menulist > xul|menupopup xul|menu,
   xul|menulist > xul|menupopup xul|menuitem,
   .customization-uidensity-menuitem {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  #sanitizeEverythingWarningBox {
     border-radius: 0 !important;
   }
 }
@@ -3958,6 +3958,12 @@
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
   input[type="checkbox"],
   .checkbox-check {
+    border-radius: 0 !important;
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+  dialog,
+  .dialogBox {
     border-radius: 0 !important;
   }
 }
@@ -4087,14 +4093,14 @@
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
       > #tabbrowser-arrowscrollbox
-      > .tabbrowser-tab[first-visible-unpinned-tab] {
+      > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
       margin-inline-start: 1px !important;
     }
   }
   @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
     #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
       > #tabbrowser-arrowscrollbox
-      > .tabbrowser-tab[first-visible-unpinned-tab] {
+      > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
       margin-inline-start: 0 !important;
     }
   }
@@ -4145,13 +4151,16 @@
   /* neighbouring tabs should "pinch" together */
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") {
-      .tabbrowser-tab {
+      .tabbrowser-tab[pinned] {
         padding-inline: 1px !important;
+      }
+      .tabbrowser-tab:not([pinned]) {
+        margin-inline: -1px !important;
       }
     }
     @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
       #TabsToolbar:not([multibar]) .tabbrowser-tab:not(:last-of-type) {
-        margin-inline-end: -1px !important;
+        margin-inline-end: -2px !important;
       }
     }
   }
@@ -4643,6 +4652,9 @@
   .unified-extensions-item-menu-button.subviewbutton {
     padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
   }
+  :root[uidensity="compact"] :is(.unified-extensions-item, .unified-extensions-item-action-button) {
+    padding-block: 0 !important;
+  }
 }
 @supports -moz-bool-pref("userChrome.padding.panel_header") {
   .panel-header {
@@ -4702,7 +4714,6 @@
   /* Don't use display: flex at not fullscreen!! side effect #372 */
   :root[sizemode="fullscreen"] #navigator-toolbox {
     display: flex !important; /* Needed for content to take up entire height, compatibility with tabs on bottom */
-    flex-wrap: wrap;
   }
   :root[sizemode="fullscreen"] #titlebar,
   :root[sizemode="fullscreen"] #nav-bar,
@@ -7333,7 +7344,8 @@
     }
     #tabbrowser-tabs[positionpinnedtabs],
     #tabbrowser-tabs:not([overflow]) .tabbrowser-tab:first-of-type,
-    #tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
+    #tabbrowser-tabs[overflow]
+      .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
       margin-left: var(--uc-tab-corner-half-size) !important;
     }
     .tabbrowser-tab:last-of-type {
@@ -7536,11 +7548,15 @@
     }
   }
   #navigator-toolbox:not([movingtab])
-    .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
+    .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))):is(
+      [visuallyselected],
+      [multiselected],
+      :hover
+    )
     .tab-stack::before,
   #navigator-toolbox:not([movingtab])
     #tabbrowser-arrowscrollbox[overflowing]
-    tab.tabbrowser-tab[first-visible-unpinned-tab]
+    tab.tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden])))
     .tab-stack::before {
     opacity: 0 !important;
   }
@@ -11021,6 +11037,9 @@
       #appMenu-find-button2 {
         list-style-image: url("chrome://global/skin/icons/search-glass.svg");
       }
+      #appMenu-translate-button {
+        list-style-image: url(chrome://browser/skin/translations.svg);
+      }
       #appMenu-zoom-controls2::before,
       #appMenu-zoom-controls::before {
         content: url("../icons/screenshot.svg");
@@ -11164,6 +11183,9 @@
     #appMenuRecentlyClosedWindows {
       list-style-image: url("chrome://browser/skin/window.svg");
     }
+    #appMenuSearchHistory {
+      list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+    }
     #appMenuRestoreSession,
     #appMenu-restoreSession {
       list-style-image: url("../icons/restore-session.svg");
@@ -11255,6 +11277,9 @@
     }
     #appMenu_menu_HelpPopup_reportPhishingtoolmenu {
       list-style-image: url("chrome://global/skin/icons/warning.svg");
+    }
+    #appMenu_helpSwitchDevice {
+      list-style-image: url("../icons/add-device.svg");
     }
     #appMenu_aboutName {
       list-style-image: url("chrome://global/skin/icons/info.svg");
@@ -11395,6 +11420,8 @@
   @supports -moz-bool-pref("userChrome.icon.menu") {
     menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
     menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]),
+    menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) .menu-iconic-icon,
+    menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) .menu-iconic-icon,
     #main-menubar > menu {
       -moz-appearance: none !important; /* Linux: menulist */
     }
@@ -11433,7 +11460,12 @@
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
+    menupopup:is(
+        #context_sendTabToDevicePopupMenu,
+        #context-sendpagetodevice-popup,
+        #context-sendlinktodevice-popup,
+        #frame > menupopup
+      )
       > menuitem,
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
@@ -11509,7 +11541,12 @@
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-    menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup)
+    menupopup:is(
+        #context_sendTabToDevicePopupMenu,
+        #context-sendpagetodevice-popup,
+        #context-sendlinktodevice-popup,
+        #frame > menupopup
+      )
       > menuitem,
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
@@ -11593,7 +11630,8 @@
         menupopup:is(
             #context_sendTabToDevicePopupMenu,
             #context-sendpagetodevice-popup,
-            #context-sendlinktodevice-popup
+            #context-sendlinktodevice-popup,
+            #frame > menupopup
           )
           > menuitem,
         .openintabs-menuitem,
@@ -11652,7 +11690,8 @@
           menupopup:is(
               #context_sendTabToDevicePopupMenu,
               #context-sendpagetodevice-popup,
-              #context-sendlinktodevice-popup
+              #context-sendlinktodevice-popup,
+              #frame > menupopup
             )
             > menuitem,
           .openintabs-menuitem,
@@ -11802,7 +11841,8 @@
         menupopup:is(
             #context_sendTabToDevicePopupMenu,
             #context-sendpagetodevice-popup,
-            #context-sendlinktodevice-popup
+            #context-sendlinktodevice-popup,
+            #frame > menupopup
           )
           > menuitem,
         .openintabs-menuitem,
@@ -12484,6 +12524,37 @@
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
         }
       }
+      /*= main-context-menu-frame ==================================================*/
+      #context-showonlythisframe {
+        --menuitem-image: url("../icons/eye-show.svg");
+      }
+      #context-openframeintab {
+        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+      }
+      #context-openframe {
+        --menuitem-image: url("chrome://browser/skin/window.svg");
+      }
+      #context-reloadframe {
+        --menuitem-image: url("../icons/reload.svg");
+      }
+      #context-bookmarkframe {
+        --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+      }
+      #context-saveframe {
+        --menuitem-image: url("../icons/toolbarButton-download.svg");
+      }
+      #context-printframe {
+        --menuitem-image: url("chrome://global/skin/icons/print.svg");
+      }
+      #context-take-frame-screenshot {
+        --menuitem-image: url("chrome://browser/skin/screenshot.svg");
+      }
+      #context-viewframesource {
+        --menuitem-image: url("../icons/document-search.svg");
+      }
+      #context-viewframeinfo {
+        --menuitem-image: url("chrome://global/skin/icons/info.svg");
+      }
       /*= Tab Mix Plus =============================================================*/
       #tm-autoreload_menu {
         --menuitem-image: url("../icons/timer10.svg");
@@ -13151,6 +13222,12 @@
       #menu_HelpPopup_reportPhishingtoolmenu {
         --menuitem-image: url("chrome://global/skin/icons/warning.svg");
       }
+      #menu_HelpPopup_reportPhishingErrortoolmenu {
+        --menuitem-image: url("../icons/checkmark-circle.svg");
+      }
+      #helpSwitchDevice {
+        --menuitem-image: url("../icons/add-device.svg");
+      }
       #aboutName {
         --menuitem-image: url("chrome://global/skin/icons/info.svg");
       }
@@ -13214,7 +13291,8 @@
       }
     }
   }
-  /** Waterfox ******************************************************************/
+  /** Icons for fork browsers ***************************************************/
+  /*= Waterfox =================================================================*/
   @supports -moz-bool-pref("userChrome.icon.panel") {
     #appMenu-restart-button {
       list-style-image: url("../icons/refresh-cw.svg") !important;
@@ -13231,7 +13309,7 @@
       --menuitem-image: url("../icons/private-favicon.svg");
     }
   }
-  /** Tor Browser ***************************************************************/
+  /*= Tor Browser ==============================================================*/
   @supports -moz-bool-pref("userChrome.icon.panel") {
     #appMenuNewIdentity {
       list-style-image: url("chrome://browser/skin/new_identity.svg");
@@ -13252,6 +13330,20 @@
     }
     #torBrowserUserManual {
       --menuitem-image: url("chrome://browser/skin/onion.svg");
+    }
+  }
+  /*= Floorp Browser ===========================================================*/
+  @supports -moz-bool-pref("userChrome.icon.panel") {
+    #rebootappmenu {
+      list-style-image: url("../icons/refresh-cw.svg");
+    }
+    #openprofiledir {
+      list-style-image: url("../icons//folder.svg");
+    }
+  }
+  @supports -moz-bool-pref("userChrome.icon.menu") {
+    #usercssloader-menu {
+      --menuitem-image: url("../icons/developer.svg");
     }
   }
 }

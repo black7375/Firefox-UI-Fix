@@ -11,6 +11,9 @@
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
 
+/** Compatibility *************************************************************/
+@import "contents/compatibility";
+
 /** Video player **************************************************************/
 @import "contents/video_player";
 
@@ -38,6 +41,10 @@
 
 /** Rounding ******************************************************************/
 @import "contents/rounding";
+
+@include moz-document(url-prefix "about:", regexp ".*\.pdf$") {
+  @import "rounding/dialog";
+}
 
 // Put here to include library as a tab
 @include moz-document(url "chrome://browser/content/places/places.xhtml") {

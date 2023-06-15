@@ -265,6 +265,45 @@
   }
 }
 
+/*= main-context-menu-frame ==================================================*/
+#context-showonlythisframe {
+  --menuitem-image: url("../icons/eye-show.svg");
+}
+#context-openframeintab {
+  --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+}
+#context-openframe {
+  --menuitem-image: url("chrome://browser/skin/window.svg");
+}
+
+#context-reloadframe {
+  --menuitem-image: url("../icons/reload.svg");
+}
+
+#context-bookmarkframe {
+  --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+}
+#context-saveframe{
+  --menuitem-image: url("../icons/toolbarButton-download.svg");
+}
+
+#context-printframe {
+  --menuitem-image: url("chrome://global/skin/icons/print.svg");
+}
+
+#context-take-frame-screenshot {
+  --menuitem-image: url("chrome://browser/skin/screenshot.svg");
+}
+
+#context-viewframesource {
+  --menuitem-image: url("../icons/document-search.svg");
+}
+#context-viewframeinfo {
+  --menuitem-image: url("chrome://global/skin/icons/info.svg");
+}
+#context-frameOsPid {
+}
+
 /*= Tab Mix Plus =============================================================*/
 #tm-autoreload_menu {
   // --menuitem-image: url("../icons/reload-auto.svg");

@@ -218,7 +218,7 @@
 #tabbrowser-tabs {
   &[positionpinnedtabs],
   &:not([overflow]) .tabbrowser-tab:first-of-type,
-  &[overflow] .tabbrowser-tab[first-visible-unpinned-tab] {
+  &[overflow] .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
     margin-left: var(--uc-tab-corner-half-size) !important;
   }
 }

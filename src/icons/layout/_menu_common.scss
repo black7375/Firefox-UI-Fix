@@ -29,7 +29,8 @@ $_iconMenuPopupMenus: selector.nest(
 $_globalMenus: "#main-menubar > menu";
 $_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > #{$_iconMenuitem}";
 $_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > #{$_iconMenu}";
-$_sendTabMenuitem: "menupopup:is(#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup) > menuitem";
+$_sendTabMenuPopup: "#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup";
+$_otherPopupMenuitem: "menupopup:is(#{$_sendTabMenuPopup}, #frame > menupopup) > menuitem";
 $_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar";
 
 //-- Mixin ---------------------------------------------------------------------
@@ -38,6 +39,8 @@ $_initialMenus: selector.append(
   "menupopup menuitem, menupopup menu",
   ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
 );
+$_initialMenus: $_initialMenus + "," +
+                selector.nest($_initialMenus, ".menu-iconic-icon");
 @mixin _initial_menus() {
   -moz-appearance: none !important; /* Linux: menulist */
 }
