@@ -7,6 +7,24 @@
     margin-inline-end: 8px !important;
     width: 20px !important;
   }
+  #pane-experimental-search-results-header,
+  #pane-experimental-subtitle {
+    min-height: 27px !important;
+    padding-inline-start: 35px !important;
+  }
+  #firefoxExperimentalCategory:not([hidden="true"]) {
+    display: inline-block;
+  }
+  #firefoxExperimentalCategory > label {
+    float: left;
+  }
+  #firefoxExperimentalCategory > hbox {
+    transform: translateY(5px);
+  }
+  #pane-experimental-featureGates > html|p[data-l10n-id="pane-experimental-description2"] {
+    border-bottom: 1px solid var(--in-content-border-color);
+    padding-bottom: 1.5em;
+  }
 }
 /** Video player **************************************************************/
 /* Control Bar Size */
