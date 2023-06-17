@@ -26,6 +26,12 @@
     padding-bottom: 1.5em;
   }
 }
+@-moz-document url-prefix("about:addons") {
+  #updates-message + .page-options-menu > .more-options-button {
+    box-sizing: content-box;
+    padding: 0 !important;
+  }
+}
 /** Video player **************************************************************/
 /* Control Bar Size */
 @supports -moz-bool-pref("userContent.player.size") {
