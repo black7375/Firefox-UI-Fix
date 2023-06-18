@@ -3436,6 +3436,11 @@
     max-width: var(--tab-max-width) !important; /* Original: 225px */
   }
   /* neighbouring tabs should "pinch" together */
+  #tabbrowser-tabs:not([hasadjacentnewtabbutton]):not([overflow="true"])
+    > #tabbrowser-arrowscrollbox
+    > #tabbrowser-arrowscrollbox-periphery {
+    min-width: 1px;
+  }
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") {
       .tabbrowser-tab[pinned] {
