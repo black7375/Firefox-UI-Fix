@@ -40,7 +40,7 @@ $_initialMenus: selector.append(
   ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
 );
 $_initialMenus: $_initialMenus + "," +
-                selector.nest($_initialMenus, ".menu-iconic-icon");
+                selector.nest($_initialMenus, "> .menu-iconic-left > .menu-iconic-icon");
 @mixin _initial_menus() {
   -moz-appearance: none !important; /* Linux: menulist */
 }
