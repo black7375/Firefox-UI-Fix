@@ -3794,11 +3794,28 @@
     /* Original: 0.5em */
     padding-block: var(--menu-padding) !important;
   }
-  #ContentSelectDropdown > menupopup > menucaption,
-  #ContentSelectDropdown > menupopup > menuitem {
-    padding-block: 0 !important;
+  @media (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win10),
+    (-moz-platform: windows-win10) {
+    #ContentSelectDropdown > menupopup > menucaption,
+    #ContentSelectDropdown > menupopup > menuitem {
+      padding-block: 0 !important;
+    }
+    #ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
+    #ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
+      padding-block: var(--menu-padding) !important;
+    }
   }
   @media (-moz-gtk-csd-available) {
+    #ContentSelectDropdown > menupopup > menucaption,
+    #ContentSelectDropdown > menupopup > menuitem {
+      padding-block: var(--menu-padding) !important;
+    }
+  }
+  @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     #ContentSelectDropdown > menupopup > menucaption,
     #ContentSelectDropdown > menupopup > menuitem {
       padding-block: var(--menu-padding) !important;
