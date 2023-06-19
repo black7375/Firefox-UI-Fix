@@ -71,23 +71,23 @@ yarn validate
 ```
 
 ### Project Structure
-- [Doc: Project\_Structure.md](./Project_Structure.md).
+- [Doc: Project\_Structure.md](./Project_Structure.md)
 
 ### Rules
 This is a rough guideline. (Not forced)
 
-- [Doc: Rules.md](./Rules.md).
+- [Doc: Rules.md](./Rules.md)
 
 ## Advanced Customizing
 ### Smart Bookmarks
-- [Doc: Smart_Bookmarks.md](./Smart_Bookmarks.md).
+- [Doc: Smart_Bookmarks.md](./Smart_Bookmarks.md)
 
 ### Policies
 - [Support Mozilla: Policies overview](https://support.mozilla.org/en-US/products/firefox-enterprise/policies-customization-enterprise/policies-overview-enterprise)
 - [Policy Templates](https://github.com/mozilla/policy-templates)
 
 ### Preference
-- [Doc: Preference.md](./Preference.md).
+- [Doc: Preference.md](./Preference.md)
 
 ## User Custom CSS
 ### Basics
@@ -117,4 +117,4 @@ Advanced CSS keywords:
 - [UDN: Mozilla CSS extensions](https://udn.realityripple.com/docs/Web/CSS/Mozilla_Extensions)
 
 ### Restrictions
-- [Doc: Restrictions.md](./Restrictions.md).
+- [Doc: Restrictions.md](./Restrictions.md)

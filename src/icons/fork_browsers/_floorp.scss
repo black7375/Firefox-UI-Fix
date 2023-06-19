@@ -1,0 +1,34 @@
+@include Option("userChrome.icon.panel") {
+  #rebootappmenu {
+    list-style-image: url("../icons/refresh-cw.svg");
+  }
+
+  #openprofiledir {
+    list-style-image: url("../icons//folder.svg");
+  }
+}
+@include Option("userChrome.icon.menu") {
+  #usercssloader-menu {
+    --menuitem-image: url("../icons/developer.svg");
+  }
+
+  #toggle_statusBar {
+    --menuitem-image: url("../icons/pulse-square.svg");
+  }
+
+  // Sidebar
+  #muteMenu {
+    --menuitem-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
+    stroke: transparent !important;
+  }
+  #unloadWebpanelMenu {
+    --menuitem-image: url("../icons/tab-unload.svg");
+  }
+  #changeUAWebpanelMenu {
+    --menuitem-image: url("chrome://devtools/skin/images/command-responsivemode.svg");
+    fill-opacity: 0;
+  }
+  #deleteWebpanelMenu {
+    --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+  }
+}
