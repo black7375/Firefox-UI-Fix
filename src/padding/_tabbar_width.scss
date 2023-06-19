@@ -29,6 +29,12 @@
   --newtab-button-minus-width-padding: 2px;
   --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
 }
+#widget-overflow-mainView {
+  #new-tab-button,
+  #alltabs-button {
+    --newtab-button-width-padding: 0px;
+  }
+}
 #new-tab-button > .toolbarbutton-icon,
 #alltabs-button > .toolbarbutton-badge-stack {
   /* Original: calc(2 * var(--toolbarbutton-inner-padding) + 16px) */
