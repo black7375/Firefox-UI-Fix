@@ -11946,6 +11946,13 @@
       .unified-extensions-context-menu-report-extension {
         --menuitem-image: url("../icons/send.svg");
       }
+      /*= urlbarView-result-menu ===================================================*/
+      .urlbarView-result-menuitem[data-command="dismiss"] {
+        --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+      }
+      .urlbarView-result-menuitem[data-command="help"] {
+        --menuitem-image: url("chrome://global/skin/icons/info.svg");
+      }
     }
     @supports -moz-bool-pref("userChrome.icon.global_menubar") {
       /*= main-menubar =============================================================*/

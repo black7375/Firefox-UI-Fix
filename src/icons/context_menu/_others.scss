@@ -240,3 +240,13 @@ menuitem.searchbar-clear-history {
 .unified-extensions-context-menu-report-extension {
   --menuitem-image: url("../icons/send.svg");
 }
+
+/*= urlbarView-result-menu ===================================================*/
+.urlbarView-result-menuitem {
+  &[data-command="dismiss"] {
+    --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+  }
+  &[data-command="help"] {
+    --menuitem-image: url("chrome://global/skin/icons/info.svg");
+  }
+}
