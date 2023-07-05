@@ -1329,8 +1329,8 @@
     --menu-color: var(--arrowpanel-color, var(--in-content-page-color)) !important;
     --menu-background-color: var(--arrowpanel-background, var(--in-content-button-background)) !important;
     --menu-border-color: var(
-      --toolbarbutton-active-background,
-      var(--button-active-bgcolor, var(--card-outline-color))
+      --panel-separator-color,
+      var(--toolbarbutton-active-background, var(--button-active-bgcolor, var(--card-outline-color)))
     ) !important;
     --menuitem-hover-background-color: var(
       --toolbarbutton-hover-background,
@@ -1351,8 +1351,9 @@
       --panel-border-color: var(--menu-border-color) !important;
     }
     html#main-window menupopup:not(.in-menulist):not([placespopup]) menuseparator,
+    html#main-window menupopup:not(.in-menulist):not([placespopup]) menuseparator::before,
     html#main-window menupopup:not(.in-menulist)[placespopup] menuseparator::before {
-      border-top: 1px solid var(--menu-border-color) !important;
+      border-color: var(--menu-border-color) !important;
     }
     html#main-window menupopup:not(.in-menulist) menu[disabled="true"],
     html#main-window menupopup:not(.in-menulist) menu[_moz-menuactive="true"][disabled="true"],

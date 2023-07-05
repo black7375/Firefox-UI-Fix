@@ -5,9 +5,10 @@ html#main-window menupopup:not(.in-menulist) {
   --menu-background-color: var(--arrowpanel-background, var(--in-content-button-background)) !important;
 
   --menu-border-color: var(
-    --toolbarbutton-active-background,
-    var(--button-active-bgcolor, var(--card-outline-color))
-  ) !important;
+    --panel-separator-color,
+    var(--toolbarbutton-active-background,
+        var(--button-active-bgcolor, var(--card-outline-color))
+   )) !important;
   --menuitem-hover-background-color: var(
     --toolbarbutton-hover-background,
     var(--button-hover-bgcolor, var(--in-content-button-background-hover))
@@ -30,9 +31,11 @@ html#main-window menupopup:not(.in-menulist) {
       --panel-border-color: var(--menu-border-color) !important;
 
       &:not([placespopup]) menuseparator,
+      &:not([placespopup]) menuseparator::before,
       &[placespopup] menuseparator::before {
+        // #732
         // toolbarbutton menupopup[placespopup] menuseparator::before
-        border-top: 1px solid var(--menu-border-color) !important;
+        border-color: var(--menu-border-color) !important;
       }
 
       menu,
