@@ -423,6 +423,39 @@
       }
     }
   }
+  /*= Windows - Classic Theme #734 =============================================*/
+  @media (-moz-os-version: windows-win7),
+    (-moz-platform: windows-win7),
+    (-moz-os-version: windows-win8),
+    (-moz-platform: windows-win8),
+    (-moz-os-version: windows-win10),
+    (-moz-platform: windows-win10) {
+    @media (-moz-windows-classic) {
+      :root[tabsintitlebar][sizemode="normal"]:not(:-moz-lwtheme) #navigator-toolbox {
+        appearance: auto !important;
+        -moz-default-appearance: -moz-window-titlebar !important;
+      }
+      :root[tabsintitlebar][sizemode="maximized"]:not(:-moz-lwtheme) #navigator-toolbox {
+        appearance: auto !important;
+        -moz-default-appearance: -moz-window-titlebar !important;
+      }
+      :root[tabsintitlebar]:not(:-moz-lwtheme) #tabbrowser-arrowscrollbox {
+        color: -moz-dialogtext !important;
+      }
+      :root[tabsintitlebar][sizemode="normal"] #navigator-toolbox:-moz-lwtheme {
+        background-image: linear-gradient(
+          to bottom,
+          ThreeDLightShadow 0,
+          ThreeDLightShadow 1px,
+          ThreeDHighlight 1px,
+          ThreeDHighlight 2px,
+          ActiveBorder 2px,
+          ActiveBorder 4px,
+          transparent 4px
+        ) !important;
+      }
+    }
+  }
 }
 /*= Others - Compatibility ===================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.panel_cutoff") {
