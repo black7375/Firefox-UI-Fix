@@ -1,3 +1,21 @@
 @include moz-document(url-prefix "chrome://browser/content") {
   @import "../../theme/proton_chrome/sanitize_everything";
 }
+
+@include moz-document(url-prefix "about:preferences") {
+  // Odd table #737
+  #handlersView > richlistitem,
+  #translations-manage-install-list > .translations-manage-language {
+    &:hover {
+      background-color: var(--in-content-item-hover);
+      color: var(--in-content-item-hover-text);
+    }
+    &[selected="true"] {
+      background-color: var(--in-content-item-selected);
+      color: var(--in-content-item-selected-text);
+    }
+    &:nth-child(even):not([selected="true"], :hover) {
+      background-color: var(--in-content-box-background-odd);
+    }
+  }
+}

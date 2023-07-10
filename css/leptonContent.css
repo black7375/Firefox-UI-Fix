@@ -2059,6 +2059,22 @@
       height: 48px;
     }
   }
+  @-moz-document url-prefix("about:preferences") {
+    #handlersView > richlistitem:hover,
+    #translations-manage-install-list > .translations-manage-language:hover {
+      background-color: var(--in-content-item-hover);
+      color: var(--in-content-item-hover-text);
+    }
+    #handlersView > richlistitem[selected="true"],
+    #translations-manage-install-list > .translations-manage-language[selected="true"] {
+      background-color: var(--in-content-item-selected);
+      color: var(--in-content-item-selected-text);
+    }
+    #handlersView > richlistitem:nth-child(even):not([selected="true"], :hover),
+    #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected="true"], :hover) {
+      background-color: var(--in-content-box-background-odd);
+    }
+  }
   /*= chrome://browser/content/places/places.xhtml =============================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
