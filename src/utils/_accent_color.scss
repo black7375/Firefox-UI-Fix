@@ -4,6 +4,7 @@
 // https://github.com/mozilla/gecko-dev/commit/4c5f20179e8d3b963dc588efb9dc2c7b49e7bb31
 //
 // Need to hard coded #437
+$accentBorder: ActiveBorder;
 $accentColor: AccentColor;
 $accentTextColor: AccentColorText;
 
@@ -11,6 +12,8 @@ $accentTextColor: AccentColorText;
   @content;
 
   @include Option("userChrome.compatibility.accent_color") {
+    $accentBorder: -moz-accent-color !global;
+
     @if $mode == "Highlight" {
       $accentColor: Highlight !global;
       $accentTextColor: HighlightText !global;
@@ -22,6 +25,7 @@ $accentTextColor: AccentColorText;
 
     @content;
   }
+  $accentBorder: ActiveBorder !global;
   $accentColor: AccentColor !global;
   $accentTextColor: AccentColorText !global;
 }
