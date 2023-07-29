@@ -11660,7 +11660,7 @@
         --menuitem-image: url("../icons/checkmark-circle.svg");
       }
       .downloadUseSystemDefaultMenuItem {
-        --menuitem-image: url("chrome://browser/skin/open.svg");
+        --menuitem-image: url("../icons/toolbarButton-upload.svg");
       }
       .downloadAlwaysUseSystemDefaultMenuItem {
         /* checkbox */
@@ -12038,7 +12038,7 @@
         --menuitem-image: url("chrome://browser/skin/privateBrowsing.svg");
       }
       #menu_openFile {
-        --menuitem-image: url("chrome://browser/skin/open.svg");
+        --menuitem-image: url("../icons/toolbarButton-upload.svg");
       }
       #menu_savePage {
         --menuitem-image: url("../icons/toolbarButton-download.svg");
@@ -12318,6 +12318,11 @@
       #orgUndo {
         --menuitem-image: url("../icons/undo.svg");
       }
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #orgRedo {
+          --menuitem-image: url("../icons/redo.svg");
+        }
+      }
       #orgCut {
         --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
       }
@@ -12345,13 +12350,18 @@
       }
       /*= maintenanceButtonPopup ===================================================*/
       #backupBookmarks {
-        --menuitem-image: url("chrome://devtools/skin/images/datastore.svg");
+        --menuitem-image: url("../icons/datastore.svg");
+      }
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #fileRestoreMenu {
+          --menuitem-image: url("../icons/datarestore.svg");
+        }
       }
       #fileImport {
         --menuitem-image: url("../icons/toolbarButton-download.svg");
       }
       #fileExport {
-        --menuitem-image: url("chrome://browser/skin/open.svg");
+        --menuitem-image: url("../icons/toolbarButton-upload.svg");
       }
       #browserImport {
         --menuitem-image: url("chrome://browser/skin/import.svg");

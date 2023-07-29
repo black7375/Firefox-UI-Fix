@@ -16,6 +16,9 @@
   --menuitem-image: url("../icons/undo.svg");
 }
 #orgRedo {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/redo.svg");
+  }
 }
 
 #orgCut {
@@ -49,16 +52,19 @@
 
 /*= maintenanceButtonPopup ===================================================*/
 #backupBookmarks {
-  --menuitem-image: url("chrome://devtools/skin/images/datastore.svg");
+  --menuitem-image: url("../icons/datastore.svg");
 }
 #fileRestoreMenu {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/datarestore.svg");
+  }
 }
 
 #fileImport {
   --menuitem-image: url("../icons/toolbarButton-download.svg");
 }
 #fileExport {
-  --menuitem-image: url("chrome://browser/skin/open.svg");
+  --menuitem-image: url("../icons/toolbarButton-upload.svg");
 }
 
 #browserImport {
