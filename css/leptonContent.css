@@ -2074,6 +2074,9 @@
     #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected="true"], :hover) {
       background-color: var(--in-content-box-background-odd);
     }
+    xul|treecols {
+      border-bottom-color: var(--in-content-box-border-color) !important;
+    }
   }
   /*= chrome://browser/content/places/places.xhtml =============================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
