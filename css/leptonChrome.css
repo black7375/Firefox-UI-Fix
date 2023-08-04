@@ -10629,23 +10629,41 @@
       list-style-image: url("../icons/broom.svg");
     }
     /*= sidebarMenu-popup ========================================================*/
-    #identity-popup-more-info {
+    #identity-popup-more-info.subviewbutton {
       list-style-image: url("chrome://global/skin/icons/info.svg");
     }
-    #sidebar-switcher-bookmarks {
+    #identity-popup-more-info:is(menuitem) {
+      --menuitem-image: url("chrome://global/skin/icons/info.svg");
+    }
+    #sidebar-switcher-bookmarks.subviewbutton {
       list-style-image: url("chrome://browser/skin/bookmark.svg");
     }
-    #sidebar-switcher-history {
+    #sidebar-switcher-bookmarks:is(menuitem) {
+      --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+    }
+    #sidebar-switcher-history.subviewbutton {
       list-style-image: url("chrome://browser/skin/history.svg");
     }
-    #sidebar-switcher-tabs {
+    #sidebar-switcher-history:is(menuitem) {
+      --menuitem-image: url("chrome://browser/skin/history.svg");
+    }
+    #sidebar-switcher-tabs.subviewbutton {
       list-style-image: url("../icons/synced-tabs.svg");
     }
-    #sidebar-reverse-position {
+    #sidebar-switcher-tabs:is(menuitem) {
+      --menuitem-image: url("../icons/synced-tabs.svg");
+    }
+    #sidebar-reverse-position.subviewbutton {
       list-style-image: var(--uc-sidebar-icon-reverse);
     }
-    #sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
+    #sidebar-reverse-position:is(menuitem) {
+      --menuitem-image: var(--uc-sidebar-icon-reverse);
+    }
+    #sidebarMenu-popup > *.subviewbutton[data-l10n-id="sidebar-menu-close"] {
       list-style-image: url("chrome://global/skin/icons/close.svg");
+    }
+    #sidebarMenu-popup > *:is(menuitem)[data-l10n-id="sidebar-menu-close"] {
+      --menuitem-image: url("chrome://global/skin/icons/close.svg");
     }
     /*= unified-extensions-view ===================================================*/
     #unified-extensions-manage-extensions {
@@ -10693,6 +10711,7 @@
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
     #BMB_viewBookmarksToolbar,
+    #sidebarMenu-popup,
     #context_openANewTab.tabmix-newtab-menu-icon {
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
@@ -10750,9 +10769,20 @@
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
     #BMB_viewBookmarksToolbar,
+    #sidebarMenu-popup,
     #context_openANewTab.tabmix-newtab-menu-icon {
       background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
       padding-inline-start: var(--context-menu-background-padding) !important;
+    }
+    #sidebarMenu-popup:has(menuitem) {
+      margin-inline-start: calc(
+        (var(--context-menu-background-padding) + var(--panel-shadow-margin, 4px)) * -1
+      ) !important;
+    }
+    :not(menu, #ContentSelectDropdown, #context-navigation)
+      > #sidebarMenu-popup:has(menuitem)
+      > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]) {
+      padding-inline-start: 28px !important;
     }
     /* Menubar */
     @supports -moz-bool-pref("userChrome.icon.global_menubar") {
@@ -10905,6 +10935,7 @@
         .openintabs-menuitem,
         #blockedPopupDontShowMessage,
         #BMB_viewBookmarksToolbar,
+        #sidebarMenu-popup,
         #context_openANewTab.tabmix-newtab-menu-icon {
           background-position: left var(--context-menu-background-padding) center !important;
           padding-inline-start: 0 !important;
@@ -10930,6 +10961,7 @@
         .openintabs-menuitem,
         #blockedPopupDontShowMessage,
         #BMB_viewBookmarksToolbar,
+        #sidebarMenu-popup,
         #context_openANewTab.tabmix-newtab-menu-icon {
           padding-inline-start: var(--menu-background-padding-default) !important;
           margin-left: 0 !important;
