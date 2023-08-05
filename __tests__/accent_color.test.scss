@@ -7,6 +7,7 @@
       @include output {
         @include AccentColor {
           body {
+            border-color: $accentBorder;
             background-color: $accentColor;
             color: $accentTextColor;
           }
@@ -14,11 +15,13 @@
       }
       @include expect {
         body {
+          border-color: ActiveBorder;
           background-color: AccentColor;
           color: AccentColorText;
         }
         @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
           body {
+            border-color: -moz-accent-color;
             background-color: -moz-accent-color;
             color: -moz-accent-color-foreground;
           }
@@ -32,10 +35,12 @@
         :root {
           @include AccentColor {
             // Don't use like this!!
+            --uc-accent-border: $accentBorder;
             --uc-accent-color: $accentColor;
             --uc-accent-text-color: $accentTextColor;
 
             // Use like this
+            --uc-accent-border: #{$accentBorder};
             --uc-accent-color: #{$accentColor};
             --uc-accent-text-color: #{$accentTextColor};
           }
@@ -43,15 +48,19 @@
       }
       @include expect {
         :root {
+          --uc-accent-border: $accentBorder;
           --uc-accent-color: $accentColor;
           --uc-accent-text-color: $accentTextColor;
+          --uc-accent-border: ActiveBorder;
           --uc-accent-color: AccentColor;
           --uc-accent-text-color: AccentColorText;
         }
         @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
           :root {
+            --uc-accent-border: $accentBorder;
             --uc-accent-color: $accentColor;
             --uc-accent-text-color: $accentTextColor;
+            --uc-accent-border: -moz-accent-color;
             --uc-accent-color: -moz-accent-color;
             --uc-accent-text-color: -moz-accent-color-foreground;
           }
@@ -64,6 +73,7 @@
       @include output {
         @include AccentColor("Highlight") {
           body {
+            border-color: $accentBorder;
             background-color: $accentColor;
             color: $accentTextColor;
           }
@@ -71,11 +81,13 @@
       }
       @include expect {
         body {
+          border-color: ActiveBorder;
           background-color: AccentColor;
           color: AccentColorText;
         }
         @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
           body {
+            border-color: -moz-accent-color;
             background-color: Highlight;
             color: HighlightText;
           }
