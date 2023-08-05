@@ -469,28 +469,40 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 /*= sidebarMenu-popup ========================================================*/
+@mixin _subviewMenuitem($icon, $selector: null) {
+  &.subviewbutton#{$selector} {
+    list-style-image: $icon;
+  }
+  &:is(menuitem)#{$selector} {
+    --menuitem-image: #{$icon};
+  }
+}
+
 #identity-popup-more-info {
-  list-style-image: url("chrome://global/skin/icons/info.svg");
+  @include _subviewMenuitem(url("chrome://global/skin/icons/info.svg"));
 }
 
 #sidebar-switcher-bookmarks {
-  list-style-image: url("chrome://browser/skin/bookmark.svg");
+  @include _subviewMenuitem(url("chrome://browser/skin/bookmark.svg"));
 }
 
 #sidebar-switcher-history {
-  list-style-image: url("chrome://browser/skin/history.svg");
+  @include _subviewMenuitem(url("chrome://browser/skin/history.svg"));
 }
 
 #sidebar-switcher-tabs {
-  list-style-image: url("../icons/synced-tabs.svg");
+  @include _subviewMenuitem(url("../icons/synced-tabs.svg"));
 }
 
 #sidebar-reverse-position {
-  list-style-image: var(--uc-sidebar-icon-reverse);
+  @include _subviewMenuitem(var(--uc-sidebar-icon-reverse));
 }
 
-#sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
-  list-style-image: url("chrome://global/skin/icons/close.svg");
+#sidebarMenu-popup > * {
+  @include _subviewMenuitem(
+    url("chrome://global/skin/icons/close.svg"),
+    "[data-l10n-id=\"sidebar-menu-close\"]"
+  );
 }
 
 /*= unified-extensions-view ===================================================*/

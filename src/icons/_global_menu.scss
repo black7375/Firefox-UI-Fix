@@ -19,7 +19,7 @@
 #menu_openLocation {
 }
 #menu_openFile {
-  --menuitem-image: url("chrome://browser/skin/open.svg");
+  --menuitem-image: url("../icons/toolbarButton-upload.svg");
 }
 #menu_close {
 }
@@ -189,6 +189,9 @@ menu.share-tab-url-item {
 #hiddenTabsMenu {
   --menuitem-image: url("../icons/eye-hide.svg")
 }
+#menu_searchHistory {
+  --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
+}
 #historyUndoMenu {
   --menuitem-image: url("chrome://browser/skin/tab.svg");
 }
@@ -215,6 +218,10 @@ menu.share-tab-url-item {
 }
 #menu_bookmarkThisPage[data-l10n-id="menu-bookmark-edit"] {
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
+}
+
+#menu_searchBookmarks {
+  --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
 }
 
 #bookmarksToolbarFolderMenu {

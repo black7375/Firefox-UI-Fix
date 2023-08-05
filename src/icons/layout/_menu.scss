@@ -57,6 +57,12 @@ $_layoutCommonMenus: (
 @include _layoutInitPaddingMenus {
   @include _layout_init_padding;
 }
+#sidebarMenu-popup:has(menuitem) {
+  @include _layout_init_margin;
+  :not(menu, #ContentSelectDropdown, #context-navigation) > & > #{$_iconMenuitem} {
+    padding-inline-start: 28px !important;
+  }
+}
 
 /* Menubar */
 @include Option("userChrome.icon.global_menubar") {
