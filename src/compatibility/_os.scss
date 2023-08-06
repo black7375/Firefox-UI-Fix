@@ -246,3 +246,35 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
     }
   }
 }
+
+/*= Windows - Classic Theme #734 =============================================*/
+// It occurs by #titlebar { appearance: none !important; } above
+// https://github.com/mozilla/gecko-dev/blob/4334cb91a3762ac497c50a1c7b86b8004690229e/browser/themes/windows/browser.css#L96-L109
+// https://github.com/mozilla/gecko-dev/blob/4334cb91a3762ac497c50a1c7b86b8004690229e/browser/themes/windows/browser.css#L164-L174
+// https://github.com/mozilla/gecko-dev/blob/4334cb91a3762ac497c50a1c7b86b8004690229e/browser/themes/windows/browser-aero.css#L71-L81
+@include OS($win) {
+  @media (-moz-windows-classic) {
+    :root[tabsintitlebar][sizemode="normal"]:not(:-moz-lwtheme) #navigator-toolbox {
+      appearance: auto !important;
+      -moz-default-appearance: -moz-window-titlebar !important;;
+    }
+
+    :root[tabsintitlebar][sizemode="maximized"]:not(:-moz-lwtheme) #navigator-toolbox {
+      appearance: auto !important;;
+      -moz-default-appearance:-moz-window-titlebar !important;;
+    }
+
+    :root[tabsintitlebar]:not(:-moz-lwtheme) #tabbrowser-arrowscrollbox {
+      color: -moz-dialogtext !important;
+    }
+
+    :root[tabsintitlebar][sizemode="normal"] #navigator-toolbox:-moz-lwtheme {
+      background-image: linear-gradient(
+        to bottom,
+        ThreeDLightShadow 0, ThreeDLightShadow 1px,
+        ThreeDHighlight 1px, ThreeDHighlight 2px,
+        ActiveBorder 2px, ActiveBorder 4px, transparent 4px
+      ) !important;
+    }
+  }
+}

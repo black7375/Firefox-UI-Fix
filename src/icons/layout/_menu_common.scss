@@ -31,7 +31,7 @@ $_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) 
 $_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > #{$_iconMenu}";
 $_sendTabMenuPopup: "#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup";
 $_otherPopupMenuitem: "menupopup:is(#{$_sendTabMenuPopup}, #frame > menupopup) > menuitem";
-$_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar";
+$_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar, #sidebarMenu-popup";
 
 //-- Mixin ---------------------------------------------------------------------
 // Init Menu
@@ -40,7 +40,7 @@ $_initialMenus: selector.append(
   ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
 );
 $_initialMenus: $_initialMenus + "," +
-                selector.nest($_initialMenus, ".menu-iconic-icon");
+                selector.nest($_initialMenus, "> .menu-iconic-left > .menu-iconic-icon");
 @mixin _initial_menus() {
   -moz-appearance: none !important; /* Linux: menulist */
 }
@@ -78,6 +78,10 @@ $_initialMenus: $_initialMenus + "," +
 @mixin _layout_init_padding() {
   background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
+}
+@mixin _layout_init_margin() {
+  // Fix sidebar position
+  margin-inline-start: calc((var(--context-menu-background-padding) + var(--panel-shadow-margin, 4px)) * -1) !important
 }
 
 @mixin _layout_root_non_native() {

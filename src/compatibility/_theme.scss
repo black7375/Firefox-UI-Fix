@@ -30,6 +30,9 @@
 menu.subviewbutton {
   padding-inline-end: 0 !important;
 }
+#allTabsMenu-allTabsView .subviewbutton.subviewbutton-nav:not([shortcut]) {
+  padding-inline-end: var(--arrowpanel-menuitem-padding-inline) !important; // #717
+}
 
 /*= Icon Fill Color ==========================================================*/
 :root:-moz-lwtheme {
