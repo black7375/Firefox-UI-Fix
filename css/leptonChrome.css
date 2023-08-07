@@ -10711,7 +10711,7 @@
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
     #BMB_viewBookmarksToolbar,
-    #sidebarMenu-popup,
+    #sidebarMenu-popup:is(menupopup),
     #context_openANewTab.tabmix-newtab-menu-icon {
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
@@ -10769,20 +10769,20 @@
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
     #BMB_viewBookmarksToolbar,
-    #sidebarMenu-popup,
+    #sidebarMenu-popup:is(menupopup),
     #context_openANewTab.tabmix-newtab-menu-icon {
       background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
       padding-inline-start: var(--context-menu-background-padding) !important;
     }
-    #sidebarMenu-popup:has(menuitem) {
-      margin-inline-start: calc(
-        (var(--context-menu-background-padding) + var(--panel-shadow-margin, 4px)) * -1
-      ) !important;
+    #sidebarMenu-popup:is(menupopup):not(panel) {
+      --context-menu-background-padding: var(--context-menu-background-padding-default);
+      padding-inline-start: 0 !important;
     }
     :not(menu, #ContentSelectDropdown, #context-navigation)
-      > #sidebarMenu-popup:has(menuitem)
+      > #sidebarMenu-popup:is(menupopup):not(panel)
       > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]) {
       padding-inline-start: 28px !important;
+      margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
     }
     /* Menubar */
     @supports -moz-bool-pref("userChrome.icon.global_menubar") {
@@ -10935,7 +10935,7 @@
         .openintabs-menuitem,
         #blockedPopupDontShowMessage,
         #BMB_viewBookmarksToolbar,
-        #sidebarMenu-popup,
+        #sidebarMenu-popup:is(menupopup),
         #context_openANewTab.tabmix-newtab-menu-icon {
           background-position: left var(--context-menu-background-padding) center !important;
           padding-inline-start: 0 !important;
@@ -10961,7 +10961,7 @@
         .openintabs-menuitem,
         #blockedPopupDontShowMessage,
         #BMB_viewBookmarksToolbar,
-        #sidebarMenu-popup,
+        #sidebarMenu-popup:is(menupopup),
         #context_openANewTab.tabmix-newtab-menu-icon {
           padding-inline-start: var(--menu-background-padding-default) !important;
           margin-left: 0 !important;

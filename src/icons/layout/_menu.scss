@@ -57,10 +57,13 @@ $_layoutCommonMenus: (
 @include _layoutInitPaddingMenus {
   @include _layout_init_padding;
 }
-#sidebarMenu-popup:has(menuitem) {
-  @include _layout_init_margin;
+#sidebarMenu-popup:is(menupopup):not(panel) {
+  --context-menu-background-padding: var(--context-menu-background-padding-default);
+  padding-inline-start: 0 !important;
+
   :not(menu, #ContentSelectDropdown, #context-navigation) > & > #{$_iconMenuitem} {
     padding-inline-start: 28px !important;
+    margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
   }
 }
 
