@@ -31,7 +31,7 @@ $_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) 
 $_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > #{$_iconMenu}";
 $_sendTabMenuPopup: "#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup";
 $_otherPopupMenuitem: "menupopup:is(#{$_sendTabMenuPopup}, #frame > menupopup) > menuitem";
-$_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar, #sidebarMenu-popup";
+$_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar, #sidebarMenu-popup:is(menupopup)";
 
 //-- Mixin ---------------------------------------------------------------------
 // Init Menu
@@ -78,10 +78,6 @@ $_initialMenus: $_initialMenus + "," +
 @mixin _layout_init_padding() {
   background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
   padding-inline-start: var(--context-menu-background-padding) !important;
-}
-@mixin _layout_init_margin() {
-  // Fix sidebar position
-  margin-inline-start: calc((var(--context-menu-background-padding) + var(--panel-shadow-margin, 4px)) * -1) !important
 }
 
 @mixin _layout_root_non_native() {
