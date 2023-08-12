@@ -238,11 +238,9 @@
   /*= Windows - Native Menu ====================================================*/
   @media not (-moz-windows-non-native-menus) {
     @media (-moz-os-version: windows-win7),
-      (-moz-platform: windows-win7),
       (-moz-os-version: windows-win8),
-      (-moz-platform: windows-win8),
       (-moz-os-version: windows-win10),
-      (-moz-platform: windows-win10) {
+      (-moz-platform: windows) {
       .customization-uidensity-menuitem > .menu-iconic-left {
         width: unset !important;
       }
@@ -368,11 +366,9 @@
   }
   /*= Titlebar Container Size at maximized #384 ================================*/
   @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
     (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8),
     (-moz-os-version: windows-win10),
-    (-moz-platform: windows-win10) {
+    (-moz-platform: windows) {
     @supports not -moz-bool-pref("userChrome.compatibility.os.windows_maximized") {
       :root[tabsintitlebar] #titlebar {
         /* -moz-default-appearance: -moz-window-titlebar */
@@ -396,11 +392,9 @@
   }
   /*= Windows - Classic Theme #734 =============================================*/
   @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
     (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8),
     (-moz-os-version: windows-win10),
-    (-moz-platform: windows-win10) {
+    (-moz-platform: windows) {
     @media (-moz-windows-classic) {
       :root[tabsintitlebar][sizemode="normal"]:not(:-moz-lwtheme) #navigator-toolbox {
         appearance: auto !important;
@@ -2390,11 +2384,9 @@
   }
   @media not (-moz-windows-non-native-menus) {
     @media (-moz-os-version: windows-win7),
-      (-moz-platform: windows-win7),
       (-moz-os-version: windows-win8),
-      (-moz-platform: windows-win8),
       (-moz-os-version: windows-win10),
-      (-moz-platform: windows-win10) {
+      (-moz-platform: windows) {
       html#main-window #mainPopupSet menupopup:not(.in-menulist) {
         --menu-background-color: Menu !important;
       }
@@ -2921,11 +2913,9 @@
     }
     /*- Each OS ----------------------------------------------------------------*/
     @media (-moz-os-version: windows-win7),
-      (-moz-platform: windows-win7),
       (-moz-os-version: windows-win8),
-      (-moz-platform: windows-win8),
       (-moz-os-version: windows-win10),
-      (-moz-platform: windows-win10) {
+      (-moz-platform: windows) {
       xul|checkbox,
       xul|radio {
         padding-inline-start: 0 !important;
@@ -4093,11 +4083,9 @@
     }
   }
   @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
     (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8),
     (-moz-os-version: windows-win10),
-    (-moz-platform: windows-win10) {
+    (-moz-platform: windows) {
     .titlebar-spacer[type="pre-tabs"] {
       width: var(--uc-title-post-spacer) !important;
     }
@@ -4550,11 +4538,9 @@
     padding-block: var(--menu-padding) !important;
   }
   @media (-moz-os-version: windows-win7),
-    (-moz-platform: windows-win7),
     (-moz-os-version: windows-win8),
-    (-moz-platform: windows-win8),
     (-moz-os-version: windows-win10),
-    (-moz-platform: windows-win10) {
+    (-moz-platform: windows) {
     #ContentSelectDropdown > menupopup > menucaption,
     #ContentSelectDropdown > menupopup > menuitem {
       padding-block: 0 !important;
@@ -5289,11 +5275,9 @@
     @supports not -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
       @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         @media (-moz-os-version: windows-win7),
-          (-moz-platform: windows-win7),
           (-moz-os-version: windows-win8),
-          (-moz-platform: windows-win8),
           (-moz-os-version: windows-win10),
-          (-moz-platform: windows-win10) {
+          (-moz-platform: windows) {
           :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
             --uc-window-drag-space-pre: 0px;
           }
@@ -5326,11 +5310,9 @@
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
         @supports not -moz-bool-pref("userChrome.tabbar.as_titlebar") {
           @media (-moz-os-version: windows-win7),
-            (-moz-platform: windows-win7),
             (-moz-os-version: windows-win8),
-            (-moz-platform: windows-win8),
             (-moz-os-version: windows-win10),
-            (-moz-platform: windows-win10) {
+            (-moz-platform: windows) {
             :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
               --uc-window-control-space: 0px;
             }
@@ -5358,11 +5340,9 @@
       @media screen and (min-width: 1100px) {
         @supports -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
           @media (-moz-os-version: windows-win7),
-            (-moz-platform: windows-win7),
             (-moz-os-version: windows-win8),
-            (-moz-platform: windows-win8),
             (-moz-os-version: windows-win10),
-            (-moz-platform: windows-win10) {
+            (-moz-platform: windows) {
             :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
               --uc-window-drag-space-pre: 0px;
             }
@@ -5395,11 +5375,9 @@
         @supports not -moz-bool-pref("userChrome.tabbar.one_liner.tabbar_first") {
           @supports not -moz-bool-pref("userChrome.tabbar.as_titlebar") {
             @media (-moz-os-version: windows-win7),
-              (-moz-platform: windows-win7),
               (-moz-os-version: windows-win8),
-              (-moz-platform: windows-win8),
               (-moz-os-version: windows-win10),
-              (-moz-platform: windows-win10) {
+              (-moz-platform: windows) {
               :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
                 --uc-window-control-space: 0px;
               }
@@ -5487,11 +5465,9 @@
           }
         }
         @media (-moz-os-version: windows-win7),
-          (-moz-platform: windows-win7),
           (-moz-os-version: windows-win8),
-          (-moz-platform: windows-win8),
           (-moz-os-version: windows-win10),
-          (-moz-platform: windows-win10) {
+          (-moz-platform: windows) {
           :root[sizemode="maximized"][tabsintitlebar] {
             --uc-titlebar-padding: 8px;
           }
@@ -5641,11 +5617,9 @@
             }
           }
           @media (-moz-os-version: windows-win7),
-            (-moz-platform: windows-win7),
             (-moz-os-version: windows-win8),
-            (-moz-platform: windows-win8),
             (-moz-os-version: windows-win10),
-            (-moz-platform: windows-win10) {
+            (-moz-platform: windows) {
             :root[sizemode="maximized"][tabsintitlebar] {
               --uc-titlebar-padding: 8px;
             }
@@ -5792,11 +5766,9 @@
             }
           }
           @media (-moz-os-version: windows-win7),
-            (-moz-platform: windows-win7),
             (-moz-os-version: windows-win8),
-            (-moz-platform: windows-win8),
             (-moz-os-version: windows-win10),
-            (-moz-platform: windows-win10) {
+            (-moz-platform: windows) {
             :root[sizemode="maximized"][tabsintitlebar] {
               --uc-titlebar-padding: 8px;
             }
@@ -5946,11 +5918,9 @@
               }
             }
             @media (-moz-os-version: windows-win7),
-              (-moz-platform: windows-win7),
               (-moz-os-version: windows-win8),
-              (-moz-platform: windows-win8),
               (-moz-os-version: windows-win10),
-              (-moz-platform: windows-win10) {
+              (-moz-platform: windows) {
               :root[sizemode="maximized"][tabsintitlebar] {
                 --uc-titlebar-padding: 8px;
               }
@@ -6109,11 +6079,9 @@
               }
             }
             @media (-moz-os-version: windows-win7),
-              (-moz-platform: windows-win7),
               (-moz-os-version: windows-win8),
-              (-moz-platform: windows-win8),
               (-moz-os-version: windows-win10),
-              (-moz-platform: windows-win10) {
+              (-moz-platform: windows) {
               :root[sizemode="maximized"][tabsintitlebar] {
                 --uc-titlebar-padding: 8px;
               }
@@ -6262,11 +6230,9 @@
               }
             }
             @media (-moz-os-version: windows-win7),
-              (-moz-platform: windows-win7),
               (-moz-os-version: windows-win8),
-              (-moz-platform: windows-win8),
               (-moz-os-version: windows-win10),
-              (-moz-platform: windows-win10) {
+              (-moz-platform: windows) {
               :root[sizemode="maximized"][tabsintitlebar] {
                 --uc-titlebar-padding: 8px;
               }
@@ -6367,11 +6333,9 @@
         border-inline-color: transparent;
       }
       @media (-moz-os-version: windows-win7),
-        (-moz-platform: windows-win7),
         (-moz-os-version: windows-win8),
-        (-moz-platform: windows-win8),
         (-moz-os-version: windows-win10),
-        (-moz-platform: windows-win10) {
+        (-moz-platform: windows) {
         @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
           #nav-bar {
             border-inline-start-width: var(--uc-window-drag-space-pre);
@@ -11685,13 +11649,11 @@
       }
     }
     /* Padding - Non Native */
-    @media (-moz-gtk-csd-available),
-      (-moz-os-version: windows-win7),
-      (-moz-platform: windows-win7),
+    @media (-moz-os-version: windows-win7),
       (-moz-os-version: windows-win8),
-      (-moz-platform: windows-win8),
       (-moz-os-version: windows-win10),
-      (-moz-platform: windows-win10) {
+      (-moz-platform: windows),
+      (-moz-gtk-csd-available) {
       @media (-moz-windows-non-native-menus) {
         :root {
           --context-menu-background-padding: 1em;
@@ -11816,11 +11778,9 @@
     }
     /* Padding - Windows */
     @media (-moz-os-version: windows-win7),
-      (-moz-platform: windows-win7),
       (-moz-os-version: windows-win8),
-      (-moz-platform: windows-win8),
       (-moz-os-version: windows-win10),
-      (-moz-platform: windows-win10) {
+      (-moz-platform: windows) {
       :root {
         --bookmark-menu-icon-text-padding: calc(
           var(--context-menu-text-padding) + var(--arrowpanel-menuitem-padding-inline)
@@ -11909,11 +11869,9 @@
       }
     }
     @media (-moz-os-version: windows-win7),
-      (-moz-platform: windows-win7),
       (-moz-os-version: windows-win8),
-      (-moz-platform: windows-win8),
       (-moz-os-version: windows-win10),
-      (-moz-platform: windows-win10) {
+      (-moz-platform: windows) {
       @media not (-moz-windows-non-native-menus) {
         :not(menu, #ContentSelectDropdown, #context-navigation)
           > menupopup:not(.in-menulist)
@@ -12048,11 +12006,9 @@
     }
     /* Windows */
     @media (-moz-os-version: windows-win7),
-      (-moz-platform: windows-win7),
       (-moz-os-version: windows-win8),
-      (-moz-platform: windows-win8),
       (-moz-os-version: windows-win10),
-      (-moz-platform: windows-win10) {
+      (-moz-platform: windows) {
       /* Bookmark Popup - None icon menu */
       menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
       menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
@@ -12330,11 +12286,9 @@
       }
       /*= Tab Mix Plus =============================================================*/
       @media (-moz-os-version: windows-win7),
-        (-moz-platform: windows-win7),
         (-moz-os-version: windows-win8),
-        (-moz-platform: windows-win8),
         (-moz-os-version: windows-win10),
-        (-moz-platform: windows-win10) {
+        (-moz-platform: windows) {
         #context_openANewTab.tabmix-newtab-menu-icon .menu-iconic-left {
           display: none;
         }

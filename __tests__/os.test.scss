@@ -102,7 +102,7 @@
         }
       }
       @include expect {
-        @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+        @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows) {
           @include example;
         }
       }
@@ -135,7 +135,7 @@
         }
       }
       @include expect {
-        @media (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available), (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+        @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows), (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available) {
           @include example;
         }
         @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {

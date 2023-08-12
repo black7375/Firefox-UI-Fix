@@ -3211,13 +3211,11 @@
         padding-inline-start: var(--context-menu-background-padding) !important;
       }
       /* Padding - Non Native */
-      @media (-moz-gtk-csd-available),
-        (-moz-os-version: windows-win7),
-        (-moz-platform: windows-win7),
+      @media (-moz-os-version: windows-win7),
         (-moz-os-version: windows-win8),
-        (-moz-platform: windows-win8),
         (-moz-os-version: windows-win10),
-        (-moz-platform: windows-win10) {
+        (-moz-platform: windows),
+        (-moz-gtk-csd-available) {
         @media (-moz-windows-non-native-menus) {
           :root {
             --context-menu-background-padding: 1em;
@@ -3267,11 +3265,9 @@
       }
       /* Padding - Windows */
       @media (-moz-os-version: windows-win7),
-        (-moz-platform: windows-win7),
         (-moz-os-version: windows-win8),
-        (-moz-platform: windows-win8),
         (-moz-os-version: windows-win10),
-        (-moz-platform: windows-win10) {
+        (-moz-platform: windows) {
         :root {
           --bookmark-menu-icon-text-padding: calc(
             var(--context-menu-text-padding) + var(--arrowpanel-menuitem-padding-inline)
@@ -3360,11 +3356,9 @@
         }
       }
       @media (-moz-os-version: windows-win7),
-        (-moz-platform: windows-win7),
         (-moz-os-version: windows-win8),
-        (-moz-platform: windows-win8),
         (-moz-os-version: windows-win10),
-        (-moz-platform: windows-win10) {
+        (-moz-platform: windows) {
         @media not (-moz-windows-non-native-menus) {
           menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
             menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),

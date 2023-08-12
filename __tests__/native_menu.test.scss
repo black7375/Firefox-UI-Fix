@@ -42,7 +42,7 @@
       }
       @include expect {
         @media not (-moz-windows-non-native-menus) {
-          @#{media} (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          @#{media} (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows) {
             @include example;
           }
         }
@@ -52,7 +52,7 @@
           }
         }
         @media (-moz-windows-non-native-menus) {
-          @#{media} (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          @#{media} (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows) {
             @include example;
           }
         }
@@ -62,12 +62,12 @@
           }
         }
         @media not (-moz-windows-non-native-menus) {
-          @#{media} (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          @#{media} (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows) {
             @include example;
           }
         }
         @media (-moz-windows-non-native-menus) {
-          @#{media} (-moz-os-version: windows-win7), (-moz-platform: windows-win7), (-moz-os-version: windows-win8), (-moz-platform: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+          @#{media} (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows) {
             @include example;
           }
         }
