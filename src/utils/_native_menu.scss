@@ -26,10 +26,8 @@
 }
 
 @mixin NativeMenu($win-media: false) {
-  @media not (-moz-windows-non-native-menus) {
-    @include _WinMedia($win-media) {
-      @content;
-    }
+  @include WinNativeMenu($win-media) {
+    @content;
   }
   @include NotOption("userChrome.theme.non_native_menu") {
     @include OS($linux) {
@@ -38,12 +36,9 @@
   }
 }
 
-
 @mixin NonNativeMenu($win-media: false) {
-  @media (-moz-windows-non-native-menus) {
-    @include _WinMedia($win-media) {
-      @content;
-    }
+  @include WinNonNativeMenu($win-media) {
+    @content;
   }
   @include Option("userChrome.theme.non_native_menu") {
     @include OS($linux) {
@@ -53,16 +48,24 @@
 }
 
 @mixin WinNativeMenu($win-media: false) {
-  @media not (-moz-windows-non-native-menus) {
-    @include _WinMedia($win-media) {
-      @content;
+  @if $osESR {
+    @media not (-moz-windows-non-native-menus) {
+      @include _WinMedia($win-media) {
+        @content;
+      }
     }
   }
 }
 
 @mixin WinNonNativeMenu($win-media: false) {
-  @media (-moz-windows-non-native-menus) {
-    @include _WinMedia($win-media) {
+  @if $osESR {
+    @media (-moz-windows-non-native-menus) {
+      @include _WinMedia($win-media) {
+        @content;
+      }
+    }
+  } @else {
+    @include _WinMedia(true) {
       @content;
     }
   }
