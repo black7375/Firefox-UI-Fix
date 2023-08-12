@@ -2,8 +2,9 @@
 @use "example" as *;
 @use "../src/utils/os" as *;
 
-// TODO: Need more tests..
-@include test-module("Create OS related media [mix]") {
+@include test-module("Create OS related media - ESR [mix]") {
+  @include ESR-MODE;
+
   @include test("win7") {
     @include assert {
       @include output {
@@ -136,6 +137,148 @@
       }
       @include expect {
         @media (-moz-os-version: windows-win7), (-moz-os-version: windows-win8), (-moz-os-version: windows-win10), (-moz-platform: windows), (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available) {
+          @include example;
+        }
+        @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+          @include example;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Create OS related media - Standard [mix]") {
+  @include STANDARD-MODE;
+
+  @include test("win7") {
+    @include assert {
+      @include output {
+        @include OS($win7) {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
+      }
+    }
+  }
+
+  @include test("win8") {
+    @include assert {
+      @include output {
+        @include OS($win8) {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
+      }
+    }
+  }
+
+  @include test("win10") {
+    @include assert {
+      @include output {
+        @include OS($win10) {
+          @include example;
+        }
+      }
+      @include expect {
+        // AS Windows
+        @media (-moz-platform: windows) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("linux") {
+    @include assert {
+      @include output {
+        @include OS($linux) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-gtk-csd-available) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("mac") {
+    @include assert {
+      @include output {
+        @include OS($mac) {
+          @include example;
+        }
+      }
+      @include expect {
+        @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("bigsur") {
+    @include assert {
+      @include output {
+        @include OS($bigsur) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-mac-big-sur-theme: 0) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("win") {
+    @include assert {
+      @include output {
+        @include OS($win) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-platform: windows) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("all os - win7, win8, win10, mac, bigsur, linux") {
+    @include assert {
+      @include output {
+        @include OS($win7, $win8, $win10, $mac, $bigsur, $linux) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media  (-moz-platform: windows), (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available) {
+          @include example;
+        }
+        @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("all os - win, mac, bigsur, linux") {
+    @include assert {
+      @include output {
+        @include OS($win, $mac, $bigsur, $linux) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-platform: windows), (-moz-mac-big-sur-theme: 0), (-moz-gtk-csd-available) {
           @include example;
         }
         @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {

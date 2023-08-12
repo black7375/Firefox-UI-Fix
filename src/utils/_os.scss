@@ -31,13 +31,14 @@ $_win-media: (
   $_win-media: map.set($_win-media, $_win-key, $result-template);
 }
 
+$_moz-platform-windows: list.nth($_win-template, 2);
 @function _win-only-result() {
   $result-template: ();
 
   @each $_win-value in map.values($_win-media) {
     $result-template: list.append($result-template, list.nth($_win-value, 1));
   }
-  @return list.append($result-template, list.nth($_win-template, 2))
+  @return list.append($result-template, $_moz-platform-windows)
 }
 
 $_win-media: map.merge(
@@ -54,7 +55,24 @@ $_os-media: map.merge(
 );
 
 //== Mixin =====================================================================
+$osESR: false !default;
+
+@mixin ESR-MODE() {
+  $osESR: true !global;
+}
+
+@mixin STANDARD-MODE() {
+  $osESR: false !global;
+}
+
 @mixin OS($osNames...) {
+  $_os-media: $_os-media; // as local
+  @if not $osESR {
+    $osNames: list-utils.remove-list($osNames, ($win7 $win8));
+    $_os-media: map.set($_os-media, $win10, $_moz-platform-windows);
+    $_os-media: map.set($_os-media, $win, $_moz-platform-windows);
+  }
+
   $osMedias: ();
   @each $osName in $osNames {
     $osMedia: map.get($_os-media, $osName);
