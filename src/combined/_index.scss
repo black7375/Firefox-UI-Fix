@@ -1,7 +1,10 @@
 /*= Combined - At URL bar ====================================================*/
 @include Option(
-  "userChrome.combined.nav_button", "userChrome.combined.nav_button.home_button",
-  "userChrome.combined.urlbar.nav_button", "userChrome.combined.urlbar.home_button", "userChrome.combined.urlbar.reload_button"
+  "userChrome.combined.nav_button",
+  "userChrome.combined.nav_button.home_button",
+  "userChrome.combined.urlbar.nav_button",
+  "userChrome.combined.urlbar.home_button",
+  "userChrome.combined.urlbar.reload_button"
 ) {
   // Init
   #nav-bar {
@@ -27,18 +30,18 @@
   }
 
   #nav-bar-customization-target > * {
-    -moz-box-ordinal-group: 1;
+    @include BoxOrder(1);
   }
   // Preserve
   // `back`    -> 2
   // `home`    -> 3
   // `forward` -> 4
   #nav-bar-customization-target > #urlbar-container {
-    -moz-box-ordinal-group: 5;
+    @include BoxOrder(5);
   }
   // `reload`  -> 6
   #nav-bar-customization-target > #urlbar-container ~ * {
-    -moz-box-ordinal-group: 7;
+    @include BoxOrder(7);
   }
 }
 
@@ -92,22 +95,57 @@
 }
 
 @include Option("userChrome.combined.urlbar.nav_button") {
-  #nav-bar-customization-target > #back-button {
-    -moz-box-ordinal-group: 2;
-  }
-  #nav-bar-customization-target > #forward-button {
-    -moz-box-ordinal-group: 4;
+  #nav-bar-customization-target > {
+    #back-button {
+      @include BoxOrder(2);
+    }
+    #forward-button {
+      @include BoxOrder(4);
+    }
+
+    $button: ":is(toolbarbutton, toolbaritem)";
+    @include Option("userChrome.combined.urlbar.home_button") {
+      $combindButtons: "#back-button, #forward-button, #home-button";
+      $target: ":is(#{$combindButtons})";
+      $notTarget: "#{$button}:not(#{$combindButtons})";
+
+      :first-child#{$target} + {
+        #{$notTarget},
+        #{$target} + #{$notTarget},
+        #{$target} + #{$target} + #{$button} {
+          padding-inline-start: var(--toolbar-start-end-padding) !important;
+        }
+      }
+    }
+    @include NotOption("userChrome.combined.urlbar.home_button") {
+      $combindButtons: "#back-button, #forward-button";
+      $target: ":is(#{$combindButtons})";
+      $notTarget: "#{$button}:not(#{$combindButtons})";
+
+      :first-child#{$target} + {
+        #{$notTarget},
+        #{$target} + #{$button} {
+          padding-inline-start: var(--toolbar-start-end-padding) !important;
+        }
+      }
+    }
   }
 }
 @include Option("userChrome.combined.urlbar.home_button") {
   #nav-bar-customization-target > #home-button {
-    -moz-box-ordinal-group: 3;
+    @include BoxOrder(3);
+
+    @include NotOption("userChrome.combined.urlbar.nav_button") {
+      &:is(:first-child) + :is(toolbarbutton, toolbaritem) {
+        padding-inline-start: var(--toolbar-start-end-padding) !important;
+      }
+    }
   }
   @import "home_button";
 }
 @include Option("userChrome.combined.urlbar.reload_button") {
   #nav-bar-customization-target > #stop-reload-button {
-    -moz-box-ordinal-group: 6;
+    @include BoxOrder(6);
   }
 
   @import "reload_button";

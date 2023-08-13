@@ -1,7 +1,73 @@
+@use "mode";
 @use "option" as *;
+@use "os" as *;
 
-@mixin NativeMenu() {
+@mixin NativeToolkitMenu() {
   @include Option("widget.macos.native-context-menus", "widget.gtk.native-context-menus") {
     @content;
+  }
+}
+
+@mixin NativeMenuPopup() {
+  menupopup:is(#historyMenuPopup, #bookmarksMenuPopup),
+  menupopup:not([placespopup="true"]) {
+    @content;
+  }
+}
+
+@mixin _WinMedia($win-media: false) {
+  @if $win-media {
+    @include OS($win) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin NativeMenu($win-media: false) {
+  @include WinNativeMenu($win-media) {
+    @content;
+  }
+  @include NotOption("userChrome.theme.non_native_menu") {
+    @include OS($linux) {
+      @content;
+    }
+  }
+}
+
+@mixin NonNativeMenu($win-media: false) {
+  @include WinNonNativeMenu($win-media) {
+    @content;
+  }
+  @include Option("userChrome.theme.non_native_menu") {
+    @include OS($linux) {
+      @content;
+    }
+  }
+}
+
+@mixin WinNativeMenu($win-media: false) {
+  @if mode.isESR() {
+    @media not (-moz-windows-non-native-menus) {
+      @include _WinMedia($win-media) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin WinNonNativeMenu($win-media: false) {
+  @if mode.isESR() {
+    @media (-moz-windows-non-native-menus) {
+      @include _WinMedia($win-media) {
+        @content;
+      }
+    }
+  } @else {
+    @include _WinMedia(true) {
+      @content;
+    }
   }
 }

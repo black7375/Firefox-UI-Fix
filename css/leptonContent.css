@@ -1,5 +1,37 @@
 @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
+/** Compatibility *************************************************************/
+@-moz-document url-prefix("about:preferences") {
+  .content-blocking-warning.info-box-container > hbox > .content-blocking-warning-image {
+    margin-inline-start: -7px !important;
+    margin-inline-end: 8px !important;
+    width: 20px !important;
+  }
+  #pane-experimental-search-results-header,
+  #pane-experimental-subtitle {
+    min-height: 27px !important;
+    padding-inline-start: 35px !important;
+  }
+  #firefoxExperimentalCategory:not([hidden="true"]) {
+    display: inline-block;
+  }
+  #firefoxExperimentalCategory > label {
+    float: left;
+  }
+  #firefoxExperimentalCategory > hbox {
+    transform: translateY(5px);
+  }
+  #pane-experimental-featureGates > html|p[data-l10n-id="pane-experimental-description2"] {
+    border-bottom: 1px solid var(--in-content-border-color);
+    padding-bottom: 1.5em;
+  }
+}
+@-moz-document url-prefix("about:addons") {
+  #updates-message + .page-options-menu > .more-options-button {
+    box-sizing: content-box;
+    padding: 0 !important;
+  }
+}
 /** Video player **************************************************************/
 /* Control Bar Size */
 @supports -moz-bool-pref("userContent.player.size") {
@@ -39,7 +71,7 @@
     box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2), 0 8px 12px 1px var(--box-shadow3);
     /* Or: 0 2px 15px rgba(0,0,0,.1); */
   }
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
     audio {
       --box-shadow1: rgba(249, 249, 250, 0.12);
       --box-shadow2: rgba(91, 91, 102, 0.12);
@@ -242,7 +274,8 @@
         }
       }
     }
-  } /** Activity Stream - Menu Icons ********************************************/
+  }
+  /** Activity Stream - Menu Icons ********************************************/
   @supports -moz-bool-pref("userChrome.icon.context_menu") {
     .context-menu-list .context-menu-item button {
       padding-inline-start: 0 !important;
@@ -251,6 +284,7 @@
       /* Color */
       -moz-context-properties: fill, fill-opacity, stroke !important;
       fill: currentColor !important;
+      stroke: currentColor;
       /* Layout */
       background-size: 16px !important;
       background-repeat: no-repeat !important;
@@ -333,16 +367,20 @@
         transition: background 0.5s var(--animation-easing-function);
       }
       /* Search Bar */
-      .search-inner-wrapper input {
+      .search-wrapper .search-inner-wrapper > input,
+      .search-wrapper .search-inner-wrapper > .search-handoff-button {
         transition: 1s var(--animation-easing-function);
         transition-property: border-color, box-shadow;
       }
-      .search-wrapper .search-inner-wrapper:active input,
-      .search-wrapper input:focus {
+      .search-wrapper .search-inner-wrapper:active > input,
+      .search-wrapper .search-inner-wrapper:active > .search-handoff-button,
+      .search-wrapper .search-inner-wrapper > input:focus,
+      .search-wrapper .search-inner-wrapper > .search-handoff-button:focus {
         transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
       }
       @supports -moz-bool-pref("userContent.page.field_border") {
-        .search-wrapper .search-inner-wrapper:hover input {
+        .search-wrapper .search-inner-wrapper:hover > input,
+        .search-wrapper .search-inner-wrapper:hover > .search-handoff-button {
           border-color: var(--newtab-primary-action-background) !important;
           transition: border-color 0.5s var(--animation-easing-function);
         }
@@ -375,7 +413,7 @@
       --newtab-search-dropdown-color: var(--newtab-search-background-color) !important;
       --newtab-element-hover-color: color-mix(in srgb, currentColor 9%, transparent) !important;
     }
-    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
       #root {
         /* Default Dark Mode */
         --newtab-search-background-color: rgba(66, 65, 77, 1); /* Same as dark theme's --panel-background */
@@ -404,6 +442,7 @@
     }
     #contentSearchSettingsButton::before {
       content: url("chrome://global/skin/icons/settings.svg") !important;
+      display: inline-flex;
       display: -moz-inline-box;
       /* Color */
       -moz-context-properties: fill, fill-opacity !important;
@@ -442,12 +481,29 @@
       fill: var(--newtab-icon-secondary-color) !important;
     }
   }
+  /** Activity Stream - Hide Firefox's logo ***********************************/
+  @supports -moz-bool-pref("userContent.newTab.hidden_logo") {
+    .logo-and-wordmark {
+      display: none !important;
+    }
+    .outer-wrapper:not(.fixed-search) .search-wrapper {
+      padding-top: 0 !important;
+    }
+  }
+  /** Activity Stream - Hide Firefox's logo ***********************************/
+  @supports -moz-bool-pref("userContent.newTab.background_image") {
+    body {
+      background-image: var(--uc-newTab-wallpaper, url("../icons/Forest-trees-sunset-art-picture_3840x2160.jpg"));
+      background-size: cover; /* or auto auto */
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-attachment: fixed;
+    }
+  }
 }
 /** Error Page - Restore illustrations ****************************************/
 @supports -moz-bool-pref("userContent.page.illustration") {
-  @-moz-document url-prefix("about:neterror"),
-  url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"),
-  url("about:sessionrestore"),  url("chrome://browser/content/aboutSessionRestore.xhtml")
+  @-moz-document url-prefix("about:neterror"), url-prefix("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"), url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml")
   {
     /* Illustrations Position */
     #errorPageContainer,
@@ -477,12 +533,7 @@
       padding-inline-start: 38%;
     }
   }
-  @-moz-document url-prefix("about:neterror?e=connectionFailure"),
-  url-prefix("about:neterror?e=netInterrupt"),
-  url-prefix("about:neterror?e=netReset"),
-  url-prefix("about:neterror?e=netTimeout"),
-  url-prefix("about:neterror?e=netOffline"),
-  url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
+  @-moz-document url-prefix("about:neterror?e=connectionFailure"), url-prefix("about:neterror?e=netInterrupt"), url-prefix("about:neterror?e=netReset"), url-prefix("about:neterror?e=netTimeout"), url-prefix("about:neterror?e=netOffline"), url-prefix("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml")
   {
     :root {
       --uc-error-llustration: url(../icons/error-connection-failure.svg);
@@ -493,15 +544,12 @@
       --uc-error-llustration: url(../icons/error-server-not-found.svg);
     }
   }
-  @-moz-document url-prefix("about:neterror?e=blockedByPolicy"),
-  url-prefix("about:neterror?e=deniedPortAccess"),
-  url-prefix("about:neterror?e=malformedURI") {
+  @-moz-document url-prefix("about:neterror?e=blockedByPolicy"), url-prefix("about:neterror?e=deniedPortAccess"), url-prefix("about:neterror?e=malformedURI") {
     :root {
       --uc-error-llustration: url(chrome://browser/skin/illustrations/error-malformed-url.svg);
     }
   }
-  @-moz-document url-prefix("about:neterror?e=clockSkewError"),
-  url-prefix("about:neterror?e=nssFailure") {
+  @-moz-document url-prefix("about:neterror?e=clockSkewError"), url-prefix("about:neterror?e=nssFailure") {
     :root {
       --uc-error-llustration: url(../icons/blue-berror.svg);
     }
@@ -549,17 +597,20 @@
       }
     }
   }
+  @-moz-document url-prefix("about:preferences") {
+    #no-results-message::after {
+      content: url("../icons/no-search-results.svg");
+      width: 380px;
+      height: 293px;
+      margin-top: 64px;
+      margin-inline: auto;
+    }
+  }
 }
 /** Fully Dark Mode ***********************************************************/
 /*= Fully Dark Mode - Dark Mode Colors =======================================*/
 @supports -moz-bool-pref("userContent.page.proton_color") {
-  @-moz-document url-prefix("about:"),
-               url-prefix("chrome://browser/content/places/places.xhtml"),
-               url-prefix("https://addons.mozilla.org"),
-               url-prefix("https://support.mozilla.org"),
-               url-prefix("https://accounts.firefox.com"),
-               url-prefix("view-source"),
-               regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://"), url-prefix("https://addons.mozilla.org"), url-prefix("https://support.mozilla.org"), url-prefix("https://accounts.firefox.com"), url-prefix("view-source"), regexp("^((jar:)?file:///).*/$")
   {
     /*= Default Colors - Hard Coded ==============================================*/
     /* Based on chrome://global/skin/in-content/common.css */
@@ -666,8 +717,9 @@
       --card-shadow: var(--shadow-10);
       --card-outline-color: var(--grey-30);
       --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
+      --uc-warning-icon-bgcolor: #ffa436;
     }
-    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
       :host,
       :root {
         /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
@@ -702,10 +754,84 @@
         --in-content-link-color-visited: var(--in-content-link-color);
         --card-outline-color: var(--grey-60);
         --dialog-warning-text-color: var(--red-40);
+        --uc-warning-icon-bgcolor: #ffbd4f;
+      }
+    }
+    @media (prefers-contrast) {
+      :host,
+      :root {
+        --uc-warning-icon-bgcolor: var(--in-content-page-color);
+      }
+    }
+    /*= Menu color #477 ==========================================================*/
+    @media (-moz-platform: windows) {
+      :root {
+        /* Override some menu color variables for light browser themes. */
+        --menuitem-hover-background-color: #e0e0e6;
+        --menu-background-color: #f9f9fb;
+        --menu-color: #15141a;
+        --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
+        --menu-disabled-color: rgba(21, 20, 26, 0.4);
+        --menu-border-color: #cfcfd8;
+        --menu-icon-opacity: 0.7;
+        /* Declare menu colors for dark themes, but don't override anything yet. */
+        --dark-menuitem-hover-background-color: #52525e;
+        --dark-menu-background-color: #2b2a33;
+        --dark-menu-color: #fbfbfe;
+        --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
+        --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
+        --dark-menu-border-color: #5b5b66;
+        --dark-menu-icon-opacity: 1;
+      }
+      /* Override the menu color variables for dark browser themes. */
+    }
+    @media (-moz-platform: windows) and (prefers-color-scheme: dark) {
+      :root {
+        --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
+        --menu-background-color: var(--dark-menu-background-color);
+        --menu-color: var(--dark-menu-color);
+        --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
+        --menu-disabled-color: var(--dark-menu-disabled-color);
+        --menu-border-color: var(--dark-menu-border-color);
+        --menu-icon-opacity: var(--dark-menu-icon-opacity);
+      }
+    }
+    @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+      @media (-moz-gtk-csd-available) {
+        :root {
+          /* Override some menu color variables for light browser themes. */
+          --menuitem-hover-background-color: #e0e0e6;
+          --menu-background-color: #f9f9fb;
+          --menu-color: #15141a;
+          --menuitem-disabled-hover-background-color: rgba(224, 224, 230, 0.4);
+          --menu-disabled-color: rgba(21, 20, 26, 0.4);
+          --menu-border-color: #cfcfd8;
+          --menu-icon-opacity: 0.7;
+          /* Declare menu colors for dark themes, but don't override anything yet. */
+          --dark-menuitem-hover-background-color: #52525e;
+          --dark-menu-background-color: #2b2a33;
+          --dark-menu-color: #fbfbfe;
+          --dark-menuitem-disabled-hover-background-color: rgba(82, 82, 94, 0.4);
+          --dark-menu-disabled-color: rgba(251, 251, 254, 0.4);
+          --dark-menu-border-color: #5b5b66;
+          --dark-menu-icon-opacity: 1;
+        }
+        /* Override the menu color variables for dark browser themes. */
+      }
+      @media (-moz-gtk-csd-available) and (prefers-color-scheme: dark) {
+        :root {
+          --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
+          --menu-background-color: var(--dark-menu-background-color);
+          --menu-color: var(--dark-menu-color);
+          --menuitem-disabled-hover-background-color: var(--dark-menuitem-disabled-hover-background-color);
+          --menu-disabled-color: var(--dark-menu-disabled-color);
+          --menu-border-color: var(--dark-menu-border-color);
+          --menu-icon-opacity: var(--dark-menu-icon-opacity);
+        }
       }
     }
     @supports -moz-bool-pref("userContent.page.proton_color.dark_blue_accent") {
-      @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      @media (prefers-color-scheme: dark) {
         :host,
         :root {
           /* Color Memo
@@ -781,7 +907,7 @@
   }
 }
 @supports -moz-bool-pref("userContent.page.dark_mode") {
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
     /*= Addons.org =============================================================*/
     @-moz-document url-prefix("https://addons.mozilla.org")
     {
@@ -1482,8 +1608,7 @@
       .mzp-c-menu-item:is(:focus, :hover, :active) .mzp-c-menu-item-link .mzp-c-menu-item-title {
         border-color: var(--in-content-page-color) !important;
       }
-      @media screen and (-moz-toolbar-prefers-color-scheme: dark) and (min-width: 768px),
-        screen and (prefers-color-scheme: dark) and (min-width: 768px) {
+      @media screen and (prefers-color-scheme: dark) and (min-width: 768px) {
         .mzp-c-menu-panel {
           box-shadow: 0 16px 16px -16px rgba(255, 255, 255, 0.3) !important;
         }
@@ -1642,17 +1767,35 @@
         box-shadow: 0 0 0 3px color-mix(in srgb, var(--in-content-primary-button-background-hover) 80%, transparent) !important;
       }
     }
+    @supports -moz-bool-pref("userContent.page.dark_mode.pdf") {
+      @-moz-document unobservable-document() {
+        @-moz-document regexp("^(?!.*\\.pdf\\?n).*") {
+          #outerContainer {
+            --sidebaritem-bg-color: #38383d;
+            --uc-pdf-dark-filter: grayscale(10%) invert(90%);
+          }
+          #sidebarContainer > #sidebarContent > #thumbnailView .thumbnailImage {
+            filter: var(--uc-pdf-dark-filter);
+            box-shadow: 0 0 0 1px hsla(0deg, 0%, 100%, 0.5), 0 2px 8px hsla(0deg, 0%, 100%, 0.3) !important;
+          }
+          #viewerContainer > #viewer > .page > .canvasWrapper > canvas {
+            filter: var(--uc-pdf-dark-filter);
+          }
+        }
+      }
+    }
   }
 }
 /** Fully Proton Mode *********************************************************/
 @supports -moz-bool-pref("userContent.page.proton") {
   /*= Common contents ==========================================================*/ /*= abouts' common ===========================================================*/
-  @-moz-document url-prefix("about:plugins"),
-               url-prefix("about:cache"),
-               url-prefix("about:checkerboard"),
-               url-prefix("about:sync-log"),
-               url-prefix("about:memory"),
-               regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://pippki/content/"), url-prefix("chrome://browser/content/")
+  {
+    xul|treecols {
+      border-bottom-color: var(--in-content-box-border-color) !important;
+    }
+  }
+  @-moz-document url-prefix("about:plugins"), url-prefix("about:cache"), url-prefix("about:checkerboard"), url-prefix("about:sync-log"), url-prefix("about:memory"), regexp("^(((jar:)?file:///)|(chrome://)).*/$")
   {
     /* Base */
     html,
@@ -1714,6 +1857,13 @@
       margin: 4px 8px !important;
       /* Ensure font-size isn't overridden by widget styling (e.g. in forms.css) */
       font-size: 1em !important;
+    }
+    @supports -moz-bool-pref("userChrome.rounding.square_button") {
+      button,
+      select,
+      input[type="color"] {
+        border-radius: 0 !important;
+      }
     }
     button {
       font-weight: 600 !important;
@@ -1788,6 +1938,11 @@
       margin-inline: 0 6px !important;
       flex-shrink: 0 !important; /* avoid shrinking inside flex container */
     }
+    @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
+      input[type="checkbox"] {
+        border-radius: 0 !important;
+      }
+    }
     input[type="checkbox"]:enabled:hover {
       background-color: var(--checkbox-unchecked-hover-bgcolor) !important;
     }
@@ -1837,7 +1992,14 @@
       outline: 2px solid var(--in-content-focus-outline-color) !important;
       outline-offset: -1px !important; /* Prevents antialiasing around the corners */
     }
-    input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):-moz-ui-invalid,
+    input:is(
+        [type="email"],
+        [type="tel"],
+        [type="text"],
+        [type="password"],
+        [type="url"],
+        [type="number"]
+      ):-moz-ui-invalid,
     textarea:-moz-ui-invalid {
       border-color: transparent !important;
       outline: 2px solid var(--in-content-border-invalid) !important;
@@ -1853,16 +2015,13 @@
       width: 100% !important;
     }
   }
-  @-moz-document url-prefix("about:plugins"),
-               url-prefix("about:cache"),
-               url-prefix("about:checkerboard") {
+  @-moz-document url-prefix("about:plugins"), url-prefix("about:cache"), url-prefix("about:checkerboard") {
     table {
       border: 1px solid var(--in-content-table-border-color) !important;
       border-radius: 0 !important;
     }
   }
-  @-moz-document url-prefix("about:cache"),
-               url-prefix("about:checkerboard") {
+  @-moz-document url-prefix("about:cache"), url-prefix("about:checkerboard") {
     th,
     td {
       border: 1px solid var(--in-content-table-border-color) !important;
@@ -1876,7 +2035,14 @@
   @supports -moz-bool-pref("userContent.page.field_border") {
     @media (prefers-reduced-motion: no-preference) {
       @-moz-document url-prefix("about:") {
-        html|input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(#newtab-search-text):hover,
+        html|input:is(
+            [type="email"],
+            [type="tel"],
+            [type="text"],
+            [type="password"],
+            [type="url"],
+            [type="number"]
+          ):not(#newtab-search-text):hover,
         html|textarea:hover,
         xul|search-textbox:hover {
           border-color: var(--in-content-focus-outline-color) !important;
@@ -1894,7 +2060,7 @@
       --view-source-green: var(--green-80);
       --view-source-purple: #800080; /* Like alphenglow */
     }
-    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
       :root {
         --view-source-green: var(--green-60);
         --view-source-purple: #c68aff;
@@ -1944,8 +2110,7 @@
     }
   }
   /*= Directory View ===========================================================*/
-  @-moz-document url-prefix("about:sync-log"),
-               regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+  @-moz-document url-prefix("about:sync-log"), regexp("^(((jar:)?file:///)|(chrome://)).*/$")
   {
     body {
       background-color: var(--in-content-box-background) !important;
@@ -1994,6 +2159,33 @@
     }
     .opsRowLabel input {
       vertical-align: bottom !important;
+    }
+  }
+  /*= about:preferences ========================================================*/
+  @-moz-document url-prefix("chrome://browser/content")
+  {
+    #sanitizeEverythingWarningIcon {
+      list-style-image: url("chrome://global/skin/icons/warning.svg") !important;
+      -moz-context-properties: fill;
+      fill: var(--uc-warning-icon-bgcolor);
+      width: 48px;
+      height: 48px;
+    }
+  }
+  @-moz-document url-prefix("about:preferences") {
+    #handlersView > richlistitem:hover,
+    #translations-manage-install-list > .translations-manage-language:hover {
+      background-color: var(--in-content-item-hover);
+      color: var(--in-content-item-hover-text);
+    }
+    #handlersView > richlistitem[selected="true"],
+    #translations-manage-install-list > .translations-manage-language[selected="true"] {
+      background-color: var(--in-content-item-selected);
+      color: var(--in-content-item-selected-text);
+    }
+    #handlersView > richlistitem:nth-child(even):not([selected="true"], :hover),
+    #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected="true"], :hover) {
+      background-color: var(--in-content-box-background-odd);
     }
   }
   /*= chrome://browser/content/places/places.xhtml =============================*/
@@ -2141,6 +2333,7 @@
         list-style-image: url("chrome://global/skin/icons/delete.svg") !important;
       }
       #clearDownloadsButton > .toolbarbutton-icon {
+        display: inline-flex !important;
         display: -moz-inline-box !important;
         margin-top: 0;
         margin-bottom: 0;
@@ -2216,7 +2409,7 @@
             --organizer-toolbar-field-focus-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.23);
             --organizer-pane-field-border-color: color-mix(in srgb, currentColor 41%, transparent);
           }
-          @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+          @media (prefers-color-scheme: dark) {
             :root {
               --organizer-color: rgb(251, 251, 254);
               --organizer-deemphasized-color: rgb(191, 191, 201);
@@ -2245,6 +2438,11 @@
           padding: 5px !important;
           border-radius: 4px !important;
         }
+        @supports -moz-bool-pref("userChrome.rounding.square_button") {
+          #placesToolbar > toolbarbutton {
+            border-radius: 0 !important;
+          }
+        }
         #placesToolbar > toolbarbutton[disabled] {
           opacity: 0.6 !important;
         }
@@ -2267,10 +2465,15 @@
         #placesMenu > menu {
           appearance: none !important;
           color: var(--organizer-color) !important;
-          border-radius: 4px !important;
           padding-block: 5px !important;
           padding-inline-start: 5px !important;
+          border-radius: 4px !important;
           margin-inline-end: 2px !important;
+        }
+        @supports -moz-bool-pref("userChrome.rounding.square_button") {
+          #placesMenu > menu {
+            border-radius: 0 !important;
+          }
         }
         #placesMenu > menu[_moz-menuactive="true"],
         #placesMenu > menu:hover {
@@ -2297,6 +2500,12 @@
           margin: 0 !important;
           padding-block: 2px !important;
           min-height: 24px !important;
+        }
+        @supports -moz-bool-pref("userChrome.rounding.square_field") {
+          #searchFilter,
+          #detailsPane html|input {
+            border-radius: 0 !important;
+          }
         }
         #searchFilter[focused] {
           box-shadow: var(--organizer-toolbar-field-focus-box-shadow) !important;
@@ -2439,6 +2648,12 @@
           -moz-context-properties: fill !important;
           fill: currentColor !important;
         }
+        @supports -moz-bool-pref("userChrome.rounding.square_button") {
+          #editBookmarkPanelRows .expander-up,
+          #editBookmarkPanelRows .expander-down {
+            border-radius: 0 !important;
+          }
+        }
         #editBookmarkPanelRows .expander-up:hover,
         #editBookmarkPanelRows .expander-down:hover {
           background-color: var(--organizer-hover-background) !important;
@@ -2472,6 +2687,11 @@
           min-height: 20px !important;
           padding-inline: 4px !important;
         }
+        @supports -moz-bool-pref("userChrome.rounding.square_field") {
+          #places input {
+            border-radius: 0 !important;
+          }
+        }
         #places input:focus {
           outline: 2px solid var(--organizer-outline-color) !important;
           outline-offset: -1px !important;
@@ -2489,6 +2709,11 @@
           background-color: var(--organizer-content-background) !important;
           border: 1px solid var(--organizer-border-color) !important;
           border-radius: 4px !important;
+        }
+        @supports -moz-bool-pref("userChrome.rounding.square_field") {
+          #editBMPanel_tagsSelectorRow > richlistbox {
+            border-radius: 0 !important;
+          }
         }
         #editBMPanel_tagsSelectorRow > richlistbox > richlistitem {
           border: 1px solid transparent !important;
@@ -2559,6 +2784,7 @@
         /* From checkbox.css */
         menuitem[type="checkbox"] {
           appearance: none !important;
+          align-items: center !important;
           -moz-box-align: center !important;
           margin: 0px 2px !important;
         }
@@ -2662,7 +2888,7 @@
             outline: 2px solid var(--focus-outline-color, -moz-accent-color) !important;
           }
         }
-        @media (prefers-contrast) {
+        @media (-moz-gtk-csd-available) and (prefers-contrast) {
           menuitem[type="checkbox"]:not([disabled="true"]) > .menu-iconic-left > .menu-iconic-icon {
             /* color will set the border-color on the check due to how HCM works for in-content pages. */
             color: var(--checkbox-checked-border-color, color-mix(in srgb, AccentColor 4%, Field)) !important;
@@ -2723,11 +2949,202 @@
     }
   }
 }
+/** Rounding ******************************************************************/
+@supports -moz-bool-pref("userChrome.rounding.square_button") {
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
+  {
+    button:not(.toggle-button),
+    .close-icon,
+    .action-icon::before,
+    .page-section-header > .twisty,
+    .closed-tab-li-main,
+    #categories > .category,
+    .sidebar-footer-link {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .sidebar-item {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("chrome://browser/content/places/places.xhtml"), url-prefix("about:downloads")
+  {
+    .downloadButton > .button-box {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:protections") {
+    #manage-protections,
+    #sign-up-for-monitor-link,
+    #get-proxy-extension-link,
+    #get-vpn-link,
+    #vpn-banner-link,
+    .monitor-partial-breaches-link-wrapper,
+    .monitor-breaches-link-wrapper {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document regexp(".*.pdf$") {
+    .toolbarButton,
+    .dropdownToolbarButton,
+    .secondaryToolbarButton,
+    .dialogButton {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+  @-moz-document url("about:home"), url("about:newtab") {
+    .modal {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
+  {
+    input[type="checkbox"]:not(.toggle-button),
+    .checkbox-check {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_field") {
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
+  {
+    input:is(
+        [type="color"],
+        [type="email"],
+        [type="tel"],
+        [type="text"],
+        [type="password"],
+        [type="url"],
+        [type="number"]
+      ),
+    textarea,
+    select,
+    menulist,
+    tree,
+    treecols,
+    listheader,
+    richlistbox,
+    search-textbox,
+    .web-appearance-choice,
+    .content-blocking-category,
+    #translations-manage-install-list {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .default-input {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url("about:home"), url("about:newtab") {
+    .search-wrapper .search-handoff-button,
+    .search-wrapper input {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document regexp(".*.pdf$") {
+    .toolbarField,
+    .thumbnailSelectionRing {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
+  @-moz-document url-prefix("about:"), url-prefix("chrome://")
+  {
+    panel,
+    menupopup {
+      --panel-border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:addons") {
+    panel-list {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:logins") {
+    .menu {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url("about:home"), url("about:newtab") {
+    .context-menu {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document regexp(".*.pdf$") {
+    .doorHanger,
+    .doorHangerRight {
+      border-radius: 0 !important;
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.rounding.square_infobox") {
+  @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
+  {
+    /*
+     * .container is inside shadow DOM,
+     * and it does not have any other classes,
+     * but there may be other elements with the same class,
+     * hence the weird selector.
+     */
+    link[href="chrome://global/content/elements/message-bar.css"] + .container,
+    .info-box-container:not(.content-blocking-category),
+    .options-container,
+    #sanitizeEverythingWarningBox {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:debugging") {
+    .message {
+      border-radius: 0 !important;
+    }
+  }
+  @-moz-document url-prefix("about:firefoxview") {
+    .card,
+    .card::before,
+    .empty-container,
+    .synced-tab-a,
+    .synced-tab-li-placeholder {
+      border-radius: 0 !important;
+    }
+  }
+}
+@-moz-document url-prefix("about:"), regexp(".*.pdf$") {
+  @supports -moz-bool-pref("userChrome.rounding.square_dialog") {
+    dialog,
+    .dialogBox {
+      border-radius: 0 !important;
+    }
+  }
+}
+@-moz-document url("chrome://browser/content/places/places.xhtml")
+{
+  /*= Library ==============================================================*/
+  @supports -moz-bool-pref("userChrome.rounding.square_button") {
+    #placesToolbar > toolbarbutton,
+    #placesMenu > menu,
+    #editBookmarkPanelRows .expander-up,
+    #editBookmarkPanelRows .expander-down {
+      border-radius: 0 !important;
+    }
+  }
+  @supports -moz-bool-pref("userChrome.rounding.square_field") {
+    #searchFilter,
+    #detailsPane html|input,
+    #places input #editBMPanel_tagsSelectorRow > richlistbox {
+      border-radius: 0 !important;
+    }
+  }
+}
 /** Monospace *****************************************************************/
 @supports -moz-bool-pref("userContent.page.monospace") {
-  @-moz-document url-prefix("about:"),
-               url-prefix("chrome://browser/content/places/places.xhtml"),
-               regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+  @-moz-document url-prefix("about:"), url-prefix("chrome://"), regexp("^((jar:)?file:///).*/$")
   {
     * {
       font-family: -moz-fixed;
@@ -2737,10 +3154,12 @@
 /** Menu - Icons Layout *******************************************************/
 @supports not -moz-bool-pref("userChrome.icon.disabled") {
   @supports -moz-bool-pref("userChrome.icon.menu") {
-    @-moz-document url("chrome://browser/content/places/places.xhtml"),
-               url("about:downloads") {
+    @-moz-document url("chrome://browser/content/places/places.xhtml"), url("about:downloads")
+    {
       menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
-      menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) {
+      menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]),
+      menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-iconic-left > .menu-iconic-icon,
+      menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-iconic-left > .menu-iconic-icon {
         -moz-appearance: none !important; /* Linux: menulist */
       }
       menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
@@ -2753,6 +3172,7 @@
         /* Color */
         -moz-context-properties: fill, fill-opacity, stroke !important;
         fill: currentColor !important;
+        stroke: currentColor;
         /* Layout */
         background-size: 16px !important;
         background-repeat: no-repeat !important;
@@ -2761,9 +3181,11 @@
       /* For native context menus */
       @supports -moz-bool-pref("widget.macos.native-context-menus") or -moz-bool-pref("widget.gtk.native-context-menus") {
         :not(menu, #ContentSelectDropdown)
-          > menupopup
+          > menupopup:not(.in-menulist)
           > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        :not(menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
+        :not(menu, #ContentSelectDropdown)
+          > menupopup:not(.in-menulist)
+          > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
           list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
         }
       }
@@ -2786,39 +3208,17 @@
         background-position: var(--uc-menu-background-position) var(--context-menu-background-padding) center !important;
         padding-inline-start: var(--context-menu-background-padding) !important;
       }
-      /* Padding - Windows */
-      @media (-moz-os-version: windows-win7), (-moz-platform: windows-win7) {
-        :root {
-          --context-menu-background-padding-default: 2px;
-        }
-      }
-      @media (-moz-os-version: windows-win8), (-moz-platform: windows-win8) {
-        :root {
-          --context-menu-background-padding-default: 3px;
-        }
-      }
-      @media (-moz-os-version: windows-win7),
-        (-moz-platform: windows-win7),
-        (-moz-os-version: windows-win8),
-        (-moz-platform: windows-win8) {
-        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
-          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
-          menu:not(.menu-iconic, .in-menulist, [checked="true"]),
-        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
-          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
-        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
-          background-position: left var(--context-menu-background-padding) center !important;
-          padding-inline-start: 0 !important;
-        }
-      }
-      @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
+      /* Padding - Non Native */
+      @media (-moz-platform: windows) and (-moz-platform: windows),
+        (-moz-gtk-csd-available) and (-moz-platform: windows) {
         :root {
           --context-menu-background-padding: 1em;
-          --context-menu-text-padding: 24px; /* 16px + 8px */
+          --context-menu-text-padding-default: 24px;
+          --context-menu-text-padding: var(--context-menu-text-padding-default);
           --menu-background-padding-default: calc(
             var(--context-menu-background-padding) + var(--context-menu-text-padding)
           );
+          --bookmark-menu-icon-align-padding: 0px;
         }
         menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
           menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
@@ -2831,10 +3231,49 @@
           margin-left: 0 !important;
         }
       }
+      @media (-moz-platform: windows), (-moz-gtk-csd-available) {
+        @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+          @media (-moz-platform: windows) and (-moz-gtk-csd-available),
+            (-moz-gtk-csd-available) and (-moz-gtk-csd-available) {
+            :root {
+              --context-menu-background-padding: 1em;
+              --context-menu-text-padding-default: 24px;
+              --context-menu-text-padding: var(--context-menu-text-padding-default);
+              --menu-background-padding-default: calc(
+                var(--context-menu-background-padding) + var(--context-menu-text-padding)
+              );
+              --bookmark-menu-icon-align-padding: 0px;
+            }
+            menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+              menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+            menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+              menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+            menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+              > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+            menupopup:is(#viewMenuPopup, #maintenanceButtonPopup)
+              > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
+              padding-inline-start: var(--menu-background-padding-default) !important;
+              margin-left: 0 !important;
+            }
+          }
+        }
+      }
+      /* Padding - Windows */
+      @media (-moz-platform: windows) {
+        :root {
+          --bookmark-menu-icon-text-padding: calc(
+            var(--context-menu-text-padding) + var(--arrowpanel-menuitem-padding-inline)
+          );
+          --bookmark-menu-icon-background-padding: calc(
+            var(--arrowpanel-menuitem-padding-inline) + var(--bookmark-menu-icon-align-padding)
+          );
+        }
+      }
       /* Padding - Linux */
       @media (-moz-gtk-csd-available) {
         :root {
           --context-menu-background-padding-default: 6px;
+          --context-menu-text-padding: 21px;
         }
         /* Contextmenu Checkbox Unset */
         menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu) menuitem[type="checkbox"] {
@@ -2898,7 +3337,7 @@
           --menuitem-image: url("../icons/checkmark-circle.svg");
         }
         .downloadUseSystemDefaultMenuItem {
-          --menuitem-image: url("chrome://browser/skin/open.svg");
+          --menuitem-image: url("../icons/toolbarButton-upload.svg");
         }
         .downloadAlwaysUseSystemDefaultMenuItem {
           /* checkbox */
@@ -3034,6 +3473,11 @@
         #orgUndo {
           --menuitem-image: url("../icons/undo.svg");
         }
+        @supports -moz-bool-pref("userChrome.icon.menu.full") {
+          #orgRedo {
+            --menuitem-image: url("../icons/redo.svg");
+          }
+        }
         #orgCut {
           --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
         }
@@ -3061,16 +3505,51 @@
         }
         /*= maintenanceButtonPopup ===================================================*/
         #backupBookmarks {
-          --menuitem-image: url("chrome://devtools/skin/images/datastore.svg");
+          --menuitem-image: url("../icons/datastore.svg");
+        }
+        @supports -moz-bool-pref("userChrome.icon.menu.full") {
+          #fileRestoreMenu {
+            --menuitem-image: url("../icons/datarestore.svg");
+          }
         }
         #fileImport {
           --menuitem-image: url("../icons/toolbarButton-download.svg");
         }
         #fileExport {
-          --menuitem-image: url("chrome://browser/skin/open.svg");
+          --menuitem-image: url("../icons/toolbarButton-upload.svg");
         }
         #browserImport {
           --menuitem-image: url("chrome://browser/skin/import.svg");
+        }
+      }
+    }
+    @-moz-document url-prefix("about:addons") {
+      @supports -moz-bool-pref("userChrome.icon.context_menu") {
+        button[role="menuitem"] {
+          background-image: var(--icon, url("../icons/blank.svg")); /* Don't use !important. because of [checked] */
+        }
+        panel-item[action="check-for-updates"] {
+          --icon: url("../icons/refresh-cw.svg");
+        }
+        panel-item[action="view-recent-updates"] {
+          --icon: url("chrome://global/skin/icons/info.svg");
+        }
+        panel-item[action="install-from-file"] {
+          --icon: url("chrome://devtools/skin/images/import.svg");
+        }
+        panel-item[action="debug-addons"] {
+          --icon: url("../icons/bug.svg");
+        }
+        panel-item[action="set-update-automatically"] {
+          --icon: url("chrome://devtools/skin/images/profiler-stopwatch.svg");
+        }
+        panel-item[action="reset-update-states"] {
+          --icon: url("chrome://devtools/skin/images/debugging-workers.svg");
+        }
+        panel-item[action="manage-shortcuts"],
+        panel-item[data-l10n-id="preferences-addon-button"],
+        panel-item[data-l10n-id="manage-addon-button"] {
+          --icon: url("chrome://global/skin/icons/settings.svg");
         }
       }
     }

@@ -1,8 +1,11 @@
 @use "true" as *;
 @use "example" as *;
 @use "../src/utils/color_scheme";
+@use "../src/utils/mode";
 
-@include test-module("Color scheme is dark [mix]") {
+@include test-module("Color scheme is dark - ESR [mix]") {
+  @include mode.ESR;
+
   @include test("simple") {
     @include assert {
       @include output {
@@ -38,7 +41,9 @@
   }
 }
 
-@include test-module("Color scheme is light [mix]") {
+@include test-module("Color scheme is light - ESR [mix]") {
+  @include mode.ESR;
+
   @include test("simple") {
     @include assert {
       @include output {
@@ -65,6 +70,82 @@
       }
       @include expect {
         @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+          @include example_tag {
+            @include example_property;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Color scheme is dark - Standard [mix]") {
+  @include mode.STANDARD;
+
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Dark {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (prefers-color-scheme: dark) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("simple reversed") {
+    @include assert {
+      @include output {
+        @include example_tag {
+          @include color_scheme.Dark {
+            @include example_property;
+          }
+        }
+      }
+      @include expect {
+        @media (prefers-color-scheme: dark) {
+          @include example_tag {
+            @include example_property;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Color scheme is light - Standard [mix]") {
+  @include mode.STANDARD;
+
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include color_scheme.Light {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (prefers-color-scheme: light) {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("simple reversed") {
+    @include assert {
+      @include output {
+        @include example_tag {
+          @media (prefers-color-scheme: light) {
+            @include example_property;
+          }
+        }
+      }
+      @include expect {
+        @media (prefers-color-scheme: light) {
           @include example_tag {
             @include example_property;
           }

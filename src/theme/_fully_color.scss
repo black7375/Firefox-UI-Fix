@@ -5,9 +5,10 @@ html#main-window menupopup:not(.in-menulist) {
   --menu-background-color: var(--arrowpanel-background, var(--in-content-button-background)) !important;
 
   --menu-border-color: var(
-    --toolbarbutton-active-background,
-    var(--button-active-bgcolor, var(--card-outline-color))
-  ) !important;
+    --panel-separator-color,
+    var(--toolbarbutton-active-background,
+        var(--button-active-bgcolor, var(--card-outline-color))
+   )) !important;
   --menuitem-hover-background-color: var(
     --toolbarbutton-hover-background,
     var(--button-hover-bgcolor, var(--in-content-button-background-hover))
@@ -21,7 +22,7 @@ html#main-window menupopup:not(.in-menulist) {
   ) !important;
 }
 
-@media (-moz-windows-non-native-menus) {
+@include NonNativeMenu {
   html#main-window menupopup {
     &:not(.in-menulist) {
       /* Above FF v105 #466 */
@@ -29,8 +30,12 @@ html#main-window menupopup:not(.in-menulist) {
       --panel-background: var(--menu-background-color) !important;
       --panel-border-color: var(--menu-border-color) !important;
 
-      menuseparator {
-        border-top: 1px solid var(--menu-border-color);
+      &:not([placespopup]) menuseparator,
+      &:not([placespopup]) menuseparator::before,
+      &[placespopup] menuseparator::before {
+        // #732
+        // toolbarbutton menupopup[placespopup] menuseparator::before
+        border-color: var(--menu-border-color) !important;
       }
 
       menu,
@@ -184,7 +189,6 @@ xul|search-textbox.tabsFilter {
   appearance: none !important;
   padding: 5px 8px !important;
   border: 1px solid var(--input-bgcolor) !important;
-  border-radius: 4px;
 
   background-color: var(--lwt-sidebar-background-color, Field) !important;
   color: var(--lwt-sidebar-text-color, FieldText) !important;
@@ -238,7 +242,8 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
 #PopupAutoComplete > richlistbox > richlistitem {
   &[originaltype="generatedPassword"] > .two-line-wrapper > .ac-site-icon,
   &[originaltype="loginWithOrigin"] > .two-line-wrapper > .ac-site-icon,
-  &[originaltype="login"] > .ac-site-icon {
+  &[originaltype="login"] > .ac-site-icon,
+  &[originaltype="insecureWarning"] > .ac-site-icon {
     fill: GrayText !important;
   }
 
@@ -255,5 +260,16 @@ body:not([lwt-sidebar]) xul|search-textbox.tabsFilter[focused="true"] {
       --arrowpanel-dimmed-further,
       hsla(0, 0%, 80%, 0.5)
     ) !important; /* Original: hsla(0,0%,80%,.5), match arrowpanel-dimmed-further */
+  }
+
+  &[originaltype="insecureWarning"] {
+    background-color: var(--panel-bgcolor) !important; /* Original: var(--arrowpanel-dimmed) */
+    &:hover {
+      background-color: var(--arrowpanel-dimmed, hsla(0deg, 0%, 80%, 0.35)) !important;
+    }
+
+    > .ac-title {
+      color: var(--arrowpanel-color, var(--in-content-page-color)) !important; /* Original: var(--grey-60) */
+    }
   }
 }

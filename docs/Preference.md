@@ -50,25 +50,26 @@ The following is a method of operating the configuration file parser.
 See [EBNF (Extended Backus-Naur form)](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) if you want to know about syntax.
 
 ```ebnf
-<pref-file>   = <pref>*
-<pref>        = <pref-spec> "(" <pref-name> "," <pref-value> <pref-attrs> ")" ";"
-<pref-spec>   = "user_pref" | "pref" | "sticky_pref" // in default pref files
-<pref-spec>   = "user_pref"                          // in user pref files
-<pref-name>   = <string-literal>
-<pref-value>  = <string-literal> | "true" | "false" | <int-value>
-<int-value>   = <sign>? <int-literal>
-<sign>        = "+" | "-"
-<int-literal> = [0-9]+ (and cannot be followed by [A-Za-z_])
-<string-literal> =
+<pref-file>   = <pref>*;
+<pref>        = <pref-spec> "(" <pref-name> "," <pref-value> <pref-attrs> ")" ";";
+<pref-spec>   = "user_pref" | "pref" | "sticky_pref"; (* in default pref files *)
+<pref-spec>   = "user_pref";                          (* in user pref files    *)
+<pref-name>   = <string-literal>;
+<pref-value>  = <string-literal> | "true" | "false" | <int-value>;
+<int-value>   = <sign>? <int-literal>;
+<sign>        = "+" | "-";
+<int-literal> = [0-9]+ (and cannot be followed by [A-Za-z_]);
+<string-literal> = ?
   A single or double-quoted string, with the following escape sequences
-  allowed: \", \', \\, \n, \r, \xNN, \uNNNN, where \xNN gives a raw byte
-  value that is copied directly into an 8-bit string value, and \uNNNN
+  allowed: "\"", "\'" "\\", "\n", "\r", "\xNN", "\uNNNN", where "\xNN" gives a raw byte
+  value that is copied directly into an 8-bit string value, and "\uNNNN"
   gives a UTF-16 code unit that is converted to UTF-8 before being copied
-  into an 8-bit string value. \x00 and \u0000 are disallowed because they
+  into an 8-bit string value. "\x00" and "\u0000" are disallowed because they
   would cause C++ code handling such strings to misbehave.
-<pref-attrs>  = ("," <pref-attr>)*      // in default pref files
-              = <empty>                 // in user pref files
-<pref-attr>   = "sticky" | "locked"     // default pref files only
+?;
+<pref-attrs>  = ("," <pref-attr>)*       (* in default pref files   *)
+              = <empty>;                 (* in user pref files      *)
+<pref-attr>   = "sticky" | "locked";     (* default pref files only *)
 ```
 
 ## Default Config
@@ -145,16 +146,32 @@ Customizations that cannot be done with add-on and [`User Custom CSS`](./README.
 - [Bug 1432901 - Prototype loading ES6 Module as JSM](https://bugzilla.mozilla.org/show_bug.cgi?id=1432901)
 
 **How to**
+- `<FIREFOX_DIR>/defaults/pref/autoconfig.js`
 ```javascript
 pref("general.config.filename", "config.js"); // alternative to "firefox.cfg", for using highlight
 pref("general.config.obscure_value", 0);
+pref("general.config.sandbox_enabled", false); // Sandbox needs to be disabled in release and Beta versions
+```
+
+- `<FIREFOX_DIR>/config.js`
+```javascript
+// skip 1st line
+try {
+  const cmanifest = Cc['@mozilla.org/file/directory_service;1'].getService(Ci.nsIProperties).get('UChrm', Ci.nsIFile);
+  cmanifest.append('utils');
+  cmanifest.append('chrome.manifest');
+
+  if(cmanifest.exists()){
+    Components.manager.QueryInterface(Ci.nsIComponentRegistrar).autoRegister(cmanifest);
+    ChromeUtils.import('chrome://userchromejs/content/boot.jsm');
+  }
+
+} catch(ex) {};
 ```
 
 **Example**
-```javascript
-pref("general.config.filename", "config.js"); // alternative to "firefox.cfg", for using highlight
-pref("general.config.obscure_value", 0);
-```
+- [MrOtherGuy/fx-autoconfig](https://github.com/MrOtherGuy/fx-autoconfig)
+- [xiaoxiaoflood/firefox-scripts](https://github.com/xiaoxiaoflood/firefox-scripts)
 
 ## Using with User Custom CSS
 **Related Docs**

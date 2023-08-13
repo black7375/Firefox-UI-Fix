@@ -6,7 +6,7 @@ $_layoutCommonMenus: (
   $_iconMenuPopupMenus,
   $_libraryMenuitem,
   $_libraryMenu,
-  $_sendTabMenuitem,
+  $_otherPopupMenuitem,
   $_otherIconMenu,
   "#context_openANewTab.tabmix-newtab-menu-icon"
 );
@@ -57,6 +57,15 @@ $_layoutCommonMenus: (
 @include _layoutInitPaddingMenus {
   @include _layout_init_padding;
 }
+#sidebarMenu-popup:is(menupopup):not(panel) {
+  --context-menu-background-padding: var(--context-menu-background-padding-default);
+  padding-inline-start: 0 !important;
+
+  :not(menu, #ContentSelectDropdown, #context-navigation) > & > #{$_iconMenuitem} {
+    padding-inline-start: 28px !important;
+    margin-inline-start: var(--arrowpanel-menuitem-margin-inline) !important;
+  }
+}
 
 /* Menubar */
 @include Option("userChrome.icon.global_menubar") {
@@ -78,18 +87,21 @@ $_layoutCommonMenus: (
   }
 }
 
-/* Padding - Windows */
-@include _layout_root_win7_8;
-@include OS($win7, $win8) {
-  @include _layoutIconMenus {
-    @include _layout_init_win7_8();
+/* Padding - Non Native */
+@include OS($win, $linux) {
+  @include NonNativeMenu {
+    @include _layout_root_non_native;
+    @include _layoutIconMenus {
+      @include _layout_init_non_native();
+    }
   }
 }
-@include OS($win10) {
-  @include _layout_root_win10;
 
+/* Padding - Windows */
+@include _layout_root_win;
+@include OS($win) {
   @include _layoutIconMenus {
-    @include _layout_init_win10;
+    @include _layout_init_win();
   }
 }
 

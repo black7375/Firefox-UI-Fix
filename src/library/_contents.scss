@@ -1,5 +1,4 @@
-@-moz-document url("chrome://browser/content/places/places.xhtml")
-{
+@include moz-document(url "chrome://browser/content/places/places.xhtml") {
   /** Library - Icons Replace *************************************************/
   @include Option("userChrome.icon.library") {
     @import "folder_icons";

@@ -1,7 +1,7 @@
 #tabs-newtab-button {
   @include Option("userChrome.tab.connect_to_window") {
     /* Size */
-    -moz-box-align: stretch !important;
+    @include BoxAlign("stretch", true);
     padding-top: var(--tab-block-margin) !important;
   }
 
@@ -135,11 +135,18 @@
     --tab-border-radius: 0px;
     width: unset !important;
     padding-inline: 0px !important;
-    margin-inline: calc(var(--uc-tab-corner-half-height) - #{( 15.5px / 2 )}) !important;
+    margin-inline: calc(var(--uc-tab-corner-half-height) - #{math.div(15.5px, 2)}) !important;
 
     background-color: transparent !important;
     // background-size: calc((var(--toolbarbutton-inner-padding) * 2 + 16px) - var(--uc-tab-corner-size)) 100%;
     // background-repeat: no-repeat;
     // background-position: center;
+  }
+}
+
+/* Fix tab overlap #678 */
+@include Option("userChrome.tab.bottom_rounded_corner") {
+  tab:where([visuallyselected="true"]) {
+    z-index: 1;
   }
 }

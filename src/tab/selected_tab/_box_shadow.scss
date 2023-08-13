@@ -1,29 +1,20 @@
+//-- Mixin ---------------------------------------------------------------------
+$ucTabBasicShadow: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
+$ucTabAdditionalShadow: drop-shadow(0 0 2px rgba(128, 128, 142, 0.5));
+$ucTabBackgroundShadowSoft: drop-shadow(0 0 1px var(--uc-tab-shadow-color, transparent));
+$ucTabBackgroundShadowHard: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
+                            drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent));
+
+//------------------------------------------------------------------------------
+
 #TabsToolbar {
-  --uc-tab-background-shadow-soft: 0 0 1px;
-  --uc-tab-background-shadow-hard: 0 0 0 1px;
   --uc-tab-shadow-color: var(--tab-line-color, var(--lwt-tab-line-color, var(--tabs-border-color, rgba(128, 128, 142, 0.9))));
   --uc-tab-shadow-color-bundle: var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9)));
-  --uc-tab-basic-shadow: 0 0 4px rgba(0,0,0, 0.4);
-  --uc-tab-additional-shadow: 0 0 4px rgba(128, 128, 142, 0.5);
-
-  @include Option("userChrome.tab.bottom_rounded_corner") {
-    @include Option(
-      "userChrome.tab.bottom_rounded_corner.wave",
-      "userChrome.tab.bottom_rounded_corner.australis",
-      "userChrome.tab.bottom_rounded_corner.chrome_legacy",
-      "userChrome.tab.bottom_rounded_corner.chrome",
-      "userChrome.tab.bottom_rounded_corner.edge"
-    ) {
-      // --uc-tab-background-shadow-soft: 0 -1px 1px -1px;
-      --uc-tab-background-shadow-hard: 0 -1px 0;
-      --uc-tab-basic-shadow: 0 -1px 0px rgba(0,0,0, 0.4);
-      --uc-tab-additional-shadow: 0 0 0 transparent;
-    }
-  }
 }
 
 #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
-  box-shadow: var(--uc-tab-basic-shadow) !important;
+  box-shadow: unset !important;
+  filter: $ucTabBasicShadow;
 }
 
 :root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
@@ -31,28 +22,17 @@
   &:is([selected], [multiselected]) {
     > .tab-stack
     > .tab-background:-moz-lwtheme {
-      box-shadow: var(--uc-tab-background-shadow-soft) var(--uc-tab-shadow-color) !important;
+      filter: $ucTabBackgroundShadowSoft;
     }
   }
 
-  /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
-       Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
-  /* Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
   &[visuallyselected="true"]:not(:focus),
   &[multiselected]:not([visuallyselected]) {
+    //  Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
+    //    Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
+    // Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
     --uc-tab-shadow-color: var(--toolbar-color);
   }
-}
-
-:root:is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
-  #TabsToolbar:not([brighttext])
-  #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected], [multiselected])
-  > .tab-stack
-  > .tab-background {
-  --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
-  box-shadow: var(--uc-tab-background-shadow-soft) var(--uc-tab-shadow-color),
-    var(--uc-tab-additional-shadow) !important;
 }
 
 /* For themes outside of Light and Dark (which are curated by Mozilla), show a thicker border
@@ -63,8 +43,9 @@
   .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
-  box-shadow: var(--uc-tab-background-shadow-hard) var(--uc-tab-shadow-color),
-    var(--uc-tab-additional-shadow) !important;
+  --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
+  filter: $ucTabBackgroundShadowHard
+          $ucTabAdditionalShadow;
 }
 
 :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
@@ -73,5 +54,5 @@
   .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
-  box-shadow: var(--uc-tab-background-shadow-hard) var(--uc-tab-shadow-color) !important;
+  filter: $ucTabBackgroundShadowHard;
 }

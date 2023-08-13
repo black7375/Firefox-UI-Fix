@@ -47,12 +47,15 @@
     /* More position */
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y));
   }
+  #tabs-newtab-button::before {
+    left: calc(50%  - (8px + var(--toolbarbutton-inner-padding)));
+  }
 }
 
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
   .tab-stack::before,
   #tabbrowser-arrowscrollbox:not([overflowing])
-    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     @include _dynamicSeparatorShape;
   }
@@ -60,19 +63,19 @@
   .tab-stack::before {
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
-  .tabbrowser-tab[last-visible-tab] .tab-stack::after {
+  .tabbrowser-tab:last-of-type .tab-stack::after {
     right: 0;
     transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
 }
 
-.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-child) .tab-stack::before {
+.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
   opacity: var(--tab-separator-opacity);
 }
 @include Option("userChrome.tabbar.one_liner") {
   @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
     @include OneLinerContent {
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-child .tab-stack::before {
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
         opacity: var(--tab-separator-opacity);
         transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
       }
@@ -85,20 +88,19 @@
   }
 }
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[first-visible-unpinned-tab] .tab-stack::before,
   #tabbrowser-arrowscrollbox:not([overflowing])
-    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     opacity: var(--tab-separator-opacity);
   }
 }
 
 #navigator-toolbox:not([movingtab])
-  .tabbrowser-tab[first-visible-unpinned-tab]:is([visuallyselected], [multiselected], :hover)
+  .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))):is([visuallyselected], [multiselected], :hover)
   .tab-stack::before,
 #navigator-toolbox:not([movingtab])
   #tabbrowser-arrowscrollbox[overflowing]
-  tab.tabbrowser-tab[first-visible-unpinned-tab]
+  tab.tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden])))
   .tab-stack::before {
   opacity: 0 !important;
 }
@@ -108,14 +110,10 @@
     + .tabbrowser-tab
     .tab-stack::before,
   #navigator-toolbox:not([movingtab])
-    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
-    ~ .tabbrowser-tab[afterhovered]
-    .tab-stack::before,
-  #navigator-toolbox:not([movingtab])
-    .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+    .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
     ~ #tabs-newtab-button::before, /* Legacy - v103 */
   #navigator-toolbox:not([movingtab])
-    .tabbrowser-tab[last-visible-tab]:is([visuallyselected], [multiselected], :hover)
+    .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
     ~ #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button::before {
     opacity: 0 !important;
   }
@@ -147,7 +145,7 @@
   }
   @include NotOption("userChrome.tab.newtab_button_like_tab") {
     #tabbrowser-arrowscrollbox:not([overflowing])
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)[last-visible-tab]
+      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     }
@@ -155,6 +153,6 @@
 }
 
 /* Latest Tab & New tab margin */
-#tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[last-visible-tab] {
+#tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
   margin-inline-end: 1px !important;
 }

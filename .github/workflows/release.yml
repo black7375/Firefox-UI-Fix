@@ -7,7 +7,9 @@ jobs:
   sync-branches:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Merge master -> photon-style
         uses: devmasx/merge-branch@1.4.0
@@ -30,6 +32,7 @@ jobs:
     needs: sync-branches
     strategy:
       matrix:
+        mode: ["STANDARD", "ESR"]
         include:
           - name: "Lepton"
             branch: "master"
@@ -38,7 +41,7 @@ jobs:
           - name: "Lepton-Proton-Style"
             branch: "proton-style"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ matrix.branch }}
 
@@ -52,6 +55,20 @@ jobs:
           TAGVER=${GITHUB_REF#refs/*/}
 
           echo -e "[Info]\nVer=${TAGVER}\nBranch=${BRANCH}" > LEPTON
+
+      - name: Processing for STANDARD
+        if: matrix.mode == 'STANDARD'
+        run: |
+          rm css/leptonChromeESR.css
+          rm css/leptonContentESR.css
+
+      - name: Processing for ESR
+        if: matrix.mode == 'ESR'
+        run: |
+          sed -i "s/\.css/ESR\.css/g" userChrome.css
+          sed -i "s/\.css/ESR\.css/g" userContent.css
+          rm css/leptonChrome.css
+          rm css/leptonContent.css
 
       - name: Release Structure
         run: |
@@ -71,9 +88,17 @@ jobs:
           zip -rv ${{ matrix.name }}.zip chrome CREDITS LICENSE user.js install.sh install.ps1
 
       - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
-        if: startsWith(github.ref, 'refs/tags/')
+        if: matrix.mode == 'STANDARD'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
             ${{ matrix.name }}.zip
+
+      - uses: softprops/action-gh-release@v1
+        if: matrix.mode == 'ESR'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            ${{ matrix.name }}-ESR.zip
