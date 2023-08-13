@@ -51,7 +51,7 @@
     --uc-window-control-width: 138px;
   }
   @include OS($linux) {
-    $linuxWindowControlWidth: 84px / 3; /* 84px is default value of linux */
+    $linuxWindowControlWidth: math.div(84px, 3); /* 84px is default value of linux */
 
     @media (-moz-gtk-csd-minimize-button),
     (-moz-gtk-csd-maximize-button),

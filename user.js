@@ -65,11 +65,17 @@ user_pref("userChrome.rounding.square_tab",            true);
 
 // user_pref("userChrome.compatibility.os.linux_non_native_titlebar_button", true);
 // user_pref("userChrome.compatibility.os.windows_maximized", true);
+// user_pref("userChrome.compatibility.os.win11",             true);
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
+// user_pref("userChrome.theme.private",                       true);
 // user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
 // user_pref("userChrome.theme.monospace",                     true);
+// user_pref("userChrome.theme.transparent.frame",             true);
+// user_pref("userChrome.theme.transparent.menu",              true);
+// user_pref("userChrome.theme.transparent.panel",             true);
+// user_pref("userChrome.theme.non_native_menu",               true); // only for linux
 
 // user_pref("userChrome.decoration.disable_panel_animate",    true);
 // user_pref("userChrome.decoration.disable_sidebar_animate",  true);
@@ -94,6 +100,8 @@ user_pref("userChrome.rounding.square_tab",            true);
 // user_pref("userChrome.hidden.tab_icon.always",              true);
 // user_pref("userChrome.hidden.tabbar",                       true);
 // user_pref("userChrome.hidden.navbar",                       true);
+// user_pref("userChrome.hidden.private_indicator",            true);
+// user_pref("userChrome.hidden.titlebar_container",           true);
 // user_pref("userChrome.hidden.sidebar_header",               true);
 // user_pref("userChrome.hidden.sidebar_header.vertical_tab_only", true);
 // user_pref("userChrome.hidden.urlbar_iconbox",               true);
@@ -112,16 +120,20 @@ user_pref("userChrome.rounding.square_tab",            true);
 
 // user_pref("userChrome.combined.nav_button",                 true);
 // user_pref("userChrome.combined.nav_button.home_button",     true);
-// user_pref("userChrome.combined.nav_button.none_forward_background", true);
 // user_pref("userChrome.combined.urlbar.nav_button",          true);
 // user_pref("userChrome.combined.urlbar.home_button",         true);
 // user_pref("userChrome.combined.urlbar.reload_button",       true);
+// user_pref("userChrome.combined.sub_button.none_background", true);
+// user_pref("userChrome.combined.sub_button.as_normal",       true);
 
 // user_pref("userChrome.rounding.square_button",              true);
+// user_pref("userChrome.rounding.square_dialog",              true);
 // user_pref("userChrome.rounding.square_panel",               true);
 // user_pref("userChrome.rounding.square_panelitem",           true);
 // user_pref("userChrome.rounding.square_menupopup",           true);
 // user_pref("userChrome.rounding.square_menuitem",            true);
+// user_pref("userChrome.rounding.square_infobox",             true);
+// user_pref("userChrome.rounding.square_toolbar",             true);
 // user_pref("userChrome.rounding.square_field",               true);
 // user_pref("userChrome.rounding.square_urlView_item",        true);
 // user_pref("userChrome.rounding.square_checklabel",          true);
@@ -131,6 +143,7 @@ user_pref("userChrome.rounding.square_tab",            true);
 // user_pref("userChrome.padding.drag_space",                  true);
 // user_pref("userChrome.padding.drag_space.maximized",        true);
 
+// user_pref("userChrome.padding.toolbar_button.compact",      true);
 // user_pref("userChrome.padding.menu_compact",                true);
 // user_pref("userChrome.padding.bookmark_menu.compact",       true);
 // user_pref("userChrome.padding.urlView_expanding",           true);
@@ -172,6 +185,9 @@ user_pref("userChrome.rounding.square_tab",            true);
 // user_pref("userChrome.tab.close_button_at_hover.always",    true); // Need close_button_at_hover
 // user_pref("userChrome.tab.close_button_at_hover.with_selected", true);  // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
+// user_pref("userChrome.tab.container.on_top",                true);
+// user_pref("userChrome.tab.sound_with_favicons.on_center",   true);
+// user_pref("userChrome.tab.selected_bold",                   true);
 
 // user_pref("userChrome.navbar.as_sidebar",                   true);
 
@@ -194,8 +210,12 @@ user_pref("userChrome.rounding.square_tab",            true);
 // -- User Content -------------------------------------------------------------
 // user_pref("userContent.player.ui.twoline",                  true);
 
+// user_pref("userContent.newTab.hidden_logo",                 true);
+// user_pref("userContent.newTab.background_image",            true); // Need wallpaper image --uc-newTab-wallpaper: url("../icons/background_image.png");
+
 // user_pref("userContent.page.proton_color.dark_blue_accent", true);
 // user_pref("userContent.page.proton_color.system_accent",    true);
+// user_pref("userContent.page.dark_mode.pdf",                 true);
 // user_pref("userContent.page.monospace",                     true);
 
 // == Theme Default Settings ===================================================
@@ -256,12 +276,12 @@ user_pref("userContent.player.size",           true);
 user_pref("userContent.player.click_to_play",  true);
 user_pref("userContent.player.animate",        true);
 
-user_pref("userContent.newTab.field_border",   true);
 user_pref("userContent.newTab.full_icon",      true);
 user_pref("userContent.newTab.animate",        true);
 user_pref("userContent.newTab.pocket_to_last", true);
 user_pref("userContent.newTab.searchbar",      true);
 
+user_pref("userContent.page.field_border",     true);
 user_pref("userContent.page.illustration",     true);
 user_pref("userContent.page.proton_color",     true);
 user_pref("userContent.page.dark_mode",        true); // Need proton_color

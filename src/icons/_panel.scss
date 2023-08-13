@@ -1,8 +1,8 @@
 /*= Panel - Main =============================================================*/
 #appMenu-proton-addon-banners > .addon-banner-item > .toolbarbutton-icon {
-  display: -moz-inline-box !important;
+  @include InlineBox(true);
   margin-inline-start: var(--arrowpanel-menuicon-padding);
-  -moz-box-ordinal-group: 0 !important;
+  @include BoxOrder(0, true);
 }
 
 #appMenu-proton-update-banner::before {
@@ -95,10 +95,17 @@
   #appMenu-find-button2 {
     list-style-image: url("chrome://global/skin/icons/search-glass.svg");
   }
+  #appMenu-translate-button {
+    list-style-image: url(chrome://browser/skin/translations.svg);
+  }
   #appMenu-zoom-controls2::before, /* Legacy v104 */
   #appMenu-zoom-controls::before {
     content: url("../icons/screenshot.svg");
   }
+}
+#save-page-button {
+  // #496 #553
+  list-style-image: url("../icons/toolbarButton-download.svg") !important;
 }
 
 #appMenu-settings-button {
@@ -129,7 +136,7 @@
 /* Default */
 #fxa-manage-account-button::before {
   content: "";
-  display: -moz-inline-box;
+  @include InlineBox;
   width: 32px !important;
   height: 32px !important;
   border-radius: 50%;
@@ -138,7 +145,7 @@
   margin-inline-end: var(--arrowpanel-menuicon-padding);
 
   @include Option("userChrome.icon.account_image_to_right") {
-    -moz-box-ordinal-group: 2 !important;
+    @include BoxOrder(2, true);
   }
 }
 @include Option("userChrome.icon.account_label_to_right") {
@@ -149,7 +156,8 @@
 
 .syncNowBtn {
   visibility: visible !important;
-  -moz-box-ordinal-group: 1 !important;
+  @include BoxOrder(0, true);
+
   margin-inline-end: var(--arrowpanel-menuicon-padding);
 }
 #PanelUI-fxa-menu-setup-sync-button {
@@ -157,7 +165,7 @@
 }
 
 #PanelUI-fxa-menu-connect-device-button {
-  list-style-image: url("chrome://browser/skin/fxa/add-device.svg");
+  list-style-image: url("../icons/add-device.svg");
 }
 #PanelUI-fxa-menu-sendtab-button {
   list-style-image: url("../icons/send-to-device.svg");
@@ -194,13 +202,13 @@
 /* Change Separator */
 #PanelUI-fxa-menu::before {
   content: "";
-  display: -moz-box;
+  @include Box;
   border-bottom: 1px solid var(--panel-separator-color);
   margin: var(--panel-separator-margin);
   padding: 0;
 }
 #PanelUI-fxa-menu > :first-child {
-  -moz-box-ordinal-group: 0;
+  @include BoxOrder(0);
 }
 #PanelUI-sign-out-separator {
   display: none;
@@ -239,6 +247,9 @@ panelMenuBookmarkThisPage[starred] {
 }
 #appMenuRecentlyClosedWindows {
   list-style-image: url("chrome://browser/skin/window.svg");
+}
+#appMenuSearchHistory {
+  list-style-image: url("chrome://global/skin/icons/search-glass.svg");
 }
 #appMenuRestoreSession, /* Legacy - v103 */
 #appMenu-restoreSession {
@@ -337,6 +348,9 @@ panelMenuBookmarkThisPage[starred] {
 #appMenu_menu_HelpPopup_reportPhishingtoolmenu {
   list-style-image: url("chrome://global/skin/icons/warning.svg");
 }
+#appMenu_helpSwitchDevice {
+  list-style-image: url("../icons/add-device.svg");
+}
 #appMenu_aboutName {
   list-style-image: url("chrome://global/skin/icons/info.svg");
 }
@@ -357,7 +371,7 @@ panelMenuBookmarkThisPage[starred] {
   list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
 }
 #downloadsHistory .box-inherit.button-box {
-  display: -moz-inline-box !important;
+  @include InlineBox(true);
 }
 
 /*= Toolbar - Overflow Menu ==================================================*/
@@ -386,6 +400,13 @@ panelMenuBookmarkThisPage[starred] {
 
 /*= BMB_bookmarksPopup =======================================================*/
 #BMB_viewBookmarksSidebar {
+  --menuitem-image: var(--uc-sidebar-icon);
+  &[data-l10n-args='{"isVisible":true}'] {
+    --menuitem-image: url("chrome://global/skin/icons/close.svg");
+  }
+}
+#BMB_searchBookmarks {
+  --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
 }
 #BMB_bookmarksShowAllTop,
 #BMB_bookmarksShowAll {
@@ -400,7 +421,7 @@ panelMenuBookmarkThisPage[starred] {
     list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg") !important;
   }
   #BMB_bookmarksShowAllTop > .menu-iconic-left {
-    display: -moz-box !important;
+    @include Box(true);
   }
 }
 
@@ -448,35 +469,57 @@ panelMenuBookmarkThisPage[starred] {
 }
 
 /*= sidebarMenu-popup ========================================================*/
+@mixin _subviewMenuitem($icon, $selector: null) {
+  &.subviewbutton#{$selector} {
+    list-style-image: $icon;
+  }
+  &:is(menuitem)#{$selector} {
+    --menuitem-image: #{$icon};
+  }
+}
+
 #identity-popup-more-info {
-  list-style-image: url("chrome://global/skin/icons/info.svg");
+  @include _subviewMenuitem(url("chrome://global/skin/icons/info.svg"));
 }
 
 #sidebar-switcher-bookmarks {
-  list-style-image: url("chrome://browser/skin/bookmark.svg");
+  @include _subviewMenuitem(url("chrome://browser/skin/bookmark.svg"));
 }
 
 #sidebar-switcher-history {
-  list-style-image: url("chrome://browser/skin/history.svg");
+  @include _subviewMenuitem(url("chrome://browser/skin/history.svg"));
 }
 
 #sidebar-switcher-tabs {
-  list-style-image: url("chrome://browser/skin/tab.svg");
+  @include _subviewMenuitem(url("../icons/synced-tabs.svg"));
 }
 
 #sidebar-reverse-position {
-  list-style-image: url("chrome://browser/skin/sidebars-right.svg");
-}
-#sidebar-box[positionend="true"] #sidebar-reverse-position {
-  /* Can't apply this. shadow dom */
-  list-style-image: url("chrome://browser/skin/sidebars.svg");
+  @include _subviewMenuitem(var(--uc-sidebar-icon-reverse));
 }
 
-#sidebarMenu-popup > .subviewbutton[data-l10n-id="sidebar-menu-close"] {
-  list-style-image: url("chrome://global/skin/icons/close.svg");
+#sidebarMenu-popup > * {
+  @include _subviewMenuitem(
+    url("chrome://global/skin/icons/close.svg"),
+    "[data-l10n-id=\"sidebar-menu-close\"]"
+  );
 }
 
 /*= unified-extensions-view ===================================================*/
 #unified-extensions-manage-extensions {
   list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+}
+
+/*= Compatibility ============================================================*/
+// https://github.com/mozilla/gecko-dev/commit/d8ad6ecc983133a46a30cc998073d30a5e0e5f00
+.sync-engine-tabs .checkbox-icon,
+.sync-engine-tabs.sync-engine-image,
+#sidebar-box[sidebarcommand="viewTabsSidebar"] > #sidebar-header > #sidebar-switcher-target > #sidebar-icon,
+#sync-button {
+  list-style-image: url("../icons/synced-tabs.svg") !important;
+}
+
+/*= Tab Mix Plus =============================================================*/
+#allTabsMenu_sortTabsButton {
+  list-style-image: url("../icons/text-sort-ascending.svg");
 }

@@ -1,4 +1,4 @@
-@-moz-document url("about:home"), url("about:newtab") {
+@include moz-document(url "about:home", url "about:newtab") {
   /** Activity Stream - Search Focus Border: like URL *************************/
   @include Option("userContent.page.field_border") {
     /* At DarkMode, Color */
@@ -64,18 +64,32 @@
       }
 
       /* Search Bar */
-      .search-inner-wrapper input {
-        transition: 1s var(--animation-easing-function);
-        transition-property: border-color, box-shadow;
-      }
-      .search-wrapper .search-inner-wrapper:active input,
-      .search-wrapper input:focus {
-        transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
-      }
-      @include Option("userContent.page.field_border") {
-        .search-wrapper .search-inner-wrapper:hover input {
-          border-color: var(--newtab-primary-action-background) !important;
-          transition: border-color 0.5s var(--animation-easing-function);
+      .search-wrapper .search-inner-wrapper {
+        // When `browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar`
+        // input(#newtab-search-text): false
+        // .search-handoff-button: true
+        $_activityStreamSearchbar: "> input, > .search-handoff-button";
+        $_activeSearchbar: selector.nest(":active", $_activityStreamSearchbar);
+        $_activeSearchbarResult: ();
+        @each $searchbarSelctor in $_activeSearchbar {
+          $_activeSearchbarResult: append($_activeSearchbarResult, "&" + $searchbarSelctor, $separator: comma);
+        }
+
+        #{$_activityStreamSearchbar} {
+          transition: 1s var(--animation-easing-function);
+          transition-property: border-color, box-shadow;
+        }
+        #{$_activeSearchbarResult},
+        #{selector.append($_activityStreamSearchbar, ":focus")} {
+          transition: border-color 0.5s var(--animation-easing-function), box-shadow 1s var(--animation-easing-function);
+        }
+        @include Option("userContent.page.field_border") {
+          &:hover {
+            #{$_activityStreamSearchbar} {
+              border-color: var(--newtab-primary-action-background) !important;
+              transition: border-color 0.5s var(--animation-easing-function);
+            }
+          }
         }
       }
     }
@@ -145,7 +159,7 @@
 
     #contentSearchSettingsButton::before {
       content: url("chrome://global/skin/icons/settings.svg") !important;
-      display: -moz-inline-box;
+      @include InlineBox;
 
       /* Color */
       -moz-context-properties: fill, fill-opacity !important;
@@ -191,6 +205,28 @@
       .contentSearchSuggestionRow.selected .historyIcon {
         fill: var(--newtab-icon-secondary-color) !important;
       }
+    }
+  }
+
+  /** Activity Stream - Hide Firefox's logo ***********************************/
+  @include Option("userContent.newTab.hidden_logo") {
+    .logo-and-wordmark {
+      display: none !important;
+    }
+    .outer-wrapper:not(.fixed-search) .search-wrapper {
+      padding-top: 0 !important;
+    }
+  }
+
+  /** Activity Stream - Hide Firefox's logo ***********************************/
+  @include Option("userContent.newTab.background_image") {
+    body {
+      // https://best-wallpaper.net/Forest-trees-sunset-art-picture_wallpapers.html
+      background-image: var(--uc-newTab-wallpaper, url("../icons/Forest-trees-sunset-art-picture_3840x2160.jpg"));
+      background-size: cover; /* or auto auto */
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-attachment: fixed;
     }
   }
 }

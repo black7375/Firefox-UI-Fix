@@ -1,0 +1,17 @@
+/*= Library ==============================================================*/
+@include Option("userChrome.rounding.square_button") {
+  #placesToolbar > toolbarbutton,
+  #placesMenu > menu,
+  #editBookmarkPanelRows .expander-up,
+  #editBookmarkPanelRows .expander-down {
+    border-radius: 0 !important;
+  }
+}
+@include Option("userChrome.rounding.square_field") {
+  #searchFilter,
+  #detailsPane html|input,
+  #places input
+  #editBMPanel_tagsSelectorRow > richlistbox {
+    border-radius: 0 !important;
+  }
+}

@@ -1,0 +1,41 @@
+// https://github.com/mozilla/gecko-dev/commit/260e4270fca18f2f6f59a1ffe4deccb5080a15f7
+button[role="menuitem"] {
+  background-image: var(--icon, url("../icons/blank.svg")); /* Don't use !important. because of [checked] */
+}
+
+panel-item {
+  &[action="check-for-updates"] {
+    // --icon: url("chrome://global/skin/icons/update-icon.svg");
+    // --icon: url("chrome://mozapps/skin/extensions/category-recent.svg");
+    // --icon: url("chrome://browser/skin/sync.svg");
+    --icon: url("../icons/refresh-cw.svg");
+  }
+
+  &[action="view-recent-updates"] {
+    // --icon: url("chrome://browser/skin/controlcenter/dashboard.svg");
+    --icon: url("chrome://global/skin/icons/info.svg");
+  }
+
+  &[action="install-from-file"] {
+    // --icon: url("chrome://browser/skin/import.svg");
+    --icon: url("chrome://devtools/skin/images/import.svg");
+  }
+
+  &[action="debug-addons"] {
+    --icon: url("../icons/bug.svg");
+  }
+
+  &[action="set-update-automatically"] {
+    --icon: url("chrome://devtools/skin/images/profiler-stopwatch.svg");
+  }
+
+  &[action="reset-update-states"] {
+    --icon: url("chrome://devtools/skin/images/debugging-workers.svg");
+  }
+
+  &[action="manage-shortcuts"],
+  &[data-l10n-id="preferences-addon-button"],
+  &[data-l10n-id="manage-addon-button"] {
+    --icon: url("chrome://global/skin/icons/settings.svg");
+  }
+}

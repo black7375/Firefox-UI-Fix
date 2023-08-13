@@ -1,12 +1,10 @@
 /*= Page Info ================================================================*/
-@-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml")
-{
+@include moz-document(url "chrome://browser/content/pageinfo/pageInfo.xhtml") {
   :root {
     --in-content-border-color: color-mix(in srgb, currentColor 41%, transparent) !important;
   }
 
   #viewGroup > radio {
-    border-radius: 8px !important;
     padding: var(--in-content-button-vertical-padding) var(--in-content-button-horizontal-padding) !important;
     margin: 4px !important;
 
@@ -19,6 +17,15 @@
     -moz-context-properties: fill !important;
     fill: currentColor !important;
     color: var(--in-content-deemphasized-text) !important; /* FieldText */
+
+    .radio-icon {
+      background-image: none !important; // #680
+    }
+
+    @include NotOption("userChrome.rounding.square_button") {
+      border-radius: 8px !important;
+    }
+
     &:hover {
       background-color: var(--in-content-button-background-hover) !important; /* #E0E8F6; */
     }

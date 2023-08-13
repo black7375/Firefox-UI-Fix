@@ -1,6 +1,6 @@
 /* Vertical Align - Center & Height: 100%  */
 #main-menubar {
-  -moz-box-flex: 1 !important;
+  @include BoxFlex(1, true);
 }
 
 /* Rounding */
@@ -26,4 +26,10 @@
 #main-menubar > menu > menupopup menuitem,
 #main-menubar > menu > menupopup menu {
   padding-block: var(--bookmark-menu-padding) !important;
+  @include Option("userChrome.compatibility.os.win11") {
+    --bookmark-menu-padding: 3px;
+    &:is([type="checkbox"], [type="radio"]) {
+      --bookmark-menu-padding: 0px;
+    }
+  }
 }

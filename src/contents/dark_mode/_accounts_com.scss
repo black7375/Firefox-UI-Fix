@@ -1,6 +1,5 @@
 /*= Accounts.com ===========================================================*/
-@-moz-document url-prefix("https://accounts.firefox.com")
-{
+@include moz-document(url-prefix "https://accounts.firefox.com") {
   /* Basic */
   body {
     color: var(--in-content-page-color) !important;

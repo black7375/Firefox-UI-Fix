@@ -1,0 +1,57 @@
+@use "true" as *;
+@use "example" as *;
+@use "../src/utils/mode";
+
+@include test-module("ESR Mode [mix]") {
+  @include mode.ESR;
+
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @if mode.isESR() {
+          @include example;
+        }
+      }
+      @include expect {
+        @include example;
+      }
+    }
+    @include assert {
+      @include output {
+        @if mode.isSTANDARD() {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
+      }
+    }
+  }
+}
+
+@include test-module("STANDARD Mode [mix]") {
+  @include mode.STANDARD;
+
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @if mode.isESR() {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
+      }
+    }
+    @include assert {
+      @include output {
+        @if mode.isSTANDARD() {
+          @include example;
+        }
+      }
+      @include expect {
+        @include example;
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@ See the above repository for updates as well as full license text. */
   padding-inline-start: 0px !important;
 }
 
-@-moz-document url(chrome://browser/content/browser.xhtml) {
+@include moz-document(url "chrome://browser/content/browser.xhtml") {
   #scrollbutton-up ~ spacer,
   #scrollbutton-up,
   #scrollbutton-down {
@@ -31,7 +31,11 @@ See the above repository for updates as well as full license text. */
     max-height: calc((var(--tab-min-height) + 2 * var(--tab-block-margin, 0px)) * var(--uc-multirow-tabbar-rows));
     // scrollbar-color: currentColor transparent;
     // scrollbar-width: thin;
-    scroll-snap-type: y mandatory;
+    // scroll-snap-type: y mandatory;
+
+    // .tabbrowser-tab {
+    //   scroll-snap-align: start;
+    // }
   }
 }
 
@@ -40,10 +44,6 @@ See the above repository for updates as well as full license text. */
   overflow: -moz-hidden-unscrollable;
   display: block;
   --scrollbutton-display-model: none;
-}
-
-.tabbrowser-tab {
-  scroll-snap-align: start;
 }
 
 #tabbrowser-tabs .tabbrowser-tab[pinned] {
@@ -65,7 +65,7 @@ See the above repository for updates as well as full license text. */
   margin-bottom: 0 !important;
 }
 #tabbrowser-tabs[hasadjacentnewtabbutton][overflow="true"] > #tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button {
-  display: -moz-box !important;
+  @include Box(true);
 }
 
 #alltabs-button,

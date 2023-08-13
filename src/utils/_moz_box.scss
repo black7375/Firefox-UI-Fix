@@ -1,0 +1,126 @@
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1820534
+// https://groups.google.com/a/mozilla.org/g/firefox-dev/c/9sGpF1TNbLk/m/QpU3oTUuAgAJ
+// https://github.com/MrOtherGuy/firefox-csshacks/commit/0ff12e01fe18bc86ca68291c88c6dcf027cb9d83
+
+@function _important($important) {
+  @if $important {
+    @return !important;
+  }
+  @return null;
+}
+
+@mixin BoxFlex($num, $important: false) {
+  $important: _important($important);
+
+  flex: $num $important;
+  -moz-box-flex: $num $important;
+}
+
+@mixin BoxOrder($num, $important: false) {
+  $important: _important($important);
+
+  // -moz-box-ordinal-group is always positive
+  @if $num == 0 {
+    order: -1 $important;
+  }
+  @else {
+    order: $num $important;
+  }
+  -moz-box-ordinal-group: $num $important;
+}
+
+@mixin BoxAlign($align, $important: false) {
+  $important: _important($important);
+
+  @if $align == "start" {
+    align-items: flex-start $important;
+    -moz-box-align: start $important;
+  }
+  @if $align == "center" {
+    align-items: center $important;
+    -moz-box-align: center $important;
+  }
+  @if $align == "end" {
+    align-items: flex-end $important;
+    -moz-box-align: end $important;
+  }
+
+  @if $align == "baseline" {
+    align-items: baseline $important;
+    -moz-box-align: baseline $important;
+  }
+  @if $align == "stretch" {
+    align-items: stretch $important;
+    -moz-box-align: stretch $important;
+  }
+}
+
+@mixin BoxPack($align, $important: false) {
+  $important: _important($important);
+
+  @if $align == "start" {
+    justify-content: flex-start $important;
+    -moz-box-pack: start $important;
+  }
+  @if $align == "center" {
+    justify-content: center $important;
+    -moz-box-pack: center $important;
+  }
+  @if $align == "end" {
+    justify-content: flex-end $important;
+    -moz-box-pack: end $important;
+  }
+
+  @if $align == "justify" {
+    justify-content: space-between $important;
+    -moz-box-pack: justify $important;
+  }
+}
+
+@mixin BoxDirection($direction, $important: false) {
+  $important: _important($important);
+
+  @if $direction == "row" {
+    flex-direction: row $important;
+    -moz-box-orient: horizontal $important;
+    -moz-box-direction: normal $important;
+  }
+  @if $direction == "row-reverse" {
+    flex-direction: row-reverse $important;
+    -moz-box-orient: horizontal $important;
+    -moz-box-direction: reverse $important;
+  }
+  @if $direction == "column" {
+    flex-direction: column $important;
+    -moz-box-orient: vertical $important;
+    -moz-box-direction: normal $important;
+  }
+  @if $direction == "column-reverse" {
+    flex-direction: column-reverse $important;
+    -moz-box-orient: vertical $important;
+    -moz-box-direction: reverse $important;
+  }
+  @if $direction == "revert" {
+    flex-direction: revert $important;
+    -moz-box-direction: revert $important;
+  }
+
+  @if $direction == "reverse" {
+    flex-direction: row-reverse $important;
+    -moz-box-direction: reverse $important;
+  }
+}
+
+@mixin Box($important: false) {
+  $important: _important($important);
+
+  display: flex $important;
+  display: -moz-box $important;
+}
+
+@mixin InlineBox($important: false) {
+  $important: _important($important);
+
+  display: inline-flex $important;
+  display: -moz-inline-box $important;
+}

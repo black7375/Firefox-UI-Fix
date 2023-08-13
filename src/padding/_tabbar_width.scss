@@ -29,6 +29,12 @@
   --newtab-button-minus-width-padding: 2px;
   --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
 }
+#widget-overflow-mainView {
+  #new-tab-button,
+  #alltabs-button {
+    --newtab-button-width-padding: 0px;
+  }
+}
 #new-tab-button > .toolbarbutton-icon,
 #alltabs-button > .toolbarbutton-badge-stack {
   /* Original: calc(2 * var(--toolbarbutton-inner-padding) + 16px) */
@@ -42,14 +48,14 @@
 @include NotOption("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
     margin-inline-start: 1px !important;
   }
 }
 @include Option("userChrome.tab.photon_like_padding") {
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab[first-visible-unpinned-tab] {
+    > .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))) {
     margin-inline-start: 0 !important;
   }
 }
@@ -89,15 +95,25 @@
 }
 
 /* neighbouring tabs should "pinch" together */
+#tabbrowser-tabs:not([hasadjacentnewtabbutton]):not([overflow="true"])
+  > #tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery {
+  min-width: 3px; // With Panorama Tab Groups #643
+}
 @include NotOption("userChrome.tab.photon_like_padding") {
   @include Option("userChrome.tab.lepton_like_padding") {
     .tabbrowser-tab {
-      padding-inline: 1px !important;
+      // Original: padding-inline 2px, margin-inline 0px #643
+      &[pinned] {
+        padding-inline: 1px !important;
+      }
+      &:not([pinned]) {
+        margin-inline: -1px !important;
+      }
     }
   }
   @include NotOption("userChrome.tabbar.multi_row") {
-    #TabsToolbar:not([multibar]) .tabbrowser-tab:not([last-visible-tab]) {
-      margin-inline-end: -1px !important;
+    #TabsToolbar:not([multibar]) .tabbrowser-tab:not(:last-of-type) {
+      margin-inline-end: -2px !important;
     }
   }
 }

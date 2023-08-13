@@ -24,7 +24,7 @@
   > .tab-stack
   > .tab-content
   > .tab-close-button:not([selected="true"]) {
-    display: -moz-inline-box !important;
+    @include InlineBox(true);
   }
 
   @include _closeButtonAtHover;

@@ -12,7 +12,8 @@
   - [[#why-proton][WHY Proton?]]
   - [[#why-not-proton][WHY Not Proton?]]
   - [[#padding-comparisons][Padding Comparisons]]
-  - [[#contributors][Contributors]]
+  - [[#sponsors--contributors][Sponsors & Contributors]]
+  - [[#bug--questions][Bug / Questions?]]
   - [[#faq][FAQ]]
 :END:
 
@@ -26,6 +27,12 @@ The option system depends on user configuration, and nothing applies without set
 Also, real-time changes are difficult because of [[./docs/Restrictions.md#supports][technical limitations]] and require a restart.
 
 Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-userjs][can be conflicted]] and should be explicitly set to =false=.
+
+-----
+
+🔔🔔 Is your Firefox version =v102= or lower?
+
+You [[https://github.com/black7375/Firefox-UI-Fix/wiki/Compatibility-Issues-Solution#accent-color-at-v102-or-lower][have to set]] =userChrome.compatibility.accent_color= to =true= additionally.
 
 -----
 
@@ -65,7 +72,7 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
     - Panel
     - Menu
     - Density
-    - Others...
+    - Others…
   - *Tab Bar Layouts*
     - Tabs on Bottom
     - One Liner
@@ -77,7 +84,7 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
       - Context Line: like Photon
       - Bottom Rounding: Natural
     - MultiSelected
-      - Adjust Color: Easily recognizable.
+      - Adjust Color: Easily recognizable
     - Unselect:
       - Divide Line: like Photon
     - Unloaded:
@@ -90,7 +97,7 @@ Some settings [[https://github.com/black7375/Firefox-UI-Fix/wiki/Options#using-u
       - Show Favicon: Always show favicon
       - PIP Icon
     - Container Tab:
-      - Highlight line position: Displayed under tab.
+      - Highlight line position: Displayed under tab
   - *Button Design*
     - New tab: like Photon
   - *Activity Stream Design*
@@ -137,14 +144,15 @@ Windows users: Run with powershell ([[https://github.com/black7375/Firefox-UI-Fi
      - Select ":package: Download ZIP"
   2. Find your profile directory
      - Open =about:support= in a new tab
-     - Find the =Profile Folder= entry and click the =Open Folder= button
+     - Find the =Profile Directory(Linux)= / =Profile Folder(Windows)= entry
+     - Click the =Open Directory(Linux)= / =Open Folder(Windows)= button
   3. Copy downloaded files
      - Extract the downloaded zip file
      - Copy the =user.js= file to the previously opened profile directory
      - Create a new directory inside your profile directory called =chrome=
      - Copy the remaining files from the extracted zip-file into previously created the =chrome= directory
   4. Restart Firefox
-     - Click the =Clear startup cache...= at the top of =about:support=
+     - Click the =Clear startup cache…= at the top of =about:support=
 
   If you prefer Proton(89 or above), see [[https://github.com/black7375/Firefox-UI-Fix][Original Lepton]].\\
   If you prefer Proton tab shape, see [[https://github.com/black7375/Firefox-UI-Fix/tree/proton-style][Lepton's proton-style]].
@@ -186,13 +194,29 @@ Windows users: Run with powershell ([[https://github.com/black7375/Firefox-UI-Fi
   - Lepton
 
 
-** Contributors
+** Sponsors & Contributors
 
-Thanks to all contributors to this project for providing help and developing features!
+Thanks to all sponsors & contributors to this project for providing help and developing features!
+
+*Sponsors*
+
+[[https://www.oss.kr/][https://user-images.githubusercontent.com/25581533/203210367-9f2eed69-666a-4218-acde-128892aa09d8.png]]
+[[https://github.com/ojaha065][@@html:<img src="https://avatars.githubusercontent.com/u/37581768?s=60&v=4"/>@@]]
+[[https://github.com/DPS0340][@@html:<img src="https://avatars.githubusercontent.com/u/32592965?s=60&v=4"/>@@]]
+[[https://github.com/ZachKnife1][@@html:<img width="60" height="60" src="https://avatars.githubusercontent.com/u/114311925?s=60&v=4"/>@@]]
+[[https://github.com/kanlukasz][@@html:<img src="https://avatars.githubusercontent.com/u/30685349?s=60&v=4"/>@@]]
+[[https://github.com/nikkehtine][@@html:<img src="https://avatars.githubusercontent.com/u/27138416?s=60&v=4"/>@@]]
+
+*Contributors*
 
 [[https://github.com/black7375/Firefox-UI-Fix/graphs/contributors][@@html:<img src="https://contrib.rocks/image?repo=black7375/Firefox-UI-Fix"/>@@]]
 
 A list of all contributors can be found in [[./CREDITS][CREDITS]].
+
+** Bug / Questions?
+
+If you found a bug, please contact [[https://github.com/black7375/Firefox-UI-Fix/issues][issue]]. \\
+If you have any questions or inquiries, please contact [[https://github.com/black7375/Firefox-UI-Fix/discussions][discussions]].
 
 ** FAQ
 

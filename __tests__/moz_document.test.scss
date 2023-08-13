@@ -1,0 +1,65 @@
+@use "true" as *;
+@use "example" as *;
+@use "../src/utils/moz_document" as *;
+
+@include test-module("Moz Documents [mix]") {
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include moz-document(unobservable-document) {
+          @include example;
+        }
+        @include moz-document(url "about:downloads") {
+          @include example;
+        }
+        @include moz-document(url-prefix "about:") {
+          @include example;
+        }
+        @include moz-document(regexp "^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+          @include example;
+        }
+      }
+      @include expect {
+        @-moz-document #{unobservable-document()} { // Invalid function name.
+          @include example;
+        }
+        @-moz-document url("about:downloads") {
+          @include example;
+        }
+        @-moz-document url-prefix("about:") {
+          @include example;
+        }
+        @-moz-document regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+          @include example;
+        }
+      }
+    }
+  }
+  @include test("multiple") {
+    @include assert {
+      @include output {
+        @include moz-document(
+          url "about:downloads",
+          url-prefix "about:",
+          regexp "^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$"
+        ) {
+          @include example;
+        }
+        @include moz-document(
+          url-prefix "about:cache",
+          url-prefix "about:checkerboard"
+        ) {
+          @include example;
+        }
+      }
+      @include expect {
+        @-moz-document url("about:downloads"), url-prefix("about:"), regexp("^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$") {
+          @include example;
+        }
+        @-moz-document url-prefix("about:cache"), url-prefix("about:checkerboard") {
+          @include example;
+        }
+      }
+    }
+  }
+}

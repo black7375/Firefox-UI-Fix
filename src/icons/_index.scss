@@ -4,6 +4,16 @@
 }
 
 /** Panel - Icons *************************************************************/
+:root {
+  --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
+  --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
+  @include Has {
+    &:has(#sidebar-box[positionend="true"]) {
+      --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
+      --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
+    }
+  }
+}
 @include Option("userChrome.icon.panel") {
   @import "layout/panel";
   @import "panel";
@@ -28,8 +38,5 @@
   }
 }
 
-/** Waterfox ******************************************************************/
-@import "waterfox";
-
-/** Tor Browser ***************************************************************/
-@import "tor_browser";
+/** Icons for fork browsers ***************************************************/
+@import "fork_browsers/index";

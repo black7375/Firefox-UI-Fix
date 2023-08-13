@@ -1,14 +1,17 @@
 @use "utils/os" as *;
 @use "utils/option" as *;
 @use "utils/color_scheme" as *;
-@use "utils/theme" as *;
 @use "utils/accent_color" as *;
 @use "utils/native_menu" as *;
+@use "utils/moz_document" as *;
+@use "utils/moz_box" as *;
+@use "utils/theme" as *;
 @use "utils/one_liner" as *;
 @use "utils/window_control" as *;
 @use "utils/has" as *;
 @use "utils/proton_elements" as Proton;
 @use "sass:selector";
+@use "sass:math";
 
 @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 @namespace html "http://www.w3.org/1999/xhtml";

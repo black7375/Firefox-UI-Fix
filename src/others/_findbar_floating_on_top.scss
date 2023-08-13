@@ -3,8 +3,13 @@ See the above repository for updates as well as full license text. */
 
 /* Note that privacy.resistFingerprinting.letterboxing prevents this from working properly */
 
+#main-window > body > box {
+  // #navigator-toolbox-background for compatibility
+  z-index: 1;
+}
+
 findbar {
-  -moz-box-ordinal-group: 0;
+  @include BoxOrder(0);
   position: relative;
 
   height: 0 !important;
@@ -22,34 +27,35 @@ findbar {
 
   &::before {
     content:"";
-    display: -moz-box;
-    -moz-box-flex: 200;
+    @include Box;
+    position: absolute;
+    @include BoxFlex(200);
   }
 }
 
 .findbar-container,
 .findbar-closebutton {
-  border: 1px solid var(--chrome-content-separator-color);
-  border-width: 0 0 1px 0px;
+  border-style: solid;
+  border-color: var(--chrome-content-separator-color);
   background: var(--uc-light-bkgnd-color, var(--toolbar-bgcolor)) !important;
   pointer-events: auto;
   height: 33px !important;
 }
 
 .findbar-container {
-  -moz-box-direction: reverse;
-  border-left-width: 1px;
-  border-bottom-left-radius: 4px;
+  @include BoxDirection("reverse");
+  border-width: 0 0 1px 1px;
+  border-radius: var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) 0 0 var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) !important;
 
   > .findbar-find-fast {
     padding: var(--toolbarbutton-inner-padding) 1px;
     margin: 0 !important;
   }
   > .findbar-find-status {
-    display: -moz-box;
+    @include Box;
     overflow: hidden;
     text-overflow: ellipsis;
-    -moz-box-flex: 1;
+    @include BoxFlex(1);
   }
   > hbox {
     margin-inline: 5px;
@@ -57,10 +63,10 @@ findbar {
 }
 
 .findbar-closebutton {
-  box-sizing: padding-box;
   width: 30px !important; /* Original: 24px */
   margin: 0 !important;
-  border-radius: 0 4px 4px 0 !important;
+  border-width: 0 1px 1px 0px;
+  border-radius: 0 var(--toolbarbutton-border-radius) var(--toolbarbutton-border-radius) 0 !important;
   padding: 2px 5px 2px 3px !important;
   overflow: clip;
 
