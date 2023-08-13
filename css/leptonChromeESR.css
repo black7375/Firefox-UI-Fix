@@ -8342,7 +8342,7 @@
   .tabbrowser-tab:-moz-locale-dir(rtl) {
     --uc-sound-tab-icon-position-x: calc(-1 * var(--uc-sound-tab-icon-position-x-default));
   }
-  @supports -moz-bool-pref("userChrome.tab.sound_with_favicons.with_text") {
+  @supports -moz-bool-pref("userChrome.tab.sound_with_favicons.on_center") {
     .tabbrowser-tab:not([pinned]) {
       --uc-sound-tab-icon-position-x-default: 7px;
       --uc-sound-tab-icon-position-y: -1px;
@@ -8375,7 +8375,7 @@
       .tab-label-container {
       --uc-sound-tab-label-position-x-default: 4px;
     }
-    @supports -moz-bool-pref("userChrome.tab.sound_with_favicons.with_text") {
+    @supports -moz-bool-pref("userChrome.tab.sound_with_favicons.on_center") {
       .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
         .tab-label-container {
         --uc-sound-tab-label-position-x-default: 8px;
@@ -8405,7 +8405,7 @@
         .tab-label-container {
         --uc-sound-tab-label-position-x-default: 4px;
       }
-      @supports -moz-bool-pref("userChrome.tab.sound_with_favicons.with_text") {
+      @supports -moz-bool-pref("userChrome.tab.sound_with_favicons.on_center") {
         .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked])
           .tab-label-container {
           --uc-sound-tab-label-position-x-default: 8px;

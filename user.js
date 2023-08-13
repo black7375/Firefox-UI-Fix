@@ -186,7 +186,7 @@ user_pref("userChrome.rounding.square_tab",           false);
 // user_pref("userChrome.tab.close_button_at_hover.with_selected", true);  // Need close_button_at_hover
 // user_pref("userChrome.tab.sound_show_label",                true); // Need remove sound_hide_label
 // user_pref("userChrome.tab.container.on_top",                true);
-// user_pref("userChrome.tab.sound_with_favicons.with_text",   true);
+// user_pref("userChrome.tab.sound_with_favicons.on_center",   true);
 // user_pref("userChrome.tab.selected_bold",                   true);
 
 // user_pref("userChrome.navbar.as_sidebar",                   true);
