@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "list" as list-utils;
 @use "media";
+@use "mode";
 
 //== Args ======================================================================
 $win:    "win";
@@ -55,19 +56,9 @@ $_os-media: map.merge(
 );
 
 //== Mixin =====================================================================
-$osESR: false !default;
-
-@mixin ESR-MODE() {
-  $osESR: true !global;
-}
-
-@mixin STANDARD-MODE() {
-  $osESR: false !global;
-}
-
 @mixin OS($osNames...) {
   $_os-media: $_os-media; // as local
-  @if not $osESR {
+  @if mode.isSTANDARD() {
     $osNames: list-utils.remove-list($osNames, ($win7 $win8));
     $_os-media: map.set($_os-media, $win10, $_moz-platform-windows);
     $_os-media: map.set($_os-media, $win, $_moz-platform-windows);
@@ -87,6 +78,14 @@ $osESR: false !default;
 
   @if list.index($osNames, $mac) {
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+      @content;
+    }
+  }
+}
+
+@mixin WinClassic() {
+  @if mode.isESR() {
+    @media (-moz-windows-classic) {
       @content;
     }
   }

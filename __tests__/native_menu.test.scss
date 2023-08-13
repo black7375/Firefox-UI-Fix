@@ -1,10 +1,10 @@
 @use "true" as *;
 @use "example" as *;
 @use "../src/utils/native_menu";
-@use "../src/utils/os" as OS;
+@use "../src/utils/mode";
 
 @include test-module("Native Menu Option - ESR [mix]") {
-  @include OS.ESR-MODE;
+  @include mode.ESR;
 
   @include test("simple") {
     @include assert {
@@ -136,7 +136,7 @@
 }
 
 @include test-module("Native Menu Option - Standard [mix]") {
-  @include OS.STANDARD-MODE;
+  @include mode.STANDARD;
 
   @include test("simple") {
     @include assert {

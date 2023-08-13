@@ -1,9 +1,10 @@
 @use "true" as *;
 @use "example" as *;
 @use "../src/utils/os" as *;
+@use "../src/utils/mode";
 
 @include test-module("Create OS related media - ESR [mix]") {
-  @include ESR-MODE;
+  @include mode.ESR;
 
   @include test("win7") {
     @include assert {
@@ -145,10 +146,25 @@
       }
     }
   }
+
+  @include test("windows classic theme") {
+    @include assert {
+      @include output {
+        @include WinClassic {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-windows-classic) {
+          @include example;
+        }
+      }
+    }
+  }
 }
 
 @include test-module("Create OS related media - Standard [mix]") {
-  @include STANDARD-MODE;
+  @include mode.STANDARD;
 
   @include test("win7") {
     @include assert {
@@ -284,6 +300,19 @@
         @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
           @include example;
         }
+      }
+    }
+  }
+
+  @include test("windows classic theme") {
+    @include assert {
+      @include output {
+        @include WinClassic {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
       }
     }
   }

@@ -1,3 +1,4 @@
+@use "mode";
 @use "option" as *;
 @use "os" as *;
 
@@ -48,7 +49,7 @@
 }
 
 @mixin WinNativeMenu($win-media: false) {
-  @if $osESR {
+  @if mode.isESR() {
     @media not (-moz-windows-non-native-menus) {
       @include _WinMedia($win-media) {
         @content;
@@ -58,7 +59,7 @@
 }
 
 @mixin WinNonNativeMenu($win-media: false) {
-  @if $osESR {
+  @if mode.isESR() {
     @media (-moz-windows-non-native-menus) {
       @include _WinMedia($win-media) {
         @content;

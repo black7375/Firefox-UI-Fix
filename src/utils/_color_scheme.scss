@@ -1,13 +1,26 @@
+@use "mode";
 // -moz-toolbar-prefers-color-scheme is removed at v95, #250
 
 @mixin Dark() {
-  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
-    @content;
+  @if mode.isESR() {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
+      @content;
+    }
+  } @else {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
   }
 }
 @mixin Light() {
-  @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
-    @content;
+  @if mode.isESR() {
+    @media (-moz-toolbar-prefers-color-scheme: light), (prefers-color-scheme: light) {
+      @content;
+    }
+  } @else {
+    @media (prefers-color-scheme: light) {
+      @content;
+    }
   }
 }
 
