@@ -32,9 +32,18 @@
 
 /* Makes the speaker icon to always appear if the tab is playing (not only on hover) */
 .tabbrowser-tab {
-  --uc-sound-tab-icon-position-x: -0.5px;
+  --uc-sound-tab-icon-position-x-default: -0.5px;
+  --uc-sound-tab-icon-position-x: var(--uc-sound-tab-icon-position-x-default);
+  --uc-sound-tab-icon-position-y: -6px;
   &:-moz-locale-dir(rtl) {
-    --uc-sound-tab-icon-position-x: 0.5px;
+    --uc-sound-tab-icon-position-x: calc(-1 * var(--uc-sound-tab-icon-position-x-default));
+  }
+
+  @include Option("userChrome.tab.sound_with_favicons.on_center") {
+    &:not([pinned]) {
+      --uc-sound-tab-icon-position-x-default: 7px;
+      --uc-sound-tab-icon-position-y: -1px;
+    }
   }
 }
 .tab-icon-overlay:not([crashed]),
@@ -43,7 +52,7 @@
   top: 0 !important;
   inset-inline-end: -9px !important;
   z-index: 1 !important;
-  transform: translateX(var(--uc-sound-tab-icon-position-x)) translateY(-6px);
+  transform: translateX(var(--uc-sound-tab-icon-position-x)) translateY(var(--uc-sound-tab-icon-position-y));
 
   /* Shape */
   padding: 1.5px !important;
@@ -64,13 +73,18 @@
 @include _hidden_tabIcon_soundTabLabel {
   .tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     .tab-label-container {
+      --uc-sound-tab-label-position-x-default: 4px;
+      @include Option("userChrome.tab.sound_with_favicons.on_center") {
+        --uc-sound-tab-label-position-x-default: 8px;
+      }
+
       &[labeldirection=ltr],
       &:not([labeldirection]):-moz-locale-dir(ltr) {
-        --uc-sound-tab-label-position-x: 4px;
+        --uc-sound-tab-label-position-x: var(--uc-sound-tab-label-position-x-default);
       }
       &[labeldirection=rtl],
       &:not([labeldirection]):-moz-locale-dir(rtl) {
-        --uc-sound-tab-label-position-x: -4px;
+        --uc-sound-tab-label-position-x: calc(-1 * var(--uc-sound-tab-label-position-x-default));
       }
 
       > * {

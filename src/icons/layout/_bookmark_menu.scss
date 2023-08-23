@@ -85,6 +85,9 @@ $_bookmarkToolbarMenus: selector.nest(
   /* Bookmark Popup - None icon menu */
   @include _layoutBookmarkMenu() {
     padding-inline-start: calc(var(--context-menu-background-padding) + 2px) !important;
+    @include Option("userChrome.theme.non_native_menu") {
+      margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
+    }
 
     .menu-text {
       margin-inline-start: var(--context-menu-text-padding) !important;

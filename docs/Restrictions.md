@@ -64,7 +64,9 @@ This project is using SCSS to make a [reusable compatible mixins](../src/utils).
 - `:root[lwtheme-mozlightdark]` is removed [#288](https://github.com/black7375/Firefox-UI-Fix/issues/288)
 - `-moz-os-version` -> `-moz-platform` [#331](https://github.com/black7375/Firefox-UI-Fix/issues/331)
 - Breaking change with `-moz-accent-color`/`-moz-accent-color-foreground` -> `AccentColor`/`AccentColorText` [#433](https://github.com/black7375/Firefox-UI-Fix/issues/433)
-- `-moz-box` to `flex` layout [670](https://github.com/black7375/Firefox-UI-Fix/issues/670)
+- `-moz-box` to `flex` layout [#670](https://github.com/black7375/Firefox-UI-Fix/issues/670)
+- Drop `windows7` and `windows8`[#744](https://github.com/black7375/Firefox-UI-Fix/issues/744)
+  - `-moz-platform: windows-win7`, `-moz-platform: windows-win8`, `-moz-platform: windows-win10`, `-moz-windows-non-native-menus`
 
 ### Side Effect
 Only CSS modifications can cause bugs that are hard to think of in the general web, such as the [context menu not appearing](https://github.com/black7375/Firefox-UI-Fix/issues/114).  

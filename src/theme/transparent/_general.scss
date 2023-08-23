@@ -1,0 +1,28 @@
+#main-window,
+#navigator-toolbox-background {
+  background-color: transparent !important;
+  appearance: auto !important;
+  -moz-default-appearance: -moz-win-borderless-glass !important;
+}
+
+#navigator-toolbox {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+#nav-bar,
+#PersonalToolbar {
+  background-image: linear-gradient(
+    var(--toolbar-bgcolor),
+    var(--toolbar-bgcolor)
+  ), var(--lwt-additional-images);
+  background-repeat: repeat-x, var(--lwt-background-tiling);
+  background-position: 0 0, var(--lwt-background-alignment);
+  background-attachment: scroll, fixed !important;
+  background-size: auto 100%, auto auto;
+}
+
+#appcontent {
+  appearance: auto !important;
+  -moz-default-appearance: -moz-win-exclude-glass !important;
+}

@@ -71,7 +71,7 @@
     box-shadow: 0 5px 10px -3px var(--box-shadow1), 0 3px 16px 2px var(--box-shadow2), 0 8px 12px 1px var(--box-shadow3);
     /* Or: 0 2px 15px rgba(0,0,0,.1); */
   }
-  @media (prefers-color-scheme: dark) {
+  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
     audio {
       --box-shadow1: rgba(249, 249, 250, 0.12);
       --box-shadow2: rgba(91, 91, 102, 0.12);
@@ -413,7 +413,7 @@
       --newtab-search-dropdown-color: var(--newtab-search-background-color) !important;
       --newtab-element-hover-color: color-mix(in srgb, currentColor 9%, transparent) !important;
     }
-    @media (prefers-color-scheme: dark) {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       #root {
         /* Default Dark Mode */
         --newtab-search-background-color: rgba(66, 65, 77, 1); /* Same as dark theme's --panel-background */
@@ -719,7 +719,7 @@
       --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color);
       --uc-warning-icon-bgcolor: #ffa436;
     }
-    @media (prefers-color-scheme: dark) {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :host,
       :root {
         /* Keep these in sync with layout/base/PresShell.cpp, and plaintext.css */
@@ -764,7 +764,7 @@
       }
     }
     /*= Menu color #477 ==========================================================*/
-    @media (-moz-platform: windows) {
+    @media (-moz-windows-non-native-menus) {
       :root {
         /* Override some menu color variables for light browser themes. */
         --menuitem-hover-background-color: #e0e0e6;
@@ -785,7 +785,8 @@
       }
       /* Override the menu color variables for dark browser themes. */
     }
-    @media (-moz-platform: windows) and (prefers-color-scheme: dark) {
+    @media (-moz-windows-non-native-menus) and (-moz-toolbar-prefers-color-scheme: dark),
+      (-moz-windows-non-native-menus) and (prefers-color-scheme: dark) {
       :root {
         --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
         --menu-background-color: var(--dark-menu-background-color);
@@ -818,7 +819,8 @@
         }
         /* Override the menu color variables for dark browser themes. */
       }
-      @media (-moz-gtk-csd-available) and (prefers-color-scheme: dark) {
+      @media (-moz-gtk-csd-available) and (-moz-toolbar-prefers-color-scheme: dark),
+        (-moz-gtk-csd-available) and (prefers-color-scheme: dark) {
         :root {
           --menuitem-hover-background-color: var(--dark-menuitem-hover-background-color);
           --menu-background-color: var(--dark-menu-background-color);
@@ -831,7 +833,7 @@
       }
     }
     @supports -moz-bool-pref("userContent.page.proton_color.dark_blue_accent") {
-      @media (prefers-color-scheme: dark) {
+      @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
         :host,
         :root {
           /* Color Memo
@@ -907,7 +909,7 @@
   }
 }
 @supports -moz-bool-pref("userContent.page.dark_mode") {
-  @media (prefers-color-scheme: dark) {
+  @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
     /*= Addons.org =============================================================*/
     @-moz-document url-prefix("https://addons.mozilla.org")
     {
@@ -1608,7 +1610,8 @@
       .mzp-c-menu-item:is(:focus, :hover, :active) .mzp-c-menu-item-link .mzp-c-menu-item-title {
         border-color: var(--in-content-page-color) !important;
       }
-      @media screen and (prefers-color-scheme: dark) and (min-width: 768px) {
+      @media screen and (-moz-toolbar-prefers-color-scheme: dark) and (min-width: 768px),
+        screen and (prefers-color-scheme: dark) and (min-width: 768px) {
         .mzp-c-menu-panel {
           box-shadow: 0 16px 16px -16px rgba(255, 255, 255, 0.3) !important;
         }
@@ -2060,7 +2063,7 @@
       --view-source-green: var(--green-80);
       --view-source-purple: #800080; /* Like alphenglow */
     }
-    @media (prefers-color-scheme: dark) {
+    @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
       :root {
         --view-source-green: var(--green-60);
         --view-source-purple: #c68aff;
@@ -2409,7 +2412,7 @@
             --organizer-toolbar-field-focus-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.23);
             --organizer-pane-field-border-color: color-mix(in srgb, currentColor 41%, transparent);
           }
-          @media (prefers-color-scheme: dark) {
+          @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
             :root {
               --organizer-color: rgb(251, 251, 254);
               --organizer-deemphasized-color: rgb(191, 191, 201);
@@ -3209,8 +3212,11 @@
         padding-inline-start: var(--context-menu-background-padding) !important;
       }
       /* Padding - Non Native */
-      @media (-moz-platform: windows) and (-moz-platform: windows),
-        (-moz-gtk-csd-available) and (-moz-platform: windows) {
+      @media (-moz-os-version: windows-win7) and (-moz-windows-non-native-menus),
+        (-moz-os-version: windows-win8) and (-moz-windows-non-native-menus),
+        (-moz-os-version: windows-win10) and (-moz-windows-non-native-menus),
+        (-moz-platform: windows) and (-moz-windows-non-native-menus),
+        (-moz-gtk-csd-available) and (-moz-windows-non-native-menus) {
         :root {
           --context-menu-background-padding: 1em;
           --context-menu-text-padding-default: 24px;
@@ -3231,9 +3237,16 @@
           margin-left: 0 !important;
         }
       }
-      @media (-moz-platform: windows), (-moz-gtk-csd-available) {
+      @media (-moz-os-version: windows-win7),
+        (-moz-os-version: windows-win8),
+        (-moz-os-version: windows-win10),
+        (-moz-platform: windows),
+        (-moz-gtk-csd-available) {
         @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
-          @media (-moz-platform: windows) and (-moz-gtk-csd-available),
+          @media (-moz-os-version: windows-win7) and (-moz-gtk-csd-available),
+            (-moz-os-version: windows-win8) and (-moz-gtk-csd-available),
+            (-moz-os-version: windows-win10) and (-moz-gtk-csd-available),
+            (-moz-platform: windows) and (-moz-gtk-csd-available),
             (-moz-gtk-csd-available) and (-moz-gtk-csd-available) {
             :root {
               --context-menu-background-padding: 1em;
@@ -3259,7 +3272,10 @@
         }
       }
       /* Padding - Windows */
-      @media (-moz-platform: windows) {
+      @media (-moz-os-version: windows-win7),
+        (-moz-os-version: windows-win8),
+        (-moz-os-version: windows-win10),
+        (-moz-platform: windows) {
         :root {
           --bookmark-menu-icon-text-padding: calc(
             var(--context-menu-text-padding) + var(--arrowpanel-menuitem-padding-inline)
@@ -3269,7 +3285,130 @@
           );
         }
       }
-      /* Padding - Linux */
+      @media (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) {
+        :root {
+          --context-menu-text-padding: calc(1.45em + 8px);
+          --bookmark-menu-icon-align-padding: calc((1.45em - 16px) / 2 + 1px);
+        }
+      }
+      @media (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7),
+        (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7) {
+        :root {
+          --context-menu-background-padding-default: 2px;
+        }
+      }
+      @media (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7) and (-moz-windows-classic),
+        (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7) and (-moz-windows-classic),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7) and (-moz-windows-classic),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7) and (-moz-windows-classic),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7) and (-moz-windows-classic),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7) and (-moz-windows-classic),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win7) and (-moz-windows-classic),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win7) and (-moz-windows-classic) {
+        :root {
+          --context-menu-background-padding-default: -0.5px;
+        }
+      }
+      @media (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win8),
+        (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win8),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win8),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win8),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win8),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win8),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win8),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win8) {
+        :root {
+          --context-menu-background-padding-default: 3px;
+        }
+      }
+      @media (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win10),
+        (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win10),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win10),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win10),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win10),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win10),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-os-version: windows-win10),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) and (-moz-platform: windows-win10) {
+        :root {
+          --context-menu-background-padding: 3px;
+          --menu-background-padding-default: 0px;
+        }
+        @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+          :root {
+            --context-menu-background-padding: 5px;
+          }
+          #main-menubar {
+            --context-menu-background-padding: calc(5px + ((1.45em - 16px) / 2));
+          }
+          menuitem:is([type="checkbox"], [type="radio"]) {
+            --menu-padding: 0px;
+          }
+          menuitem[checked="true"] {
+            --context-menu-background-padding: 0px;
+          }
+          menuitem[checked="true"] > .menu-iconic-left {
+            transform: translateX(2px);
+          }
+        }
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic > .menu-iconic-left,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menuitem-iconic > .menu-iconic-left,
+        menupopup:not([placespopup="true"]) .menu-iconic > .menu-iconic-left,
+        menupopup:not([placespopup="true"]) .menuitem-iconic > .menu-iconic-left {
+          appearance: none !important;
+          padding-block: 0 !important;
+          padding-inline-start: 5px !important;
+          margin-inline-end: 8px !important;
+        }
+        @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
+          menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic > .menu-iconic-left,
+          menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menuitem-iconic > .menu-iconic-left,
+          menupopup:not([placespopup="true"]) .menu-iconic > .menu-iconic-left,
+          menupopup:not([placespopup="true"]) .menuitem-iconic > .menu-iconic-left {
+            box-sizing: content-box;
+          }
+        }
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-accel,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic-accel,
+        menupopup:not([placespopup="true"]) .menu-accel,
+        menupopup:not([placespopup="true"]) .menu-iconic-accel {
+          box-sizing: content-box;
+          min-height: 16px;
+        }
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-accel,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic-accel,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-text,
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup) .menu-iconic-text,
+        menupopup:not([placespopup="true"]) .menu-accel,
+        menupopup:not([placespopup="true"]) .menu-iconic-accel,
+        menupopup:not([placespopup="true"]) .menu-text,
+        menupopup:not([placespopup="true"]) .menu-iconic-text {
+          padding-block: 0 !important;
+        }
+      }
+      @media (-moz-os-version: windows-win7) and (not (-moz-windows-non-native-menus)),
+        (-moz-os-version: windows-win8) and (not (-moz-windows-non-native-menus)),
+        (-moz-os-version: windows-win10) and (not (-moz-windows-non-native-menus)),
+        (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) {
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#placesContext, #placesColumnsContext, #downloadsContextMenu)
+          menu:not(.menu-iconic, .in-menulist, [checked="true"]),
+        menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
+          > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
+        menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > menu:not(.menu-iconic, .in-menulist, [checked="true"]) {
+          background-position: left var(--context-menu-background-padding) center !important;
+          padding-inline-start: 0 !important;
+        }
+      } /* Padding - Linux */
       @media (-moz-gtk-csd-available) {
         :root {
           --context-menu-background-padding-default: 6px;

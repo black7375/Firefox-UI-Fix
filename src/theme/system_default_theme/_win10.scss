@@ -28,6 +28,23 @@
       --win-accent-hover-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 27%, #{$accentColor});
       --win-accent-active-color: #{$accentColor};
     }
+    @include Option("userChrome.compatibility.os.win11") {
+      --win-text-color: #1A1A1A;
+      --win-bgcolor: #E8E8E8;
+      --win-hover-bgcolor: #EAEAEA; /* also button-bgcolor */ // or #EFEFEF
+      --win-disabled-color: #9F9F9F;
+      --win-hover-active-bgcolor: #D9D9D9; /* also button-active-color */
+      --win-button-hover-bgcolor: #D9D9D9;
+      --win-button-active-bgcolor: rgba(46, 46, 46, 0.66);
+      --win-component-bgcolor: #F8F8F8;
+      --win-border-color: #E9E9E9;
+      --win-tab-separator-color: #DADADA;
+      --win-sidebar-bgcolor: #FFFFFF;
+      --win-button-border: var(--win-border-color);
+
+      --win11-chrome-separator-color: #D6D6D6;
+      --win11-tab-border-color: #DADADA;
+    }
   }
   @include Dark {
     #{system-default-theme()} {
@@ -56,6 +73,24 @@
         --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, #{$accentColor});
         --win-accent-hover-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 5%, #{$accentColor});
         --win-accent-active-color: #{$accentColor};
+      }
+
+      @include Option("userChrome.compatibility.os.win11") {
+        --win-bgcolor: #202020;
+        --win-hover-bgcolor: #383838; /* also button-bgcolor */
+        --win-disabled-color: #797979;
+        --win-hover-active-bgcolor: #454545; /* also button-active-color */
+        --win-button-hover-bgcolor: #454545;
+        --win-button-active-bgcolor: rgba(46, 46, 46, 0.66);
+        --win-field-bgcolor: #232323;
+        --win-component-bgcolor: #2C2C2C;
+        --win-border-color: #3D3D3D;
+        --win-tab-separator-color: #323232;
+        --win-sidebar-bgcolor: var(--win-component-bgcolor);
+        --win-button-border: var(--win-border-color);
+
+        --win11-chrome-separator-color: #3A3A3A;
+        --win11-tab-border-color: #1D1D1D;
       }
     }
   }
@@ -206,6 +241,15 @@
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
         --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* As default */
       }
+    }
+  }
+
+  @include Option("userChrome.compatibility.os.win11") {
+    #{system-default-theme()} {
+      --chrome-content-separator-color: var(--win11-chrome-separator-color) !important;
+    }
+    #nav-bar {
+      --lwt-tabs-border-color: var(--win11-tab-border-color) !important;
     }
   }
 

@@ -3,6 +3,11 @@
   @import "system_default_theme";
 }
 
+/*= None Native Menu =========================================================*/
+@include Option("userChrome.theme.non_native_menu") {
+  @import "non_native_menu";
+}
+
 /*= Fully Theme Mode =========================================================*/
 // Default Themes
 //   https://github.com/mozilla/gecko-dev/blob/master/toolkit/mozapps/extensions/default-theme/manifest.json
@@ -15,6 +20,10 @@
     @import "dark_blue_accent";
   }
 }
+@include Option("userChrome.theme.private") {
+  @import "private";
+}
+
 @include Option("userChrome.theme.fully_color") {
   @import "fully_color";
   @import "waterfox";
@@ -23,6 +32,17 @@
 /*= Fully Dark Mode ==========================================================*/
 @include Option("userChrome.theme.fully_dark") {
   @import "fully_dark";
+}
+
+/*= Transparent ==============================================================*/
+@include Option("userChrome.theme.transparent.frame") {
+  @import "transparent";
+}
+@include Option("userChrome.theme.transparent.menu") {
+  @import "transparent/menu";
+}
+@include Option("userChrome.theme.transparent.panel") {
+  @import "transparent/panel";
 }
 
 /*= Proton Theme Mode ========================================================*/
