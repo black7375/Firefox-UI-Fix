@@ -36,6 +36,16 @@ $_placesPopupSetMenus: selector.nest(
   @include _layout_init_padding;
 }
 
+/* Padding - Non Native */
+@include OS($win, $linux) {
+  @include NonNativeMenu {
+    @include _layout_root_non_native;
+    @include _library_contextMenu {
+      @include _layout_init_non_native();
+    }
+  }
+}
+
 /* Padding - Windows */
 @include _layout_root_win;
 @include OS($win) {

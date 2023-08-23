@@ -1,6 +1,6 @@
 {
   "name": "Lepton",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "I respect proton UI and aim to improve it. ",
   "author": "alstjr7375 <alstjr7375@daum.net>",
   "license": "MPL 2.0",
@@ -14,8 +14,10 @@
   },
   "homepage": "https://github.com/black7375/Firefox-UI-Fix#readme",
   "scripts": {
-    "build": "sass --no-source-map src/leptonChrome.scss css/leptonChrome.css && sass --no-source-map src/leptonContent.scss css/leptonContent.css && prettier --write css/leptonChrome.css css/leptonContent.css",
+    "build": "yarn build:scss && yarn format:build",
+    "build:scss": "sass --no-source-map src/leptonChrome.scss:css/leptonChrome.css src/leptonContent.scss:css/leptonContent.css src/leptonChromeESR.scss:css/leptonChromeESR.css src/leptonContentESR.scss:css/leptonContentESR.css",
     "format": "prettier --write .",
+    "format:build": "prettier --write css/leptonChrome.css css/leptonContent.css css/leptonChromeESR.css css/leptonContentESR.css",
     "test": "jest",
     "validate": "csstree-validator css/leptonChrome.css; csstree-validator css/leptonContent.css"
   },
@@ -24,9 +26,9 @@
     "fast-glob": "^3.2.12",
     "jest": "^29.3.1",
     "jest-environment-node-single-context": "^29.0.0",
-    "prettier": "^2.7.1",
-    "sass": "^1.56.1",
-    "sass-true": "^6.1.0"
+    "prettier": "^2.8.1",
+    "sass": "^1.57.1",
+    "sass-true": "^7.0.0"
   },
   "jest": {
     "testEnvironment": "jest-environment-node-single-context"

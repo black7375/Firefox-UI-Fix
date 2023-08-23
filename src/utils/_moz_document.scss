@@ -1,7 +1,7 @@
 @mixin moz-document($urlList...) {
   $result: ();
   @each $prefix, $urlPattern in $urlList {
-    $result: append($result, #{$prefix}("#{$urlPattern}"), $separator: comma);
+    $result: append($result, #{$prefix}(if($urlPattern, "#{$urlPattern}", null)), $separator: comma);
   }
 
   @#{-moz-document} #{$result} {

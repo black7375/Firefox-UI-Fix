@@ -21,6 +21,22 @@ $dupList: (ab cd efgh efgh efgh ijk);
   }
 }
 
+@include test-module("Remove at list using list [fn]") {
+  @include test("simple") {
+    @include assert-equal(
+      list.remove-list($simpleList, ("cd" "efgh")),
+      (ab ijk)
+    );
+  }
+
+  @include test("duplicate") {
+    @include assert-equal(
+      list.remove-list($dupList, ("cd" "efgh")),
+      (ab ijk)
+    );
+  }
+}
+
 @include test-module("Convert to str [fn]") {
   @include test("simple") {
     @include assert-equal(

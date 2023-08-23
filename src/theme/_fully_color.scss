@@ -22,7 +22,7 @@ html#main-window menupopup:not(.in-menulist) {
   ) !important;
 }
 
-@media (-moz-windows-non-native-menus) {
+@include NonNativeMenu {
   html#main-window menupopup {
     &:not(.in-menulist) {
       /* Above FF v105 #466 */

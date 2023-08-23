@@ -4,15 +4,23 @@
 @function remove($list, $value, $recursive: false) {
   $result: ();
 
-  @for $i from 1 through length($list) {
-    @if type-of(nth($list, $i)) == list and $recursive {
-      $result: append($result, remove(nth($list, $i), $value, $recursive));
-    } @else if nth($list, $i) != $value {
-      $result: append($result, nth($list, $i));
+  @each $item in $list {
+    @if type-of($item) == list and $recursive {
+      $result: append($result, remove($item, $value, $recursive));
+    } @else if $item != $value {
+      $result: append($result, $item);
     }
   }
 
   @return $result;
+}
+
+@function remove-list($list, $removeList, $recursive: false) {
+  @each $removeItem in $removeList {
+    $list: remove($list, $removeItem, $recursive);
+  }
+
+  @return $list;
 }
 
 @function to-string($list, $glue: '', $is-nested: false) {

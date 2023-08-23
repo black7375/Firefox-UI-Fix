@@ -1,0 +1,17 @@
+$_osESR: false !default;
+
+@mixin ESR() {
+  $_osESR: true !global;
+}
+
+@mixin STANDARD() {
+  $_osESR: false !global;
+}
+
+@function isESR() {
+  @return $_osESR;
+}
+
+@function isSTANDARD() {
+  @return not $_osESR;
+}
