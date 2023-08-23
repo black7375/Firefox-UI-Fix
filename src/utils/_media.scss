@@ -1,7 +1,22 @@
-@use "each";
+@use "sass:map";
+@use "sass:list";
 
 @mixin each($list...) {
-  @include each.AtEach("media", $list) {
-    @content;
+  $listL: list.length($list);
+  @if $listL >= 1 {
+    $first: list.nth($list, 1);
+    @if $first != null and $first != () {
+      $blocks: "(#{$first})";
+      @if $listL > 1 {
+        @for $i from 2 through ($listL) {
+          $nextBlock: list.nth($list, $i);
+          $nextBlock: ", (#{$nextBlock})";
+          $blocks: "#{$blocks}#{$nextBlock}";
+        }
+      }
+      @media #{"#{$blocks}"} {
+        @content;
+      }
+    }
   }
 }

@@ -1,0 +1,88 @@
+:root,
+#{built-in-light-theme()},
+#{built-in-dark-theme()} {
+  &[privatebrowsingmode="temporary"] {
+    // Init
+    --lwt-additional-images: none !important;
+    --lwt-header-image: none !important;
+
+    // Like Alpen glow
+    --lwt-tab-text: rgba(232, 224, 255) !important;
+    --lwt-text-color: var(--lwt-tab-text) !important;
+    --toolbar-color: var(--lwt-tab-text) !important;
+    --toolbar-non-lwt-textcolor: var(--lwt-tab-text) !important;
+    --arrowpanel-color: var(--lwt-tab-text) !important;
+
+    --focus-outline-color: rgb(172, 112, 255) !important;
+
+    // Toolbar
+    --toolbar-bgcolor: #322560 !important;
+    --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
+
+    // Behind Tabs
+    --lwt-accent-color: #19162F !important;
+    --in-content-page-background: var(--lwt-accent-color) !important;
+
+    // Search Bar Colour
+    --toolbar-field-background-color: #0B0724 !important;
+
+    // Turns Tab Into Same Colour As Toolbar
+    --lwt-selected-tab-background-color: var(--toolbar-bgcolor) !important;
+
+    // What Happens When You Hover Over A Button
+    --toolbarbutton-hover-background: rgba(255, 255, 255, 0.05) !important;
+
+    // Click On A Button, This Colour Is What The Button Will Be
+    --toolbarbutton-active-background: #4D4175 !important;
+
+    // Click A Button With A Context Menu? This Is The Menu Colour
+    --arrowpanel-background: #1D1935 !important;
+
+    // Tool Bar Context Menu Outline
+    --arrowpanel-border-color: #322560 !important;
+
+    // Line Between Toobar And Site
+    --chrome-content-separator-color: none !important;
+
+    // Colour Of The Expanded Address Bar
+    --toolbar-field-focus-background-color:var(--toolbar-field-background-color) !important;
+
+    // Hovering Over The Autocomplete Items Colour
+    --autocomplete-popup-hover-background: #1D1935 !important;
+
+    // Clicking On Said Autocomplete Item Colour
+    --autocomplete-popup-highlight-background: rgba(65, 48, 117, 0.5) !important;
+
+    // Button
+    --button-bgcolor: color-mix(in srgb, currentColor 13%, transparent) !important;
+    --button-hover-bgcolor: color-mix(in srgb, currentColor 17%, transparent) !important;
+    --button-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
+
+    // Others
+    --urlbar-box-bgcolor: color-mix(in srgb, currentColor 16%, transparent) !important;
+
+    #navigator-toolbox:-moz-lwtheme {
+      --lwt-tabs-border-color: var(--focus-outline-color) !important;
+    }
+    #navigator-toolbox,
+    &[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+      background-color: var(--lwt-accent-color) !important;
+    }
+    #TabsToolbar {
+      --lwt-tab-line-color: var(--focus-outline-color) !important;
+    }
+    notification-message[message-bar-type="infobar"] {
+      --message-bar-text-color: var(--lwt-tab-text) !important;
+      --in-content-page-color: var(--lwt-tab-text) !important;
+    }
+    menupopup {
+      // Right Click Menu
+      --menuitem-hover-background-color: #413D54 !important;
+      --menu-background-color: #1D1935 !important;
+      --menu-color: #eeeeee !important;
+      --menuitem-disabled-hover-background-color: #ffffff00 !important;
+      --menu-disabled-color: #ffffff50 !important;
+      --menu-border-color: #322560 !important;
+    }
+  }
+}

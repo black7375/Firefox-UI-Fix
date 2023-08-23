@@ -12,7 +12,11 @@
   }
 
   --uc-container-position-y-default: 11.5px;
-  --uc-container-position-y: calc(50% + var(--uc-container-position-y-default));
+  --uc-container-position-y-bottom: calc(50% + var(--uc-container-position-y-default));
+  --uc-container-position-y: var(--uc-container-position-y-bottom);
+  @include Option("userChrome.tab.container.on_top") {
+    --uc-container-position-y: calc(50% - var(--uc-container-position-y-default));
+  }
 
   // Pinned Tab - Titlechanged Indicator override
   --uc-titlechanged-container-position-x: 32%, 50%, 70%;
@@ -25,7 +29,7 @@
 :root[uidensity="touch"] #tabbrowser-tabs {
   --uc-container-position-y-default: 12.5px;
 }
-.tab-content:not([titlechanged])::before {
+.tab-content::before {
   /* Box Model */
   content: "";
   display: block;
@@ -66,42 +70,56 @@
   // Don't hide at userChrome.tab.close_button_at_pinned.background
 }
 
-/* Pinned Tab - Titlechanged Indicator override */
-.tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
-  --dotted-identity-image: radial-gradient(
-    circle,
-    var(--identity-icon-color),
-    var(--identity-icon-color) 2px,
-    transparent 2px
-  );
-  background-image: var(--dotted-identity-image), var(--dotted-identity-image), var(--dotted-identity-image) !important;
-  background-position-x: var(--uc-titlechanged-container-position-x) !important;
-}
+@include NotOption("userChrome.tab.container.on_top") {
+  .tab-content[titlechanged]::before {
+    opacity: 0;
+  }
 
-.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
-  background-position-y: top var(--uc-container-position-y) !important;
-}
+  /* Pinned Tab - Titlechanged Indicator override */
+  .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
+    --dotted-identity-image: radial-gradient(
+      circle,
+      var(--identity-icon-color),
+      var(--identity-icon-color) 2px,
+      transparent 2px
+    );
+    background-image: var(--dotted-identity-image), var(--dotted-identity-image), var(--dotted-identity-image) !important;
+    background-position-x: var(--uc-titlechanged-container-position-x) !important;
+  }
 
-/* Pinned Tab - Titlechanged & soundplaying */
-.tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  --uc-titlechanged-container-position-x: calc(32% - 1px), calc(50% - 1px), calc(70% - 1px);
-}
-:root[uidensity="compact"]
+  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
+    background-position-y: top var(--uc-container-position-y) !important;
+  }
+
+  /* Pinned Tab - Titlechanged & soundplaying */
   .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-:root[uidensity="compact"]
+    > .tab-stack
+    > .tab-content[attention]:not([selected="true"]),
   .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
-  > .tab-stack
-  > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  --uc-titlechanged-container-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px);
+    > .tab-stack
+    > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    --uc-titlechanged-container-position-x: calc(32% - 1px), calc(50% - 1px), calc(70% - 1px);
+  }
+  :root[uidensity="compact"]
+    .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
+    > .tab-stack
+    > .tab-content[attention]:not([selected="true"]),
+  :root[uidensity="compact"]
+    .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
+    > .tab-stack
+    > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    --uc-titlechanged-container-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px);
+  }
+}
+
+@include Option("userChrome.tab.container.on_top") {
+  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
+    background-position-y: top var(--uc-container-position-y-bottom) !important;
+  }
 }

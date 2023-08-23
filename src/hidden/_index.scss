@@ -27,6 +27,18 @@
   }
 }
 
+@include Option("userChrome.hidden.private_indicator") {
+  // :root:not([privatebrowsingmode=temporary]) .private-browsing-indicator,
+  // :root[privatebrowsingnewindicator] .private-browsing-indicator,
+  // :root:not([privatebrowsingnewindicator]) #private-browsing-indicator-with-label,
+  // :root:not([privatebrowsingmode=temporary]) #private-browsing-indicator-with-label {
+  // }
+  .private-browsing-indicator,
+  #private-browsing-indicator-with-label {
+    display: none;
+  }
+}
+
 @include Option("userChrome.hidden.titlebar_container") {
   .titlebar-buttonbox-container {
     display: none !important;
@@ -110,7 +122,7 @@
     }
   }
 
-  @include NativeMenu {
+  @include NativeToolkitMenu {
     #context-back,
     #context-forward {
       &[disabled="true"] {
