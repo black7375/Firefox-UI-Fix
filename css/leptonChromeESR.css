@@ -746,7 +746,7 @@
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:not(:-moz-lwtheme) {
+    :root:not(:-moz-lwtheme):not(#webextpanels-window) {
       --arrowpanel-border-color: var(--win-bgcolor) !important;
       --panel-separator-color: var(--win-bgcolor) !important;
     }
