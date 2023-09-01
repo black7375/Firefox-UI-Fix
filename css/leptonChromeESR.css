@@ -4355,8 +4355,11 @@
       .tabbrowser-tab[pinned] {
         padding-inline: 1px !important;
       }
-      .tabbrowser-tab:not([pinned]) {
+      .tabbrowser-tab:not([pinned]):not(:first-of-type) {
         margin-inline: -1px !important;
+      }
+      .tabbrowser-tab:not([pinned]):first-of-type {
+        margin-inline-end: -1px !important;
       }
     }
     @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
