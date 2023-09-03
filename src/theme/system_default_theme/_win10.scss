@@ -226,7 +226,7 @@
   }
 
   /*- Separator --------------------------------------------------------------*/
-  :root:not(:-moz-lwtheme):not(#webextpanels-window) {
+  :root:is(#main-window):not(:-moz-lwtheme) {
     --arrowpanel-border-color: var(--win-bgcolor) !important;
     --panel-separator-color: var(--win-bgcolor) !important;
   }
@@ -294,13 +294,13 @@
     --sidebar-border-color: var(--win-border-color) !important;
   }
   @include Dark {
-    .sidebar-panel[style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
-      body[lwt-sidebar][style="--newtab-background-color: rgba(43, 42, 51, 1); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
-      .sidebar-panel[style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"], /* Nightly */
-      body[lwt-sidebar][style="--newtab-background-color: rgb(43, 42, 51); --newtab-text-primary-color: rgba(251, 251, 254, 1); --lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"] {
+    .sidebar-panel[style*="--lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
+    html[lwt-sidebar][style*="--lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"],
+    body[lwt-sidebar][style*="--lwt-sidebar-background-color: rgb(56, 56, 61); --lwt-sidebar-text-color: rgba(249, 249, 250, 1);"] {
       /* Only darkmode has more: --newtab-background-color-secondary: rgba(66, 65, 77, 1); */
       --lwt-sidebar-background-color: var(--win-sidebar-bgcolor) !important;
       --lwt-sidebar-text-color: var(--win-text-color) !important;
+      --panel-separator-color: var(--win-border-color) !important;
     }
   }
 
