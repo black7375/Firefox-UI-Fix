@@ -78,7 +78,7 @@ $_layoutCommonMenus: (
       background-position: var(--uc-menu-background-position) calc(3px + var(--context-menu-background-padding-default)) center !important;
       padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
     }
-    > menupopup {
+    menupopup {
       --menuitem-image: none; /* Prevent Image Inheritance */
     }
     @include NotOption("userChrome.padding.global_menubar") {

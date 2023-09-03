@@ -11814,7 +11814,7 @@
           calc(3px + var(--context-menu-background-padding-default)) center !important;
         padding-inline-start: calc(19px + var(--context-menu-background-padding-default)) !important;
       }
-      #main-menubar > menu > menupopup {
+      #main-menubar > menu menupopup {
         --menuitem-image: none; /* Prevent Image Inheritance */
       }
       @supports not -moz-bool-pref("userChrome.padding.global_menubar") {
