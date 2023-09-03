@@ -45,6 +45,11 @@
   #sidebar {
     display: block;
   }
+
+  // #navigator-toolbox-background
+  #main-window > body > box {
+    z-index: 2 !important;
+  }
 }
 
 @include Option("userChrome.sidebar.overlap") {

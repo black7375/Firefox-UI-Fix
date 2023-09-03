@@ -9147,6 +9147,9 @@
   #sidebar {
     display: block;
   }
+  #main-window > body > box {
+    z-index: 2 !important;
+  }
 }
 @supports -moz-bool-pref("userChrome.sidebar.overlap") {
   #sidebar-box[positionend="true"] {
