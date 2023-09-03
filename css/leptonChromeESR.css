@@ -4199,6 +4199,12 @@
   :root {
     --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
   }
+  #tabbrowser-tabs[orient="vertical"] {
+    --tab-block-margin: 4px !important;
+  }
+  #tabbrowser-tabs[orient="vertical"] .tabbrowser-tab {
+    margin-block: -1px !important;
+  }
 }
 @supports -moz-bool-pref("userChrome.tab.photon_like_padding") {
   :root {
