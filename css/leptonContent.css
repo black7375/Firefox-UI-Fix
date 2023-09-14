@@ -493,11 +493,17 @@
   /** Activity Stream - Hide Firefox's logo ***********************************/
   @supports -moz-bool-pref("userContent.newTab.background_image") {
     body {
-      background-image: var(--uc-newTab-wallpaper, url("../icons/Forest-trees-sunset-art-picture_3840x2160.jpg"));
+      background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-sunrise.svg"));
       background-size: cover; /* or auto auto */
       background-repeat: no-repeat;
       background-position: right top;
       background-attachment: fixed;
+    }
+    /** Use night sky version in dark mode ************************************/
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-night.svg"));
+      }
     }
   }
 }
