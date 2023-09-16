@@ -1,4 +1,8 @@
 @include Option("userChrome.rounding.square_button") {
+  #pictureInPictureToggle > .pip-small {
+    border-radius: 0 !important;
+  }
+
   @include moz-document(
     url-prefix "about:",
     regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"

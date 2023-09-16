@@ -2958,6 +2958,9 @@
 }
 /** Rounding ******************************************************************/
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
+  #pictureInPictureToggle > .pip-small {
+    border-radius: 0 !important;
+  }
   @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
     button:not(.toggle-button),
