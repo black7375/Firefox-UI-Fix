@@ -2958,6 +2958,9 @@
 }
 /** Rounding ******************************************************************/
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
+  .all-buttons-container,
+  .highlight-buttons > button,
+  .cancel-shot,
   #pictureInPictureToggle > .pip-small {
     border-radius: 0 !important;
   }
