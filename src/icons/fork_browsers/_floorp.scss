@@ -8,9 +8,40 @@
   }
 }
 @include Option("userChrome.icon.menu") {
+  #toggle_sharemode {
+    --menuitem-image: url("chrome://branding/content/about-logo-private.png");
+  }
+
   #usercssloader-menu {
     --menuitem-image: url("../icons/developer.svg");
   }
+  #usercssloader-menupopup > menu[data-l10n-id="css-menu"] {
+    --menuitem-image: url("../icons/document-css.svg");
+  }
+  #usercssloader-submenupopup > menuitem {
+    &[data-l10n-id="rebuild-css"] {
+      --menuitem-image: url("chrome://global/skin/icons/reload.svg");
+    }
+
+    &[data-l10n-id="make-browsercss-file"] {
+      --menuitem-image: url("chrome://global/skin/icons/edit.svg");
+    }
+    &[data-l10n-id="open-css-folder"] {
+      --menuitem-image: url("../icons/folder.svg");
+    }
+    &[data-l10n-id="edit-userChromeCss-editor"] {
+      --menuitem-image: url("chrome://browser/skin/window.svg");
+    }
+    &[data-l10n-id="edit-userContentCss-editor"] {
+      --menuitem-image: url("chrome://global/skin/icons/page-portrait.svg");
+    }
+  }
+
+  #context_toggleToPrivateContainer,
+  #open_in_private_container {
+    --menuitem-image: url("../icons/private-favicon.svg");
+  }
+
 
   #toggle_statusBar {
     --menuitem-image: url("../icons/pulse-square.svg");

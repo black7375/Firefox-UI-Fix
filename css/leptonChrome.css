@@ -11257,7 +11257,8 @@
         #bookmarksMenuPopup,
         #menu_ToolsPopup,
         #windowPopup,
-        #menu_HelpPopup
+        #menu_HelpPopup,
+        #usercssloader-menupopup
       )
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(
@@ -11269,7 +11270,8 @@
         #bookmarksMenuPopup,
         #menu_ToolsPopup,
         #windowPopup,
-        #menu_HelpPopup
+        #menu_HelpPopup,
+        #usercssloader-menupopup
       )
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -11339,7 +11341,8 @@
         #bookmarksMenuPopup,
         #menu_ToolsPopup,
         #windowPopup,
-        #menu_HelpPopup
+        #menu_HelpPopup,
+        #usercssloader-menupopup
       )
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(
@@ -11351,7 +11354,8 @@
         #bookmarksMenuPopup,
         #menu_ToolsPopup,
         #windowPopup,
-        #menu_HelpPopup
+        #menu_HelpPopup,
+        #usercssloader-menupopup
       )
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -11430,7 +11434,8 @@
           #bookmarksMenuPopup,
           #menu_ToolsPopup,
           #windowPopup,
-          #menu_HelpPopup
+          #menu_HelpPopup,
+          #usercssloader-menupopup
         )
         menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       menupopup:is(
@@ -11442,7 +11447,8 @@
           #bookmarksMenuPopup,
           #menu_ToolsPopup,
           #windowPopup,
-          #menu_HelpPopup
+          #menu_HelpPopup,
+          #usercssloader-menupopup
         )
         menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -11492,7 +11498,8 @@
               #bookmarksMenuPopup,
               #menu_ToolsPopup,
               #windowPopup,
-              #menu_HelpPopup
+              #menu_HelpPopup,
+              #usercssloader-menupopup
             )
             menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
           menupopup:is(
@@ -11504,7 +11511,8 @@
               #bookmarksMenuPopup,
               #menu_ToolsPopup,
               #windowPopup,
-              #menu_HelpPopup
+              #menu_HelpPopup,
+              #usercssloader-menupopup
             )
             menu:not(.menu-iconic, .in-menulist, [checked="true"]),
           menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -11588,7 +11596,8 @@
             #bookmarksMenuPopup,
             #menu_ToolsPopup,
             #windowPopup,
-            #menu_HelpPopup
+            #menu_HelpPopup,
+            #usercssloader-menupopup
           )
           menuitem:not(.menuitem-iconic, .bookmark-item),
         menupopup:is(
@@ -11600,7 +11609,8 @@
             #bookmarksMenuPopup,
             #menu_ToolsPopup,
             #windowPopup,
-            #menu_HelpPopup
+            #menu_HelpPopup,
+            #usercssloader-menupopup
           )
           menu:not(.menu-iconic) {
           list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
@@ -13036,8 +13046,29 @@
     }
   }
   @supports -moz-bool-pref("userChrome.icon.menu") {
+    #toggle_sharemode {
+      --menuitem-image: url("chrome://branding/content/about-logo-private.png");
+    }
     #usercssloader-menu {
       --menuitem-image: url("../icons/developer.svg");
+    }
+    #usercssloader-menupopup > menu[data-l10n-id="css-menu"] {
+      --menuitem-image: url("../icons/document-css.svg");
+    }
+    #usercssloader-submenupopup > menuitem[data-l10n-id="rebuild-css"] {
+      --menuitem-image: url("chrome://global/skin/icons/reload.svg");
+    }
+    #usercssloader-submenupopup > menuitem[data-l10n-id="make-browsercss-file"] {
+      --menuitem-image: url("chrome://global/skin/icons/edit.svg");
+    }
+    #usercssloader-submenupopup > menuitem[data-l10n-id="open-css-folder"] {
+      --menuitem-image: url("../icons/folder.svg");
+    }
+    #usercssloader-submenupopup > menuitem[data-l10n-id="edit-userChromeCss-editor"] {
+      --menuitem-image: url("chrome://browser/skin/window.svg");
+    }
+    #usercssloader-submenupopup > menuitem[data-l10n-id="edit-userContentCss-editor"] {
+      --menuitem-image: url("chrome://global/skin/icons/page-portrait.svg");
     }
     #toggle_statusBar {
       --menuitem-image: url("../icons/pulse-square.svg");

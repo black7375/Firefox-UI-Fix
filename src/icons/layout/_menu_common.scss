@@ -11,7 +11,7 @@ $_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
 $_nestedPopup: "> menupopup:not(.in-menulist) >";
 $_nestedPopupIcon: ":not(menu, #ContentSelectDropdown) #{$_nestedPopup}";
 $_nestedPopupPadding: ":not(menu, #ContentSelectDropdown, #context-navigation) #{$_nestedPopup}";
-$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup)";
+$_iconMenuPopup: "menupopup:is(#menu_FilePopup, #menu_EditPopup, #menu_viewPopup, #goPopup, #historyMenuPopup, #bookmarksMenuPopup, #menu_ToolsPopup, #windowPopup, #menu_HelpPopup, #usercssloader-menupopup)";
 
 $_nestedPopupIconMenus: selector.nest(
   $_nestedPopupIcon,
