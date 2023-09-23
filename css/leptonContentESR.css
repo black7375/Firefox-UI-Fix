@@ -490,18 +490,22 @@
       padding-top: 0 !important;
     }
   }
-  /** Activity Stream - Hide Firefox's logo ***********************************/
+  /** Activity Stream - Custom background image *******************************/
   @supports -moz-bool-pref("userContent.newTab.background_image") {
-    body {
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
       background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-sunrise.svg"));
       background-size: cover; /* or auto auto */
       background-repeat: no-repeat;
       background-position: right top;
       background-attachment: fixed;
+      /** Use night sky version in dark mode **********************************/
     }
-    /** Use night sky version in dark mode ************************************/
     @media (-moz-toolbar-prefers-color-scheme: dark), (prefers-color-scheme: dark) {
-      body {
+      body::before {
         background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-night.svg"));
       }
     }
