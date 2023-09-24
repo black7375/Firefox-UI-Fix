@@ -31,14 +31,14 @@
 }
 
 .unified-extensions-item {
-  // #603
+  // #603, #735
   &-menu-button.subviewbutton {
-    padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
+    padding: 0 !important; /* Original: calc(var(--arrowpanel-menuitem-margin-inline) - 1px) var(--arrowpanel-menuitem-margin-inline) */
+
+    @include Option("userChrome.panel.full_width_padding") {
+      --arrowpanel-menuitem-padding-inline: var(--arrowpanel-menuitem-padding-block);
+    }
   }
-  // Or
-  // toolbaritem.unified-extensions-item[unified-extensions="true"] .unified-extensions-item-menu-button.subviewbutton {
-  //   padding: var(--arrowpanel-menuitem-padding-inline) !important;
-  // }
 
   // #711
   :root[uidensity="compact"] :is(&, &-action-button) {
