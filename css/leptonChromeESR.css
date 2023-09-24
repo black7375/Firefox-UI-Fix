@@ -4055,6 +4055,10 @@
 }
 /** Rounding ******************************************************************/
 /** Rounding ******************************************************************/
+.unified-extensions-item-menu-button.subviewbutton {
+  border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+}
+
 @supports -moz-bool-pref("userChrome.rounding.square_tab") {
   :root {
     --tab-border-radius: 0 !important; /* Original: 4px */
