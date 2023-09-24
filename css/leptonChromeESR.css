@@ -4879,7 +4879,12 @@
     }
   }
   .unified-extensions-item-menu-button.subviewbutton {
-    padding: 8px !important; /* Original: var(--arrowpanel-menuitem-padding-inline) */
+    padding: 0 !important; /* Original: calc(var(--arrowpanel-menuitem-margin-inline) - 1px) var(--arrowpanel-menuitem-margin-inline) */
+  }
+  @supports -moz-bool-pref("userChrome.panel.full_width_padding") {
+    .unified-extensions-item-menu-button.subviewbutton {
+      --arrowpanel-menuitem-padding-inline: var(--arrowpanel-menuitem-padding-block);
+    }
   }
   :root[uidensity="compact"] :is(.unified-extensions-item, .unified-extensions-item-action-button) {
     padding-block: 0 !important;
@@ -10621,7 +10626,7 @@
           var(--uc-autohide-sidebar-delay) !important;
       }
       #sidebar-box:is(:hover, :focus-within),
-      #siebar-box:has(#sidebar-switcher-target.active) {
+      #sidebar-box:has(#sidebar-switcher-target.active) {
         transition: margin-inline-start var(--uc-autohide-sidebar-speed) var(--animation-easing-function),
           opacity var(--uc-autohide-sidebar-speed) ease-in-out,
           box-shadow var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-speed),
@@ -10629,8 +10634,8 @@
       }
       #sidebar-box:is(:hover, :focus-within) > #sidebar-header,
       #sidebar-box:is(:hover, :focus-within) > #sidebar,
-      #siebar-box:has(#sidebar-switcher-target.active) > #sidebar-header,
-      #siebar-box:has(#sidebar-switcher-target.active) > #sidebar {
+      #sidebar-box:has(#sidebar-switcher-target.active) > #sidebar-header,
+      #sidebar-box:has(#sidebar-switcher-target.active) > #sidebar {
         transition-delay: 0ms !important;
       }
       :root[inFullscreen="true"] #sidebar-box {
