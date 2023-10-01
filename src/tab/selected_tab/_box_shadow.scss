@@ -26,7 +26,7 @@ $ucTabBackgroundShadowHard: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, 
     }
   }
 
-  &[visuallyselected="true"]:not(:focus),
+  &[visuallyselected]:not(:focus),
   &[multiselected]:not([visuallyselected]) {
     //  Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
     //    Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
@@ -40,7 +40,7 @@ $ucTabBackgroundShadowHard: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, 
 :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"])
   #TabsToolbar:not([brighttext])
   #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  .tabbrowser-tab:is([visuallyselected], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
   --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
@@ -51,7 +51,7 @@ $ucTabBackgroundShadowHard: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, 
 :root:not([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
   #TabsToolbar[brighttext]
   #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  .tabbrowser-tab:is([visuallyselected], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
   filter: $ucTabBackgroundShadowHard;
