@@ -2185,19 +2185,21 @@
       height: 48px;
     }
   }
-  @-moz-document url-prefix("about:preferences"), url-prefix("chrome://browser/content/preferences/dialogs/")
+  @-moz-document url-prefix("about:preferences"), url-prefix("chrome://browser/content/preferences/dialogs/"), url-prefix("chrome://pippki/content/")
   {
-    :is(.contentPane, .main-content) richlistbox > richlistitem:hover,
+    :is(.contentPane, .main-content, #certmanagertabs) richlistbox > richlistitem:hover,
     #translations-manage-install-list > .translations-manage-language:hover {
       background-color: var(--in-content-item-hover);
       color: var(--in-content-item-hover-text);
     }
-    :is(.contentPane, .main-content) richlistbox > richlistitem[selected="true"],
+    :is(.contentPane, .main-content, #certmanagertabs) richlistbox > richlistitem[selected="true"],
     #translations-manage-install-list > .translations-manage-language[selected="true"] {
       background-color: var(--in-content-item-selected);
       color: var(--in-content-item-selected-text);
     }
-    :is(.contentPane, .main-content) richlistbox > richlistitem:nth-child(even):not([selected="true"], :hover),
+    :is(.contentPane, .main-content, #certmanagertabs)
+      richlistbox
+      > richlistitem:nth-child(even):not([selected="true"], :hover),
     #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected="true"], :hover) {
       background-color: var(--in-content-box-background-odd);
     }
