@@ -984,13 +984,13 @@
         > #tabbrowser-arrowscrollbox
         > .tabbrowser-tab
         > .tab-stack
-        > .tab-background[selected="true"],
+        > .tab-background[selected],
       :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][lwt-default-theme-in-dark-mode]
         #tabbrowser-tabs:not([movingtab])
         > #tabbrowser-arrowscrollbox
         > .tabbrowser-tab
         > .tab-stack
-        > .tab-background[selected="true"] {
+        > .tab-background[selected] {
         background: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
       }
     }
@@ -2185,11 +2185,11 @@
     #TabsToolbar {
       --toolbarseparator-color: transparent;
     }
-    #TabsToolbar .tabbrowser-tab > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+    #TabsToolbar .tabbrowser-tab > .tab-stack > .tab-background:not([selected], [multiselected]) {
       background-color: var(--uc-frame-element-background);
     }
     #TabsToolbar #firefox-view-button:hover:not([open]) > .toolbarbutton-icon,
-    #TabsToolbar .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected="true"], [multiselected]) {
+    #TabsToolbar .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected], [multiselected]) {
       background-color: var(
         --toolbarbutton-hover-background
       ) !important; /* Original: color-mix(in srgb, currentColor 11%, transparent) */
@@ -6667,7 +6667,7 @@
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[selected="true"]:-moz-lwtheme {
+    > .tab-background[selected]:-moz-lwtheme {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
     */
     background-image: linear-gradient(transparent, transparent),
@@ -6679,7 +6679,7 @@
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
       > .tab-stack
-      > .tab-background[selected="true"]:-moz-lwtheme {
+      > .tab-background[selected]:-moz-lwtheme {
       background-image: linear-gradient(transparent, transparent),
         linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-additional-images, none) !important;
       background-repeat: repeat-x, repeat-x, var(--lwt-background-tiling) !important;
@@ -6729,7 +6729,7 @@
       outline: 1px solid color-mix(in srgb, var(--focus-outline-color, currentColor) 40%, transparent);
       outline-offset: -1px;
     }
-    .tab-background[multiselected="true"][selected="true"] {
+    .tab-background[multiselected="true"][selected] {
       outline-width: 2px;
       outline-offset: -2px;
     }
@@ -7758,7 +7758,7 @@
     > .tabbrowser-tab:not([pinned])
     > .tab-stack
     > .tab-content
-    > .tab-close-button:not([selected="true"]) {
+    > .tab-close-button:not([selected]) {
     display: inline-flex !important;
     display: -moz-inline-box !important;
   }
@@ -8249,10 +8249,8 @@
         opacity: 0;
       }
       /* Pinned Tab - Titlechanged Indicator override */
-      .tabbrowser-tab:is([image], [pinned])[usercontextid]
-        > .tab-stack
-        > .tab-content[attention]:not([selected="true"]),
-      .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+      .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected]),
+      .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
         /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
         --dotted-identity-image: radial-gradient(
           circle,
@@ -8263,34 +8261,34 @@
         background-image: var(--dotted-identity-image), var(--dotted-identity-image), var(--dotted-identity-image) !important;
         background-position-x: var(--uc-titlechanged-container-position-x) !important;
       }
-      .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-      .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+      .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected]),
+      .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
         /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
         background-position-y: top var(--uc-container-position-y) !important;
       }
       /* Pinned Tab - Titlechanged & soundplaying */
       .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
         > .tab-stack
-        > .tab-content[attention]:not([selected="true"]),
+        > .tab-content[attention]:not([selected]),
       .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
         > .tab-stack
-        > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+        > .tab-content[pinned][titlechanged]:not([selected]) {
         --uc-titlechanged-container-position-x: calc(32% - 1px), calc(50% - 1px), calc(70% - 1px);
       }
       :root[uidensity="compact"]
         .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
         > .tab-stack
-        > .tab-content[attention]:not([selected="true"]),
+        > .tab-content[attention]:not([selected]),
       :root[uidensity="compact"]
         .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
         > .tab-stack
-        > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+        > .tab-content[pinned][titlechanged]:not([selected]) {
         --uc-titlechanged-container-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px);
       }
     }
     @supports -moz-bool-pref("userChrome.tab.container.on_top") {
-      .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-      .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+      .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected]),
+      .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
         /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
         background-position-y: top var(--uc-container-position-y-bottom) !important;
       }
