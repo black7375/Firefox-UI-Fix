@@ -182,6 +182,11 @@ html|button.ghost-button:not(.semi-transparent):enabled:hover:active {
 }
 
 /*== Sidebar - Field Color ===================================================*/
+html[lwt-sidebar] body {
+  background-color: var(--lwt-sidebar-background-color, Field) !important;
+  color: var(--lwt-sidebar-text-color, FieldText) !important;
+}
+
 .sidebar-panel #search-box,
 xul|search-textbox.tabsFilter {
   --input-bgcolor: color-mix(in srgb, currentColor 30%, transparent);

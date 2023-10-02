@@ -1,4 +1,14 @@
 @include Option("userChrome.rounding.square_button") {
+  // #firefox-screenshots-selection-iframe
+  .all-buttons-container,
+  .highlight-buttons > button,
+  .cancel-shot,
+
+  // Video player
+  #pictureInPictureToggle > .pip-small {
+    border-radius: 0 !important;
+  }
+
   @include moz-document(
     url-prefix "about:",
     regexp "^chrome:\/\/\\w+\/content\/.*\.xhtml$"

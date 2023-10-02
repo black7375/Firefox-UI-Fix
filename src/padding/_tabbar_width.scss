@@ -107,7 +107,12 @@
         padding-inline: 1px !important;
       }
       &:not([pinned]) {
-        margin-inline: -1px !important;
+        &:not(:first-of-type) {
+          margin-inline: -1px !important;
+        }
+        &:first-of-type {
+          margin-inline-end: -1px !important;
+        }
       }
     }
   }

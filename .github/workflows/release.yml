@@ -32,13 +32,24 @@ jobs:
     needs: sync-branches
     strategy:
       matrix:
-        mode: ["STANDARD", "ESR"]
         include:
-          - name: "Lepton"
+          - mode: "STANDARD"
+            name: "Lepton"
             branch: "master"
-          - name: "Lepton-Photon-Style"
+          - mode: "STANDARD"
+            name: "Lepton-Photon-Style"
             branch: "photon-style"
-          - name: "Lepton-Proton-Style"
+          - mode: "STANDARD"
+            name: "Lepton-Proton-Style"
+            branch: "proton-style"
+          - mode: "ESR"
+            name: "Lepton"
+            branch: "master"
+          - mode: "ESR"
+            name: "Lepton-Photon-Style"
+            branch: "photon-style"
+          - mode: "ESR"
+            name: "Lepton-Proton-Style"
             branch: "proton-style"
     steps:
       - uses: actions/checkout@v3
@@ -101,4 +112,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
-            ${{ matrix.name }}-ESR.zip
+            ESR-${{ matrix.name }}.zip

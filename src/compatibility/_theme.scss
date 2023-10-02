@@ -64,7 +64,7 @@ menu {
   @each $prefix, $postfix in $options {
     #TabsToolbar#{$prefix}
     #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+      .tabbrowser-tab:is([visuallyselected], [multiselected])
       > .tab-stack
       > .tab-background#{$postfix} {
       @extend %noneBorder;

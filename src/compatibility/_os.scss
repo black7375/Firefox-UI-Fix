@@ -192,7 +192,7 @@
 $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 @mixin _os_linuxDefaultThemeSelectedTab {
   #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+    .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
     > .tab-background:not(:-moz-lwtheme) {
     @content;
@@ -204,7 +204,7 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 @include OS($linux) {
   @include Light {
     /* Because of
-      #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected=true], [multiselected]) > .tab-stack > .tab-background {
+      #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected], [multiselected]) > .tab-stack > .tab-background {
         border: 1px solid var(--tab-line-color, rgba(128,128,142,0.9));
         box-shadow: 0 0 4px rgba(128,128,142,0.5);
       }

@@ -1,12 +1,14 @@
 /* Based on https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/centered_tab_label.css */
 .tab-label-container {
   display: grid;
-  justify-content: safe center;
-  align-items: safe center;
 }
 .tab-label,
 .tab-secondary-label {
   overflow: clip;
+
+  // #761
+  justify-self: safe center;
+  align-self: safe center;
 }
 
 .tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),

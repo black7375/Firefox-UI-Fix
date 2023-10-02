@@ -1,6 +1,8 @@
-.tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),
-.tabbrowser-tab:not(:hover,[pinned]) .tab-label-container:not([textoverflow]) {
-  margin-inline-end: 5px;
+@include Option("userChrome.centered.tab.label") {
+  .tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),
+  .tabbrowser-tab:not(:hover,[pinned]) .tab-label-container:not([textoverflow]) {
+    margin-inline-end: 5px;
+  }
 }
 
 @include Option("userChrome.tab.close_button_at_hover") {

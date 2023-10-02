@@ -50,14 +50,14 @@
 
   .tabbrowser-tab
   > .tab-stack
-  > .tab-background:not([selected="true"], [multiselected]) {
+  > .tab-background:not([selected], [multiselected]) {
     background-color: var(--uc-frame-element-background);
   }
 
   #firefox-view-button:hover:not([open]) > .toolbarbutton-icon,
   .tabbrowser-tab:hover
   > .tab-stack
-  > .tab-background:not([selected="true"], [multiselected]) {
+  > .tab-background:not([selected], [multiselected]) {
     background-color: var(--toolbarbutton-hover-background) !important; /* Original: color-mix(in srgb, currentColor 11%, transparent) */
   }
 }
