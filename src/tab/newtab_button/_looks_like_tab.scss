@@ -146,7 +146,7 @@
 
 /* Fix tab overlap #678 */
 @include Option("userChrome.tab.bottom_rounded_corner") {
-  tab:where([visuallyselected="true"]) {
+  tab:where([visuallyselected]) {
     z-index: 1;
   }
 }

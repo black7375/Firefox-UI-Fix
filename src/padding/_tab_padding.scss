@@ -13,6 +13,15 @@
   :root {
     --tab-block-margin: 2px !important; /* New version of --proton-tab-block-margin */
   }
+
+  // Floorp vertical tab sideeffect #766
+  #tabbrowser-tabs[orient="vertical"] {
+    --tab-block-margin: 4px !important;
+
+    .tabbrowser-tab {
+      margin-block: -1px !important;
+    }
+  }
 }
 @include Option("userChrome.tab.photon_like_padding") {
   :root {

@@ -1,4 +1,13 @@
 .tab-icon-stack {
-  @include BoxFlex(1);
-  justify-content: end;
+  margin-inline-start: auto;
+}
+.tab-label-container {
+  max-width: min-content;
+  margin-inline-end: auto;
+}
+@include Option("userChrome.tab.close_button_at_hover") {
+  .tabbrowser-tab:not(:hover, [pinned]) > .tab-stack > .tab-content > .tab-close-button {
+    padding-inline-start: 6px !important; /* Original: 0px */
+    width: 24px !important; /* Original: 17px */
+  }
 }

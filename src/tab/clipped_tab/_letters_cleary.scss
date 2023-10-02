@@ -24,12 +24,12 @@
   .tab-label-container {
     --tab-label-mask-size: 30%;
   }
-  &:is([visuallyselected="true"], [multiselected="true"]) .tab-label-container {
+  &:is([visuallyselected], [multiselected="true"]) .tab-label-container {
     --tab-label-mask-size: 25%;
   }
 }
 
-.tabbrowser-tab[visuallyselected=true]:not([labelendaligned]):hover .tab-label-container,
-#tabbrowser-tabs:not([closebuttons=activetab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([visuallyselected=true],[labelendaligned]):hover .tab-label-container {
+.tabbrowser-tab[visuallyselected]:not([labelendaligned]):hover .tab-label-container,
+#tabbrowser-tabs:not([closebuttons=activetab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([visuallyselected],[labelendaligned]):hover .tab-label-container {
   --tab-label-mask-size: 0.9em; /* Original: 1em */
 }

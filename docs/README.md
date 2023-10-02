@@ -37,6 +37,9 @@ Firefox Documents:
 Test for non-Mac users:
 - [Docker-OSX](https://github.com/sickcodes/Docker-OSX)
 
+If you have difficulty contributing, please feel free to [click this link](https://github.com/black7375/Firefox-UI-Fix/discussions/new?category=help-contribute-to-this-project) to explain.  
+I will help you as much as I know.
+
 ## Project-Specific
 ### Environment
 [`git`](https://git-scm.com/) and [`yarn`](https://yarnpkg.com/) must be installed.

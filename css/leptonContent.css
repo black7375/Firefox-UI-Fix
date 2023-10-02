@@ -490,14 +490,24 @@
       padding-top: 0 !important;
     }
   }
-  /** Activity Stream - Hide Firefox's logo ***********************************/
+  /** Activity Stream - Custom background image *******************************/
   @supports -moz-bool-pref("userContent.newTab.background_image") {
-    body {
-      background-image: var(--uc-newTab-wallpaper, url("../icons/Forest-trees-sunset-art-picture_3840x2160.jpg"));
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-sunrise.svg"));
       background-size: cover; /* or auto auto */
       background-repeat: no-repeat;
       background-position: right top;
       background-attachment: fixed;
+      /** Use night sky version in dark mode **********************************/
+    }
+    @media (prefers-color-scheme: dark) {
+      body::before {
+        background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-night.svg"));
+      }
     }
   }
 }
@@ -2172,18 +2182,21 @@
       height: 48px;
     }
   }
-  @-moz-document url-prefix("about:preferences") {
-    #handlersView > richlistitem:hover,
+  @-moz-document url-prefix("about:preferences"), url-prefix("chrome://browser/content/preferences/dialogs/"), url-prefix("chrome://pippki/content/")
+  {
+    :is(.contentPane, .main-content, #certmanagertabs) richlistbox > richlistitem:hover,
     #translations-manage-install-list > .translations-manage-language:hover {
       background-color: var(--in-content-item-hover);
       color: var(--in-content-item-hover-text);
     }
-    #handlersView > richlistitem[selected="true"],
+    :is(.contentPane, .main-content, #certmanagertabs) richlistbox > richlistitem[selected="true"],
     #translations-manage-install-list > .translations-manage-language[selected="true"] {
       background-color: var(--in-content-item-selected);
       color: var(--in-content-item-selected-text);
     }
-    #handlersView > richlistitem:nth-child(even):not([selected="true"], :hover),
+    :is(.contentPane, .main-content, #certmanagertabs)
+      richlistbox
+      > richlistitem:nth-child(even):not([selected="true"], :hover),
     #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected="true"], :hover) {
       background-color: var(--in-content-box-background-odd);
     }
@@ -2951,6 +2964,12 @@
 }
 /** Rounding ******************************************************************/
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
+  .all-buttons-container,
+  .highlight-buttons > button,
+  .cancel-shot,
+  #pictureInPictureToggle > .pip-small {
+    border-radius: 0 !important;
+  }
   @-moz-document url-prefix("about:"), regexp("^chrome://\\w+/content/.*.xhtml$")
   {
     button:not(.toggle-button),

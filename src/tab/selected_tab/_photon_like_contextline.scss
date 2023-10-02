@@ -50,7 +50,7 @@
 /* Remove side's background color border */
 #TabsToolbar[brighttext]
   #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  .tabbrowser-tab:is([visuallyselected], [multiselected])
   > .tab-stack
   > .tab-background:-moz-lwtheme {
   --tabs-border-color: rgba(0, 0, 0, 0.3) !important;
@@ -58,7 +58,7 @@
 }
 #TabsToolbar:not([brighttext])
   #tabbrowser-tabs:not([noshadowfortests])
-  .tabbrowser-tab:is([visuallyselected="true"], [multiselected])
+  .tabbrowser-tab:is([visuallyselected], [multiselected])
   > .tab-stack
   > .tab-background {
   box-shadow: 0 0 1px var(--tabs-border-color), 0 0 4px rgba(128, 128, 142, 0.5) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */

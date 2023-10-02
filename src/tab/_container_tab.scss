@@ -76,8 +76,8 @@
   }
 
   /* Pinned Tab - Titlechanged Indicator override */
-  .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected="true"]),
-  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+  .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected]),
+  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
     /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
     --dotted-identity-image: radial-gradient(
       circle,
@@ -89,8 +89,8 @@
     background-position-x: var(--uc-titlechanged-container-position-x) !important;
   }
 
-  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected]),
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
     background-position-y: top var(--uc-container-position-y) !important;
   }
@@ -98,27 +98,27 @@
   /* Pinned Tab - Titlechanged & soundplaying */
   .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
     > .tab-stack
-    > .tab-content[attention]:not([selected="true"]),
+    > .tab-content[attention]:not([selected]),
   .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
     > .tab-stack
-    > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    > .tab-content[pinned][titlechanged]:not([selected]) {
     --uc-titlechanged-container-position-x: calc(32% - 1px), calc(50% - 1px), calc(70% - 1px);
   }
   :root[uidensity="compact"]
     .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
     > .tab-stack
-    > .tab-content[attention]:not([selected="true"]),
+    > .tab-content[attention]:not([selected]),
   :root[uidensity="compact"]
     .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
     > .tab-stack
-    > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+    > .tab-content[pinned][titlechanged]:not([selected]) {
     --uc-titlechanged-container-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px);
   }
 }
 
 @include Option("userChrome.tab.container.on_top") {
-  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+  .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected]),
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
     background-position-y: top var(--uc-container-position-y-bottom) !important;
   }

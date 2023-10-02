@@ -48,7 +48,7 @@
   }
 
   #sidebar-box:is(:hover, :focus-within),
-  #siebar-box:has(#sidebar-switcher-target.active) {
+  #sidebar-box:has(#sidebar-switcher-target.active) {
     transition: margin-inline-start var(--uc-autohide-sidebar-speed) var(--animation-easing-function), opacity var(--uc-autohide-sidebar-speed) ease-in-out,
                 box-shadow var(--uc-autohide-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-speed), visibility 0s linear !important;
     > {

@@ -2,9 +2,13 @@
   @import "../../theme/proton_chrome/sanitize_everything";
 }
 
-@include moz-document(url-prefix "about:preferences") {
-  // Odd table #737
-  #handlersView > richlistitem,
+@include moz-document(
+  url-prefix "about:preferences",
+  url-prefix "chrome://browser/content/preferences/dialogs/",
+  url-prefix "chrome://pippki/content/"
+) {
+  // Odd table #737 #751 #783
+  :is(.contentPane, .main-content, #certmanagertabs) richlistbox > richlistitem,
   #translations-manage-install-list > .translations-manage-language {
     &:hover {
       background-color: var(--in-content-item-hover);

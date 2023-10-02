@@ -218,15 +218,25 @@
     }
   }
 
-  /** Activity Stream - Hide Firefox's logo ***********************************/
+  /** Activity Stream - Custom background image *******************************/
   @include Option("userContent.newTab.background_image") {
-    body {
+    body::before {
+      content: '';
+      position: fixed;
+      width: 100%;
+      height: 100%;
+
       // https://best-wallpaper.net/Forest-trees-sunset-art-picture_wallpapers.html
-      background-image: var(--uc-newTab-wallpaper, url("../icons/Forest-trees-sunset-art-picture_3840x2160.jpg"));
+      background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-sunrise.svg"));
       background-size: cover; /* or auto auto */
       background-repeat: no-repeat;
       background-position: right top;
       background-attachment: fixed;
+
+      /** Use night sky version in dark mode **********************************/
+      @include Dark {
+        background-image: var(--uc-newTab-wallpaper, url("../icons/horizon-night.svg"));
+      }
     }
   }
 }
