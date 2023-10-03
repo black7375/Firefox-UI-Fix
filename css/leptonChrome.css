@@ -9484,9 +9484,11 @@
 /** Centered ******************************************************************/
 /*= Centered - Tab ===========================================================*/
 @supports -moz-bool-pref("userChrome.centered.tab") {
-  .tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),
-  .tabbrowser-tab:not(:hover, [pinned]) .tab-label-container:not([textoverflow]) {
-    margin-inline-end: 5px;
+  @supports -moz-bool-pref("userChrome.centered.tab.label") {
+    .tabbrowser-tab[selected]:not(:hover) .tab-label-container:not([textoverflow]),
+    .tabbrowser-tab:not(:hover, [pinned]) .tab-label-container:not([textoverflow]) {
+      margin-inline-end: 5px;
+    }
   }
   @supports -moz-bool-pref("userChrome.tab.close_button_at_hover") {
     #tabbrowser-tabs[closebuttons="activetab"]
@@ -9503,9 +9505,17 @@
   }
   @supports not -moz-bool-pref("userChrome.centered.tab.label") {
     .tab-icon-stack {
-      flex: 1;
-      -moz-box-flex: 1;
-      justify-content: end;
+      margin-inline-start: auto;
+    }
+    .tab-label-container {
+      max-width: min-content;
+      margin-inline-end: auto;
+    }
+    @supports -moz-bool-pref("userChrome.tab.close_button_at_hover") {
+      .tabbrowser-tab:not(:hover, [pinned]) > .tab-stack > .tab-content > .tab-close-button {
+        padding-inline-start: 6px !important; /* Original: 0px */
+        width: 24px !important; /* Original: 17px */
+      }
     }
   }
   @supports -moz-bool-pref("userChrome.centered.tab.label") {
