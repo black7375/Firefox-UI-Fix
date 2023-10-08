@@ -2901,6 +2901,11 @@
       color: var(--in-content-button-text-color) !important; /* SelectedItemText */
       background-color: var(--in-content-button-background-active) !important; /* #C1D2EE; */
     }
+    @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+      #viewGroup > radio {
+        height: auto !important;
+      }
+    }
     #generalTab {
       --viewgroup-image: url(chrome://global/skin/icons/page-portrait.svg);
     }
