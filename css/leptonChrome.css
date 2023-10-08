@@ -58,13 +58,6 @@
   #allTabsMenu-allTabsView .subviewbutton.subviewbutton-nav:not([shortcut]) {
     padding-inline-end: var(--arrowpanel-menuitem-padding-inline) !important;
   }
-  /*= Icon Fill Color ==========================================================*/
-  :root:-moz-lwtheme {
-    /* Auto create --lwt-toolbarbutton-icon-fill-attention, fix for nightly default theme
-         Default Color: rgb(0,97,224) -> rgb(0, 120, 215) for more light
-       */
-    --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, rgb(0, 120, 215));
-  }
   /*= First visible tab margin at maximized #332 ===============================*/
   :root[tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar {
     margin-left: -1px;
