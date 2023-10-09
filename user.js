@@ -2,17 +2,8 @@
 // userchrome.css usercontent.css activate
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
-// Proton Enabled #127 || Removed at 97 #328 (Maintained for compatibility with ESR)
-user_pref("browser.proton.enabled", true);
-
 // Fill SVG Color
 user_pref("svg.context-properties.content.enabled", true);
-
-// CSS Color Mix - 88 Above
-user_pref("layout.css.color-mix.enabled", true);
-
-// CSS Blur Filter - 88 Above
-user_pref("layout.css.backdrop-filter.enabled", true);
 
 // Restore Compact Mode - 89 Above
 user_pref("browser.compactmode.show", true);
