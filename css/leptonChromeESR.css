@@ -4511,14 +4511,11 @@
     }
     @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
       :root:not([uidensity="compact"]) #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox,
-      #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+      #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned],
+      #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned] .tab-stack,
       #TabsToolbar:not([multibar])
         #tabbrowser-arrowscrollbox[overflowing="true"]
-        > .tabbrowser-tab[pinned="true"]
-        .tab-stack,
-      #TabsToolbar:not([multibar])
-        #tabbrowser-arrowscrollbox[overflowing="true"]
-        > .tabbrowser-tab[pinned="true"]
+        > .tabbrowser-tab[pinned]
         .tab-content {
         max-height: var(--tab-min-height) !important; /* Force apply height */
       }
@@ -6837,7 +6834,7 @@
     max-width: var(--tab-max-width) !important;
     margin-inline-start: calc(var(--tab-shadow-max-size) * -1) !important;
   }
-  .tabbrowser-tab[selected="true"][pinned="true"] {
+  .tabbrowser-tab[selected="true"][pinned] {
     flex: 100;
     -moz-box-flex: 100;
     max-width: var(--tab-max-width) !important;
@@ -9682,10 +9679,10 @@
   .tabbrowser-tab:not([hidden="true"]) {
     counter-increment: tab-counts;
   }
-  .tabbrowser-tab:not([hidden="true"])[pinned="true"] .tab-label-container::before {
+  .tabbrowser-tab:not([hidden="true"])[pinned] .tab-label-container::before {
     content: " " counter(tab-counts);
   }
-  .tabbrowser-tab:not([hidden="true"]):not([pinned="true"]) .tab-label-container::before {
+  .tabbrowser-tab:not([hidden="true"]):not([pinned]) .tab-label-container::before {
     content: counter(tab-counts) ": ";
   }
   .tabbrowser-tab:not([hidden="true"]) .tab-label-container {
@@ -10803,12 +10800,12 @@
 }
 @supports -moz-bool-pref("userChrome.hidden.tab_icon") {
   @supports not -moz-bool-pref("userChrome.hidden.tab_icon.always") {
-    .tabbrowser-tab:not([pinned="true"]) .tab-icon-image {
+    .tabbrowser-tab:not([pinned]) .tab-icon-image {
       display: none;
     }
   }
   @supports -moz-bool-pref("userChrome.hidden.tab_icon.always") {
-    .tabbrowser-tab:not([pinned="true"]) .tab-icon-stack {
+    .tabbrowser-tab:not([pinned]) .tab-icon-stack {
       display: none;
     }
   }

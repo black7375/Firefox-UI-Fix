@@ -34,7 +34,7 @@ spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
   margin-inline-start: calc(var(--tab-shadow-max-size) * -1) !important;
   // padding-inline-start: calc(var(--tab-shadow-max-size) + 1px) !important;
 
-  &[pinned="true"] {
+  &[pinned] {
     @include BoxFlex(100);
     max-width: var(--tab-max-width) !important;
   }

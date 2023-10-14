@@ -32,10 +32,10 @@
   counter-increment: tab-counts;
 
   // https://www.designcise.com/web/tutorial/how-to-add-space-before-or-after-an-element-using-css-pseudo-elements
-  &[pinned="true"] .tab-label-container::before  {
+  &[pinned] .tab-label-container::before  {
     content: "\00a0" counter(tab-counts);
   }
-  &:not([pinned="true"]) .tab-label-container::before {
+  &:not([pinned]) .tab-label-container::before {
     content: counter(tab-counts) ":\00a0";
   }
 

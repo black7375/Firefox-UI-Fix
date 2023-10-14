@@ -13,7 +13,7 @@
 }
 
 @include Option("userChrome.hidden.tab_icon") {
-  .tabbrowser-tab:not([pinned="true"]) {
+  .tabbrowser-tab:not([pinned]) {
     @include NotOption("userChrome.hidden.tab_icon.always") {
       .tab-icon-image {
         display: none;
