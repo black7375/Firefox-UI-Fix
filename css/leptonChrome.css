@@ -4041,13 +4041,13 @@
   }
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
     @supports -moz-bool-pref("userChrome.tab.lepton_like_padding") {
-      .tabbrowser-tab[pinned] {
+      #TabsToolbar:not([multibar]) .tabbrowser-tab[pinned] {
         padding-inline: 1px !important;
       }
-      .tabbrowser-tab:not([pinned]):not(:first-of-type) {
+      #TabsToolbar:not([multibar]) .tabbrowser-tab:not([pinned]):not(:first-of-type) {
         margin-inline: -1px !important;
       }
-      .tabbrowser-tab:not([pinned]):first-of-type {
+      #TabsToolbar:not([multibar]) .tabbrowser-tab:not([pinned]):first-of-type {
         margin-inline-end: -1px !important;
       }
     }
