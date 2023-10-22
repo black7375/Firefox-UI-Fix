@@ -48,18 +48,18 @@ menu {
 }
 
 /*= Remove Tab Border ========================================================*/
+@mixin noneBorder {
+  /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+  border: unset !important;
+}
 @mixin _theme_removeTabBorder($options...) {
-  %noneBorder {
-    /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
-    border: unset !important;
-  }
   @each $prefix, $postfix in $options {
     #TabsToolbar#{$prefix}
     #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab:is([visuallyselected], [multiselected])
       > .tab-stack
       > .tab-background#{$postfix} {
-      @extend %noneBorder;
+      @include noneBorder;
     }
   }
 }

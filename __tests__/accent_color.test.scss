@@ -1,7 +1,10 @@
 @use "true" as *;
 @use "../src/utils/accent_color" as *;
+@use "../src/utils/mode";
 
 @include test-module("Accent Color Option [mix]") {
+  @include mode.ESR;
+
   @include test("simple") {
     @include assert {
       @include output {
