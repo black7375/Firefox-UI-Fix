@@ -1,4 +1,5 @@
 $_osESR: false !default;
+$_mediaPref: false !default;
 
 @mixin ESR() {
   $_osESR: true !global;
@@ -8,10 +9,22 @@ $_osESR: false !default;
   $_osESR: false !global;
 }
 
+@mixin SUPPORT_PREF() {
+  $_mediaPref: false !global;
+}
+
+@mixin MEDIA_PREF() {
+  $_mediaPref: true !global;
+}
+
 @function isESR() {
   @return $_osESR;
 }
 
 @function isSTANDARD() {
   @return not $_osESR;
+}
+
+@function isMediaPref() {
+  @return isSTANDARD() and $_mediaPref;
 }
