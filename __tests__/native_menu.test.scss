@@ -137,6 +137,7 @@
 
 @include test-module("Native Menu Option - Standard [mix]") {
   @include mode.STANDARD;
+  @include mode.SUPPORT_PREF;
 
   @include test("simple") {
     @include assert {
@@ -237,6 +238,125 @@
           @include example;
         }
         @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
+          @media (-moz-gtk-csd-available) {
+            @include example;
+          }
+        }
+
+        // IGNORE
+
+        // AS Windows
+        @media (-moz-platform: windows) {
+          @include example;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("Native Menu Option - MediaPref [mix]") {
+  @include mode.STANDARD;
+  @include mode.MEDIA_PREF;
+
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include native_menu.NativeToolkitMenu {
+          @include example;
+        }
+
+        @include native_menu.NativeMenuPopup {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (-moz-bool-pref: '"widget.macos.native-context-menus"'), (-moz-bool-pref: '"widget.gtk.native-context-menus"') {
+          @include example;
+        }
+
+        menupopup:is(#historyMenuPopup, #bookmarksMenuPopup),
+        menupopup:not([placespopup="true"]) {
+          @include example;
+        }
+      }
+    }
+  }
+  @include test("native menu - with windows media") {
+    @include assert {
+      @include output {
+        @include native_menu.NativeMenu(true) {
+          @include example;
+        }
+
+        @include native_menu.NonNativeMenu(true) {
+          @include example;
+        }
+
+        @include native_menu.WinNativeMenu(true) {
+          @include example;
+        }
+
+        @include native_menu.WinNonNativeMenu(true) {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (not (-moz-bool-pref: '"userChrome.theme.non_native_menu"')) {
+          @media (-moz-gtk-csd-available) {
+            @include example;
+          }
+        }
+
+        // Only Windows
+        @media (-moz-platform: windows) {
+          @include example;
+        }
+        @media (-moz-bool-pref: '"userChrome.theme.non_native_menu"') {
+          @media (-moz-gtk-csd-available) {
+            @include example;
+          }
+        }
+
+        // IGNORE
+
+        // Only Windows
+        @media (-moz-platform: windows) {
+          @include example;
+        }
+      }
+    }
+  }
+  @include test("native menu - without windows media") {
+    @include assert {
+      @include output {
+        @include native_menu.NativeMenu {
+          @include example;
+        }
+
+        @include native_menu.NonNativeMenu {
+          @include example;
+        }
+
+        @include native_menu.WinNativeMenu {
+          @include example;
+        }
+
+        @include native_menu.WinNonNativeMenu {
+          @include example;
+        }
+      }
+      @include expect {
+        @media (not (-moz-bool-pref: '"userChrome.theme.non_native_menu"')) {
+          @media (-moz-gtk-csd-available) {
+            @include example;
+          }
+        }
+
+        // AS Windows
+        @media (-moz-platform: windows) {
+          @include example;
+        }
+        @media (-moz-bool-pref: '"userChrome.theme.non_native_menu"') {
           @media (-moz-gtk-csd-available) {
             @include example;
           }

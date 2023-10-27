@@ -1,6 +1,31 @@
 //-- Mixin ---------------------------------------------------------------------
 @import "combined_circle_button";
 
+@mixin _combined_forward_button() {
+  @if mode.isMediaPref() {
+    @media (-moz-bool-pref: '"userChrome.combined.urlbar.nav_button"'),
+    ((not (-moz-bool-pref: '"userChrome.combined.sub_button.as_normal"')) or
+     (
+       (-moz-bool-pref: '"userChrome.combined.nav_button"') and
+       (-moz-bool-pref: '"userChrome.combined.urlbar.home_button"')
+     )
+    ) {
+      @content;
+    }
+  }
+  @else {
+    @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") or
+    ((not -moz-bool-pref("userChrome.combined.sub_button.as_normal")) or
+     (
+       -moz-bool-pref("userChrome.combined.nav_button") and
+       -moz-bool-pref("userChrome.combined.urlbar.home_button")
+     )
+    ) {
+      @content;
+    }
+  }
+}
+
 @mixin _combined_nav_button_background($autohideOptionName) {
   > .toolbarbutton-icon {
     @include circle_button_background;
@@ -39,13 +64,7 @@
 //------------------------------------------------------------------------------
 
 #nav-bar-customization-target > {
-  @supports -moz-bool-pref("userChrome.combined.urlbar.nav_button") or
-  ((not -moz-bool-pref("userChrome.combined.sub_button.as_normal")) or
-   (
-        -moz-bool-pref("userChrome.combined.nav_button") and
-        -moz-bool-pref("userChrome.combined.urlbar.home_button")
-   )
-  ) {
+  @include _combined_forward_button {
     #forward-button {
       --uc-forward-button-margin: calc(-1 * var(--uc-toolbarbutton-boundary) + 1px);
 

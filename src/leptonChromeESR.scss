@@ -1,4 +1,7 @@
 @use "utils/mode";
 
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
 @include mode.ESR;
-@import "leptonChrome"
+@import "leptonChrome";
