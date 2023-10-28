@@ -1,6 +1,6 @@
 @charset "UTF-8";
-@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-@namespace html "http://www.w3.org/1999/xhtml";
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
 /** Default Theme - Contrast **************************************************/
 @supports -moz-bool-pref("userChrome.theme.built_in_contrast") {
   /*= Lightmode - Color darker =================================================*/
@@ -10901,6 +10901,23 @@
 }
 /** Icons *********************************************************************/
 @supports not -moz-bool-pref("userChrome.icon.disabled") {
+  /** Icons - List **************************************************************/
+  :root {
+    --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+    --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
+    --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
+  }
+  @supports -moz-bool-pref("userChrome.icon.library") {
+    :root {
+      --uc-folder-icon: url("../icons/folder.svg");
+    }
+  }
+  @supports selector(:has(a)) {
+    :root:has(#sidebar-box[positionend="true"]) {
+      --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
+      --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
+    }
+  }
   /** Library - Icons Replace ***************************************************/
   @supports -moz-bool-pref("userChrome.icon.library") {
     /*= Standard Folder - More Visible ===========================================*/
@@ -10912,7 +10929,7 @@
     #editBMPanel_folderMenuList:not([selectedGuid="toolbar_____"], [selectedGuid="menu________"]),
     #editBMPanel_folderMenuList .folder-icon:not([id]),
     .downloadIconShow > .button-box > .button-icon {
-      list-style-image: url("../icons/folder.svg") !important;
+      list-style-image: var(--uc-folder-icon) !important;
     }
     /* Standard Folder - Open */
     :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
@@ -11067,16 +11084,6 @@
     }
   }
   /** Panel - Icons *************************************************************/
-  :root {
-    --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
-    --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
-  }
-  @supports selector(:has(a)) {
-    :root:has(#sidebar-box[positionend="true"]) {
-      --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
-      --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
-    }
-  }
   @supports -moz-bool-pref("userChrome.icon.panel") {
     /*= Padding ==================================================================*/
     :root {
@@ -12924,12 +12931,7 @@
         --menuitem-image: url("../icons/fluid.svg");
       }
       .downloadShowMenuItem {
-        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-      }
-      @supports -moz-bool-pref("userChrome.icon.library") {
-        .downloadShowMenuItem {
-          --menuitem-image: url("../icons/folder.svg");
-        }
+        --menuitem-image: var(--uc-folder-icon);
       }
       #downloadsContextMenu > menuitem.downloadOpenReferrerMenuItem,
       #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
@@ -13002,13 +13004,7 @@
       }
       #placesContext_showInFolder,
       #placesContext_new\:folder {
-        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-      }
-      @supports -moz-bool-pref("userChrome.icon.library") {
-        #placesContext_showInFolder,
-        #placesContext_new\:folder {
-          --menuitem-image: url("../icons/folder.svg");
-        }
+        --menuitem-image: var(--uc-folder-icon);
       }
       #placesContext_new\:separator {
         --menuitem-image: url("../icons/vertical-line.svg");
@@ -13562,12 +13558,7 @@
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
       #newfolder {
-        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-      }
-      @supports -moz-bool-pref("userChrome.icon.library") {
-        #newfolder {
-          --menuitem-image: url("../icons/folder.svg");
-        }
+        --menuitem-image: var(--uc-folder-icon);
       }
       #newseparator {
         --menuitem-image: url("../icons/vertical-line.svg");
@@ -13672,7 +13663,7 @@
       list-style-image: url("../icons/refresh-cw.svg");
     }
     #openprofiledir {
-      list-style-image: url("../icons/folder.svg");
+      list-style-image: var(--uc-folder-icon);
     }
   }
   @supports -moz-bool-pref("userChrome.icon.menu") {
@@ -13692,7 +13683,7 @@
       --menuitem-image: url("chrome://global/skin/icons/edit.svg");
     }
     #usercssloader-submenupopup > menuitem[data-l10n-id="open-css-folder"] {
-      --menuitem-image: url("../icons/folder.svg");
+      --menuitem-image: var(--uc-folder-icon);
     }
     #usercssloader-submenupopup > menuitem[data-l10n-id="edit-userChromeCss-editor"] {
       --menuitem-image: url("chrome://browser/skin/window.svg");

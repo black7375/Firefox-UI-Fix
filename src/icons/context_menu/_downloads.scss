@@ -20,10 +20,7 @@
   --menuitem-image: url("../icons/fluid.svg");
 }
 .downloadShowMenuItem {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-  @include Option("userChrome.icon.library") {
-    --menuitem-image: url("../icons/folder.svg");
-  }
+  --menuitem-image: var(--uc-folder-icon);
 }
 
 #downloadsContextMenu > menuitem {

@@ -3,10 +3,7 @@
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #newfolder {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-  @include Option("userChrome.icon.library") {
-    --menuitem-image: url("../icons/folder.svg");
-  }
+  --menuitem-image: var(--uc-folder-icon);
 }
 #newseparator {
   --menuitem-image: url("../icons/vertical-line.svg");

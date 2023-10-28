@@ -2218,7 +2218,7 @@
       #editBMPanel_folderMenuList:not([selectedGuid="toolbar_____"], [selectedGuid="menu________"]),
       #editBMPanel_folderMenuList .folder-icon:not([id]),
       .downloadIconShow > .button-box > .button-icon {
-        list-style-image: url("../icons/folder.svg") !important;
+        list-style-image: var(--uc-folder-icon) !important;
       }
       /* Standard Folder - Open */
       :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
@@ -3176,6 +3176,14 @@
 /** Menu - Icons Layout *******************************************************/
 @supports not -moz-bool-pref("userChrome.icon.disabled") {
   @supports -moz-bool-pref("userChrome.icon.menu") {
+    :root {
+      --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      :root {
+        --uc-folder-icon: url("../icons/folder.svg");
+      }
+    }
     @-moz-document url("chrome://browser/content/places/places.xhtml"), url("about:downloads")
     {
       menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
@@ -3506,12 +3514,7 @@
           --menuitem-image: url("../icons/fluid.svg");
         }
         .downloadShowMenuItem {
-          --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-        }
-        @supports -moz-bool-pref("userChrome.icon.library") {
-          .downloadShowMenuItem {
-            --menuitem-image: url("../icons/folder.svg");
-          }
+          --menuitem-image: var(--uc-folder-icon);
         }
         #downloadsContextMenu > menuitem.downloadOpenReferrerMenuItem,
         #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
@@ -3584,13 +3587,7 @@
         }
         #placesContext_showInFolder,
         #placesContext_new\:folder {
-          --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-        }
-        @supports -moz-bool-pref("userChrome.icon.library") {
-          #placesContext_showInFolder,
-          #placesContext_new\:folder {
-            --menuitem-image: url("../icons/folder.svg");
-          }
+          --menuitem-image: var(--uc-folder-icon);
         }
         #placesContext_new\:separator {
           --menuitem-image: url("../icons/vertical-line.svg");
@@ -3618,12 +3615,7 @@
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
         }
         #newfolder {
-          --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-        }
-        @supports -moz-bool-pref("userChrome.icon.library") {
-          #newfolder {
-            --menuitem-image: url("../icons/folder.svg");
-          }
+          --menuitem-image: var(--uc-folder-icon);
         }
         #newseparator {
           --menuitem-image: url("../icons/vertical-line.svg");

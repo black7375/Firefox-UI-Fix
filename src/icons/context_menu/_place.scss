@@ -54,10 +54,7 @@
 }
 #placesContext_showInFolder,
 #placesContext_new\:folder {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-  @include Option("userChrome.icon.library") {
-    --menuitem-image: url("../icons/folder.svg");
-  }
+  --menuitem-image: var(--uc-folder-icon);
 }
 #placesContext_new\:separator {
   --menuitem-image: url("../icons/vertical-line.svg");

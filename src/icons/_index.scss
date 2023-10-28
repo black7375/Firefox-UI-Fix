@@ -1,10 +1,8 @@
-/** Library - Icons Replace ***************************************************/
-@include Option("userChrome.icon.library") {
-  @import "../library/chrome";
-}
-
-/** Panel - Icons *************************************************************/
+@import "shared";
+/** Icons - List **************************************************************/
 :root {
+  @include initIcons;
+
   --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
   --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
   @include Has {
@@ -14,6 +12,13 @@
     }
   }
 }
+
+/** Library - Icons Replace ***************************************************/
+@include Option("userChrome.icon.library") {
+  @import "../library/chrome";
+}
+
+/** Panel - Icons *************************************************************/
 @include Option("userChrome.icon.panel") {
   @import "layout/panel";
   @import "panel";

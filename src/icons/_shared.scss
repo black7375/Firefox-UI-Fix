@@ -1,0 +1,6 @@
+@mixin initIcons() {
+  --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+  @include Option("userChrome.icon.library") {
+    --uc-folder-icon: url("../icons/folder.svg");
+  }
+}
