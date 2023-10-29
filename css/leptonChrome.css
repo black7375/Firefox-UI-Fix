@@ -10487,6 +10487,14 @@
   /** Icons - List **************************************************************/
   :root {
     --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+    --uc-tab-icon: url("../icons/tab.svg");
+    --uc-tab-copy-icon: url("../icons/tab-copy.svg");
+    --uc-tab-unload-icon: url("../icons/tab-unload.svg");
+    --uc-tab-multiple-icon: url("../icons/tab-desktop-multiple.svg");
+    --uc-new-tab-icon: url("../icons/new-tab.svg");
+    --uc-new-tab-forward-icon: url("../icons/new-tab-forward.svg");
+    --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple.svg");
+    --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward.svg");
     --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
     --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
   }
@@ -10495,11 +10503,27 @@
       --uc-folder-icon: url("../icons/folder.svg");
     }
   }
+  @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
+    :root {
+      --uc-tab-icon: url("../icons/tab-photon.svg");
+      --uc-tab-copy-icon: url("../icons/tab-copy-photon.svg");
+      --uc-tab-unload-icon: url("../icons/tab-unload-photon.svg");
+      --uc-tab-multiple-icon: url("../icons/tab-multiple.svg");
+      --uc-new-tab-icon: url("../icons/new-tab-photon.svg");
+      --uc-new-tab-forward-icon: url("../icons/new-tab-forward-photon.svg");
+      --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple-photon.svg");
+      --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward-photon.svg");
+    }
+  }
   @supports selector(:has(a)) {
     :root:has(#sidebar-box[positionend="true"]) {
       --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
       --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
     }
+  }
+  .urlbarView-row[source="tabs"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-favicon,
+  #urlbar-engine-one-off-item-tabs {
+    list-style-image: var(--uc-tab-icon) !important;
   }
   /** Library - Icons Replace ***************************************************/
   @supports -moz-bool-pref("userChrome.icon.library") {
@@ -10562,8 +10586,9 @@
     }
     /* Tag */
     :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
-    :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
-      list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+    :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v),
+    .bookmark-item[query][tagContainer] {
+      list-style-image: url("../icons/tag.svg") !important;
     }
     /* Bookmark */
     :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
@@ -10573,8 +10598,15 @@
     #BMB_bookmarksPopup #BMB_bookmarksToolbar,
     #bookmarksMenuPopup #bookmarksToolbarFolderMenu,
     :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-      treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
-      list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+      treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+    #editBMPanel_folderMenuList[selectedGuid="toolbar_____"],
+    #editBMPanel_toolbarFolderItem,
+    #bookmarksToolbarFolderMenu,
+    #BMB_bookmarksToolbar,
+    #panelMenu_bookmarksToolbar,
+    #bookmarks-toolbar-button,
+    #bookmarks-toolbar-placeholder {
+      list-style-image: url("../icons/bookmarks-toolbar-alt.svg") !important;
     }
     /* Bookmark Menu */
     :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -10611,7 +10643,7 @@
     #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
     :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
       treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
-      list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+      list-style-image: url("../icons/bookmarksToolbar-open-alt.svg") !important;
     }
     /* Bookmark Menu */
     :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -10790,9 +10822,12 @@
       background-size: 16px !important;
       background-image: var(--avatar-image-url) !important;
     }
+    #new-tab-button {
+      list-style-image: var(--uc-new-tab-icon) !important;
+    }
     @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
       #appMenu-new-tab-button2 {
-        list-style-image: url("chrome://browser/skin/new-tab.svg");
+        list-style-image: var(--uc-new-tab-icon);
       }
     }
     @supports -moz-bool-pref("userChrome.icon.panel_photon") {
@@ -10872,6 +10907,33 @@
     }
     #open-file-button {
       list-style-image: url("../icons/toolbarButton-upload.svg") !important;
+    }
+    #cut-button {
+      list-style-image: url("../icons/edit-cut.svg") !important;
+    }
+    #copy-button {
+      list-style-image: url("../icons/edit-copy.svg") !important;
+    }
+    #paste-button {
+      list-style-image: url("../icons/edit-paste.svg") !important;
+    }
+    #characterencoding-button {
+      list-style-image: url("../icons/characterEncoding.svg") !important;
+    }
+    #screenshot-button {
+      list-style-image: url("../icons/screenshot-1.svg") !important;
+    }
+    #email-link-button {
+      list-style-image: url("../icons/mail.svg") !important;
+    }
+    #panic-button {
+      list-style-image: url("../icons/forget.svg") !important;
+    }
+    #profiler-button-button > .toolbarbutton-icon {
+      list-style-image: url("../icons/performance.svg") !important;
+    }
+    #developer-button {
+      list-style-image: url("../icons/wrench-filled.svg") !important;
     }
     #appMenu-settings-button {
       list-style-image: url("chrome://global/skin/icons/settings.svg");
@@ -10996,14 +11058,14 @@
       list-style-image: url("chrome://global/skin/icons/search-glass.svg");
     }
     #panelMenu_viewBookmarksToolbar {
-      list-style-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+      list-style-image: url("../icons/bookmarks-toolbar-alt.svg");
     }
     #panelMenu_showAllBookmarks {
       list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
     }
     /*= Panel - History ==========================================================*/
     #appMenuRecentlyClosedTabs {
-      list-style-image: url("chrome://browser/skin/tab.svg");
+      list-style-image: var(--uc-tab-icon);
     }
     #appMenuRecentlyClosedWindows {
       list-style-image: url("chrome://browser/skin/window.svg");
@@ -11016,7 +11078,7 @@
       list-style-image: url("../icons/restore-session.svg");
     }
     #appMenuClearRecentHistory {
-      list-style-image: url("chrome://browser/skin/forget.svg");
+      list-style-image: url("../icons/forget.svg");
     }
     #PanelUI-historyMore {
       list-style-image: url("chrome://browser/skin/history.svg");
@@ -11162,7 +11224,7 @@
       --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
     }
     #BMB_bookmarksToolbar {
-      --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+      --menuitem-image: url("../icons/bookmarks-toolbar-alt.svg");
     }
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
       #BMB_bookmarksShowAllTop {
@@ -11737,7 +11799,7 @@
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_newTab,
       #tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenAlternatePosition,
       #sidebartabs_asamuzak_jp-menuitem-_newTab {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenInWindow {
         --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -11789,10 +11851,10 @@
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
       #tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
       #sidebartabs_asamuzak_jp-menuitem-_dupeTab {
-        --menuitem-image: url("../icons/tab-copy.svg");
+        --menuitem-image: var(--uc-tab-copy-icon);
       }
       #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
-        --menuitem-image: url("../icons/tab-unload.svg");
+        --menuitem-image: var(--uc-tab-unload-icon);
       }
       #context_bookmarkTab,
       #context_bookmarkSelectedTabs,
@@ -11835,7 +11897,7 @@
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_selectAllTabs,
       #treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_selectAllTabs,
       #sidebartabs_asamuzak_jp-menuitem-_selectAllTabs {
-        --menuitem-image: url("../icons/tab-multiple.svg");
+        --menuitem-image: var(--uc-tab-multiple-icon);
       }
       #context_closeTab,
       #treestyletab_piro_sakura_ne_jp-menuitem-_context_closeTab,
@@ -11893,7 +11955,7 @@
         --menuitem-image: url("../icons/drawer-arrow-download.svg");
       }
       #toolbar-context-openANewTab {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #toolbar-context-reloadSelectedTab,
       #toolbar-context-reloadSelectedTabs {
@@ -11904,7 +11966,7 @@
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
       #toolbar-context-selectAllTabs {
-        --menuitem-image: url("../icons/tab-multiple.svg");
+        --menuitem-image: var(--uc-tab-multiple-icon);
       }
       #toolbar-context-undoCloseTab {
         --menuitem-image: url("../icons/undo.svg");
@@ -11915,7 +11977,7 @@
       }
       #toggle_PersonalToolbar {
         /* Also placeContext */
-        --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+        --menuitem-image: url("../icons/bookmarks-toolbar-alt.svg");
       }
       menuitem.viewCustomizeToolbar {
         --menuitem-image: url("chrome://browser/skin/customize.svg");
@@ -12007,10 +12069,10 @@
         --menuitem-image: url("../icons/link-square.svg");
       }
       #context-openlinkincontainertab {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #context-openlinkintab {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #context-openlinkinusercontext-menu {
         --menuitem-image: url("../icons/container-openin-16.svg");
@@ -12031,10 +12093,16 @@
         --menuitem-image: url("../icons/pocket-outline.svg");
       }
       #context-copyemail {
-        --menuitem-image: url("chrome://browser/skin/mail.svg");
+        --menuitem-image: url("../icons/mail.svg");
+      }
+      #context-copyphone {
+        --menuitem-image: url("../icons/device-phone.svg");
       }
       #context-copylink {
         --menuitem-image: url("../icons/link.svg");
+      }
+      #context-stripOnShareLink {
+        --menuitem-image: url("../icons/link-no-tracking.svg");
       }
       #context-sendlinktodevice {
         --menuitem-image: url("../icons/send-to-device.svg");
@@ -12106,7 +12174,7 @@
       #context-sendimage,
       #context-sendvideo,
       #context-sendaudio {
-        --menuitem-image: url("chrome://browser/skin/mail.svg");
+        --menuitem-image: url("../icons/mail.svg");
       }
       #context-viewimageinfo {
         --menuitem-image: url("chrome://global/skin/icons/info.svg");
@@ -12150,13 +12218,13 @@
         }
       }
       #context-cut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       #context-copy {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
       #context-paste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #context-delete {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -12171,7 +12239,7 @@
         --menuitem-image: url("chrome://global/skin/icons/print.svg");
       }
       #context-take-screenshot {
-        --menuitem-image: url("chrome://browser/skin/screenshot.svg");
+        --menuitem-image: url("../icons/screenshot-1.svg");
       }
       #context-keywordfield {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -12204,7 +12272,7 @@
         --menuitem-image: url("../icons/document-search.svg");
       }
       #context-inspect-a11y {
-        --menuitem-image: url("chrome://devtools/skin/images/tool-accessibility.svg");
+        --menuitem-image: url("../icons/tool-accessibility.svg");
       }
       #context-inspect {
         --menuitem-image: url("../icons/command-pick.svg");
@@ -12234,7 +12302,7 @@
         --menuitem-image: url("../icons/eye-show.svg");
       }
       #context-openframeintab {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #context-openframe {
         --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -12252,7 +12320,7 @@
         --menuitem-image: url("chrome://global/skin/icons/print.svg");
       }
       #context-take-frame-screenshot {
-        --menuitem-image: url("chrome://browser/skin/screenshot.svg");
+        --menuitem-image: url("../icons/screenshot-1.svg");
       }
       #context-viewframesource {
         --menuitem-image: url("../icons/document-search.svg");
@@ -12265,19 +12333,19 @@
         --menuitem-image: url("../icons/timer10.svg");
       }
       #tm-linkWithhistory {
-        --menuitem-image: url("../icons/new-tab-skip-forward.svg");
+        --menuitem-image: var(--uc-new-tab-skip-forward-icon);
       }
       #tm-openAllLinks {
-        --menuitem-image: url("../icons/new-tab-multiple.svg");
+        --menuitem-image: var(--uc-new-tab-multiple-icon);
       }
       #tm-openinverselink {
-        --menuitem-image: url("../icons/new-tab-forward.svg");
+        --menuitem-image: var(--uc-new-tab-forward-icon);
       }
       #tm-content-closetab {
         --menuitem-image: url("../icons/dismiss-filled.svg");
       }
       #tm-duplicateTabContext {
-        --menuitem-image: url("../icons/tab-copy.svg");
+        --menuitem-image: var(--uc-tab-copy-icon);
       }
       #tm-duplicateinWinContext {
         --menuitem-image: url("../icons/tab-desktop-multiple-bottom.svg");
@@ -12353,7 +12421,7 @@
       #placesContext_open\:newtab,
       #placesContext_openContainer\:tabs,
       #placesContext_openLinks\:tabs {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #placesContext_open\:newcontainertab {
         --menuitem-image: url("../icons/container-openin-16.svg");
@@ -12382,13 +12450,13 @@
         --menuitem-image: url("../icons/text-sort-ascending.svg");
       }
       #placesContext_cut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       #placesContext_copy {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
       #placesContext_paste_group {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #placesContext_new\:bookmark {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -12401,7 +12469,7 @@
         --menuitem-image: url("../icons/vertical-line.svg");
       }
       #placesContext_paste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #placesContext_createBookmark {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -12488,7 +12556,7 @@
         --menuitem-image: url("../icons/link-square.svg");
       }
       #syncedTabsOpenSelectedInTab {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #syncedTabsOpenSelectedInWindow {
         --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -12516,13 +12584,13 @@
         --menuitem-image: url("../icons/undo.svg");
       }
       #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_copy"] {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
       #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_paste"] {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_delete"] {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -12543,13 +12611,18 @@
         }
       }
       #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_cut"] {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_copy"] {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
+      @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #strip-on-share {
+          --menuitem-image: url("../icons/link-no-tracking.svg");
+        }
+      }
       #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_paste"] {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       @supports -moz-bool-pref("userChrome.icon.menu.full") {
         #paste-and-go {
@@ -12573,13 +12646,13 @@
         }
       }
       .textbox-contextmenu > menuitem[data-l10n-id="text-action-cut"] {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       .textbox-contextmenu > menuitem[data-l10n-id="text-action-copy"] {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
       .textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       .textbox-contextmenu > menuitem[data-l10n-id="text-action-delete"] {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -12594,23 +12667,23 @@
         }
       }
       menuitem.searchbar-clear-history {
-        --menuitem-image: url("chrome://browser/skin/forget.svg");
+        --menuitem-image: url("../icons/forget.svg");
       }
       /*= context_sendTabToDevicePopupMenu =========================================*/
       .sync-menuitem.sendtab-target[clientType="phone"] {
-        --menuitem-image: url("chrome://browser/skin/device-phone.svg");
+        --menuitem-image: url("../icons/device-phone.svg");
       }
       .sync-menuitem.sendtab-target[clientType="tablet"] {
-        --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
+        --menuitem-image: url("../icons/device-tablet.svg");
       }
       .sync-menuitem.sendtab-target[clientType="desktop"] {
-        --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
+        --menuitem-image: url("../icons/device-desktop.svg");
       }
       .sync-menuitem.sendtab-target[clientType="tv"] {
-        --menuitem-image: url("chrome://browser/skin/device-tv.svg");
+        --menuitem-image: url("../icons/device-tv.svg");
       }
       .sync-menuitem.sendtab-target[clientType="vr"] {
-        --menuitem-image: url("chrome://browser/skin/device-vr.svg");
+        --menuitem-image: url("../icons/device-vr.svg");
       }
       .sync-menuitem.sendtab-target[clientType=""] {
         --menuitem-image: url("../icons/send-to-device.svg");
@@ -12670,7 +12743,7 @@
       /** Global Menu ***************************************************************/
       /*= menu_FilePopup ===========================================================*/
       #menu_newNavigatorTab {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #menu_newUserContext {
         --menuitem-image: url("../icons/container-openin-16.svg");
@@ -12688,7 +12761,7 @@
         --menuitem-image: url("../icons/toolbarButton-download.svg");
       }
       #menu_sendLink {
-        --menuitem-image: url("chrome://browser/skin/mail.svg");
+        --menuitem-image: url("../icons/mail.svg");
       }
       menu.share-tab-url-item {
         --menuitem-image: url("chrome://browser/skin/share.svg");
@@ -12720,13 +12793,13 @@
         }
       }
       #menu_cut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       #menu_copy {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
       #menu_paste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #menu_delete {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -12754,7 +12827,7 @@
         --menuitem-image: url("../icons/document-css.svg");
       }
       #repair-text-encoding {
-        --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
+        --menuitem-image: url("../icons/characterEncoding.svg");
       }
       #enterFullScreenItem {
         --menuitem-image: url("chrome://browser/skin/fullscreen.svg");
@@ -12770,7 +12843,7 @@
         --menuitem-image: url("chrome://browser/skin/reader-mode.svg");
       }
       #menu_showAllTabs {
-        --menuitem-image: url("../icons/tab.svg");
+        --menuitem-image: var(--uc-tab-icon);
       }
       #documentDirection-swap {
         --menuitem-image: url("../icons/text-direction-horizontal-ltr.svg");
@@ -12809,7 +12882,7 @@
         --menuitem-image: url("chrome://browser/skin/history.svg");
       }
       #sanitizeItem {
-        --menuitem-image: url("chrome://browser/skin/forget.svg");
+        --menuitem-image: url("../icons/forget.svg");
       }
       #sync-tabs-menuitem {
         --menuitem-image: url("chrome://browser/skin/sync.svg");
@@ -12824,7 +12897,7 @@
         --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
       }
       #historyUndoMenu {
-        --menuitem-image: url("chrome://browser/skin/tab.svg");
+        --menuitem-image: var(--uc-tab-icon);
       }
       #historyUndoWindowMenu {
         --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -12963,13 +13036,13 @@
         }
       }
       #orgCut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       #orgCopy {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
       #orgPaste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #orgDelete {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -13094,10 +13167,10 @@
       stroke: transparent !important;
     }
     #unloadWebpanelMenu {
-      --menuitem-image: url("../icons/tab-unload.svg");
+      --menuitem-image: var(--uc-tab-unload-icon);
     }
     #changeUAWebpanelMenu {
-      --menuitem-image: url("chrome://devtools/skin/images/command-responsivemode.svg");
+      --menuitem-image: url("../icons/command-responsivemode.svg");
       fill-opacity: 0;
     }
     #deleteWebpanelMenu {
@@ -24641,6 +24714,14 @@
   /** Icons - List **************************************************************/
   :root {
     --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+    --uc-tab-icon: url("../icons/tab.svg");
+    --uc-tab-copy-icon: url("../icons/tab-copy.svg");
+    --uc-tab-unload-icon: url("../icons/tab-unload.svg");
+    --uc-tab-multiple-icon: url("../icons/tab-desktop-multiple.svg");
+    --uc-new-tab-icon: url("../icons/new-tab.svg");
+    --uc-new-tab-forward-icon: url("../icons/new-tab-forward.svg");
+    --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple.svg");
+    --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward.svg");
     --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
     --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
   }
@@ -24657,12 +24738,30 @@
     --uc-folder-icon: url("../icons/folder.svg");
   }
 }
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
+  :root {
+    --uc-tab-icon: url("../icons/tab-photon.svg");
+    --uc-tab-copy-icon: url("../icons/tab-copy-photon.svg");
+    --uc-tab-unload-icon: url("../icons/tab-unload-photon.svg");
+    --uc-tab-multiple-icon: url("../icons/tab-multiple.svg");
+    --uc-new-tab-icon: url("../icons/new-tab-photon.svg");
+    --uc-new-tab-forward-icon: url("../icons/new-tab-forward-photon.svg");
+    --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple-photon.svg");
+    --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward-photon.svg");
+  }
+}
 @media not (-moz-bool-pref: "userChrome.icon.disabled") {
   @supports selector(:has(a)) {
     :root:has(#sidebar-box[positionend="true"]) {
       --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
       --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
     }
+  }
+}
+@media not (-moz-bool-pref: "userChrome.icon.disabled") {
+  .urlbarView-row[source="tabs"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-favicon,
+  #urlbar-engine-one-off-item-tabs {
+    list-style-image: var(--uc-tab-icon) !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.library") {
@@ -24725,8 +24824,9 @@
   }
   /* Tag */
   :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
-  :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
-    list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+  :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v),
+  .bookmark-item[query][tagContainer] {
+    list-style-image: url("../icons/tag.svg") !important;
   }
   /* Bookmark */
   :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
@@ -24736,8 +24836,15 @@
   #BMB_bookmarksPopup #BMB_bookmarksToolbar,
   #bookmarksMenuPopup #bookmarksToolbarFolderMenu,
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-    treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
-    list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+    treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+  #editBMPanel_folderMenuList[selectedGuid="toolbar_____"],
+  #editBMPanel_toolbarFolderItem,
+  #bookmarksToolbarFolderMenu,
+  #BMB_bookmarksToolbar,
+  #panelMenu_bookmarksToolbar,
+  #bookmarks-toolbar-button,
+  #bookmarks-toolbar-placeholder {
+    list-style-image: url("../icons/bookmarks-toolbar-alt.svg") !important;
   }
   /* Bookmark Menu */
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -24774,7 +24881,7 @@
   #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
     treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
-    list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+    list-style-image: url("../icons/bookmarksToolbar-open-alt.svg") !important;
   }
   /* Bookmark Menu */
   :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -25020,10 +25127,15 @@
     background-image: var(--avatar-image-url) !important;
   }
 }
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #new-tab-button {
+    list-style-image: var(--uc-new-tab-icon) !important;
+  }
+}
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") and (-moz-bool-pref: "userChrome.icon.panel_full"),
   (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") and (-moz-bool-pref: "userChrome.icon.panel_photon") {
   #appMenu-new-tab-button2 {
-    list-style-image: url("chrome://browser/skin/new-tab.svg");
+    list-style-image: var(--uc-new-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") and (-moz-bool-pref: "userChrome.icon.panel_photon") {
@@ -25117,6 +25229,51 @@
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
   #open-file-button {
     list-style-image: url("../icons/toolbarButton-upload.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #cut-button {
+    list-style-image: url("../icons/edit-cut.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #copy-button {
+    list-style-image: url("../icons/edit-copy.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #paste-button {
+    list-style-image: url("../icons/edit-paste.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #characterencoding-button {
+    list-style-image: url("../icons/characterEncoding.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #screenshot-button {
+    list-style-image: url("../icons/screenshot-1.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #email-link-button {
+    list-style-image: url("../icons/mail.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #panic-button {
+    list-style-image: url("../icons/forget.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #profiler-button-button > .toolbarbutton-icon {
+    list-style-image: url("../icons/performance.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #developer-button {
+    list-style-image: url("../icons/wrench-filled.svg") !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
@@ -25278,7 +25435,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
   #panelMenu_viewBookmarksToolbar {
-    list-style-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+    list-style-image: url("../icons/bookmarks-toolbar-alt.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
@@ -25288,7 +25445,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
   #appMenuRecentlyClosedTabs {
-    list-style-image: url("chrome://browser/skin/tab.svg");
+    list-style-image: var(--uc-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
@@ -25309,7 +25466,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
   #appMenuClearRecentHistory {
-    list-style-image: url("chrome://browser/skin/forget.svg");
+    list-style-image: url("../icons/forget.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
@@ -25514,7 +25671,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
   #BMB_bookmarksToolbar {
-    --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+    --menuitem-image: url("../icons/bookmarks-toolbar-alt.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
@@ -26112,7 +26269,7 @@
   #treestyletab_piro_sakura_ne_jp-menuitem-_context_newTab,
   #tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenAlternatePosition,
   #sidebartabs_asamuzak_jp-menuitem-_newTab {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
   #tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenInWindow {
     --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -26164,10 +26321,10 @@
   #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
   #tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
   #sidebartabs_asamuzak_jp-menuitem-_dupeTab {
-    --menuitem-image: url("../icons/tab-copy.svg");
+    --menuitem-image: var(--uc-tab-copy-icon);
   }
   #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
-    --menuitem-image: url("../icons/tab-unload.svg");
+    --menuitem-image: var(--uc-tab-unload-icon);
   }
   #context_bookmarkTab,
   #context_bookmarkSelectedTabs,
@@ -26238,7 +26395,7 @@
   #treestyletab_piro_sakura_ne_jp-menuitem-_context_selectAllTabs,
   #treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_selectAllTabs,
   #sidebartabs_asamuzak_jp-menuitem-_selectAllTabs {
-    --menuitem-image: url("../icons/tab-multiple.svg");
+    --menuitem-image: var(--uc-tab-multiple-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26318,7 +26475,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #toolbar-context-openANewTab {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26335,7 +26492,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #toolbar-context-selectAllTabs {
-    --menuitem-image: url("../icons/tab-multiple.svg");
+    --menuitem-image: var(--uc-tab-multiple-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26352,7 +26509,7 @@
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #toggle_PersonalToolbar {
     /* Also placeContext */
-    --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+    --menuitem-image: url("../icons/bookmarks-toolbar-alt.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26478,12 +26635,12 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-openlinkincontainertab {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-openlinkintab {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26518,12 +26675,22 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-copyemail {
-    --menuitem-image: url("chrome://browser/skin/mail.svg");
+    --menuitem-image: url("../icons/mail.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
+  #context-copyphone {
+    --menuitem-image: url("../icons/device-phone.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-copylink {
     --menuitem-image: url("../icons/link.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
+  #context-stripOnShareLink {
+    --menuitem-image: url("../icons/link-no-tracking.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26639,7 +26806,7 @@
   #context-sendimage,
   #context-sendvideo,
   #context-sendaudio {
-    --menuitem-image: url("chrome://browser/skin/mail.svg");
+    --menuitem-image: url("../icons/mail.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26709,7 +26876,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-cut {
-    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    --menuitem-image: url("../icons/edit-cut.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26719,7 +26886,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-paste {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26744,7 +26911,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-take-screenshot {
-    --menuitem-image: url("chrome://browser/skin/screenshot.svg");
+    --menuitem-image: url("../icons/screenshot-1.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26797,7 +26964,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-inspect-a11y {
-    --menuitem-image: url("chrome://devtools/skin/images/tool-accessibility.svg");
+    --menuitem-image: url("../icons/tool-accessibility.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26834,7 +27001,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-openframeintab {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26864,7 +27031,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-take-frame-screenshot {
-    --menuitem-image: url("chrome://browser/skin/screenshot.svg");
+    --menuitem-image: url("../icons/screenshot-1.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26884,17 +27051,17 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #tm-linkWithhistory {
-    --menuitem-image: url("../icons/new-tab-skip-forward.svg");
+    --menuitem-image: var(--uc-new-tab-skip-forward-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #tm-openAllLinks {
-    --menuitem-image: url("../icons/new-tab-multiple.svg");
+    --menuitem-image: var(--uc-new-tab-multiple-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #tm-openinverselink {
-    --menuitem-image: url("../icons/new-tab-forward.svg");
+    --menuitem-image: var(--uc-new-tab-forward-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -26904,7 +27071,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #tm-duplicateTabContext {
-    --menuitem-image: url("../icons/tab-copy.svg");
+    --menuitem-image: var(--uc-tab-copy-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27020,7 +27187,7 @@
   #placesContext_open\:newtab,
   #placesContext_openContainer\:tabs,
   #placesContext_openLinks\:tabs {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27065,7 +27232,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #placesContext_cut {
-    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    --menuitem-image: url("../icons/edit-cut.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27075,7 +27242,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #placesContext_paste_group {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27096,7 +27263,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #placesContext_paste {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27219,7 +27386,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #syncedTabsOpenSelectedInTab {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27264,7 +27431,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
-    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    --menuitem-image: url("../icons/edit-cut.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27274,7 +27441,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_paste"] {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27304,7 +27471,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_cut"] {
-    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    --menuitem-image: url("../icons/edit-cut.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27312,9 +27479,14 @@
     --menuitem-image: url("../icons/edit-copy.svg");
   }
 }
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") and (-moz-bool-pref: "userChrome.icon.menu.full") {
+  #strip-on-share {
+    --menuitem-image: url("../icons/link-no-tracking.svg");
+  }
+}
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_paste"] {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") and (-moz-bool-pref: "userChrome.icon.menu.full") {
@@ -27344,7 +27516,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   .textbox-contextmenu > menuitem[data-l10n-id="text-action-cut"] {
-    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    --menuitem-image: url("../icons/edit-cut.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27354,7 +27526,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   .textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -27374,24 +27546,24 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   menuitem.searchbar-clear-history {
-    --menuitem-image: url("chrome://browser/skin/forget.svg");
+    --menuitem-image: url("../icons/forget.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   .sync-menuitem.sendtab-target[clientType="phone"] {
-    --menuitem-image: url("chrome://browser/skin/device-phone.svg");
+    --menuitem-image: url("../icons/device-phone.svg");
   }
   .sync-menuitem.sendtab-target[clientType="tablet"] {
-    --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
+    --menuitem-image: url("../icons/device-tablet.svg");
   }
   .sync-menuitem.sendtab-target[clientType="desktop"] {
-    --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
+    --menuitem-image: url("../icons/device-desktop.svg");
   }
   .sync-menuitem.sendtab-target[clientType="tv"] {
-    --menuitem-image: url("chrome://browser/skin/device-tv.svg");
+    --menuitem-image: url("../icons/device-tv.svg");
   }
   .sync-menuitem.sendtab-target[clientType="vr"] {
-    --menuitem-image: url("chrome://browser/skin/device-vr.svg");
+    --menuitem-image: url("../icons/device-vr.svg");
   }
   .sync-menuitem.sendtab-target[clientType=""] {
     --menuitem-image: url("../icons/send-to-device.svg");
@@ -27461,7 +27633,7 @@
   /** Global Menu ***************************************************************/
   /*= menu_FilePopup ===========================================================*/
   #menu_newNavigatorTab {
-    --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+    --menuitem-image: var(--uc-new-tab-icon);
   }
   #menu_newUserContext {
     --menuitem-image: url("../icons/container-openin-16.svg");
@@ -27479,7 +27651,7 @@
     --menuitem-image: url("../icons/toolbarButton-download.svg");
   }
   #menu_sendLink {
-    --menuitem-image: url("chrome://browser/skin/mail.svg");
+    --menuitem-image: url("../icons/mail.svg");
   }
   menu.share-tab-url-item {
     --menuitem-image: url("chrome://browser/skin/share.svg");
@@ -27524,7 +27696,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
   #menu_cut {
-    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    --menuitem-image: url("../icons/edit-cut.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -27534,7 +27706,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
   #menu_paste {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -27579,7 +27751,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
   #repair-text-encoding {
-    --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
+    --menuitem-image: url("../icons/characterEncoding.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -27605,7 +27777,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
   #menu_showAllTabs {
-    --menuitem-image: url("../icons/tab.svg");
+    --menuitem-image: var(--uc-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -27662,7 +27834,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
   #sanitizeItem {
-    --menuitem-image: url("chrome://browser/skin/forget.svg");
+    --menuitem-image: url("../icons/forget.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -27687,7 +27859,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
   #historyUndoMenu {
-    --menuitem-image: url("chrome://browser/skin/tab.svg");
+    --menuitem-image: var(--uc-tab-icon);
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -27892,7 +28064,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.library") {
   #orgCut {
-    --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+    --menuitem-image: url("../icons/edit-cut.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.library") {
@@ -27902,7 +28074,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.library") {
   #orgPaste {
-    --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+    --menuitem-image: url("../icons/edit-paste.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.library") {
@@ -28038,10 +28210,10 @@
     stroke: transparent !important;
   }
   #unloadWebpanelMenu {
-    --menuitem-image: url("../icons/tab-unload.svg");
+    --menuitem-image: var(--uc-tab-unload-icon);
   }
   #changeUAWebpanelMenu {
-    --menuitem-image: url("chrome://devtools/skin/images/command-responsivemode.svg");
+    --menuitem-image: url("../icons/command-responsivemode.svg");
     fill-opacity: 0;
   }
   #deleteWebpanelMenu {

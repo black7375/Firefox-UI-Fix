@@ -2265,8 +2265,9 @@
       }
       /* Tag */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
-      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
-        list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v),
+      .bookmark-item[query][tagContainer] {
+        list-style-image: url("../icons/tag.svg") !important;
       }
       /* Bookmark */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
@@ -2276,8 +2277,15 @@
       #BMB_bookmarksPopup #BMB_bookmarksToolbar,
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu,
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-        treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
-        list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+        treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+      #editBMPanel_folderMenuList[selectedGuid="toolbar_____"],
+      #editBMPanel_toolbarFolderItem,
+      #bookmarksToolbarFolderMenu,
+      #BMB_bookmarksToolbar,
+      #panelMenu_bookmarksToolbar,
+      #bookmarks-toolbar-button,
+      #bookmarks-toolbar-placeholder {
+        list-style-image: url("../icons/bookmarks-toolbar-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -2315,7 +2323,7 @@
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
         treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
-        list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+        list-style-image: url("../icons/bookmarksToolbar-open-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -3406,7 +3414,7 @@
         #placesContext_open\:newtab,
         #placesContext_openContainer\:tabs,
         #placesContext_openLinks\:tabs {
-          --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+          --menuitem-image: var(--uc-new-tab-icon);
         }
         #placesContext_open\:newcontainertab {
           --menuitem-image: url("../icons/container-openin-16.svg");
@@ -3435,13 +3443,13 @@
           --menuitem-image: url("../icons/text-sort-ascending.svg");
         }
         #placesContext_cut {
-          --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+          --menuitem-image: url("../icons/edit-cut.svg");
         }
         #placesContext_copy {
           --menuitem-image: url("../icons/edit-copy.svg");
         }
         #placesContext_paste_group {
-          --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+          --menuitem-image: url("../icons/edit-paste.svg");
         }
         #placesContext_new\:bookmark {
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -3454,7 +3462,7 @@
           --menuitem-image: url("../icons/vertical-line.svg");
         }
         #placesContext_paste {
-          --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+          --menuitem-image: url("../icons/edit-paste.svg");
         }
         #placesContext_createBookmark {
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -3490,13 +3498,13 @@
           }
         }
         #orgCut {
-          --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+          --menuitem-image: url("../icons/edit-cut.svg");
         }
         #orgCopy {
           --menuitem-image: url("../icons/edit-copy.svg");
         }
         #orgPaste {
-          --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+          --menuitem-image: url("../icons/edit-paste.svg");
         }
         #orgDelete {
           --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -5882,8 +5890,9 @@
       }
       /* Tag */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
-      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
-        list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v),
+      .bookmark-item[query][tagContainer] {
+        list-style-image: url("../icons/tag.svg") !important;
       }
       /* Bookmark */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
@@ -5893,8 +5902,15 @@
       #BMB_bookmarksPopup #BMB_bookmarksToolbar,
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu,
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-        treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
-        list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+        treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+      #editBMPanel_folderMenuList[selectedGuid="toolbar_____"],
+      #editBMPanel_toolbarFolderItem,
+      #bookmarksToolbarFolderMenu,
+      #BMB_bookmarksToolbar,
+      #panelMenu_bookmarksToolbar,
+      #bookmarks-toolbar-button,
+      #bookmarks-toolbar-placeholder {
+        list-style-image: url("../icons/bookmarks-toolbar-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -5932,7 +5948,7 @@
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
         treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
-        list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+        list-style-image: url("../icons/bookmarksToolbar-open-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -7103,7 +7119,7 @@
       #placesContext_open\:newtab,
       #placesContext_openContainer\:tabs,
       #placesContext_openLinks\:tabs {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
       #placesContext_open\:newcontainertab {
         --menuitem-image: url("../icons/container-openin-16.svg");
@@ -7132,13 +7148,13 @@
         --menuitem-image: url("../icons/text-sort-ascending.svg");
       }
       #placesContext_cut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
       #placesContext_copy {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
       #placesContext_paste_group {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #placesContext_new\:bookmark {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -7151,7 +7167,7 @@
         --menuitem-image: url("../icons/vertical-line.svg");
       }
       #placesContext_paste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
       #placesContext_createBookmark {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -7191,7 +7207,7 @@
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
       #orgCut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -7201,7 +7217,7 @@
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
       #orgPaste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {

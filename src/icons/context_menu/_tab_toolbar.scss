@@ -3,7 +3,7 @@
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_newTab,
 #tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenAlternatePosition,
 #sidebartabs_asamuzak_jp-menuitem-_newTab {
-  --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+  --menuitem-image: var(--uc-new-tab-icon);
 }
 #tabcenter-reborn_ariasuni-menuitem-_newTabContextMenuOpenInWindow {
   --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -56,10 +56,10 @@
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_duplicateTab,
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuDuplicateTab,
 #sidebartabs_asamuzak_jp-menuitem-_dupeTab {
-  --menuitem-image: url("../icons/tab-copy.svg");
+  --menuitem-image: var(--uc-tab-copy-icon);
 }
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuUnloadTab {
-  --menuitem-image: url("../icons/tab-unload.svg");
+  --menuitem-image: var(--uc-tab-unload-icon);
 }
 
 #context_bookmarkTab,
@@ -108,7 +108,7 @@
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_selectAllTabs,
 #treestyletab_piro_sakura_ne_jp-menuitem-_noContextTab\:context_selectAllTabs,
 #sidebartabs_asamuzak_jp-menuitem-_selectAllTabs {
-  --menuitem-image: url("../icons/tab-multiple.svg");
+  --menuitem-image: var(--uc-tab-multiple-icon);
 }
 
 #sidebartabs_asamuzak_jp-menuitem-_tabGroup {
@@ -182,7 +182,7 @@
   --menuitem-image: url("../icons/drawer-arrow-download.svg");
 }
 #toolbar-context-openANewTab {
-  --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+  --menuitem-image: var(--uc-new-tab-icon);
 }
 
 #toolbar-context-reloadSelectedTab,
@@ -194,7 +194,7 @@
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #toolbar-context-selectAllTabs {
-  --menuitem-image: url("../icons/tab-multiple.svg");
+  --menuitem-image: var(--uc-tab-multiple-icon);
 }
 #toolbar-context-undoCloseTab {
   --menuitem-image: url("../icons/undo.svg");
@@ -206,7 +206,7 @@
 }
 #toggle_PersonalToolbar {
   /* Also placeContext */
-  --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+  --menuitem-image: url("../icons/bookmarks-toolbar-alt.svg");
 }
 
 menuitem.viewCustomizeToolbar {
