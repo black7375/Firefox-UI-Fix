@@ -10910,8 +10910,8 @@
     --uc-tab-multiple-icon: url("../icons/tab-desktop-multiple.svg");
     --uc-new-tab-icon: url("../icons/new-tab.svg");
     --uc-new-tab-forward-icon: url("../icons/new-tab-forward.svg");
-    --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple.svg");
     --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward.svg");
+    --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple.svg");
     --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
     --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
   }
@@ -10928,7 +10928,6 @@
       --uc-tab-multiple-icon: url("../icons/tab-multiple.svg");
       --uc-new-tab-icon: url("../icons/new-tab-photon.svg");
       --uc-new-tab-forward-icon: url("../icons/new-tab-forward-photon.svg");
-      --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple-photon.svg");
       --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward-photon.svg");
     }
   }
@@ -11357,7 +11356,7 @@
     }
     @supports -moz-bool-pref("userChrome.icon.panel_full") {
       #appMenu-more-button2 {
-        list-style-image: url("chrome://browser/skin/ion.svg");
+        list-style-image: url("../icons/ion.svg");
       }
     }
     @supports -moz-bool-pref("userChrome.icon.panel_full") or -moz-bool-pref("userChrome.icon.panel_photon") {
