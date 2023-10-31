@@ -1,3 +1,8 @@
+@import "../icons/shared";
+:root {
+  @include initIcons;
+}
+
 @include moz-document(
   url "chrome://browser/content/places/places.xhtml",
   url "about:downloads"

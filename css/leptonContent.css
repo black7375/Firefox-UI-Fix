@@ -2215,7 +2215,7 @@
       #editBMPanel_folderMenuList:not([selectedGuid="toolbar_____"], [selectedGuid="menu________"]),
       #editBMPanel_folderMenuList .folder-icon:not([id]),
       .downloadIconShow > .button-box > .button-icon {
-        list-style-image: url("../icons/folder.svg") !important;
+        list-style-image: var(--uc-folder-icon) !important;
       }
       /* Standard Folder - Open */
       :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
@@ -2265,8 +2265,9 @@
       }
       /* Tag */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
-      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
-        list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v),
+      .bookmark-item[query][tagContainer] {
+        list-style-image: url("../icons/tag.svg") !important;
       }
       /* Bookmark */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
@@ -2276,8 +2277,15 @@
       #BMB_bookmarksPopup #BMB_bookmarksToolbar,
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu,
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-        treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
-        list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+        treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+      #editBMPanel_folderMenuList[selectedGuid="toolbar_____"],
+      #editBMPanel_toolbarFolderItem,
+      #bookmarksToolbarFolderMenu,
+      #BMB_bookmarksToolbar,
+      #panelMenu_bookmarksToolbar,
+      #bookmarks-toolbar-button,
+      #bookmarks-toolbar-placeholder {
+        list-style-image: url("../icons/bookmarks-toolbar-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -2315,7 +2323,7 @@
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
         treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
-        list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+        list-style-image: url("../icons/bookmarksToolbar-open-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -3173,6 +3181,14 @@
 /** Menu - Icons Layout *******************************************************/
 @supports not -moz-bool-pref("userChrome.icon.disabled") {
   @supports -moz-bool-pref("userChrome.icon.menu") {
+    :root {
+      --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+    }
+    @supports -moz-bool-pref("userChrome.icon.library") {
+      :root {
+        --uc-folder-icon: url("../icons/folder.svg");
+      }
+    }
     @-moz-document url("chrome://browser/content/places/places.xhtml"), url("about:downloads")
     {
       menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
@@ -3367,12 +3383,7 @@
           --menuitem-image: url("../icons/fluid.svg");
         }
         .downloadShowMenuItem {
-          --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-        }
-        @supports -moz-bool-pref("userChrome.icon.library") {
-          .downloadShowMenuItem {
-            --menuitem-image: url("../icons/folder.svg");
-          }
+          --menuitem-image: var(--uc-folder-icon);
         }
         #downloadsContextMenu > menuitem.downloadOpenReferrerMenuItem,
         #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
@@ -3403,7 +3414,7 @@
         #placesContext_open\:newtab,
         #placesContext_openContainer\:tabs,
         #placesContext_openLinks\:tabs {
-          --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+          --menuitem-image: var(--uc-new-tab-icon);
         }
         #placesContext_open\:newcontainertab {
           --menuitem-image: url("../icons/container-openin-16.svg");
@@ -3432,32 +3443,26 @@
           --menuitem-image: url("../icons/text-sort-ascending.svg");
         }
         #placesContext_cut {
-          --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+          --menuitem-image: url("../icons/edit-cut.svg");
         }
         #placesContext_copy {
           --menuitem-image: url("../icons/edit-copy.svg");
         }
         #placesContext_paste_group {
-          --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+          --menuitem-image: url("../icons/edit-paste.svg");
         }
         #placesContext_new\:bookmark {
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
         }
         #placesContext_showInFolder,
         #placesContext_new\:folder {
-          --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-        }
-        @supports -moz-bool-pref("userChrome.icon.library") {
-          #placesContext_showInFolder,
-          #placesContext_new\:folder {
-            --menuitem-image: url("../icons/folder.svg");
-          }
+          --menuitem-image: var(--uc-folder-icon);
         }
         #placesContext_new\:separator {
           --menuitem-image: url("../icons/vertical-line.svg");
         }
         #placesContext_paste {
-          --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+          --menuitem-image: url("../icons/edit-paste.svg");
         }
         #placesContext_createBookmark {
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
@@ -3479,12 +3484,7 @@
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
         }
         #newfolder {
-          --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-        }
-        @supports -moz-bool-pref("userChrome.icon.library") {
-          #newfolder {
-            --menuitem-image: url("../icons/folder.svg");
-          }
+          --menuitem-image: var(--uc-folder-icon);
         }
         #newseparator {
           --menuitem-image: url("../icons/vertical-line.svg");
@@ -3498,13 +3498,13 @@
           }
         }
         #orgCut {
-          --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+          --menuitem-image: url("../icons/edit-cut.svg");
         }
         #orgCopy {
           --menuitem-image: url("../icons/edit-copy.svg");
         }
         #orgPaste {
-          --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+          --menuitem-image: url("../icons/edit-paste.svg");
         }
         #orgDelete {
           --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -5840,7 +5840,7 @@
       #editBMPanel_folderMenuList:not([selectedGuid="toolbar_____"], [selectedGuid="menu________"]),
       #editBMPanel_folderMenuList .folder-icon:not([id]),
       .downloadIconShow > .button-box > .button-icon {
-        list-style-image: url("../icons/folder.svg") !important;
+        list-style-image: var(--uc-folder-icon) !important;
       }
       /* Standard Folder - Open */
       :-moz-any(#PlacesToolbar, #BMB_bookmarksPopup, #bookmarksMenu)
@@ -5890,8 +5890,9 @@
       }
       /* Tag */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(title, query, tagContainer),
-      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
-        list-style-image: url("chrome://browser/skin/places/tag.svg") !important;
+      :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v),
+      .bookmark-item[query][tagContainer] {
+        list-style-image: url("../icons/tag.svg") !important;
       }
       /* Bookmark */
       :-moz-any(#placesList, #placeContent) treechildren::-moz-tree-image(query, OrganizerQuery_allbms_____v) {
@@ -5901,8 +5902,15 @@
       #BMB_bookmarksPopup #BMB_bookmarksToolbar,
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu,
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
-        treechildren::-moz-tree-image(container, queryFolder_toolbar_____) {
-        list-style-image: url("chrome://browser/skin/places/bookmarksToolbar.svg") !important;
+        treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+      #editBMPanel_folderMenuList[selectedGuid="toolbar_____"],
+      #editBMPanel_toolbarFolderItem,
+      #bookmarksToolbarFolderMenu,
+      #BMB_bookmarksToolbar,
+      #panelMenu_bookmarksToolbar,
+      #bookmarks-toolbar-button,
+      #bookmarks-toolbar-placeholder {
+        list-style-image: url("../icons/bookmarks-toolbar-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -5940,7 +5948,7 @@
       #bookmarksMenuPopup #bookmarksToolbarFolderMenu[open="true"],
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
         treechildren::-moz-tree-image(container, open, queryFolder_toolbar_____) {
-        list-style-image: url("../icons/bookmarksToolbar-open.svg") !important;
+        list-style-image: url("../icons/bookmarksToolbar-open-alt.svg") !important;
       }
       /* Bookmark Menu */
       :-moz-any(#bookmarks-view, #editBMPanel_folderTree, #placesList, #placeContent)
@@ -6882,6 +6890,16 @@
 }
 /** Menu - Icons Layout *******************************************************/
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") {
+  :root {
+    --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.library") {
+  :root {
+    --uc-folder-icon: url("../icons/folder.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") {
   @-moz-document url("chrome://browser/content/places/places.xhtml"), url("about:downloads")
   {
     menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
@@ -7070,16 +7088,8 @@
         --menuitem-image: url("../icons/fluid.svg");
       }
       .downloadShowMenuItem {
-        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+        --menuitem-image: var(--uc-folder-icon);
       }
-      /*= placeContext =============================================================*/
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") and (-moz-bool-pref: "userChrome.icon.library") {
-      .downloadShowMenuItem {
-        --menuitem-image: url("../icons/folder.svg");
-      }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #downloadsContextMenu > menuitem.downloadOpenReferrerMenuItem,
       #downloadsContextMenu > menuitem[command="downloadsCmd_openReferrer"] {
         --menuitem-image: url("../icons/link-square.svg");
@@ -7088,140 +7098,87 @@
       #downloadsContextMenu > menuitem[command="downloadsCmd_copyLocation"] {
         --menuitem-image: url("../icons/link.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       .downloadDeleteFileMenuItem {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       .downloadRemoveFromHistoryMenuItem {
         --menuitem-image: url("../icons/eraser.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #downloadsContextMenu > menuitem[command="downloadsCmd_clearList"],
       #downloadsContextMenu > menuitem[command="downloadsCmd_clearDownloads"] {
         --menuitem-image: url("../icons/broom.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
+      /*= placeContext =============================================================*/
       #placesContext_open {
         --menuitem-image: url("../icons/link-square.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_openBookmarkContainer\:tabs,
       #placesContext_openBookmarkLinks\:tabs {
         --menuitem-image: url("../icons/movetowindow-16.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_open\:newtab,
       #placesContext_openContainer\:tabs,
       #placesContext_openLinks\:tabs {
-        --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+        --menuitem-image: var(--uc-new-tab-icon);
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_open\:newcontainertab {
         --menuitem-image: url("../icons/container-openin-16.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_open\:newwindow {
         --menuitem-image: url("chrome://browser/skin/window.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_open\:newprivatewindow {
         --menuitem-image: url("chrome://browser/skin/privateBrowsing.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_show_bookmark\:info,
       #placesContext_show\:info,
       #placesContext_show_folder\:info {
         --menuitem-image: url("chrome://global/skin/icons/edit.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_deleteBookmark,
       #placesContext_deleteFolder,
       #placesContext_delete,
       #placesContext_delete_history {
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_deleteHost {
         --menuitem-image: url("../icons/eye-hide.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_sortBy\:name {
         --menuitem-image: url("../icons/text-sort-ascending.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_cut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_copy {
         --menuitem-image: url("../icons/edit-copy.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_paste_group {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_new\:bookmark {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_showInFolder,
       #placesContext_new\:folder {
-        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+        --menuitem-image: var(--uc-folder-icon);
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") and (-moz-bool-pref: "userChrome.icon.library") {
-      #placesContext_showInFolder,
-      #placesContext_new\:folder {
-        --menuitem-image: url("../icons/folder.svg");
-      }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_new\:separator {
         --menuitem-image: url("../icons/vertical-line.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_paste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_createBookmark {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #show-other-bookmarks_PersonalToolbar {
         /* checkbox */
         --menuitem-image: url("../icons/star-line-horizontal.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       #placesContext_showAllBookmarks {
         --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       .openintabs-menuitem {
         --menuitem-image: url("../icons/movetowindow-16.svg");
       }
@@ -7232,25 +7189,16 @@
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
       #newfolder {
-        --menuitem-image: url("chrome://global/skin/icons/folder.svg");
+        --menuitem-image: var(--uc-folder-icon);
       }
-      /*= viewMenuPopup ============================================================*/
-      /*= maintenanceButtonPopup ===================================================*/
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") and (-moz-bool-pref: "userChrome.icon.library") {
-      #newfolder {
-        --menuitem-image: url("../icons/folder.svg");
-      }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
       #newseparator {
         --menuitem-image: url("../icons/vertical-line.svg");
       }
-    }
-    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
       #orgUndo {
         --menuitem-image: url("../icons/undo.svg");
       }
+      /*= viewMenuPopup ============================================================*/
+      /*= maintenanceButtonPopup ===================================================*/
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") and (-moz-bool-pref: "userChrome.icon.menu.full") {
       #orgRedo {
@@ -7259,7 +7207,7 @@
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
       #orgCut {
-        --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+        --menuitem-image: url("../icons/edit-cut.svg");
       }
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -7269,7 +7217,7 @@
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
       #orgPaste {
-        --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+        --menuitem-image: url("../icons/edit-paste.svg");
       }
     }
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
@@ -7323,6 +7271,8 @@
       }
     }
   }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") {
   @-moz-document url-prefix("about:addons") {
     @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
       button[role="menuitem"] {
