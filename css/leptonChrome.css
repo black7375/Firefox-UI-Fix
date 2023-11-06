@@ -10520,6 +10520,9 @@
       --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
     }
   }
+  #TabsToolbar #new-tab-button {
+    --uc-new-tab-icon: url(chrome://global/skin/icons/plus.svg);
+  }
   .urlbarView-row[source="tabs"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-favicon,
   #urlbar-engine-one-off-item-tabs {
     list-style-image: var(--uc-tab-icon) !important;
@@ -24754,6 +24757,11 @@
       --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
       --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
     }
+  }
+}
+@media not (-moz-bool-pref: "userChrome.icon.disabled") {
+  #TabsToolbar #new-tab-button {
+    --uc-new-tab-icon: url(chrome://global/skin/icons/plus.svg);
   }
 }
 @media not (-moz-bool-pref: "userChrome.icon.disabled") {
