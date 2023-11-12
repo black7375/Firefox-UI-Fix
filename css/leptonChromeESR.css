@@ -8608,7 +8608,7 @@
     }
     @supports -moz-bool-pref("userChrome.tab.container.on_top") {
       #tabbrowser-tabs {
-        --uc-container-position-y: calc(50% - var(--uc-container-position-y-default));
+        --uc-container-position-y: calc(var(--uc-container-position-y-bottom) * -1);
       }
     }
     :root[uidensity="compact"] #tabbrowser-tabs {
