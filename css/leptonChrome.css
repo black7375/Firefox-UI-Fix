@@ -4255,6 +4255,20 @@
     :root:not([uidensity="compact"]) #search-container {
       padding-block: 2px !important;
     }
+    :root:not([uidensity="compact"]) #urlbar,
+    :root:not([uidensity="compact"]) #searchbar {
+      min-height: calc(var(--urlbar-min-height) - 2px) !important;
+    }
+    :root:not([uidensity="compact"]) #urlbar[breakout] {
+      height: calc(var(--urlbar-height) - 2px) !important;
+    }
+    :root:not([uidensity="compact"]) #urlbar[breakout][breakout-extend],
+    :root:not([uidensity="compact"]) #urlbar[breakout][breakout-extend-disabled][open] {
+      height: auto !important;
+    }
+    :root[uidensity="touch"] #urlbar[breakout] {
+      top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2 + 1px) !important;
+    }
     /* spread menu */
     :root:not([uidensity]) .urlbarView-row {
       padding-block: 1px !important; /* Original: 2px */
@@ -17610,6 +17624,20 @@
   :root:not([uidensity="compact"]) #urlbar-container,
   :root:not([uidensity="compact"]) #search-container {
     padding-block: 2px !important;
+  }
+  :root:not([uidensity="compact"]) #urlbar,
+  :root:not([uidensity="compact"]) #searchbar {
+    min-height: calc(var(--urlbar-min-height) - 2px) !important;
+  }
+  :root:not([uidensity="compact"]) #urlbar[breakout] {
+    height: calc(var(--urlbar-height) - 2px) !important;
+  }
+  :root:not([uidensity="compact"]) #urlbar[breakout][breakout-extend],
+  :root:not([uidensity="compact"]) #urlbar[breakout][breakout-extend-disabled][open] {
+    height: auto !important;
+  }
+  :root[uidensity="touch"] #urlbar[breakout] {
+    top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2 + 1px) !important;
   }
   /* spread menu */
   :root:not([uidensity]) .urlbarView-row {

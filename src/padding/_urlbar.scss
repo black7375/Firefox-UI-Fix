@@ -1,10 +1,32 @@
-:root:not([uidensity="touch"]) #urlbar-container,
-:root:not([uidensity="touch"]) #search-container {
-  padding-block: 3px !important; /* Original: 4px */
+#urlbar-container,
+#search-container {
+  :root:not([uidensity="touch"]) & {
+    padding-block: 3px !important; /* Original: 4px */
+  }
+  :root:not([uidensity="compact"]) & {
+    padding-block: 2px !important;
+  }
 }
-:root:not([uidensity="compact"]) #urlbar-container,
-:root:not([uidensity="compact"]) #search-container {
-  padding-block: 2px !important;
+
+// #662
+#urlbar,
+#searchbar {
+  :root:not([uidensity="compact"]) & {
+    min-height: calc(var(--urlbar-min-height) - 2px) !important;
+  }
+}
+
+#urlbar[breakout] {
+  :root:not([uidensity="compact"]) & {
+    height:  calc(var(--urlbar-height) - 2px) !important;
+    &[breakout-extend],
+    &[breakout-extend-disabled][open] {
+      height: auto !important;
+    }
+  }
+  :root[uidensity="touch"] & {
+    top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2 + 1px) !important;
+  }
 }
 
 /* spread menu */
