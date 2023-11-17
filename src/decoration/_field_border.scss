@@ -14,7 +14,9 @@
 /* Sidebar */
 .sidebar-panel[lwt-sidebar] #search-box:hover,
 body[lwt-sidebar] xul|search-textbox.tabsFilter:hover {
-  border-color: var(--lwt-sidebar-highlight-background-color, Highlight) !important;
+  @include AccentColor("Highlight") {
+    border-color: var(--lwt-sidebar-highlight-background-color, $accentColor) !important;
+  }
 }
 .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
 body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {

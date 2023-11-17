@@ -172,7 +172,7 @@
   @media (-moz-os-version: windows-win10) and (-moz-windows-accent-color-in-titlebar),
     (-moz-platform: windows-win10) and (-moz-windows-accent-color-in-titlebar) {
     :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
-      border-top-color: AccentColor !important;
+      border-top-color: ActiveBorder !important;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
       :root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
@@ -721,7 +721,7 @@
       --error-text-color: var(--win-error-color) !important;
       --input-error-border-color: var(--win-error-color) !important;
       /* Others */
-      --tab-line-color: Highlight !important;
+      --tab-line-color: AccentColor !important;
       --tab-selected-bgcolor: unset !important;
       --tabs-border-color: transparent !important;
       --checkbox-checked-border-color: transparent !important;
@@ -731,6 +731,12 @@
       --arrowpanel-dimmed-even-further: color-mix(in srgb, currentColor 27%, transparent) !important;
       --download-progress-flare-color: rgba(255, 255, 255, 0.75) !important;
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root:not(:-moz-lwtheme),
+      :root[lwt-default-theme-in-dark-mode] {
+        --tab-line-color: Highlight !important;
+      }
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
@@ -3806,7 +3812,13 @@
     /* Sidebar */
     .sidebar-panel[lwt-sidebar] #search-box:hover,
     body[lwt-sidebar] xul|search-textbox.tabsFilter:hover {
-      border-color: var(--lwt-sidebar-highlight-background-color, Highlight) !important;
+      border-color: var(--lwt-sidebar-highlight-background-color, AccentColor) !important;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      .sidebar-panel[lwt-sidebar] #search-box:hover,
+      body[lwt-sidebar] xul|search-textbox.tabsFilter:hover {
+        border-color: var(--lwt-sidebar-highlight-background-color, Highlight) !important;
+      }
     }
     .sidebar-panel:not([lwt-sidebar]) #search-box:hover,
     body:not([lwt-sidebar]) xul|search-textbox.tabsFilter:hover {
@@ -7589,7 +7601,12 @@
   }
   @media (-moz-gtk-csd-available) {
     :root:not(:-moz-lwtheme) #tabbrowser-tabs {
-      --tab-line-color: Highlight !important; /* -moz-accent-color */
+      --tab-line-color: AccentColor !important; /* -moz-accent-color */
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root:not(:-moz-lwtheme) #tabbrowser-tabs {
+        --tab-line-color: Highlight !important; /* -moz-accent-color */
+      }
     }
   }
 }
