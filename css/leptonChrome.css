@@ -157,6 +157,10 @@
       margin-inline-start: 0 !important;
     }
   }
+  /*= Menubar rounding #814 ====================================================*/
+  #main-menubar {
+    --panel-border-radius: var(--arrowpanel-border-radius);
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -13288,6 +13292,7 @@
   /*= Findbar Border Color =====================================================*/
   /*= Drop Indicator Color #473 ================================================*/
   /*= Firefox View Border #498 =================================================*/
+  /*= Menubar rounding #814 ====================================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
@@ -13385,6 +13390,11 @@
     border-inline-start: none !important;
     padding-inline-start: var(--tab-overflow-pinned-tabs-width) !important;
     margin-inline-start: 0 !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  #main-menubar {
+    --panel-border-radius: var(--arrowpanel-border-radius);
   }
 }
 /*= OS - Compatibility =======================================================*/

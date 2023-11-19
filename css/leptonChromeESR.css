@@ -157,6 +157,10 @@
       margin-inline-start: 0 !important;
     }
   }
+  /*= Menubar rounding #814 ====================================================*/
+  #main-menubar {
+    --panel-border-radius: var(--arrowpanel-border-radius);
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {

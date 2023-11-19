@@ -155,3 +155,8 @@ vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
   // #531
   @include _firefox_view_border_remove;
 }
+
+/*= Menubar rounding #814 ====================================================*/
+#main-menubar {
+  --panel-border-radius: var(--arrowpanel-border-radius);
+}
