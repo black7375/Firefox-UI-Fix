@@ -84,7 +84,7 @@ menuitem[data-l10n-id="popup-show-popup-menuitem"] {
   --menuitem-image: url("../icons/link-square.svg");
 }
 #syncedTabsOpenSelectedInTab {
-  --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+  --menuitem-image: var(--uc-new-tab-icon);
 }
 #syncedTabsOpenSelectedInWindow {
   --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -115,13 +115,13 @@ menuitem[data-l10n-id="popup-show-popup-menuitem"] {
   --menuitem-image: url("../icons/undo.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_cut"] {
-  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  --menuitem-image: url("../icons/edit-cut.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_copy"] {
   --menuitem-image: url("../icons/edit-copy.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_paste"] {
-  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  --menuitem-image: url("../icons/edit-paste.svg");
 }
 #SyncedTabsSidebarTabsFilterContext > menuitem[cmd="cmd_delete"] {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -146,13 +146,18 @@ menuitem[data-l10n-id="popup-show-popup-menuitem"] {
 }
 
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_cut"] {
-  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  --menuitem-image: url("../icons/edit-cut.svg");
 }
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_copy"] {
   --menuitem-image: url("../icons/edit-copy.svg");
 }
+#strip-on-share {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/link-no-tracking.svg");
+  }
+}
 #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_paste"] {
-  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  --menuitem-image: url("../icons/edit-paste.svg");
 }
 #paste-and-go {
   @include Option("userChrome.icon.menu.full") {
@@ -178,13 +183,13 @@ menuitem[data-l10n-id="popup-show-popup-menuitem"] {
 }
 
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-cut"] {
-  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  --menuitem-image: url("../icons/edit-cut.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-copy"] {
   --menuitem-image: url("../icons/edit-copy.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-paste"] {
-  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  --menuitem-image: url("../icons/edit-paste.svg");
 }
 .textbox-contextmenu > menuitem[data-l10n-id="text-action-delete"] {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -200,25 +205,25 @@ menuitem.searchbar-paste-and-search {
   }
 }
 menuitem.searchbar-clear-history {
-  --menuitem-image: url("chrome://browser/skin/forget.svg");
+  --menuitem-image: url("../icons/forget.svg");
 }
 
 /*= context_sendTabToDevicePopupMenu =========================================*/
 .sync-menuitem.sendtab-target {
   &[clientType="phone"] {
-    --menuitem-image: url("chrome://browser/skin/device-phone.svg");
+    --menuitem-image: url("../icons/device-phone.svg");
   }
   &[clientType="tablet"] {
-    --menuitem-image: url("chrome://browser/skin/device-tablet.svg");
+    --menuitem-image: url("../icons/device-tablet.svg");
   }
   &[clientType="desktop"] {
-    --menuitem-image: url("chrome://browser/skin/device-desktop.svg");
+    --menuitem-image: url("../icons/device-desktop.svg");
   }
   &[clientType="tv"] {
-    --menuitem-image: url("chrome://browser/skin/device-tv.svg");
+    --menuitem-image: url("../icons/device-tv.svg");
   }
   &[clientType="vr"] {
-    --menuitem-image: url("chrome://browser/skin/device-vr.svg");
+    --menuitem-image: url("../icons/device-vr.svg");
   }
   &[clientType=""] {
     --menuitem-image: url("../icons/send-to-device.svg");

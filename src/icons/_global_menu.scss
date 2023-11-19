@@ -1,7 +1,7 @@
 /** Global Menu ***************************************************************/
 /*= menu_FilePopup ===========================================================*/
 #menu_newNavigatorTab {
-  --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+  --menuitem-image: var(--uc-new-tab-icon);
 }
 #menu_newUserContext {
   --menuitem-image: url("../icons/container-openin-16.svg");
@@ -30,7 +30,7 @@
   --menuitem-image: url("../icons/toolbarButton-download.svg");
 }
 #menu_sendLink {
-  --menuitem-image: url("chrome://browser/skin/mail.svg");
+  --menuitem-image: url("../icons/mail.svg");
 }
 menu.share-tab-url-item {
   --menuitem-image: url("chrome://browser/skin/share.svg");
@@ -70,13 +70,13 @@ menu.share-tab-url-item {
 }
 
 #menu_cut {
-  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  --menuitem-image: url("../icons/edit-cut.svg");
 }
 #menu_copy {
   --menuitem-image: url("../icons/edit-copy.svg");
 }
 #menu_paste {
-  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  --menuitem-image: url("../icons/edit-paste.svg");
 }
 #menu_delete {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
@@ -115,7 +115,7 @@ menu.share-tab-url-item {
   --menuitem-image: url("../icons/document-css.svg");
 }
 #repair-text-encoding {
-  --menuitem-image: url("chrome://browser/skin/characterEncoding.svg");
+  --menuitem-image: url("../icons/characterEncoding.svg");
 }
 
 #enterFullScreenItem {
@@ -132,7 +132,7 @@ menu.share-tab-url-item {
   --menuitem-image: url("chrome://browser/skin/reader-mode.svg");
 }
 #menu_showAllTabs {
-  --menuitem-image: url("../icons/tab.svg");
+  --menuitem-image: var(--uc-tab-icon);
 }
 
 #documentDirection-swap {
@@ -177,7 +177,7 @@ menu.share-tab-url-item {
   --menuitem-image: url("chrome://browser/skin/history.svg");
 }
 #sanitizeItem {
-  --menuitem-image: url("chrome://browser/skin/forget.svg");
+  --menuitem-image: url("../icons/forget.svg");
 }
 
 #sync-tabs-menuitem {
@@ -193,7 +193,7 @@ menu.share-tab-url-item {
   --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
 }
 #historyUndoMenu {
-  --menuitem-image: url("chrome://browser/skin/tab.svg");
+  --menuitem-image: var(--uc-tab-icon);
 }
 #historyUndoWindowMenu {
   --menuitem-image: url("chrome://browser/skin/window.svg");

@@ -27,6 +27,36 @@
       }
     }
   }
+
+  @include test("support pref") {
+    @include mode.SUPPORT_PREF;
+
+    @include assert {
+      @include output {
+        @if mode.isMediaPref() {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
+      }
+    }
+  }
+
+  @include test("media pref") {
+    @include mode.MEDIA_PREF;
+
+    @include assert {
+      @include output {
+        @if mode.isMediaPref() {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
+      }
+    }
+  }
 }
 
 @include test-module("STANDARD Mode [mix]") {
@@ -46,6 +76,36 @@
     @include assert {
       @include output {
         @if mode.isSTANDARD() {
+          @include example;
+        }
+      }
+      @include expect {
+        @include example;
+      }
+    }
+  }
+
+  @include test("support pref") {
+    @include mode.SUPPORT_PREF;
+
+    @include assert {
+      @include output {
+        @if mode.isMediaPref() {
+          @include example;
+        }
+      }
+      @include expect {
+        // IGNORE
+      }
+    }
+  }
+
+  @include test("media pref") {
+    @include mode.MEDIA_PREF;
+
+    @include assert {
+      @include output {
+        @if mode.isMediaPref() {
           @include example;
         }
       }

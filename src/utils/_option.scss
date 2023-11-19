@@ -1,14 +1,21 @@
+@use "mode";
+
 @function _prefix($separator, $i) {
   @if $i != 1 {
     @return " " + $separator + " ";
   }
   @return "";
 }
+
+@function _not($str, $positive) {
+  @return if($positive, $str, "(not " + $str + ")");
+}
+
 @function _pref($option) {
   @return "-moz-bool-pref(\"#{$option}\")";
 }
-@function _not($str, $positive) {
-  @return if($positive, $str, "(not " + $str + ")");
+@function _prefMedia($option) {
+  @return "(-moz-bool-pref: \"#{$option}\")";
 }
 
 @function _getOption($optionNames, $positive: true) {
@@ -43,14 +50,49 @@
   @return _getOption($optionNames, $positive);
 }
 
+@function _getOptionMedia($optionNames, $positive: true) {
+  $result: "";
+  @for $i from 1 through length($optionNames) {
+    $option: nth($optionNames, $i);
+    $separator: if(
+      list-separator($optionNames) == "comma", ",", if(
+        list-separator($optionNames) == "space", "and", null
+      )
+    );
+    $result: $result + _prefix($separator, $i);
+
+    @if type-of($option) == "list" {
+      $result: $result + _getOptionMedia($option, $positive) ;
+    }
+    @else {
+      $result: $result +  _not(_prefMedia($option), $positive);
+    }
+  }
+  @return $result;
+}
+
 @mixin Option($optionNames...) {
-  @supports #{_optionWrapper($optionNames)} {
-    @content;
+  @if mode.isMediaPref() {
+    @media #{_getOptionMedia($optionNames)} {
+      @content;
+    }
+  }
+  @else {
+    @supports #{_optionWrapper($optionNames)} {
+      @content;
+    }
   }
 }
 
 @mixin NotOption($optionNames...) {
-  @supports #{_optionWrapper($optionNames, false)} {
-    @content;
+  @if mode.isMediaPref() {
+    @media #{_getOptionMedia($optionNames, false)} {
+      @content;
+    }
+  }
+  @else {
+    @supports #{_optionWrapper($optionNames, false)} {
+      @content;
+    }
   }
 }

@@ -3,6 +3,7 @@
 @use "list" as list-utils;
 @use "media";
 @use "mode";
+@use "option";
 
 //== Args ======================================================================
 $win:    "win";
@@ -77,7 +78,7 @@ $_os-media: map.merge(
   }
 
   @if list.index($osNames, $mac) {
-    @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
+    @include option.Option("layout.css.osx-font-smoothing.enabled") {
       @content;
     }
   }

@@ -101,7 +101,7 @@
 }
 @include NotOption("userChrome.tab.photon_like_padding") {
   @include Option("userChrome.tab.lepton_like_padding") {
-    .tabbrowser-tab {
+    #TabsToolbar:not([multibar]) .tabbrowser-tab {
       // Original: padding-inline 2px, margin-inline 0px #643
       &[pinned] {
         padding-inline: 1px !important;

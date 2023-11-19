@@ -33,6 +33,10 @@
       color: var(--in-content-button-text-color) !important; /* SelectedItemText */
       background-color: var(--in-content-button-background-active) !important; /* #C1D2EE; */
     }
+
+    @include OS($mac) {
+      height: auto !important;
+    }
   }
   #generalTab {
     --viewgroup-image: url(chrome://global/skin/icons/page-portrait.svg);
