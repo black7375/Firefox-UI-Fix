@@ -4,7 +4,7 @@
   }
 
   #openprofiledir {
-    list-style-image: url("../icons/folder.svg");
+    list-style-image: var(--uc-folder-icon);
   }
 }
 @include Option("userChrome.icon.menu") {
@@ -27,7 +27,7 @@
       --menuitem-image: url("chrome://global/skin/icons/edit.svg");
     }
     &[data-l10n-id="open-css-folder"] {
-      --menuitem-image: url("../icons/folder.svg");
+      --menuitem-image: var(--uc-folder-icon);
     }
     &[data-l10n-id="edit-userChromeCss-editor"] {
       --menuitem-image: url("chrome://browser/skin/window.svg");
@@ -53,10 +53,10 @@
     stroke: transparent !important;
   }
   #unloadWebpanelMenu {
-    --menuitem-image: url("../icons/tab-unload.svg");
+    --menuitem-image: var(--uc-tab-unload-icon);
   }
   #changeUAWebpanelMenu {
-    --menuitem-image: url("chrome://devtools/skin/images/command-responsivemode.svg");
+    --menuitem-image: url("../icons/command-responsivemode.svg");
     fill-opacity: 0;
   }
   #deleteWebpanelMenu {

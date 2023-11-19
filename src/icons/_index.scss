@@ -1,10 +1,26 @@
-/** Library - Icons Replace ***************************************************/
-@include Option("userChrome.icon.library") {
-  @import "../library/chrome";
-}
-
-/** Panel - Icons *************************************************************/
+@import "shared";
+/** Icons - List **************************************************************/
 :root {
+  @include initIcons;
+
+  --uc-tab-icon: url("../icons/tab.svg");
+  --uc-tab-copy-icon: url("../icons/tab-copy.svg");
+  --uc-tab-unload-icon: url("../icons/tab-unload.svg");
+  --uc-tab-multiple-icon: url("../icons/tab-desktop-multiple.svg");
+  --uc-new-tab-icon: url("../icons/new-tab.svg");
+  --uc-new-tab-forward-icon: url("../icons/new-tab-forward.svg");
+  --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward.svg");
+  --uc-new-tab-multiple-icon: url("../icons/new-tab-multiple.svg");
+  @include Option("userChrome.tab.connect_to_window") {
+    --uc-tab-icon: url("../icons/tab-photon.svg");
+    --uc-tab-copy-icon: url("../icons/tab-copy-photon.svg");
+    --uc-tab-unload-icon: url("../icons/tab-unload-photon.svg");
+    --uc-tab-multiple-icon: url("../icons/tab-multiple.svg");
+    --uc-new-tab-icon: url("../icons/new-tab-photon.svg");
+    --uc-new-tab-forward-icon: url("../icons/new-tab-forward-photon.svg");
+    --uc-new-tab-skip-forward-icon: url("../icons/new-tab-skip-forward-photon.svg");
+  }
+
   --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
   --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
   @include Has {
@@ -14,6 +30,22 @@
     }
   }
 }
+
+#TabsToolbar #new-tab-button {
+  --uc-new-tab-icon: url(chrome://global/skin/icons/plus.svg);
+}
+
+.urlbarView-row[source="tabs"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-favicon,
+#urlbar-engine-one-off-item-tabs {
+  list-style-image: var(--uc-tab-icon) !important;
+}
+
+/** Library - Icons Replace ***************************************************/
+@include Option("userChrome.icon.library") {
+  @import "../library/chrome";
+}
+
+/** Panel - Icons *************************************************************/
 @include Option("userChrome.icon.panel") {
   @import "layout/panel";
   @import "panel";

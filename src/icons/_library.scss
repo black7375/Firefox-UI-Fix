@@ -3,10 +3,7 @@
   --menuitem-image: url("chrome://browser/skin/bookmark.svg");
 }
 #newfolder {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-  @include Option("userChrome.icon.library") {
-    --menuitem-image: url("../icons/folder.svg");
-  }
+  --menuitem-image: var(--uc-folder-icon);
 }
 #newseparator {
   --menuitem-image: url("../icons/vertical-line.svg");
@@ -22,13 +19,13 @@
 }
 
 #orgCut {
-  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  --menuitem-image: url("../icons/edit-cut.svg");
 }
 #orgCopy {
   --menuitem-image: url("../icons/edit-copy.svg");
 }
 #orgPaste {
-  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  --menuitem-image: url("../icons/edit-paste.svg");
 }
 #orgDelete {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");

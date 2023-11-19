@@ -207,7 +207,9 @@
     --input-error-border-color: var(--win-error-color) !important;
 
     /* Others */
-    --tab-line-color: Highlight !important;
+    @include AccentColor("Highlight") {
+      --tab-line-color: #{$accentColor} !important;
+    }
     --tab-selected-bgcolor: unset !important;
     --tabs-border-color: transparent !important;
     --checkbox-checked-border-color: transparent !important;

@@ -43,13 +43,13 @@ jobs:
             name: "Lepton-Proton-Style"
             branch: "proton-style"
           - mode: "ESR"
-            name: "Lepton"
+            name: "ESR-Lepton"
             branch: "master"
           - mode: "ESR"
-            name: "Lepton-Photon-Style"
+            name: "ESR-Lepton-Photon-Style"
             branch: "photon-style"
           - mode: "ESR"
-            name: "Lepton-Proton-Style"
+            name: "ESR-Lepton-Proton-Style"
             branch: "proton-style"
     steps:
       - uses: actions/checkout@v3
@@ -99,17 +99,8 @@ jobs:
           zip -rv ${{ matrix.name }}.zip chrome CREDITS LICENSE user.js install.sh install.ps1
 
       - uses: softprops/action-gh-release@v1 # actions/create-release, actions/upload-release-asset is deprecated
-        if: matrix.mode == 'STANDARD'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
             ${{ matrix.name }}.zip
-
-      - uses: softprops/action-gh-release@v1
-        if: matrix.mode == 'ESR'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: |
-            ESR-${{ matrix.name }}.zip

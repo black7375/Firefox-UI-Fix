@@ -15,7 +15,7 @@
   --uc-container-position-y-bottom: calc(50% + var(--uc-container-position-y-default));
   --uc-container-position-y: var(--uc-container-position-y-bottom);
   @include Option("userChrome.tab.container.on_top") {
-    --uc-container-position-y: calc(50% - var(--uc-container-position-y-default));
+    --uc-container-position-y: calc(var(--uc-container-position-y-bottom) * -1);
   }
 
   // Pinned Tab - Titlechanged Indicator override

@@ -24,9 +24,12 @@
   background-image: var(--avatar-image-url) !important;
 }
 
+#new-tab-button {
+  list-style-image: var(--uc-new-tab-icon) !important;
+}
 @include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
   #appMenu-new-tab-button2 {
-    list-style-image: url("chrome://browser/skin/new-tab.svg");
+    list-style-image: var(--uc-new-tab-icon);
   }
 }
 @include Option("userChrome.icon.panel_photon") {
@@ -112,12 +115,42 @@
   list-style-image: url("../icons/toolbarButton-upload.svg") !important;
 }
 
+#cut-button {
+  list-style-image: url("../icons/edit-cut.svg") !important;
+}
+#copy-button {
+  list-style-image: url("../icons/edit-copy.svg") !important;
+}
+#paste-button {
+  list-style-image: url("../icons/edit-paste.svg") !important;
+}
+
+#characterencoding-button {
+  list-style-image: url("../icons/characterEncoding.svg") !important;
+}
+#screenshot-button {
+  list-style-image: url("../icons/screenshot-1.svg") !important;
+}
+#email-link-button {
+  list-style-image: url("../icons/mail.svg") !important;
+}
+
+#panic-button {
+  list-style-image: url("../icons/forget.svg") !important;
+}
+#profiler-button-button > .toolbarbutton-icon {
+  list-style-image: url("../icons/performance.svg") !important;
+}
+#developer-button {
+  list-style-image: url("../icons/wrench-filled.svg") !important;
+}
+
 #appMenu-settings-button {
   list-style-image: url("chrome://global/skin/icons/settings.svg");
 }
 @include Option("userChrome.icon.panel_full") {
   #appMenu-more-button2 {
-    list-style-image: url("chrome://browser/skin/ion.svg");
+    list-style-image: url("../icons/ion.svg");
   }
 }
 @include Option("userChrome.icon.panel_full", "userChrome.icon.panel_photon") {
@@ -238,7 +271,7 @@ panelMenuBookmarkThisPage[starred] {
   list-style-image: url("chrome://global/skin/icons/search-glass.svg");
 }
 #panelMenu_viewBookmarksToolbar {
-  list-style-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+  list-style-image: url("../icons/bookmarks-toolbar-alt.svg");
 }
 
 #panelMenu_showAllBookmarks {
@@ -247,7 +280,7 @@ panelMenuBookmarkThisPage[starred] {
 
 /*= Panel - History ==========================================================*/
 #appMenuRecentlyClosedTabs {
-  list-style-image: url("chrome://browser/skin/tab.svg");
+  list-style-image: var(--uc-tab-icon);
 }
 #appMenuRecentlyClosedWindows {
   list-style-image: url("chrome://browser/skin/window.svg");
@@ -260,7 +293,7 @@ panelMenuBookmarkThisPage[starred] {
   list-style-image: url("../icons/restore-session.svg");
 }
 #appMenuClearRecentHistory {
-  list-style-image: url("chrome://browser/skin/forget.svg");
+  list-style-image: url("../icons/forget.svg");
 }
 
 #PanelUI-historyMore {
@@ -417,7 +450,7 @@ panelMenuBookmarkThisPage[starred] {
   --menuitem-image: url("chrome://browser/skin/bookmark-star-on-tray.svg");
 }
 #BMB_bookmarksToolbar {
-  --menuitem-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+  --menuitem-image: url("../icons/bookmarks-toolbar-alt.svg");
 }
 
 @include OS($mac) {

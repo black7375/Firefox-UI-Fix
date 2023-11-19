@@ -9,7 +9,7 @@
 #placesContext_open\:newtab,
 #placesContext_openContainer\:tabs,
 #placesContext_openLinks\:tabs {
-  --menuitem-image: url("chrome://browser/skin/new-tab.svg");
+  --menuitem-image: var(--uc-new-tab-icon);
 }
 #placesContext_open\:newcontainertab {
   --menuitem-image: url("../icons/container-openin-16.svg");
@@ -40,13 +40,13 @@
 }
 
 #placesContext_cut {
-  --menuitem-image: url("chrome://browser/skin/edit-cut.svg");
+  --menuitem-image: url("../icons/edit-cut.svg");
 }
 #placesContext_copy {
   --menuitem-image: url("../icons/edit-copy.svg");
 }
 #placesContext_paste_group {
-  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  --menuitem-image: url("../icons/edit-paste.svg");
 }
 
 #placesContext_new\:bookmark {
@@ -54,17 +54,14 @@
 }
 #placesContext_showInFolder,
 #placesContext_new\:folder {
-  --menuitem-image: url("chrome://global/skin/icons/folder.svg");
-  @include Option("userChrome.icon.library") {
-    --menuitem-image: url("../icons/folder.svg");
-  }
+  --menuitem-image: var(--uc-folder-icon);
 }
 #placesContext_new\:separator {
   --menuitem-image: url("../icons/vertical-line.svg");
 }
 
 #placesContext_paste {
-  --menuitem-image: url("chrome://browser/skin/edit-paste.svg");
+  --menuitem-image: url("../icons/edit-paste.svg");
 }
 
 #placesContext_createBookmark {

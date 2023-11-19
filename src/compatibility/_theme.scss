@@ -34,14 +34,6 @@ menu.subviewbutton {
   padding-inline-end: var(--arrowpanel-menuitem-padding-inline) !important; // #717
 }
 
-/*= Icon Fill Color ==========================================================*/
-:root:-moz-lwtheme {
-  /* Auto create --lwt-toolbarbutton-icon-fill-attention, fix for nightly default theme
-       Default Color: rgb(0,97,224) -> rgb(0, 120, 215) for more light
-     */
-  --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, rgb(0, 120, 215));
-}
-
 /*= First visible tab margin at maximized #332 ===============================*/
 :root[tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar {
   margin-left: -1px;
@@ -56,18 +48,18 @@ menu {
 }
 
 /*= Remove Tab Border ========================================================*/
+@mixin noneBorder {
+  /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
+  border: unset !important;
+}
 @mixin _theme_removeTabBorder($options...) {
-  %noneBorder {
-    /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
-    border: unset !important;
-  }
   @each $prefix, $postfix in $options {
     #TabsToolbar#{$prefix}
     #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab:is([visuallyselected], [multiselected])
       > .tab-stack
       > .tab-background#{$postfix} {
-      @extend %noneBorder;
+      @include noneBorder;
     }
   }
 }
@@ -162,4 +154,9 @@ vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
 @include Option("userChrome.tab.static_separator") {
   // #531
   @include _firefox_view_border_remove;
+}
+
+/*= Menubar rounding #814 ====================================================*/
+#main-menubar {
+  --panel-border-radius: var(--arrowpanel-border-radius);
 }

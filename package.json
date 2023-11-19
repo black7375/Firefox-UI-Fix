@@ -15,7 +15,7 @@
   "homepage": "https://github.com/black7375/Firefox-UI-Fix#readme",
   "scripts": {
     "build": "yarn build:scss && yarn format:build",
-    "build:scss": "sass --no-source-map src/leptonChrome.scss:css/leptonChrome.css src/leptonContent.scss:css/leptonContent.css src/leptonChromeESR.scss:css/leptonChromeESR.css src/leptonContentESR.scss:css/leptonContentESR.css",
+    "build:scss": "sass --no-source-map src/leptonChromeNightly.scss:css/leptonChrome.css src/leptonContentNightly.scss:css/leptonContent.css src/leptonChromeESR.scss:css/leptonChromeESR.css src/leptonContentESR.scss:css/leptonContentESR.css",
     "format": "prettier --write .",
     "format:build": "prettier --write css/leptonChrome.css css/leptonContent.css css/leptonChromeESR.css css/leptonContentESR.css",
     "test": "jest",
