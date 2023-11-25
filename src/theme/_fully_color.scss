@@ -182,7 +182,7 @@ html|button.ghost-button:not(.semi-transparent):enabled:hover:active {
 }
 
 /*== Sidebar - Field Color ===================================================*/
-html[lwt-sidebar] body {
+html[lwt-sidebar]:not(#main-window) body {
   background-color: var(--lwt-sidebar-background-color, Field) !important;
   color: var(--lwt-sidebar-text-color, FieldText) !important;
 }

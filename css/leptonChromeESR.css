@@ -2169,7 +2169,7 @@
     --input-color: var(--arrowpanel-color, FieldText);
   }
   /*== Sidebar - Field Color ===================================================*/
-  html[lwt-sidebar] body {
+  html[lwt-sidebar]:not(#main-window) body {
     background-color: var(--lwt-sidebar-background-color, Field) !important;
     color: var(--lwt-sidebar-text-color, FieldText) !important;
   }
