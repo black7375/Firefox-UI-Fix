@@ -5,6 +5,7 @@
   --uc-multirow-bookmark-rows: 3;
   --uc-multirow-bookmark-row-margin: 2px;
   max-height: none !important;
+  height: unset !important; // var(--bookmarks-toolbar-overlapping-browser-height)
 }
 
 #PlacesToolbar > hbox {
@@ -18,7 +19,7 @@
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   max-height: calc(var(--uc-multirow-bookmark-rows) *
-                   (var(--uc-bm-height, calc(20px + (2 * var(--bookmark-block-padding, 4px)))) +
+                   (var(--uc-bm-height, calc(20px + var(--bookmark-block-padding, 4px))) +
                     (2 * var(--uc-multirow-bookmark-row-margin)))) !important;
 }
 
