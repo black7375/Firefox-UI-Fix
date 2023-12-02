@@ -13175,12 +13175,27 @@
     }
   }
   /*= Floorp Browser ===========================================================*/
+  #ssbPageAction-image {
+    list-style-image: url("chrome://browser/skin/install-ssb.svg");
+  }
+  #ssbPageAction-image[open-ssb="true"] {
+    list-style-image: url("chrome://browser/skin/install-ssb.svg");
+  }
   @supports -moz-bool-pref("userChrome.icon.panel") {
     #rebootappmenu {
       list-style-image: url("../icons/refresh-cw.svg");
     }
     #openprofiledir {
       list-style-image: var(--uc-folder-icon);
+    }
+    #appMenu-ssb-button {
+      list-style-image: url("chrome://browser/skin/install-ssb.svg");
+    }
+    #appMenu-install-or-open-ssb-current-page-button {
+      list-style-image: url("chrome://browser/skin/install-ssb.svg");
+    }
+    #appMenu-install-or-open-ssb-current-page-button[open-ssb="true"] {
+      list-style-image: url("chrome://browser/skin/install-ssb.svg");
     }
   }
   @supports -moz-bool-pref("userChrome.icon.menu") {
@@ -28273,12 +28288,29 @@
     --menuitem-image: url("chrome://browser/skin/onion.svg");
   }
 }
+@media not (-moz-bool-pref: "userChrome.icon.disabled") {
+  #ssbPageAction-image {
+    list-style-image: url("chrome://browser/skin/install-ssb.svg");
+  }
+  #ssbPageAction-image[open-ssb="true"] {
+    list-style-image: url("chrome://browser/skin/install-ssb.svg");
+  }
+}
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
   #rebootappmenu {
     list-style-image: url("../icons/refresh-cw.svg");
   }
   #openprofiledir {
     list-style-image: var(--uc-folder-icon);
+  }
+  #appMenu-ssb-button {
+    list-style-image: url("chrome://browser/skin/install-ssb.svg");
+  }
+  #appMenu-install-or-open-ssb-current-page-button {
+    list-style-image: url("chrome://browser/skin/install-ssb.svg");
+  }
+  #appMenu-install-or-open-ssb-current-page-button[open-ssb="true"] {
+    list-style-image: url("chrome://browser/skin/install-ssb.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") {
