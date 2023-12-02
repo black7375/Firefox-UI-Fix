@@ -55,6 +55,7 @@
   }
 
   /* Text */
+  blockquote,
   .mzp-c-menu-category .mzp-c-menu-title,
   .mzp-c-menu-item .mzp-c-menu-item-link,
   .mzp-c-menu-item .mzp-c-menu-item-link > *,
@@ -156,6 +157,9 @@
     color: var(--in-content-page-color) !important;
   }
 
+  blockquote {
+    border-color: var(--in-content-border-color) !important;
+  }
   .sumo-button.secondary-button {
     border-color: transparent !important;
   }
