@@ -13786,10 +13786,10 @@
   }
   /*= Floorp Browser ===========================================================*/
   #ssbPageAction-image {
-    list-style-image: url("chrome://browser/skin/lepton/pwa-install.svg");
+    list-style-image: url("../icons/pwa-install.svg");
   }
   #ssbPageAction-image[open-ssb="true"] {
-    list-style-image: url("chrome://browser/skin/lepton/pwa-launch.svg");
+    list-style-image: url("../icons/pwa-launch.svg");
   }
   @supports -moz-bool-pref("userChrome.icon.panel") {
     #rebootappmenu {
@@ -13799,13 +13799,13 @@
       list-style-image: var(--uc-folder-icon);
     }
     #appMenu-ssb-button {
-      list-style-image: url("chrome://browser/skin/lepton/pwa-manage.svg");
+      list-style-image: url("../icons/pwa-manage.svg");
     }
     #appMenu-install-or-open-ssb-current-page-button {
-      list-style-image: url("chrome://browser/skin/lepton/pwa-install.svg");
+      list-style-image: url("../icons/pwa-install.svg");
     }
     #appMenu-install-or-open-ssb-current-page-button[open-ssb="true"] {
-      list-style-image: url("chrome://browser/skin/lepton/pwa-launch.svg");
+      list-style-image: url("../icons/pwa-launch.svg");
     }
   }
   @supports -moz-bool-pref("userChrome.icon.menu") {
@@ -13855,10 +13855,10 @@
       --menuitem-image: url("chrome://global/skin/icons/delete.svg");
     }
     #run-ssb-contextmenu {
-      --menuitem-image: url("chrome://browser/skin/lepton/pwa-launch.svg");
+      --menuitem-image: url("../icons/pwa-launch.svg");
     }
     #uninstall-ssb-contextmenu {
-      --menuitem-image: url("chrome://browser/skin/lepton/pwa-remove.svg");
+      --menuitem-image: url("../icons/pwa-remove.svg");
     }
   }
 }

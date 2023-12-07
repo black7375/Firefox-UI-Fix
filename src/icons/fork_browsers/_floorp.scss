@@ -1,9 +1,9 @@
 // Page Action button. Not always visible
 #ssbPageAction-image {
-  list-style-image: url("chrome://browser/skin/lepton/pwa-install.svg");
+  list-style-image: url("../icons/pwa-install.svg");
   &[open-ssb="true"] {
     // Page Action button. If page has been already installed or can be install PWA
-    list-style-image: url("chrome://browser/skin/lepton/pwa-launch.svg");
+    list-style-image: url("../icons/pwa-launch.svg");
   }
 }
 
@@ -18,15 +18,15 @@
 
   // Panel UI top button
   #appMenu-ssb-button {
-    list-style-image: url("chrome://browser/skin/lepton/pwa-manage.svg");
+    list-style-image: url("../icons/pwa-manage.svg");
   }
 
   // Panel UI subView button  for install ssb
   #appMenu-install-or-open-ssb-current-page-button {
-    list-style-image: url("chrome://browser/skin/lepton/pwa-install.svg");
+    list-style-image: url("../icons/pwa-install.svg");
     &[open-ssb="true"] {
       // Panel UI subView button  for open ssb window
-      list-style-image: url("chrome://browser/skin/lepton/pwa-launch.svg");
+      list-style-image: url("../icons/pwa-launch.svg");
     }
   }
 }
@@ -88,10 +88,9 @@
 
   // PWA Context Menu
   #run-ssb-contextmenu {
-    --menuitem-image: url("chrome://browser/skin/lepton/pwa-launch.svg");
+    --menuitem-image: url("../icons/pwa-launch.svg");
   }
-
   #uninstall-ssb-contextmenu {
-    --menuitem-image: url("chrome://browser/skin/lepton/pwa-remove.svg");
+    --menuitem-image: url("../icons/pwa-remove.svg");
   }
 }
