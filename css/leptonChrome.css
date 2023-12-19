@@ -13045,6 +13045,9 @@
       #menu_openHelp {
         --menuitem-image: url("chrome://global/skin/icons/help.svg");
       }
+      #help_reportBrokenSite {
+        --menuitem-image: url("chrome://global/skin/icons/lightbulb.svg");
+      }
       #feedbackPage {
         --menuitem-image: url("../icons/send.svg");
       }
@@ -28129,6 +28132,11 @@
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
   #menu_openHelp {
     --menuitem-image: url("chrome://global/skin/icons/help.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
+  #help_reportBrokenSite {
+    --menuitem-image: url("chrome://global/skin/icons/lightbulb.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
