@@ -12025,6 +12025,9 @@
         padding-inline-start: var(--menu-background-padding-default) !important;
         margin-left: 0 !important;
       }
+      .menupopup-arrowscrollbox {
+        padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
+      }
     }
     @media (-moz-os-version: windows-win7),
       (-moz-os-version: windows-win8),
@@ -12096,6 +12099,9 @@
           #context_openANewTab.tabmix-newtab-menu-icon {
             padding-inline-start: var(--menu-background-padding-default) !important;
             margin-left: 0 !important;
+          }
+          .menupopup-arrowscrollbox {
+            padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
           }
         }
       }

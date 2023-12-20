@@ -94,6 +94,11 @@ $_layoutCommonMenus: (
     @include _layoutIconMenus {
       @include _layout_init_non_native();
     }
+
+    // FF v121
+    .menupopup-arrowscrollbox {
+      padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
+    }
   }
 }
 

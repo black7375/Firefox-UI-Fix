@@ -11605,6 +11605,9 @@
         padding-inline-start: var(--menu-background-padding-default) !important;
         margin-left: 0 !important;
       }
+      .menupopup-arrowscrollbox {
+        padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
+      }
     }
     @media (-moz-platform: windows), (-moz-gtk-csd-available) {
       @supports -moz-bool-pref("userChrome.theme.non_native_menu") {
@@ -11669,6 +11672,9 @@
           #context_openANewTab.tabmix-newtab-menu-icon {
             padding-inline-start: var(--menu-background-padding-default) !important;
             margin-left: 0 !important;
+          }
+          .menupopup-arrowscrollbox {
+            padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
           }
         }
       }
@@ -26174,6 +26180,9 @@
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
   }
+  .menupopup-arrowscrollbox {
+    padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
+  }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-platform: windows) and (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available),
   (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
@@ -26233,6 +26242,9 @@
   #context_openANewTab.tabmix-newtab-menu-icon {
     padding-inline-start: var(--menu-background-padding-default) !important;
     margin-left: 0 !important;
+  }
+  .menupopup-arrowscrollbox {
+    padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-platform: windows) {
