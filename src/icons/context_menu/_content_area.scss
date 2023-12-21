@@ -25,9 +25,7 @@
 #context-openlinkincurrent {
   --menuitem-image: url("../icons/link-square.svg");
 }
-#context-openlinkincontainertab {
-  --menuitem-image: var(--uc-new-tab-icon);
-}
+#context-openlinkincontainertab,
 #context-openlinkintab {
   --menuitem-image: var(--uc-new-tab-icon);
 }
@@ -168,32 +166,44 @@
 #fill-login-generated-password {
   --menuitem-image: url("chrome://browser/skin/login.svg");
 }
+#use-relay-mask {
+  --menuitem-image: url("../icons/relay-logo.svg");
+}
 #manage-saved-logins {
   --menuitem-image: url("../icons/key-multiple.svg");
 }
 
-#context-undo {
+#context-undo,
+#context-pdfjs-undo {
   --menuitem-image: url("../icons/undo.svg");
 }
-#context-redo {
+#context-redo,
+#context-pdfjs-redo {
   @include Option("userChrome.icon.menu.full") {
     --menuitem-image: url("../icons/redo.svg");
   }
 }
 
-#context-cut {
+#context-cut,
+#context-pdfjs-cut {
   --menuitem-image: url("../icons/edit-cut.svg");
 }
-#context-copy {
+#context-copy,
+#context-pdfjs-copy {
   --menuitem-image: url("../icons/edit-copy.svg");
 }
-#context-paste {
+#context-paste,
+#context-pdfjs-paste {
   --menuitem-image: url("../icons/edit-paste.svg");
 }
-#context-delete {
+#context-paste-no-formatting {
+}
+#context-delete,
+#context-pdfjs-delete {
   --menuitem-image: url("chrome://global/skin/icons/delete.svg");
 }
-#context-selectall {
+#context-selectall,
+#context-pdfjs-selectall {
   --menuitem-image: url("../icons/select-all-on.svg");
 }
 #context-reveal-password {

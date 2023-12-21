@@ -45,15 +45,18 @@
   "userChrome.tab.photon_like_contextline",
   "userChrome.tab.static_separator",
   "userChrome.tab.bar_separator") {
-  :root[lwtheme-mozlightdark] #tabbrowser-tabs, /* Legacy: v96 */
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"],
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
-    --tab-line-color: rgb(10, 132, 255) !important;
+  @include Option("userChrome.tab.blue_accent") {
+    :root,
+    #tabbrowser-tabs {
+      --tab-line-color: rgb(10, 132, 255) !important;
+    }
   }
-  @include OS("linux") {
-    :root:not(:-moz-lwtheme) #tabbrowser-tabs {
-      @include AccentColor("Highlight") {
-        --tab-line-color: #{$accentColor} !important; /* -moz-accent-color */
+  @include NotOption("userChrome.tab.blue_accent") {
+    @include OS("linux") {
+      :root:not(:-moz-lwtheme) #tabbrowser-tabs {
+        @include AccentColor("Highlight") {
+          --tab-line-color: #{$accentColor} !important; /* -moz-accent-color */
+        }
       }
     }
   }
