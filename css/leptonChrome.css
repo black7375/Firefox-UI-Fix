@@ -13143,6 +13143,18 @@
       }
     }
   }
+  /** Icons - 1.25px Stroke Width ***********************************************/
+  @supports -moz-bool-pref("userChrome.icon.1-25px_stroke") {
+    #firefox-view-button {
+      list-style-image: url("../icons/firefox-view.svg") !important;
+    }
+    #reset-pbm-toolbar-button {
+      list-style-image: url("../icons/flame.svg") !important;
+    }
+    #translations-button-icon {
+      list-style-image: url("../icons/translations.svg") !important;
+    }
+  }
   /** Icons for fork browsers ***************************************************/
   /*= Waterfox =================================================================*/
   @supports -moz-bool-pref("userChrome.icon.panel") {
@@ -24855,6 +24867,7 @@
   /** Library - Icons Replace ***************************************************/
   /** Panel - Icons *************************************************************/
   /** Menu - Icons Layout *******************************************************/
+  /** Icons - 1.25px Stroke Width ***********************************************/
   /** Icons for fork browsers ***************************************************/
   /*= Waterfox =================================================================*/
   /*= Tor Browser ==============================================================*/
@@ -28276,6 +28289,17 @@
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.library") {
   #browserImport {
     --menuitem-image: url("chrome://browser/skin/import.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.1-25px_stroke") {
+  #firefox-view-button {
+    list-style-image: url("../icons/firefox-view.svg") !important;
+  }
+  #reset-pbm-toolbar-button {
+    list-style-image: url("../icons/flame.svg") !important;
+  }
+  #translations-button-icon {
+    list-style-image: url("../icons/translations.svg") !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
