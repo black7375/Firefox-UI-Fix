@@ -11357,7 +11357,7 @@
         list-style-image: url("chrome://global/skin/icons/search-glass.svg");
       }
       #appMenu-translate-button {
-        list-style-image: url(chrome://browser/skin/translations.svg);
+        list-style-image: url("../icons/translations.svg");
       }
       #appMenu-zoom-controls2::before,
       #appMenu-zoom-controls::before {
@@ -11583,7 +11583,7 @@
     /* Browser Console */
     #appmenu-developer-tools-view .subviewbutton:nth-last-child(5),
     #PanelUI-developer-tools-view .subviewbutton:nth-last-child(5) {
-      list-style-image: url("chrome://devtools/skin/images/command-console.svg");
+      list-style-image: url("../icons/command-console.svg");
     }
     /* Responsive Design Mode */
     #appmenu-developer-tools-view .subviewbutton:nth-last-child(4),
@@ -11593,7 +11593,7 @@
     /* Eyedropper */
     #appmenu-developer-tools-view .subviewbutton:nth-last-child(3),
     #PanelUI-developer-tools-view .subviewbutton:nth-last-child(3) {
-      list-style-image: url("chrome://devtools/skin/images/command-eyedropper.svg");
+      list-style-image: url("../icons/command-eyedropper.svg");
     }
     /* Page Source - Edge file-search.svg */
     #appmenu-developer-tools-view .subviewbutton:nth-last-child(2),
@@ -11603,7 +11603,7 @@
     /* Extensions for Devel */
     #appmenu-developer-tools-view .subviewbutton:nth-last-child(1),
     #PanelUI-developer-tools-view .subviewbutton:nth-last-child(1) {
-      list-style-image: url("chrome://devtools/skin/images/debugging-addons.svg");
+      list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
     }
     #appmenu-developer-tools-view .subviewbutton:last-child {
       margin-bottom: 6px !important;
@@ -13633,7 +13633,7 @@
         --menuitem-image: url("../icons/command-frames.svg");
       }
       #menu_browserConsole {
-        --menuitem-image: url("chrome://devtools/skin/images/command-console.svg");
+        --menuitem-image: url("../icons/command-console.svg");
       }
       #menu_responsiveUI {
         /* checkbox */
@@ -13641,13 +13641,13 @@
       }
       #menu_eyedropper {
         /* checkbox */
-        --menuitem-image: url("chrome://devtools/skin/images/command-eyedropper.svg");
+        --menuitem-image: url("../icons/command-eyedropper.svg");
       }
       #menu_pageSource {
         --menuitem-image: url("../icons/document-search.svg");
       }
       #extensionsForDevelopers {
-        --menuitem-image: url("chrome://devtools/skin/images/debugging-addons.svg");
+        --menuitem-image: url("chrome://mozapps/skin/extensions/extension.svg");
       }
       /*= windowPopup ==============================================================*/
       #windowPopup > menuitem[command="minimizeWindow"] {
@@ -13750,6 +13750,18 @@
       #browserImport {
         --menuitem-image: url("chrome://browser/skin/import.svg");
       }
+    }
+  }
+  /** Icons - 1.25px Stroke Width ***********************************************/
+  @supports -moz-bool-pref("userChrome.icon.1-25px_stroke") {
+    #firefox-view-button {
+      list-style-image: url("../icons/firefox-view.svg") !important;
+    }
+    #reset-pbm-toolbar-button {
+      list-style-image: url("../icons/flame.svg") !important;
+    }
+    #translations-button-icon {
+      list-style-image: url("../icons/translations.svg") !important;
     }
   }
   /** Icons for fork browsers ***************************************************/
