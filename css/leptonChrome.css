@@ -11421,9 +11421,10 @@
         #context_sendTabToDevicePopupMenu,
         #context-sendpagetodevice-popup,
         #context-sendlinktodevice-popup,
-        #frame > menupopup
+        #frame > menupopup,
+        #spell-dictionaries-menu
       )
-      > menuitem,
+      > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
     #BMB_viewBookmarksToolbar,
@@ -11505,9 +11506,10 @@
         #context_sendTabToDevicePopupMenu,
         #context-sendpagetodevice-popup,
         #context-sendlinktodevice-popup,
-        #frame > menupopup
+        #frame > menupopup,
+        #spell-dictionaries-menu
       )
-      > menuitem,
+      > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
     .openintabs-menuitem,
     #blockedPopupDontShowMessage,
     #BMB_viewBookmarksToolbar,
@@ -11598,9 +11600,10 @@
           #context_sendTabToDevicePopupMenu,
           #context-sendpagetodevice-popup,
           #context-sendlinktodevice-popup,
-          #frame > menupopup
+          #frame > menupopup,
+          #spell-dictionaries-menu
         )
-        > menuitem,
+        > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
       .openintabs-menuitem,
       #blockedPopupDontShowMessage,
       #BMB_viewBookmarksToolbar,
@@ -11666,9 +11669,10 @@
               #context_sendTabToDevicePopupMenu,
               #context-sendpagetodevice-popup,
               #context-sendlinktodevice-popup,
-              #frame > menupopup
+              #frame > menupopup,
+              #spell-dictionaries-menu
             )
-            > menuitem,
+            > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
           .openintabs-menuitem,
           #blockedPopupDontShowMessage,
           #BMB_viewBookmarksToolbar,
@@ -12115,7 +12119,8 @@
       #spell-no-suggestions {
         --menuitem-image: url("../icons/text-proofing-tools.svg");
       }
-      #spell-add-to-dictionary {
+      #spell-add-to-dictionary,
+      #spell-add-dictionaries {
         --menuitem-image: url("../icons/book-add.svg");
       }
       #spell-undo-add-to-dictionary {
@@ -25997,9 +26002,10 @@
       #context_sendTabToDevicePopupMenu,
       #context-sendpagetodevice-popup,
       #context-sendlinktodevice-popup,
-      #frame > menupopup
+      #frame > menupopup,
+      #spell-dictionaries-menu
     )
-    > menuitem,
+    > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
   .openintabs-menuitem,
   #blockedPopupDontShowMessage,
   #BMB_viewBookmarksToolbar,
@@ -26100,9 +26106,10 @@
       #context_sendTabToDevicePopupMenu,
       #context-sendpagetodevice-popup,
       #context-sendlinktodevice-popup,
-      #frame > menupopup
+      #frame > menupopup,
+      #spell-dictionaries-menu
     )
-    > menuitem,
+    > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
   .openintabs-menuitem,
   #blockedPopupDontShowMessage,
   #BMB_viewBookmarksToolbar,
@@ -26192,9 +26199,10 @@
       #context_sendTabToDevicePopupMenu,
       #context-sendpagetodevice-popup,
       #context-sendlinktodevice-popup,
-      #frame > menupopup
+      #frame > menupopup,
+      #spell-dictionaries-menu
     )
-    > menuitem,
+    > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
   .openintabs-menuitem,
   #blockedPopupDontShowMessage,
   #BMB_viewBookmarksToolbar,
@@ -26255,9 +26263,10 @@
       #context_sendTabToDevicePopupMenu,
       #context-sendpagetodevice-popup,
       #context-sendlinktodevice-popup,
-      #frame > menupopup
+      #frame > menupopup,
+      #spell-dictionaries-menu
     )
-    > menuitem,
+    > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
   .openintabs-menuitem,
   #blockedPopupDontShowMessage,
   #BMB_viewBookmarksToolbar,
@@ -26780,7 +26789,8 @@
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
-  #spell-add-to-dictionary {
+  #spell-add-to-dictionary,
+  #spell-add-dictionaries {
     --menuitem-image: url("../icons/book-add.svg");
   }
 }
