@@ -161,6 +161,10 @@
   #main-menubar {
     --panel-border-radius: var(--arrowpanel-border-radius);
   }
+  /*= Infobar Align #858 =======================================================*/
+  .container.infobar {
+    align-items: center !important;
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -13352,6 +13356,7 @@
   /*= Drop Indicator Color #473 ================================================*/
   /*= Firefox View Border #498 =================================================*/
   /*= Menubar rounding #814 ====================================================*/
+  /*= Infobar Align #858 =======================================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
@@ -13454,6 +13459,11 @@
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
   #main-menubar {
     --panel-border-radius: var(--arrowpanel-border-radius);
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  .container.infobar {
+    align-items: center !important;
   }
 }
 /*= OS - Compatibility =======================================================*/

@@ -161,6 +161,10 @@
   #main-menubar {
     --panel-border-radius: var(--arrowpanel-border-radius);
   }
+  /*= Infobar Align #858 =======================================================*/
+  .container.infobar {
+    align-items: center !important;
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
