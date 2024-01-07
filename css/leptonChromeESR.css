@@ -7632,6 +7632,12 @@
     height: 2px !important;
     border-radius: var(--tab-border-radius, 4px) var(--tab-border-radius, 4px) 0 0 !important;
   }
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]),
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] .tab-context-line,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"],
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] .tab-context-line {
+    --tab-line-color: rgb(10, 132, 255);
+  }
   .tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
     /* Photon like color
        Default: var(--tab-line-color, rgb(10, 132, 255))
