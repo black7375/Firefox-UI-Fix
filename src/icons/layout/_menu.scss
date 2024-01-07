@@ -146,4 +146,29 @@ $_layoutCommonMenus: (
       list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
     }
   }
+
+  /* Exeptions */
+  // Mac unified extenstions #847
+  #unified-extensions-context-menu > menuitem::before {
+    padding-inline: 0 !important;
+  }
+
+  :not(menu, #ContentSelectDropdown, #context-navigation) > menupopup:not(.in-menulist) > menuitem {
+    &:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]) {
+      padding-inline-start: 0 !important;
+    }
+
+    &:not(.menuitem-iconic):has(.menu-iconic-left) {
+      &[checked] {
+        padding-left: 4px !important;
+        background-image: none !important;
+      }
+      &[checked="true"] {
+        padding-left: calc(var(--context-menu-mac-padding) - 8px) !important;
+        .menu-iconic-text {
+          padding-left: 8px !important;
+        }
+      }
+    }
+  }
 }
