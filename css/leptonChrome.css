@@ -11766,6 +11766,32 @@
           list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
         }
       }
+      /* Exeptions */
+      #unified-extensions-context-menu > menuitem::before {
+        padding-inline: 0 !important;
+      }
+      :not(menu, #ContentSelectDropdown, #context-navigation)
+        > menupopup:not(.in-menulist)
+        > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]) {
+        padding-inline-start: 0 !important;
+      }
+      :not(menu, #ContentSelectDropdown, #context-navigation)
+        > menupopup:not(.in-menulist)
+        > menuitem:not(.menuitem-iconic):has(.menu-iconic-left)[checked] {
+        padding-left: 4px !important;
+        background-image: none !important;
+      }
+      :not(menu, #ContentSelectDropdown, #context-navigation)
+        > menupopup:not(.in-menulist)
+        > menuitem:not(.menuitem-iconic):has(.menu-iconic-left)[checked="true"] {
+        padding-left: calc(var(--context-menu-mac-padding) - 8px) !important;
+      }
+      :not(menu, #ContentSelectDropdown, #context-navigation)
+        > menupopup:not(.in-menulist)
+        > menuitem:not(.menuitem-iconic):has(.menu-iconic-left)[checked="true"]
+        .menu-iconic-text {
+        padding-left: 8px !important;
+      }
     }
     /*= Bookmark Menu - Layout ===================================================*/
     /* #goPopup(Legacy of historyMenuPopup), #historyMenuPopup, #bookmarksMenuPopup: looks like global menu
@@ -26323,6 +26349,7 @@
     padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
   }
   /* Global Menu */
+  /* Exeptions */
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.icon.global_menu.mac") {
   menupopup:is(
@@ -26352,6 +26379,35 @@
     )
     menu:not(.menu-iconic) {
     list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
+  #unified-extensions-context-menu > menuitem::before {
+    padding-inline: 0 !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup:not(.in-menulist)
+    > menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]) {
+    padding-inline-start: 0 !important;
+  }
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup:not(.in-menulist)
+    > menuitem:not(.menuitem-iconic):has(.menu-iconic-left)[checked] {
+    padding-left: 4px !important;
+    background-image: none !important;
+  }
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup:not(.in-menulist)
+    > menuitem:not(.menuitem-iconic):has(.menu-iconic-left)[checked="true"] {
+    padding-left: calc(var(--context-menu-mac-padding) - 8px) !important;
+  }
+  :not(menu, #ContentSelectDropdown, #context-navigation)
+    > menupopup:not(.in-menulist)
+    > menuitem:not(.menuitem-iconic):has(.menu-iconic-left)[checked="true"]
+    .menu-iconic-text {
+    padding-left: 8px !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") {
