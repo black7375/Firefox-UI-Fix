@@ -6,6 +6,7 @@
 $_iconNoneCommon: ".in-menulist, [checked=\"true\"]";
 $_iconMenuitem: "menuitem:not(.menuitem-iconic, .bookmark-item, #{$_iconNoneCommon})";
 $_iconMenu: "menu:not(.menu-iconic, #{$_iconNoneCommon})";
+$_checkMenu: ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])";
 
 // Components
 $_nestedPopup: "> menupopup:not(.in-menulist) >";
@@ -30,14 +31,14 @@ $_globalMenus: "#main-menubar > menu";
 $_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > #{$_iconMenuitem}";
 $_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > #{$_iconMenu}";
 $_sendTabMenuPopup: "#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup";
-$_otherPopupMenuitem: "menupopup:is(#{$_sendTabMenuPopup}, #frame > menupopup) > menuitem";
+$_otherPopupMenuitem: "menupopup:is(#{$_sendTabMenuPopup}, #frame > menupopup, #spell-dictionaries-menu) > menuitem#{$_checkMenu}";
 $_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar, #sidebarMenu-popup:is(menupopup)";
 
 //-- Mixin ---------------------------------------------------------------------
 // Init Menu
 $_initialMenus: selector.append(
   "menupopup menuitem, menupopup menu",
-  ":not([type=\"checkbox\"][checked=\"true\"], [type=\"radio\"])"
+  $_checkMenu
 );
 $_initialMenus: $_initialMenus + "," +
                 selector.nest($_initialMenus, "> .menu-iconic-left > .menu-iconic-icon");

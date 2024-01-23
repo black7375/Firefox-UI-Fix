@@ -70,5 +70,10 @@
   }
 }
 
+/** Icons - 1.25px Stroke Width ***********************************************/
+@include Option("userChrome.icon.1-25px_stroke") {
+  @import "1.25px_stroke";
+}
+
 /** Icons for fork browsers ***************************************************/
 @import "fork_browsers/index";

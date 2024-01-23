@@ -4,6 +4,10 @@
   border-radius: var(--tab-border-radius, 4px) var(--tab-border-radius, 4px) 0 0 !important;
 }
 
+#{built-in-light-theme()} .tab-context-line,
+#{built-in-dark-theme()} .tab-context-line {
+  --tab-line-color: rgb(10, 132, 255);
+}
 .tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
   /* Photon like color
      Default: var(--tab-line-color, rgb(10, 132, 255))
