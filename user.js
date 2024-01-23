@@ -258,6 +258,7 @@ user_pref("userChrome.icon.menu",                 true);
 user_pref("userChrome.icon.context_menu",         true);
 user_pref("userChrome.icon.global_menu",          true);
 user_pref("userChrome.icon.global_menubar",       true);
+user_pref("userChrome.icon.1-25px_stroke",        true);
 
 // -- User Content -------------------------------------------------------------
 user_pref("userContent.player.ui",             true);

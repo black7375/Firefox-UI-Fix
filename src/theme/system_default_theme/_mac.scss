@@ -8,7 +8,12 @@
     --mac-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog);
     --mac-field-bgcolor: Window;
     --mac-panel-bgcolor: Menu;
-    --mac-sidebar-bgcolor: -moz-mac-source-list;
+    @if mode.isSTANDARD() {
+        --mac-sidebar-bgcolor: Window; // TODO: -moz-sidebar;
+    }
+    @if mode.isESR() {
+      --mac-sidebar-bgcolor: -moz-mac-source-list;
+    }
     --mac-sidebar-hover-bgcolor: color-mix(in srgb, ButtonFace 60%, var(--mac-sidebar-bgcolor));
     --mac-hover-bgcolor: Window;
     --mac-disabled-bgcolor: transparent;
