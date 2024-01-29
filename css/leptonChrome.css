@@ -764,6 +764,19 @@
       }
     }
   }
+  @media (-moz-gtk-csd-available) and (not (-moz-gtk-theme-family)) {
+    :root:not(:-moz-lwtheme) {
+      --toolbar-field-background-color: Field !important;
+      --toolbar-field-color: FieldText !important;
+      --toolbar-field-border-color: ThreeDShadow !important;
+    }
+  }
+  @media (-moz-gtk-csd-available) {
+    :root:not(:-moz-lwtheme) #urlbar-background,
+    :root:not(:-moz-lwtheme) #searchbar {
+      background-color: var(--toolbar-field-background-color) !important;
+    }
+  }
   /*= Mac - Default like color =================================================*/
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     :root:not(:-moz-lwtheme),
@@ -14087,6 +14100,19 @@
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
   :root:not(:-moz-lwtheme) .urlbarView-url {
     --urlbar-popup-url-color: -moz-accent-color;
+  }
+}
+@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) and (not (-moz-gtk-theme-family)) {
+  :root:not(:-moz-lwtheme) {
+    --toolbar-field-background-color: Field !important;
+    --toolbar-field-color: FieldText !important;
+    --toolbar-field-border-color: ThreeDShadow !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) {
+  :root:not(:-moz-lwtheme) #urlbar-background,
+  :root:not(:-moz-lwtheme) #searchbar {
+    background-color: var(--toolbar-field-background-color) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
