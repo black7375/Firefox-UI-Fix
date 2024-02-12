@@ -93,10 +93,18 @@ menu {
 
 /*= Light Weight Theme =======================================================*/
 /* Header Image */
-:root[lwtheme-image] {
+:root[lwtheme-image] > body {
+  // Linux compatibility:
+  // :root[tabsintitlebar][sizemode="normal"]:not([gtktiledwindow="true"]) {
+  //    appearance: auto;
+  // }
   background-image: var(--lwt-header-image) !important; /* Original: var(--lwt-header-image) */
   background-repeat: no-repeat !important;
   background-position: right top !important;
+  background-color: var(--lwt-accent-color, Window) !important;
+  &:-moz-window-inactive {
+    background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
+  }
 
   // For high-resolution screen's image ratio
   @media (min-width: 2500px) {
@@ -120,6 +128,10 @@ menu {
 #navigator-toolbox:-moz-lwtheme {
   --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
   --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
+}
+
+#customization-container {
+  background-color: transparent !important; /* Original: color-mix(in srgb, -moz-dialog 85%, white) */
 }
 
 /*= Findbar Border Color =====================================================*/

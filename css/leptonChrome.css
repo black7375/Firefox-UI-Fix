@@ -102,22 +102,26 @@
   }
   /*= Light Weight Theme =======================================================*/
   /* Header Image */
-  :root[lwtheme-image] {
+  :root[lwtheme-image] > body {
     background-image: var(--lwt-header-image) !important; /* Original: var(--lwt-header-image) */
     background-repeat: no-repeat !important;
     background-position: right top !important;
+    background-color: var(--lwt-accent-color, Window) !important;
+  }
+  :root[lwtheme-image] > body:-moz-window-inactive {
+    background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
   }
   @media (min-width: 2500px) {
-    :root[lwtheme-image] {
+    :root[lwtheme-image] > body {
       background-size: contain;
     }
     @supports -moz-bool-pref("userChrome.compatibility.covered_header_image") {
-      :root[lwtheme-image] {
+      :root[lwtheme-image] > body {
         background-size: cover;
       }
     }
   }
-  :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+  :root[lwtheme-image] > body #navigator-toolbox:-moz-lwtheme {
     background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
     background-repeat: var(--lwt-background-tiling) !important;
     background-position: var(--lwt-background-alignment) !important;
@@ -127,6 +131,9 @@
   #navigator-toolbox:-moz-lwtheme {
     --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
     --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
+  }
+  #customization-container {
+    background-color: transparent !important; /* Original: color-mix(in srgb, -moz-dialog 85%, white) */
   }
   /*= Findbar Border Color =====================================================*/
   html|input.findbar-textbox {
@@ -13440,24 +13447,28 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
-  :root[lwtheme-image] {
+  :root[lwtheme-image] > body {
     background-image: var(--lwt-header-image) !important; /* Original: var(--lwt-header-image) */
     background-repeat: no-repeat !important;
     background-position: right top !important;
+    background-color: var(--lwt-accent-color, Window) !important;
+  }
+  :root[lwtheme-image] > body:-moz-window-inactive {
+    background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (min-width: 2500px) {
-  :root[lwtheme-image] {
+  :root[lwtheme-image] > body {
     background-size: contain;
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (min-width: 2500px) and (-moz-bool-pref: "userChrome.compatibility.covered_header_image") {
-  :root[lwtheme-image] {
+  :root[lwtheme-image] > body {
     background-size: cover;
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
-  :root[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+  :root[lwtheme-image] > body #navigator-toolbox:-moz-lwtheme {
     background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
     background-repeat: var(--lwt-background-tiling) !important;
     background-position: var(--lwt-background-alignment) !important;
@@ -13468,6 +13479,11 @@
   #navigator-toolbox:-moz-lwtheme {
     --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
     --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  #customization-container {
+    background-color: transparent !important; /* Original: color-mix(in srgb, -moz-dialog 85%, white) */
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
