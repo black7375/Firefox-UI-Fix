@@ -7,6 +7,10 @@
   background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) !important;
 }
 
+#tabbrowser-arrowscrollbox
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[selected]:-moz-lwtheme,
 #tabbrowser-tabs:not([movingtab])
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab

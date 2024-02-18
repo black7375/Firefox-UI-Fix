@@ -7196,6 +7196,7 @@
   .tab-background:is([selected], [multiselected]) {
     background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) !important;
   }
+  #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected]:-moz-lwtheme,
   #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
@@ -7210,6 +7211,11 @@
     background-repeat: repeat-x, repeat-x, no-repeat !important;
   }
   @supports -moz-bool-pref("userChrome.theme.transparent.frame") {
+    :root:not([lwtheme-image])
+      #tabbrowser-arrowscrollbox
+      > .tabbrowser-tab
+      > .tab-stack
+      > .tab-background[selected]:-moz-lwtheme,
     :root:not([lwtheme-image])
       #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
