@@ -8,12 +8,10 @@
 
   // #864
   :root:not(:-moz-lwtheme) {
-    @media not (-moz-gtk-theme-family) {
-      // Rollback to color
-      --toolbar-field-background-color: Field !important;
-      --toolbar-field-color: FieldText !important;
-      --toolbar-field-border-color: ThreeDShadow !important;
-    }
+    // Rollback to color
+    --toolbar-field-background-color: Field !important;
+    --toolbar-field-color: FieldText !important;
+    --toolbar-field-border-color: ThreeDShadow !important;
 
     #urlbar-background, #searchbar {
       // Original: light-dark(rgba(0, 0, 0, .05), rgba(0, 0, 0, .3))
