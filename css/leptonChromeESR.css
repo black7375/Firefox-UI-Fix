@@ -5780,6 +5780,15 @@
           :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
             visibility: collapse !important;
           }
+          :root[tabsintitlebar] #titlebar {
+            z-index: 1;
+          }
+          :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+            opacity: 1 !important;
+          }
+          :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox {
+            opacity: var(--inactive-titlebar-opacity);
+          }
         }
         /* At Activated Menubar */
         :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -5930,6 +5939,15 @@
             :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
               visibility: collapse !important;
             }
+            :root[tabsintitlebar] #titlebar {
+              z-index: 1;
+            }
+            :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+              opacity: 1 !important;
+            }
+            :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox {
+              opacity: var(--inactive-titlebar-opacity);
+            }
           }
           /* At Activated Menubar */
           :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -6076,6 +6094,15 @@
             }
             :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
               visibility: collapse !important;
+            }
+            :root[tabsintitlebar] #titlebar {
+              z-index: 1;
+            }
+            :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+              opacity: 1 !important;
+            }
+            :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox {
+              opacity: var(--inactive-titlebar-opacity);
             }
           }
           /* At Activated Menubar */
@@ -6243,6 +6270,15 @@
               :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
                 visibility: collapse !important;
               }
+              :root[tabsintitlebar] #titlebar {
+                z-index: 1;
+              }
+              :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+                opacity: 1 !important;
+              }
+              :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox {
+                opacity: var(--inactive-titlebar-opacity);
+              }
             }
           }
           @media screen and (max-width: 1100px) {
@@ -6398,6 +6434,15 @@
               :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
                 visibility: collapse !important;
               }
+              :root[tabsintitlebar] #titlebar {
+                z-index: 1;
+              }
+              :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+                opacity: 1 !important;
+              }
+              :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox {
+                opacity: var(--inactive-titlebar-opacity);
+              }
             }
             /* At Activated Menubar */
             :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -6547,6 +6592,15 @@
               }
               :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
                 visibility: collapse !important;
+              }
+              :root[tabsintitlebar] #titlebar {
+                z-index: 1;
+              }
+              :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+                opacity: 1 !important;
+              }
+              :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox {
+                opacity: var(--inactive-titlebar-opacity);
               }
             }
             /* At Activated Menubar */

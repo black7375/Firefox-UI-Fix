@@ -54,7 +54,9 @@ See the above repository for updates as well as full license text. */
 
 @include OS($win) {
   :root[sizemode="maximized"][tabsintitlebar] {
-    --uc-titlebar-padding: 8px;
+    @if mode.isESR() {
+      --uc-titlebar-padding: 8px;
+    }
 
     #navigator-toolbox-background {
       margin-top: calc(-1 * var(--uc-titlebar-padding));
@@ -125,6 +127,16 @@ See the above repository for updates as well as full license text. */
     }
     #menubar-items {
       visibility: collapse !important;
+    }
+  }
+
+  :root[tabsintitlebar] #titlebar {
+    z-index: 1;
+    &:-moz-window-inactive {
+      opacity: 1 !important;
+      .titlebar-buttonbox {
+        opacity: var(--inactive-titlebar-opacity);
+      }
     }
   }
 }
