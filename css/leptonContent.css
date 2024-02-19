@@ -3576,6 +3576,13 @@
         }
       }
     }
+    @-moz-document url-prefix("about:logins") {
+      @supports -moz-bool-pref("userChrome.icon.context_menu") {
+        .menuitem-export {
+          background-image: url("../icons/toolbarButton-download.svg") !important;
+        }
+      }
+    }
   }
 }
 /** Download Panel ************************************************************/
@@ -7308,6 +7315,15 @@
       panel-item[data-l10n-id="preferences-addon-button"],
       panel-item[data-l10n-id="manage-addon-button"] {
         --icon: url("chrome://global/skin/icons/settings.svg");
+      }
+    }
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") {
+  @-moz-document url-prefix("about:logins") {
+    @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
+      .menuitem-export {
+        background-image: url("../icons/toolbarButton-download.svg") !important;
       }
     }
   }

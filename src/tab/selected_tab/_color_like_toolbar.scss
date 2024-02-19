@@ -7,6 +7,10 @@
   background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) !important;
 }
 
+#tabbrowser-arrowscrollbox
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[selected]:-moz-lwtheme,
 #tabbrowser-tabs:not([movingtab])
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
@@ -16,6 +20,9 @@
  */
   background-image: linear-gradient(transparent, transparent),
     linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+  background-position: 0, 0, right top;
+  background-attachment: scroll, scroll, fixed;
+  background-repeat: repeat-x, repeat-x, no-repeat !important;
 
   @include Option("userChrome.theme.transparent.frame") {
     :root:not([lwtheme-image]) & {
