@@ -25,3 +25,9 @@
     @import "../icons/addon_page";
   }
 }
+
+@include moz-document(url-prefix "about:logins") {
+  @include Option("userChrome.icon.context_menu") {
+    @import "../icons/login_page";
+  }
+}

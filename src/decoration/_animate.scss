@@ -124,11 +124,26 @@ xul|search-textbox.tabsFilter,
   }
 }
 
-/*- Full Screen ------------------------------------------------------------*/
+/*- Titlebar & Full Screen -------------------------------------------------*/
+#titlebar {
+  will-change: background-color !important;
+  transition: background-color 0.2s var(--animation-easing-function) !important;
+
+  &:-moz-window-inactive {
+    transition: background-color 0.5s var(--animation-easing-function) !important;
+  }
+}
 #navigator-toolbox {
   /* Full screen out */
-  transition: margin-top 1s ease;
+  will-change: margin-top, background-color !important;
+  transition: margin-top 1s ease,
+              background-color 0.2s var(--animation-easing-function) !important;
   transform-origin: top;
+
+  &:-moz-window-inactive {
+    transition: margin-top 1s ease,
+                background-color 0.5s var(--animation-easing-function) !important;
+  }
 
   &[inFullscreen="true"] {
     /* Full screen enter */
@@ -138,7 +153,13 @@ xul|search-textbox.tabsFilter,
 
     /* Full screen navbar not hover */
     // transition: margin-top 0.3s var(--animation-easing-function) 50ms;
-    transition: margin-top 1.3s var(--animation-easing-function) 50ms;
+    transition: margin-top 1.3s var(--animation-easing-function) 50ms,
+                background-color 0.2s var(--animation-easing-function) !important;
+    &:-moz-window-inactive {
+      transition: margin-top 1.3s var(--animation-easing-function) 50ms,
+                  background-color 0.5s var(--animation-easing-function) !important;
+    }
+
     &:hover {
     // Full screen navbar hover
     // transition-duration: 1.5s; // Not works, because !important
