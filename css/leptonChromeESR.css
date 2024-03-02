@@ -10351,23 +10351,39 @@
     @media (prefers-reduced-motion: no-preference) {
       @supports -moz-bool-pref("userChrome.decoration.animate") {
         #navigator-toolbox {
+          will-change: margin-top, margin-bottom, background-color !important;
           transition: margin-top 1s ease,
             margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
-              var(--uc-autohide-toolbar-delay);
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.2s var(--animation-easing-function) !important;
+        }
+        #navigator-toolbox:-moz-window-inactive {
+          transition: margin-top 1s ease,
+            margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.5s var(--animation-easing-function) !important;
         }
         #navigator-toolbox:is(:hover, :focus-within) {
-          transition-delay: 0s !important;
+          transition-delay: 0s, 0s, 0.2s !important;
         }
         #navigator-toolbox[inFullscreen="true"] {
           transition: margin-top 1.3s var(--animation-easing-function) 50ms,
             margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
-              var(--uc-autohide-toolbar-delay);
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.2s var(--animation-easing-function) !important;
+        }
+        #navigator-toolbox[inFullscreen="true"]:-moz-window-inactive {
+          transition: margin-top 1.3s var(--animation-easing-function) 50ms,
+            margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.5s var(--animation-easing-function) !important;
         }
       }
       @supports not -moz-bool-pref("userChrome.decoration.animate") {
         #navigator-toolbox {
           transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
-            var(--uc-autohide-toolbar-delay);
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.2s var(--animation-easing-function) !important;
         }
         #navigator-toolbox:is(:hover, :focus-within) {
           transition-delay: 0s !important;

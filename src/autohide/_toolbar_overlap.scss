@@ -1,23 +1,38 @@
+@import "../decoration/animate_common";
+
 #navigator-toolbox {
   --uc-toolbar-hide-height: calc(-1 * var(--uc-toolbar-height, 0));
   margin-bottom: var(--uc-toolbar-hide-height) !important;
 
   @include Animate {
     @include Option("userChrome.decoration.animate") {
-      transition: margin-top 1s ease,
-                  margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
-
+      will-change: margin-top, margin-bottom, background-color !important;
+      transition: $toolbox-transition-margin-top,
+                  $toolbox-transition-margin-bottom,
+                  $toolbox-transition-background-color !important;
+      &:-moz-window-inactive {
+        transition: $toolbox-transition-margin-top,
+                    $toolbox-transition-margin-bottom,
+                    $toolbox-transition-background-color-inactive !important;
+      }
       &:is(:hover, :focus-within) {
-        transition-delay: 0s !important;
+        transition-delay: 0s, 0s, 0.2s !important;
       }
 
       &[inFullscreen="true"] {
-        transition: margin-top 1.3s var(--animation-easing-function) 50ms,
-                    margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+        transition: $toolbox-transition-margin-top-fullscreen,
+                    $toolbox-transition-margin-bottom,
+                    $toolbox-transition-background-color !important;
+        &:-moz-window-inactive {
+          transition: $toolbox-transition-margin-top-fullscreen,
+                      $toolbox-transition-margin-bottom,
+                      $toolbox-transition-background-color-inactive !important;
+        }
       }
     }
     @include NotOption("userChrome.decoration.animate") {
-      transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+      transition: $toolbox-transition-margin-bottom,
+                  $toolbox-transition-background-color !important;
 
       &:is(:hover, :focus-within) {
         transition-delay: 0s !important;
