@@ -14,6 +14,9 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"
 // CSS's `:has()` selector #457 - 103 Above
 user_pref("layout.css.has-selector.enabled", true);
 
+// Linux native titlebar buttons
+user_pref("widget.gtk.non-native-titlebar-buttons.enabled", false);
+
 // Browser Theme Based Scheme - Will be activate 95 Above
 // user_pref("layout.css.prefers-color-scheme.content-override", 3);
 
