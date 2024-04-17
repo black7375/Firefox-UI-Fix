@@ -587,7 +587,7 @@
     (-moz-os-version: windows-win10) and (prefers-color-scheme: dark),
     (-moz-platform: windows-win10) and (-moz-toolbar-prefers-color-scheme: dark),
     (-moz-platform: windows-win10) and (prefers-color-scheme: dark) {
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       --win-text-color: #ffffff;
       --win-bgcolor: #2b2b2b;
@@ -615,7 +615,7 @@
       --win-accent-active-color: AccentColor;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, -moz-accent-color);
         --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
@@ -624,7 +624,7 @@
       }
     }
     @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --win-bgcolor: #202020;
         --win-hover-bgcolor: #383838; /* also button-bgcolor */
@@ -644,7 +644,7 @@
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       /* Text, Icon Color */
       --menu-color: var(--win-text-color) !important;
@@ -748,7 +748,7 @@
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --tab-line-color: Highlight !important;
       }
@@ -784,7 +784,7 @@
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
     @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --chrome-content-separator-color: var(--win11-chrome-separator-color) !important;
       }
@@ -795,7 +795,7 @@
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
     @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
       }
@@ -818,7 +818,7 @@
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:not(:-moz-lwtheme) #titlebar,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar,
     :root[lwt-default-theme-in-dark-mode] #titlebar {
       --button-hover-bgcolor: var(--win-sidebar-button-hover-bgcolor);
       --button-active-bgcolor: var(--win-sidebar-button-hover-active-bgcolor);
@@ -832,7 +832,7 @@
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:not(:-moz-lwtheme) #sidebar-box,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #sidebar-box,
     :root[lwt-default-theme-in-dark-mode] #sidebar-box {
       --sidebar-background-color: var(--win-sidebar-bgcolor) !important;
       --sidebar-text-color: var(--win-text-color) !important;
@@ -853,14 +853,14 @@
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:not(:-moz-lwtheme) .subviewbutton,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) .subviewbutton,
     :root[lwt-default-theme-in-dark-mode] .subviewbutton {
       --button-hover-bgcolor: var(--win-hover-active-bgcolor) !important;
       --button-active-bgcolor: var(--win-button-active-bgcolor) !important;
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:not(:-moz-lwtheme)
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
       toolbarbutton.subviewbutton:not(
         [disabled],
         [open],
@@ -886,7 +886,7 @@
     }
   }
   @media (-moz-os-version: windows-win10), (-moz-platform: windows-win10) {
-    :root:not(:-moz-lwtheme)
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
       toolbarbutton.subviewbutton:not(
         [disabled],
         #appMenu-fxa-label2,
@@ -1001,7 +1001,7 @@
   }
   /*= Mac - Default like color =================================================*/
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       /* Colors */
       --mac-text-color: -moz-dialogtext;
@@ -1129,7 +1129,7 @@
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --mac-primary-button-color: -moz-accent-color-foreground; /* or -moz-mac-menutextselect */
         --mac-accent-color: -moz-accent-color; /* or LinkText */
@@ -1154,7 +1154,7 @@
     }
     /*- Proton Tab Selected ----------------------------------------------------*/
     @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
       }
@@ -1166,14 +1166,14 @@
       }
     }
     /*- Toolbar ----------------------------------------------------------------*/
-    :root:not(:-moz-lwtheme) #navigator-toolbox,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #navigator-toolbox,
     :root[lwt-default-theme-in-dark-mode] #navigator-toolbox {
       background-color: var(--mac-bgcolor) !important;
     }
     :root:not(:-moz-lwtheme) #titlebar {
       --mac-hover-bgcolor: ButtonFace;
     }
-    :root:not(:-moz-lwtheme) #titlebar,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar,
     :root[lwt-default-theme-in-dark-mode] #titlebar {
       --button-hover-bgcolor: var(--mac-hover-bgcolor);
       --button-active-bgcolor: var(--mac-hover-bgcolor);
@@ -1190,7 +1190,7 @@
     #sidebar-box:not([lwt-sidebar]) {
       appearance: none !important;
     }
-    :root:not(:-moz-lwtheme) #sidebar-box,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #sidebar-box,
     :root[lwt-default-theme-in-dark-mode] #sidebar-box {
       --sidebar-background-color: var(--mac-sidebar-bgcolor) !important;
       --sidebar-text-color: var(--mac-text-color) !important;
@@ -1234,8 +1234,8 @@
         background: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
       }
     }
-    :root:not(:-moz-lwtheme):not([customizing="true"]) tab[visuallyselected] > stack::before,
-    :root:not(:-moz-lwtheme):not([customizing="true"]) tab[visuallyselected] > stack::after,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)):not([customizing="true"]) tab[visuallyselected] > stack::before,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)):not([customizing="true"]) tab[visuallyselected] > stack::after,
     :root[lwt-default-theme-in-dark-mode]:not([customizing="true"]) tab[visuallyselected] > stack::before,
     :root[lwt-default-theme-in-dark-mode]:not([customizing="true"]) tab[visuallyselected] > stack::after {
       fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
@@ -2611,7 +2611,7 @@
         --in-content-page-background: #42414d;
       }
     }
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       --checkbox-unchecked-bgcolor: var(--in-content-button-background) !important;
       --checkbox-unchecked-hover-bgcolor: var(--in-content-button-background-hover) !important;
