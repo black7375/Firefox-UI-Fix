@@ -173,6 +173,17 @@
   .container.infobar {
     align-items: center !important;
   }
+  /*= Inactive transparent #882 ================================================*/
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+    opacity: 1 !important;
+    color: color-mix(in srgb, currentColor calc(var(--inactive-titlebar-opacity, 0.75) * 100%), transparent) !important;
+    --inactive-toolbarbutton-icon-fill-opacity: calc(
+      var(--toolbarbutton-icon-fill-opacity, 1) * var(--inactive-titlebar-opacity, 0.75)
+    );
+  }
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive .toolbarbutton-icon {
+    fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -13537,6 +13548,7 @@
   /*= Firefox View Border #498 =================================================*/
   /*= Menubar rounding #814 ====================================================*/
   /*= Infobar Align #858 =======================================================*/
+  /*= Inactive transparent #882 ================================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
@@ -13654,6 +13666,18 @@
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
   .container.infobar {
     align-items: center !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+    opacity: 1 !important;
+    color: color-mix(in srgb, currentColor calc(var(--inactive-titlebar-opacity, 0.75) * 100%), transparent) !important;
+    --inactive-toolbarbutton-icon-fill-opacity: calc(
+      var(--toolbarbutton-icon-fill-opacity, 1) * var(--inactive-titlebar-opacity, 0.75)
+    );
+  }
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive .toolbarbutton-icon {
+    fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
   }
 }
 /*= OS - Compatibility =======================================================*/
