@@ -234,9 +234,12 @@
     --arrowpanel-border-color: var(--win-bgcolor) !important;
     --panel-separator-color: var(--win-bgcolor) !important;
   }
-  :root[lwt-default-theme-in-dark-mode] {
-    --arrowpanel-border-color: var(--win-border-color) !important;
-    --panel-separator-color: var(--win-border-color) !important;
+  @include Dark {
+    :root:is(#main-window)#{$not_lwtheme},
+    :root[lwt-default-theme-in-dark-mode] {
+      --arrowpanel-border-color: var(--win-border-color) !important;
+      --panel-separator-color: var(--win-border-color) !important;
+    }
   }
 
   @include Option("userChrome.theme.system_default") {
