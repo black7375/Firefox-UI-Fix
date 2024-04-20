@@ -61,11 +61,11 @@
     // Others
     --urlbar-box-bgcolor: color-mix(in srgb, currentColor 16%, transparent) !important;
 
-    #navigator-toolbox:-moz-lwtheme {
+    &#{$lwtheme} #navigator-toolbox {
       --lwt-tabs-border-color: var(--focus-outline-color) !important;
     }
     #navigator-toolbox,
-    &[lwtheme-image] #navigator-toolbox:-moz-lwtheme {
+    &[lwtheme-image]#{$lwtheme} #navigator-toolbox {
       background-color: var(--lwt-accent-color) !important;
     }
     #TabsToolbar {

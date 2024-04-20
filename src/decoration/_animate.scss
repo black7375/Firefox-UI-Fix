@@ -18,8 +18,10 @@
 @include _animate_bgColor(1s);
 @include _animate_bgColor(0.25s, ":hover");
 @include OS($linux) {
-  .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
-    transition: background-image 0.25s var(--animation-easing-function) !important;
+  @include not_lwtheme {
+    .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background {
+      transition: background-image 0.25s var(--animation-easing-function) !important;
+    }
   }
 }
 

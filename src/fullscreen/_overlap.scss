@@ -9,7 +9,7 @@
 
 @include OS($linux) {
   /* Fix transparent background */
-  :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
+  :root[tabsintitlebar][sizemode="fullscreen"]#{$not_lwtheme} #TabsToolbar {
     appearance: auto !important;
   }
 }

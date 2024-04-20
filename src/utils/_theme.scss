@@ -1,8 +1,8 @@
 @use "sass:selector";
 
 //== Privated Variables ========================================================
-$_lwTheme: ":is(:-moz-lwtheme, [lwtheme])";
-$_not_lwTheme: ":is(:not([lwtheme]), :not(:-moz-lwtheme))";
+$lwtheme: ":is(:-moz-lwtheme, [lwtheme])";
+$not_lwtheme: ":is(:not([lwtheme]), :not(:-moz-lwtheme))";
 
 $_lightdark: "[lwtheme-mozlightdark]"; // Legacy - FF v96
 $_lightText: '[lwthemetextcolor="bright"]';
@@ -21,7 +21,7 @@ $_darkStyle: '[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rg
 }
 
 @function system-default-theme() {
-  $sysLight: selector.append(":root", "#{$_not_lwTheme}");
+  $sysLight: selector.append(":root", "#{$not_lwtheme}");
   $sysDark: selector.append(":root", $_sysDark);
 
   @return "#{$sysLight}, #{$sysDark}";
@@ -41,14 +41,28 @@ $_darkStyle: '[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rg
   @return "#{$oldDark}, #{$newDark}";
 }
 
-@mixin lwtheme() {
-  :root#{$_lwTheme} {
-    @content;
+@mixin lwtheme($toplevel: true) {
+  @if $toplevel {
+    :root#{$lwtheme} {
+      @content;
+    }
+  }
+  @else {
+    :root#{$lwtheme} & {
+      @content;
+    }
   }
 }
 
-@mixin not_lwtheme() {
-  :root#{$_not_lwTheme} {
-    @content;
+@mixin not_lwtheme($toplevel: true) {
+  @if $toplevel {
+    :root#{$not_lwtheme} {
+      @content;
+    }
+  }
+  @else {
+    :root#{$not_lwtheme} & {
+      @content;
+    }
   }
 }

@@ -156,7 +156,7 @@
     --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
   }
   @include Dark {
-    :root:not(:-moz-lwtheme),
+    :root#{$not_lwtheme},
     :root[lwt-default-theme-in-dark-mode] {
       --mac-field-bgcolor: Field;
       --mac-panel-bgcolor: -moz-CellHighlight;
@@ -171,7 +171,7 @@
     #{system-default-theme()} {
       --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
     }
-    :root:not(:-moz-lwtheme) {
+    :root#{$not_lwtheme} {
       --tab-selected-color: var(--mac-proton-tab-selected-bgcolor) !important;
     }
     :root[lwt-default-theme-in-dark-mode] {
@@ -184,7 +184,7 @@
     background-color: var(--mac-bgcolor) !important;
   }
 
-  :root:not(:-moz-lwtheme) #titlebar {
+  :root#{$not_lwtheme} #titlebar {
     --mac-hover-bgcolor: ButtonFace;
   }
   #{selector.nest(system-default-theme(), "#titlebar")} {
