@@ -172,7 +172,12 @@
   @include NotOption("userChrome.compatibility.os.linux_non_native_titlebar_button") {
     @include lwtheme {
       .titlebar-button {
-        appearance: auto !important;
+        appearance: none !important;
+        > .toolbarbutton-icon {
+          appearance: auto !important;
+          width: unset !important;
+          height: unset !important;
+        }
       }
       .titlebar-min,
       .titlebar-max,

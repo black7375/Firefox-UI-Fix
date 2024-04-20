@@ -208,7 +208,12 @@
     /*= Linux - Titlebar button at lwtheme =====================================*/
     @supports not -moz-bool-pref("userChrome.compatibility.os.linux_non_native_titlebar_button") {
       :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button {
+        appearance: none !important;
+      }
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button > .toolbarbutton-icon {
         appearance: auto !important;
+        width: unset !important;
+        height: unset !important;
       }
       :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-min,
       :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-max,
@@ -13690,7 +13695,12 @@
 }
 @media (-moz-bool-pref: "userChrome.compatibility.os") and (-moz-gtk-csd-available) and (not (-moz-bool-pref: "userChrome.compatibility.os.linux_non_native_titlebar_button")) {
   :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button {
+    appearance: none !important;
+  }
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button > .toolbarbutton-icon {
     appearance: auto !important;
+    width: unset !important;
+    height: unset !important;
   }
   :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-min,
   :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-max,
