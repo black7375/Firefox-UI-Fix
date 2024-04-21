@@ -3822,6 +3822,11 @@
     > .ac-title-text {
     cursor: pointer !important;
   }
+  #PanelUI-fxa-menu-syncnow-button:has(.syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"]),
+  #PanelUI-fxa-menu-syncnow-button .syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"],
+  #PanelUI-appMenu-fxa-image-last-synced[syncstatus="active"] {
+    cursor: progress !important;
+  }
 }
 /*= Panel UI Button Separator ================================================*/
 @supports -moz-bool-pref("userChrome.decoration.panel_button_separator") {
