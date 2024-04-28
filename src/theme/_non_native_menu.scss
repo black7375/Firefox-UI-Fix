@@ -24,6 +24,11 @@
     appearance: none !important;
   }
 
+  menu,
+  menuitem {
+    border-radius: 0 !important;
+  }
+
   /* Menu item text also needs native drawing disabled. */
   menu > .menu-text,
   menuitem > .menu-text,
@@ -95,6 +100,9 @@
   menuitem[type="radio"] {
     appearance: none !important; /* to override more specific selectors above. */
     width: unset !important;
+    .menu-iconic-icon {
+      appearance: none !important;
+    }
   }
 
   .menu-iconic > .menu-iconic-left,
@@ -140,6 +148,10 @@
     padding: 0 !important;
     /* The side margins should align with the start of the menu item text. */
     margin: 2px 1em !important;
+
+    &::before {
+      display: none !important; /* Original: block */
+    }
   }
 
   //-- Global - Menu Popup -----------------------------------------------------

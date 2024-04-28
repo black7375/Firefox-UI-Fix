@@ -94,13 +94,13 @@
     }
   }
 
-  &::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
-     #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background:-moz-lwtheme {
-    &::before,
-    &::after {
-      /* As Selected Tab - Box Shadow */
-      stroke: var(--toolbar-color);
-    }
+  &::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])#{$lwtheme}
+    #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background {
+      &::before,
+      &::after {
+        /* As Selected Tab - Box Shadow */
+        stroke: var(--toolbar-color);
+      }
   }
 
   @include OS($linux) {

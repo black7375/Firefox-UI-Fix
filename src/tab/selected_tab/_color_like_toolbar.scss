@@ -1,4 +1,4 @@
-:root:not(:-moz-lwtheme) {
+@include not_lwtheme {
   /* Fix for windows's system default theme. Using --toolbar-bgcolor, --toolbar-bgimage fallback */
   --tab-selected-bgcolor: unset !important; /* Original: rgb(255,255,255); */
   --tab-selected-bgimage: unset !important; /* Above FF v101 */
@@ -10,22 +10,24 @@
 #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
   > .tab-stack
-  > .tab-background[selected]:-moz-lwtheme,
+  > .tab-background[selected],
 #tabbrowser-tabs:not([movingtab])
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
   > .tab-stack
-  > .tab-background[selected]:-moz-lwtheme {
-  /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
- */
-  background-image: linear-gradient(transparent, transparent),
-    linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
-  background-position: 0, 0, right top;
-  background-attachment: scroll, scroll, fixed;
-  background-repeat: repeat-x, repeat-x, no-repeat !important;
+  > .tab-background[selected] {
+  @include lwtheme(false) {
+    /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
+     */
+    background-image: linear-gradient(transparent, transparent),
+                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+    background-position: 0, 0, right top;
+    background-attachment: scroll, scroll, fixed;
+    background-repeat: repeat-x, repeat-x, no-repeat !important;
+  }
 
   @include Option("userChrome.theme.transparent.frame") {
-    :root:not([lwtheme-image]) & {
+    :root:not([lwtheme-image])#{$lwtheme} & {
       background-image: linear-gradient(transparent, transparent),
                         linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-additional-images, none) !important;
 

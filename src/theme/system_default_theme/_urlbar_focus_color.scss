@@ -1,6 +1,6 @@
 /*= Common - URL Bar focus color =============================================*/
 // TODO: `OS` Not covered case
-$_urlBarFocusSelector: ":root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme)";
+$_urlBarFocusSelector: ":root[tabsintitlebar]:not(:-moz-window-inactive)#{$not_lwtheme}";
 $_urlBarFocusDarkSelector: ":root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)";
 
 @media (-moz-windows-accent-color-in-titlebar), (-moz-gtk-csd-available) {

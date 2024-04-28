@@ -53,9 +53,11 @@
   }
   @include NotOption("userChrome.tab.blue_accent") {
     @include OS("linux") {
-      :root:not(:-moz-lwtheme) #tabbrowser-tabs {
-        @include AccentColor("Highlight") {
-          --tab-line-color: #{$accentColor} !important; /* -moz-accent-color */
+      @include not_lwtheme {
+        #tabbrowser-tabs {
+          @include AccentColor("Highlight") {
+            --tab-line-color: #{$accentColor} !important; /* -moz-accent-color */
+          }
         }
       }
     }

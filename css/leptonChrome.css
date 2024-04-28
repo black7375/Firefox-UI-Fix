@@ -78,16 +78,17 @@
       /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
       border: unset !important;
     }
-    #TabsToolbar[brighttext]
+    :root:is(:-moz-lwtheme, [lwtheme])
+      #TabsToolbar[brighttext]
       #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab:is([visuallyselected], [multiselected])
       > .tab-stack
-      > .tab-background:-moz-lwtheme {
+      > .tab-background {
       /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
       border: unset !important;
     }
-    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
-    .tab-background[selected]:-moz-lwtheme {
+    :root:is(:-moz-lwtheme, [lwtheme]) #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon,
+    :root:is(:-moz-lwtheme, [lwtheme]) .tab-background[selected] {
       outline-color: transparent !important;
     }
     .keyboard-focused-tab > .tab-stack > .tab-background,
@@ -121,14 +122,14 @@
       }
     }
   }
-  :root[lwtheme-image] > body #navigator-toolbox:-moz-lwtheme {
+  :root[lwtheme-image] > body :root:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox {
     background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
     background-repeat: var(--lwt-background-tiling) !important;
     background-position: var(--lwt-background-alignment) !important;
     background-color: unset !important; /* Original:  var(--lwt-accent-color) */
   }
   /* Navbar Border */
-  #navigator-toolbox:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox {
     --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
     --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
   }
@@ -172,6 +173,17 @@
   .container.infobar {
     align-items: center !important;
   }
+  /*= Inactive transparent #882 ================================================*/
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+    opacity: 1 !important;
+    color: color-mix(in srgb, currentColor calc(var(--inactive-titlebar-opacity, 0.75) * 100%), transparent) !important;
+    --inactive-toolbarbutton-icon-fill-opacity: calc(
+      var(--toolbarbutton-icon-fill-opacity, 1) * var(--inactive-titlebar-opacity, 0.75)
+    );
+  }
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive .toolbarbutton-icon {
+    fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -206,17 +218,22 @@
     }
     /*= Linux - Titlebar button at lwtheme =====================================*/
     @supports not -moz-bool-pref("userChrome.compatibility.os.linux_non_native_titlebar_button") {
-      .titlebar-button:-moz-lwtheme {
-        appearance: auto !important;
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button {
+        appearance: none !important;
       }
-      .titlebar-min:-moz-lwtheme,
-      .titlebar-max:-moz-lwtheme,
-      .titlebar-restore:-moz-lwtheme,
-      .titlebar-close:-moz-lwtheme {
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button > .toolbarbutton-icon {
+        appearance: auto !important;
+        width: unset !important;
+        height: unset !important;
+      }
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-min,
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-max,
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-restore,
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-close {
         list-style-image: none !important;
       }
-      .titlebar-button:-moz-lwtheme:hover,
-      .titlebar-button:-moz-lwtheme:hover:active {
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button,
+      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button:hover:active {
         background-color: unset !important;
         color: unset !important;
       }
@@ -230,17 +247,19 @@
         box-shadow: 0 0 4px rgba(128,128,142,0.5);
       }
      */
-    #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected], [multiselected])
-      > .tab-stack
-      > .tab-background:not(:-moz-lwtheme) {
-      box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
-    }
-    #TabsToolbar:not([brighttext])
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
       #tabbrowser-tabs:not([noshadowfortests])
       .tabbrowser-tab:is([visuallyselected], [multiselected])
       > .tab-stack
-      > .tab-background:not(:-moz-lwtheme) {
+      > .tab-background {
+      box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
+    }
+    #TabsToolbar:not([brighttext])
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
+      #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected], [multiselected])
+      > .tab-stack
+      > .tab-background {
       box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
     }
   }
@@ -278,11 +297,13 @@
   /*= Common - URL Bar focus color =============================================*/
   @media (-moz-windows-accent-color-in-titlebar), (-moz-gtk-csd-available) {
     /* URL Bar */
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+    :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
       --focus-outline-color: AccentColor !important;
     }
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+    :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+      #urlbar[open]
+      > #urlbar-background,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
       #urlbar[open]
       > #urlbar-background {
@@ -293,11 +314,13 @@
       ) !important; /* Like: --toolbar-field-focus-border-color */
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+      :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
         --focus-outline-color: -moz-accent-color !important;
       }
-      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+      :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+        #urlbar[open]
+        > #urlbar-background,
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
         #urlbar[open]
         > #urlbar-background {
@@ -311,7 +334,7 @@
   }
   /*= Windows7 - Aero Based Theme ==============================================*/ /*= Windows10 - UWP like color ===============================================*/
   @media (-moz-platform: windows) {
-    :root:not(:-moz-lwtheme) {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
       --win-text-color: rgba(0, 0, 0);
       --win-bgcolor: rgb(204, 204, 204);
       --win-disabled-color: rgb(145, 145, 145);
@@ -339,7 +362,7 @@
       --win-accent-active-color: AccentColor;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme) {
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
         --win-accent-foreground-color: -moz-accent-color-foreground;
         --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
         --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
@@ -348,7 +371,7 @@
       }
     }
     @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
-      :root:not(:-moz-lwtheme) {
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
         --win-text-color: #1a1a1a;
         --win-bgcolor: #e8e8e8;
         --win-hover-bgcolor: #eaeaea; /* also button-bgcolor */
@@ -375,7 +398,7 @@
     /* For overwrite */
   }
   @media (-moz-platform: windows) and (prefers-color-scheme: dark) {
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       --win-text-color: #ffffff;
       --win-bgcolor: #2b2b2b;
@@ -403,7 +426,7 @@
       --win-accent-active-color: AccentColor;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, -moz-accent-color);
         --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
@@ -412,7 +435,7 @@
       }
     }
     @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --win-bgcolor: #202020;
         --win-hover-bgcolor: #383838; /* also button-bgcolor */
@@ -432,7 +455,7 @@
     }
   }
   @media (-moz-platform: windows) {
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       /* Text, Icon Color */
       --menu-color: var(--win-text-color) !important;
@@ -536,24 +559,25 @@
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --tab-line-color: Highlight !important;
       }
     }
   }
   @media (-moz-platform: windows) {
-    #navigator-toolbox:not(:-moz-lwtheme) {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #navigator-toolbox {
       background: var(--lwt-accent-color) !important;
     }
   }
   @media (-moz-platform: windows) {
-    :root:is(#main-window):not(:-moz-lwtheme) {
+    :root:is(#main-window):is(:not([lwtheme]), :not(:-moz-lwtheme)) {
       --arrowpanel-border-color: var(--win-bgcolor) !important;
       --panel-separator-color: var(--win-bgcolor) !important;
     }
   }
-  @media (-moz-platform: windows) {
+  @media (-moz-platform: windows) and (prefers-color-scheme: dark) {
+    :root:is(#main-window):is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       --arrowpanel-border-color: var(--win-border-color) !important;
       --panel-separator-color: var(--win-border-color) !important;
@@ -562,7 +586,7 @@
   @media (-moz-platform: windows) {
     @supports -moz-bool-pref("userChrome.theme.system_default") {
       @media (-moz-platform: windows) and (-moz-windows-accent-color-in-titlebar) {
-        :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+        :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)),
         :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
           --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* As default */
         }
@@ -571,7 +595,7 @@
   }
   @media (-moz-platform: windows) {
     @supports -moz-bool-pref("userChrome.compatibility.os.win11") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --chrome-content-separator-color: var(--win11-chrome-separator-color) !important;
       }
@@ -582,11 +606,11 @@
   }
   @media (-moz-platform: windows) {
     @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
       }
-      :root:not(:-moz-lwtheme) {
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
         --tab-selected-color: var(--win-proton-tab-selected-bgcolor) !important;
       }
       :root[lwt-default-theme-in-dark-mode] {
@@ -595,7 +619,7 @@
     }
   }
   @media (-moz-platform: windows) {
-    html#main-window menupopup:not(:-moz-lwtheme) {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) html#main-window menupopup {
       --menu-color: var(--win-text-color) !important;
       --menu-background-color: var(--win-component-bgcolor) !important;
       --menu-border-color: var(--win-bgcolor) !important;
@@ -605,7 +629,7 @@
     }
   }
   @media (-moz-platform: windows) {
-    :root:not(:-moz-lwtheme) #titlebar,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar,
     :root[lwt-default-theme-in-dark-mode] #titlebar {
       --button-hover-bgcolor: var(--win-sidebar-button-hover-bgcolor);
       --button-active-bgcolor: var(--win-sidebar-button-hover-active-bgcolor);
@@ -619,7 +643,7 @@
     }
   }
   @media (-moz-platform: windows) {
-    :root:not(:-moz-lwtheme) #sidebar-box,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #sidebar-box,
     :root[lwt-default-theme-in-dark-mode] #sidebar-box {
       --sidebar-background-color: var(--win-sidebar-bgcolor) !important;
       --sidebar-text-color: var(--win-text-color) !important;
@@ -637,14 +661,14 @@
     }
   }
   @media (-moz-platform: windows) {
-    :root:not(:-moz-lwtheme) .subviewbutton,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) .subviewbutton,
     :root[lwt-default-theme-in-dark-mode] .subviewbutton {
       --button-hover-bgcolor: var(--win-hover-active-bgcolor) !important;
       --button-active-bgcolor: var(--win-button-active-bgcolor) !important;
     }
   }
   @media (-moz-platform: windows) {
-    :root:not(:-moz-lwtheme)
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
       toolbarbutton.subviewbutton:not(
         [disabled],
         [open],
@@ -670,7 +694,7 @@
     }
   }
   @media (-moz-platform: windows) {
-    :root:not(:-moz-lwtheme)
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
       toolbarbutton.subviewbutton:not(
         [disabled],
         #appMenu-fxa-label2,
@@ -692,8 +716,8 @@
     }
   }
   @media (-moz-platform: windows) {
-    :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme),
-    :root:not(:-moz-lwtheme) {
+    :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):is(:not([lwtheme]), :not(:-moz-lwtheme)),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
       /* Light Theme */
       --lwt-accent-color: var(--win-bgcolor) !important;
     }
@@ -704,11 +728,12 @@
     }
   }
   @media (-moz-platform: windows) {
-    #tabbrowser-tabs:not([movingtab])
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
+      #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
       > .tab-stack
-      > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme),
+      > .tab-background[multiselected]:not([selected]),
     :root[lwtheme-mozlightdark]
       #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
@@ -734,26 +759,26 @@
   /*= Windows10 - Titlebar accent color ========================================*/
   @media (-moz-windows-accent-color-in-titlebar) {
     /* Tab Bar */
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+    :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .titlebar-color,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
       color: AccentColorText;
       background-color: AccentColor;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+      :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .titlebar-color,
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
         color: -moz-accent-color-foreground;
         background-color: -moz-accent-color;
       }
     }
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+    :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .toolbar-items,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
       --toolbarbutton-icon-fill: currentColor;
       --toolbarbutton-hover-background: color-mix(in srgb, AccentColorText 10%, transparent);
       --toolbarbutton-active-background: color-mix(in srgb, AccentColorText 15%, transparent);
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+      :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .toolbar-items,
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
         --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
         --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
@@ -762,27 +787,27 @@
   }
   /*= GTK - URL View url accent color ==========================================*/
   @media (-moz-gtk-csd-available) {
-    :root:not(:-moz-lwtheme) .urlbarView-url {
-      --urlbar-popup-url-color: AccentColor;
-    }
-    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme) .urlbarView-url {
-        --urlbar-popup-url-color: -moz-accent-color;
-      }
-    }
-    :root:not(:-moz-lwtheme) {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
       --toolbar-field-background-color: Field !important;
       --toolbar-field-color: FieldText !important;
       --toolbar-field-border-color: ThreeDShadow !important;
     }
-    :root:not(:-moz-lwtheme) #urlbar-background,
-    :root:not(:-moz-lwtheme) #searchbar {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) .urlbarView-url {
+      --urlbar-popup-url-color: AccentColor;
+    }
+    @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) .urlbarView-url {
+        --urlbar-popup-url-color: -moz-accent-color;
+      }
+    }
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #urlbar-background,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #searchbar {
       background-color: var(--toolbar-field-background-color) !important;
     }
   }
   /*= Mac - Default like color =================================================*/
   @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       /* Colors */
       --mac-text-color: -moz-dialogtext;
@@ -910,7 +935,7 @@
       --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --mac-primary-button-color: -moz-accent-color-foreground; /* or -moz-mac-menutextselect */
         --mac-accent-color: -moz-accent-color; /* or LinkText */
@@ -924,7 +949,7 @@
       }
     }
     @media (prefers-color-scheme: dark) {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --mac-field-bgcolor: Field;
         --mac-panel-bgcolor: -moz-CellHighlight;
@@ -935,11 +960,11 @@
     }
     /*- Proton Tab Selected ----------------------------------------------------*/
     @supports not -moz-bool-pref("userChrome.tab.color_like_toolbar") {
-      :root:not(:-moz-lwtheme),
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
       :root[lwt-default-theme-in-dark-mode] {
         --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
       }
-      :root:not(:-moz-lwtheme) {
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
         --tab-selected-color: var(--mac-proton-tab-selected-bgcolor) !important;
       }
       :root[lwt-default-theme-in-dark-mode] {
@@ -947,14 +972,14 @@
       }
     }
     /*- Toolbar ----------------------------------------------------------------*/
-    :root:not(:-moz-lwtheme) #navigator-toolbox,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #navigator-toolbox,
     :root[lwt-default-theme-in-dark-mode] #navigator-toolbox {
       background-color: var(--mac-bgcolor) !important;
     }
-    :root:not(:-moz-lwtheme) #titlebar {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar {
       --mac-hover-bgcolor: ButtonFace;
     }
-    :root:not(:-moz-lwtheme) #titlebar,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar,
     :root[lwt-default-theme-in-dark-mode] #titlebar {
       --button-hover-bgcolor: var(--mac-hover-bgcolor);
       --button-active-bgcolor: var(--mac-hover-bgcolor);
@@ -971,7 +996,7 @@
     #sidebar-box:not([lwt-sidebar]) {
       appearance: none !important;
     }
-    :root:not(:-moz-lwtheme) #sidebar-box,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #sidebar-box,
     :root[lwt-default-theme-in-dark-mode] #sidebar-box {
       --sidebar-background-color: var(--mac-sidebar-bgcolor) !important;
       --sidebar-text-color: var(--mac-text-color) !important;
@@ -1015,8 +1040,8 @@
         background: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
       }
     }
-    :root:not(:-moz-lwtheme):not([customizing="true"]) tab[visuallyselected] > stack::before,
-    :root:not(:-moz-lwtheme):not([customizing="true"]) tab[visuallyselected] > stack::after,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)):not([customizing="true"]) tab[visuallyselected] > stack::before,
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)):not([customizing="true"]) tab[visuallyselected] > stack::after,
     :root[lwt-default-theme-in-dark-mode]:not([customizing="true"]) tab[visuallyselected] > stack::before,
     :root[lwt-default-theme-in-dark-mode]:not([customizing="true"]) tab[visuallyselected] > stack::after {
       fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
@@ -1061,6 +1086,12 @@
     menuitem,
     menucaption {
       appearance: none !important;
+    }
+  }
+  @media (-moz-gtk-csd-available) {
+    menu,
+    menuitem {
+      border-radius: 0 !important;
     }
   }
   @media (-moz-gtk-csd-available) {
@@ -1147,6 +1178,11 @@
       appearance: none !important; /* to override more specific selectors above. */
       width: unset !important;
     }
+    .menu-iconic-left .menu-iconic-icon,
+    menuitem[type="checkbox"] .menu-iconic-icon,
+    menuitem[type="radio"] .menu-iconic-icon {
+      appearance: none !important;
+    }
   }
   @media (-moz-gtk-csd-available) {
     .menu-iconic > .menu-iconic-left,
@@ -1195,6 +1231,9 @@
       padding: 0 !important;
       /* The side margins should align with the start of the menu item text. */
       margin: 2px 1em !important;
+    }
+    menuseparator::before {
+      display: none !important; /* Original: block */
     }
   }
   @media (-moz-gtk-csd-available) {
@@ -1674,33 +1713,54 @@
     --button-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
     --urlbar-box-bgcolor: color-mix(in srgb, currentColor 16%, transparent) !important;
   }
-  :root[privatebrowsingmode="temporary"] #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme {
+  :root[privatebrowsingmode="temporary"]:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]:is(:-moz-lwtheme, [lwtheme])
+    #navigator-toolbox,
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox {
     --lwt-tabs-border-color: var(--focus-outline-color) !important;
   }
   :root[privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[privatebrowsingmode="temporary"][lwtheme-image] #navigator-toolbox:-moz-lwtheme,
+  :root[privatebrowsingmode="temporary"][lwtheme-image]:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox,
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
     #navigator-toolbox,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
   :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
     #navigator-toolbox,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme {
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox {
     background-color: var(--lwt-accent-color) !important;
   }
   :root[privatebrowsingmode="temporary"] #TabsToolbar,
@@ -1925,32 +1985,32 @@
     background-color: var(--in-content-button-background-active) !important;
   }
   /*== Bookmark Popup Color ====================================================*/
-  #editBMPanel_folderTree:-moz-lwtheme,
-  #editBMPanel_tagsSelector:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector {
     appearance: none !important;
     border: 0.5px solid var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
   }
-  #editBMPanel_folderTree:-moz-lwtheme,
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-image,
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(hover),
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected),
-  #editBMPanel_tagsSelector:-moz-lwtheme,
-  #editBMPanel_tagsSelector:-moz-lwtheme > richlistitem {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-image,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(hover),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector > richlistitem {
     color: var(--lwt-text-color, fieldtext) !important;
   }
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected) {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected) {
     font-weight: 600 !important;
   }
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
-  #editBMPanel_tagsSelector:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector {
     background-color: color-mix(in srgb, var(--arrowpanel-background) 35%, var(--in-content-box-background)) !important;
   }
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(hover),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-row(hover),
   #editBMPanel_tagsSelector > richlistitem:hover {
     background-color: var(--button-hover-bgcolor, color-mix(in srgb, currentColor 17%, transparent)) !important;
   }
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(selected),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-row(selected),
   #editBMPanel_tagsSelector > richlistitem[selected="true"] {
     background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
   }
@@ -2167,7 +2227,7 @@
     }
   }
   @media (-moz-gtk-csd-available) {
-    :root:not(:-moz-lwtheme) {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
       --lwt-accent-color: Window !important;
       --lwt-text-color: WindowText !important;
     }
@@ -2297,7 +2357,7 @@
         --in-content-page-background: #42414d;
       }
     }
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       --checkbox-unchecked-bgcolor: var(--in-content-button-background) !important;
       --checkbox-unchecked-hover-bgcolor: var(--in-content-button-background-hover) !important;
@@ -3434,6 +3494,7 @@
   #BMB_viewBookmarksSidebar,
   #BMB_bookmarksShowAllTop,
   #BMB_bookmarksShowAll,
+  .urlbarView-row:is([type="switchtab"], [type="remotetab"], [type="clipboard"]) .urlbarView-action,
   #import-button,
   menuitem.openintabs-menuitem,
   #downloadsListBox .downloadButton,
@@ -3454,6 +3515,11 @@
     > .ac-text-overflow-container
     > .ac-title-text {
     cursor: pointer !important;
+  }
+  #PanelUI-fxa-menu-syncnow-button:has(.syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"]),
+  #PanelUI-fxa-menu-syncnow-button .syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"],
+  #PanelUI-appMenu-fxa-image-last-synced[syncstatus="active"] {
+    cursor: progress !important;
   }
 }
 /*= Panel UI Button Separator ================================================*/
@@ -3587,7 +3653,9 @@
       transition: background-color 0.25s var(--animation-easing-function) !important;
     }
     @media (prefers-reduced-motion: no-preference) and (-moz-gtk-csd-available) {
-      .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
+        .tabbrowser-tab:is([visuallyselected], [multiselected], [selected])
+        .tab-background {
         transition: background-image 0.25s var(--animation-easing-function) !important;
       }
     }
@@ -4314,7 +4382,9 @@
       height: auto !important;
     }
     :root[uidensity="touch"] #urlbar[breakout] {
-      top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2 + 1px) !important;
+      top: calc(
+        (var(--urlbar-toolbar-height, var(--urlbar-container-height)) - var(--urlbar-height)) / 2 + 1px
+      ) !important;
     }
     /* spread menu */
     :root:not([uidensity]) .urlbarView-row {
@@ -4333,7 +4403,7 @@
 }
 @supports -moz-bool-pref("userChrome.padding.urlView_expanding") or -moz-bool-pref("userChrome.urlView.as_commandbar") {
   #urlbar[breakout][breakout-extend] {
-    top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
+    top: calc((var(--urlbar-toolbar-height, var(--urlbar-container-height)) - var(--urlbar-height)) / 2) !important;
     left: 0 !important;
     width: 100% !important;
   }
@@ -6756,7 +6826,7 @@
 
 /*= Selected Tab - Color like toolbar ========================================*/
 @supports -moz-bool-pref("userChrome.tab.color_like_toolbar") {
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     /* Fix for windows's system default theme. Using --toolbar-bgcolor, --toolbar-bgimage fallback */
     --tab-selected-bgcolor: unset !important; /* Original: rgb(255,255,255); */
     --tab-selected-bgimage: unset !important; /* Above FF v101 */
@@ -6765,14 +6835,19 @@
   .tab-background:is([selected], [multiselected]) {
     background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) !important;
   }
-  #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected]:-moz-lwtheme,
-  #tabbrowser-tabs:not([movingtab])
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab
+    > .tab-stack
+    > .tab-background[selected],
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[selected]:-moz-lwtheme {
+    > .tab-background[selected] {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
-    */
+     */
     background-image: linear-gradient(transparent, transparent),
       linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
     background-position: 0, 0, right top;
@@ -6780,17 +6855,17 @@
     background-repeat: repeat-x, repeat-x, no-repeat !important;
   }
   @supports -moz-bool-pref("userChrome.theme.transparent.frame") {
-    :root:not([lwtheme-image])
+    :root:not([lwtheme-image]):is(:-moz-lwtheme, [lwtheme])
       #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
       > .tab-stack
-      > .tab-background[selected]:-moz-lwtheme,
-    :root:not([lwtheme-image])
+      > .tab-background[selected],
+    :root:not([lwtheme-image]):is(:-moz-lwtheme, [lwtheme])
       #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
       > .tab-stack
-      > .tab-background[selected]:-moz-lwtheme {
+      > .tab-background[selected] {
       background-image: linear-gradient(transparent, transparent),
         linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-additional-images, none) !important;
       background-repeat: repeat-x, repeat-x, var(--lwt-background-tiling) !important;
@@ -6862,25 +6937,25 @@
   :root:is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([selected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     filter: drop-shadow(0 0 1px var(--uc-tab-shadow-color, transparent));
   }
   :root:is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[visuallyselected]:not(:focus),
   :root:is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[multiselected]:not([visuallyselected]) {
@@ -6891,12 +6966,12 @@
   :root:not(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar:not([brighttext])
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
     filter: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
       drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent)) drop-shadow(0 0 2px rgba(128, 128, 142, 0.5));
@@ -6904,12 +6979,12 @@
   :root:not(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     filter: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
       drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent));
   }
@@ -7014,19 +7089,19 @@
             :root:not([customizing="true"])::is(
                 [lwtheme-mozlightdark],
                 [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-              )
+              ):is(:-moz-lwtheme, [lwtheme])
               #TabsToolbar[brighttext]
               #tabbrowser-tabs:not([noshadowfortests])
               .tabbrowser-tab[visuallyselected]
-              .tab-background:-moz-lwtheme::before,
+              .tab-background::before,
             :root:not([customizing="true"])::is(
                 [lwtheme-mozlightdark],
                 [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-              )
+              ):is(:-moz-lwtheme, [lwtheme])
               #TabsToolbar[brighttext]
               #tabbrowser-tabs:not([noshadowfortests])
               .tabbrowser-tab[visuallyselected]
-              .tab-background:-moz-lwtheme::after {
+              .tab-background::after {
               /* As Selected Tab - Box Shadow */
               stroke: var(--toolbar-color);
             }
@@ -7225,7 +7300,10 @@
         fill: var(--uc-multiselected-tab-bgcolor);
       }
     }
-    #tabbrowser-tabs[movingtab] .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background:-moz-lwtheme {
+    :root:is(:-moz-lwtheme, [lwtheme])
+      #tabbrowser-tabs[movingtab]
+      .tabbrowser-tab:is([visuallyselected], [multiselected])
+      .tab-background {
       --uc-tab-corner-bgimage: none;
     }
     @media (-moz-gtk-csd-available) {
@@ -7277,11 +7355,11 @@
   }
   @supports not -moz-bool-pref("userChrome.tab.blue_accent") {
     @media (-moz-gtk-csd-available) {
-      :root:not(:-moz-lwtheme) #tabbrowser-tabs {
+      :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabbrowser-tabs {
         --tab-line-color: AccentColor !important; /* -moz-accent-color */
       }
       @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-        :root:not(:-moz-lwtheme) #tabbrowser-tabs {
+        :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabbrowser-tabs {
           --tab-line-color: Highlight !important; /* -moz-accent-color */
         }
       }
@@ -7341,11 +7419,12 @@
     }
   }
   /* Remove side's background color border */
-  #TabsToolbar[brighttext]
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     --tabs-border-color: rgba(0, 0, 0, 0.3) !important;
     box-shadow: 0 0 1px var(--tabs-border-color) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)) */
   }
@@ -7705,11 +7784,12 @@
     --uc-newtab-bgcolor: var(--toolbarbutton-active-background);
   }
   @media (-moz-windows-accent-color-in-titlebar) {
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+    :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabs-newtab-button:hover,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
       fill: color-mix(in srgb, AccentColorText 10%, transparent) !important; /* Hardcoded for compatibility */
     }
-    :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+    :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+      #tabs-newtab-button:hover:active,
     :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
       fill: color-mix(in srgb, AccentColorText 15%, transparent) !important; /* Hardcoded for compatibility */
     }
@@ -7719,7 +7799,8 @@
         ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-bool-pref(
           "userChrome.tab.bottom_rounded_corner.chrome"
         ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
-        :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+        :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+          #tabs-newtab-button:hover,
         :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
           background-image: var(--uc-tab-corner-left-side-svg),
             linear-gradient(
@@ -7729,7 +7810,8 @@
             ),
             var(--uc-tab-corner-right-side-svg);
         }
-        :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+        :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+          #tabs-newtab-button:hover:active,
         :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
           #tabs-newtab-button:hover:active {
           background-image: var(--uc-tab-corner-left-side-svg),
@@ -7743,7 +7825,8 @@
       }
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
-      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+      :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+        #tabs-newtab-button:hover,
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
         fill: color-mix(
           in srgb,
@@ -7751,7 +7834,8 @@
           transparent
         ) !important; /* Hardcoded for compatibility */
       }
-      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+      :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+        #tabs-newtab-button:hover:active,
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
         #tabs-newtab-button:hover:active {
         fill: color-mix(
@@ -7766,7 +7850,8 @@
           ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-bool-pref(
             "userChrome.tab.bottom_rounded_corner.chrome"
           ) or -moz-bool-pref("userChrome.tab.bottom_rounded_corner.edge") {
-          :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+          :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+            #tabs-newtab-button:hover,
           :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
             background-image: var(--uc-tab-corner-left-side-svg),
               linear-gradient(
@@ -7776,7 +7861,8 @@
               ),
               var(--uc-tab-corner-right-side-svg);
           }
-          :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+          :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+            #tabs-newtab-button:hover:active,
           :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
             #tabs-newtab-button:hover:active {
             background-image: var(--uc-tab-corner-left-side-svg),
@@ -9595,7 +9681,7 @@
     }
     @media (-moz-gtk-csd-available) {
       /* Fix transparent background */
-      :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
+      :root[tabsintitlebar][sizemode="fullscreen"]:is(:not([lwtheme]), :not(:-moz-lwtheme)) #TabsToolbar {
         appearance: auto !important;
       }
     }
@@ -9916,23 +10002,39 @@
     @media (prefers-reduced-motion: no-preference) {
       @supports -moz-bool-pref("userChrome.decoration.animate") {
         #navigator-toolbox {
+          will-change: margin-top, margin-bottom, background-color !important;
           transition: margin-top 1s ease,
             margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
-              var(--uc-autohide-toolbar-delay);
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.2s var(--animation-easing-function) !important;
+        }
+        #navigator-toolbox:-moz-window-inactive {
+          transition: margin-top 1s ease,
+            margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.5s var(--animation-easing-function) !important;
         }
         #navigator-toolbox:is(:hover, :focus-within) {
-          transition-delay: 0s !important;
+          transition-delay: 0s, 0s, 0.2s !important;
         }
         #navigator-toolbox[inFullscreen="true"] {
           transition: margin-top 1.3s var(--animation-easing-function) 50ms,
             margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
-              var(--uc-autohide-toolbar-delay);
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.2s var(--animation-easing-function) !important;
+        }
+        #navigator-toolbox[inFullscreen="true"]:-moz-window-inactive {
+          transition: margin-top 1.3s var(--animation-easing-function) 50ms,
+            margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.5s var(--animation-easing-function) !important;
         }
       }
       @supports not -moz-bool-pref("userChrome.decoration.animate") {
         #navigator-toolbox {
           transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
-            var(--uc-autohide-toolbar-delay);
+              var(--uc-autohide-toolbar-delay),
+            background-color 0.2s var(--animation-easing-function) !important;
         }
         #navigator-toolbox:is(:hover, :focus-within) {
           transition-delay: 0s !important;
@@ -12105,7 +12207,7 @@
         --menuitem-image: url("../icons/send.svg");
       }
       .customize-context-moveToPanel {
-        --menuitem-image: url("chrome://browser/skin/pin-12.svg");
+        --menuitem-image: url("../icons/pin-tab.svg");
       }
       #toolbar-context-autohide-downloads-button {
         /* checkbox */
@@ -12908,6 +13010,9 @@
       #tools-menu {
         --menuitem-image: url("../icons/toolbox.svg");
       }
+      #tabSharingMenu {
+        --menuitem-image: url("chrome://browser/skin/notification-icons/screen.svg");
+      }
       #helpMenu {
         --menuitem-image: url("chrome://global/skin/icons/help.svg");
       }
@@ -13466,6 +13571,7 @@
   /*= Firefox View Border #498 =================================================*/
   /*= Menubar rounding #814 ====================================================*/
   /*= Infobar Align #858 =======================================================*/
+  /*= Inactive transparent #882 ================================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
@@ -13477,16 +13583,17 @@
     /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
     border: unset !important;
   }
-  #TabsToolbar[brighttext]
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
     border: unset !important;
   }
-  #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
-  .tab-background[selected]:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon,
+  :root:is(:-moz-lwtheme, [lwtheme]) .tab-background[selected] {
     outline-color: transparent !important;
   }
   .keyboard-focused-tab > .tab-stack > .tab-background,
@@ -13522,7 +13629,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
-  :root[lwtheme-image] > body #navigator-toolbox:-moz-lwtheme {
+  :root[lwtheme-image] > body :root:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox {
     background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
     background-repeat: var(--lwt-background-tiling) !important;
     background-position: var(--lwt-background-alignment) !important;
@@ -13530,7 +13637,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
-  #navigator-toolbox:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox {
     --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
     --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
   }
@@ -13584,6 +13691,18 @@
     align-items: center !important;
   }
 }
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive {
+    opacity: 1 !important;
+    color: color-mix(in srgb, currentColor calc(var(--inactive-titlebar-opacity, 0.75) * 100%), transparent) !important;
+    --inactive-toolbarbutton-icon-fill-opacity: calc(
+      var(--toolbarbutton-icon-fill-opacity, 1) * var(--inactive-titlebar-opacity, 0.75)
+    );
+  }
+  :root[tabsintitlebar] #titlebar:-moz-window-inactive .toolbarbutton-icon {
+    fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
+  }
+}
 /*= OS - Compatibility =======================================================*/
 @media (-moz-bool-pref: "userChrome.compatibility.os") {
   /*= Windows 10 - Top border of accent color at ESR #358 ======================*/
@@ -13622,17 +13741,22 @@
   /*= Linux - Titlebar button at lwtheme =====================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.os") and (-moz-gtk-csd-available) and (not (-moz-bool-pref: "userChrome.compatibility.os.linux_non_native_titlebar_button")) {
-  .titlebar-button:-moz-lwtheme {
-    appearance: auto !important;
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button {
+    appearance: none !important;
   }
-  .titlebar-min:-moz-lwtheme,
-  .titlebar-max:-moz-lwtheme,
-  .titlebar-restore:-moz-lwtheme,
-  .titlebar-close:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button > .toolbarbutton-icon {
+    appearance: auto !important;
+    width: unset !important;
+    height: unset !important;
+  }
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-min,
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-max,
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-restore,
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-close {
     list-style-image: none !important;
   }
-  .titlebar-button:-moz-lwtheme:hover,
-  .titlebar-button:-moz-lwtheme:hover:active {
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button,
+  :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button:hover:active {
     background-color: unset !important;
     color: unset !important;
   }
@@ -13644,17 +13768,19 @@
       box-shadow: 0 0 4px rgba(128,128,142,0.5);
     }
    */
-  #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected], [multiselected])
-    > .tab-stack
-    > .tab-background:not(:-moz-lwtheme) {
-    box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
-  }
-  #TabsToolbar:not([brighttext])
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:not(:-moz-lwtheme) {
+    > .tab-background {
+    box-shadow: 0 0 4px rgba(128, 128, 142, 0.5) !important;
+  }
+  #TabsToolbar:not([brighttext])
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected], [multiselected])
+    > .tab-stack
+    > .tab-background {
     box-shadow: 0 0 1px var(--tab-line-color, rgba(128, 128, 142, 0.9)), 0 0 4px rgba(128, 128, 142, 0.5) !important;
   }
 }
@@ -13691,11 +13817,13 @@
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar),
   (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) {
   /* URL Bar */
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
     --focus-outline-color: AccentColor !important;
   }
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #urlbar[open]
+    > #urlbar-background,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
     border-color: color-mix(
       in srgb,
@@ -13706,11 +13834,13 @@
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color"),
   (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
     --focus-outline-color: -moz-accent-color !important;
   }
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #urlbar[open] > #urlbar-background,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #urlbar[open]
+    > #urlbar-background,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #urlbar[open] > #urlbar-background {
     border-color: color-mix(
       in srgb,
@@ -13720,7 +13850,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --win-text-color: rgba(0, 0, 0);
     --win-bgcolor: rgb(204, 204, 204);
     --win-disabled-color: rgb(145, 145, 145);
@@ -13757,7 +13887,7 @@
   /* For overwrite */
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --win-accent-foreground-color: -moz-accent-color-foreground;
     --win-accent-color: color-mix(in srgb, rgba(0, 0, 0, 0.8) 10%, -moz-accent-color);
     --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 15%, -moz-accent-color);
@@ -13766,7 +13896,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (-moz-bool-pref: "userChrome.compatibility.os.win11") {
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --win-text-color: #1a1a1a;
     --win-bgcolor: #e8e8e8;
     --win-hover-bgcolor: #eaeaea; /* also button-bgcolor */
@@ -13784,7 +13914,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (prefers-color-scheme: dark) {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --win-text-color: #ffffff;
     --win-bgcolor: #2b2b2b;
@@ -13813,7 +13943,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (prefers-color-scheme: dark) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --win-accent-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 20%, -moz-accent-color);
     --win-accent-content-color: color-mix(in srgb, rgba(255, 255, 255, 0.8) 35%, -moz-accent-color);
@@ -13822,7 +13952,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (prefers-color-scheme: dark) and (-moz-bool-pref: "userChrome.compatibility.os.win11") {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --win-bgcolor: #202020;
     --win-hover-bgcolor: #383838; /* also button-bgcolor */
@@ -13841,7 +13971,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     /* Text, Icon Color */
     --menu-color: var(--win-text-color) !important;
@@ -13946,36 +14076,37 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --tab-line-color: Highlight !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  #navigator-toolbox:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #navigator-toolbox {
     background: var(--lwt-accent-color) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:is(#main-window):not(:-moz-lwtheme) {
+  :root:is(#main-window):is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --arrowpanel-border-color: var(--win-bgcolor) !important;
     --panel-separator-color: var(--win-bgcolor) !important;
   }
 }
-@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
+@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (prefers-color-scheme: dark) {
+  :root:is(#main-window):is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --arrowpanel-border-color: var(--win-border-color) !important;
     --panel-separator-color: var(--win-border-color) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar) {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
     --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* As default */
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (-moz-bool-pref: "userChrome.compatibility.os.win11") {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --chrome-content-separator-color: var(--win11-chrome-separator-color) !important;
   }
@@ -13984,11 +14115,11 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) and (not (-moz-bool-pref: "userChrome.tab.color_like_toolbar")) {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
   }
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --tab-selected-color: var(--win-proton-tab-selected-bgcolor) !important;
   }
   :root[lwt-default-theme-in-dark-mode] {
@@ -13996,7 +14127,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  html#main-window menupopup:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) html#main-window menupopup {
     --menu-color: var(--win-text-color) !important;
     --menu-background-color: var(--win-component-bgcolor) !important;
     --menu-border-color: var(--win-bgcolor) !important;
@@ -14006,7 +14137,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:not(:-moz-lwtheme) #titlebar,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar,
   :root[lwt-default-theme-in-dark-mode] #titlebar {
     --button-hover-bgcolor: var(--win-sidebar-button-hover-bgcolor);
     --button-active-bgcolor: var(--win-sidebar-button-hover-active-bgcolor);
@@ -14020,7 +14151,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:not(:-moz-lwtheme) #sidebar-box,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #sidebar-box,
   :root[lwt-default-theme-in-dark-mode] #sidebar-box {
     --sidebar-background-color: var(--win-sidebar-bgcolor) !important;
     --sidebar-text-color: var(--win-text-color) !important;
@@ -14038,14 +14169,14 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:not(:-moz-lwtheme) .subviewbutton,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) .subviewbutton,
   :root[lwt-default-theme-in-dark-mode] .subviewbutton {
     --button-hover-bgcolor: var(--win-hover-active-bgcolor) !important;
     --button-active-bgcolor: var(--win-button-active-bgcolor) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:not(:-moz-lwtheme)
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
     toolbarbutton.subviewbutton:not(
       [disabled],
       [open],
@@ -14071,7 +14202,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root:not(:-moz-lwtheme)
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
     toolbarbutton.subviewbutton:not(
       [disabled],
       #appMenu-fxa-label2,
@@ -14093,8 +14224,8 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme),
-  :root:not(:-moz-lwtheme) {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):is(:not([lwtheme]), :not(:-moz-lwtheme)),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     /* Light Theme */
     --lwt-accent-color: var(--win-bgcolor) !important;
   }
@@ -14105,11 +14236,12 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-platform: windows) {
-  #tabbrowser-tabs:not([movingtab])
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme),
+    > .tab-background[multiselected]:not([selected]),
   :root[lwtheme-mozlightdark]
     #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
@@ -14134,21 +14266,21 @@
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar) {
   /* Tab Bar */
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .titlebar-color,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
     color: AccentColorText;
     background-color: AccentColor;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .titlebar-color,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .titlebar-color,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .titlebar-color {
     color: -moz-accent-color-foreground;
     background-color: -moz-accent-color;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar) {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .toolbar-items,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
     --toolbarbutton-icon-fill: currentColor;
     --toolbarbutton-hover-background: color-mix(in srgb, AccentColorText 10%, transparent);
@@ -14156,35 +14288,35 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) .toolbar-items,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) .toolbar-items,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) .toolbar-items {
     --toolbarbutton-hover-background: color-mix(in srgb, -moz-accent-color-foreground 10%, transparent);
     --toolbarbutton-active-background: color-mix(in srgb, -moz-accent-color-foreground 15%, transparent);
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) {
-  :root:not(:-moz-lwtheme) .urlbarView-url {
-    --urlbar-popup-url-color: AccentColor;
-  }
-}
-@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root:not(:-moz-lwtheme) .urlbarView-url {
-    --urlbar-popup-url-color: -moz-accent-color;
-  }
-}
-@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) {
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --toolbar-field-background-color: Field !important;
     --toolbar-field-color: FieldText !important;
     --toolbar-field-border-color: ThreeDShadow !important;
   }
-  :root:not(:-moz-lwtheme) #urlbar-background,
-  :root:not(:-moz-lwtheme) #searchbar {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) .urlbarView-url {
+    --urlbar-popup-url-color: AccentColor;
+  }
+}
+@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) .urlbarView-url {
+    --urlbar-popup-url-color: -moz-accent-color;
+  }
+}
+@media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-gtk-csd-available) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #urlbar-background,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #searchbar {
     background-color: var(--toolbar-field-background-color) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     /* Colors */
     --mac-text-color: -moz-dialogtext;
@@ -14315,7 +14447,7 @@
   /* Hard Coded */
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --mac-primary-button-color: -moz-accent-color-foreground; /* or -moz-mac-menutextselect */
     --mac-accent-color: -moz-accent-color; /* or LinkText */
@@ -14329,7 +14461,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (prefers-color-scheme: dark) {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --mac-field-bgcolor: Field;
     --mac-panel-bgcolor: -moz-CellHighlight;
@@ -14339,11 +14471,11 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (not (-moz-bool-pref: "userChrome.tab.color_like_toolbar")) {
-  :root:not(:-moz-lwtheme),
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
   :root[lwt-default-theme-in-dark-mode] {
     --mac-proton-tab-selected-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 20%, -moz-dialog);
   }
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --tab-selected-color: var(--mac-proton-tab-selected-bgcolor) !important;
   }
   :root[lwt-default-theme-in-dark-mode] {
@@ -14351,18 +14483,18 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
-  :root:not(:-moz-lwtheme) #navigator-toolbox,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #navigator-toolbox,
   :root[lwt-default-theme-in-dark-mode] #navigator-toolbox {
     background-color: var(--mac-bgcolor) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
-  :root:not(:-moz-lwtheme) #titlebar {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar {
     --mac-hover-bgcolor: ButtonFace;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
-  :root:not(:-moz-lwtheme) #titlebar,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #titlebar,
   :root[lwt-default-theme-in-dark-mode] #titlebar {
     --button-hover-bgcolor: var(--mac-hover-bgcolor);
     --button-active-bgcolor: var(--mac-hover-bgcolor);
@@ -14384,7 +14516,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
-  :root:not(:-moz-lwtheme) #sidebar-box,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #sidebar-box,
   :root[lwt-default-theme-in-dark-mode] #sidebar-box {
     --sidebar-background-color: var(--mac-sidebar-bgcolor) !important;
     --sidebar-text-color: var(--mac-text-color) !important;
@@ -14429,8 +14561,8 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
-  :root:not(:-moz-lwtheme):not([customizing="true"]) tab[visuallyselected] > stack::before,
-  :root:not(:-moz-lwtheme):not([customizing="true"]) tab[visuallyselected] > stack::after,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)):not([customizing="true"]) tab[visuallyselected] > stack::before,
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)):not([customizing="true"]) tab[visuallyselected] > stack::after,
   :root[lwt-default-theme-in-dark-mode]:not([customizing="true"]) tab[visuallyselected] > stack::before,
   :root[lwt-default-theme-in-dark-mode]:not([customizing="true"]) tab[visuallyselected] > stack::after {
     fill: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
@@ -14473,6 +14605,12 @@
   menuitem,
   menucaption {
     appearance: none !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
+  menu,
+  menuitem {
+    border-radius: 0 !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
@@ -14559,6 +14697,11 @@
     appearance: none !important; /* to override more specific selectors above. */
     width: unset !important;
   }
+  .menu-iconic-left .menu-iconic-icon,
+  menuitem[type="checkbox"] .menu-iconic-icon,
+  menuitem[type="radio"] .menu-iconic-icon {
+    appearance: none !important;
+  }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
   .menu-iconic > .menu-iconic-left,
@@ -14607,6 +14750,9 @@
     padding: 0 !important;
     /* The side margins should align with the start of the menu item text. */
     margin: 2px 1em !important;
+  }
+  menuseparator::before {
+    display: none !important; /* Original: block */
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
@@ -15081,33 +15227,54 @@
     --button-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
     --urlbar-box-bgcolor: color-mix(in srgb, currentColor 16%, transparent) !important;
   }
-  :root[privatebrowsingmode="temporary"] #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
-    #navigator-toolbox:-moz-lwtheme {
+  :root[privatebrowsingmode="temporary"]:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"]:is(:-moz-lwtheme, [lwtheme])
+    #navigator-toolbox,
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox {
     --lwt-tabs-border-color: var(--focus-outline-color) !important;
   }
   :root[privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[privatebrowsingmode="temporary"][lwtheme-image] #navigator-toolbox:-moz-lwtheme,
+  :root[privatebrowsingmode="temporary"][lwtheme-image]:is(:-moz-lwtheme, [lwtheme]) #navigator-toolbox,
   :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])[privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
   :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"]
     #navigator-toolbox,
-  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
+  :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
   :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"] #navigator-toolbox,
-  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme,
+  :root[lwtheme-mozlightdark][lwthemetextcolor="bright"][privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox,
   :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"]
     #navigator-toolbox,
-  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"][lwtheme-image]
-    #navigator-toolbox:-moz-lwtheme {
+  :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][privatebrowsingmode="temporary"][lwtheme-image]:is(
+      :-moz-lwtheme,
+      [lwtheme]
+    )
+    #navigator-toolbox {
     background-color: var(--lwt-accent-color) !important;
   }
   :root[privatebrowsingmode="temporary"] #TabsToolbar,
@@ -15349,42 +15516,36 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.fully_color") {
-  #editBMPanel_folderTree:-moz-lwtheme,
-  #editBMPanel_tagsSelector:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector {
     appearance: none !important;
     border: 0.5px solid var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
   }
-}
-@media (-moz-bool-pref: "userChrome.theme.fully_color") {
-  #editBMPanel_folderTree:-moz-lwtheme,
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-image,
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(hover),
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected),
-  #editBMPanel_tagsSelector:-moz-lwtheme,
-  #editBMPanel_tagsSelector:-moz-lwtheme > richlistitem {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-image,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(hover),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector > richlistitem {
     color: var(--lwt-text-color, fieldtext) !important;
   }
-}
-@media (-moz-bool-pref: "userChrome.theme.fully_color") {
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-cell-text(selected) {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected) {
     font-weight: 600 !important;
   }
-}
-@media (-moz-bool-pref: "userChrome.theme.fully_color") {
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren,
-  #editBMPanel_tagsSelector:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren,
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_tagsSelector {
     background-color: color-mix(in srgb, var(--arrowpanel-background) 35%, var(--in-content-box-background)) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.fully_color") {
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(hover),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-row(hover),
   #editBMPanel_tagsSelector > richlistitem:hover {
     background-color: var(--button-hover-bgcolor, color-mix(in srgb, currentColor 17%, transparent)) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.fully_color") {
-  #editBMPanel_folderTree:-moz-lwtheme > treechildren::-moz-tree-row(selected),
+  :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-row(selected),
   #editBMPanel_tagsSelector > richlistitem[selected="true"] {
     background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
   }
@@ -15620,7 +15781,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.transparent.frame") and (-moz-gtk-csd-available) {
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     --lwt-accent-color: Window !important;
     --lwt-text-color: WindowText !important;
   }
@@ -15747,7 +15908,7 @@
         --in-content-page-background: #42414d;
       }
     }
-    :root:not(:-moz-lwtheme),
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)),
     :root[lwt-default-theme-in-dark-mode] {
       --checkbox-unchecked-bgcolor: var(--in-content-button-background) !important;
       --checkbox-unchecked-hover-bgcolor: var(--in-content-button-background-hover) !important;
@@ -16956,6 +17117,7 @@
   #BMB_viewBookmarksSidebar,
   #BMB_bookmarksShowAllTop,
   #BMB_bookmarksShowAll,
+  .urlbarView-row:is([type="switchtab"], [type="remotetab"], [type="clipboard"]) .urlbarView-action,
   #import-button,
   menuitem.openintabs-menuitem,
   #downloadsListBox .downloadButton,
@@ -16976,6 +17138,11 @@
     > .ac-text-overflow-container
     > .ac-title-text {
     cursor: pointer !important;
+  }
+  #PanelUI-fxa-menu-syncnow-button:has(.syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"]),
+  #PanelUI-fxa-menu-syncnow-button .syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"],
+  #PanelUI-appMenu-fxa-image-last-synced[syncstatus="active"] {
+    cursor: progress !important;
   }
 }
 /*= Panel UI Button Separator ================================================*/
@@ -17126,7 +17293,9 @@
   /*- Arrow - Edit Bookmark Popup --------------------------------------------*/
 }
 @media (prefers-reduced-motion: no-preference) and (-moz-bool-pref: "userChrome.decoration.animate") and (-moz-gtk-csd-available) {
-  .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme))
+    .tabbrowser-tab:is([visuallyselected], [multiselected], [selected])
+    .tab-background {
     transition: background-image 0.25s var(--animation-easing-function) !important;
   }
 }
@@ -17885,7 +18054,9 @@
     height: auto !important;
   }
   :root[uidensity="touch"] #urlbar[breakout] {
-    top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2 + 1px) !important;
+    top: calc(
+      (var(--urlbar-toolbar-height, var(--urlbar-container-height)) - var(--urlbar-height)) / 2 + 1px
+    ) !important;
   }
   /* spread menu */
   :root:not([uidensity]) .urlbarView-row {
@@ -17903,7 +18074,7 @@
 }
 @media (-moz-bool-pref: "userChrome.padding.urlView_expanding"), (-moz-bool-pref: "userChrome.urlView.as_commandbar") {
   #urlbar[breakout][breakout-extend] {
-    top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
+    top: calc((var(--urlbar-toolbar-height, var(--urlbar-container-height)) - var(--urlbar-height)) / 2) !important;
     left: 0 !important;
     width: 100% !important;
   }
@@ -20745,7 +20916,7 @@
 
 /*= Selected Tab - Color like toolbar ========================================*/
 @media (-moz-bool-pref: "userChrome.tab.color_like_toolbar") {
-  :root:not(:-moz-lwtheme) {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) {
     /* Fix for windows's system default theme. Using --toolbar-bgcolor, --toolbar-bgimage fallback */
     --tab-selected-bgcolor: unset !important; /* Original: rgb(255,255,255); */
     --tab-selected-bgimage: unset !important; /* Above FF v101 */
@@ -20754,14 +20925,19 @@
   .tab-background:is([selected], [multiselected]) {
     background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) !important;
   }
-  #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected]:-moz-lwtheme,
-  #tabbrowser-tabs:not([movingtab])
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab
+    > .tab-stack
+    > .tab-background[selected],
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[selected]:-moz-lwtheme {
+    > .tab-background[selected] {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
-    */
+     */
     background-image: linear-gradient(transparent, transparent),
       linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
     background-position: 0, 0, right top;
@@ -20770,17 +20946,17 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.color_like_toolbar") and (-moz-bool-pref: "userChrome.theme.transparent.frame") {
-  :root:not([lwtheme-image])
+  :root:not([lwtheme-image]):is(:-moz-lwtheme, [lwtheme])
     #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[selected]:-moz-lwtheme,
-  :root:not([lwtheme-image])
+    > .tab-background[selected],
+  :root:not([lwtheme-image]):is(:-moz-lwtheme, [lwtheme])
     #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[selected]:-moz-lwtheme {
+    > .tab-background[selected] {
     background-image: linear-gradient(transparent, transparent),
       linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-additional-images, none) !important;
     background-repeat: repeat-x, repeat-x, var(--lwt-background-tiling) !important;
@@ -20851,25 +21027,25 @@
   :root:is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([selected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     filter: drop-shadow(0 0 1px var(--uc-tab-shadow-color, transparent));
   }
   :root:is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[visuallyselected]:not(:focus),
   :root:is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[multiselected]:not([visuallyselected]) {
@@ -20880,12 +21056,12 @@
   :root:not(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar:not([brighttext])
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     --uc-tab-shadow-color: var(--uc-tab-shadow-color-bundle);
     filter: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
       drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent)) drop-shadow(0 0 2px rgba(128, 128, 142, 0.5));
@@ -20893,12 +21069,12 @@
   :root:not(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     filter: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, transparent))
       drop-shadow(1px -1px 0px var(--uc-tab-shadow-color, transparent));
   }
@@ -21003,19 +21179,19 @@
   :root:not([customizing="true"])::is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[visuallyselected]
-    .tab-background:-moz-lwtheme::before,
+    .tab-background::before,
   :root:not([customizing="true"])::is(
       [lwtheme-mozlightdark],
       [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]
-    )
+    ):is(:-moz-lwtheme, [lwtheme])
     #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab[visuallyselected]
-    .tab-background:-moz-lwtheme::after {
+    .tab-background::after {
     /* As Selected Tab - Box Shadow */
     stroke: var(--toolbar-color);
   }
@@ -21298,7 +21474,10 @@
   (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome_legacy"),
   (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
-  #tabbrowser-tabs[movingtab] .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background:-moz-lwtheme {
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #tabbrowser-tabs[movingtab]
+    .tabbrowser-tab:is([visuallyselected], [multiselected])
+    .tab-background {
     --uc-tab-corner-bgimage: none;
   }
 }
@@ -21379,14 +21558,14 @@
 @media (-moz-bool-pref: "userChrome.tab.photon_like_contextline") and (not (-moz-bool-pref: "userChrome.tab.blue_accent")) and (-moz-gtk-csd-available),
   (-moz-bool-pref: "userChrome.tab.static_separator") and (not (-moz-bool-pref: "userChrome.tab.blue_accent")) and (-moz-gtk-csd-available),
   (-moz-bool-pref: "userChrome.tab.bar_separator") and (not (-moz-bool-pref: "userChrome.tab.blue_accent")) and (-moz-gtk-csd-available) {
-  :root:not(:-moz-lwtheme) #tabbrowser-tabs {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabbrowser-tabs {
     --tab-line-color: AccentColor !important; /* -moz-accent-color */
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.photon_like_contextline") and (not (-moz-bool-pref: "userChrome.tab.blue_accent")) and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.compatibility.accent_color"),
   (-moz-bool-pref: "userChrome.tab.static_separator") and (not (-moz-bool-pref: "userChrome.tab.blue_accent")) and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.compatibility.accent_color"),
   (-moz-bool-pref: "userChrome.tab.bar_separator") and (not (-moz-bool-pref: "userChrome.tab.blue_accent")) and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root:not(:-moz-lwtheme) #tabbrowser-tabs {
+  :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabbrowser-tabs {
     --tab-line-color: Highlight !important; /* -moz-accent-color */
   }
 }
@@ -21446,11 +21625,12 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.photon_like_contextline") {
-  #TabsToolbar[brighttext]
+  :root:is(:-moz-lwtheme, [lwtheme])
+    #TabsToolbar[brighttext]
     #tabbrowser-tabs:not([noshadowfortests])
     .tabbrowser-tab:is([visuallyselected], [multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme {
+    > .tab-background {
     --tabs-border-color: rgba(0, 0, 0, 0.3) !important;
     box-shadow: 0 0 1px var(--tabs-border-color) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)) */
   }
@@ -21836,11 +22016,12 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabs-newtab-button:hover,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
     fill: color-mix(in srgb, AccentColorText 10%, transparent) !important; /* Hardcoded for compatibility */
   }
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabs-newtab-button:hover:active,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
     fill: color-mix(in srgb, AccentColorText 15%, transparent) !important; /* Hardcoded for compatibility */
   }
@@ -21850,7 +22031,7 @@
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome_legacy"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabs-newtab-button:hover,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -21860,7 +22041,8 @@
       ),
       var(--uc-tab-corner-right-side-svg);
   }
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabs-newtab-button:hover:active,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -21872,7 +22054,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabs-newtab-button:hover,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
     fill: color-mix(
       in srgb,
@@ -21880,7 +22062,8 @@
       transparent
     ) !important; /* Hardcoded for compatibility */
   }
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabs-newtab-button:hover:active,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
     fill: color-mix(
       in srgb,
@@ -21894,7 +22077,7 @@
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome_legacy"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme)) #tabs-newtab-button:hover,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -21904,7 +22087,8 @@
       ),
       var(--uc-tab-corner-right-side-svg);
   }
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme) #tabs-newtab-button:hover:active,
+  :root[tabsintitlebar]:not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabs-newtab-button:hover:active,
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -23847,7 +24031,7 @@
 }
 @media (-moz-bool-pref: "userChrome.fullscreen.overlap") and (-moz-bool-pref: "browser.fullscreen.autohide") and (-moz-gtk-csd-available) {
   /* Fix transparent background */
-  :root[tabsintitlebar][sizemode="fullscreen"] #TabsToolbar:not(:-moz-lwtheme) {
+  :root[tabsintitlebar][sizemode="fullscreen"]:is(:not([lwtheme]), :not(:-moz-lwtheme)) #TabsToolbar {
     appearance: auto !important;
   }
 }
@@ -24212,15 +24396,28 @@
   (-moz-bool-pref: "userChrome.autohide.bookmarkbar") and (-moz-bool-pref: "userChrome.autohide.toolbar_overlap") and (prefers-reduced-motion: no-preference) and (-moz-bool-pref: "userChrome.decoration.animate"),
   (-moz-bool-pref: "userChrome.autohide.infobar") and (-moz-bool-pref: "userChrome.autohide.toolbar_overlap") and (prefers-reduced-motion: no-preference) and (-moz-bool-pref: "userChrome.decoration.animate") {
   #navigator-toolbox {
+    will-change: margin-top, margin-bottom, background-color !important;
     transition: margin-top 1s ease,
-      margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+      margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+      background-color 0.2s var(--animation-easing-function) !important;
+  }
+  #navigator-toolbox:-moz-window-inactive {
+    transition: margin-top 1s ease,
+      margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+      background-color 0.5s var(--animation-easing-function) !important;
   }
   #navigator-toolbox:is(:hover, :focus-within) {
-    transition-delay: 0s !important;
+    transition-delay: 0s, 0s, 0.2s !important;
   }
   #navigator-toolbox[inFullscreen="true"] {
     transition: margin-top 1.3s var(--animation-easing-function) 50ms,
-      margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay);
+      margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+      background-color 0.2s var(--animation-easing-function) !important;
+  }
+  #navigator-toolbox[inFullscreen="true"]:-moz-window-inactive {
+    transition: margin-top 1.3s var(--animation-easing-function) 50ms,
+      margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
+      background-color 0.5s var(--animation-easing-function) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.autohide.tabbar") and (-moz-bool-pref: "userChrome.autohide.toolbar_overlap") and (prefers-reduced-motion: no-preference) and (not (-moz-bool-pref: "userChrome.decoration.animate")),
@@ -24229,7 +24426,8 @@
   (-moz-bool-pref: "userChrome.autohide.infobar") and (-moz-bool-pref: "userChrome.autohide.toolbar_overlap") and (prefers-reduced-motion: no-preference) and (not (-moz-bool-pref: "userChrome.decoration.animate")) {
   #navigator-toolbox {
     transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
-      var(--uc-autohide-toolbar-delay);
+        var(--uc-autohide-toolbar-delay),
+      background-color 0.2s var(--animation-easing-function) !important;
   }
   #navigator-toolbox:is(:hover, :focus-within) {
     transition-delay: 0s !important;
@@ -26839,7 +27037,7 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   .customize-context-moveToPanel {
-    --menuitem-image: url("chrome://browser/skin/pin-12.svg");
+    --menuitem-image: url("../icons/pin-tab.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
@@ -28019,6 +28217,9 @@
   }
   #tools-menu {
     --menuitem-image: url("../icons/toolbox.svg");
+  }
+  #tabSharingMenu {
+    --menuitem-image: url("chrome://browser/skin/notification-icons/screen.svg");
   }
   #helpMenu {
     --menuitem-image: url("chrome://global/skin/icons/help.svg");
