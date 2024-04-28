@@ -1,4 +1,6 @@
 /*- Background Color -------------------------------------------------------*/
+@import "./animate_common";
+
 //-- Mixin ---------------------------------------------------------------------
 @mixin _animate_bgColor($duration, $presudo: "") {
   button#{$presudo},
@@ -16,8 +18,10 @@
 @include _animate_bgColor(1s);
 @include _animate_bgColor(0.25s, ":hover");
 @include OS($linux) {
-  .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background:not(:-moz-lwtheme) {
-    transition: background-image 0.25s var(--animation-easing-function) !important;
+  @include not_lwtheme {
+    .tabbrowser-tab:is([visuallyselected], [multiselected], [selected]) .tab-background {
+      transition: background-image 0.25s var(--animation-easing-function) !important;
+    }
   }
 }
 
@@ -127,7 +131,7 @@ xul|search-textbox.tabsFilter,
 /*- Titlebar & Full Screen -------------------------------------------------*/
 #titlebar {
   will-change: background-color !important;
-  transition: background-color 0.2s var(--animation-easing-function) !important;
+  transition: $toolbox-transition-background-color !important;
 
   &:-moz-window-inactive {
     transition: background-color 0.5s var(--animation-easing-function) !important;
@@ -136,13 +140,13 @@ xul|search-textbox.tabsFilter,
 #navigator-toolbox {
   /* Full screen out */
   will-change: margin-top, background-color !important;
-  transition: margin-top 1s ease,
-              background-color 0.2s var(--animation-easing-function) !important;
+  transition: $toolbox-transition-margin-top,
+              $toolbox-transition-background-color !important;
   transform-origin: top;
 
   &:-moz-window-inactive {
-    transition: margin-top 1s ease,
-                background-color 0.5s var(--animation-easing-function) !important;
+    transition: $toolbox-transition-margin-top,
+                $toolbox-transition-background-color-inactive !important;
   }
 
   &[inFullscreen="true"] {
@@ -153,11 +157,11 @@ xul|search-textbox.tabsFilter,
 
     /* Full screen navbar not hover */
     // transition: margin-top 0.3s var(--animation-easing-function) 50ms;
-    transition: margin-top 1.3s var(--animation-easing-function) 50ms,
-                background-color 0.2s var(--animation-easing-function) !important;
+    transition: $toolbox-transition-margin-top-fullscreen,
+                $toolbox-transition-background-color !important;
     &:-moz-window-inactive {
-      transition: margin-top 1.3s var(--animation-easing-function) 50ms,
-                  background-color 0.5s var(--animation-easing-function) !important;
+      transition: $toolbox-transition-margin-top-fullscreen,
+                  $toolbox-transition-background-color-inactive !important;
     }
 
     &:hover {

@@ -1,14 +1,13 @@
 /*= GTK - URL View url accent color ==========================================*/
 @include OS($linux) {
-  :root:not(:-moz-lwtheme) .urlbarView-url {
-    @include AccentColor {
-      --urlbar-popup-url-color: #{$accentColor};
+  @include not_lwtheme {
+    .urlbarView-url {
+      @include AccentColor {
+        --urlbar-popup-url-color: #{$accentColor};
+      }
     }
-  }
 
-  // #864
-  :root:not(:-moz-lwtheme) {
-    // Rollback to color
+    // Rollback to color #864
     --toolbar-field-background-color: Field !important;
     --toolbar-field-color: FieldText !important;
     --toolbar-field-border-color: ThreeDShadow !important;

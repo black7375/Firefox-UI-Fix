@@ -25,7 +25,9 @@
     }
   }
   :root[uidensity="touch"] & {
-    top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2 + 1px) !important;
+    // Fallback #881
+    top: calc((var(--urlbar-toolbar-height, var(--urlbar-container-height))
+               - var(--urlbar-height)) / 2 + 1px) !important;
   }
 }
 

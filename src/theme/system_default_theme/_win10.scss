@@ -1,6 +1,6 @@
 /*= Windows10 - UWP like color ===============================================*/
 @include OS($win10) {
-  :root:not(:-moz-lwtheme) {
+  @include not_lwtheme {
     --win-text-color: rgba(0, 0, 0);
     --win-bgcolor: rgb(204, 204, 204);
     --win-disabled-color: rgb(145, 145, 145);
@@ -223,23 +223,28 @@
 
     --panelview-toolbarbutton-focus-box-shadow: inset 0 0 0 2px var(--focus-outline-color) !important;
   }
-  #navigator-toolbox:not(:-moz-lwtheme) {
-    background: var(--lwt-accent-color) !important;
+  @include not_lwtheme {
+    #navigator-toolbox {
+      background: var(--lwt-accent-color) !important;
+    }
   }
 
   /*- Separator --------------------------------------------------------------*/
-  :root:is(#main-window):not(:-moz-lwtheme) {
+  :root:is(#main-window)#{$not_lwtheme} {
     --arrowpanel-border-color: var(--win-bgcolor) !important;
     --panel-separator-color: var(--win-bgcolor) !important;
   }
-  :root[lwt-default-theme-in-dark-mode] {
-    --arrowpanel-border-color: var(--win-border-color) !important;
-    --panel-separator-color: var(--win-border-color) !important;
+  @include Dark {
+    :root:is(#main-window)#{$not_lwtheme},
+    :root[lwt-default-theme-in-dark-mode] {
+      --arrowpanel-border-color: var(--win-border-color) !important;
+      --panel-separator-color: var(--win-border-color) !important;
+    }
   }
 
   @include Option("userChrome.theme.system_default") {
     @media (-moz-windows-accent-color-in-titlebar) {
-      :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+      :root[tabsintitlebar]:not(:-moz-window-inactive)#{$not_lwtheme},
       :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
         --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* As default */
       }
@@ -260,7 +265,7 @@
     #{system-default-theme()} {
       --win-proton-tab-selected-bgcolor: color-mix(in srgb, var(--win-bgcolor) 5%, var(--win-component-bgcolor));
     }
-    :root:not(:-moz-lwtheme) {
+    :root#{$not_lwtheme} {
       --tab-selected-color: var(--win-proton-tab-selected-bgcolor) !important;
     }
     :root[lwt-default-theme-in-dark-mode] {
@@ -269,13 +274,15 @@
   }
 
   /*- Menu -------------------------------------------------------------------*/
-  html#main-window menupopup:not(:-moz-lwtheme) {
-    --menu-color: var(--win-text-color) !important;
-    --menu-background-color: var(--win-component-bgcolor) !important;
-    --menu-border-color: var(--win-bgcolor) !important;
-    --menuitem-hover-background-color: var(--win-hover-bgcolor) !important;
-    --menu-disabled-color: var(--win-disabled-color) !important;
-    --menuitem-disabled-hover-background-color: var(--win-disabled-bgcolor) !important;
+  @include not_lwtheme {
+    html#main-window menupopup {
+      --menu-color: var(--win-text-color) !important;
+      --menu-background-color: var(--win-component-bgcolor) !important;
+      --menu-border-color: var(--win-bgcolor) !important;
+      --menuitem-hover-background-color: var(--win-hover-bgcolor) !important;
+      --menu-disabled-color: var(--win-disabled-color) !important;
+      --menuitem-disabled-hover-background-color: var(--win-disabled-bgcolor) !important;
+    }
   }
 
   /*- Toolbar ----------------------------------------------------------------*/
@@ -322,8 +329,8 @@
 
   /*- Others -----------------------------------------------------------------*/
   /* For overwrite */
-  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"]):not(:-moz-lwtheme), /* Legacy */
-  :root:not(:-moz-lwtheme) {
+  :root[lwtheme-mozlightdark]:not([lwthemetextcolor="bright"])#{$not_lwtheme}, /* Legacy */
+  :root#{$not_lwtheme} {
     /* Light Theme */
     --lwt-accent-color: var(--win-bgcolor) !important;
   }
@@ -333,11 +340,12 @@
     }
   }
 
+  :root#{$not_lwtheme}
   #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack
-    > .tab-background[multiselected]:not([selected]):not(:-moz-lwtheme),
+    > .tab-background[multiselected]:not([selected]),
   :root[lwtheme-mozlightdark] /* Legacy */
     #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
@@ -361,7 +369,7 @@
 /*= Windows10 - Titlebar accent color ========================================*/
 @media (-moz-windows-accent-color-in-titlebar) {
   /* Tab Bar */
-  :root[tabsintitlebar]:not(:-moz-window-inactive, :-moz-lwtheme),
+  :root[tabsintitlebar]:not(:-moz-window-inactive)#{$not_lwtheme},
   :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
     .titlebar-color {
       @include AccentColor {

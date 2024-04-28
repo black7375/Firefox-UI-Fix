@@ -52,31 +52,32 @@ menu {
   /* Nightly 96:  1px solid var(--tab-line-color, rgba(128,128,142,0.9)); */
   border: unset !important;
 }
-@mixin _theme_removeTabBorder($options...) {
-  @each $prefix, $postfix in $options {
-    #TabsToolbar#{$prefix}
-    #tabbrowser-tabs:not([noshadowfortests])
-      .tabbrowser-tab:is([visuallyselected], [multiselected])
-      > .tab-stack
-      > .tab-background#{$postfix} {
-      @include noneBorder;
-    }
-  }
-}
 
 @include Option("userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
-  @include _theme_removeTabBorder(
-    // Light Theme
-    ":not([brighttext])",
+  // Light Theme
+  #TabsToolbar:not([brighttext])
+    #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([visuallyselected], [multiselected])
+    > .tab-stack
+    > .tab-background {
+    @include noneBorder;
+  }
+  @include lwtheme {
     // Dark Theme
-    "[brighttext]" ":-moz-lwtheme"
-  );
+    #TabsToolbar[brighttext]
+      #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected], [multiselected])
+      > .tab-stack
+      > .tab-background {
+      @include noneBorder;
+    }
 
-  #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
-  .tab-background[selected]:-moz-lwtheme {
-    // Nightly 102: outline: 1px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor));
-    outline-color: transparent !important;
+    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon,
+    .tab-background[selected] {
+      // Nightly 102: outline: 1px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor));
+      outline-color: transparent !important;
+    }
   }
   .keyboard-focused-tab > .tab-stack > .tab-background,
   .tabbrowser-tab:focus:not([aria-activedescendant]) > .tab-stack > .tab-background {
@@ -116,18 +117,22 @@ menu {
   }
 
   // lwtheme compatibility
-  #navigator-toolbox:-moz-lwtheme {
-    background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
-    background-repeat: var(--lwt-background-tiling) !important;
-    background-position: var(--lwt-background-alignment) !important;
-    background-color: unset !important; /* Original:  var(--lwt-accent-color) */
+  @include lwtheme {
+    #navigator-toolbox {
+      background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
+      background-repeat: var(--lwt-background-tiling) !important;
+      background-position: var(--lwt-background-alignment) !important;
+      background-color: unset !important; /* Original:  var(--lwt-accent-color) */
+    }
   }
 }
 
 /* Navbar Border */
-#navigator-toolbox:-moz-lwtheme {
-  --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
-  --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
+@include lwtheme {
+  #navigator-toolbox {
+    --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
+    --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
+  }
 }
 
 #customization-container {
@@ -176,4 +181,15 @@ vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
 /*= Infobar Align #858 =======================================================*/
 .container.infobar {
   align-items: center !important;
+}
+
+/*= Inactive transparent #882 ================================================*/
+:root[tabsintitlebar] #titlebar:-moz-window-inactive {
+  opacity: 1 !important;
+  color: color-mix(in srgb, currentColor calc(var(--inactive-titlebar-opacity, 0.75) * 100%), transparent) !important;
+  --inactive-toolbarbutton-icon-fill-opacity: calc(var(--toolbarbutton-icon-fill-opacity, 1) * var(--inactive-titlebar-opacity, 0.75));
+
+  .toolbarbutton-icon {
+    fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
+  }
 }

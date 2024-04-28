@@ -52,11 +52,12 @@
 }
 
 /* Remove side's background color border */
+:root#{$lwtheme}
 #TabsToolbar[brighttext]
   #tabbrowser-tabs:not([noshadowfortests])
   .tabbrowser-tab:is([visuallyselected], [multiselected])
   > .tab-stack
-  > .tab-background:-moz-lwtheme {
+  > .tab-background {
   --tabs-border-color: rgba(0, 0, 0, 0.3) !important;
   box-shadow: 0 0 1px var(--tabs-border-color) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)) */
 }

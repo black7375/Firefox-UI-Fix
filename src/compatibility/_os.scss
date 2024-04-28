@@ -170,19 +170,26 @@
 
   /*= Linux - Titlebar button at lwtheme =====================================*/
   @include NotOption("userChrome.compatibility.os.linux_non_native_titlebar_button") {
-    .titlebar-button:-moz-lwtheme {
-      appearance: auto !important;
-    }
-    .titlebar-min:-moz-lwtheme,
-    .titlebar-max:-moz-lwtheme,
-    .titlebar-restore:-moz-lwtheme,
-    .titlebar-close:-moz-lwtheme {
-      list-style-image: none !important;
-    }
-    .titlebar-button:-moz-lwtheme:hover,
-    .titlebar-button:-moz-lwtheme:hover:active {
-      background-color: unset !important;
-      color: unset !important;
+    @include lwtheme {
+      .titlebar-button {
+        appearance: none !important;
+        > .toolbarbutton-icon {
+          appearance: auto !important;
+          width: unset !important;
+          height: unset !important;
+        }
+      }
+      .titlebar-min,
+      .titlebar-max,
+      .titlebar-restore,
+      .titlebar-close {
+        list-style-image: none !important;
+      }
+      .titlebar-button,
+      .titlebar-button:hover:active {
+        background-color: unset !important;
+        color: unset !important;
+      }
     }
   }
 }
@@ -191,11 +198,13 @@
 //-- Mixin ---------------------------------------------------------------------
 $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 @mixin _os_linuxDefaultThemeSelectedTab {
-  #tabbrowser-tabs:not([noshadowfortests])
-    .tabbrowser-tab:is([visuallyselected], [multiselected])
-    > .tab-stack
-    > .tab-background:not(:-moz-lwtheme) {
-    @content;
+  @include not_lwtheme {
+    #tabbrowser-tabs:not([noshadowfortests])
+      .tabbrowser-tab:is([visuallyselected], [multiselected])
+      > .tab-stack
+      > .tab-background {
+        @content;
+    }
   }
 }
 

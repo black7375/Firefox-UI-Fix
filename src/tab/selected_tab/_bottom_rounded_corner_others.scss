@@ -186,8 +186,10 @@
     }
   }
 }
-#tabbrowser-tabs[movingtab] .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background:-moz-lwtheme {
-  --uc-tab-corner-bgimage: none;
+@include lwtheme {
+  #tabbrowser-tabs[movingtab] .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background {
+    --uc-tab-corner-bgimage: none;
+  }
 }
 
 @include OS($linux) {

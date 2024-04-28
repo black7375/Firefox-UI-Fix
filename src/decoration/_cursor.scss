@@ -12,6 +12,7 @@
 #BMB_viewBookmarksSidebar,
 #BMB_bookmarksShowAllTop,
 #BMB_bookmarksShowAll,
+.urlbarView-row:is([type="switchtab"], [type="remotetab"], [type="clipboard"]) .urlbarView-action,
 #import-button,
 menuitem.openintabs-menuitem,
 #downloadsListBox .downloadButton,
@@ -29,8 +30,8 @@ menuitem.openintabs-menuitem,
   cursor: pointer !important;
 }
 
-// TODO: For now, fxa-menu doesn't show any status.
-//          (JS required, observe .syncNowBtn status)
-// #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] {
-//   cursor: progress !important;
-// }
+#PanelUI-fxa-menu-syncnow-button:has(.syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"]),
+#PanelUI-fxa-menu-syncnow-button .syncnow-label[data-l10n-id="fxa-toolbar-sync-syncing2"],
+#PanelUI-appMenu-fxa-image-last-synced[syncstatus="active"] {
+  cursor: progress !important;
+}
