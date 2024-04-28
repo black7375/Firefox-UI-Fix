@@ -1089,6 +1089,12 @@
     }
   }
   @media (-moz-gtk-csd-available) {
+    menu,
+    menuitem {
+      border-radius: 0 !important;
+    }
+  }
+  @media (-moz-gtk-csd-available) {
     menu > .menu-text,
     menuitem > .menu-text,
     menu > .menu-iconic-text,
@@ -1172,6 +1178,11 @@
       appearance: none !important; /* to override more specific selectors above. */
       width: unset !important;
     }
+    .menu-iconic-left .menu-iconic-icon,
+    menuitem[type="checkbox"] .menu-iconic-icon,
+    menuitem[type="radio"] .menu-iconic-icon {
+      appearance: none !important;
+    }
   }
   @media (-moz-gtk-csd-available) {
     .menu-iconic > .menu-iconic-left,
@@ -1220,6 +1231,9 @@
       padding: 0 !important;
       /* The side margins should align with the start of the menu item text. */
       margin: 2px 1em !important;
+    }
+    menuseparator::before {
+      display: none !important; /* Original: block */
     }
   }
   @media (-moz-gtk-csd-available) {
@@ -14592,6 +14606,12 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
+  menu,
+  menuitem {
+    border-radius: 0 !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
   menu > .menu-text,
   menuitem > .menu-text,
   menu > .menu-iconic-text,
@@ -14675,6 +14695,11 @@
     appearance: none !important; /* to override more specific selectors above. */
     width: unset !important;
   }
+  .menu-iconic-left .menu-iconic-icon,
+  menuitem[type="checkbox"] .menu-iconic-icon,
+  menuitem[type="radio"] .menu-iconic-icon {
+    appearance: none !important;
+  }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
   .menu-iconic > .menu-iconic-left,
@@ -14723,6 +14748,9 @@
     padding: 0 !important;
     /* The side margins should align with the start of the menu item text. */
     margin: 2px 1em !important;
+  }
+  menuseparator::before {
+    display: none !important; /* Original: block */
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
