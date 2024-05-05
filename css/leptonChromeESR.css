@@ -13138,6 +13138,9 @@
       #context-pdfjs-selectall {
         --menuitem-image: url("../icons/select-all-on.svg");
       }
+      #context-pdfjs-highlight-selection {
+        --menuitem-image: url("../icons/toolbarButton-editorHighlight.svg");
+      }
       #context-reveal-password {
         --menuitem-image: url("../icons/eye-show.svg");
       }
@@ -13153,6 +13156,9 @@
       #context-searchselect,
       #context-searchselect-private {
         --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
+      }
+      #context-translate-selection {
+        --menuitem-image: url("../icons/translations.svg");
       }
       #frame {
         --menuitem-image: url("../icons/command-frames.svg");
@@ -13604,6 +13610,12 @@
       .unified-extensions-context-menu-pin-to-toolbar {
         --menuitem-image: url("../icons/pin-tab.svg");
       }
+      .unified-extensions-context-menu-move-widget-up {
+        --menuitem-image: url("chrome://global/skin/icons/arrow-up.svg");
+      }
+      .unified-extensions-context-menu-move-widget-down {
+        --menuitem-image: url("chrome://global/skin/icons/arrow-down.svg");
+      }
       .unified-extensions-context-menu-manage-extension {
         --menuitem-image: url("chrome://global/skin/icons/settings.svg");
       }
@@ -13618,6 +13630,20 @@
         --menuitem-image: url("chrome://global/skin/icons/delete.svg");
       }
       .urlbarView-result-menuitem[data-command="help"] {
+        --menuitem-image: url("chrome://global/skin/icons/info.svg");
+      }
+      /*= full-page-translations-panel-settings-menupopup ==========================*/
+      .manage-languages-menuitem {
+        --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+      }
+      #full-page-translations-panel-settings-menupopup > menuitem[data-l10n-id="translations-panel-settings-about2"] {
+        --menuitem-image: url("chrome://global/skin/icons/info.svg");
+      }
+      /*= select-translations-panel-settings-menupopup =============================*/
+      #select-translations-panel-open-settings-page-menuitem {
+        --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+      }
+      #select-translations-panel-about-translations-menuitem {
         --menuitem-image: url("chrome://global/skin/icons/info.svg");
       }
     }
