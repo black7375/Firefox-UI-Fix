@@ -6820,6 +6820,11 @@
     /* Temporary solution for compatibility #513 */
     overflow-y: clip;
   }
+  /* Border top #889 */
+  #nav-bar {
+    border-top: none !important;
+    box-shadow: 0 -0.01px 0 ThreeDShadow;
+  }
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Bold ======================================================*/
@@ -20939,6 +20944,7 @@
     z-index: 1 !important;
   }
   /* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
+  /* Border top #889 */
 }
 @media (-moz-bool-pref: "userChrome.tab.connect_to_window") and (not (-moz-bool-pref: "userChrome.tabbar.multi_row")) {
   #TabsToolbar:not([multibar]) {
@@ -20952,6 +20958,12 @@
   #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] .tab-stack {
     /* Temporary solution for compatibility #513 */
     overflow-y: clip;
+  }
+}
+@media (-moz-bool-pref: "userChrome.tab.connect_to_window") {
+  #nav-bar {
+    border-top: none !important;
+    box-shadow: 0 -0.01px 0 ThreeDShadow;
   }
 }
 /*= Selected Tab =============================================================*/
