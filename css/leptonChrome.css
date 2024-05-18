@@ -184,6 +184,15 @@
   :root[tabsintitlebar] #titlebar:-moz-window-inactive .toolbarbutton-icon {
     fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
   }
+  /*= Tabpreviw transparent #890 ===============================================*/
+  #tab-preview-panel {
+    --panel-background: var(
+      --arrowpanel-background
+    ) !important; /* Original: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) */
+    --panel-color: var(
+      --arrowpanel-color
+    ) !important; /* Original: var(--tab-selected-textcolor, var(--toolbar-color)) */
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -13599,6 +13608,7 @@
   /*= Menubar rounding #814 ====================================================*/
   /*= Infobar Align #858 =======================================================*/
   /*= Inactive transparent #882 ================================================*/
+  /*= Tabpreviw transparent #890 ===============================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
@@ -13728,6 +13738,16 @@
   }
   :root[tabsintitlebar] #titlebar:-moz-window-inactive .toolbarbutton-icon {
     fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  #tab-preview-panel {
+    --panel-background: var(
+      --arrowpanel-background
+    ) !important; /* Original: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) */
+    --panel-color: var(
+      --arrowpanel-color
+    ) !important; /* Original: var(--tab-selected-textcolor, var(--toolbar-color)) */
   }
 }
 /*= OS - Compatibility =======================================================*/

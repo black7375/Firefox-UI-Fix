@@ -184,6 +184,15 @@
   :root[tabsintitlebar] #titlebar:-moz-window-inactive .toolbarbutton-icon {
     fill-opacity: var(--inactive-toolbarbutton-icon-fill-opacity, 1);
   }
+  /*= Tabpreviw transparent #890 ===============================================*/
+  #tab-preview-panel {
+    --panel-background: var(
+      --arrowpanel-background
+    ) !important; /* Original: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) */
+    --panel-color: var(
+      --arrowpanel-color
+    ) !important; /* Original: var(--tab-selected-textcolor, var(--toolbar-color)) */
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
