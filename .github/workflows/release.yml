@@ -64,8 +64,10 @@ jobs:
           # or TAGVER=$(git describe --tags --abbrev=0)
           BRANCH=${{ matrix.branch }}
           TAGVER=${GITHUB_REF#refs/*/}
+          NAME=${{ matrix.name }}
 
           echo -e "[Info]\nVer=${TAGVER}\nBranch=${BRANCH}" > LEPTON
+          sed -i "1i// ${TAGVER} ${NAME}" user.js
 
       - name: Processing for STANDARD
         if: matrix.mode == 'STANDARD'
