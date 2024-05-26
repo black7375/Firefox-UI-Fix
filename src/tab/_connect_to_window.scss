@@ -39,4 +39,9 @@
 #nav-bar {
   border-top: none !important;
   box-shadow: 0 -0.01px 0 ThreeDShadow;
+  @include OS($linux) {
+    @include not_lwtheme(false) {
+      box-shadow: 0 -0.01px 0 ThreeDShadow;
+    }
+  }
 }

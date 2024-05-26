@@ -7255,6 +7255,11 @@
     border-top: none !important;
     box-shadow: 0 -0.01px 0 ThreeDShadow;
   }
+  @media (-moz-gtk-csd-available) {
+    :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #nav-bar {
+      box-shadow: 0 -0.01px 0 ThreeDShadow;
+    }
+  }
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Bold ======================================================*/
