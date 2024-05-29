@@ -8906,7 +8906,10 @@
       }
     }
     @supports not -moz-bool-pref("userChrome.tab.container.on_top") {
-      .tab-content[titlechanged]::before {
+      .tabbrowser-tab:is([image], [pinned])[usercontextid]
+        > .tab-stack
+        > .tab-content[attention]:not([selected])::before,
+      .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected])::before {
         opacity: 0;
       }
       /* Pinned Tab - Titlechanged Indicator override */
