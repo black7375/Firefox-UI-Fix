@@ -8878,15 +8878,22 @@
       transform: translate(var(--uc-container-position-x), var(--uc-container-position-y));
       /* Shape */
       border-bottom: 2px solid var(--identity-icon-color);
-      width: 25%;
+      width: calc(100% - 30px);
       opacity: 0.75;
     }
-    .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-      width: calc(100% - 30px);
+    .tabbrowser-tab[visuallyselected] .tab-content::before {
       opacity: 1;
     }
-    #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-      width: calc(100% - 33px);
+    @supports not -moz-bool-pref("userChrome.tab.container.always_long") {
+      .tab-content::before {
+        width: 25%;
+      }
+      .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
+        width: calc(100% - 30px);
+      }
+      #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
+        width: calc(100% - 33px);
+      }
     }
     /* Animate */
     @media (prefers-reduced-motion: no-preference) {
