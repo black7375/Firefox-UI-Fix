@@ -11068,6 +11068,9 @@
       order: -1 !important;
       -moz-box-ordinal-group: 0 !important;
     }
+    #appMenu-addon-banners > .addon-banner-item > .toolbarbutton-icon {
+      display: inline-flex !important;
+    }
     #appMenu-proton-update-banner::before {
       content: url("../icons/whatsnew.svg");
     }
@@ -25740,6 +25743,11 @@
     margin-inline-start: var(--arrowpanel-menuicon-padding);
     order: -1 !important;
     -moz-box-ordinal-group: 0 !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #appMenu-addon-banners > .addon-banner-item > .toolbarbutton-icon {
+    display: inline-flex !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
