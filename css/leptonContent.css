@@ -1007,6 +1007,7 @@
       .MetadataCard-content a,
       .CollectionSort-label,
       .SearchResult-summary,
+      .SearchResult-note,
       .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link,
       .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link,
       .PermissionsCard-subhead--optional,
@@ -1498,6 +1499,7 @@
         --color-moz-inverse-bg: var(red) !important;
         --focus-shadow: 0 0 0 4px color-mix(in srgb, var(--in-content-primary-button-background) 30%, transparent),
           0 0 0 2px var(--in-content-primary-button-background-active);
+        --color-dark-gray-10: var(--in-content-deemphasized-text) !important;
       }
       .warning {
         --color-link: rgb(55, 255, 255) !important;
@@ -1606,7 +1608,9 @@
       details .is-summary button::before,
       summary::before,
       .icon-button > button,
-      .search-button {
+      .search-button,
+      img:is(.pencil, .thumbsup, .syncing.icon),
+      #step-indicator li:not([status="done"])::before {
         filter: invert(95%) !important;
       }
       button.markup-toolbar-button {
@@ -4643,6 +4647,7 @@
     .MetadataCard-content a,
     .CollectionSort-label,
     .SearchResult-summary,
+    .SearchResult-note,
     .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link,
     .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link,
     .PermissionsCard-subhead--optional,
@@ -5134,6 +5139,7 @@
       --color-moz-inverse-bg: var(red) !important;
       --focus-shadow: 0 0 0 4px color-mix(in srgb, var(--in-content-primary-button-background) 30%, transparent),
         0 0 0 2px var(--in-content-primary-button-background-active);
+      --color-dark-gray-10: var(--in-content-deemphasized-text) !important;
     }
     .warning {
       --color-link: rgb(55, 255, 255) !important;
@@ -5242,7 +5248,9 @@
     details .is-summary button::before,
     summary::before,
     .icon-button > button,
-    .search-button {
+    .search-button,
+    img:is(.pencil, .thumbsup, .syncing.icon),
+    #step-indicator li:not([status="done"])::before {
       filter: invert(95%) !important;
     }
     button.markup-toolbar-button {
