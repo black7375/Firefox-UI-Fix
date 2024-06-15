@@ -21,6 +21,9 @@
   #firefoxExperimentalCategory > hbox {
     transform: translateY(5px);
   }
+  #firefoxExperimentalCategory .description-deemphasized {
+    display: none;
+  }
   #pane-experimental-featureGates > html|p[data-l10n-id="pane-experimental-description2"] {
     border-bottom: 1px solid var(--in-content-border-color);
     padding-bottom: 1.5em;
@@ -3645,6 +3648,9 @@
   }
   #firefoxExperimentalCategory > hbox {
     transform: translateY(5px);
+  }
+  #firefoxExperimentalCategory .description-deemphasized {
+    display: none;
   }
   #pane-experimental-featureGates > html|p[data-l10n-id="pane-experimental-description2"] {
     border-bottom: 1px solid var(--in-content-border-color);
