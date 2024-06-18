@@ -13436,6 +13436,11 @@
     #translations-button-icon {
       list-style-image: url("../icons/translations.svg") !important;
     }
+    .tabbrowser-tab:is([image="chrome://global/skin/icons/performance.svg"],
+    [image="chrome://devtools/skin/images/tool-profiler.svg"]) .tab-icon-image
+    {
+      content: url("../icons/performance.svg") !important;
+    }
   }
   /** Icons for fork browsers ***************************************************/
   /*= Waterfox =================================================================*/
@@ -28885,6 +28890,11 @@
   }
   #translations-button-icon {
     list-style-image: url("../icons/translations.svg") !important;
+  }
+  .tabbrowser-tab:is([image="chrome://global/skin/icons/performance.svg"],
+  [image="chrome://devtools/skin/images/tool-profiler.svg"]) .tab-icon-image
+  {
+    content: url("../icons/performance.svg") !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {

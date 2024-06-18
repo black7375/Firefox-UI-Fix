@@ -2231,6 +2231,14 @@
     {
       background-image: url("../icons/link.svg") !important;
     }
+    .profiler-icon {
+      background: url("../icons/performance.svg") no-repeat center !important;
+    }
+  }
+  @-moz-document url-prefix("about:profiling") {
+    .perf-intro-icon {
+      background-image: url("../icons/performance.svg") !important;
+    }
   }
   /*= chrome://browser/content/places/places.xhtml =============================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
