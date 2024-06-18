@@ -2222,6 +2222,13 @@
       background-color: var(--in-content-box-background-odd);
     }
   }
+  /*= about:processes ==========================================================*/
+  @-moz-document url-prefix("about:processes") {
+    td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");']
+    {
+      background-image: url("../icons/link.svg") !important;
+    }
+  }
   /*= chrome://browser/content/places/places.xhtml =============================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
@@ -5712,6 +5719,7 @@
   /*= about:checkerboard =======================================================*/
   /*= about:memory =============================================================*/
   /*= about:preferences ========================================================*/
+  /*= about:processes ==========================================================*/
   /*= chrome://browser/content/places/places.xhtml =============================*/
 }
 @media (-moz-bool-pref: "userContent.page.proton") and (-moz-bool-pref: "userContent.page.field_border") and (prefers-reduced-motion: no-preference) {
@@ -5872,6 +5880,14 @@
       > richlistitem:nth-child(even):not([selected="true"], :hover),
     #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected="true"], :hover) {
       background-color: var(--in-content-box-background-odd);
+    }
+  }
+}
+@media (-moz-bool-pref: "userContent.page.proton") {
+  @-moz-document url-prefix("about:processes") {
+    td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");']
+    {
+      background-image: url("../icons/link.svg") !important;
     }
   }
 }
