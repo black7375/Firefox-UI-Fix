@@ -8,8 +8,10 @@
   display: inline-flex !important;
 }
 
+#appMenu-update-banner::before,
 #appMenu-proton-update-banner::before {
   content: url("../icons/whatsnew.svg");
+  margin-inline-end: 0px !important;
 }
 #appMenu-fxa-status2::before {
   /* Don't exist img tag */
