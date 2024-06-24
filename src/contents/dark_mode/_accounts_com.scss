@@ -25,6 +25,7 @@
     color: var(--in-content-page-color) !important;
   }
   #main-content.panel a,
+  .nav-active,
   .links a,
   .link-blue,
   .text-blue-500 {
@@ -71,6 +72,7 @@
   .input-text,
   header,
   .card,
+  .card-base,
   .bg-white:not(nav) {
     background: var(--in-content-box-background) !important;
   }
@@ -83,6 +85,7 @@
   .hover\:bg-grey-100:hover {
     background: var(--in-content-button-background-hover) !important;
   }
+  .nav-active,
   .text-blue-500 .cta-neutral,
   .text-blue-500 .bg-grey-50,
   .text-blue-500 .hover\:bg-grey-100 {
@@ -111,6 +114,13 @@
   footer a[data-testid="link-mozilla"] {
     filter: invert(95%) !important;
   }
+  div[data-testid="settings-connected-service"] svg:is(
+    [data-testid="mobile-icon"],
+    [data-testid="desktop-icon"],
+    [data-testid="tablet-icon"],
+    [data-testid="vr-icon"],
+    [data-testid="addon-icon"]
+  ),
   header button svg,
   header .rounded svg,
   #service svg {
@@ -122,6 +132,7 @@
   }
 
   /* Others */
+  .border-grey-100,
   .input-row input[type="email"],
   .input-row input[type="number"],
   .input-row input[type="password"],
@@ -130,6 +141,7 @@
   .unit-row-hr .border-grey-100 {
     border-color: var(--in-content-border-color) !important;
   }
+  .border-grey-100:hover,
   .input-row input[type="email"]:hover,
   .input-row input[type="number"]:hover,
   .input-row input[type="password"]:hover,
