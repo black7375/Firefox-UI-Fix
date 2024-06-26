@@ -11697,6 +11697,13 @@
     #PanelUI-fxa-menu-setup-sync-button {
       list-style-image: url("chrome://browser/skin/sync.svg");
     }
+    @media (prefers-reduced-motion: reduce) {
+      #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] > .toolbarbutton-icon,
+      #PanelUI-remotetabs-syncnow[syncstatus="active"] > .toolbarbutton-icon,
+      .syncNowBtn[syncstatus="active"] {
+        list-style-image: url("chrome://browser/skin/tabbrowser/hourglass.svg") !important;
+      }
+    }
     #PanelUI-fxa-menu-connect-device-button {
       list-style-image: url("../icons/add-device.svg");
     }
