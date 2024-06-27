@@ -34,10 +34,15 @@
   }
 }
 
-// #695
 @include moz-document(url-prefix "about:addons") {
+  // #695
   #updates-message + .page-options-menu > .more-options-button {
     box-sizing: content-box;
     padding: 0 !important;
+  }
+
+  // #911
+  #categories {
+    padding-inline-end: 1px !important; /* Original: 4px */
   }
 }
