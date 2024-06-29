@@ -46,6 +46,11 @@
     padding-inline-end: 1px !important; /* Original: 4px */
   }
 }
+@-moz-document url-prefix("about:policies") {
+  #categories > .category {
+    box-sizing: border-box;
+  }
+}
 /** Video player **************************************************************/
 /* Control Bar Size */
 @supports -moz-bool-pref("userContent.player.size") {
@@ -3711,6 +3716,11 @@
   }
   #categories {
     padding-inline-end: 1px !important; /* Original: 4px */
+  }
+}
+@-moz-document url-prefix("about:policies") {
+  #categories > .category {
+    box-sizing: border-box;
   }
 }
 /** Video player **************************************************************/

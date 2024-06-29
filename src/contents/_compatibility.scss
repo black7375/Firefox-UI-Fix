@@ -56,3 +56,10 @@
     padding-inline-end: 1px !important; /* Original: 4px */
   }
 }
+
+@include moz-document(url-prefix "about:policies") {
+  // #923
+  #categories > .category {
+    box-sizing: border-box;
+  }
+}
