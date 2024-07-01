@@ -4,9 +4,14 @@
   margin-inline-start: var(--arrowpanel-menuicon-padding);
   @include BoxOrder(0, true);
 }
+#appMenu-addon-banners > .addon-banner-item > .toolbarbutton-icon {
+  display: inline-flex !important;
+}
 
+#appMenu-update-banner::before,
 #appMenu-proton-update-banner::before {
   content: url("../icons/whatsnew.svg");
+  margin-inline-end: 0px !important;
 }
 #appMenu-fxa-status2::before {
   /* Don't exist img tag */
@@ -200,6 +205,13 @@
 #PanelUI-fxa-menu-setup-sync-button {
   list-style-image: url("chrome://browser/skin/sync.svg");
 }
+@media (prefers-reduced-motion: reduce) {
+  #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] > .toolbarbutton-icon,
+  #PanelUI-remotetabs-syncnow[syncstatus="active"] > .toolbarbutton-icon,
+  .syncNowBtn[syncstatus="active"] {
+    list-style-image: url("chrome://browser/skin/tabbrowser/hourglass.svg") !important;
+  }
+}
 
 #PanelUI-fxa-menu-connect-device-button {
   list-style-image: url("../icons/add-device.svg");
@@ -243,6 +255,9 @@
   border-bottom: 1px solid var(--panel-separator-color);
   margin: var(--panel-separator-margin);
   padding: 0;
+}
+#PanelUI-signedin-panel[hidden="true"] + #PanelUI-fxa-cta-menu #PanelUI-products-separator {
+  display: none; // #916
 }
 #PanelUI-fxa-menu > :first-child {
   @include BoxOrder(0);
@@ -423,6 +438,9 @@ panelMenuBookmarkThisPage[starred] {
 }
 #allTabsMenu-searchTabs {
   list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+}
+#allTabsMenu-closeDuplicateTabs {
+  list-style-image: var(--uc-tab-close-duplicate-icon);
 }
 #allTabsMenu-containerTabsButton {
   list-style-image: url("../icons/container-openin-16.svg");

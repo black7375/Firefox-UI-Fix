@@ -22,8 +22,12 @@
   --menuitem-image: url("../icons/toolbarButton-upload.svg");
 }
 #menu_close {
+  --menuitem-image: var(--uc-tab-close-icon);
 }
 #menu_closeWindow {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/close-window.svg");
+  }
 }
 
 #menu_savePage {
@@ -90,6 +94,9 @@ menu.share-tab-url-item {
   --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
 }
 #menu_findAgain {
+  @include Option("userChrome.icon.menu.full") {
+    --menuitem-image: url("../icons/find-again.svg");
+  }
 }
 
 #textfieldDirection-swap {
@@ -252,7 +259,7 @@ menu.share-tab-url-item {
 }
 
 #menu_openFirefoxView {
-  --menuitem-image: url("chrome://branding/content/icon32.png");
+  --menuitem-image: url("../icons/firefox-view.svg");
 }
 #webDeveloperMenu, /* Legacy */
 #browserToolsMenu {

@@ -11,6 +11,16 @@
     padding-inline-start: 35px !important;
   }
 
+  // #910
+  .translations-manage-language:first-child {
+    padding-block: 4px !important;
+    margin-bottom: 4px !important;
+  }
+  .translations-manage-language button {
+    min-height: var(--size-item-medium, 28px) !important;
+    max-height: var(--size-item-medium, 28px) !important;
+  }
+
   // Align & Separator #722
   #firefoxExperimentalCategory {
     &:not([hidden="true"]) {
@@ -23,6 +33,10 @@
     > hbox {
       transform: translateY(5px);
     }
+
+    .description-deemphasized {
+      display: none; // #912
+    }
   }
   #pane-experimental-featureGates > html|p[data-l10n-id="pane-experimental-description2"] {
     border-bottom: 1px solid var(--in-content-border-color);
@@ -30,10 +44,22 @@
   }
 }
 
-// #695
 @include moz-document(url-prefix "about:addons") {
+  // #695
   #updates-message + .page-options-menu > .more-options-button {
     box-sizing: content-box;
     padding: 0 !important;
+  }
+
+  // #911
+  #categories {
+    padding-inline-end: 1px !important; /* Original: 4px */
+  }
+}
+
+@include moz-document(url-prefix "about:policies") {
+  // #923
+  #categories > .category {
+    box-sizing: border-box;
   }
 }

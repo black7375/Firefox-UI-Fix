@@ -1,0 +1,16 @@
+@include moz-document(url-prefix "about:processes") {
+  td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");'] {
+    background-image: url("../icons/link.svg") !important;
+  }
+
+  .profiler-icon {
+    background: url("../icons/performance.svg") no-repeat center !important;
+  }
+}
+
+@include moz-document(url-prefix "about:profiling") {
+  .perf-intro-icon {
+    background-image: url("../icons/performance.svg") !important;
+  }
+}
+

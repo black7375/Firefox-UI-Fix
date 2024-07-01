@@ -341,6 +341,7 @@ firefoxProfileDirPaths=(
   "${HOME}/.ghostery browser"
   "${HOME}/.pulse-browser"
   "${HOME}/.firedragon"
+  "${HOME}/.cachy"
   "${HOME}/.local/opt/tor-browser/app/Browser/TorBrowser/Data/Browser"
   "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
   "${HOME}/snap/firefox/common/.mozilla/firefox"

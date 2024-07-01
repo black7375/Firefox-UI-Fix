@@ -1,9 +1,22 @@
 #firefox-view-button {
-	list-style-image: url("../icons/firefox-view.svg") !important;
+  list-style-image: url("../icons/firefox-view.svg") !important;
 }
 #reset-pbm-toolbar-button {
-	list-style-image: url("../icons/flame.svg") !important;
+  list-style-image: url("../icons/flame.svg") !important;
 }
 #translations-button-icon {
-	list-style-image: url("../icons/translations.svg") !important;
+  list-style-image: url("../icons/translations.svg") !important;
+}
+
+.tabbrowser-tab:is(
+  [image="chrome://global/skin/icons/performance.svg"],
+  [image="chrome://devtools/skin/images/tool-profiler.svg"]
+) .tab-icon-image {
+  content: url("../icons/performance.svg") !important;
+}
+
+.tabbrowser-tab:is(
+  [image="chrome://global/skin/icons/developer.svg"]
+) .tab-icon-image {
+  content: url("../icons/developer.svg") !important;
 }
