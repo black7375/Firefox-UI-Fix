@@ -39,15 +39,23 @@
 
   /* Shape */
   border-bottom: 2px solid var(--identity-icon-color);
-  width: 25%;
+  width: calc(100% - 30px);
   opacity: 0.75;
 }
-.tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-  width: calc(100% - 30px);
+.tabbrowser-tab[visuallyselected] .tab-content::before {
   opacity: 1;
 }
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-  width: calc(100% - 33px);
+
+@include NotOption("userChrome.tab.container.always_long") {
+  .tab-content::before {
+    width: 25%;
+  }
+  .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
+    width: calc(100% - 30px);
+  }
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
+    width: calc(100% - 33px);
+  }
 }
 
 /* Animate */
@@ -71,7 +79,8 @@
 }
 
 @include NotOption("userChrome.tab.container.on_top") {
-  .tab-content[titlechanged]::before {
+  .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected])::before,
+  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected])::before {
     opacity: 0;
   }
 

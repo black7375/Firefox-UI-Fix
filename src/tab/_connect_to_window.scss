@@ -7,7 +7,7 @@
 }
 
 .tab-content {
-  margin-top: var(--tab-block-margin);
+  margin-top: 0px; // #892 Consider var(--tab-block-margin)
 }
 
 .tab-stack {
@@ -32,5 +32,16 @@
   .tab-stack {
     /* Temporary solution for compatibility #513 */
     overflow-y: clip;
+  }
+}
+
+/* Border top #889 */
+#nav-bar {
+  border-top: none !important;
+  box-shadow: 0 -0.01px 0 ThreeDShadow;
+  @include OS($linux) {
+    @include not_lwtheme(false) {
+      box-shadow: 0 -0.01px 0 ThreeDShadow;
+    }
   }
 }

@@ -33,6 +33,11 @@
 .toolbaritem-combined-buttons:not(.unified-extensions-item) > .subviewbutton:not(.subviewbutton-iconic) > .toolbarbutton-text {
   padding-inline-start: 0 !important;
 }
+#panelMenu_bookmarksMenu .subviewbutton[disabled="true"],
+#appMenu_historyMenu .subviewbutton[disabled="true"] {
+  margin-inline-start: 0 !important;
+  padding-inline-start: 0 !important;
+}
 #panelMenu_bookmarksMenu .subviewbutton[disabled="true"] .toolbarbutton-text,
 #appMenu_historyMenu .subviewbutton[disabled="true"] .toolbarbutton-text {
   padding-inline-start: var(--arrowpanel-menublank-padding) !important;
