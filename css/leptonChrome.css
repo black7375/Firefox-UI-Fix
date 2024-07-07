@@ -12591,6 +12591,9 @@
       #context-translate-selection {
         --menuitem-image: url("../icons/translations.svg");
       }
+      #context-ask-chat {
+        --menuitem-image: url("../icons/chat-sparkle.svg");
+      }
       #frame {
         --menuitem-image: url("../icons/command-frames.svg");
       }
@@ -27708,6 +27711,11 @@
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #context-translate-selection {
     --menuitem-image: url("../icons/translations.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
+  #context-ask-chat {
+    --menuitem-image: url("../icons/chat-sparkle.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
