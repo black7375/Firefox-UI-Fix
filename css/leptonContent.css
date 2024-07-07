@@ -2266,6 +2266,25 @@
       background-image: url("../icons/performance.svg") !important;
     }
   }
+  /*= about:processes ==========================================================*/
+  @-moz-document url-prefix("about:support") {
+    #reset-box-button {
+      --in-content-focus-outline-color: var(--in-content-danger-button-background) !important;
+      background-color: var(--in-content-danger-button-background) !important;
+      color: var(--in-content-primary-button-text-color) !important;
+      border-color: var(--in-content-primary-button-border-color) !important;
+    }
+    #reset-box-button:enabled:hover {
+      background-color: var(--in-content-danger-button-background-hover) !important;
+      color: var(--in-content-primary-button-text-color-hover) !important;
+      border-color: var(--in-content-primary-button-border-hover) !important;
+    }
+    #reset-box-button:enabled:hover:active {
+      background-color: var(--in-content-danger-button-background-active) !important;
+      color: var(--in-content-primary-button-text-color-active) !important;
+      border-color: var(--in-content-primary-button-border-active) !important;
+    }
+  }
   /*= chrome://browser/content/places/places.xhtml =============================*/
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
@@ -5786,6 +5805,7 @@
   /*= about:memory =============================================================*/
   /*= about:preferences ========================================================*/
   /*= about:processes ==========================================================*/
+  /*= about:processes ==========================================================*/
   /*= chrome://browser/content/places/places.xhtml =============================*/
 }
 @media (-moz-bool-pref: "userContent.page.proton") and (-moz-bool-pref: "userContent.page.field_border") and (prefers-reduced-motion: no-preference) {
@@ -5964,6 +5984,26 @@
   @-moz-document url-prefix("about:profiling") {
     .perf-intro-icon {
       background-image: url("../icons/performance.svg") !important;
+    }
+  }
+}
+@media (-moz-bool-pref: "userContent.page.proton") {
+  @-moz-document url-prefix("about:support") {
+    #reset-box-button {
+      --in-content-focus-outline-color: var(--in-content-danger-button-background) !important;
+      background-color: var(--in-content-danger-button-background) !important;
+      color: var(--in-content-primary-button-text-color) !important;
+      border-color: var(--in-content-primary-button-border-color) !important;
+    }
+    #reset-box-button:enabled:hover {
+      background-color: var(--in-content-danger-button-background-hover) !important;
+      color: var(--in-content-primary-button-text-color-hover) !important;
+      border-color: var(--in-content-primary-button-border-hover) !important;
+    }
+    #reset-box-button:enabled:hover:active {
+      background-color: var(--in-content-danger-button-background-active) !important;
+      color: var(--in-content-primary-button-text-color-active) !important;
+      border-color: var(--in-content-primary-button-border-active) !important;
     }
   }
 }
