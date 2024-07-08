@@ -3268,12 +3268,15 @@
 /** Menu - Icons Layout *******************************************************/
 @supports not -moz-bool-pref("userChrome.icon.disabled") {
   @supports -moz-bool-pref("userChrome.icon.menu") {
-    :root {
-      --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
-    }
-    @supports -moz-bool-pref("userChrome.icon.library") {
+    @-moz-document url-prefix("about:"), regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+    {
       :root {
-        --uc-folder-icon: url("../icons/folder.svg");
+        --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
+      }
+      @supports -moz-bool-pref("userChrome.icon.library") {
+        :root {
+          --uc-folder-icon: url("../icons/folder.svg");
+        }
       }
     }
     @-moz-document url("chrome://browser/content/places/places.xhtml"), url("about:downloads")

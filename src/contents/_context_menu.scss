@@ -1,6 +1,12 @@
 @import "../icons/shared";
-:root {
-  @include initIcons;
+
+@include moz-document(
+  url-prefix "about:",
+  regexp "^(((jar:)?file:\/\/\/)|(chrome:\/\/)).*\/$"
+) {
+  :root {
+    @include initIcons;
+  }
 }
 
 @include moz-document(
