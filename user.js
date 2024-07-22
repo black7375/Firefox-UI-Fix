@@ -283,7 +283,7 @@ user_pref("userContent.page.proton",           true); // Need proton_color
 // ** Useful Options ***********************************************************
 // Tab preview
 // https://blog.nightly.mozilla.org/2024/02/06/a-preview-of-tab-previews-these-weeks-in-firefox-issue-153/
-user_pref("browser.tabs.cardPreview.enabled",   true);
+user_pref("browser.tabs.hoverPreview.enabled", true);
 
 // Paste suggestion at urlbar
 // https://blog.nightly.mozilla.org/2023/12/04/url-gonna-want-to-check-this-out-these-weeks-in-firefox-issue-150/
