@@ -4,7 +4,11 @@
   }
 
   .profiler-icon {
-    background: url("../icons/performance.svg") no-repeat center !important;
+    cursor: pointer;
+    background-image: url("../icons/performance.svg") no-repeat center !important;
+    @include NotOption("userChrome.rounding.square_button") {
+      border-radius: 8px !important;
+    }
   }
 }
 

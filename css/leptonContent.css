@@ -2258,7 +2258,13 @@
       background-image: url("../icons/link.svg") !important;
     }
     .profiler-icon {
-      background: url("../icons/performance.svg") no-repeat center !important;
+      cursor: pointer;
+      background-image: url("../icons/performance.svg") no-repeat center !important;
+    }
+    @supports not -moz-bool-pref("userChrome.rounding.square_button") {
+      .profiler-icon {
+        border-radius: 8px !important;
+      }
     }
   }
   @-moz-document url-prefix("about:profiling") {
@@ -5979,7 +5985,13 @@
       background-image: url("../icons/link.svg") !important;
     }
     .profiler-icon {
-      background: url("../icons/performance.svg") no-repeat center !important;
+      cursor: pointer;
+      background-image: url("../icons/performance.svg") no-repeat center !important;
+    }
+    @media (-moz-bool-pref: "userContent.page.proton") and (not (-moz-bool-pref: "userChrome.rounding.square_button")) {
+      .profiler-icon {
+        border-radius: 8px !important;
+      }
     }
   }
 }
