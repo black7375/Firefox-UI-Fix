@@ -2254,6 +2254,14 @@
       background-color: var(--in-content-box-background-odd);
     }
   }
+  @-moz-document url-prefix("about:preferences") {
+    .privacy-extra-information > .custom-option:not(:first-child) {
+      margin-block: 2px !important; /* Original: 10px */
+    }
+    .extra-information-label:not(:first-child) {
+      margin-top: 4px !important; /* Original: 19px */
+    }
+  }
   /*= about:processes ==========================================================*/
   @-moz-document url-prefix("about:processes") {
     td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");']
