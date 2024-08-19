@@ -11580,6 +11580,12 @@
     #sidebar-switcher-tabs:is(menuitem) {
       --menuitem-image: url("../icons/synced-tabs.svg");
     }
+    #sidebar-switcher-genai-chat.subviewbutton {
+      list-style-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
+    }
+    #sidebar-switcher-genai-chat:is(menuitem) {
+      --menuitem-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
+    }
     #sidebar-reverse-position.subviewbutton {
       list-style-image: var(--uc-sidebar-icon-reverse);
     }
@@ -26491,6 +26497,14 @@
   }
   #sidebar-switcher-tabs:is(menuitem) {
     --menuitem-image: url("../icons/synced-tabs.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #sidebar-switcher-genai-chat.subviewbutton {
+    list-style-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
+  }
+  #sidebar-switcher-genai-chat:is(menuitem) {
+    --menuitem-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
