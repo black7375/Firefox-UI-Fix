@@ -47,6 +47,9 @@ user_pref("userChrome.tab.bottom_rounded_corner",      true);
 user_pref("userChrome.tab.photon_like_contextline",   false);
 user_pref("userChrome.rounding.square_tab",           false);
 
+// Proton Only
+// user_pref("userChrome.tab.supernova_like_contextline",   true);
+
 // == Theme Compatibility Settings =============================================
 // user_pref("userChrome.compatibility.accent_color",         true); // Firefox v103 Below
 // user_pref("userChrome.compatibility.covered_header_image", true);

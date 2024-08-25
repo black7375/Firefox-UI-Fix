@@ -67,3 +67,9 @@
 @include Option("userChrome.tab.photon_like_contextline") {
   @import "selected_tab/photon_like_contextline";
 }
+
+@include NotOption("userChrome.tab.photon_like_contextline") {
+  @include Option("userChrome.tab.supernova_like_contextline") {
+    @import "selected_tab/supernova_like_contextline";
+  }
+}
