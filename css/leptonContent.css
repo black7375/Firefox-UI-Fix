@@ -2271,6 +2271,7 @@
     .profiler-icon {
       cursor: pointer;
       background-image: url("../icons/performance.svg") no-repeat center !important;
+      color: inherit !important;
     }
     @supports not -moz-bool-pref("userChrome.rounding.square_button") {
       .profiler-icon {
@@ -6011,6 +6012,7 @@
     .profiler-icon {
       cursor: pointer;
       background-image: url("../icons/performance.svg") no-repeat center !important;
+      color: inherit !important;
     }
     @media (-moz-bool-pref: "userContent.page.proton") and (not (-moz-bool-pref: "userChrome.rounding.square_button")) {
       .profiler-icon {
