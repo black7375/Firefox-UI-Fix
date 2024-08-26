@@ -1,0 +1,117 @@
+.tab-context-line {
+  @include InlineBox(true);
+  height: 1px !important;
+  border-radius: 9999px !important;
+  margin-top: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* Override container tab style */
+tabs tab.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+  margin-top: 3px !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}
+
+tab.tabbrowser-tab[usercontextid]:not([selected="true"], [multiselected])
+  > .tab-stack
+  > .tab-background
+  > .tab-context-line {
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0, 0.9, 0.15, 1) !important;
+}
+
+#{built-in-light-theme()} .tab-context-line,
+#{built-in-dark-theme()} .tab-context-line {
+  --tab-line-color: #45a1ff;
+}
+.tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
+  background-color: var(--tab-line-color, #45a1ff) !important;
+}
+
+/* Set the active effect */
+tabs tab.tabbrowser-tab[usercontextid]:active > .tab-stack > .tab-background > .tab-context-line {
+  margin-left: 6px !important;
+  margin-right: 6px !important;
+}
+
+.tabbrowser-tab:active > .tab-stack > .tab-background > .tab-context-line {
+  background: #217ddb !important;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+/* Set the hover effect */
+.tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+#TabsToolbar[brighttext]
+  .tabbrowser-tab:hover:not([selected="true"], [multiselected])
+  > .tab-stack
+  > .tab-background
+  > .tab-context-line {
+  background-color: #ffffff50 !important;
+}
+
+/* Animation */
+@media (prefers-reduced-motion: no-preference) {
+  .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
+    animation: toWide 0.2s cubic-bezier(0, 0.9, 0.15, 1);
+  }
+
+  /* Animation for container tab can't have width change... */
+  tab.tabbrowser-tab[usercontextid]:hover:not([selected="true"], [multiselected])
+    > .tab-stack
+    > .tab-background
+    > .tab-context-line {
+    opacity: 1;
+  }
+}
+
+/* Animation for hover effect */
+@keyframes toWide {
+  0% {
+    opacity: 0.8;
+    margin-left: 40%;
+    margin-right: 40%;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+/* --- copied (not modified) from _photon_like_contextline.scss --- */
+
+/* Prevent identity color flashing */
+.tabbrowser-tab[usercontextid] .tab-context-line {
+  --identity-icon-color: none;
+}
+:root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
+:root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
+  /* As Selected Tab - Box Shadow */
+  stroke: var(--toolbar-color) !important;
+}
+
+/* Remove side's background color border */
+:root#{$lwtheme}
+  #TabsToolbar[brighttext]
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab:is([visuallyselected], [multiselected])
+  > .tab-stack
+  > .tab-background {
+  --tabs-border-color: rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 0 1px var(--tabs-border-color) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)) */
+}
+#TabsToolbar:not([brighttext])
+  #tabbrowser-tabs:not([noshadowfortests])
+  .tabbrowser-tab:is([visuallyselected], [multiselected])
+  > .tab-stack
+  > .tab-background {
+  box-shadow: 0 0 1px var(--tabs-border-color), 0 0 4px rgba(128, 128, 142, 0.5) !important; /* Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
+}
