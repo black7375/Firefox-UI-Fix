@@ -135,8 +135,17 @@ menu {
   }
 }
 
+#main-window {
+  background-color: WindowFrame !important;
+}
+:root[lwtheme][lwtheme-image] #customization-container {
+  background-image: none !important;
+}
 #customization-container {
   background-color: transparent !important; /* Original: color-mix(in srgb, -moz-dialog 85%, white) */
+}
+:root:not([lwtheme]) #customization-container {
+  background-color: var(--toolbar-non-lwt-bgcolor) !important;
 }
 
 /*= Findbar Border Color =====================================================*/

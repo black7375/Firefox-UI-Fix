@@ -42,6 +42,9 @@
     box-sizing: content-box;
     padding: 0 !important;
   }
+  button[data-l10n-id="addon-updates-manual-updates-found"] {
+    height: 100%;
+  }
   #categories {
     padding-inline-end: 1px !important; /* Original: 4px */
   }
@@ -2268,6 +2271,7 @@
     .profiler-icon {
       cursor: pointer;
       background-image: url("../icons/performance.svg") no-repeat center !important;
+      color: inherit !important;
     }
     @supports not -moz-bool-pref("userChrome.rounding.square_button") {
       .profiler-icon {
@@ -3749,6 +3753,9 @@
   #updates-message + .page-options-menu > .more-options-button {
     box-sizing: content-box;
     padding: 0 !important;
+  }
+  button[data-l10n-id="addon-updates-manual-updates-found"] {
+    height: 100%;
   }
   #categories {
     padding-inline-end: 1px !important; /* Original: 4px */
@@ -6005,6 +6012,7 @@
     .profiler-icon {
       cursor: pointer;
       background-image: url("../icons/performance.svg") no-repeat center !important;
+      color: inherit !important;
     }
     @media (-moz-bool-pref: "userContent.page.proton") and (not (-moz-bool-pref: "userChrome.rounding.square_button")) {
       .profiler-icon {

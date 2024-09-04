@@ -550,6 +550,10 @@ panelMenuBookmarkThisPage[starred] {
   @include _subviewMenuitem(url("../icons/synced-tabs.svg"));
 }
 
+#sidebar-switcher-genai-chat {
+  @include _subviewMenuitem(url("chrome://mozapps/skin/extensions/category-discover.svg"));
+}
+
 #sidebar-reverse-position {
   @include _subviewMenuitem(var(--uc-sidebar-icon-reverse));
 }

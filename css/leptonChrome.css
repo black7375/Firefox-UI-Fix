@@ -133,8 +133,17 @@
     --tabs-border-color: rgba(0, 0, 0, 0.4); /* Legacy: v96, (0, 0, 0, 0.3) -> (0, 0, 0, 0.4)  */
     --lwt-tabs-border-color: rgba(0, 0, 0, 0.4);
   }
+  #main-window {
+    background-color: WindowFrame !important;
+  }
+  :root[lwtheme][lwtheme-image] #customization-container {
+    background-image: none !important;
+  }
   #customization-container {
     background-color: transparent !important; /* Original: color-mix(in srgb, -moz-dialog 85%, white) */
+  }
+  :root:not([lwtheme]) #customization-container {
+    background-color: var(--toolbar-non-lwt-bgcolor) !important;
   }
   /*= Findbar Border Color =====================================================*/
   html|input.findbar-textbox {
@@ -11691,6 +11700,12 @@
     #sidebar-switcher-tabs:is(menuitem) {
       --menuitem-image: url("../icons/synced-tabs.svg");
     }
+    #sidebar-switcher-genai-chat.subviewbutton {
+      list-style-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
+    }
+    #sidebar-switcher-genai-chat:is(menuitem) {
+      --menuitem-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
+    }
     #sidebar-reverse-position.subviewbutton {
       list-style-image: var(--uc-sidebar-icon-reverse);
     }
@@ -12353,6 +12368,7 @@
         --menuitem-image: url("chrome://global/skin/icons/close.svg");
       }
       @supports -moz-bool-pref("userChrome.icon.menu.full") {
+        #treestyletab_piro_sakura_ne_jp-menuitem-_context_closeDuplicatedTabs,
         #context_closeDuplicateTabs {
           --menuitem-image: var(--uc-tab-close-duplicate-icon);
         }
@@ -13880,8 +13896,23 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  #main-window {
+    background-color: WindowFrame !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  :root[lwtheme][lwtheme-image] #customization-container {
+    background-image: none !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
   #customization-container {
     background-color: transparent !important; /* Original: color-mix(in srgb, -moz-dialog 85%, white) */
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  :root:not([lwtheme]) #customization-container {
+    background-color: var(--toolbar-non-lwt-bgcolor) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") {
@@ -26724,6 +26755,14 @@
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #sidebar-switcher-genai-chat.subviewbutton {
+    list-style-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
+  }
+  #sidebar-switcher-genai-chat:is(menuitem) {
+    --menuitem-image: url("chrome://mozapps/skin/extensions/category-discover.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
   #sidebar-reverse-position.subviewbutton {
     list-style-image: var(--uc-sidebar-icon-reverse);
   }
@@ -27426,6 +27465,7 @@
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") and (-moz-bool-pref: "userChrome.icon.menu.full") {
+  #treestyletab_piro_sakura_ne_jp-menuitem-_context_closeDuplicatedTabs,
   #context_closeDuplicateTabs {
     --menuitem-image: var(--uc-tab-close-duplicate-icon);
   }
