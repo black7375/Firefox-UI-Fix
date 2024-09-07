@@ -10256,6 +10256,9 @@
       position: fixed !important; /* Needed for content to take up entire height */
       z-index: 1000 !important; /* Puts the UI above the content */
     }
+    :root[sizemode="fullscreen"] #navigator-toolbox:is(:hover, :focus-within) {
+      margin-top: 0 !important;
+    }
     :root[sizemode="fullscreen"] :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
       width: 100%; /* Makes the UI take up the entire width */
     }
