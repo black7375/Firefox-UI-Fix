@@ -10271,8 +10271,8 @@
   }
 }
 @supports -moz-bool-pref("userChrome.fullscreen.show_bookmarkbar") {
-  :root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized="true"]:not([collapsed="true"]),
-  :root[sizemode="fullscreen"] #PersonalToolbar[initialized="true"] {
+  :root:not([sizemode="fullscreen"]) #PersonalToolbar[initialized]:not([collapsed="true"]),
+  :root[sizemode="fullscreen"] #PersonalToolbar[initialized] {
     visibility: unset !important; /* Makes the bookmarks toolbar visible if enabled */
   }
 }
