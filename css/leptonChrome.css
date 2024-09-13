@@ -11659,6 +11659,9 @@
       fill: currentColor;
       margin-inline-end: 1em;
     }
+    #protections-popup-report-broken-site-button {
+      list-style-image: url("chrome://global/skin/icons/lightbulb.svg");
+    }
     #protections-popup-settings-button > .protections-popup-settings-icon,
     #protections-popup-multiView .panel-subview-footer-button {
       list-style-image: url("chrome://global/skin/icons/settings.svg");
@@ -26698,6 +26701,11 @@
     -moz-context-properties: fill, fill-opacity, stroke;
     fill: currentColor;
     margin-inline-end: 1em;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  #protections-popup-report-broken-site-button {
+    list-style-image: url("chrome://global/skin/icons/lightbulb.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
