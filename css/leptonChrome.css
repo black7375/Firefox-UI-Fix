@@ -11453,6 +11453,21 @@
     .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]) {
       list-style-image: url("chrome://global/skin/icons/settings.svg");
     }
+    .sendToDevice-device[clientType="phone"] {
+      list-style-image: url("../icons/device-phone.svg") !important;
+    }
+    .sendToDevice-device[clientType="tablet"] {
+      list-style-image: url("../icons/device-tablet.svg") !important;
+    }
+    .sendToDevice-device[clientType="desktop"] {
+      list-style-image: url("../icons/device-desktop.svg") !important;
+    }
+    .sendToDevice-device[clientType="tv"] {
+      list-style-image: url("../icons/device-tv.svg") !important;
+    }
+    .sendToDevice-device[clientType="vr"] {
+      list-style-image: url("../icons/device-vr.svg") !important;
+    }
     /*= Panel - Bookmark =========================================================*/
     #panelMenuBookmarkThisPage {
       list-style-image: url("chrome://browser/skin/bookmark-hollow.svg");
@@ -26417,6 +26432,23 @@
   .pageAction-sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]),
   .sendToDevice-device.subviewbutton.sync-menuitem.sendtab-target:not([clientType]) {
     list-style-image: url("chrome://global/skin/icons/settings.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  .sendToDevice-device[clientType="phone"] {
+    list-style-image: url("../icons/device-phone.svg") !important;
+  }
+  .sendToDevice-device[clientType="tablet"] {
+    list-style-image: url("../icons/device-tablet.svg") !important;
+  }
+  .sendToDevice-device[clientType="desktop"] {
+    list-style-image: url("../icons/device-desktop.svg") !important;
+  }
+  .sendToDevice-device[clientType="tv"] {
+    list-style-image: url("../icons/device-tv.svg") !important;
+  }
+  .sendToDevice-device[clientType="vr"] {
+    list-style-image: url("../icons/device-vr.svg") !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
