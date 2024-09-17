@@ -31,7 +31,7 @@ $_globalMenus: "#main-menubar > menu";
 $_libraryMenuitem: "menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup) > #{$_iconMenuitem}";
 $_libraryMenu: "menupopup:is(#viewMenuPopup, #maintenanceButtonPopup) > #{$_iconMenu}";
 $_sendTabMenuPopup: "#context_sendTabToDevicePopupMenu, #context-sendpagetodevice-popup, #context-sendlinktodevice-popup";
-$_otherPopupMenuitem: "menupopup:is(#{$_sendTabMenuPopup}, #frame > menupopup, #spell-dictionaries-menu) > menuitem#{$_checkMenu}";
+$_otherPopupMenuitem: "menupopup:is(#{$_sendTabMenuPopup}, #frame > menupopup, #spell-dictionaries-menu, #context-ask-chat > menupopup) > menuitem#{$_checkMenu}";
 $_otherIconMenu: ".openintabs-menuitem, #blockedPopupDontShowMessage, #BMB_viewBookmarksToolbar, #sidebarMenu-popup:is(menupopup)";
 
 //-- Mixin ---------------------------------------------------------------------

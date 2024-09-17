@@ -12244,7 +12244,8 @@
         #context-sendpagetodevice-popup,
         #context-sendlinktodevice-popup,
         #frame > menupopup,
-        #spell-dictionaries-menu
+        #spell-dictionaries-menu,
+        #context-ask-chat > menupopup
       )
       > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
     .openintabs-menuitem,
@@ -12329,7 +12330,8 @@
         #context-sendpagetodevice-popup,
         #context-sendlinktodevice-popup,
         #frame > menupopup,
-        #spell-dictionaries-menu
+        #spell-dictionaries-menu,
+        #context-ask-chat > menupopup
       )
       > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
     .openintabs-menuitem,
@@ -12426,7 +12428,8 @@
           #context-sendpagetodevice-popup,
           #context-sendlinktodevice-popup,
           #frame > menupopup,
-          #spell-dictionaries-menu
+          #spell-dictionaries-menu,
+          #context-ask-chat > menupopup
         )
         > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
       .openintabs-menuitem,
@@ -12502,7 +12505,8 @@
               #context-sendpagetodevice-popup,
               #context-sendlinktodevice-popup,
               #frame > menupopup,
-              #spell-dictionaries-menu
+              #spell-dictionaries-menu,
+              #context-ask-chat > menupopup
             )
             > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
           .openintabs-menuitem,
@@ -12686,7 +12690,8 @@
           #context-sendpagetodevice-popup,
           #context-sendlinktodevice-popup,
           #frame > menupopup,
-          #spell-dictionaries-menu
+          #spell-dictionaries-menu,
+          #context-ask-chat > menupopup
         )
         > menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
       .openintabs-menuitem,
@@ -13433,6 +13438,35 @@
         #context-bookmarkpage {
           --menuitem-image: url("chrome://browser/skin/bookmark.svg");
         }
+      }
+      /*= context-ask-chat =========================================================*/
+      #ask-chat-shortcuts .toolbarbutton-icon {
+        order: -1;
+        margin-inline-end: var(--arrowpanel-menuitem-margin-inline) !important;
+      }
+      #ask-chat-shortcuts .subviewbutton:nth-child(1) {
+        list-style-image: url("../icons/apps-list-detail.svg");
+      }
+      #ask-chat-shortcuts .subviewbutton:nth-child(2) {
+        list-style-image: url("../icons/code-text.svg");
+      }
+      #ask-chat-shortcuts .subviewbutton:nth-child(3) {
+        list-style-image: url("../icons/tetris-app.svg");
+      }
+      #ask-chat-shortcuts .subviewbutton:nth-child(4) {
+        list-style-image: url("../icons/arrow-up-exclamation.svg");
+      }
+      #context-ask-chat menuitem:nth-child(1) {
+        --menuitem-image: url("../icons/apps-list-detail.svg");
+      }
+      #context-ask-chat menuitem:nth-child(2) {
+        --menuitem-image: url("../icons/code-text.svg");
+      }
+      #context-ask-chat menuitem:nth-child(3) {
+        --menuitem-image: url("../icons/tetris-app.svg");
+      }
+      #context-ask-chat menuitem:nth-child(4) {
+        --menuitem-image: url("../icons/arrow-up-exclamation.svg");
       }
       /*= main-context-menu-frame ==================================================*/
       #context-showonlythisframe {
