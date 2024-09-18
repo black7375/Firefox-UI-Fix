@@ -13699,6 +13699,9 @@
     menuitem.privatetab-icon {
       --menuitem-image: url("../icons/private-favicon.svg");
     }
+    #sidebar_waterfox_net-menuitem-_openAllBookmarksWithStructure {
+      --menuitem-image: url("../icons/organization-horizontal.svg");
+    }
   }
   /*= Tor Browser ==============================================================*/
   @supports -moz-bool-pref("userChrome.icon.panel") {
@@ -29453,6 +29456,9 @@
   }
   menuitem.privatetab-icon {
     --menuitem-image: url("../icons/private-favicon.svg");
+  }
+  #sidebar_waterfox_net-menuitem-_openAllBookmarksWithStructure {
+    --menuitem-image: url("../icons/organization-horizontal.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
