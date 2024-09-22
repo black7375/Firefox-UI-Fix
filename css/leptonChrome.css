@@ -1996,6 +1996,15 @@
   .notification-button:hover:active {
     background-color: var(--button-active-bgcolor) !important;
   }
+  .notification-button.primary {
+    background-color: var(--button-primary-bgcolor) !important;
+  }
+  .notification-button.primary:hover {
+    background-color: var(--button-primary-hover-bgcolor) !important;
+  }
+  .notification-button.primary:hover:active {
+    background-color: var(--button-primary-active-bgcolor) !important;
+  }
   html|button.ghost-button:not(.semi-transparent):enabled:hover {
     background-color: var(--button-hover-bgcolor) !important;
   }
@@ -15841,6 +15850,17 @@
   }
   .notification-button:hover:active {
     background-color: var(--button-active-bgcolor) !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.theme.fully_color") {
+  .notification-button.primary {
+    background-color: var(--button-primary-bgcolor) !important;
+  }
+  .notification-button.primary:hover {
+    background-color: var(--button-primary-hover-bgcolor) !important;
+  }
+  .notification-button.primary:hover:active {
+    background-color: var(--button-primary-active-bgcolor) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.fully_color") {
