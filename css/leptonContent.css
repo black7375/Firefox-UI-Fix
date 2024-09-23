@@ -2266,7 +2266,7 @@
     }
   }
   /*= about:processes ==========================================================*/
-  @-moz-document url-prefix("about:processes") {
+  @-moz-document url-prefix("about:processes"), url-prefix("about:performance") {
     td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");']
     {
       background-image: url("../icons/link.svg") !important;
@@ -2280,6 +2280,12 @@
       .profiler-icon {
         border-radius: 8px !important;
       }
+    }
+    .profiler-icon:hover {
+      color: var(--in-content-button-text-color-hover) !important;
+    }
+    .profiler-icon:hover:active {
+      color: var(--in-content-button-text-color-active) !important;
     }
   }
   @-moz-document url-prefix("about:profiling") {
@@ -6010,7 +6016,7 @@
   }
 }
 @media (-moz-bool-pref: "userContent.page.proton") {
-  @-moz-document url-prefix("about:processes") {
+  @-moz-document url-prefix("about:processes"), url-prefix("about:performance") {
     td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");']
     {
       background-image: url("../icons/link.svg") !important;
@@ -6024,6 +6030,12 @@
       .profiler-icon {
         border-radius: 8px !important;
       }
+    }
+    .profiler-icon:hover {
+      color: var(--in-content-button-text-color-hover) !important;
+    }
+    .profiler-icon:hover:active {
+      color: var(--in-content-button-text-color-active) !important;
     }
   }
 }

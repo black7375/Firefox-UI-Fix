@@ -1,4 +1,7 @@
-@include moz-document(url-prefix "about:processes") {
+@include moz-document(
+  url-prefix "about:processes",
+  url-prefix "about:performance"
+) {
   td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");'] {
     background-image: url("../icons/link.svg") !important;
   }
@@ -12,6 +15,12 @@
 
     // #960
     color: inherit !important;
+    &:hover {
+      color: var(--in-content-button-text-color-hover) !important;
+    }
+    &:hover:active {
+      color: var(--in-content-button-text-color-active) !important;
+    }
   }
 }
 
