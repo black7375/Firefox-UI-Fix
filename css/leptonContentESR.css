@@ -3295,7 +3295,7 @@
 /** Menu - Icons Layout *******************************************************/
 @supports not -moz-bool-pref("userChrome.icon.disabled") {
   @supports -moz-bool-pref("userChrome.icon.menu") {
-    @-moz-document url-prefix("about:"), regexp("^(((jar:)?file:///)|(chrome://)).*/$")
+    @-moz-document url-prefix("about:"), url-prefix("chrome://"), regexp("^((jar:)?file:///).*/$")
     {
       :root {
         --uc-folder-icon: url("chrome://global/skin/icons/folder.svg");
