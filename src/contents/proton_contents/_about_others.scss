@@ -1,0 +1,19 @@
+@include moz-document(url-prefix "about:support") {
+  #reset-box-button {
+    --in-content-focus-outline-color: var(--in-content-danger-button-background) !important;
+    background-color: var(--in-content-danger-button-background) !important;
+    color: var(--in-content-primary-button-text-color) !important;
+    border-color: var(--in-content-primary-button-border-color) !important;
+
+    &:enabled:hover {
+      background-color: var(--in-content-danger-button-background-hover) !important;
+      color: var(--in-content-primary-button-text-color-hover) !important;
+      border-color: var(--in-content-primary-button-border-hover) !important;
+    }
+    &:enabled:hover:active {
+      background-color: var(--in-content-danger-button-background-active) !important;
+      color: var(--in-content-primary-button-text-color-active) !important;
+      border-color: var(--in-content-primary-button-border-active) !important;
+    }
+  }
+}

@@ -1,10 +1,22 @@
-@include moz-document(url-prefix "about:processes") {
+@include moz-document(
+  url-prefix "about:processes",
+  url-prefix "about:performance"
+) {
   td.type.favicon[style*='background-image: url("chrome://global/skin/icons/link.svg");'] {
     background-image: url("../icons/link.svg") !important;
   }
 
   .profiler-icon {
-    background: url("../icons/performance.svg") no-repeat center !important;
+    cursor: pointer;
+    background-image: url("../icons/performance.svg") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    @include NotOption("userChrome.rounding.square_button") {
+      border-radius: 8px !important;
+    }
+
+    // #960
+    color: inherit !important;
   }
 }
 

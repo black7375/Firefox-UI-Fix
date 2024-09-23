@@ -274,6 +274,28 @@
   list-style-image: url("chrome://global/skin/icons/settings.svg");
 }
 
+.sendToDevice-device {
+  &[clientType="phone"] {
+    list-style-image: url("../icons/device-phone.svg") !important;
+  }
+
+  &[clientType="tablet"] {
+    list-style-image: url("../icons/device-tablet.svg") !important;
+  }
+
+  &[clientType="desktop"] {
+    list-style-image: url("../icons/device-desktop.svg") !important;
+  }
+
+  &[clientType="tv"] {
+    list-style-image: url("../icons/device-tv.svg") !important;
+  }
+
+  &[clientType="vr"] {
+    list-style-image: url("../icons/device-vr.svg") !important;
+  }
+}
+
 /*= Panel - Bookmark =========================================================*/
 #panelMenuBookmarkThisPage {
   list-style-image: url("chrome://browser/skin/bookmark-hollow.svg");
@@ -500,6 +522,10 @@ panelMenuBookmarkThisPage[starred] {
   margin-inline-end: 1em;
 }
 
+#protections-popup-report-broken-site-button {
+  list-style-image: url("chrome://global/skin/icons/lightbulb.svg");
+}
+
 #protections-popup-settings-button > .protections-popup-settings-icon,
 #protections-popup-multiView .panel-subview-footer-button {
   list-style-image: url("chrome://global/skin/icons/settings.svg");
@@ -548,6 +574,10 @@ panelMenuBookmarkThisPage[starred] {
 
 #sidebar-switcher-tabs {
   @include _subviewMenuitem(url("../icons/synced-tabs.svg"));
+}
+
+#sidebar-switcher-genai-chat {
+  @include _subviewMenuitem(url("chrome://mozapps/skin/extensions/category-discover.svg"));
 }
 
 #sidebar-reverse-position {

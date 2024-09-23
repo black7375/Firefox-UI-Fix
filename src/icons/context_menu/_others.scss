@@ -15,7 +15,7 @@
   --menuitem-image: url("chrome://global/skin/icons/check.svg");
 }
 #blockedPopupOptions > menuitem[oncommand="gPopupBlockerObserver.editPopupSettings();"] {
-  --menuitem-image: url("chrome://global/skin/icons/edit.svg");
+  --menuitem-image: url("../icons/edit-active.svg");
 }
 #blockedPopupDontShowMessage {
   /* checkbox */
@@ -260,6 +260,9 @@ menuitem.searchbar-clear-history {
 
 /*= urlbarView-result-menu ===================================================*/
 .urlbarView-result-menuitem {
+  &[data-command="trendingblock"] {
+    --menuitem-image: url("../icons/eye-hide.svg");
+  }
   &[data-command="dismiss"] {
     --menuitem-image: url("chrome://global/skin/icons/delete.svg");
   }

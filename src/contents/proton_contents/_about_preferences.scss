@@ -23,3 +23,12 @@
     }
   }
 }
+@include moz-document(url-prefix "about:preferences") {
+  // #952
+  .privacy-extra-information > .custom-option:not(:first-child) {
+    margin-block: 2px !important; /* Original: 10px */
+  }
+  .extra-information-label:not(:first-child) {
+    margin-top: 4px !important; /* Original: 19px */
+  }
+}
