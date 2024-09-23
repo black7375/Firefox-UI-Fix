@@ -22,8 +22,13 @@
 #sidebartabs_asamuzak_jp-menuitem-_reloadAllTabs {
   --menuitem-image: url("../icons/reload.svg");
 }
+#context_playTab,
+#context_playSelectedTabs {
+  --menuitem-image: url("../icons/play-fill.svg");
+}
 #context_toggleMuteTab,
 #context_toggleMuteSelectedTabs,
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab[label="Mute Tab"],
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab-mute,
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab,
 #sidebartabs_asamuzak_jp-menuitem-_muteTab {
@@ -32,6 +37,7 @@
 }
 #context_toggleMuteTab[muted],
 #context_toggleMuteSelectedTabs[muted],
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab[label="Unmute Tab"],
 #treestyletab_piro_sakura_ne_jp-menuitem-_context_toggleMuteTab-unmute,
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuMuteTab[label="Unmute Tab"],
 #sidebartabs_asamuzak_jp-menuitem-_muteTab[label="Unmute Tab"] {
@@ -50,6 +56,12 @@
 #tabcenter-reborn_ariasuni-menuitem-_contextMenuPinTab[label="Unpin Tab"],
 #sidebartabs_asamuzak_jp-menuitem-_pinTab[label="Unpin Tab"] {
   --menuitem-image: url("../icons/unpin-tab.svg");
+}
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_topLevel_toggleSticky[label="Stick Tab to Edges"] {
+  --menuitem-image: url("../icons/align-distribute-top.svg");
+}
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_topLevel_toggleSticky[label="Unstick Tab to Edges"] {
+  --menuitem-image: url("../icons/align-space-evenly-vertical.svg");
 }
 #context_duplicateTab,
 #context_duplicateTabs,
@@ -121,6 +133,7 @@
 #sidebartabs_asamuzak_jp-menuitem-_closeTab {
   --menuitem-image: url("chrome://global/skin/icons/close.svg");
 }
+#treestyletab_piro_sakura_ne_jp-menuitem-_context_closeDuplicatedTabs,
 #context_closeDuplicateTabs {
   @include Option("userChrome.icon.menu.full") {
     --menuitem-image: var(--uc-tab-close-duplicate-icon);
@@ -243,7 +256,7 @@ menuitem.viewCustomizeToolbar {
   }
 }
 #tm-renameTab {
-  --menuitem-image: url("chrome://global/skin/icons/edit.svg");
+  --menuitem-image: url("../icons/edit-active.svg");
 }
 #tm-copyTabUrl {
   --menuitem-image: url("../icons/link.svg");
