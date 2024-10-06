@@ -13312,6 +13312,18 @@
       #helpMenu {
         --menuitem-image: url("chrome://global/skin/icons/help.svg");
       }
+      /*= Others ===================================================================*/
+      #alltabs-button {
+        list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
+      }
+      #alltabs-button > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+        /* Original
+           width: 20px;
+           margin: -2px;
+         */
+        width: 16px !important;
+        margin: 0 !important;
+      }
     }
     @supports -moz-bool-pref("userChrome.icon.global_menu") {
       /** Global Menu ***************************************************************/
@@ -28906,6 +28918,18 @@
   }
   #helpMenu {
     --menuitem-image: url("chrome://global/skin/icons/help.svg");
+  }
+  /*= Others ===================================================================*/
+  #alltabs-button {
+    list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
+  }
+  #alltabs-button > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+    /* Original
+       width: 20px;
+       margin: -2px;
+     */
+    width: 16px !important;
+    margin: 0 !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menu") {
