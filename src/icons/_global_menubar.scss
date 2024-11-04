@@ -23,3 +23,16 @@
 #helpMenu {
   --menuitem-image: url("chrome://global/skin/icons/help.svg");
 }
+
+/*= Others ===================================================================*/
+#alltabs-button {
+  list-style-image: url("chrome://global/skin/icons/arrow-down.svg") !important;
+  > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+    /* Original
+       width: 20px;
+       margin: -2px;
+     */
+    width: 16px !important;
+    margin: 0 !important;
+  }
+}
