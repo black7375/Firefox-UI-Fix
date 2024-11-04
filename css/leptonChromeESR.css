@@ -8761,6 +8761,24 @@
     width: 17px !important;
     height: 17px !important;
   }
+  .tab-icon-overlay:not([crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
+    -moz-context-properties: fill, fill-opacity, stroke !important;
+    fill: currentColor !important;
+    border: none !important;
+  }
+  .tab-icon-overlay:not([crashed]):is([pinned], [sharing]) {
+    stroke: var(--tab-icon-overlay-stroke, light-dark(white, black));
+    color: var(--tab-icon-overlay-fill, light-dark(black, white));
+  }
+  .tab-icon-overlay:not([crashed])[soundplaying] {
+    list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg");
+  }
+  .tab-icon-overlay:not([crashed])[muted] {
+    list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
+  }
+  .tab-icon-overlay:not([crashed])[soundplaying] {
+    list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-small.svg");
+  }
   .tab-icon-overlay:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     /* Color */
     color: currentColor !important;
