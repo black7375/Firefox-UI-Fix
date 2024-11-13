@@ -8776,7 +8776,7 @@
   .tab-icon-overlay:not([crashed])[muted] {
     list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
   }
-  .tab-icon-overlay:not([crashed])[soundplaying] {
+  .tab-icon-overlay:not([crashed])[activemedia-blocked] {
     list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-small.svg");
   }
   .tab-icon-overlay:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
