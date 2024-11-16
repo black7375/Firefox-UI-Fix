@@ -7236,6 +7236,9 @@
 /** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
+  #tabbrowser-tabs[orient="horizontal"] {
+    min-height: unset !important; /* Original: var(--tabstrip-min-height) */
+  }
   #tabbrowser-tabs[orient="vertical"] {
     --uc-tab-border-bottom-radius: var(--tab-border-radius);
   }
