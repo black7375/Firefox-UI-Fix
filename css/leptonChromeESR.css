@@ -9554,7 +9554,7 @@
 @supports -moz-bool-pref("userChrome.sidebar.overlap") or -moz-bool-pref("userChrome.autohide.sidebar") {
   #sidebar-box {
     --uc-sidebar-shadow-color: #28282f;
-    z-index: 1 !important;
+    z-index: var(--browser-area-z-index-sidebar-splitter, 3) !important;
     position: relative !important;
     box-shadow: var(--uc-sidebar-shadow-position) 0px 15px -10px var(--uc-sidebar-shadow-color);
   }
