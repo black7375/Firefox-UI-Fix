@@ -7918,7 +7918,8 @@
       display: -moz-inline-box !important;
       height: 1px !important;
       border-radius: 9999px !important;
-      margin-top: 3px;
+      transform: translateY(5px);
+      margin-top: -1px !important;
       margin-left: 5px;
       margin-right: 5px;
     }
@@ -7958,7 +7959,6 @@
     .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
       background-color: rgba(0, 0, 0, 0.2) !important;
       opacity: 1 !important;
-      transform: none !important;
     }
     #TabsToolbar[brighttext]
       .tabbrowser-tab:hover:not([selected="true"], [multiselected])
