@@ -1,18 +1,23 @@
 name: "Setup"
+description: "Yarn cache action"
 
 runs:
   using: "composite"
   steps:
+    - name: Corepack enable
+      run: corepack enable
+      shell: bash
+
     # https://github.com/actions/cache/blob/main/examples.md#node---yarn
     # https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
-      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Node cache
       id: node-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -22,5 +27,5 @@ runs:
           ${{ runner.os }}-node-
 
     - name: Package Install
-      run: yarn install
+      run: yarn install --immutable
       shell: bash
