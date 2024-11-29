@@ -2833,7 +2833,7 @@
       fill: currentColor !important;
       color: var(--in-content-primary-button-text-color) !important;
       background-color: var(--in-content-primary-button-background) !important;
-      background-image: url("chrome://global/skin/icons/radio.svg") !important;
+      background-image: url("../icons/radio.svg") !important;
       border-color: transparent !important;
       /* Style the button also when printing with "Print Backgrounds" unchecked */
       color-adjust: exact !important;
@@ -4036,12 +4036,18 @@
       transition: all 0.3s var(--animation-easing-function) !important;
     }
     /*- URL / Search Bar -------------------------------------------------------*/
-    #urlbar-background,
+    #urlbar-background {
+      transition: border-color 1s var(--animation-easing-function),
+        background-color 0.5s var(--animation-easing-function) !important;
+    }
+    #urlbar-background:hover {
+      transition: border-color 0.5s var(--animation-easing-function),
+        background-color 0.5s var(--animation-easing-function) !important;
+    }
     #searchbar {
       transition: border-color 1s var(--animation-easing-function),
         background-color 1.5s var(--animation-easing-function) !important;
     }
-    #urlbar-background:hover,
     #searchbar:hover {
       transition: border-color 0.5s var(--animation-easing-function),
         background-color 1s var(--animation-easing-function) !important;
@@ -4753,11 +4759,6 @@
     :root:not([uidensity="compact"]) #urlbar[breakout][breakout-extend],
     :root:not([uidensity="compact"]) #urlbar[breakout][breakout-extend-disabled][open] {
       height: auto !important;
-    }
-    :root[uidensity="touch"] #urlbar[breakout] {
-      top: calc(
-        (var(--urlbar-toolbar-height, var(--urlbar-container-height)) - var(--urlbar-height)) / 2 + 1px
-      ) !important;
     }
     /* spread menu */
     :root:not([uidensity]) .urlbarView-row {
@@ -7236,6 +7237,9 @@
 /** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @supports -moz-bool-pref("userChrome.tab.connect_to_window") {
+  #tabbrowser-tabs[orient="horizontal"] {
+    min-height: unset !important; /* Original: var(--tabstrip-min-height) */
+  }
   #tabbrowser-tabs[orient="vertical"] {
     --uc-tab-border-bottom-radius: var(--tab-border-radius);
   }
@@ -7915,7 +7919,8 @@
       display: -moz-inline-box !important;
       height: 1px !important;
       border-radius: 9999px !important;
-      margin-top: 3px;
+      transform: translateY(5px);
+      margin-top: -1px !important;
       margin-left: 5px;
       margin-right: 5px;
     }
@@ -7955,7 +7960,6 @@
     .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
       background-color: rgba(0, 0, 0, 0.2) !important;
       opacity: 1 !important;
-      transform: none !important;
     }
     #TabsToolbar[brighttext]
       .tabbrowser-tab:hover:not([selected="true"], [multiselected])
@@ -9551,7 +9555,7 @@
 @supports -moz-bool-pref("userChrome.sidebar.overlap") or -moz-bool-pref("userChrome.autohide.sidebar") {
   #sidebar-box {
     --uc-sidebar-shadow-color: #28282f;
-    z-index: 1 !important;
+    z-index: var(--browser-area-z-index-sidebar-splitter, 3) !important;
     position: relative !important;
     box-shadow: var(--uc-sidebar-shadow-position) 0px 15px -10px var(--uc-sidebar-shadow-color);
   }
@@ -10279,19 +10283,27 @@
 /** Fullscreen - Overlap toolbar **********************************************/
 @supports -moz-bool-pref("userChrome.fullscreen.overlap") {
   @supports -moz-bool-pref("browser.fullscreen.autohide") {
-    :root[sizemode="fullscreen"] #navigator-toolbox {
+    :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) #navigator-toolbox {
       position: fixed !important; /* Needed for content to take up entire height */
       z-index: 1000 !important; /* Puts the UI above the content */
     }
-    :root[sizemode="fullscreen"] #navigator-toolbox:is(:hover, :focus-within) {
+    :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) #navigator-toolbox:is(:hover, :focus-within) {
       margin-top: 0 !important;
     }
-    :root[sizemode="fullscreen"] :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
+    :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"])
+      :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
       width: 100%; /* Makes the UI take up the entire width */
+    }
+    :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) #urlbar:popover-open {
+      position: fixed !important;
     }
     @media (-moz-gtk-csd-available) {
       /* Fix transparent background */
-      :root[tabsintitlebar][sizemode="fullscreen"]:is(:not([lwtheme]), :not(:-moz-lwtheme)) #TabsToolbar {
+      :root[tabsintitlebar][sizemode="fullscreen"]:not([inDOMFullscreen="true"]):is(
+          :not([lwtheme]),
+          :not(:-moz-lwtheme)
+        )
+        #TabsToolbar {
         appearance: auto !important;
       }
     }
@@ -10897,11 +10909,17 @@
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
         #nav-bar:not([customizing]) {
           margin-bottom: var(--uc-navbar-hide-height);
+        }
+        #nav-bar:not([customizing]),
+        #nav-bar:not([customizing]) #urlbar {
           opacity: 0;
           will-change: margin-bottom, opacity;
         }
         #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
           margin-bottom: 0;
+        }
+        #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+        #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
           opacity: 1;
         }
       }
@@ -10910,11 +10928,17 @@
           @media screen and (max-width: 1100px) {
             #nav-bar:not([customizing]) {
               margin-bottom: var(--uc-navbar-hide-height);
+            }
+            #nav-bar:not([customizing]),
+            #nav-bar:not([customizing]) #urlbar {
               opacity: 0;
               will-change: margin-bottom, opacity;
             }
             #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
               margin-bottom: 0;
+            }
+            #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+            #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
               opacity: 1;
             }
           }
@@ -10938,7 +10962,12 @@
             var(--ext-theme-background-transition) !important;
         }
       }
-      #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
+      #nav-bar:not([customizing]) #urlbar {
+        transition: opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
+          var(--uc-autohide-toolbar-delay) !important;
+      }
+      #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+      #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
         transition-delay: 0s !important;
       }
     }
@@ -12087,6 +12116,9 @@
     #allTabsMenu-searchTabs {
       list-style-image: url("chrome://global/skin/icons/search-glass.svg");
     }
+    #allTabsMenu-syncedTabs {
+      list-style-image: url("../icons/synced-tabs.svg");
+    }
     #allTabsMenu-closeDuplicateTabs {
       list-style-image: var(--uc-tab-close-duplicate-icon);
     }
@@ -12203,6 +12235,22 @@
     }
     #sidebarMenu-popup > *:is(menuitem)[data-l10n-id="sidebar-menu-close"] {
       --menuitem-image: url("chrome://global/skin/icons/close.svg");
+    }
+    /*= chrome://browser/content/syncedtabs/sidebar.xhtml ========================*/
+    .item.client[clientType="phone"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-phone.svg") !important;
+    }
+    .item.client[clientType="tablet"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-tablet.svg") !important;
+    }
+    .item.client[clientType="desktop"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-desktop.svg") !important;
+    }
+    .item.client[clientType="tv"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-tv.svg") !important;
+    }
+    .item.client[clientType="vr"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-vr.svg") !important;
     }
     /*= unified-extensions-view ===================================================*/
     #unified-extensions-manage-extensions {

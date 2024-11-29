@@ -1,12 +1,19 @@
 @include OneLinerNavbar {
   #nav-bar:not([customizing]) {
     margin-bottom: var(--uc-navbar-hide-height);
-    opacity: 0;
-    will-change: margin-bottom, opacity;
+
+    // Why use #urlbar? - Prevent URLbar overlay #1028
+    &, #urlbar {
+      opacity: 0;
+      will-change: margin-bottom, opacity;
+    }
   }
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
     margin-bottom: 0;
-    opacity: 1;
+
+    &, #urlbar {
+      opacity: 1;
+    }
   }
 }
 
@@ -22,8 +29,14 @@
                   opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay),
                   var(--ext-theme-background-transition) !important;
     }
+
+    #urlbar {
+      transition: opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function) var(--uc-autohide-toolbar-delay) !important;
+    }
   }
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
-    transition-delay: 0s !important;
+    &, #urlbar {
+      transition-delay: 0s !important;
+    }
   }
 }

@@ -64,7 +64,12 @@
 }
 
 /*- URL / Search Bar -------------------------------------------------------*/
-#urlbar-background,
+#urlbar-background {
+  transition: border-color 1s var(--animation-easing-function), background-color 0.5s var(--animation-easing-function) !important;
+  &:hover {
+    transition: border-color 0.5s var(--animation-easing-function), background-color 0.5s var(--animation-easing-function) !important;
+  }
+}
 #searchbar {
   transition: border-color 1s var(--animation-easing-function), background-color 1.5s var(--animation-easing-function) !important;
   &:hover {
