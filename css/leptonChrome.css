@@ -11777,6 +11777,22 @@
     #sidebarMenu-popup > *:is(menuitem)[data-l10n-id="sidebar-menu-close"] {
       --menuitem-image: url("chrome://global/skin/icons/close.svg");
     }
+    /*= chrome://browser/content/syncedtabs/sidebar.xhtml ========================*/
+    .item.client[clientType="phone"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-phone.svg") !important;
+    }
+    .item.client[clientType="tablet"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-tablet.svg") !important;
+    }
+    .item.client[clientType="desktop"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-desktop.svg") !important;
+    }
+    .item.client[clientType="tv"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-tv.svg") !important;
+    }
+    .item.client[clientType="vr"] > .item-title-container > .item-icon-container {
+      background-image: url("../icons/device-vr.svg") !important;
+    }
     /*= unified-extensions-view ===================================================*/
     #unified-extensions-manage-extensions {
       list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
@@ -26089,6 +26105,7 @@
   /*= protections-popup ========================================================*/
   /*= identity-popup ===========================================================*/
   /*= sidebarMenu-popup ========================================================*/
+  /*= chrome://browser/content/syncedtabs/sidebar.xhtml ========================*/
   /*= unified-extensions-view ===================================================*/
   /*= Compatibility ============================================================*/
   /*= Tab Mix Plus =============================================================*/
@@ -26952,6 +26969,31 @@
   }
   #sidebarMenu-popup > *:is(menuitem)[data-l10n-id="sidebar-menu-close"] {
     --menuitem-image: url("chrome://global/skin/icons/close.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  .item.client[clientType="phone"] > .item-title-container > .item-icon-container {
+    background-image: url("../icons/device-phone.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  .item.client[clientType="tablet"] > .item-title-container > .item-icon-container {
+    background-image: url("../icons/device-tablet.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  .item.client[clientType="desktop"] > .item-title-container > .item-icon-container {
+    background-image: url("../icons/device-desktop.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  .item.client[clientType="tv"] > .item-title-container > .item-icon-container {
+    background-image: url("../icons/device-tv.svg") !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
+  .item.client[clientType="vr"] > .item-title-container > .item-icon-container {
+    background-image: url("../icons/device-vr.svg") !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
