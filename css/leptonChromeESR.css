@@ -10299,6 +10299,9 @@
       :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
       width: 100%; /* Makes the UI take up the entire width */
     }
+    :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) #urlbar:popover-open {
+      position: fixed !important;
+    }
     @media (-moz-gtk-csd-available) {
       /* Fix transparent background */
       :root[tabsintitlebar][sizemode="fullscreen"]:not([inDOMFullscreen="true"]):is(

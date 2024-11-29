@@ -9869,6 +9869,9 @@
       :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
       width: 100%; /* Makes the UI take up the entire width */
     }
+    :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) #urlbar:popover-open {
+      position: fixed !important;
+    }
     @media (-moz-gtk-csd-available) {
       /* Fix transparent background */
       :root[tabsintitlebar][sizemode="fullscreen"]:not([inDOMFullscreen="true"]):is(
@@ -24620,6 +24623,9 @@
   :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"])
     :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
     width: 100%; /* Makes the UI take up the entire width */
+  }
+  :root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) #urlbar:popover-open {
+    position: fixed !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.fullscreen.overlap") and (-moz-bool-pref: "browser.fullscreen.autohide") and (-moz-gtk-csd-available) {

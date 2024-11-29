@@ -11,6 +11,11 @@
   width: 100%; /* Makes the UI take up the entire width */
 }
 
+:root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) #urlbar:popover-open {
+  // Prevent URLbar overlay #1028
+  position: fixed !important;
+}
+
 @include OS($linux) {
   /* Fix transparent background */
   :root[tabsintitlebar][sizemode="fullscreen"]:not([inDOMFullscreen="true"])#{$not_lwtheme} #TabsToolbar {
