@@ -461,6 +461,9 @@ panelMenuBookmarkThisPage[starred] {
 #allTabsMenu-searchTabs {
   list-style-image: url("chrome://global/skin/icons/search-glass.svg");
 }
+#allTabsMenu-syncedTabs {
+  list-style-image: url("../icons/synced-tabs.svg");
+}
 #allTabsMenu-closeDuplicateTabs {
   list-style-image: var(--uc-tab-close-duplicate-icon);
 }
@@ -589,6 +592,27 @@ panelMenuBookmarkThisPage[starred] {
     url("chrome://global/skin/icons/close.svg"),
     "[data-l10n-id=\"sidebar-menu-close\"]"
   );
+}
+
+/*= chrome://browser/content/syncedtabs/sidebar.xhtml ========================*/
+.item.client[clientType=phone] > .item-title-container > .item-icon-container {
+  background-image: url("../icons/device-phone.svg") !important;
+}
+
+.item.client[clientType=tablet] > .item-title-container > .item-icon-container {
+  background-image: url("../icons/device-tablet.svg") !important;
+}
+
+.item.client[clientType=desktop] > .item-title-container > .item-icon-container {
+  background-image: url("../icons/device-desktop.svg") !important;
+}
+
+.item.client[clientType=tv] > .item-title-container > .item-icon-container {
+  background-image: url("../icons/device-tv.svg") !important;
+}
+
+.item.client[clientType=vr] > .item-title-container > .item-icon-container {
+  background-image: url("../icons/device-vr.svg") !important;
 }
 
 /*= unified-extensions-view ===================================================*/
