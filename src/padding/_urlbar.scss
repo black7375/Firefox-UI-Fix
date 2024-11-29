@@ -24,11 +24,6 @@
       height: auto !important;
     }
   }
-  :root[uidensity="touch"] & {
-    // Fallback #881
-    top: calc((var(--urlbar-toolbar-height, var(--urlbar-container-height))
-               - var(--urlbar-height)) / 2 + 1px) !important;
-  }
 }
 
 /* spread menu */
