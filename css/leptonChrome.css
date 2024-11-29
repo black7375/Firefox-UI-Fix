@@ -10476,11 +10476,17 @@
       @supports not -moz-bool-pref("userChrome.tabbar.one_liner") {
         #nav-bar:not([customizing]) {
           margin-bottom: var(--uc-navbar-hide-height);
+        }
+        #nav-bar:not([customizing]),
+        #nav-bar:not([customizing]) #urlbar {
           opacity: 0;
           will-change: margin-bottom, opacity;
         }
         #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
           margin-bottom: 0;
+        }
+        #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+        #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
           opacity: 1;
         }
       }
@@ -10489,11 +10495,17 @@
           @media screen and (max-width: 1100px) {
             #nav-bar:not([customizing]) {
               margin-bottom: var(--uc-navbar-hide-height);
+            }
+            #nav-bar:not([customizing]),
+            #nav-bar:not([customizing]) #urlbar {
               opacity: 0;
               will-change: margin-bottom, opacity;
             }
             #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
               margin-bottom: 0;
+            }
+            #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+            #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
               opacity: 1;
             }
           }
@@ -10517,7 +10529,12 @@
             var(--ext-theme-background-transition) !important;
         }
       }
-      #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
+      #nav-bar:not([customizing]) #urlbar {
+        transition: opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
+          var(--uc-autohide-toolbar-delay) !important;
+      }
+      #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+      #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
         transition-delay: 0s !important;
       }
     }
@@ -25434,11 +25451,17 @@
   (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.autohide.navbar") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) {
   #nav-bar:not([customizing]) {
     margin-bottom: var(--uc-navbar-hide-height);
+  }
+  #nav-bar:not([customizing]),
+  #nav-bar:not([customizing]) #urlbar {
     opacity: 0;
     will-change: margin-bottom, opacity;
   }
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
     margin-bottom: 0;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
     opacity: 1;
   }
 }
@@ -25448,11 +25471,17 @@
   screen and (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (max-width: 1100px) {
   #nav-bar:not([customizing]) {
     margin-bottom: var(--uc-navbar-hide-height);
+  }
+  #nav-bar:not([customizing]),
+  #nav-bar:not([customizing]) #urlbar {
     opacity: 0;
     will-change: margin-bottom, opacity;
   }
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
     margin-bottom: 0;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
     opacity: 1;
   }
 }
@@ -25483,7 +25512,17 @@
   (-moz-bool-pref: "userChrome.autohide.tabbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (prefers-reduced-motion: no-preference),
   (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.autohide.navbar") and (prefers-reduced-motion: no-preference),
   (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (prefers-reduced-motion: no-preference) {
-  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) {
+  #nav-bar:not([customizing]) #urlbar {
+    transition: opacity var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
+      var(--uc-autohide-toolbar-delay) !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.autohide.tabbar") and (-moz-bool-pref: "userChrome.autohide.navbar") and (prefers-reduced-motion: no-preference),
+  (-moz-bool-pref: "userChrome.autohide.tabbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (prefers-reduced-motion: no-preference),
+  (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.autohide.navbar") and (prefers-reduced-motion: no-preference),
+  (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (prefers-reduced-motion: no-preference) {
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
     transition-delay: 0s !important;
   }
 }
