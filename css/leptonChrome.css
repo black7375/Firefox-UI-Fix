@@ -202,6 +202,18 @@
       --arrowpanel-color
     ) !important; /* Original: var(--tab-selected-textcolor, var(--toolbar-color)) */
   }
+  /*= Design token =============================================================*/
+  :root,
+  :host {
+    --button-color: var(--button-text-color);
+    --button-bgcolor: var(--button-background-color);
+    --button-hover-bgcolor: var(--button-background-color-hover);
+    --button-active-bgcolor: var(--button-background-color-active);
+    --button-primary-color: var(--button-text-color-primary);
+    --button-primary-bgcolor: var(--button-background-color-primary);
+    --button-primary-hover-bgcolor: var(--button-background-color-primary-hover);
+    --button-primary-active-bgcolor: var(--button-background-color-primary-active);
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.os") {
@@ -13972,6 +13984,7 @@
   /*= Infobar Align #858 =======================================================*/
   /*= Inactive transparent #882 ================================================*/
   /*= Tabpreviw transparent #890 ===============================================*/
+  /*= Design token =============================================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
@@ -14126,6 +14139,19 @@
     --panel-color: var(
       --arrowpanel-color
     ) !important; /* Original: var(--tab-selected-textcolor, var(--toolbar-color)) */
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  :root,
+  :host {
+    --button-color: var(--button-text-color);
+    --button-bgcolor: var(--button-background-color);
+    --button-hover-bgcolor: var(--button-background-color-hover);
+    --button-active-bgcolor: var(--button-background-color-active);
+    --button-primary-color: var(--button-text-color-primary);
+    --button-primary-bgcolor: var(--button-background-color-primary);
+    --button-primary-hover-bgcolor: var(--button-background-color-primary-hover);
+    --button-primary-active-bgcolor: var(--button-background-color-primary-active);
   }
 }
 /*= OS - Compatibility =======================================================*/
