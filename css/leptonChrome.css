@@ -6867,11 +6867,6 @@
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Bold ======================================================*/
-@supports not -moz-bool-pref("userChrome.tab.selected_bold") {
-  .tab-label:is([selected], [attention]) {
-    font-weight: 400 !important;
-  }
-}
 @supports -moz-bool-pref("userChrome.tab.selected_bold") {
   .tab-label:is([selected], [attention]) {
     font-weight: 600;
@@ -21383,11 +21378,6 @@
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Bold ======================================================*/
-@media not (-moz-bool-pref: "userChrome.tab.selected_bold") {
-  .tab-label:is([selected], [attention]) {
-    font-weight: 400 !important;
-  }
-}
 @media (-moz-bool-pref: "userChrome.tab.selected_bold") {
   .tab-label:is([selected], [attention]) {
     font-weight: 600;
