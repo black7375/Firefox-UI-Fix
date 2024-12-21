@@ -286,7 +286,9 @@
   }
 
   /*- Toolbar ----------------------------------------------------------------*/
-  #{selector.nest(system-default-theme(), "#titlebar")} {
+  #{selector.nest(system-default-theme(), "#titlebar")},
+  #{selector.nest(system-default-theme(), "#toolbar-menubar")},
+  #{selector.nest(system-default-theme(), "#TabsToolbar")} {
     --button-hover-bgcolor: var(--win-sidebar-button-hover-bgcolor);
     --button-active-bgcolor: var(--win-sidebar-button-hover-active-bgcolor);
     --toolbarbutton-hover-background: var(--win-sidebar-button-hover-bgcolor);

@@ -2,7 +2,8 @@
 See the above repository for updates as well as full license text. */
 
 /*= Tabbar - Move to bottom ==================================================*/
-#titlebar {
+#titlebar,
+#TabsToolbar {
   @include BoxOrder(2) /* When userChrome.fullscreen.overlap */;
   --tabs-navbar-shadow-size: 0px;
 }

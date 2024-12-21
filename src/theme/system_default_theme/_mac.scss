@@ -184,10 +184,14 @@
     background-color: var(--mac-bgcolor) !important;
   }
 
-  :root#{$not_lwtheme} #titlebar {
+  :root#{$not_lwtheme} #titlebar,
+  :root#{$not_lwtheme} #toolbar-menubar,
+  :root#{$not_lwtheme} #TabsToolbar {
     --mac-hover-bgcolor: ButtonFace;
   }
-  #{selector.nest(system-default-theme(), "#titlebar")} {
+  #{selector.nest(system-default-theme(), "#titlebar")},
+  #{selector.nest(system-default-theme(), "#toolbar-menubar")},
+  #{selector.nest(system-default-theme(), "#TabsToolbar")} {
     --button-hover-bgcolor: var(--mac-hover-bgcolor);
     --button-active-bgcolor: var(--mac-hover-bgcolor);
     --toolbarbutton-hover-background: var(--mac-hover-bgcolor);

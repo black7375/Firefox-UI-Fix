@@ -7,7 +7,7 @@
   }
 }
 
-:root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) :-moz-any(#navigator-toolbox, #titlebar, #nav-bar, #PersonalToolbar) {
+:root[sizemode="fullscreen"]:not([inDOMFullscreen="true"]) :-moz-any(#navigator-toolbox, #titlebar, #toolbar-menubar, #TabsToolbar, #nav-bar, #PersonalToolbar) {
   width: 100%; /* Makes the UI take up the entire width */
 }
 

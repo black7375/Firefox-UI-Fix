@@ -16,7 +16,8 @@
 //------------------------------------------------------------------------------
 
 @include OneLinerTabbar {
-  :root:not([customizing]) #titlebar {
+  :root:not([customizing]) #titlebar,
+  :root:not([customizing]) #navigator-toolbox > #TabsToolbar {
     margin-bottom: var(--uc-tabbar-hide-height);
     will-change: margin-bottom;
   }
@@ -28,7 +29,8 @@
   }
 
   #navigator-toolbox:is(:hover, :focus-within) {
-    > #titlebar {
+    > #titlebar,
+    > #TabsToolbar {
       margin-bottom: 0px;
     }
     #TabsToolbar {

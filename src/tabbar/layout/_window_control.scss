@@ -130,12 +130,16 @@ See the above repository for updates as well as full license text. */
     }
   }
 
-  :root[tabsintitlebar] #titlebar {
-    z-index: 1;
-    &:-moz-window-inactive {
-      opacity: 1 !important;
-      .titlebar-buttonbox {
-        opacity: var(--inactive-titlebar-opacity);
+  :root[tabsintitlebar] {
+    #titlebar,
+    #toolbar-menubar,
+    #TabsToolbar {
+      z-index: 1;
+      &:-moz-window-inactive {
+        opacity: 1 !important;
+        .titlebar-buttonbox {
+          opacity: var(--inactive-titlebar-opacity);
+        }
       }
     }
   }
