@@ -11571,7 +11571,8 @@
     #PanelUI-signedin-panel[hidden="true"] + #PanelUI-fxa-cta-menu #PanelUI-products-separator {
       display: none;
     }
-    #PanelUI-fxa-menu > :first-child {
+    #PanelUI-fxa-menu > :first-child,
+    #fxa-manage-account-button {
       order: -1;
       -moz-box-ordinal-group: 0;
     }
@@ -26755,7 +26756,8 @@
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.panel") {
-  #PanelUI-fxa-menu > :first-child {
+  #PanelUI-fxa-menu > :first-child,
+  #fxa-manage-account-button {
     order: -1;
     -moz-box-ordinal-group: 0;
   }

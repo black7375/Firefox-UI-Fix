@@ -12009,7 +12009,8 @@
     #PanelUI-signedin-panel[hidden="true"] + #PanelUI-fxa-cta-menu #PanelUI-products-separator {
       display: none;
     }
-    #PanelUI-fxa-menu > :first-child {
+    #PanelUI-fxa-menu > :first-child,
+    #fxa-manage-account-button {
       order: -1;
       -moz-box-ordinal-group: 0;
     }
