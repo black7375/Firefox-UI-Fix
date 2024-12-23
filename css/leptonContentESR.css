@@ -3801,7 +3801,7 @@
     }
     @-moz-document url-prefix("about:addons") {
       @supports -moz-bool-pref("userChrome.icon.context_menu") {
-        button[role="menuitem"] {
+        button:is([role="menuitem"], [role="menuitemcheckbox"]) {
           background-image: var(--icon, url("../icons/blank.svg")); /* Don't use !important. because of [checked] */
         }
         panel-item[action="check-for-updates"] {
