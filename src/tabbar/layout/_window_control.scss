@@ -130,7 +130,7 @@ See the above repository for updates as well as full license text. */
     }
   }
 
-  :root[tabsintitlebar] {
+  :root:is([tabsintitlebar], [customtitlebar]) {
     #titlebar,
     #toolbar-menubar,
     #TabsToolbar {
@@ -140,6 +140,12 @@ See the above repository for updates as well as full license text. */
         .titlebar-buttonbox {
           opacity: var(--inactive-titlebar-opacity);
         }
+      }
+    }
+
+    @include NotOption("userChrome.tabbar.on_bottom") {
+      #nav-bar > .titlebar-buttonbox-container {
+        display: flex !important;
       }
     }
   }

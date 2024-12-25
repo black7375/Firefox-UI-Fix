@@ -5918,20 +5918,25 @@
           :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
             visibility: collapse !important;
           }
-          :root[tabsintitlebar] #titlebar,
-          :root[tabsintitlebar] #toolbar-menubar,
-          :root[tabsintitlebar] #TabsToolbar {
+          :root:is([tabsintitlebar], [customtitlebar]) #titlebar,
+          :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar,
+          :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar {
             z-index: 1;
           }
-          :root[tabsintitlebar] #titlebar:-moz-window-inactive,
-          :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive,
-          :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive {
+          :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive,
+          :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive,
+          :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive {
             opacity: 1 !important;
           }
-          :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox,
-          :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
-          :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
+          :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive .titlebar-buttonbox,
+          :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
+          :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
             opacity: var(--inactive-titlebar-opacity);
+          }
+          @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
+            :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
+              display: flex !important;
+            }
           }
         }
         /* At Activated Menubar */
@@ -6083,20 +6088,25 @@
             :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
               visibility: collapse !important;
             }
-            :root[tabsintitlebar] #titlebar,
-            :root[tabsintitlebar] #toolbar-menubar,
-            :root[tabsintitlebar] #TabsToolbar {
+            :root:is([tabsintitlebar], [customtitlebar]) #titlebar,
+            :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar,
+            :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar {
               z-index: 1;
             }
-            :root[tabsintitlebar] #titlebar:-moz-window-inactive,
-            :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive,
-            :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive {
+            :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive,
+            :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive,
+            :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive {
               opacity: 1 !important;
             }
-            :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox,
-            :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
-            :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
+            :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive .titlebar-buttonbox,
+            :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
+            :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
               opacity: var(--inactive-titlebar-opacity);
+            }
+            @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
+              :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
+                display: flex !important;
+              }
             }
           }
           /* At Activated Menubar */
@@ -6245,20 +6255,25 @@
             :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
               visibility: collapse !important;
             }
-            :root[tabsintitlebar] #titlebar,
-            :root[tabsintitlebar] #toolbar-menubar,
-            :root[tabsintitlebar] #TabsToolbar {
+            :root:is([tabsintitlebar], [customtitlebar]) #titlebar,
+            :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar,
+            :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar {
               z-index: 1;
             }
-            :root[tabsintitlebar] #titlebar:-moz-window-inactive,
-            :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive,
-            :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive {
+            :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive,
+            :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive,
+            :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive {
               opacity: 1 !important;
             }
-            :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox,
-            :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
-            :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
+            :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive .titlebar-buttonbox,
+            :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
+            :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
               opacity: var(--inactive-titlebar-opacity);
+            }
+            @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
+              :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
+                display: flex !important;
+              }
             }
           }
           /* At Activated Menubar */
@@ -6426,20 +6441,25 @@
               :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
                 visibility: collapse !important;
               }
-              :root[tabsintitlebar] #titlebar,
-              :root[tabsintitlebar] #toolbar-menubar,
-              :root[tabsintitlebar] #TabsToolbar {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar {
                 z-index: 1;
               }
-              :root[tabsintitlebar] #titlebar:-moz-window-inactive,
-              :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive,
-              :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive {
                 opacity: 1 !important;
               }
-              :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox,
-              :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
-              :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive .titlebar-buttonbox,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
+              }
+              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
+                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
+                  display: flex !important;
+                }
               }
             }
           }
@@ -6596,20 +6616,25 @@
               :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
                 visibility: collapse !important;
               }
-              :root[tabsintitlebar] #titlebar,
-              :root[tabsintitlebar] #toolbar-menubar,
-              :root[tabsintitlebar] #TabsToolbar {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar {
                 z-index: 1;
               }
-              :root[tabsintitlebar] #titlebar:-moz-window-inactive,
-              :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive,
-              :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive {
                 opacity: 1 !important;
               }
-              :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox,
-              :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
-              :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive .titlebar-buttonbox,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
+              }
+              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
+                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
+                  display: flex !important;
+                }
               }
             }
             /* At Activated Menubar */
@@ -6761,20 +6786,25 @@
               :root[inFullscreen]:not([macOSNativeFullscreen]) #menubar-items {
                 visibility: collapse !important;
               }
-              :root[tabsintitlebar] #titlebar,
-              :root[tabsintitlebar] #toolbar-menubar,
-              :root[tabsintitlebar] #TabsToolbar {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar {
                 z-index: 1;
               }
-              :root[tabsintitlebar] #titlebar:-moz-window-inactive,
-              :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive,
-              :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive {
                 opacity: 1 !important;
               }
-              :root[tabsintitlebar] #titlebar:-moz-window-inactive .titlebar-buttonbox,
-              :root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
-              :root[tabsintitlebar] #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
+              :root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive .titlebar-buttonbox,
+              :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
+              :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
+              }
+              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
+                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
+                  display: flex !important;
+                }
               }
             }
             /* At Activated Menubar */
