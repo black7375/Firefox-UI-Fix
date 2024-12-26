@@ -1,6 +1,6 @@
 /*= Windows 10 - Top border of accent color at ESR #358 ======================*/
 @include OS($win10) {
-  :root[sizemode=normal][tabsintitlebar] {
+  :root[sizemode=normal]:is([tabsintitlebar], [customtitlebar]) {
     #navigator-toolbox {
       border-top: .5px solid rgb(47, 47, 47) !important;
     }
@@ -231,7 +231,7 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 
 /*= Titlebar Container Size at maximized #384 ================================*/
 @include OS($win) {
-  :root[tabsintitlebar] {
+  :root:is([tabsintitlebar], [customtitlebar]) {
     @include NotOption("userChrome.compatibility.os.windows_maximized") {
       #titlebar {
         // Prevent #476 FF v105 above
@@ -263,21 +263,21 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
 // https://github.com/mozilla/gecko-dev/blob/4334cb91a3762ac497c50a1c7b86b8004690229e/browser/themes/windows/browser-aero.css#L71-L81
 @include OS($win) {
   @include WinClassic {
-    :root[tabsintitlebar][sizemode="normal"]:not(:-moz-lwtheme) #navigator-toolbox {
+    :root:is([tabsintitlebar], [customtitlebar])[sizemode="normal"]:not(:-moz-lwtheme) #navigator-toolbox {
       appearance: auto !important;
       -moz-default-appearance: -moz-window-titlebar !important;;
     }
 
-    :root[tabsintitlebar][sizemode="maximized"]:not(:-moz-lwtheme) #navigator-toolbox {
+    :root:is([tabsintitlebar], [customtitlebar])[sizemode="maximized"]:not(:-moz-lwtheme) #navigator-toolbox {
       appearance: auto !important;;
       -moz-default-appearance:-moz-window-titlebar !important;;
     }
 
-    :root[tabsintitlebar]:not(:-moz-lwtheme) #tabbrowser-arrowscrollbox {
+    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-lwtheme) #tabbrowser-arrowscrollbox {
       color: -moz-dialogtext !important;
     }
 
-    :root[tabsintitlebar][sizemode="normal"] #navigator-toolbox:-moz-lwtheme {
+    :root:is([tabsintitlebar], [customtitlebar])[sizemode="normal"] #navigator-toolbox:-moz-lwtheme {
       background-image: linear-gradient(
         to bottom,
         ThreeDLightShadow 0, ThreeDLightShadow 1px,

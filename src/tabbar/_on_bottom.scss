@@ -82,7 +82,7 @@ See the above repository for updates as well as full license text. */
     width: 100%;
     overflow: hidden;
   }
-  :root[tabsintitlebar] #toolbar-menubar[autohide="true"]:not([inactive="true"]) {
+  :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar[autohide="true"]:not([inactive="true"]) {
     height: var(--uc-menubar-height) !important; /* calc(var(--tab-min-height) + 2 * var(--tab-block-margin)) */
   }
 

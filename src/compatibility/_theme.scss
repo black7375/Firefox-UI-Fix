@@ -35,7 +35,7 @@ menu.subviewbutton {
 }
 
 /*= First visible tab margin at maximized #332 ===============================*/
-:root[tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar {
+:root:is([tabsintitlebar="true"], [customtitlebar="true"])[sizemode="maximized"] #TabsToolbar {
   margin-left: -1px;
 }
 
@@ -193,9 +193,9 @@ vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
 }
 
 /*= Inactive transparent #882 ================================================*/
-:root[tabsintitlebar] #titlebar:-moz-window-inactive,
-:root[tabsintitlebar] #toolbar-menubar:-moz-window-inactive,
-:root[tabsintitlebar] #TabsToolbar:-moz-window-inactive {
+:root:is([tabsintitlebar], [customtitlebar]) #titlebar:-moz-window-inactive,
+:root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive,
+:root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive {
   opacity: 1 !important;
   color: color-mix(in srgb, currentColor calc(var(--inactive-titlebar-opacity, 0.75) * 100%), transparent) !important;
   --inactive-toolbarbutton-icon-fill-opacity: calc(var(--toolbarbutton-icon-fill-opacity, 1) * var(--inactive-titlebar-opacity, 0.75));

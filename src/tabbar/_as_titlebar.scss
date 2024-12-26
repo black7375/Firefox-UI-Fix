@@ -12,7 +12,7 @@
 
 //------------------------------------------------------------------------------
 
-:root:not([tabsintitlebar="true"]) #tabbrowser-tabs, /* Show only */
+:root:not([tabsintitlebar="true"]):not([customtitlebar="true"]) #tabbrowser-tabs, /* Show only */
 #scrollbutton-up, /* Defaults */
 #scrollbutton-down,
 .titlebar-spacer[type="pre-tabs"],
@@ -80,8 +80,8 @@ spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
 
 
 @include Option("browser.tabs.tabmanager.enabled") {
-  :root:not([tabsintitlebar="true"]) #tabbrowser-tabs:not([overflow="true"], [hashiddentabs]) ~ #alltabs-button,
-  :root:not([tabsintitlebar="true"]) #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow="true"]) ~ #new-tab-button {
+  :root:not([tabsintitlebar="true"]):not([customtitlebar="true"]) #tabbrowser-tabs:not([overflow="true"], [hashiddentabs]) ~ #alltabs-button,
+  :root:not([tabsintitlebar="true"]):not([customtitlebar="true"]) #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow="true"]) ~ #new-tab-button {
     @include Box(true);
   }
 }
