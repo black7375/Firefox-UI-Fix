@@ -37,7 +37,7 @@
     position: relative !important;
 
     box-shadow: var(--uc-sidebar-shadow-position) 0px 15px -10px var(--uc-sidebar-shadow-color);
-    &[positionend="true"] {
+    &[positionend] {
       --uc-sidebar-shadow-position: calc(-1 * var(--uc-sidebar-shadow-position-default));
     }
   }
@@ -53,7 +53,7 @@
 }
 
 @include Option("userChrome.sidebar.overlap") {
-  #sidebar-box[positionend="true"] {
+  #sidebar-box[positionend] {
     direction: rtl;
   }
 

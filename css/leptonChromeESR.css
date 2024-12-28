@@ -9290,7 +9290,7 @@
       opacity: 0;
       visibility: hidden;
     }
-    :root:has(#sidebar-box[positionend="true"]) #nav-bar {
+    :root:has(#sidebar-box[positionend]) #nav-bar {
       right: 0;
     }
   }
@@ -9353,7 +9353,7 @@
     position: absolute;
     height: 100%;
   }
-  :root[customizing="true"] #browser[collapsed="true"] #sidebar-box[positionend="true"] {
+  :root[customizing="true"] #browser[collapsed="true"] #sidebar-box[positionend] {
     right: 0;
   }
   :root[customizing="true"] #customization-container {
@@ -9366,10 +9366,10 @@
       --uc-customization-conatiner-margin: calc(var(--uc-navbar-height-default) - var(--uc-tabbar-height-default));
     }
   }
-  :root[customizing="true"]:has(#sidebar-box:not([positionend="true"])) #customization-container {
+  :root[customizing="true"]:has(#sidebar-box:not([positionend])) #customization-container {
     margin-inline-start: var(--uc-sidebar-activate-width);
   }
-  :root[customizing="true"]:has(#sidebar-box[positionend="true"]) #customization-container {
+  :root[customizing="true"]:has(#sidebar-box[positionend]) #customization-container {
     margin-inline-end: var(--uc-sidebar-activate-width);
   }
   :root[customizing="true"] #customization-palette-container,
@@ -9685,7 +9685,7 @@
     position: relative !important;
     box-shadow: var(--uc-sidebar-shadow-position) 0px 15px -10px var(--uc-sidebar-shadow-color);
   }
-  #sidebar-box[positionend="true"] {
+  #sidebar-box[positionend] {
     --uc-sidebar-shadow-position: calc(-1 * var(--uc-sidebar-shadow-position-default));
   }
   #sidebar {
@@ -9696,7 +9696,7 @@
   }
 }
 @supports -moz-bool-pref("userChrome.sidebar.overlap") {
-  #sidebar-box[positionend="true"] {
+  #sidebar-box[positionend] {
     direction: rtl;
   }
   #sidebar-header,
@@ -11263,18 +11263,18 @@
       min-width: var(--uc-sidebar-activate-width) !important;
       max-width: var(--uc-sidebar-activate-width) !important;
     }
-    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]) {
+    :root[inFullscreen="true"] #sidebar-box:not([positionend]) {
       margin-inline-start: var(--uc-sidebar-fullscreen-margin) !important;
       will-change: margin-inline-start;
     }
-    :root[inFullscreen="true"] #sidebar-box:not([positionend="true"]):is(:hover, :focus-within) {
+    :root[inFullscreen="true"] #sidebar-box:not([positionend]):is(:hover, :focus-within) {
       margin-inline-start: 0 !important;
     }
-    :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
+    :root[inFullscreen="true"] #sidebar-box[positionend] {
       margin-inline-end: var(--uc-sidebar-fullscreen-margin) !important;
       will-change: margin-inline-end;
     }
-    :root[inFullscreen="true"] #sidebar-box[positionend="true"]:is(:hover, :focus-within) {
+    :root[inFullscreen="true"] #sidebar-box[positionend]:is(:hover, :focus-within) {
       margin-inline-end: 0 !important;
     }
     @media (prefers-reduced-motion: no-preference) {
@@ -11291,7 +11291,7 @@
         transition: margin-inline-start var(--uc-autohide-fullscreen-sidebar-speed) var(--animation-easing-function)
           var(--uc-autohide-sidebar-delay) !important;
       }
-      :root[inFullscreen="true"] #sidebar-box[positionend="true"] {
+      :root[inFullscreen="true"] #sidebar-box[positionend] {
         transition-property: margin-inline-end !important;
       }
       :root[inFullscreen="true"] #sidebar-box:is(:hover, :focus-within),
@@ -11525,7 +11525,7 @@
     }
   }
   @supports selector(:has(a)) {
-    :root:has(#sidebar-box[positionend="true"]) {
+    :root:has(#sidebar-box[positionend]) {
       --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
       --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
     }
