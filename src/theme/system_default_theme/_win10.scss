@@ -373,7 +373,8 @@
   /* Tab Bar */
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme},
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) {
-    .titlebar-color {
+    .titlebar-color,
+    .browser-titlebar {
       @include AccentColor {
         color: $accentTextColor;
         background-color: $accentColor; // TODO: Use $accentBorder

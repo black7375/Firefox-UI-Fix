@@ -802,16 +802,24 @@
     /* Tab Bar */
     :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
       .titlebar-color,
+    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+      .browser-titlebar,
     :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
-      .titlebar-color {
+      .titlebar-color,
+    :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+      .browser-titlebar {
       color: AccentColorText;
       background-color: AccentColor;
     }
     @supports -moz-bool-pref("userChrome.compatibility.accent_color") {
       :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
         .titlebar-color,
+      :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+        .browser-titlebar,
       :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
-        .titlebar-color {
+        .titlebar-color,
+      :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+        .browser-titlebar {
         color: -moz-accent-color-foreground;
         background-color: -moz-accent-color;
       }
@@ -5478,7 +5486,7 @@
           :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
             appearance: none !important;
           }
-          .browser-toolbar:not(.titlebar-color) {
+          .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
             background-clip: border-box !important;
           }
         }
@@ -5642,7 +5650,7 @@
             :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
               appearance: none !important;
             }
-            .browser-toolbar:not(.titlebar-color) {
+            .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
               background-clip: border-box !important;
             }
           }
@@ -5803,7 +5811,7 @@
             :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
               appearance: none !important;
             }
-            .browser-toolbar:not(.titlebar-color) {
+            .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
               background-clip: border-box !important;
             }
           }
@@ -5973,7 +5981,7 @@
             :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
               appearance: none !important;
             }
-            .browser-toolbar:not(.titlebar-color) {
+            .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
               background-clip: border-box !important;
             }
           }
@@ -6150,7 +6158,7 @@
               :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
                 appearance: none !important;
               }
-              .browser-toolbar:not(.titlebar-color) {
+              .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
                 background-clip: border-box !important;
               }
             }
@@ -6313,7 +6321,7 @@
               :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
                 appearance: none !important;
               }
-              .browser-toolbar:not(.titlebar-color) {
+              .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
                 background-clip: border-box !important;
               }
             }
@@ -14856,8 +14864,12 @@
   /* Tab Bar */
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
     .titlebar-color,
+  :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    .browser-titlebar,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
-    .titlebar-color {
+    .titlebar-color,
+  :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    .browser-titlebar {
     color: AccentColorText;
     background-color: AccentColor;
   }
@@ -14865,8 +14877,12 @@
 @media (-moz-bool-pref: "userChrome.theme.system_default") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
     .titlebar-color,
+  :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    .browser-titlebar,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
-    .titlebar-color {
+    .titlebar-color,
+  :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    .browser-titlebar {
     color: -moz-accent-color-foreground;
     background-color: -moz-accent-color;
   }
@@ -19839,7 +19855,7 @@
   :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
     appearance: none !important;
   }
-  .browser-toolbar:not(.titlebar-color) {
+  .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
     background-clip: border-box !important;
   }
 }
@@ -20079,7 +20095,7 @@
   :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
     appearance: none !important;
   }
-  .browser-toolbar:not(.titlebar-color) {
+  .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
     background-clip: border-box !important;
   }
 }
@@ -20286,7 +20302,7 @@
   :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
     appearance: none !important;
   }
-  .browser-toolbar:not(.titlebar-color) {
+  .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
     background-clip: border-box !important;
   }
 }
@@ -20523,7 +20539,7 @@
   :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
     appearance: none !important;
   }
-  .browser-toolbar:not(.titlebar-color) {
+  .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
     background-clip: border-box !important;
   }
 }
@@ -20763,7 +20779,7 @@
   :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
     appearance: none !important;
   }
-  .browser-toolbar:not(.titlebar-color) {
+  .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
     background-clip: border-box !important;
   }
 }
@@ -20970,7 +20986,7 @@
   :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
     appearance: none !important;
   }
-  .browser-toolbar:not(.titlebar-color) {
+  .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
     background-clip: border-box !important;
   }
 }
