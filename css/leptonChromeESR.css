@@ -494,6 +494,10 @@
       ) !important;
     }
   }
+  /*= MacOS Fullscreen clipping #1045 ==========================================*/
+  :root[sizemode="fullscreen"][macOSNativeFullscreen]:not([inDOMFullscreen="true"]) #navigator-toolbox {
+    border-top: 16px solid transparent;
+  }
 }
 /*= Others - Compatibility ===================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.panel_cutoff") {

@@ -287,3 +287,8 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
     }
   }
 }
+
+/*= MacOS Fullscreen clipping #1045 ==========================================*/
+:root[sizemode="fullscreen"][macOSNativeFullscreen]:not([inDOMFullscreen="true"]) #navigator-toolbox {
+  border-top: 16px solid transparent;
+}

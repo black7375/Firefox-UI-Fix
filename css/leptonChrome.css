@@ -313,6 +313,10 @@
     }
   }
   /*= Windows - Classic Theme #734 =============================================*/
+  /*= MacOS Fullscreen clipping #1045 ==========================================*/
+  :root[sizemode="fullscreen"][macOSNativeFullscreen]:not([inDOMFullscreen="true"]) #navigator-toolbox {
+    border-top: 16px solid transparent;
+  }
 }
 /*= Others - Compatibility ===================================================*/
 @supports -moz-bool-pref("userChrome.compatibility.panel_cutoff") {
@@ -14300,6 +14304,7 @@
   /*= Linux - Light System Default Theme's Selected Tab ========================*/
   /*= Titlebar Container Size at maximized #384 ================================*/
   /*= Windows - Classic Theme #734 =============================================*/
+  /*= MacOS Fullscreen clipping #1045 ==========================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.os") and (-moz-platform: windows) {
   :root[sizemode="normal"]:is([tabsintitlebar], [customtitlebar]) #navigator-toolbox {
@@ -14382,6 +14387,11 @@
   :root:is([tabsintitlebar], [customtitlebar])[sizemode="maximized"] #titlebar {
     appearance: none !important;
     padding-top: 8px;
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.os") {
+  :root[sizemode="fullscreen"][macOSNativeFullscreen]:not([inDOMFullscreen="true"]) #navigator-toolbox {
+    border-top: 16px solid transparent;
   }
 }
 /*= Others - Compatibility ===================================================*/
