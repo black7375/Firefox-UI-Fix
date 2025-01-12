@@ -495,8 +495,8 @@
     }
   }
   /*= MacOS Fullscreen clipping #1045 ==========================================*/
-  :root[sizemode="fullscreen"][macOSNativeFullscreen]:not([inDOMFullscreen="true"]) #navigator-toolbox {
-    border-top: 16px solid transparent;
+  :root[sizemode="fullscreen"][macOSNativeFullscreen]:not([inDOMFullscreen="true"]) #TabsToolbar {
+    min-height: var(--tab-min-height, fit-content) !important;
   }
 }
 /*= Others - Compatibility ===================================================*/
