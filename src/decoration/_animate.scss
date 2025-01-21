@@ -119,16 +119,14 @@ xul|search-textbox.tabsFilter,
     max-width: 36em;
 
     /* Animation */
-    transition: margin-inline-start 0.25s var(--animation-easing-function), opacity 0.25s ease-in-out,
-      visibility 0s linear !important;
-    will-change: margin-inline-start, opacity, visibility;
+    transition: margin-inline-start 0.25s var(--animation-easing-function), visibility 0s linear !important;
+    will-change: margin-inline-start, visibility;
 
     &[hidden="true"] {
       @include Box(true);
       margin-inline-start: -18em;
-      opacity: 0;
       visibility: collapse;
-      transition-delay: 0s, 0s, 0.25s !important;
+      transition-delay: 0s, 0.25s !important;
     }
   }
 }
