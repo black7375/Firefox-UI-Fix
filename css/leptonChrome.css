@@ -722,7 +722,8 @@
         #appMenu-zoomReduce-button2,
         #appMenu-zoomReset-button2,
         #appMenu-zoomEnlarge-button2,
-        #appMenu-fullscreen-button2
+        #appMenu-fullscreen-button2,
+        .unified-extensions-item-menu-button
       ):is(:hover),
     :root[lwt-default-theme-in-dark-mode]
       toolbarbutton.subviewbutton:not(
@@ -733,7 +734,8 @@
         #appMenu-zoomReduce-button2,
         #appMenu-zoomReset-button2,
         #appMenu-zoomEnlarge-button2,
-        #appMenu-fullscreen-button2
+        #appMenu-fullscreen-button2,
+        .unified-extensions-item-menu-button
       ):is(:hover) {
       background-color: var(--win-hover-bgcolor) !important;
     }
@@ -14789,7 +14791,8 @@
       #appMenu-zoomReduce-button2,
       #appMenu-zoomReset-button2,
       #appMenu-zoomEnlarge-button2,
-      #appMenu-fullscreen-button2
+      #appMenu-fullscreen-button2,
+      .unified-extensions-item-menu-button
     ):is(:hover),
   :root[lwt-default-theme-in-dark-mode]
     toolbarbutton.subviewbutton:not(
@@ -14800,7 +14803,8 @@
       #appMenu-zoomReduce-button2,
       #appMenu-zoomReset-button2,
       #appMenu-zoomEnlarge-button2,
-      #appMenu-fullscreen-button2
+      #appMenu-fullscreen-button2,
+      .unified-extensions-item-menu-button
     ):is(:hover) {
     background-color: var(--win-hover-bgcolor) !important;
   }

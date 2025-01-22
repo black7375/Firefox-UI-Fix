@@ -322,7 +322,7 @@
   }
 
   $panelZoomButtons: "#appMenu-fxa-label2, #appMenu-zoomReduce-button2, #appMenu-zoomReset-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2";
-  #{selector.nest(system-default-theme(), "toolbarbutton.subviewbutton:not([disabled], [open], :active, #{$panelZoomButtons}):is(:hover)")} {
+  #{selector.nest(system-default-theme(), "toolbarbutton.subviewbutton:not([disabled], [open], :active, #{$panelZoomButtons}, .unified-extensions-item-menu-button):is(:hover)")} {
     background-color: var(--win-hover-bgcolor) !important;
   }
   #{selector.nest(system-default-theme(), "toolbarbutton.subviewbutton:not([disabled], #{$panelZoomButtons}):is([open], :hover:active)")} {
