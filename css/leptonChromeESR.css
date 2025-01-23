@@ -5956,11 +5956,6 @@
           :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
             opacity: var(--inactive-titlebar-opacity);
           }
-          @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-            :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-              display: flex !important;
-            }
-          }
         }
         /* At Activated Menubar */
         :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -6126,11 +6121,6 @@
             :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
               opacity: var(--inactive-titlebar-opacity);
             }
-            @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-              :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                display: flex !important;
-              }
-            }
           }
           /* At Activated Menubar */
           :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -6292,11 +6282,6 @@
             :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
             :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
               opacity: var(--inactive-titlebar-opacity);
-            }
-            @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-              :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                display: flex !important;
-              }
             }
           }
           /* At Activated Menubar */
@@ -6479,11 +6464,6 @@
               :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
               }
-              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                  display: flex !important;
-                }
-              }
             }
           }
           @media screen and (max-width: 1100px) {
@@ -6654,11 +6634,6 @@
               :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
               }
-              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                  display: flex !important;
-                }
-              }
             }
             /* At Activated Menubar */
             :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -6823,11 +6798,6 @@
               :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
               :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
-              }
-              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                  display: flex !important;
-                }
               }
             }
             /* At Activated Menubar */

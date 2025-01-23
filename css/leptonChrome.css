@@ -5568,11 +5568,6 @@
           :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
             opacity: var(--inactive-titlebar-opacity);
           }
-          @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-            :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-              display: flex !important;
-            }
-          }
         }
         /* At Activated Menubar */
         :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -5732,11 +5727,6 @@
             :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
               opacity: var(--inactive-titlebar-opacity);
             }
-            @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-              :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                display: flex !important;
-              }
-            }
           }
           /* At Activated Menubar */
           :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -5892,11 +5882,6 @@
             :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
             :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
               opacity: var(--inactive-titlebar-opacity);
-            }
-            @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-              :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                display: flex !important;
-              }
             }
           }
           /* At Activated Menubar */
@@ -6072,11 +6057,6 @@
               :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
               }
-              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                  display: flex !important;
-                }
-              }
             }
           }
           @media screen and (max-width: 1100px) {
@@ -6240,11 +6220,6 @@
               :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
               }
-              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                  display: flex !important;
-                }
-              }
             }
             /* At Activated Menubar */
             :root:not([chromehidden~="menubar"], [sizemode="fullscreen"])
@@ -6402,11 +6377,6 @@
               :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
               :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
                 opacity: var(--inactive-titlebar-opacity);
-              }
-              @supports not -moz-bool-pref("userChrome.tabbar.on_bottom") {
-                :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-                  display: flex !important;
-                }
               }
             }
             /* At Activated Menubar */
@@ -19982,16 +19952,6 @@
     opacity: var(--inactive-titlebar-opacity);
   }
 }
-@media (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")) {
-  :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-    display: flex !important;
-  }
-}
 @media (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.tabbar.on_bottom"),
   (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.hidden.tabbar"),
   (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner")) and (-moz-bool-pref: "userChrome.tabbar.on_bottom"),
@@ -20198,13 +20158,6 @@
     opacity: var(--inactive-titlebar-opacity);
   }
 }
-@media (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")) {
-  :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-    display: flex !important;
-  }
-}
 @media (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first"),
   (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first"),
   (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") {
@@ -20403,13 +20356,6 @@
   :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
   :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
     opacity: var(--inactive-titlebar-opacity);
-  }
-}
-@media (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")) {
-  :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-    display: flex !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled"),
@@ -20666,16 +20612,6 @@
     opacity: var(--inactive-titlebar-opacity);
   }
 }
-@media screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (max-width: 1100px) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (max-width: 1100px) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (max-width: 1100px) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (max-width: 1100px) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (max-width: 1100px) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (max-width: 1100px) and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")) {
-  :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-    display: flex !important;
-  }
-}
 @media screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (max-width: 1100px),
   screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (max-width: 1100px),
   screen and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (max-width: 1100px),
@@ -20882,13 +20818,6 @@
     opacity: var(--inactive-titlebar-opacity);
   }
 }
-@media screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")) {
-  :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-    display: flex !important;
-  }
-}
 @media screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first"),
   screen and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first"),
   screen and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first") {
@@ -21087,13 +21016,6 @@
   :root:is([tabsintitlebar], [customtitlebar]) #toolbar-menubar:-moz-window-inactive .titlebar-buttonbox,
   :root:is([tabsintitlebar], [customtitlebar]) #TabsToolbar:-moz-window-inactive .titlebar-buttonbox {
     opacity: var(--inactive-titlebar-opacity);
-  }
-}
-@media screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")),
-  screen and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") and (-moz-bool-pref: "userChrome.hidden.tabbar") and (not (-moz-bool-pref: "userChrome.tabbar.on_bottom")) {
-  :root:is([tabsintitlebar], [customtitlebar]) #nav-bar > .titlebar-buttonbox-container {
-    display: flex !important;
   }
 }
 @media screen and (-moz-bool-pref: "userChrome.tabbar.on_bottom") and (not (-moz-bool-pref: "userChrome.hidden.titlebar_container")) and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled"),
