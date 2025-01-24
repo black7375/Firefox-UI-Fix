@@ -11059,6 +11059,9 @@
         }
       }
     }
+    #mainPopupSet:not(:hover) ~ #navigator-toolbox:not(:hover, :focus-within) #nav-bar:not([customizing]) {
+      -moz-window-dragging: no-drag;
+    }
     @media (prefers-reduced-motion: no-preference) {
       #nav-bar:not([customizing]) {
         transition: margin-bottom var(--uc-autohide-toolbar-speed) var(--animation-easing-function)
