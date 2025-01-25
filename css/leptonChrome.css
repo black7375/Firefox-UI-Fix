@@ -10598,6 +10598,9 @@
         #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
           opacity: 1;
         }
+        #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
+          pointer-events: auto;
+        }
       }
       @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
         @supports -moz-bool-pref("userChrome.tabbar.one_liner.responsive") {
@@ -10616,6 +10619,9 @@
             #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
             #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
               opacity: 1;
+            }
+            #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
+              pointer-events: auto;
             }
           }
         }
@@ -25698,6 +25704,9 @@
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
     opacity: 1;
   }
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
+    pointer-events: auto;
+  }
 }
 @media screen and (-moz-bool-pref: "userChrome.autohide.tabbar") and (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (max-width: 1100px),
   screen and (-moz-bool-pref: "userChrome.autohide.tabbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.autohide.navbar") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (max-width: 1100px),
@@ -25717,6 +25726,9 @@
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]),
   #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
     opacity: 1;
+  }
+  #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
+    pointer-events: auto;
   }
 }
 @media (-moz-bool-pref: "userChrome.autohide.tabbar") and (-moz-bool-pref: "userChrome.autohide.navbar"),
