@@ -376,8 +376,8 @@
     .titlebar-color,
     .browser-titlebar {
       @include AccentColor {
-        color: $accentTextColor;
-        background-color: $accentColor; // TODO: Use $accentBorder
+        color: $accentTextColor !important;
+        background-color: $accentColor !important; // TODO: Use $accentBorder
       }
     }
 
