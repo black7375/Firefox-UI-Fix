@@ -11,7 +11,7 @@
 }
 
 :root[inFullscreen="true"] #sidebar-box {
-  &:not([positionend="true"]) {
+  &:not([positionend]) {
     margin-inline-start: var(--uc-sidebar-fullscreen-margin) !important;
     will-change: margin-inline-start;
 
@@ -20,7 +20,7 @@
     }
   }
 
-  &[positionend="true"] {
+  &[positionend] {
     margin-inline-end: var(--uc-sidebar-fullscreen-margin) !important;
     will-change: margin-inline-end;
 
@@ -45,7 +45,7 @@
   :root[inFullscreen="true"] #sidebar-box {
     transition: margin-inline-start var(--uc-autohide-fullscreen-sidebar-speed) var(--animation-easing-function) var(--uc-autohide-sidebar-delay) !important;
 
-    &[positionend="true"] {
+    &[positionend] {
       transition-property: margin-inline-end !important;
     }
     &:is(:hover, :focus-within),

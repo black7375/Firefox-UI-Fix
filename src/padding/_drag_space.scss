@@ -6,11 +6,11 @@
 
 //-- Mixin ---------------------------------------------------------------------
 @mixin _dragSpaceHeight {
-  :root[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"] {
+  :root:is([tabsintitlebar], [customtitlebar])[sizemode="normal"] #toolbar-menubar[autohide="true"] {
     @content;
   }
   @include Option("userChrome.padding.drag_space.maximized") {
-    :root[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"] {
+    :root:is([tabsintitlebar], [customtitlebar])[sizemode="maximized"] #toolbar-menubar[autohide="true"] {
       @content;
     }
   }

@@ -94,7 +94,7 @@
   border-radius: var(--scrollbtn-border-radius, calc(var(--tab-border-radius) + 4px)) !important;
 }
 
-:root[tabsintitlebar]:not([uidensity="compact"]) #toolbar-menubar[autohide="true"] {
+:root:is([tabsintitlebar], [customtitlebar]):not([uidensity="compact"]) #toolbar-menubar[autohide="true"] {
   height: calc(
     var(--tab-min-height) - var(--tabs-navbar-shadow-size) - 2px
   ); /* Compact: 28px, Normal: 33px, Touch: 38px */

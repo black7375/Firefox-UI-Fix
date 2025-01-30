@@ -28,7 +28,7 @@
   --uc-sidebar-icon: url("chrome://browser/skin/sidebars.svg");
   --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars-right.svg");
   @include Has {
-    &:has(#sidebar-box[positionend="true"]) {
+    &:has(#sidebar-box[positionend]) {
       --uc-sidebar-icon: url("chrome://browser/skin/sidebars-right.svg");
       --uc-sidebar-icon-reverse: url("chrome://browser/skin/sidebars.svg");
     }

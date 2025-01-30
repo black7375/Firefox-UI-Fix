@@ -48,11 +48,11 @@
   }
   @include Has {
     :root {
-      &:not([tabsintitlebar]):has(#toolbar-menubar) {
+      &:not([tabsintitlebar]):not([customtitlebar]):has(#toolbar-menubar) {
         --uc-menubar-height: var(--uc-menubar-height-default); // text 1rem, menu padding 0.3em
       }
 
-      &[tabsintitlebar]:has(#toolbar-menubar[autohide="true"]) {
+      &:is([tabsintitlebar], [customtitlebar]):has(#toolbar-menubar[autohide="true"]) {
         @include OS($linux) {
           --uc-menubar-height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin));
         }
@@ -63,12 +63,12 @@
           --uc-menubar-height: calc(var(--tab-min-height) + var(--tab-block-margin));
         }
       }
-      &[tabsintitlebar]:has(#toolbar-menubar[autohide="false"]) {
+      &:is([tabsintitlebar], [customtitlebar]):has(#toolbar-menubar[autohide="false"]) {
         --uc-menubar-height: var(--uc-titlebar-buttonbox-height);
       }
 
-      &:not([tabsintitlebar]),
-      &[tabsintitlebar] {
+      &:not([tabsintitlebar]):not([customtitlebar]),
+      &:is([tabsintitlebar], [customtitlebar]) {
         &:has(#toolbar-menubar[autohide="true"][inactive="true"]) {
           --uc-menubar-height: 0px;
         }

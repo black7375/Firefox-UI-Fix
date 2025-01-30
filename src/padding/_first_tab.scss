@@ -4,14 +4,14 @@
 }
 
 @include NotOption("userChrome.padding.first_tab.always") {
-  :root:not([tabsintitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
+  :root:not([tabsintitlebar]):not([customtitlebar]) #tabbrowser-tabs:not([positionpinnedtabs]),
   :root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs:not([positionpinnedtabs]) {
     padding-inline-start: var(--uc-space-left-tabbar) !important;
   }
 }
 
 @include Option("userChrome.padding.first_tab.always") {
-  :root:not([tabsintitlebar]) #tabbrowser-tabs,
+  :root:not([tabsintitlebar]):not([customtitlebar]) #tabbrowser-tabs,
   :root:is([sizemode="maximized"], [sizemode="fullscreen"]) #tabbrowser-tabs {
     padding-inline-start: calc(var(--tab-overflow-pinned-tabs-width, 0px) +  var(--uc-space-left-tabbar)) !important;
   }

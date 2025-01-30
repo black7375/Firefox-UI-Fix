@@ -40,7 +40,7 @@
 
 //------------------------------------------------------------------------------
 
-:root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+:root:is([tabsintitlebar], [customtitlebar], [sizemode="fullscreen"]) {
   --uc-window-drag-space-pre: var(--uc-title-pre-spacer, 40px); // 30px
   --uc-window-drag-space-post: var(--uc-title-post-spacer, 40px); // 25px
 
@@ -71,7 +71,7 @@
   }
 }
 @include OS($mac) {
-  :root[tabsintitlebar] {
+  :root:is([tabsintitlebar], [customtitlebar]) {
     --uc-window-control-width: 72px;
   }
   :root[sizemode="fullscreen"] {
@@ -79,12 +79,12 @@
   }
 }
 
-:root:is([tabsintitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
+:root:is([tabsintitlebar][sizemode="maximized"], [customtitlebar][sizemode="maximized"], [sizemode="fullscreen"]) {
   @include _remove_spacer_pre;
 }
 
 @include Option("userChrome.tabbar.one_liner") {
-  :root:is([tabsintitlebar], [sizemode="fullscreen"]) {
+  :root:is([tabsintitlebar], [customtitlebar], [sizemode="fullscreen"]) {
     @include NotOption("userChrome.tabbar.one_liner.responsive") {
       @include _remove_spacer_oneLiner;
     }

@@ -53,7 +53,7 @@ See the above repository for updates as well as full license text. */
 }
 
 @include OS($win) {
-  :root[sizemode="maximized"][tabsintitlebar] {
+  :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) {
     @if mode.isESR() {
       --uc-titlebar-padding: 8px;
     }
@@ -62,11 +62,11 @@ See the above repository for updates as well as full license text. */
       margin-top: calc(-1 * var(--uc-titlebar-padding));
     }
   }
-  :root[sizemode="normal"][tabsintitlebar] #titlebar,
-  :root[sizemode="maximized"][tabsintitlebar] #titlebar {
+  :root[sizemode="normal"]:is([tabsintitlebar], [customtitlebar]) #titlebar,
+  :root[sizemode="maximized"]:is([tabsintitlebar], [customtitlebar]) #titlebar {
     appearance: none !important;
   }
-  .browser-toolbar:not(.titlebar-color) {
+  .browser-toolbar:not(.titlebar-color):not(.browser-titlebar) {
     background-clip: border-box !important;
   }
 }
@@ -130,12 +130,16 @@ See the above repository for updates as well as full license text. */
     }
   }
 
-  :root[tabsintitlebar] #titlebar {
-    z-index: 1;
-    &:-moz-window-inactive {
-      opacity: 1 !important;
-      .titlebar-buttonbox {
-        opacity: var(--inactive-titlebar-opacity);
+  :root:is([tabsintitlebar], [customtitlebar]) {
+    #titlebar,
+    #toolbar-menubar,
+    #TabsToolbar {
+      z-index: 1;
+      &:-moz-window-inactive {
+        opacity: 1 !important;
+        .titlebar-buttonbox {
+          opacity: var(--inactive-titlebar-opacity);
+        }
       }
     }
   }

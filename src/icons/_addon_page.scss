@@ -1,5 +1,5 @@
 // https://github.com/mozilla/gecko-dev/commit/260e4270fca18f2f6f59a1ffe4deccb5080a15f7
-button[role="menuitem"] {
+button:is([role="menuitem"], [role="menuitemcheckbox"]) {
   background-image: var(--icon, url("../icons/blank.svg")); /* Don't use !important. because of [checked] */
 }
 
