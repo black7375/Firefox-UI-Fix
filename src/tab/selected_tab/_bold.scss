@@ -1,7 +1,4 @@
 .tab-label:is([selected], [attention]) {
-  @include NotOption("userChrome.tab.selected_bold") {
-    font-weight: 400 !important;
-  }
   @include Option("userChrome.tab.selected_bold") {
     font-weight: 600;
   }

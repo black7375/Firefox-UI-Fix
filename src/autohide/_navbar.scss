@@ -14,7 +14,16 @@
     &, #urlbar {
       opacity: 1;
     }
+    #urlbar {
+      // #1028
+      pointer-events: auto;
+    }
   }
+}
+
+// Drag & Drop Event #820
+#mainPopupSet:not(:hover)~#navigator-toolbox:not(:hover, :focus-within) #nav-bar:not([customizing]) {
+  -moz-window-dragging: no-drag;
 }
 
 @include Animate {

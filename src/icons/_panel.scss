@@ -259,7 +259,8 @@
 #PanelUI-signedin-panel[hidden="true"] + #PanelUI-fxa-cta-menu #PanelUI-products-separator {
   display: none; // #916
 }
-#PanelUI-fxa-menu > :first-child {
+#PanelUI-fxa-menu > :first-child,
+#fxa-manage-account-button {
   @include BoxOrder(0);
 }
 #PanelUI-sign-out-separator {

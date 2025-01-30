@@ -41,7 +41,7 @@
     opacity: 0;
     visibility: hidden; // If use `collapse`, inline `--urlbar-toolbar-height` variable is calculated strangely small.
   }
-  :root:has(#sidebar-box[positionend="true"]) #nav-bar {
+  :root:has(#sidebar-box[positionend]) #nav-bar {
     right: 0;
   }
 }
@@ -109,7 +109,7 @@
       position: absolute;
       height: 100%;
 
-      &[positionend="true"] {
+      &[positionend] {
         right: 0;
       }
     }
@@ -125,10 +125,10 @@
     height: calc(100% - var(--uc-customization-conatiner-margin));
   }
 
-  &:has(#sidebar-box:not([positionend="true"])) #customization-container {
+  &:has(#sidebar-box:not([positionend])) #customization-container {
     margin-inline-start: var(--uc-sidebar-activate-width);
   }
-  &:has(#sidebar-box[positionend="true"]) #customization-container {
+  &:has(#sidebar-box[positionend]) #customization-container {
     margin-inline-end: var(--uc-sidebar-activate-width);
   }
 

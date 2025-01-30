@@ -73,16 +73,16 @@
 }
 @media (-moz-windows-accent-color-in-titlebar) {
   @include AccentColor {
-    :root[tabsintitlebar]:not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover,
-    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
+    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover,
+    :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
       fill: color-mix(
         in srgb,
         $accentTextColor 10%,
         transparent
       ) !important; /* Hardcoded for compatibility */
     }
-    :root[tabsintitlebar]:not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover:active,
-    :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
+    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover:active,
+    :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
       fill: color-mix(
         in srgb,
         $accentTextColor 15%,
@@ -98,14 +98,14 @@
         "userChrome.tab.bottom_rounded_corner.chrome",
         "userChrome.tab.bottom_rounded_corner.edge"
       ) {
-        :root[tabsintitlebar]:not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover,
-        :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
+        :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover,
+        :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
           background-image: var(--uc-tab-corner-left-side-svg),
                             linear-gradient(to left, color-mix(in srgb, $accentTextColor 10%, transparent), color-mix(in srgb, $accentTextColor 10%, transparent)),
                             var(--uc-tab-corner-right-side-svg);
         }
-        :root[tabsintitlebar]:not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover:active,
-        :root[tabsintitlebar][lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
+        :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover:active,
+        :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
           background-image: var(--uc-tab-corner-left-side-svg),
                             linear-gradient(to left, color-mix(in srgb, $accentTextColor 15%, transparent), color-mix(in srgb, $accentTextColor 15%, transparent)),
                             var(--uc-tab-corner-right-side-svg);

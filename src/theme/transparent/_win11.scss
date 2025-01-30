@@ -7,8 +7,12 @@
   --lwt-text-color: WindowText !important;
 }
 
-#titlebar .toolbarbutton-1 {
-  --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
+#titlebar,
+#toolbar-menubar,
+#TabsToolbar {
+  .toolbarbutton-1 {
+    --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
+  }
 }
 
 :root:not([sizemode="fullscreen"]) .titlebar-buttonbox-container .titlebar-button:not(.titlebar-close:hover) {
