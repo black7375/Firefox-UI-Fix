@@ -11036,8 +11036,8 @@
         #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
           opacity: 1;
         }
-        #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
-          pointer-events: auto;
+        #navigator-toolbox:not(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
+          pointer-events: none;
         }
       }
       @supports -moz-bool-pref("userChrome.tabbar.one_liner") {
@@ -11058,8 +11058,8 @@
             #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
               opacity: 1;
             }
-            #navigator-toolbox:is(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
-              pointer-events: auto;
+            #navigator-toolbox:not(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
+              pointer-events: none;
             }
           }
         }
