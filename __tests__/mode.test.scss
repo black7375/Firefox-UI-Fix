@@ -29,11 +29,11 @@
   }
 
   @include test("support pref") {
-    @include mode.SUPPORT_PREF;
+    @include mode.SUPPORT_BOOL_PREF;
 
     @include assert {
       @include output {
-        @if mode.isMediaPref() {
+        @if mode.isMediaBoolPref() {
           @include example;
         }
       }
@@ -44,11 +44,11 @@
   }
 
   @include test("media pref") {
-    @include mode.MEDIA_PREF;
+    @include mode.MEDIA_BOOL_PREF;
 
     @include assert {
       @include output {
-        @if mode.isMediaPref() {
+        @if mode.isMediaBoolPref() {
           @include example;
         }
       }
@@ -86,11 +86,11 @@
   }
 
   @include test("support pref") {
-    @include mode.SUPPORT_PREF;
+    @include mode.SUPPORT_BOOL_PREF;
 
     @include assert {
       @include output {
-        @if mode.isMediaPref() {
+        @if mode.isMediaBoolPref() {
           @include example;
         }
       }
@@ -101,11 +101,11 @@
   }
 
   @include test("media pref") {
-    @include mode.MEDIA_PREF;
+    @include mode.MEDIA_BOOL_PREF;
 
     @include assert {
       @include output {
-        @if mode.isMediaPref() {
+        @if mode.isMediaBoolPref() {
           @include example;
         }
       }

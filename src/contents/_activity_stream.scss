@@ -36,7 +36,11 @@
   /** Activity Stream - Web Site Icon: full size ******************************/
   @include Option("userContent.newTab.full_icon") {
     .top-site-outer {
+      width: 120px !important; /* v135: calc(var(--size-item-large) * 3); */
+
       .tile {
+        width: 80px !important; /* v135: calc(var(--size-item-large) * 2); */
+        height: 80px !important; /* v135: calc(var(--size-item-large) * 2); */
         overflow: hidden;
       }
 
@@ -115,7 +119,8 @@
   @include Option("userContent.newTab.pocket_to_last") {
     .body-wrapper.on {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: wrap !important;
+      flex-direction: row !important;
 
       > .discovery-stream.ds-layout {
         flex-basis: 100%;
