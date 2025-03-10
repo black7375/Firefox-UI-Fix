@@ -51,7 +51,7 @@
 
 @include test-module("One Liner - MediaPref [mix]") {
   @include mode.STANDARD;
-  @include mode.MEDIA_PREF;
+  @include mode.MEDIA_BOOL_PREF;
 
   @include test("content") {
     @include assert {
@@ -167,9 +167,9 @@
   }
 }
 
-@include test-module("One Liner for Responsive - MEDIA_PREF [mix]") {
+@include test-module("One Liner for Responsive - MEDIA_BOOL_PREF [mix]") {
   @include mode.STANDARD;
-  @include mode.MEDIA_PREF;
+  @include mode.MEDIA_BOOL_PREF;
 
   @include test("Tabs on bottom") {
     @include assert {

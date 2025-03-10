@@ -361,7 +361,12 @@
   }
   /** Activity Stream - Web Site Icon: full size ******************************/
   @supports -moz-bool-pref("userContent.newTab.full_icon") {
+    .top-site-outer {
+      width: 120px !important; /* v135: calc(var(--size-item-large) * 3); */
+    }
     .top-site-outer .tile {
+      width: 80px !important; /* v135: calc(var(--size-item-large) * 2); */
+      height: 80px !important; /* v135: calc(var(--size-item-large) * 2); */
       overflow: hidden;
     }
     .top-site-outer .icon-wrapper {
@@ -426,7 +431,8 @@
   @supports -moz-bool-pref("userContent.newTab.pocket_to_last") {
     .body-wrapper.on {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: wrap !important;
+      flex-direction: row !important;
     }
     .body-wrapper.on > .discovery-stream.ds-layout {
       flex-basis: 100%;

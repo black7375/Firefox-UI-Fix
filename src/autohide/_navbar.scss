@@ -14,10 +14,10 @@
     &, #urlbar {
       opacity: 1;
     }
-    #urlbar {
-      // #1028
-      pointer-events: auto;
-    }
+  }
+  // #1028
+  #navigator-toolbox:not(:hover, :focus-within) #nav-bar:not([customizing]) #urlbar {
+    pointer-events: none;
   }
 }
 

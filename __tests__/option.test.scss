@@ -81,7 +81,7 @@
 
 @include test-module("If exist pref - Standard [mix]") {
   @include mode.STANDARD;
-  @include mode.SUPPORT_PREF;
+  @include mode.SUPPORT_BOOL_PREF;
 
   @include test("simple") {
     @include assert {
@@ -156,9 +156,9 @@
   }
 }
 
-@include test-module("If exist pref - MediaPref [mix]") {
+@include test-module("If exist pref - MediaBoolPref [mix]") {
   @include mode.STANDARD;
-  @include mode.MEDIA_PREF;
+  @include mode.MEDIA_BOOL_PREF;
 
   @include test("simple") {
     @include assert {
@@ -226,6 +226,83 @@
           @include example;
         }
         @media (-moz-bool-pref: '"userChrome.tab.photon"') and (-moz-bool-pref: '"userChrome.padding.photon"'), (-moz-bool-pref: '"userChrome.tab.box_shadow"') and (-moz-bool-pref: '"userChrome.icon.panel_full"') {
+          @include example;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("If exist pref - Media [mix]") {
+  @include mode.STANDARD;
+  @include mode.MEDIA_PREF;
+
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @#{media} #{'-moz-pref("userChrome.tab.photon")'} {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("multiple") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon", "userChrome.padding.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @#{media} #{'-moz-pref("userChrome.tab.photon") or -moz-pref("userChrome.padding.photon")'} {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("simple `and`") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon" "userChrome.padding.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @#{media} #{'(-moz-pref("userChrome.tab.photon") and -moz-pref("userChrome.padding.photon"))'} {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("multiple `and`") {
+    @include assert {
+      @include output {
+        @include option.Option("userChrome.tab.photon" "userChrome.padding.photon", "userChrome.tab.box_shadow") {
+          @include example;
+        }
+        @include option.Option("userChrome.tab.photon" "userChrome.padding.photon", "userChrome.tab.box_shadow", "userChrome.icon.panel_full") {
+          @include example;
+        }
+        @include option.Option("userChrome.tab.photon" "userChrome.padding.photon", "userChrome.tab.box_shadow" "userChrome.icon.panel_full") {
+          @include example;
+        }
+      }
+      @include expect {
+        @#{media} #{'(-moz-pref("userChrome.tab.photon") and -moz-pref("userChrome.padding.photon")) or -moz-pref("userChrome.tab.box_shadow")'} {
+          @include example;
+        }
+        @#{media} #{'(-moz-pref("userChrome.tab.photon") and -moz-pref("userChrome.padding.photon")) or -moz-pref("userChrome.tab.box_shadow") or -moz-pref("userChrome.icon.panel_full")'} {
+          @include example;
+        }
+        @#{media} #{'(-moz-pref("userChrome.tab.photon") and -moz-pref("userChrome.padding.photon")) or (-moz-pref("userChrome.tab.box_shadow") and -moz-pref("userChrome.icon.panel_full"))'} {
           @include example;
         }
       }
@@ -312,7 +389,7 @@
 
 @include test-module("If not exist pref - Standard [mx]") {
   @include mode.STANDARD;
-  @include mode.SUPPORT_PREF;
+  @include mode.SUPPORT_BOOL_PREF;
 
   @include test("simple") {
     @include assert {
@@ -372,9 +449,9 @@
   }
 }
 
-@include test-module("If not exist pref - MediaPref [mx]") {
+@include test-module("If not exist pref - MediaBoolPref [mx]") {
   @include mode.STANDARD;
-  @include mode.MEDIA_PREF;
+  @include mode.MEDIA_BOOL_PREF;
 
   @include test("simple") {
     @include assert {
@@ -427,6 +504,68 @@
           @include example;
         }
         @media (not (-moz-bool-pref: '"userChrome.tab.photon"')) and (not (-moz-bool-pref: '"userChrome.padding.photon"')), (not (-moz-bool-pref: '"userChrome.tab.box_shadow"')) and (not (-moz-bool-pref: '"userChrome.icon.panel_full"')) {
+          @include example;
+        }
+      }
+    }
+  }
+}
+
+@include test-module("If not exist pref - MediaPref [mx]") {
+  @include mode.STANDARD;
+  @include mode.MEDIA_PREF;
+
+  @include test("simple") {
+    @include assert {
+      @include output {
+        @include option.NotOption("userChrome.tab.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @#{media} #{'not -moz-pref("userChrome.tab.photon")'} {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("multiple") {
+    @include assert {
+      @include output {
+        @include option.NotOption("userChrome.tab.photon", "userChrome.padding.photon") {
+          @include example;
+        }
+      }
+      @include expect {
+        @#{media} #{'(not -moz-pref("userChrome.tab.photon")) or (not -moz-pref("userChrome.padding.photon"))'} {
+          @include example;
+        }
+      }
+    }
+  }
+
+  @include test("multiple `and`") {
+    @include assert {
+      @include output {
+        @include option.NotOption("userChrome.tab.photon" "userChrome.padding.photon", "userChrome.tab.box_shadow") {
+          @include example;
+        }
+        @include option.NotOption("userChrome.tab.photon" "userChrome.padding.photon", "userChrome.tab.box_shadow", "userChrome.icon.panel_full") {
+          @include example;
+        }
+        @include option.NotOption("userChrome.tab.photon" "userChrome.padding.photon", "userChrome.tab.box_shadow" "userChrome.icon.panel_full") {
+          @include example;
+        }
+      }
+      @include expect {
+        @#{media} #{'((not -moz-pref("userChrome.tab.photon")) and (not -moz-pref("userChrome.padding.photon"))) or (not -moz-pref("userChrome.tab.box_shadow"))'} {
+          @include example;
+        }
+        @#{media} #{'((not -moz-pref("userChrome.tab.photon")) and (not -moz-pref("userChrome.padding.photon"))) or (not -moz-pref("userChrome.tab.box_shadow")) or (not -moz-pref("userChrome.icon.panel_full"))'} {
+          @include example;
+        }
+        @#{media} #{'((not -moz-pref("userChrome.tab.photon")) and (not -moz-pref("userChrome.padding.photon"))) or ((not -moz-pref("userChrome.tab.box_shadow")) and (not -moz-pref("userChrome.icon.panel_full")))'} {
           @include example;
         }
       }
