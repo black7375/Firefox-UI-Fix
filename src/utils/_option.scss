@@ -11,14 +11,17 @@
   @return if($positive, $str, "(not " + $str + ")");
 }
 
-@function _pref($option) {
+@function _supportPref($option) {
   @return "-moz-bool-pref(\"#{$option}\")";
 }
-@function _prefMedia($option) {
+@function _mediaBoolPref($option) {
   @return "(-moz-bool-pref: \"#{$option}\")";
 }
+@function _mediaPref($option) {
+  @return "-moz-pref(\"#{$option}\")";
+}
 
-@function _getOption($optionNames, $positive: true) {
+@function _getOptionSupports($optionNames, $positive: true) {
   $result: "";
   @for $i from 1 through length($optionNames) {
     $option: nth($optionNames, $i);
@@ -30,27 +33,27 @@
     $result: $result + _prefix($separator, $i);
 
     @if type-of($option) == "list" {
-      $result: $result + "(" + _getOption($option, $positive) + ")";
+      $result: $result + "(" + _getOptionSupports($option, $positive) + ")";
     }
     @else {
-      $result: $result +  _not(_pref($option), $positive);
+      $result: $result +  _not(_supportPref($option), $positive);
     }
   }
   @return $result;
 }
-@function _optionWrapper($optionNames, $positive: true) {
+@function _getOptionSupportsWrapper($optionNames, $positive: true) {
   // Test warning for top level `not`
   @if length($optionNames) == 1 {
     $option: nth($optionNames, 1);
     @if not (type-of($option) == "list") {
-      $option: _pref($option);
+      $option: _supportPref($option);
       @return if($positive, $option, "not " + $option);
     }
   }
-  @return _getOption($optionNames, $positive);
+  @return _getOptionSupports($optionNames, $positive);
 }
 
-@function _getOptionMedia($optionNames, $positive: true) {
+@function _getOptionMediaBool($optionNames, $positive: true) {
   $result: "";
   @for $i from 1 through length($optionNames) {
     $option: nth($optionNames, $i);
@@ -62,23 +65,60 @@
     $result: $result + _prefix($separator, $i);
 
     @if type-of($option) == "list" {
-      $result: $result + _getOptionMedia($option, $positive) ;
+      $result: $result + _getOptionMediaBool($option, $positive) ;
     }
     @else {
-      $result: $result +  _not(_prefMedia($option), $positive);
+      $result: $result +  _not(_mediaBoolPref($option), $positive);
     }
   }
   @return $result;
 }
 
+@function _getOptionMedia($optionNames, $positive: true) {
+  $result: "";
+  @for $i from 1 through length($optionNames) {
+    $option: nth($optionNames, $i);
+    $separator: if(
+      list-separator($optionNames) == "comma", "or", if(
+        list-separator($optionNames) == "space", "and", null
+      )
+    );
+    $result: $result + _prefix($separator, $i);
+
+    @if type-of($option) == "list" {
+      $result: $result + "(" + _getOptionMedia($option, $positive) + ")";
+    }
+    @else {
+      $result: $result +  _not(_mediaPref($option), $positive);
+    }
+  }
+  @return $result;
+}
+@function _getOptionMediaWrapper($optionNames, $positive: true) {
+  // Test warning for top level `not`
+  @if length($optionNames) == 1 {
+    $option: nth($optionNames, 1);
+    @if not (type-of($option) == "list") {
+      $option: _mediaPref($option);
+      @return if($positive, $option, "not " + $option);
+    }
+  }
+  @return _getOptionMedia($optionNames, $positive);
+}
+
 @mixin Option($optionNames...) {
   @if mode.isMediaPref() {
-    @media #{_getOptionMedia($optionNames)} {
+    @#{media} #{_getOptionMediaWrapper($optionNames)} {
+      @content;
+    }
+  }
+  @else if mode.isMediaBoolPref() {
+    @media #{_getOptionMediaBool($optionNames)} {
       @content;
     }
   }
   @else {
-    @supports #{_optionWrapper($optionNames)} {
+    @supports #{_getOptionSupportsWrapper($optionNames)} {
       @content;
     }
   }
@@ -86,12 +126,17 @@
 
 @mixin NotOption($optionNames...) {
   @if mode.isMediaPref() {
-    @media #{_getOptionMedia($optionNames, false)} {
+    @#{media} #{_getOptionMediaWrapper($optionNames, false)} {
+      @content;
+    }
+  }
+  @else if mode.isMediaBoolPref() {
+    @media #{_getOptionMediaBool($optionNames, false)} {
       @content;
     }
   }
   @else {
-    @supports #{_optionWrapper($optionNames, false)} {
+    @supports #{_getOptionSupportsWrapper($optionNames, false)} {
       @content;
     }
   }

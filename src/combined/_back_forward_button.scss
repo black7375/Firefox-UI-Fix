@@ -3,6 +3,11 @@
 
 @mixin _combined_forward_button() {
   @if mode.isMediaPref() {
+    @#{media} #{'-moz-pref("userChrome.combined.urlbar.nav_button") or ((not -moz-pref("userChrome.combined.sub_button.as_normal")) or (-moz-pref("userChrome.combined.nav_button") and -moz-pref("userChrome.combined.urlbar.home_button")))'} {
+      @content;
+    }
+  }
+  @else if mode.isMediaBoolPref() {
     @media (-moz-bool-pref: '"userChrome.combined.urlbar.nav_button"'),
     ((not (-moz-bool-pref: '"userChrome.combined.sub_button.as_normal"')) or
      (

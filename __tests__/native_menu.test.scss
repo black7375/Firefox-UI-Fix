@@ -137,7 +137,7 @@
 
 @include test-module("Native Menu Option - Standard [mix]") {
   @include mode.STANDARD;
-  @include mode.SUPPORT_PREF;
+  @include mode.SUPPORT_BOOL_PREF;
 
   @include test("simple") {
     @include assert {
@@ -256,7 +256,7 @@
 
 @include test-module("Native Menu Option - MediaPref [mix]") {
   @include mode.STANDARD;
-  @include mode.MEDIA_PREF;
+  @include mode.MEDIA_BOOL_PREF;
 
   @include test("simple") {
     @include assert {
