@@ -8883,19 +8883,42 @@
     color: var(--tab-icon-overlay-fill, light-dark(black, white));
   }
   .tab-icon-overlay:not([crashed])[soundplaying] {
-    list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg");
+    list-style-image: url("./icons/tab-audio-playing-small.svg");
   }
   .tab-icon-overlay:not([crashed])[muted] {
-    list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
+    list-style-image: url("./icons/tab-audio-muted-small.svg");
   }
   .tab-icon-overlay:not([crashed])[activemedia-blocked] {
-    list-style-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-small.svg");
+    list-style-image: url("./icons/tab-audio-blocked-small.svg");
   }
   .tab-icon-overlay:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
     /* Color */
     color: currentColor !important;
     stroke: transparent !important;
     background: transparent !important;
+    fill-opacity: 0.8 !important;
+    opacity: 1 !important;
+  }
+  .tab-audio-button:not([crashed]),
+  .tab-audio-button[pinned][crashed][selected] {
+    /* Position */
+    margin-inline-start: -8px !important;
+    margin-inline-end: -4px !important;
+    z-index: 1 !important;
+    transform: translateX(var(--uc-sound-tab-icon-position-x)) translateY(var(--uc-sound-tab-icon-position-y));
+    /* Shape */
+    --button-size-icon-small: 17px !important;
+    --button-min-height-small: 17px !important;
+    --button-border-radius: 100% !important;
+    width: 17px !important;
+    height: 17px !important;
+    border-radius: 100%;
+    overflow: clip;
+    --button-text-color-ghost-hover: light-dark(white, black);
+    --button-background-color-ghost-hover: light-dark(black, white);
+  }
+  .tab-audio-button:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
+    display: flex !important;
     fill-opacity: 0.8 !important;
     opacity: 1 !important;
   }
