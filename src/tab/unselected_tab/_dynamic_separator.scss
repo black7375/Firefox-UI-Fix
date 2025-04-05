@@ -95,6 +95,13 @@
   }
 }
 
+#tabbrowser-tabs[orient="horizontal"] tab-group {
+  &:has(.tabbrowser-tab:last-child:is(:hover, [selected])) + .tabbrowser-tab .tab-stack::before,
+  &[collapsed] + .tabbrowser-tab .tab-stack::before {
+    opacity: 0 !important;
+  }
+}
+
 #navigator-toolbox:not([movingtab])
   .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))):is([visuallyselected], [multiselected], :hover)
   .tab-stack::before,

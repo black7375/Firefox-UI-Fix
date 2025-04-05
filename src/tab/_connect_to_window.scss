@@ -18,6 +18,10 @@
   margin-bottom: 0px !important;
 }
 
+#tabbrowser-tabs[orient="horizontal"] tab-group .tabbrowser-tab:is([selected], [multiselected]) .tab-group-line {
+  transform: translateY(calc(var(--tab-group-line-thickness) * -1));
+}
+
 /* Remove line at Toolbar's top */
 #tabbrowser-tabs {
   z-index: 1 !important;

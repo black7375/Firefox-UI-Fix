@@ -10,6 +10,12 @@
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
   > .tab-stack
+  > .tab-background[multiselected]:not([selected]),
+#tabbrowser-tabs:not([movingtab])
+  > #tabbrowser-arrowscrollbox
+  > tab-group
+  > .tabbrowser-tab
+  > .tab-stack
   > .tab-background[multiselected]:not([selected]) {
    /* Original:
    background-attachment: scroll, scroll, fixed;
