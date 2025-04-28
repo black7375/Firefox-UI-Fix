@@ -1,4 +1,4 @@
-#tabs-newtab-button {
+#tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
   @include Option("userChrome.tab.connect_to_window") {
     /* Size */
     @include BoxAlign("stretch", true);
@@ -73,16 +73,16 @@
 }
 @media (-moz-windows-accent-color-in-titlebar) {
   @include AccentColor {
-    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover,
-    :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
+    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover,
+    :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover {
       fill: color-mix(
         in srgb,
         $accentTextColor 10%,
         transparent
       ) !important; /* Hardcoded for compatibility */
     }
-    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover:active,
-    :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
+    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover:active,
+    :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover:active {
       fill: color-mix(
         in srgb,
         $accentTextColor 15%,
@@ -98,14 +98,14 @@
         "userChrome.tab.bottom_rounded_corner.chrome",
         "userChrome.tab.bottom_rounded_corner.edge"
       ) {
-        :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover,
-        :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover {
+        :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover,
+        :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover {
           background-image: var(--uc-tab-corner-left-side-svg),
                             linear-gradient(to left, color-mix(in srgb, $accentTextColor 10%, transparent), color-mix(in srgb, $accentTextColor 10%, transparent)),
                             var(--uc-tab-corner-right-side-svg);
         }
-        :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabs-newtab-button:hover:active,
-        :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabs-newtab-button:hover:active {
+        :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive)#{$not_lwtheme} #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover:active,
+        :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive) #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:hover:active {
           background-image: var(--uc-tab-corner-left-side-svg),
                             linear-gradient(to left, color-mix(in srgb, $accentTextColor 15%, transparent), color-mix(in srgb, $accentTextColor 15%, transparent)),
                             var(--uc-tab-corner-right-side-svg);
@@ -116,7 +116,7 @@
 }
 
 /* '+'Icon */
-#tabs-newtab-button .toolbarbutton-icon {
+#tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button .toolbarbutton-icon {
   border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
 
   padding: calc(var(--toolbarbutton-inner-padding) - (var(--tab-block-margin) / 4)) var(--toolbarbutton-inner-padding)

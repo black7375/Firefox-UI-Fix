@@ -6914,26 +6914,26 @@
 /** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @media -moz-pref("userChrome.tab.connect_to_window") {
-  #tabbrowser-tabs[orient="horizontal"] {
+  #tabbrowser-tabs:not([orient="vertical"]) {
     min-height: unset !important; /* Original: var(--tabstrip-min-height) */
   }
-  #tabbrowser-tabs[orient="vertical"] {
-    --uc-tab-border-bottom-radius: var(--tab-border-radius);
-  }
-  .tab-background {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-background {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) var(--uc-tab-border-bottom-radius, 0px)
       var(--uc-tab-border-bottom-radius, 0px) !important;
     margin-bottom: 0px !important;
   }
-  .tab-content {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-content {
     margin-top: 0px;
   }
-  .tab-stack {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
   }
-  #tabbrowser-tabs[orient="horizontal"] tab-group .tabbrowser-tab:is([selected], [multiselected]) .tab-group-line {
+  #tabbrowser-tabs:not([orient="vertical"]) tab-group .tabbrowser-tab:is([selected], [multiselected]) .tab-group-line {
     transform: translateY(calc(var(--tab-group-line-thickness) * -1));
+  }
+  #tabbrowser-tabs[orient="vertical"] {
+    --uc-tab-border-bottom-radius: var(--tab-border-radius);
   }
   /* Remove line at Toolbar's top */
   #tabbrowser-tabs {
@@ -7048,10 +7048,12 @@
 }
 /*= Multi Selected Color - More Contrast =====================================*/
 @media -moz-pref("userChrome.tab.multi_selected") {
-  #TabsToolbar {
+  #TabsToolbar,
+  #vertical-tabs {
     --uc-multiselected-tab-bgcolor: color-mix(in srgb, currentColor 28%, var(--toolbar-bgcolor, transparent));
   }
-  #TabsToolbar[brighttext] {
+  #TabsToolbar[brighttext],
+  #vertical-tabs[brighttext] {
     --uc-multiselected-tab-bgcolor: color-mix(in srgb, currentColor 16%, var(--toolbar-bgcolor, transparent));
   }
   #tabbrowser-tabs:not([movingtab])
@@ -7742,8 +7744,8 @@
     position: relative;
   }
   @media -moz-pref("userChrome.tab.newtab_button_like_tab") {
-    .tab-stack::before,
-    #tabs-newtab-button::before {
+    #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+    #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
       /* Box Model */
       content: "";
       display: block;
@@ -7760,18 +7762,19 @@
       transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y));
     }
     @media -moz-pref("userChrome.compatibility.dynamic_separator") {
-      .tab-stack::before,
-      #tabs-newtab-button::before {
+      #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+      #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
         background-color: var(--tabs-border-color);
       }
     }
-    #tabs-newtab-button::before {
+    #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
       left: calc(50% - (8px + var(--toolbarbutton-inner-padding)));
     }
   }
   @media not -moz-pref("userChrome.tab.newtab_button_like_tab") {
-    .tab-stack::before,
-    #tabbrowser-arrowscrollbox:not([overflowing])
+    #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+    #tabbrowser-tabs:not([orient="vertical"])
+      #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       /* Box Model */
@@ -7788,35 +7791,42 @@
       background-color: var(--toolbarseparator-color);
     }
     @media -moz-pref("userChrome.compatibility.dynamic_separator") {
-      .tab-stack::before,
-      #tabbrowser-arrowscrollbox:not([overflowing])
+      #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+      #tabbrowser-tabs:not([orient="vertical"])
+        #tabbrowser-arrowscrollbox:not([overflowing])
         .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
         .tab-stack::after {
         background-color: var(--tabs-border-color);
       }
     }
-    .tab-stack::before {
+    #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before {
       transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
-    .tabbrowser-tab:last-of-type .tab-stack::after {
+    #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab:last-of-type .tab-stack::after {
       right: 0;
       transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
     }
   }
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type)
+    .tab-stack::before {
     opacity: var(--tab-separator-opacity);
   }
   @media -moz-pref("userChrome.tabbar.one_liner") {
     @media not -moz-pref("userChrome.tabbar.one_liner.tabbar_first") {
       @media not -moz-pref("userChrome.tabbar.one_liner.responsive") {
-        .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
+        #tabbrowser-tabs:not([orient="vertical"])
+          .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
+          .tab-stack::before {
           opacity: var(--tab-separator-opacity);
           transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
         }
       }
       @media -moz-pref("userChrome.tabbar.one_liner.responsive") {
         @media screen and (min-width: 1100px) {
-          .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
+          #tabbrowser-tabs:not([orient="vertical"])
+            .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
+            .tab-stack::before {
             opacity: var(--tab-separator-opacity);
             transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
           }
@@ -7825,25 +7835,27 @@
     }
   }
   @media -moz-pref("userChrome.tab.newtab_button_like_tab") {
-    #tabs-newtab-button:not(:hover, [open])::before {
+    #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:not(:hover, [open])::before {
       opacity: var(--tab-separator-opacity);
     }
   }
   @media not -moz-pref("userChrome.tab.newtab_button_like_tab") {
-    #tabbrowser-arrowscrollbox:not([overflowing])
+    #tabbrowser-tabs:not([orient="vertical"])
+      #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       opacity: var(--tab-separator-opacity);
     }
   }
-  #tabbrowser-tabs[orient="horizontal"]
+  #tabbrowser-tabs:not([orient="vertical"])
     tab-group:has(.tabbrowser-tab:last-child:is(:hover, [selected]))
     + .tabbrowser-tab
     .tab-stack::before,
-  #tabbrowser-tabs[orient="horizontal"] tab-group[collapsed] + .tabbrowser-tab .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"]) tab-group[collapsed] + .tabbrowser-tab .tab-stack::before {
     opacity: 0 !important;
   }
   #navigator-toolbox:not([movingtab])
+    #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))):is(
       [visuallyselected],
       [multiselected],
@@ -7851,6 +7863,7 @@
     )
     .tab-stack::before,
   #navigator-toolbox:not([movingtab])
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabbrowser-arrowscrollbox[overflowing]
     tab.tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden])))
     .tab-stack::before {
@@ -7858,13 +7871,16 @@
   }
   @media -moz-pref("userChrome.tab.newtab_button_like_tab") {
     #navigator-toolbox:not([movingtab])
+      #tabbrowser-tabs:not([orient="vertical"])
       .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
       + .tabbrowser-tab
       .tab-stack::before,
     #navigator-toolbox:not([movingtab])
+      #tabbrowser-tabs:not([orient="vertical"])
       .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
       ~ #tabs-newtab-button::before,
     #navigator-toolbox:not([movingtab])
+      #tabbrowser-tabs:not([orient="vertical"])
       .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
       ~ #tabbrowser-arrowscrollbox-periphery
       #tabs-newtab-button::before {
@@ -7872,30 +7888,35 @@
     }
   }
   @media not -moz-pref("userChrome.tab.newtab_button_like_tab") {
-    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    #tabbrowser-tabs:not([orient="vertical"])
+      .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
       + .tabbrowser-tab:not([visuallyselected])
       .tab-stack::before {
       opacity: 0 !important;
     }
-    :root:not([uidensity="compact"]) #tabs-newtab-button > .toolbarbutton-icon {
+    :root:not([uidensity="compact"])
+      #tabbrowser-tabs:not([orient="vertical"])
+      #tabs-newtab-button
+      > .toolbarbutton-icon {
       margin-left: 2px;
     }
-    :root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
+    :root[uidensity="compact"] #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button > .toolbarbutton-icon {
       margin-left: 1px;
     }
   }
   /* Animate */
   @media (prefers-reduced-motion: no-preference) {
-    .tab-stack::before {
+    #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before {
       transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     }
     @media -moz-pref("userChrome.tab.newtab_button_like_tab") {
-      #tabs-newtab-button::before {
+      #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
         transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
       }
     }
     @media not -moz-pref("userChrome.tab.newtab_button_like_tab") {
-      #tabbrowser-arrowscrollbox:not([overflowing])
+      #tabbrowser-tabs:not([orient="vertical"])
+        #tabbrowser-arrowscrollbox:not([overflowing])
         .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
         .tab-stack::after {
         transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
@@ -7903,7 +7924,7 @@
     }
   }
   /* Latest Tab & New tab margin */
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
     margin-inline-end: 1px !important;
   }
 }
@@ -8008,7 +8029,7 @@
 /*= New tab button - Looks like tab ==========================================*/
 @media -moz-pref("userChrome.tab.newtab_button_like_tab") {
   @media -moz-pref("userChrome.tab.connect_to_window") {
-    #tabs-newtab-button {
+    #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
       /* Size */
       align-items: stretch !important;
       -moz-box-align: stretch !important;
@@ -8016,7 +8037,7 @@
     }
   }
   @media -moz-pref("userChrome.tab.bottom_rounded_corner") {
-    #tabs-newtab-button {
+    #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
       /* Original:
        margin: 0 0 var(--tabs-navbar-shadow-size) !important
        => Can't override style. Therefore, we should approach it by bypass.
@@ -8037,7 +8058,7 @@
       -moz-context-properties: fill !important;
     }
     @media -moz-pref("userChrome.tab.bottom_rounded_corner.wave") or -moz-pref("userChrome.tab.bottom_rounded_corner.australis") or -moz-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") or -moz-pref("userChrome.tab.bottom_rounded_corner.edge") {
-      #tabs-newtab-button {
+      #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
         --uc-newtab-position: 0px;
         --uc-newtab-non-corner-bgwidth: 0px;
         --uc-tab-corner-half-height: calc(var(--uc-tab-corner-height) / 2);
@@ -8057,7 +8078,7 @@
         background-origin: padding-box;
       }
       @media -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") or -moz-pref("userChrome.tab.bottom_rounded_corner.edge") {
-        #tabs-newtab-button {
+        #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
           --uc-newtab-non-corner-bgwidth: calc(2 * var(--toolbarbutton-inner-padding));
         }
       }
@@ -8072,22 +8093,28 @@
   }
   @media (-moz-windows-accent-color-in-titlebar) {
     :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+      #tabbrowser-tabs:not([orient="vertical"])
       #tabs-newtab-button:hover,
     :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+      #tabbrowser-tabs:not([orient="vertical"])
       #tabs-newtab-button:hover {
       fill: color-mix(in srgb, AccentColorText 10%, transparent) !important; /* Hardcoded for compatibility */
     }
     :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+      #tabbrowser-tabs:not([orient="vertical"])
       #tabs-newtab-button:hover:active,
     :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+      #tabbrowser-tabs:not([orient="vertical"])
       #tabs-newtab-button:hover:active {
       fill: color-mix(in srgb, AccentColorText 15%, transparent) !important; /* Hardcoded for compatibility */
     }
     @media -moz-pref("userChrome.tab.bottom_rounded_corner") {
       @media -moz-pref("userChrome.tab.bottom_rounded_corner.wave") or -moz-pref("userChrome.tab.bottom_rounded_corner.australis") or -moz-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") or -moz-pref("userChrome.tab.bottom_rounded_corner.edge") {
         :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+          #tabbrowser-tabs:not([orient="vertical"])
           #tabs-newtab-button:hover,
         :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+          #tabbrowser-tabs:not([orient="vertical"])
           #tabs-newtab-button:hover {
           background-image: var(--uc-tab-corner-left-side-svg),
             linear-gradient(
@@ -8098,8 +8125,10 @@
             var(--uc-tab-corner-right-side-svg);
         }
         :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+          #tabbrowser-tabs:not([orient="vertical"])
           #tabs-newtab-button:hover:active,
         :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+          #tabbrowser-tabs:not([orient="vertical"])
           #tabs-newtab-button:hover:active {
           background-image: var(--uc-tab-corner-left-side-svg),
             linear-gradient(
@@ -8113,8 +8142,10 @@
     }
     @media -moz-pref("userChrome.compatibility.accent_color") {
       :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+        #tabbrowser-tabs:not([orient="vertical"])
         #tabs-newtab-button:hover,
       :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+        #tabbrowser-tabs:not([orient="vertical"])
         #tabs-newtab-button:hover {
         fill: color-mix(
           in srgb,
@@ -8123,8 +8154,10 @@
         ) !important; /* Hardcoded for compatibility */
       }
       :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+        #tabbrowser-tabs:not([orient="vertical"])
         #tabs-newtab-button:hover:active,
       :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+        #tabbrowser-tabs:not([orient="vertical"])
         #tabs-newtab-button:hover:active {
         fill: color-mix(
           in srgb,
@@ -8138,8 +8171,10 @@
               :not([lwtheme]),
               :not(:-moz-lwtheme)
             )
+            #tabbrowser-tabs:not([orient="vertical"])
             #tabs-newtab-button:hover,
           :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+            #tabbrowser-tabs:not([orient="vertical"])
             #tabs-newtab-button:hover {
             background-image: var(--uc-tab-corner-left-side-svg),
               linear-gradient(
@@ -8153,8 +8188,10 @@
               :not([lwtheme]),
               :not(:-moz-lwtheme)
             )
+            #tabbrowser-tabs:not([orient="vertical"])
             #tabs-newtab-button:hover:active,
           :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+            #tabbrowser-tabs:not([orient="vertical"])
             #tabs-newtab-button:hover:active {
             background-image: var(--uc-tab-corner-left-side-svg),
               linear-gradient(
@@ -8169,7 +8206,7 @@
     }
   }
   /* '+'Icon */
-  #tabs-newtab-button .toolbarbutton-icon {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button .toolbarbutton-icon {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
     padding: calc(var(--toolbarbutton-inner-padding) - var(--tab-block-margin) / 4) var(--toolbarbutton-inner-padding)
       calc(var(--toolbarbutton-inner-padding) + var(--tab-block-margin) / 4 + var(--uc-tabs-navbar-shadow-size)) !important;
@@ -8178,7 +8215,7 @@
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
   }
   @media -moz-pref("userChrome.tab.bottom_rounded_corner.wave") or -moz-pref("userChrome.tab.bottom_rounded_corner.australis") or -moz-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") or -moz-pref("userChrome.tab.bottom_rounded_corner.edge") {
-    #tabs-newtab-button .toolbarbutton-icon {
+    #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button .toolbarbutton-icon {
       --tab-border-radius: 0px;
       width: unset !important;
       padding-inline: 0px !important;
@@ -21586,26 +21623,26 @@
 /** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @media (-moz-bool-pref: "userChrome.tab.connect_to_window") {
-  #tabbrowser-tabs[orient="horizontal"] {
+  #tabbrowser-tabs:not([orient="vertical"]) {
     min-height: unset !important; /* Original: var(--tabstrip-min-height) */
   }
-  #tabbrowser-tabs[orient="vertical"] {
-    --uc-tab-border-bottom-radius: var(--tab-border-radius);
-  }
-  .tab-background {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-background {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) var(--uc-tab-border-bottom-radius, 0px)
       var(--uc-tab-border-bottom-radius, 0px) !important;
     margin-bottom: 0px !important;
   }
-  .tab-content {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-content {
     margin-top: 0px;
   }
-  .tab-stack {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
   }
-  #tabbrowser-tabs[orient="horizontal"] tab-group .tabbrowser-tab:is([selected], [multiselected]) .tab-group-line {
+  #tabbrowser-tabs:not([orient="vertical"]) tab-group .tabbrowser-tab:is([selected], [multiselected]) .tab-group-line {
     transform: translateY(calc(var(--tab-group-line-thickness) * -1));
+  }
+  #tabbrowser-tabs[orient="vertical"] {
+    --uc-tab-border-bottom-radius: var(--tab-border-radius);
   }
   /* Remove line at Toolbar's top */
   #tabbrowser-tabs {
@@ -21724,10 +21761,12 @@
 }
 /*= Multi Selected Color - More Contrast =====================================*/
 @media (-moz-bool-pref: "userChrome.tab.multi_selected") {
-  #TabsToolbar {
+  #TabsToolbar,
+  #vertical-tabs {
     --uc-multiselected-tab-bgcolor: color-mix(in srgb, currentColor 28%, var(--toolbar-bgcolor, transparent));
   }
-  #TabsToolbar[brighttext] {
+  #TabsToolbar[brighttext],
+  #vertical-tabs[brighttext] {
     --uc-multiselected-tab-bgcolor: color-mix(in srgb, currentColor 16%, var(--toolbar-bgcolor, transparent));
   }
   #tabbrowser-tabs:not([movingtab])
@@ -22554,8 +22593,8 @@
   /* Latest Tab & New tab margin */
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") {
-  .tab-stack::before,
-  #tabs-newtab-button::before {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
     /* Box Model */
     content: "";
     display: block;
@@ -22573,19 +22612,20 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.compatibility.dynamic_separator") {
-  .tab-stack::before,
-  #tabs-newtab-button::before {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
     background-color: var(--tabs-border-color);
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") {
-  #tabs-newtab-button::before {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
     left: calc(50% - (8px + var(--toolbarbutton-inner-padding)));
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (not (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab")) {
-  .tab-stack::before,
-  #tabbrowser-arrowscrollbox:not([overflowing])
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     /* Box Model */
@@ -22603,64 +22643,73 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (not (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab")) and (-moz-bool-pref: "userChrome.compatibility.dynamic_separator") {
-  .tab-stack::before,
-  #tabbrowser-arrowscrollbox:not([overflowing])
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     background-color: var(--tabs-border-color);
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (not (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab")) {
-  .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before {
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (not (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab")) {
-  .tabbrowser-tab:last-of-type .tab-stack::after {
+  #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab:last-of-type .tab-stack::after {
     right: 0;
     transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") {
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type)
+    .tab-stack::before {
     opacity: var(--tab-separator-opacity);
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) {
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
+    .tab-stack::before {
     opacity: var(--tab-separator-opacity);
     transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
   }
 }
 @media screen and (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first")) and (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive") and (min-width: 1100px) {
-  .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"])
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
+    .tab-stack::before {
     opacity: var(--tab-separator-opacity);
     transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") {
-  #tabs-newtab-button:not(:hover, [open])::before {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:not(:hover, [open])::before {
     opacity: var(--tab-separator-opacity);
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (not (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab")) {
-  #tabbrowser-arrowscrollbox:not([overflowing])
+  #tabbrowser-tabs:not([orient="vertical"])
+    #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     opacity: var(--tab-separator-opacity);
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") {
-  #tabbrowser-tabs[orient="horizontal"]
+  #tabbrowser-tabs:not([orient="vertical"])
     tab-group:has(.tabbrowser-tab:last-child:is(:hover, [selected]))
     + .tabbrowser-tab
     .tab-stack::before,
-  #tabbrowser-tabs[orient="horizontal"] tab-group[collapsed] + .tabbrowser-tab .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"]) tab-group[collapsed] + .tabbrowser-tab .tab-stack::before {
     opacity: 0 !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") {
   #navigator-toolbox:not([movingtab])
+    #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))):is(
       [visuallyselected],
       [multiselected],
@@ -22668,6 +22717,7 @@
     )
     .tab-stack::before,
   #navigator-toolbox:not([movingtab])
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabbrowser-arrowscrollbox[overflowing]
     tab.tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden])))
     .tab-stack::before {
@@ -22676,13 +22726,16 @@
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") {
   #navigator-toolbox:not([movingtab])
+    #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab
     .tab-stack::before,
   #navigator-toolbox:not([movingtab])
+    #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
     ~ #tabs-newtab-button::before,
   #navigator-toolbox:not([movingtab])
+    #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
     ~ #tabbrowser-arrowscrollbox-periphery
     #tabs-newtab-button::before {
@@ -22690,37 +22743,39 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (not (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab")) {
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+  #tabbrowser-tabs:not([orient="vertical"])
+    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab:not([visuallyselected])
     .tab-stack::before {
     opacity: 0 !important;
   }
-  :root:not([uidensity="compact"]) #tabs-newtab-button > .toolbarbutton-icon {
+  :root:not([uidensity="compact"]) #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button > .toolbarbutton-icon {
     margin-left: 2px;
   }
-  :root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
+  :root[uidensity="compact"] #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button > .toolbarbutton-icon {
     margin-left: 1px;
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (prefers-reduced-motion: no-preference) {
-  .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (prefers-reduced-motion: no-preference) and (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") {
-  #tabs-newtab-button::before {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (prefers-reduced-motion: no-preference) and (not (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab")) {
-  #tabbrowser-arrowscrollbox:not([overflowing])
+  #tabbrowser-tabs:not([orient="vertical"])
+    #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") {
-  #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
     margin-inline-end: 1px !important;
   }
 }
@@ -22831,7 +22886,7 @@
   /* Fix tab overlap #678 */
 }
 @media (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
-  #tabs-newtab-button {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
     /* Size */
     align-items: stretch !important;
     -moz-box-align: stretch !important;
@@ -22839,7 +22894,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") {
-  #tabs-newtab-button {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
     /* Original:
      margin: 0 0 var(--tabs-navbar-shadow-size) !important
      => Can't override style. Therefore, we should approach it by bypass.
@@ -22865,7 +22920,7 @@
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome_legacy"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
-  #tabs-newtab-button {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
     --uc-newtab-position: 0px;
     --uc-newtab-non-corner-bgwidth: 0px;
     --uc-tab-corner-half-height: calc(var(--uc-tab-corner-height) / 2);
@@ -22894,7 +22949,7 @@
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
-  #tabs-newtab-button {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button {
     --uc-newtab-non-corner-bgwidth: calc(2 * var(--toolbarbutton-inner-padding));
   }
 }
@@ -22910,14 +22965,18 @@
 }
 @media (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) {
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover {
     fill: color-mix(in srgb, AccentColorText 10%, transparent) !important; /* Hardcoded for compatibility */
   }
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active {
     fill: color-mix(in srgb, AccentColorText 15%, transparent) !important; /* Hardcoded for compatibility */
   }
@@ -22928,8 +22987,10 @@
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -22940,8 +23001,10 @@
       var(--uc-tab-corner-right-side-svg);
   }
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -22954,8 +23017,10 @@
 }
 @media (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") {
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover {
     fill: color-mix(
       in srgb,
@@ -22964,8 +23029,10 @@
     ) !important; /* Hardcoded for compatibility */
   }
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active {
     fill: color-mix(
       in srgb,
@@ -22980,8 +23047,10 @@
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "userChrome.compatibility.accent_color") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -22992,8 +23061,10 @@
       var(--uc-tab-corner-right-side-svg);
   }
   :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-window-inactive):is(:not([lwtheme]), :not(:-moz-lwtheme))
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active,
   :root:is([tabsintitlebar], [customtitlebar])[lwt-default-theme-in-dark-mode]:not(:-moz-window-inactive)
+    #tabbrowser-tabs:not([orient="vertical"])
     #tabs-newtab-button:hover:active {
     background-image: var(--uc-tab-corner-left-side-svg),
       linear-gradient(
@@ -23005,7 +23076,7 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") {
-  #tabs-newtab-button .toolbarbutton-icon {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button .toolbarbutton-icon {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
     padding: calc(var(--toolbarbutton-inner-padding) - var(--tab-block-margin) / 4) var(--toolbarbutton-inner-padding)
       calc(var(--toolbarbutton-inner-padding) + var(--tab-block-margin) / 4 + var(--uc-tabs-navbar-shadow-size)) !important;
@@ -23019,7 +23090,7 @@
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome_legacy"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.chrome"),
   (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") and (-moz-bool-pref: "userChrome.tab.bottom_rounded_corner.edge") {
-  #tabs-newtab-button .toolbarbutton-icon {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button .toolbarbutton-icon {
     --tab-border-radius: 0px;
     width: unset !important;
     padding-inline: 0px !important;
