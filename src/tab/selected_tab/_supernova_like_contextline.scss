@@ -1,51 +1,45 @@
-.tab-context-line {
+/* context line styles */
+tabs tab.tabbrowser-tab > .tab-stack > .tab-background > .tab-context-line {
   @include InlineBox(true);
-  height: 1px !important;
-  border-radius: 9999px !important;
-  transform: translateY(5px);
-  margin-top: -1px !important;
-  margin-left: 5px;
-  margin-right: 5px;
+  &::before {
+    content: "";
+    height: 1px !important;
+    border-radius: 9999px !important;
+    transform: translateY(5px);
+    margin-top: -1px !important;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+  }
 }
 
-/* Override container tab style */
+/* Override container-tab style */
 tabs tab.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
-  margin-top: 3px !important;
-  margin-left: 5px !important;
-  margin-right: 5px !important;
+  margin: unset !important;
 }
 
-tab.tabbrowser-tab[usercontextid]:not([selected="true"], [multiselected])
-  > .tab-stack
-  > .tab-background
-  > .tab-context-line {
-  opacity: 0;
-  transition: all 0.2s cubic-bezier(0, 0.9, 0.15, 1) !important;
-}
-
+/* selected tab style */
 #{built-in-light-theme()} .tab-context-line,
 #{built-in-dark-theme()} .tab-context-line {
   --tab-line-color: #45a1ff;
 }
-.tabbrowser-tab:is([selected], [multiselected]) .tab-context-line {
-  background-color: var(--tab-line-color, #45a1ff) !important;
+.tabbrowser-tab:is([selected], [multiselected]) .tab-context-line::before {
+  background-color: var(--tab-line-color, var(--lwt-tab-line-color, #45a1ff)) !important;
 }
 
 /* Set the active effect */
-tabs tab.tabbrowser-tab[usercontextid]:active > .tab-stack > .tab-background > .tab-context-line {
-  margin-left: 6px !important;
-  margin-right: 6px !important;
-}
-
-.tabbrowser-tab:active > .tab-stack > .tab-background > .tab-context-line {
-  background: #217ddb !important;
+.tabbrowser-tab:active > .tab-stack > .tab-background > .tab-context-line::before {
+  filter: brightness(70%);
   margin-left: 6px;
   margin-right: 6px;
 }
 
 /* Set the hover effect */
-.tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
-  background-color: rgba(0, 0, 0, 0.2) !important;
+.tabbrowser-tab:hover:not([selected="true"], [multiselected])
+  > .tab-stack
+  > .tab-background
+  > .tab-context-line::before {
+  background-color: rgba(0, 0, 0, 0.4) !important;
   opacity: 1 !important;
 }
 
@@ -53,22 +47,18 @@ tabs tab.tabbrowser-tab[usercontextid]:active > .tab-stack > .tab-background > .
   .tabbrowser-tab:hover:not([selected="true"], [multiselected])
   > .tab-stack
   > .tab-background
-  > .tab-context-line {
-  background-color: #ffffff50 !important;
+  > .tab-context-line::before {
+  background-color: rgba(255, 255, 255, 0.4) !important;
 }
+
 
 /* Animation */
 @media (prefers-reduced-motion: no-preference) {
-  .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
-    animation: toWide 0.2s cubic-bezier(0, 0.9, 0.15, 1);
-  }
-
-  /* Animation for container tab can't have width change... */
-  tab.tabbrowser-tab[usercontextid]:hover:not([selected="true"], [multiselected])
+  .tabbrowser-tab:hover:not([selected="true"], [multiselected])
     > .tab-stack
     > .tab-background
-    > .tab-context-line {
-    opacity: 1;
+    > .tab-context-line::before {
+    animation: toWide 0.2s cubic-bezier(0, 0.9, 0.15, 1);
   }
 }
 
