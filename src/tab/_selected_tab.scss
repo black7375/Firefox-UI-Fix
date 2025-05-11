@@ -68,8 +68,26 @@
   @import "selected_tab/photon_like_contextline";
 }
 
+/*= Selected Tab - Supernova like contextline ===================================*/
 @include NotOption("userChrome.tab.photon_like_contextline") {
   @include Option("userChrome.tab.supernova_like_contextline") {
     @import "selected_tab/supernova_like_contextline";
+
+    @include Option("userChrome.tab.contextline_blue_accent") {
+      #tabbrowser-tabs .tab-context-line {
+        --tab-line-color: #45a1ff !important;
+      }
+    }
+    @include NotOption("userChrome.tab.contextline_blue_accent") {
+      @include OS("linux") {
+        @include not_lwtheme {
+          #tabbrowser-tabs .tab-context-line {
+            @include AccentColor("Highlight") {
+              --tab-line-color: #{$accentColor} !important; /* -moz-accent-color */
+            }
+          }
+        }
+      }
+    }
   }
 }
