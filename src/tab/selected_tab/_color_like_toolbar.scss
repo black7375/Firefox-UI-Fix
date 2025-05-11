@@ -15,6 +15,17 @@
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
   > .tab-stack
+  > .tab-background[selected],
+#tabbrowser-arrowscrollbox
+  > tab-group
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[selected],
+#tabbrowser-tabs[orient="horizontal"]:not([movingtab])
+  > #tabbrowser-arrowscrollbox
+  > tab-group
+  > .tabbrowser-tab
+  > .tab-stack
   > .tab-background[selected] {
   @include lwtheme(false) {
     /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)

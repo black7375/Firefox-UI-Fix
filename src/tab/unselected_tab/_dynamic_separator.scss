@@ -40,42 +40,42 @@
 }
 
 @include Option("userChrome.tab.newtab_button_like_tab") {
-  .tab-stack::before,
-  #tabs-newtab-button::before {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
     @include _dynamicSeparatorShape;
 
     /* More position */
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y));
   }
-  #tabs-newtab-button::before {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
     left: calc(50%  - (8px + var(--toolbarbutton-inner-padding)));
   }
 }
 
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
-  .tab-stack::before,
-  #tabbrowser-arrowscrollbox:not([overflowing])
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     @include _dynamicSeparatorShape;
   }
 
-  .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before {
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
-  .tabbrowser-tab:last-of-type .tab-stack::after {
+  #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab:last-of-type .tab-stack::after {
     right: 0;
     transform: translateX(var(--end-tab-separator-position-x)) translateY(var(--tab-separator-position-y)) !important;
   }
 }
 
-.tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
+#tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
   opacity: var(--tab-separator-opacity);
 }
 @include Option("userChrome.tabbar.one_liner") {
   @include NotOption("userChrome.tabbar.one_liner.tabbar_first") {
     @include OneLinerContent {
-      .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
+      #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before {
         opacity: var(--tab-separator-opacity);
         transform: translateX(var(--start-tab-separator-position-x)) translateY(var(--tab-separator-position-y));
       }
@@ -83,68 +83,75 @@
   }
 }
 @include Option("userChrome.tab.newtab_button_like_tab") {
-  #tabs-newtab-button:not(:hover, [open])::before {
+  #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button:not(:hover, [open])::before {
     opacity: var(--tab-separator-opacity);
   }
 }
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
-  #tabbrowser-arrowscrollbox:not([overflowing])
+  #tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
     .tab-stack::after {
     opacity: var(--tab-separator-opacity);
   }
 }
 
-#navigator-toolbox:not([movingtab])
+#tabbrowser-tabs:not([orient="vertical"]) tab-group {
+  &:has(.tabbrowser-tab:last-child:is(:hover, [selected])) + .tabbrowser-tab .tab-stack::before,
+  &[collapsed] + .tabbrowser-tab .tab-stack::before {
+    opacity: 0 !important;
+  }
+}
+
+#navigator-toolbox:not([movingtab]) #tabbrowser-tabs:not([orient="vertical"])
   .tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden]))):is([visuallyselected], [multiselected], :hover)
   .tab-stack::before,
-#navigator-toolbox:not([movingtab])
+#navigator-toolbox:not([movingtab]) #tabbrowser-tabs:not([orient="vertical"])
   #tabbrowser-arrowscrollbox[overflowing]
   tab.tabbrowser-tab:is([first-visible-unpinned-tab], :nth-child(1 of :not([pinned], [hidden])))
   .tab-stack::before {
   opacity: 0 !important;
 }
 @include Option("userChrome.tab.newtab_button_like_tab") {
-  #navigator-toolbox:not([movingtab])
+  #navigator-toolbox:not([movingtab]) #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab
     .tab-stack::before,
-  #navigator-toolbox:not([movingtab])
+  #navigator-toolbox:not([movingtab]) #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
     ~ #tabs-newtab-button::before, /* Legacy - v103 */
-  #navigator-toolbox:not([movingtab])
+  #navigator-toolbox:not([movingtab]) #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:last-of-type:is([visuallyselected], [multiselected], :hover)
     ~ #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button::before {
     opacity: 0 !important;
   }
 }
 @include NotOption("userChrome.tab.newtab_button_like_tab") {
-  .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+  #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
     + .tabbrowser-tab:not([visuallyselected])
     .tab-stack::before {
     opacity: 0 !important;
   }
 
-  :root:not([uidensity="compact"]) #tabs-newtab-button > .toolbarbutton-icon {
+  :root:not([uidensity="compact"]) #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button > .toolbarbutton-icon {
     margin-left: 2px;
   }
-  :root[uidensity="compact"] #tabs-newtab-button > .toolbarbutton-icon {
+  :root[uidensity="compact"] #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button > .toolbarbutton-icon {
     margin-left: 1px;
   }
 }
 
 /* Animate */
 @include Animate {
-  .tab-stack::before {
+  #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before {
     transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
   }
   @include Option("userChrome.tab.newtab_button_like_tab") {
-    #tabs-newtab-button::before {
+    #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
       transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
     }
   }
   @include NotOption("userChrome.tab.newtab_button_like_tab") {
-    #tabbrowser-arrowscrollbox:not([overflowing])
+    #tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing])
       .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):last-of-type
       .tab-stack::after {
       transition: opacity 0.2s var(--animation-easing-function); /* cubic-bezier(.07, .95, 0, 1) */
@@ -153,6 +160,6 @@
 }
 
 /* Latest Tab & New tab margin */
-#tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
+#tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
   margin-inline-end: 1px !important;
 }

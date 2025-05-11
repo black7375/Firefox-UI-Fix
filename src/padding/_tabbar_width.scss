@@ -92,6 +92,14 @@
 }
 .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
   max-width: var(--tab-max-width) !important; /* Original: 225px */
+
+  #tabbrowser-tabs[orient="horizontal"] tab-group[collapsed] > & {
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;;
+    margin: 0 !important;
+    overflow-clip-margin: 0;
+  }
 }
 
 /* neighbouring tabs should "pinch" together */
@@ -99,6 +107,9 @@
 #tabbrowser-tabs:not([hasadjacentnewtabbutton]):not([overflow="true"])
   > #tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery {
   min-width: 3px; // With Panorama Tab Groups #643 #846
+}
+#tabbrowser-tabs[orient="horizontal"] .tab-group-label-container {
+  margin-inline-start: 4px !important;
 }
 @include NotOption("userChrome.tab.photon_like_padding") {
   @include Option("userChrome.tab.lepton_like_padding") {
