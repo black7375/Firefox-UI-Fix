@@ -11959,6 +11959,17 @@
       background-size: 16px !important;
       background-image: var(--avatar-image-url) !important;
     }
+    #appMenu-profiles-button > image,
+    #appMenu-empty-profiles-button > image {
+      fill: transparent !important;
+    }
+    #appMenu-empty-profiles-button,
+    #PanelUI-fxa-menu-empty-profiles-button {
+      list-style-image: url("chrome://browser/content/profiles/assets/16_heart.svg");
+    }
+    #profiles-manage-profiles-button {
+      list-style-image: url("chrome://global/skin/icons/settings.svg");
+    }
     #new-tab-button {
       list-style-image: var(--uc-new-tab-icon) !important;
     }
@@ -12540,6 +12551,7 @@
         #goPopup,
         #historyMenuPopup,
         #bookmarksMenuPopup,
+        #menu_ProfilesPopup,
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
@@ -12553,6 +12565,7 @@
         #goPopup,
         #historyMenuPopup,
         #bookmarksMenuPopup,
+        #menu_ProfilesPopup,
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
@@ -12626,6 +12639,7 @@
         #goPopup,
         #historyMenuPopup,
         #bookmarksMenuPopup,
+        #menu_ProfilesPopup,
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
@@ -12639,6 +12653,7 @@
         #goPopup,
         #historyMenuPopup,
         #bookmarksMenuPopup,
+        #menu_ProfilesPopup,
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
@@ -12724,6 +12739,7 @@
           #goPopup,
           #historyMenuPopup,
           #bookmarksMenuPopup,
+          #menu_ProfilesPopup,
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
@@ -12737,6 +12753,7 @@
           #goPopup,
           #historyMenuPopup,
           #bookmarksMenuPopup,
+          #menu_ProfilesPopup,
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
@@ -12800,6 +12817,7 @@
               #goPopup,
               #historyMenuPopup,
               #bookmarksMenuPopup,
+              #menu_ProfilesPopup,
               #menu_ToolsPopup,
               #windowPopup,
               #menu_HelpPopup,
@@ -12813,6 +12831,7 @@
               #goPopup,
               #historyMenuPopup,
               #bookmarksMenuPopup,
+              #menu_ProfilesPopup,
               #menu_ToolsPopup,
               #windowPopup,
               #menu_HelpPopup,
@@ -12986,6 +13005,7 @@
           #goPopup,
           #historyMenuPopup,
           #bookmarksMenuPopup,
+          #menu_ProfilesPopup,
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
@@ -12999,6 +13019,7 @@
           #goPopup,
           #historyMenuPopup,
           #bookmarksMenuPopup,
+          #menu_ProfilesPopup,
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
@@ -13072,6 +13093,7 @@
             #goPopup,
             #historyMenuPopup,
             #bookmarksMenuPopup,
+            #menu_ProfilesPopup,
             #menu_ToolsPopup,
             #windowPopup,
             #menu_HelpPopup,
@@ -13085,6 +13107,7 @@
             #goPopup,
             #historyMenuPopup,
             #bookmarksMenuPopup,
+            #menu_ProfilesPopup,
             #menu_ToolsPopup,
             #windowPopup,
             #menu_HelpPopup,
@@ -14249,6 +14272,10 @@
       #bookmarksMenu {
         --menuitem-image: url("chrome://browser/skin/bookmark.svg");
       }
+      #profiles-menu:is(menu) {
+        fill: transparent !important;
+        --menuitem-image: url("chrome://browser/content/profiles/assets/16_heart.svg");
+      }
       #tools-menu {
         --menuitem-image: url("../icons/toolbox.svg");
       }
@@ -14467,6 +14494,10 @@
       }
       #menu_searchBookmarks {
         --menuitem-image: url("chrome://global/skin/icons/search-glass.svg");
+      }
+      /*= menu_ProfilesPopup =======================================================*/
+      #menu_manageProfiles {
+        --menuitem-image: url("chrome://global/skin/icons/settings.svg");
       }
       /*= menu_ToolsPopup ==========================================================*/
       #menu_openDownloads {
