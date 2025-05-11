@@ -1,21 +1,26 @@
-#tabbrowser-tabs[orient="horizontal"] {
+#tabbrowser-tabs:not([orient="vertical"]) {
   min-height: unset !important; /* Original: var(--tabstrip-min-height) */
+
+  .tab-background {
+    border-radius: var(--tab-border-radius) var(--tab-border-radius) var(--uc-tab-border-bottom-radius, 0px) var(--uc-tab-border-bottom-radius, 0px) !important;
+    margin-bottom: 0px !important;
+  }
+
+  .tab-content {
+    margin-top: 0px; // #892 Consider var(--tab-block-margin)
+  }
+
+  .tab-stack {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  tab-group .tabbrowser-tab:is([selected], [multiselected]) .tab-group-line {
+    transform: translateY(calc(var(--tab-group-line-thickness) * -1));
+  }
 }
 #tabbrowser-tabs[orient="vertical"] {
   --uc-tab-border-bottom-radius: var(--tab-border-radius);
-}
-.tab-background {
-  border-radius: var(--tab-border-radius) var(--tab-border-radius) var(--uc-tab-border-bottom-radius, 0px) var(--uc-tab-border-bottom-radius, 0px) !important;
-  margin-bottom: 0px !important;
-}
-
-.tab-content {
-  margin-top: 0px; // #892 Consider var(--tab-block-margin)
-}
-
-.tab-stack {
-  margin-top: 0px !important;
-  margin-bottom: 0px !important;
 }
 
 /* Remove line at Toolbar's top */

@@ -29,6 +29,20 @@
   background-image: var(--avatar-image-url) !important;
 }
 
+#appMenu-profiles-button > image,
+#appMenu-empty-profiles-button > image {
+  // Using stroke
+  fill: transparent !important;
+}
+#appMenu-empty-profiles-button,
+#PanelUI-fxa-menu-empty-profiles-button {
+  list-style-image: url("chrome://browser/content/profiles/assets/16_heart.svg");
+}
+
+#profiles-manage-profiles-button {
+  list-style-image: url("chrome://global/skin/icons/settings.svg");
+}
+
 #new-tab-button {
   list-style-image: var(--uc-new-tab-icon) !important;
 }
