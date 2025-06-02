@@ -114,7 +114,7 @@ $_layoutCommonMenus: (
 @include OS($linux) {
   @include _layout_root_linux;
 
-  #{$_globalMenus} > .menubar-text {
+  #{$_globalMenus} > :is(.menubar-text, .menu-text) {
     @include _layout_init_linux;
   }
 }

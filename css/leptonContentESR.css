@@ -2600,7 +2600,7 @@
         }
         #placesToolbar > toolbarbutton > .toolbarbutton-icon,
         #placesMenu > menu > image,
-        #placesMenu > menu > .menubar-text {
+        #placesMenu > menu > :is(.menubar-text, .menu-text) {
           -moz-context-properties: fill !important;
           fill: currentColor !important;
         }
@@ -2630,7 +2630,7 @@
           background-color: var(--organizer-selected-background) !important;
           color: var(--organizer-selected-color) !important;
         }
-        #placesMenu > menu > .menubar-text {
+        #placesMenu > menu > :is(.menubar-text, .menu-text) {
           margin-block: 0 !important; /* override menu.css */
           padding-inline-end: 4px !important;
         }
