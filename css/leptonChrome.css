@@ -250,9 +250,6 @@
       color: inherit !important; /* Original: -moz-menubarhovertext */
       background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
     }
-    /*= Linux - Titlebar button at lwtheme =====================================*/
-    @media not -moz-pref("userChrome.compatibility.os.linux_non_native_titlebar_button") {
-    }
   }
   /*= Linux - Light System Default Theme's Selected Tab ========================*/
   @media (-moz-gtk-csd-available) and (prefers-color-scheme: light) {
@@ -12202,6 +12199,17 @@
       #main-menubar > menu menupopup {
         --menuitem-image: none; /* Prevent Image Inheritance */
       }
+      @media (-moz-platform: windows) {
+        #main-menubar > menu > :is(.menubar-text, .menu-text) {
+          transform: translateY(-1px) !important; /* Fix menu top padding position */
+          padding-inline-start: 0.3em !important;
+        }
+      }
+      @media (-moz-gtk-csd-available) {
+        #main-menubar > menu > :is(.menubar-text, .menu-text) {
+          padding-inline-start: 3px;
+        }
+      }
       @media not -moz-pref("userChrome.padding.global_menubar") {
         #main-menubar > menu {
           padding-block: 2px !important;
@@ -12368,9 +12376,6 @@
       :root {
         --context-menu-background-padding-default: 6px;
         --context-menu-text-padding: 21px;
-      }
-      #main-menubar > menu > :is(.menubar-text, .menu-text) {
-        padding-inline-start: 3px;
       }
     }
     /* Padding - Mac */
@@ -14398,7 +14403,6 @@
     color: inherit !important; /* Original: -moz-menubarhovertext */
     background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
   }
-  /*= Linux - Titlebar button at lwtheme =====================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.os") and (-moz-gtk-csd-available) and (prefers-color-scheme: light) {
   /* Because of
@@ -27735,6 +27739,17 @@
     --menuitem-image: none; /* Prevent Image Inheritance */
   }
 }
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menubar") and (-moz-platform: windows) {
+  #main-menubar > menu > :is(.menubar-text, .menu-text) {
+    transform: translateY(-1px) !important; /* Fix menu top padding position */
+    padding-inline-start: 0.3em !important;
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menubar") and (-moz-gtk-csd-available) {
+  #main-menubar > menu > :is(.menubar-text, .menu-text) {
+    padding-inline-start: 3px;
+  }
+}
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.global_menubar") and (not (-moz-bool-pref: "userChrome.padding.global_menubar")) {
   #main-menubar > menu {
     padding-block: 2px !important;
@@ -27888,9 +27903,6 @@
   :root {
     --context-menu-background-padding-default: 6px;
     --context-menu-text-padding: 21px;
-  }
-  #main-menubar > menu > :is(.menubar-text, .menu-text) {
-    padding-inline-start: 3px;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
