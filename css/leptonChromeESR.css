@@ -380,27 +380,6 @@
       background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
     }
     /*= Linux - Titlebar button at lwtheme =====================================*/
-    @supports not -moz-bool-pref("userChrome.compatibility.os.linux_non_native_titlebar_button") {
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button {
-        appearance: none !important;
-      }
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button > .toolbarbutton-icon {
-        appearance: auto !important;
-        width: unset !important;
-        height: unset !important;
-      }
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-min,
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-max,
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-restore,
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-close {
-        list-style-image: none !important;
-      }
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button,
-      :root:is(:-moz-lwtheme, [lwtheme]) .titlebar-button:hover:active {
-        background-color: unset !important;
-        color: unset !important;
-      }
-    }
   }
   /*= Linux - Light System Default Theme's Selected Tab ========================*/
   @media (-moz-gtk-csd-available) and (-moz-toolbar-prefers-color-scheme: light),
