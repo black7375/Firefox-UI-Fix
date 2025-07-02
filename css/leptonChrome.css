@@ -1248,8 +1248,11 @@
       width: unset !important;
     }
     .menu-iconic-left .menu-iconic-icon,
+    .menu-iconic-left .menu-icon,
     menuitem[type="checkbox"] .menu-iconic-icon,
-    menuitem[type="radio"] .menu-iconic-icon {
+    menuitem[type="checkbox"] .menu-icon,
+    menuitem[type="radio"] .menu-iconic-icon,
+    menuitem[type="radio"] .menu-icon {
       appearance: none !important;
     }
   }
@@ -1278,7 +1281,8 @@
     }
   }
   @media (-moz-gtk-csd-available) {
-    menuitem[checked="true"] > .menu-iconic-left {
+    menuitem[checked="true"] > .menu-iconic-left,
+    menuitem[checked="true"] > .menu-icon {
       -moz-context-properties: fill, fill-opacity !important;
       fill: currentColor !important;
       fill-opacity: var(--menu-icon-opacity) !important;
@@ -1308,7 +1312,7 @@
   @media (-moz-gtk-csd-available) {
     menupopup {
       /* Disable the default appearance so we can override the native styling. */
-      appearance: none !important !important;
+      appearance: none !important;
       /* Prevent any background or border around the outside of the shadow. */
       background-color: transparent !important;
       border: none !important;
@@ -1391,13 +1395,15 @@
     }
   }
   @media (-moz-gtk-csd-available) {
-    #context-navigation > .menuitem-iconic > .menu-iconic-left {
+    #context-navigation > .menuitem-iconic > .menu-iconic-left,
+    #context-navigation > .menuitem-iconic > .menu-icon {
       margin: 0 !important;
       padding: 0 !important;
     }
   }
   @media (-moz-gtk-csd-available) {
-    #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon {
+    #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon,
+    #context-navigation > .menuitem-iconic > .menu-icon {
       width: var(--menuitem-min-width) !important;
       height: 32px !important;
       padding: 8px 1em !important;
@@ -1405,7 +1411,8 @@
     }
   }
   @media (-moz-gtk-csd-available) {
-    #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-iconic-left > .menu-iconic-icon {
+    #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-iconic-left > .menu-iconic-icon,
+    #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-icon {
       background-color: var(--menuitem-hover-background-color) !important;
     }
   }
@@ -1413,7 +1420,8 @@
     #context-navigation
       > .menuitem-iconic[_moz-menuactive="true"][disabled="true"]
       > .menu-iconic-left
-      > .menu-iconic-icon {
+      > .menu-iconic-icon,
+    #context-navigation > .menuitem-iconic[_moz-menuactive="true"][disabled="true"] > .menu-icon {
       background-color: transparent !important;
     }
   }
@@ -12050,7 +12058,9 @@
     menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
     menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]),
     menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-iconic-left > .menu-iconic-icon,
+    menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-icon,
     menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-iconic-left > .menu-iconic-icon,
+    menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-icon,
     #main-menubar > menu {
       -moz-appearance: none !important; /* Linux: menulist */
     }
@@ -12392,6 +12402,9 @@
       }
       #main-menubar > menu > .menubar-text {
         padding-inline-start: 3px;
+      }
+      .menu-icon {
+        display: unset !important;
       }
     }
     /* Padding - Mac */
@@ -15416,8 +15429,11 @@
     width: unset !important;
   }
   .menu-iconic-left .menu-iconic-icon,
+  .menu-iconic-left .menu-icon,
   menuitem[type="checkbox"] .menu-iconic-icon,
-  menuitem[type="radio"] .menu-iconic-icon {
+  menuitem[type="checkbox"] .menu-icon,
+  menuitem[type="radio"] .menu-iconic-icon,
+  menuitem[type="radio"] .menu-icon {
     appearance: none !important;
   }
 }
@@ -15446,7 +15462,8 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
-  menuitem[checked="true"] > .menu-iconic-left {
+  menuitem[checked="true"] > .menu-iconic-left,
+  menuitem[checked="true"] > .menu-icon {
     -moz-context-properties: fill, fill-opacity !important;
     fill: currentColor !important;
     fill-opacity: var(--menu-icon-opacity) !important;
@@ -15476,7 +15493,7 @@
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
   menupopup {
     /* Disable the default appearance so we can override the native styling. */
-    appearance: none !important !important;
+    appearance: none !important;
     /* Prevent any background or border around the outside of the shadow. */
     background-color: transparent !important;
     border: none !important;
@@ -15559,13 +15576,15 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
-  #context-navigation > .menuitem-iconic > .menu-iconic-left {
+  #context-navigation > .menuitem-iconic > .menu-iconic-left,
+  #context-navigation > .menuitem-iconic > .menu-icon {
     margin: 0 !important;
     padding: 0 !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
-  #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon {
+  #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon,
+  #context-navigation > .menuitem-iconic > .menu-icon {
     width: var(--menuitem-min-width) !important;
     height: 32px !important;
     padding: 8px 1em !important;
@@ -15573,7 +15592,8 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
-  #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-iconic-left > .menu-iconic-icon {
+  #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-iconic-left > .menu-iconic-icon,
+  #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-icon {
     background-color: var(--menuitem-hover-background-color) !important;
   }
 }
@@ -15581,7 +15601,8 @@
   #context-navigation
     > .menuitem-iconic[_moz-menuactive="true"][disabled="true"]
     > .menu-iconic-left
-    > .menu-iconic-icon {
+    > .menu-iconic-icon,
+  #context-navigation > .menuitem-iconic[_moz-menuactive="true"][disabled="true"] > .menu-icon {
     background-color: transparent !important;
   }
 }
@@ -27584,7 +27605,9 @@
   menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]),
   menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]),
   menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-iconic-left > .menu-iconic-icon,
+  menupopup menuitem:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-icon,
   menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-iconic-left > .menu-iconic-icon,
+  menupopup menu:not([type="checkbox"][checked="true"], [type="radio"]) > .menu-icon,
   #main-menubar > menu {
     -moz-appearance: none !important; /* Linux: menulist */
   }
@@ -27935,6 +27958,9 @@
   }
   #main-menubar > menu > .menubar-text {
     padding-inline-start: 3px;
+  }
+  .menu-icon {
+    display: unset !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
