@@ -167,31 +167,6 @@
     color: inherit !important; /* Original: -moz-menubarhovertext */
     background-color: color-mix(in srgb, currentColor 20%, transparent) !important; /* Original: -moz-menuhover */
   }
-
-  /*= Linux - Titlebar button at lwtheme =====================================*/
-  @include NotOption("userChrome.compatibility.os.linux_non_native_titlebar_button") {
-    @include lwtheme {
-      .titlebar-button {
-        appearance: none !important;
-        > .toolbarbutton-icon {
-          appearance: auto !important;
-          width: unset !important;
-          height: unset !important;
-        }
-      }
-      .titlebar-min,
-      .titlebar-max,
-      .titlebar-restore,
-      .titlebar-close {
-        list-style-image: none !important;
-      }
-      .titlebar-button,
-      .titlebar-button:hover:active {
-        background-color: unset !important;
-        color: unset !important;
-      }
-    }
-  }
 }
 
 /*= Linux - Light System Default Theme's Selected Tab ========================*/
