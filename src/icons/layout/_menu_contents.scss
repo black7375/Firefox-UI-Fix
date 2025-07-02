@@ -61,10 +61,12 @@ $_placesPopupSetMenus: selector.nest(
   /* Contextmenu Checkbox Unset */
   #{$_placesPopupSet} menuitem[type="checkbox"] {
     margin-inline: 0 !important;
-    > .menu-iconic-left > .menu-iconic-icon {
+    > .menu-iconic-left > .menu-iconic-icon,
+    > .menu-icon {
       margin-inline-end: 0 !important;
     }
-    &:not([checked="true"]) > .menu-iconic-left > .menu-iconic-icon {
+    &:not([checked="true"]) > .menu-iconic-left > .menu-iconic-icon,
+    &:not([checked="true"]) > .menu-icon {
       border: none !important;
       background-color: unset !important;
     }

@@ -100,7 +100,8 @@
   menuitem[type="radio"] {
     appearance: none !important; /* to override more specific selectors above. */
     width: unset !important;
-    .menu-iconic-icon {
+    .menu-iconic-icon,
+    .menu-icon {
       appearance: none !important;
     }
   }
@@ -128,7 +129,8 @@
      checkboxes and radio buttons because the native drawing we use on other
      Windows versions looks pretty bad with the Win10 styles, so for now we'll
      insert a generic checkmark icon for both types. */
-  menuitem[checked="true"] > .menu-iconic-left {
+  menuitem[checked="true"] > .menu-iconic-left,
+  menuitem[checked="true"] > .menu-icon {
     -moz-context-properties: fill, fill-opacity !important;
     fill: currentColor !important;
     fill-opacity: var(--menu-icon-opacity) !important;
@@ -157,7 +159,7 @@
   //-- Global - Menu Popup -----------------------------------------------------
   menupopup {
     /* Disable the default appearance so we can override the native styling. */
-    appearance: none !important !important;
+    appearance: none !important;
 
     /* Prevent any background or border around the outside of the shadow. */
     background-color: transparent !important;
@@ -233,23 +235,27 @@
     background-color: transparent !important;
   }
 
-  #context-navigation > .menuitem-iconic > .menu-iconic-left {
+  #context-navigation > .menuitem-iconic > .menu-iconic-left,
+  #context-navigation > .menuitem-iconic > .menu-icon {
     margin: 0 !important;
     padding: 0 !important;
   }
 
   /* override styles from shared/contextmenu.inc.css */
-  #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon {
+  #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon,
+  #context-navigation > .menuitem-iconic > .menu-icon {
     width: var(--menuitem-min-width) !important;
     height: 32px !important;
     padding: 8px 1em !important;
     margin: 0 !important;
   }
-  #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-iconic-left > .menu-iconic-icon {
+  #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-iconic-left > .menu-iconic-icon,
+  #context-navigation > .menuitem-iconic[_moz-menuactive="true"] > .menu-icon {
     background-color: var(--menuitem-hover-background-color) !important; // -moz-menuhover
   }
 
-  #context-navigation > .menuitem-iconic[_moz-menuactive="true"][disabled="true"] > .menu-iconic-left > .menu-iconic-icon {
+  #context-navigation > .menuitem-iconic[_moz-menuactive="true"][disabled="true"] > .menu-iconic-left > .menu-iconic-icon,
+  #context-navigation > .menuitem-iconic[_moz-menuactive="true"][disabled="true"] > .menu-icon {
     background-color: transparent !important;// -moz-menuhoverdisabled
   }
 
