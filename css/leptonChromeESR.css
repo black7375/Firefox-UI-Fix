@@ -13056,6 +13056,9 @@
       .menu-icon {
         display: unset !important;
       }
+      #main-menubar > menu > .menu-icon {
+        display: none !important;
+      }
     }
     /* Padding - Mac */
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
