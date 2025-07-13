@@ -195,6 +195,9 @@ $_initialMenus: $_initialMenus + "," +
   .menu-icon {
     display: unset !important;
   }
+  #main-menubar > menu > .menu-icon {
+    display: none !important;
+  }
 }
 @mixin _layout_init_linux() {
   padding-inline-start: 3px;
