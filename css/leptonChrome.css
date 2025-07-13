@@ -12390,6 +12390,9 @@
       .menu-icon {
         display: unset !important;
       }
+      #main-menubar > menu > .menu-icon {
+        display: none !important;
+      }
     }
     /* Padding - Mac */
     @media -moz-pref("layout.css.osx-font-smoothing.enabled") {
@@ -27929,6 +27932,9 @@
   }
   .menu-icon {
     display: unset !important;
+  }
+  #main-menubar > menu > .menu-icon {
+    display: none !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "layout.css.osx-font-smoothing.enabled") {
