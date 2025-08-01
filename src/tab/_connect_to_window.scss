@@ -1,3 +1,13 @@
+#TabsToolbar {
+  #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height);
+  }
+
+  &[multibar] #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height_mlt);
+  }
+}
+
 #tabbrowser-tabs:not([orient="vertical"]) {
   min-height: unset !important; /* Original: var(--tabstrip-min-height) */
 

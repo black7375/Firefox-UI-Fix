@@ -6900,6 +6900,12 @@
 /** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @media -moz-pref("userChrome.tab.connect_to_window") {
+  #TabsToolbar #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height);
+  }
+  #TabsToolbar[multibar] #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height_mlt);
+  }
   #tabbrowser-tabs:not([orient="vertical"]) {
     min-height: unset !important; /* Original: var(--tabstrip-min-height) */
   }
@@ -21650,6 +21656,12 @@
 /** Tab UI ********************************************************************/
 /*= Tab - Connect to window ==============================================*/
 @media (-moz-bool-pref: "userChrome.tab.connect_to_window") {
+  #TabsToolbar #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height);
+  }
+  #TabsToolbar[multibar] #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height_mlt);
+  }
   #tabbrowser-tabs:not([orient="vertical"]) {
     min-height: unset !important; /* Original: var(--tabstrip-min-height) */
   }
