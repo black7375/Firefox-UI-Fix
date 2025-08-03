@@ -4223,6 +4223,9 @@
   .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
     max-width: var(--tab-max-width) !important; /* Original: 225px */
   }
+  #tabbrowser-tabs[orient="vertical"][expanded] .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
+    max-width: none !important;
+  }
   #tabbrowser-tabs[orient="horizontal"]
     tab-group[collapsed]
     > .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
@@ -18546,6 +18549,9 @@
 @media (-moz-bool-pref: "userChrome.padding.tabbar_width") {
   .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
     max-width: var(--tab-max-width) !important; /* Original: 225px */
+  }
+  #tabbrowser-tabs[orient="vertical"][expanded] .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
+    max-width: none !important;
   }
   #tabbrowser-tabs[orient="horizontal"]
     tab-group[collapsed]
