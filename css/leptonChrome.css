@@ -12774,6 +12774,12 @@
       #toolbar-context-undoCloseTab {
         --menuitem-image: url("../icons/undo.svg");
       }
+      #toolbar-context-customize-sidebar {
+        --menuitem-image: url("chrome://browser/skin/customize.svg");
+      }
+      #toolbar-context-toggle-vertical-tabs {
+        --menuitem-image: url("chrome://browser/skin/sidebar-collapsed.svg");
+      }
       #toggle_toolbar-menubar {
         /* checkbox */
         --menuitem-image: url("../icons/calendar-agenda.svg");
@@ -28382,6 +28388,16 @@
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
   #toolbar-context-undoCloseTab {
     --menuitem-image: url("../icons/undo.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
+  #toolbar-context-customize-sidebar {
+    --menuitem-image: url("chrome://browser/skin/customize.svg");
+  }
+}
+@media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
+  #toolbar-context-toggle-vertical-tabs {
+    --menuitem-image: url("chrome://browser/skin/sidebar-collapsed.svg");
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-bool-pref: "userChrome.icon.context_menu") {
