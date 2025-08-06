@@ -12490,6 +12490,28 @@
     #sidebarMenu-popup > *:is(menuitem)[data-l10n-id="sidebar-menu-close"] {
       --menuitem-image: url("chrome://global/skin/icons/close.svg");
     }
+    /*= sidebar-context-menu =====================================================*/
+    #sidebar-context-menu-manage-extension {
+      --menuitem-image: url("chrome://global/skin/icons/settings.svg");
+    }
+    #sidebar-context-menu-remove-extension {
+      --menuitem-image: url("chrome://global/skin/icons/delete.svg");
+    }
+    #sidebar-context-menu-report-extension {
+      --menuitem-image: url("../icons/send.svg");
+    }
+    #sidebar-context-menu-unpin-extension {
+      --menuitem-image: url("../icons/unpin-tab.svg");
+    }
+    #sidebar-context-menu-hide-sidebar {
+      --menuitem-image: url("../icons/eye-hide.svg");
+    }
+    #sidebar-context-menu-customize-sidebar {
+      --menuitem-image: url("chrome://browser/skin/customize.svg");
+    }
+    #sidebar-context-menu-enable-vertical-tabs {
+      --menuitem-image: url("chrome://browser/skin/sidebar-collapsed.svg");
+    }
     /*= chrome://browser/content/syncedtabs/sidebar.xhtml ========================*/
     .item.client[clientType="phone"] > .item-title-container > .item-icon-container {
       background-image: url("../icons/device-phone.svg") !important;
@@ -12552,7 +12574,8 @@
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
-        #usercssloader-menupopup
+        #usercssloader-menupopup,
+        #sidebar-context-menu
       )
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(
@@ -12566,7 +12589,8 @@
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
-        #usercssloader-menupopup
+        #usercssloader-menupopup,
+        #sidebar-context-menu
       )
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -12640,7 +12664,8 @@
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
-        #usercssloader-menupopup
+        #usercssloader-menupopup,
+        #sidebar-context-menu
       )
       menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
     menupopup:is(
@@ -12654,7 +12679,8 @@
         #menu_ToolsPopup,
         #windowPopup,
         #menu_HelpPopup,
-        #usercssloader-menupopup
+        #usercssloader-menupopup,
+        #sidebar-context-menu
       )
       menu:not(.menu-iconic, .in-menulist, [checked="true"]),
     menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -12754,7 +12780,8 @@
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
-          #usercssloader-menupopup
+          #usercssloader-menupopup,
+          #sidebar-context-menu
         )
         menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       menupopup:is(
@@ -12768,7 +12795,8 @@
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
-          #usercssloader-menupopup
+          #usercssloader-menupopup,
+          #sidebar-context-menu
         )
         menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -12832,7 +12860,8 @@
               #menu_ToolsPopup,
               #windowPopup,
               #menu_HelpPopup,
-              #usercssloader-menupopup
+              #usercssloader-menupopup,
+              #sidebar-context-menu
             )
             menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
           menupopup:is(
@@ -12846,7 +12875,8 @@
               #menu_ToolsPopup,
               #windowPopup,
               #menu_HelpPopup,
-              #usercssloader-menupopup
+              #usercssloader-menupopup,
+              #sidebar-context-menu
             )
             menu:not(.menu-iconic, .in-menulist, [checked="true"]),
           menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -13020,7 +13050,8 @@
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
-          #usercssloader-menupopup
+          #usercssloader-menupopup,
+          #sidebar-context-menu
         )
         menuitem:not(.menuitem-iconic, .bookmark-item, .in-menulist, [checked="true"]),
       menupopup:is(
@@ -13034,7 +13065,8 @@
           #menu_ToolsPopup,
           #windowPopup,
           #menu_HelpPopup,
-          #usercssloader-menupopup
+          #usercssloader-menupopup,
+          #sidebar-context-menu
         )
         menu:not(.menu-iconic, .in-menulist, [checked="true"]),
       menupopup:is(#organizeButtonPopup, #maintenanceButtonPopup)
@@ -13111,7 +13143,8 @@
             #menu_ToolsPopup,
             #windowPopup,
             #menu_HelpPopup,
-            #usercssloader-menupopup
+            #usercssloader-menupopup,
+            #sidebar-context-menu
           )
           menuitem:not(.menuitem-iconic, .bookmark-item),
         menupopup:is(
@@ -13125,7 +13158,8 @@
             #menu_ToolsPopup,
             #windowPopup,
             #menu_HelpPopup,
-            #usercssloader-menupopup
+            #usercssloader-menupopup,
+            #sidebar-context-menu
           )
           menu:not(.menu-iconic) {
           list-style-image: var(--menuitem-image, url("../icons/blank.svg")) !important;
