@@ -7399,6 +7399,10 @@
   #TabsToolbar #tabbrowser-tabs:not([orient="vertical"]) {
     max-height: var(--tab-min-height);
   }
+  #TabsToolbar #tabbrowser-tabs:not([orient="vertical"])[movingtab] {
+    padding-bottom: unset !important;
+    margin-bottom: unset !important;
+  }
   #TabsToolbar[multibar] #tabbrowser-tabs:not([orient="vertical"]) {
     max-height: var(--tab-min-height_mlt);
   }
