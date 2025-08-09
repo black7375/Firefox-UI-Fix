@@ -48,6 +48,7 @@ spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
 }
 
 /* Pinned */
+#tabbrowser-tabs[positionpinnedtabs] > #pinned-tabs-container > .tabbrowser-tab[pinned][selected="true"],
 #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned][selected="true"] {
   position: relative !important;
 }
@@ -70,11 +71,12 @@ spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
 
 /* Padding */
 @include _asTitlebar_preSpacer {
+  #pinned-tabs-container,
   #tabbrowser-arrowscrollbox {
     margin-inline: 2px !important;
-  }
-  :root[sizemode="normal"] #tabbrowser-arrowscrollbox {
-    margin-inline: 6px !important;
+    :root[sizemode="normal"] & {
+      margin-inline: 6px !important;
+    }
   }
 }
 

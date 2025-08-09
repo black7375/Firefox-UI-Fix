@@ -344,6 +344,24 @@
 
   :root#{$not_lwtheme}
   #tabbrowser-tabs:not([movingtab])
+    > #pinned-tabs-container
+    > .tabbrowser-tab
+    > .tab-stack
+    > .tab-background[multiselected]:not([selected]),
+  :root[lwtheme-mozlightdark] /* Legacy */
+    #tabbrowser-tabs:not([movingtab])
+    > #pinned-tabs-container
+    > .tabbrowser-tab
+    > .tab-stack
+    > .tab-background[multiselected]:not([selected]),
+  :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])
+     #tabbrowser-tabs:not([movingtab])
+       > #pinned-tabs-container
+       > .tabbrowser-tab
+       > .tab-stack
+       > .tab-background[multiselected]:not([selected]),
+  :root#{$not_lwtheme}
+  #tabbrowser-tabs:not([movingtab])
     > #tabbrowser-arrowscrollbox
     > .tabbrowser-tab
     > .tab-stack

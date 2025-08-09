@@ -23,6 +23,7 @@
 
 //------------------------------------------------------------------------------
 
+#pinned-tabs-container,
 #tabbrowser-arrowscrollbox {
   --start-tab-separator-position-x: -1.5px;
   --end-tab-separator-position-x: 1.5px;
@@ -69,6 +70,7 @@
   }
 }
 
+#pinned-tabs-container:not([orient="vertical"]):not(:empty):not(:has(.tabbrowser-tab[pinned]:is([visuallyselected], [multiselected], :hover):last-of-type)) ~ #tabbrowser-arrowscrollbox:not([orient="vertical"]) .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type .tab-stack::before,
 #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type) .tab-stack::before {
   opacity: var(--tab-separator-opacity);
 }

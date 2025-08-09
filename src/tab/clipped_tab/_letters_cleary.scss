@@ -30,6 +30,7 @@
 }
 
 .tabbrowser-tab[visuallyselected]:not([labelendaligned]):hover .tab-label-container,
+#tabbrowser-tabs:not([closebuttons=activetab]) > #pinned-tabs-container > .tabbrowser-tab:not([visuallyselected],[labelendaligned]):hover .tab-label-container,
 #tabbrowser-tabs:not([closebuttons=activetab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab:not([visuallyselected],[labelendaligned]):hover .tab-label-container {
   --tab-label-mask-size: 0.9em; /* Original: 1em */
 }
