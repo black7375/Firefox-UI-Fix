@@ -8,6 +8,17 @@
 }
 
 #tabbrowser-tabs:not([movingtab])
+  > #pinned-tabs-container
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[multiselected]:not([selected]),
+#tabbrowser-tabs:not([movingtab])
+  > #pinned-tabs-container
+  > tab-group
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[multiselected]:not([selected]),
+#tabbrowser-tabs:not([movingtab])
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
   > .tab-stack

@@ -62,12 +62,17 @@
   }
 
   @include NotOption("userChrome.tabbar.multi_row") {
+    :root:not([uidensity="compact"]) #TabsToolbar:not([multibar]) #pinned-tabs-container,
+    #TabsToolbar:not([multibar]) #pinned-tabs-container[overflowing="true"] > .tabbrowser-tab[pinned="true"],
+    #TabsToolbar:not([multibar]) #pinned-tabs-container[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
+    #TabsToolbar:not([multibar]) #pinned-tabs-container[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content,
     :root:not([uidensity="compact"]) #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox,
     #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"],
     #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-stack,
     #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox[overflowing="true"] > .tabbrowser-tab[pinned="true"] .tab-content {
       max-height: var(--tab-min-height) !important; /* Force apply height */
     }
+    :root[uidensity="compact"] #TabsToolbar:not([multibar]) #pinned-tabs-container,
     :root[uidensity="compact"] #TabsToolbar:not([multibar]) #tabbrowser-arrowscrollbox {
       height: var(--tab-min-height) !important;
     }
@@ -75,6 +80,7 @@
 }
 
 /* Scroll Button - Size Fix */
+:root #pinned-tabs-container,
 :root #tabbrowser-arrowscrollbox {
   --scrollbtn-vertical-padding: 3px;
   --scrollbtn-vertical-border: 2px;
