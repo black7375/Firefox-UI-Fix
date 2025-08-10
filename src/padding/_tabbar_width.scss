@@ -60,6 +60,7 @@
   }
 }
 
+:root:not([uidensity="touch"]) #pinned-tabs-container,
 :root:not([uidensity="touch"]) #tabbrowser-arrowscrollbox {
   --scrollbtn-inner-padding: 1px;
   --scrollbtn-outer-padding: 3px;
@@ -93,6 +94,9 @@
 .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
   max-width: var(--tab-max-width) !important; /* Original: 225px */
 
+  #tabbrowser-tabs[orient="vertical"][expanded] & {
+    max-width: none !important;
+  }
   #tabbrowser-tabs[orient="horizontal"] tab-group[collapsed] > & {
     min-width: 0 !important;
     max-width: 0 !important;
@@ -104,6 +108,8 @@
 
 /* neighbouring tabs should "pinch" together */
 :root[customizing="true"] #tabbrowser-arrowscrollbox-periphery,
+#tabbrowser-tabs:not([hasadjacentnewtabbutton]):not([overflow="true"])
+  > #pinned-tabs-container > #tabbrowser-arrowscrollbox-periphery,
 #tabbrowser-tabs:not([hasadjacentnewtabbutton]):not([overflow="true"])
   > #tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery {
   min-width: 3px; // With Panorama Tab Groups #643 #846

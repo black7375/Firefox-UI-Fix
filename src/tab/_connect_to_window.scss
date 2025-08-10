@@ -1,3 +1,17 @@
+#TabsToolbar {
+  #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height);
+  }
+  #tabbrowser-tabs:not([orient="vertical"])[movingtab] {
+    padding-bottom: unset !important;
+    margin-bottom: unset !important;
+  }
+
+  &[multibar] #tabbrowser-tabs:not([orient="vertical"]) {
+    max-height: var(--tab-min-height_mlt);
+  }
+}
+
 #tabbrowser-tabs:not([orient="vertical"]) {
   min-height: unset !important; /* Original: var(--tabstrip-min-height) */
 
@@ -34,6 +48,7 @@
 }
 
 /* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
+#tabbrowser-tabs[positionpinnedtabs] > #pinned-tabs-container > .tabbrowser-tab[pinned],
 #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
   z-index: 0 !important;
 

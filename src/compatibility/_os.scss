@@ -248,6 +248,7 @@ $_os_linuxDefaultShadow: 0 0 4px rgba(128, 128, 142, 0.5);
       -moz-default-appearance:-moz-window-titlebar !important;;
     }
 
+    :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-lwtheme) #pinned-tabs-container,
     :root:is([tabsintitlebar], [customtitlebar]):not(:-moz-lwtheme) #tabbrowser-arrowscrollbox {
       color: -moz-dialogtext !important;
     }

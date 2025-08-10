@@ -7,6 +7,26 @@
   background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) !important;
 }
 
+#pinned-tabs-container
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[selected],
+#tabbrowser-tabs:not([movingtab])
+  > #pinned-tabs-container
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[selected],
+#pinned-tabs-container
+  > tab-group
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[selected],
+#tabbrowser-tabs[orient="horizontal"]:not([movingtab])
+  > #pinned-tabs-container
+  > tab-group
+  > .tabbrowser-tab
+  > .tab-stack
+  > .tab-background[selected],
 #tabbrowser-arrowscrollbox
   > .tabbrowser-tab
   > .tab-stack

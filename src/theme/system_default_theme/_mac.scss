@@ -243,6 +243,18 @@
   @include Option("userChrome.tab.color_like_toolbar") {
     :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode] /* Legacy */
       #tabbrowser-tabs:not([movingtab])
+      > #pinned-tabs-container
+      > .tabbrowser-tab
+      > .tab-stack
+      > .tab-background[selected],
+    :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][lwt-default-theme-in-dark-mode]
+      #tabbrowser-tabs:not([movingtab])
+      > #pinned-tabs-container
+      > .tabbrowser-tab
+      > .tab-stack
+      > .tab-background[selected],
+    :root[lwtheme-mozlightdark][lwt-default-theme-in-dark-mode] /* Legacy */
+      #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
       > .tab-stack

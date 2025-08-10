@@ -19,6 +19,11 @@
 }
 
 #tabbrowser-tabs[closebuttons="activetab"] {
+  > #pinned-tabs-container
+  > .tabbrowser-tab:not([pinned])
+  > .tab-stack
+  > .tab-content
+  > .tab-close-button:not([selected]),
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab:not([pinned])
   > .tab-stack
