@@ -12469,6 +12469,9 @@
       .menupopup-arrowscrollbox {
         padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
       }
+      menupopup[needsgutter] > :is(menu, menuitem) > .menu-icon {
+        display: none !important;
+      }
     }
     @media (-moz-platform: windows), (-moz-gtk-csd-available) {
       @media -moz-pref("userChrome.theme.non_native_menu") {
@@ -12542,6 +12545,9 @@
           }
           .menupopup-arrowscrollbox {
             padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
+          }
+          menupopup[needsgutter] > :is(menu, menuitem) > .menu-icon {
+            display: none !important;
           }
         }
       }
@@ -28213,6 +28219,9 @@
   .menupopup-arrowscrollbox {
     padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
   }
+  menupopup[needsgutter] > :is(menu, menuitem) > .menu-icon {
+    display: none !important;
+  }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-platform: windows) and (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available),
   (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.theme.non_native_menu") and (-moz-gtk-csd-available) {
@@ -28281,6 +28290,9 @@
   }
   .menupopup-arrowscrollbox {
     padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
+  }
+  menupopup[needsgutter] > :is(menu, menuitem) > .menu-icon {
+    display: none !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-platform: windows) {

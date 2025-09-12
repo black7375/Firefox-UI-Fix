@@ -12958,6 +12958,9 @@
       .menupopup-arrowscrollbox {
         padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
       }
+      menupopup[needsgutter] > :is(menu, menuitem) > .menu-icon {
+        display: none !important;
+      }
     }
     @media (-moz-os-version: windows-win7),
       (-moz-os-version: windows-win8),
@@ -13038,6 +13041,9 @@
           }
           .menupopup-arrowscrollbox {
             padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
+          }
+          menupopup[needsgutter] > :is(menu, menuitem) > .menu-icon {
+            display: none !important;
           }
         }
       }
