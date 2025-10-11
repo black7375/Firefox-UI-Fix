@@ -42,14 +42,14 @@ jobs:
           - mode: "STANDARD"
             name: "Lepton-Proton-Style"
             branch: "proton-style"
-          - mode: "ESR"
-            name: "ESR-Lepton"
+          - mode: "LegacyV117"
+            name: "LegacyV117-Lepton"
             branch: "master"
-          - mode: "ESR"
-            name: "ESR-Lepton-Photon-Style"
+          - mode: "LegacyV117"
+            name: "LegacyV117-Lepton-Photon-Style"
             branch: "photon-style"
-          - mode: "ESR"
-            name: "ESR-Lepton-Proton-Style"
+          - mode: "LegacyV117"
+            name: "LegacyV117-Lepton-Proton-Style"
             branch: "proton-style"
     steps:
       - uses: actions/checkout@v4
@@ -75,8 +75,8 @@ jobs:
           rm css/leptonChromeESR.css
           rm css/leptonContentESR.css
 
-      - name: Processing for ESR
-        if: matrix.mode == 'ESR'
+      - name: Processing for LegacyV117
+        if: matrix.mode == 'LegacyV117'
         run: |
           sed -i "s/\.css/ESR\.css/g" userChrome.css
           sed -i "s/\.css/ESR\.css/g" userContent.css
