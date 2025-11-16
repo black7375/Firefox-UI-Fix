@@ -3965,6 +3965,11 @@
     --tab-border-radius: 0 !important; /* Original: 4px */
   }
 }
+@media not -moz-pref("userChrome.rounding.square_tab") {
+  :root {
+    --tab-border-radius: 4px !important; /* Original: 4px */
+  }
+}
 @media -moz-pref("userChrome.rounding.square_button") {
   :root {
     --urlbar-icon-border-radius: 0 !important; /* Original: calc(var(--toolbarbutton-border-radius) - 1px); */
@@ -18456,6 +18461,11 @@
 @media (-moz-bool-pref: "userChrome.rounding.square_tab") {
   :root {
     --tab-border-radius: 0 !important; /* Original: 4px */
+  }
+}
+@media not (-moz-bool-pref: "userChrome.rounding.square_tab") {
+  :root {
+    --tab-border-radius: 4px !important; /* Original: 4px */
   }
 }
 @media (-moz-bool-pref: "userChrome.rounding.square_button") {
