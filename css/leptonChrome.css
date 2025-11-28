@@ -12687,10 +12687,14 @@
     /* Windows */
     @media (-moz-platform: windows) {
       /* Bookmark Popup - None icon menu */
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])),
+      #PersonalToolbar
+        menupopup[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
         margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
         padding-inline-start: var(--bookmark-menu-icon-text-padding) !important;
         background-position: var(--uc-menu-background-position) var(--bookmark-menu-icon-background-padding) center !important;
@@ -12709,26 +12713,44 @@
         margin-inline-start: -1px !important;
       }
       /* Bookmark Popup - None icon menu */
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])),
+      #PersonalToolbar
+        menupopup[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
         padding-inline-start: calc(var(--context-menu-background-padding) + 2px) !important;
       }
       @media -moz-pref("userChrome.theme.non_native_menu") {
-        menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-        menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
-        #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-        #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+        menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+          menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+        menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+          menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])),
+        #PersonalToolbar
+          menupopup[placespopup="true"]
+          menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+        #PersonalToolbar
+          menupopup[placespopup="true"]
+          menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
           margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
         }
       }
       menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
-        menuitem:not(.menuitem-iconic, [disabled="true"])
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
         .menu-text,
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic) .menu-text,
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) .menu-text,
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) .menu-text {
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+        .menu-text,
+      #PersonalToolbar
+        menupopup[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
+        .menu-text,
+      #PersonalToolbar
+        menupopup[placespopup="true"]
+        menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+        .menu-text {
         margin-inline-start: var(--context-menu-text-padding) !important;
       }
     }
@@ -12739,20 +12761,32 @@
         padding-inline: var(--arrowpanel-menuitem-padding-inline) !important;
       }
       /* Bookmark Popup - None icon menu */
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic) {
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
         padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
       }
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+      #PersonalToolbar
+        menupopup[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
         padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
       }
       menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
-        menuitem:not(.menuitem-iconic, [disabled="true"])
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
         > .menu-text,
-      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic) > .menu-text,
-      #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) > .menu-text,
-      #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) > .menu-text {
+      menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+        menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+        > .menu-text,
+      #PersonalToolbar
+        menupopup[placespopup="true"]
+        menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
+        > .menu-text,
+      #PersonalToolbar
+        menupopup[placespopup="true"]
+        menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+        > .menu-text {
         padding-inline-start: var(--context-menu-mac-padding) !important;
       }
     }
@@ -28431,10 +28465,14 @@
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-platform: windows) {
   /* Bookmark Popup - None icon menu */
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])),
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
     margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
     padding-inline-start: var(--bookmark-menu-icon-text-padding) !important;
     background-position: var(--uc-menu-background-position) var(--bookmark-menu-icon-background-padding) center !important;
@@ -28451,26 +28489,44 @@
     margin-inline-start: -1px !important;
   }
   /* Bookmark Popup - None icon menu */
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])),
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
     padding-inline-start: calc(var(--context-menu-background-padding) + 2px) !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-gtk-csd-available) and (-moz-bool-pref: "userChrome.theme.non_native_menu") {
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic),
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])),
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
     margin-inline: var(--arrowpanel-menuitem-margin-inline) !important;
   }
 }
 @media (not (-moz-bool-pref: "userChrome.icon.disabled")) and (-moz-bool-pref: "userChrome.icon.menu") and (-moz-gtk-csd-available) {
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) .menu-text,
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic) .menu-text,
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) .menu-text,
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) .menu-text {
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
+    .menu-text,
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+    .menu-text,
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
+    .menu-text,
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+    .menu-text {
     margin-inline-start: var(--context-menu-text-padding) !important;
   }
 }
@@ -28481,18 +28537,32 @@
     padding-inline: var(--arrowpanel-menuitem-padding-inline) !important;
   }
   /* Bookmark Popup - None icon menu */
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic) {
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 3px) !important;
   }
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]),
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) {
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"])),
+  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"])) {
     padding-inline-start: calc(var(--arrowpanel-menuitem-padding-inline) + 1px) !important;
   }
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) > .menu-text,
-  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"] menu:not(.menu-iconic) > .menu-text,
-  #PersonalToolbar menupopup[placespopup="true"] menuitem:not(.menuitem-iconic, [disabled="true"]) > .menu-text,
-  #PersonalToolbar menupopup[placespopup="true"] menu:not(.menu-iconic) > .menu-text {
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
+    > .menu-text,
+  menupopup:is(#BMB_bookmarksPopup)[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+    > .menu-text,
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menuitem:not(.menuitem-iconic, [disabled="true"]):not(:has(.menu-icon[aria-hidden="true"]))
+    > .menu-text,
+  #PersonalToolbar
+    menupopup[placespopup="true"]
+    menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden="true"]))
+    > .menu-text {
     padding-inline-start: var(--context-menu-mac-padding) !important;
   }
 }
