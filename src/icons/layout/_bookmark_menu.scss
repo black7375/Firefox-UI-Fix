@@ -17,8 +17,8 @@ menupopup menupopup[emptyplacesresult] .menu-text,
 
 //-- Mixin ---------------------------------------------------------------------
 // Items
-$_bookmarkMenuitem: "menuitem:not(.menuitem-iconic, [disabled=\"true\"])";
-$_bookmarkMenu: "menu:not(.menu-iconic)";
+$_bookmarkMenuitem: "menuitem:not(.menuitem-iconic, [disabled=\"true\"]):not(:has(.menu-icon[aria-hidden=\"true\"]))";
+$_bookmarkMenu: "menu:not(.menu-iconic):not(:has(.menu-icon[aria-hidden=\"true\"]))";
 
 // Components
 $_bookmarkPopup: "menupopup:is(#BMB_bookmarksPopup)[placespopup=\"true\"]";
