@@ -4366,7 +4366,7 @@
 
 @supports -moz-bool-pref("userChrome.rounding.square_tab") {
   :root {
-    --tab-border-radius: 0 !important; /* Original: 4px */
+    --tab-border-radius: 0px !important; /* Original: 4px */
   }
 }
 @supports not -moz-bool-pref("userChrome.rounding.square_tab") {
@@ -4376,7 +4376,7 @@
 }
 @supports -moz-bool-pref("userChrome.rounding.square_button") {
   :root {
-    --urlbar-icon-border-radius: 0 !important; /* Original: calc(var(--toolbarbutton-border-radius) - 1px); */
+    --urlbar-icon-border-radius: 0px !important; /* Original: calc(var(--toolbarbutton-border-radius) - 1px); */
   }
   .toolbarbutton-1,
   .toolbarbutton-icon,
@@ -4387,7 +4387,7 @@
   .urlbarView-action,
   toolbarbutton.bookmark-item:not(.subviewbutton),
   #sidebar-switcher-target {
-    --toolbarbutton-border-radius: 0; /* Original: 4px */
+    --toolbarbutton-border-radius: 0px; /* Original: 4px */
   }
   button,
   .close-icon,
@@ -4396,7 +4396,7 @@
   findbar toolbarbutton,
   .notification-button,
   #main-menubar > menu {
-    border-radius: 0 !important;
+    border-radius: 0px !important;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_tab") or -moz-bool-pref("userChrome.rounding.square_button") {
@@ -4408,13 +4408,13 @@
 }
 @supports -moz-bool-pref("userChrome.rounding.square_panel") {
   :root {
-    --arrowpanel-border-radius: 0 !important;
+    --arrowpanel-border-radius: 0px !important;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_panelitem") {
   :root {
-    --arrowpanel-menuitem-border-radius: 0 !important;
-    --subviewbutton-border-radius: 0 !important;
+    --arrowpanel-menuitem-border-radius: 0px !important;
+    --subviewbutton-border-radius: 0px !important;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_menupopup") {
@@ -4428,17 +4428,17 @@
   xul|menulist > xul|menupopup xul|menu,
   xul|menulist > xul|menupopup xul|menuitem,
   .customization-uidensity-menuitem {
-    border-radius: 0 !important;
+    border-radius: 0px !important;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_infobox") {
   #sanitizeEverythingWarningBox {
-    border-radius: 0 !important;
+    border-radius: 0px !important;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_toolbar") {
   :root {
-    --uc-rounding-toolbar: 0;
+    --uc-rounding-toolbar: 0px;
   }
   .container.infobar,
   .container.infobar::before,
@@ -4462,19 +4462,19 @@
   #urlbar-input-container,
   #urlbar-background,
   #searchbar {
-    --toolbarbutton-border-radius: 0;
+    --toolbarbutton-border-radius: 0px;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_urlView_item") {
   .urlbarView-row,
   .urlbarView-row-inner {
-    --toolbarbutton-border-radius: 0;
+    --toolbarbutton-border-radius: 0px;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_checklabel") {
   input[type="checkbox"],
   .checkbox-check {
-    border-radius: 0 !important;
+    border-radius: 0px !important;
   }
 }
 @supports -moz-bool-pref("userChrome.rounding.square_dialog") {
