@@ -7748,6 +7748,20 @@
     );
     --uc-tab-shadow-color-bundle: var(--tab-line-color, var(--lwt-tab-line-color, rgba(128, 128, 142, 0.9)));
   }
+  #tabbrowser-tabs:not([noshadowfortests]) {
+    /* filter create new stacking context */
+  }
+  #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+    box-shadow: unset !important;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
+  }
+  #tabbrowser-tabs:not([noshadowfortests])[expanded][orient="horizontal"]
+    .tab-background:is([selected], [multiselected])
+    .tab-group-line {
+    height: calc(100% + 5px + var(--tab-block-margin));
+    left: calc(-1 * var(--tab-inner-inline-margin));
+    transform: translateY(-2px);
+  }
   #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
     box-shadow: unset !important;
     filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
