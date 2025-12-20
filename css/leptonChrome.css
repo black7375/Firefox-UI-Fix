@@ -8629,6 +8629,18 @@
     padding-inline-start: 3px !important; /* Original: 0px */
     width: 19px !important; /* Redefine from 19px !important, Original: 17px = (width - padding)  */
   }
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button {
+    padding: 2px !important;
+    width: 16px !important;
+    height: 16px !important;
+    background-image: linear-gradient(var(--close-button-extra-background)),
+      linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor))), linear-gradient(var(--toolbox-bgcolor)) !important;
+  }
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button:-moz-window-inactive {
+    background-image: linear-gradient(var(--close-button-extra-background)),
+      linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor))),
+      linear-gradient(var(--toolbox-bgcolor-inactive)) !important;
+  }
 }
 /** Clipped tabs - Show close button at pinned tab ****************************/
 @media -moz-pref("userChrome.tab.close_button_at_pinned") {
@@ -24009,6 +24021,20 @@
     > .tab-close-button {
     padding-inline-start: 3px !important; /* Original: 0px */
     width: 19px !important; /* Redefine from 19px !important, Original: 17px = (width - padding)  */
+  }
+}
+@media (-moz-bool-pref: "userChrome.tab.close_button_at_hover") {
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button {
+    padding: 2px !important;
+    width: 16px !important;
+    height: 16px !important;
+    background-image: linear-gradient(var(--close-button-extra-background)),
+      linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor))), linear-gradient(var(--toolbox-bgcolor)) !important;
+  }
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button:-moz-window-inactive {
+    background-image: linear-gradient(var(--close-button-extra-background)),
+      linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor))),
+      linear-gradient(var(--toolbox-bgcolor-inactive)) !important;
   }
 }
 /** Clipped tabs - Show close button at pinned tab ****************************/
