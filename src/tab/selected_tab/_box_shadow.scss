@@ -19,10 +19,15 @@ $ucTabBackgroundShadowHard: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, 
   }
 
   /* filter create new stacking context */
-  &[expanded][orient="vertical"] .tab-background:is([selected], [multiselected]) .tab-group-line {
+  &[orient="vertical"] .tab-background:is([selected], [multiselected]) .tab-group-line {
     height: calc(100% + 6px + var(--tab-block-margin)); // 6px: .tab-group-line's inset-block size
-    left: calc(-1 * var(--tab-inner-inline-margin));
     transform: translateY(-2px); // .tab-group-line 's inset-inline-start size
+  }
+  &[expanded][orient="vertical"] .tab-background:is([selected], [multiselected]) .tab-group-line {
+    inset-inline-start: calc(-1 * var(--tab-inner-inline-margin)) !important;
+  }
+  &:not([expanded])[orient="vertical"] .tab-background:is([selected], [multiselected]) .tab-group-line {
+    inset-inline-start: calc(-1 * var(--tab-inner-inline-margin) + 2px) !important;
   }
 }
 #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
