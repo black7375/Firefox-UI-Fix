@@ -4622,7 +4622,8 @@
   }
 }
 @media -moz-pref("userChrome.padding.urlView_expanding") or -moz-pref("userChrome.urlView.as_commandbar") {
-  #urlbar[breakout][breakout-extend] {
+  /* .browser-titlebar is Vertical Tabbar */
+  #nav-bar:not(.browser-titlebar) #urlbar[breakout][breakout-extend] {
     top: calc(var(--urlbar-container-height) * 2 - var(--urlbar-height)) !important;
     width: var(--urlbar-width) !important;
     position: relative !important;
@@ -4891,8 +4892,7 @@
     padding: unset !important;
     padding-top: 4px !important;
   }
-}
-/*= Popup Panel - Reduce padding =============================================*/
+} /*= Popup Panel - Reduce padding =============================================*/
 @media -moz-pref("userChrome.padding.popup_panel") {
   #protections-popup-main-header-label {
     height: unset !important; /* Original: 37.6px */
@@ -9104,6 +9104,7 @@
     /* Pinned Tab */
     .tabbrowser-tab[pinned] .tab-content::before,
     #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content::before {
+      left: unset;
       transform: translateY(var(--uc-container-position-y));
       width: 16px !important;
     }
@@ -19483,7 +19484,8 @@
   }
 }
 @media (-moz-bool-pref: "userChrome.padding.urlView_expanding"), (-moz-bool-pref: "userChrome.urlView.as_commandbar") {
-  #urlbar[breakout][breakout-extend] {
+  /* .browser-titlebar is Vertical Tabbar */
+  #nav-bar:not(.browser-titlebar) #urlbar[breakout][breakout-extend] {
     top: calc(var(--urlbar-container-height) * 2 - var(--urlbar-height)) !important;
     width: var(--urlbar-width) !important;
     position: relative !important;
@@ -24596,6 +24598,7 @@
 @media (-moz-bool-pref: "userChrome.tab.container") and (not (-moz-bool-pref: "userChrome.tabbar.as_titlebar")) {
   .tabbrowser-tab[pinned] .tab-content::before,
   #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content::before {
+    left: unset;
     transform: translateY(var(--uc-container-position-y));
     width: 16px !important;
   }
