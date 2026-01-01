@@ -35,11 +35,12 @@
   display: block;
   position: absolute;
   top: 50%;
+  left: var(--tab-inline-padding);
   transform: translate(var(--uc-container-position-x), var(--uc-container-position-y));
 
   /* Shape */
   border-bottom: 2px solid var(--identity-icon-color);
-  width: calc(100% - 30px);
+  width: calc(100% - (var(--tab-inline-padding) + var(--tab-inner-inline-margin)) * 2);
   opacity: 0.75;
 }
 .tabbrowser-tab[visuallyselected] .tab-content::before {
@@ -51,7 +52,7 @@
     width: 25%;
   }
   .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
-    width: calc(100% - 30px);
+    width: calc(100% - (var(--tab-inline-padding) + var(--tab-inner-inline-margin)) * 2);
   }
   #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab[visuallyselected]:not([pinned]) .tab-content::before {
     width: calc(100% - 33px);
@@ -67,12 +68,15 @@
 }
 
 /* Pinned Tab */
-.tabbrowser-tab[pinned] .tab-content::before {
+.tabbrowser-tab[pinned] .tab-content::before,
+#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content::before {
+  left: unset;
   transform: translateY(var(--uc-container-position-y));
-  width: 16px;
+  width: 16px !important;
 }
 @include Option("userChrome.tab.close_button_at_pinned") {
-  .tabbrowser-tab[pinned][visuallyselected]:not([busy]):hover .tab-content::before {
+  .tabbrowser-tab[pinned][visuallyselected]:not([busy]):hover .tab-content::before,
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[visuallyselected]:not([busy]):hover .tab-content::before {
     opacity: 0;
   }
   // Don't hide at userChrome.tab.close_button_at_pinned.background
@@ -80,13 +84,17 @@
 
 @include NotOption("userChrome.tab.container.on_top") {
   .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected])::before,
-  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected])::before {
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[image][usercontextid] > .tab-stack > .tab-content[attention]:not([selected])::before,
+  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected])::before,
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[titlechanged]:not([selected])::before {
     opacity: 0;
   }
 
   /* Pinned Tab - Titlechanged Indicator override */
   .tabbrowser-tab:is([image], [pinned])[usercontextid] > .tab-stack > .tab-content[attention]:not([selected]),
-  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[image][usercontextid] > .tab-stack > .tab-content[attention]:not([selected]), 
+  .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]),
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[usercontextid] > .tab-stack > .tab-content[titlechanged]:not([selected]) {
     /* Original: radial-gradient(circle, var(--attention-icon-color), var(--attention-icon-color) 2px, transparent 2px); */
     --dotted-identity-image: radial-gradient(
       circle,
@@ -99,7 +107,9 @@
   }
 
   .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected]),
-  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[image] > .tab-stack > .tab-content[attention]:not([selected]), 
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]),
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab > .tab-stack > .tab-content[titlechanged]:not([selected]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
     background-position-y: top var(--uc-container-position-y) !important;
   }
@@ -108,9 +118,15 @@
   .tabbrowser-tab:is([image], [pinned])[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
     > .tab-stack
     > .tab-content[attention]:not([selected]),
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[image][usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
+    > .tab-stack
+    > .tab-content[attention]:not([selected]), 
   .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
     > .tab-stack
-    > .tab-content[pinned][titlechanged]:not([selected]) {
+    > .tab-content[pinned][titlechanged]:not([selected]),
+    #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
+    > .tab-stack
+    > .tab-content[titlechanged]:not([selected]) {
     --uc-titlechanged-container-position-x: calc(32% - 1px), calc(50% - 1px), calc(70% - 1px);
   }
   :root[uidensity="compact"]
@@ -118,16 +134,26 @@
     > .tab-stack
     > .tab-content[attention]:not([selected]),
   :root[uidensity="compact"]
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[image][usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
+    > .tab-stack
+    > .tab-content[attention]:not([selected]), 
+  :root[uidensity="compact"]
     .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
     > .tab-stack
-    > .tab-content[pinned][titlechanged]:not([selected]) {
+    > .tab-content[pinned][titlechanged]:not([selected]),
+  :root[uidensity="compact"]
+    #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[usercontextid]:is([soundplaying], [muted], [activemedia-blocked])
+    > .tab-stack
+    > .tab-content[titlechanged]:not([selected]) {
     --uc-titlechanged-container-position-x: calc(30% - 1px), calc(50% - 1px), calc(70% - 1px);
   }
 }
 
 @include Option("userChrome.tab.container.on_top") {
   .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected]),
-  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]) {
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[image] > .tab-stack > .tab-content[attention]:not([selected]),
+  .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected]),
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab > .tab-stack > .tab-content[titlechanged]:not([selected]) {
     /* Original: center bottom calc(6.5px + var(--tabs-navbar-shadow-size)); */
     background-position-y: top var(--uc-container-position-y-bottom) !important;
   }

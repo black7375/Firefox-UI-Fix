@@ -50,7 +50,8 @@
   }
 }
 @include Option("userChrome.padding.urlView_expanding", "userChrome.urlView.as_commandbar") {
-  #urlbar[breakout][breakout-extend] {
+  /* .browser-titlebar is Vertical Tabbar */
+  #nav-bar:not(.browser-titlebar) #urlbar[breakout][breakout-extend] {
     top: calc(var(--urlbar-container-height) * 2 - var(--urlbar-height)) !important;
     width: var(--urlbar-width) !important;
     position: relative !important;

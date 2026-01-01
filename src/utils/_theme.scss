@@ -9,13 +9,13 @@ $_lightText: '[lwthemetextcolor="bright"]';
 $_darkText:  ":not(#{$_lightText})";
 
 $_sysDark: "[lwt-default-theme-in-dark-mode]";
-$_lightStyle: '[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"]';
-$_darkStyle: '[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]';
+$builtInLightStyle: ':is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [builtintheme][devtoolstheme="light"])';
+$builtInDarkStyle: ':is([style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"], [builtintheme][devtoolstheme="dark"])';
 
 //== Mixin =====================================================================
 @function built-in-default-theme() {
   $oldDefault: selector.append(":root", $_lightdark);
-  $newDefault: selector.append(":root", ":is(#{$_lightStyle}, #{$_darkStyle})");
+  $newDefault: selector.append(":root", ":is(#{$builtInLightStyle}, #{$builtInDarkStyle})");
 
   @return "#{$oldDefault}, #{$newDefault}";
 }
@@ -29,14 +29,14 @@ $_darkStyle: '[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rg
 
 @function built-in-light-theme() {
   $oldLight: selector.append(":root", $_lightdark, $_darkText);
-  $newLight: selector.append(":root", $_lightStyle);
+  $newLight: selector.append(":root", $builtInLightStyle);
 
   @return "#{$oldLight}, #{$newLight}";
 }
 
 @function built-in-dark-theme() {
   $oldDark: selector.append(":root", $_lightdark, $_lightText);
-  $newDark: selector.append(":root", $_darkStyle);
+  $newDark: selector.append(":root", $builtInDarkStyle);
 
   @return "#{$oldDark}, #{$newDark}";
 }
