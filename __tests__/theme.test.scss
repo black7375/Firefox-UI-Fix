@@ -59,7 +59,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark], :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) {
+        :root[lwtheme-mozlightdark], :root:is(:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [builtintheme][devtoolstheme=light]), :is([style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"], [builtintheme][devtoolstheme=dark])) {
           @include example_property;
         }
       }
@@ -74,7 +74,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark][inFullscreen=true], :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])[inFullscreen=true] {
+        :root[lwtheme-mozlightdark][inFullscreen=true], :root:is(:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [builtintheme][devtoolstheme=light]), :is([style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"], [builtintheme][devtoolstheme=dark]))[inFullscreen=true] {
           @include example_property;
         }
       }
@@ -89,7 +89,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark] #navigator-toolbox, :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"]) #navigator-toolbox {
+        :root[lwtheme-mozlightdark] #navigator-toolbox, :root:is(:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [builtintheme][devtoolstheme=light]), :is([style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"], [builtintheme][devtoolstheme=dark])) #navigator-toolbox {
           @include example_property;
         }
       }
@@ -106,7 +106,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright]), :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] {
+        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright]), :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [builtintheme][devtoolstheme=light]) {
           @include example_property;
         }
       }
@@ -121,7 +121,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright])[inFullscreen=true], :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"][inFullscreen=true] {
+        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright])[inFullscreen=true], :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [builtintheme][devtoolstheme=light])[inFullscreen=true] {
           @include example_property;
         }
       }
@@ -136,7 +136,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright]) #navigator-toolbox, :root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"] #navigator-toolbox {
+        :root[lwtheme-mozlightdark]:not([lwthemetextcolor=bright]) #navigator-toolbox, :root:is([style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26);"], [builtintheme][devtoolstheme=light]) #navigator-toolbox {
           @include example_property;
         }
       }
@@ -153,7 +153,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark][lwthemetextcolor=bright], :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] {
+        :root[lwtheme-mozlightdark][lwthemetextcolor=bright], :root:is([style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"], [builtintheme][devtoolstheme=dark]) {
           @include example_property;
         }
       }
@@ -168,7 +168,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark][lwthemetextcolor=bright][inFullscreen=true], :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][inFullscreen=true] {
+        :root[lwtheme-mozlightdark][lwthemetextcolor=bright][inFullscreen=true], :root:is([style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"], [builtintheme][devtoolstheme=dark])[inFullscreen=true] {
           @include example_property;
         }
       }
@@ -183,7 +183,7 @@
         }
       }
       @include expect {
-        :root[lwtheme-mozlightdark][lwthemetextcolor=bright] #navigator-toolbox, :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"] #navigator-toolbox {
+        :root[lwtheme-mozlightdark][lwthemetextcolor=bright] #navigator-toolbox, :root:is([style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"], [builtintheme][devtoolstheme=dark]) #navigator-toolbox {
           @include example_property;
         }
       }

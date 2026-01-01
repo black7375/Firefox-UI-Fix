@@ -94,8 +94,7 @@
     }
   }
 
-  &::is([lwtheme-mozlightdark], [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"])#{$lwtheme}
-    #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background {
+  &#{$builtInDarkStyle} #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab[visuallyselected] .tab-background {
       &::before,
       &::after {
         /* As Selected Tab - Box Shadow */

@@ -345,6 +345,7 @@ firefoxProfileDirPaths=(
   "${HOME}/.local/opt/tor-browser/app/Browser/TorBrowser/Data/Browser"
   "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
   "${HOME}/.var/app/io.gitlab.librewolf-community/.librewolf"
+  "${HOME}/.var/app/net.waterfox.waterfox/.waterfox"
   "${HOME}/snap/firefox/common/.mozilla/firefox"
   "${HOME}/Library/Application Support/Firefox"
   "${HOME}/Library/Application Support/Waterfox"

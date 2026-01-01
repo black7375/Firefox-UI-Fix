@@ -247,7 +247,7 @@
       > .tabbrowser-tab
       > .tab-stack
       > .tab-background[selected],
-    :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][lwt-default-theme-in-dark-mode]
+    :root#{$builtInDarkStyle}
       #tabbrowser-tabs:not([movingtab])
       > #pinned-tabs-container
       > .tabbrowser-tab
@@ -259,7 +259,7 @@
       > .tabbrowser-tab
       > .tab-stack
       > .tab-background[selected],
-    :root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254);"][lwt-default-theme-in-dark-mode]
+    :root#{$builtInDarkStyle}
       #tabbrowser-tabs:not([movingtab])
       > #tabbrowser-arrowscrollbox
       > .tabbrowser-tab
