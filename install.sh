@@ -336,6 +336,7 @@ multiselect() {
 #== Profile Dir ================================================================
 firefoxProfileDirPaths=(
   "${HOME}/.mozilla/firefox"
+  "${XDG_CONFIG_HOME:-$HOME/.config}/mozilla/firefox"
   "${HOME}/.waterfox"
   "${HOME}/.librewolf"
   "${HOME}/.ghostery browser"
