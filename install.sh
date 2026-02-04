@@ -339,6 +339,7 @@ firefoxProfileDirPaths=(
   "${XDG_CONFIG_HOME:-$HOME/.config}/mozilla/firefox"
   "${HOME}/.waterfox"
   "${HOME}/.librewolf"
+  "${XDG_CONFIG_HOME:-$HOME/.config}/librewolf/librewolf"
   "${HOME}/.ghostery browser"
   "${HOME}/.pulse-browser"
   "${HOME}/.firedragon"
