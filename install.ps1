@@ -401,11 +401,11 @@ function Check-ProfileDir() {
   )
 
   if ( "${profileDir}" -ne "" ) {
-    $global:firefoxProfileDirPaths = @("${profileDir}")
+    [System.Collections.Generic.List[string]]$global:firefoxProfileDirPaths = @("${profileDir}")
   }
 
 
-  $global:firefoxProfileDirPaths = Filter-Path $global:firefoxProfileDirPaths "Container"
+  [System.Collections.Generic.List[string]]$global:firefoxProfileDirPaths = Filter-Path $global:firefoxProfileDirPaths "Container"
 
   if ( $firefoxProfileDirPaths.Length -eq 0 ) {
     Lepton-ErrorMessage "Unable to find firefox profile dir."
@@ -653,7 +653,7 @@ $localCustomFiles = $customFiles.Clone()
 
 $customFileExist = $false
 function Check-CustomFiles() {
-  $global:localCustomFiles = Filter-Path $localCustomFiles
+  [System.Collections.Generic.List[string]]$global:localCustomFiles = Filter-Path $localCustomFiles
 
   if ( $global:localCustomFiles.Length -gt 0 ) {
     $global:customFileExist = $true
