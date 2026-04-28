@@ -139,11 +139,6 @@ $_layoutCommonMenus: (
     @include _layout_init_mac_width;
   }
 
-  /* text position */
-  #{selector.nest($_nestedPopupPadding, "menuitem > .menu-text, menu > .menu-text")} {
-    @include _layout_init_mac_text;
-  }
-
   /* Checkbox menuitem, None iconic menu */
   #{selector.nest($_nestedPopupPadding, "menuitem[type=\"checkbox\"]")} {
     // "menuitem[checked=\"true\"], menu:not(.menu-iconic)"
