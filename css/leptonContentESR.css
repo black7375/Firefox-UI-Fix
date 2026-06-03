@@ -85,8 +85,9 @@
 @supports -moz-bool-pref("userContent.player.ui") {
   audio {
     --duration-color: #929292; /* Like Original */
-    background: rgba(26, 26, 26, 0.8); /* Like Original */
-    border-radius: 8px;
+    --media-background: rgba(26, 26, 26, 0.8); /* Like Original */
+    border-radius: 8px !important;
+    overflow: clip !important;
     --box-shadow1: rgba(14, 13, 26, 0.12);
     --box-shadow2: rgba(7, 48, 114, 0.12);
     --box-shadow3: rgba(34, 0, 51, 0.04);
