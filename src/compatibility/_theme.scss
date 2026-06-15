@@ -207,8 +207,8 @@ vbox[part="drop-indicator-bar"] > image[part="drop-indicator"] {
 
 /*= Tabpreviw transparent #890 ===============================================*/
 #tab-preview-panel {
-  --panel-background: var(--arrowpanel-background) !important; /* Original: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) */
-  --panel-color: var(--arrowpanel-color) !important; /* Original: var(--tab-selected-textcolor, var(--toolbar-color)) */
+  --panel-background: var(--arrowpanel-background) !important; /* Original: var(--tab-selected-bgcolor, var(--toolbar-bgcolor, var(--toolbar-background-color))) */
+  --panel-color: var(--arrowpanel-color) !important; /* Original: var(--tab-selected-textcolor, var(--toolbar-color, var(--toolbar-text-color))) */
 }
 
 /*= Design token =============================================================*/

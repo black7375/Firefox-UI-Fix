@@ -64,12 +64,12 @@
 
 @include Option("userChrome.tabbar.one_liner.combine_navbar") {
   #navigator-toolbox {
-    background-color: var(--toolbar-bgcolor) !important;
+    background-color: var(--toolbar-bgcolor, var(--toolbar-background-color)) !important;
   }
 
   #nav-bar {
     --lwt-tabs-border-color: transparent; // box-shadow
-    background-color: unset !important; // var(--toolbar-bgcolor)
+    background-color: unset !important; // var(--toolbar-bgcolor, var(--toolbar-background-color))
     background-image: unset !important; // var(--toolbar-bgimage)
   }
 }

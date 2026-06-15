@@ -62,6 +62,7 @@
 
     /* Selected Background Color */
     --toolbar-bgcolor: var(--mac-selected-bgcolor) !important;
+    --toolbar-background-color: var(--mac-selected-bgcolor) !important;
     --toolbar-non-lwt-bgcolor: var(--mac-selected-bgcolor) !important;
 
     /* Field Background Color */
@@ -236,6 +237,7 @@
   @include Dark {
     :root[lwt-default-theme-in-dark-mode][lwthemetextcolor="bright"] {
       --toolbar-bgcolor: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
+      --toolbar-background-color: color-mix(in srgb, rgb(255, 255, 255) 15%, -moz-dialog) !important;
     }
   }
 

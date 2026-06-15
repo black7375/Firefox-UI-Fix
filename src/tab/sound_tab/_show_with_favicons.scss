@@ -210,8 +210,8 @@
 .tab-icon-overlay:not([crashed])[muted]:hover,
 .tab-icon-overlay:not([crashed])[activemedia-blocked]:hover {
   color: var(--toolbar-bgcolor, white) !important;
-  stroke: var(--lwt-tab-text, var(--toolbar-color)) !important;
-  background-color: var(--lwt-tab-text, var(--toolbar-color)) !important;
+  stroke: var(--lwt-tab-text, var(--toolbar-color, var(--toolbar-text-color))) !important;
+  background-color: var(--lwt-tab-text, var(--toolbar-color, var(--toolbar-text-color))) !important;
   fill-opacity: 0.95 !important;
 }
 

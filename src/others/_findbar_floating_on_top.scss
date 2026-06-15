@@ -37,7 +37,7 @@ findbar {
 .findbar-closebutton {
   border-style: solid;
   border-color: var(--chrome-content-separator-color);
-  background: var(--uc-light-bkgnd-color, var(--toolbar-bgcolor)) !important;
+  background: var(--uc-light-bkgnd-color, var(--toolbar-bgcolor, var(--toolbar-background-color))) !important;
   pointer-events: auto;
   height: 33px !important;
 }

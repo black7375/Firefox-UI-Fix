@@ -17,7 +17,8 @@
 
     // Toolbar
     --toolbar-bgcolor: #322560 !important;
-    --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
+    --toolbar-background-color: #322560 !important;
+    --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor, var(--toolbar-background-color)) !important;
 
     // Behind Tabs
     --lwt-accent-color: #19162F !important;
@@ -27,7 +28,7 @@
     --toolbar-field-background-color: #0B0724 !important;
 
     // Turns Tab Into Same Colour As Toolbar
-    --lwt-selected-tab-background-color: var(--toolbar-bgcolor) !important;
+    --lwt-selected-tab-background-color: var(--toolbar-bgcolor, var(--toolbar-background-color)) !important;
 
     // What Happens When You Hover Over A Button
     --toolbarbutton-hover-background: rgba(255, 255, 255, 0.05) !important;

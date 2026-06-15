@@ -1,7 +1,7 @@
 @mixin circle_button_shape($backButton: false) {
   z-index: 3 !important;
 
-  background-color: var(--toolbar-bgcolor) !important;
+  background-color: var(--toolbar-bgcolor, var(--toolbar-background-color)) !important;
   background-clip: content-box !important;
   border-radius: 100%;
 

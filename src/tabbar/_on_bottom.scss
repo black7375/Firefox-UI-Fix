@@ -28,7 +28,7 @@ See the above repository for updates as well as full license text. */
   @include Option("userChrome.tab.connect_to_window") {
     @include Option("userChrome.tab.color_like_toolbar") {
       #navigator-toolbox {
-        border-bottom-color: var(--toolbar-bgcolor) !important; /* Original: 1px solid var(--chrome-content-separator-color); */
+        border-bottom-color: var(--toolbar-bgcolor, var(--toolbar-background-color)) !important; /* Original: 1px solid var(--chrome-content-separator-color); */
       }
     }
   }

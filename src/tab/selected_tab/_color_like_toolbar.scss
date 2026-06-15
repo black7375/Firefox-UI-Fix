@@ -4,7 +4,7 @@
   --tab-selected-bgimage: unset !important; /* Above FF v101 */
 }
 #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, .tab-background:is([selected], [multiselected]) {
-  background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor)) !important;
+  background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor, var(--toolbar-background-color))) !important;
 }
 
 #pinned-tabs-container
@@ -48,10 +48,10 @@
   > .tab-stack
   > .tab-background[selected] {
   @include lwtheme(false) {
-    /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
+    /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor, var(--toolbar-background-color)), var(--toolbar-bgcolor, var(--toolbar-background-color))), var(--lwt-header-image, none)
      */
     background-image: linear-gradient(transparent, transparent),
-                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+                      linear-gradient(var(--toolbar-bgcolor, var(--toolbar-background-color)), var(--toolbar-bgcolor, var(--toolbar-background-color))), var(--lwt-header-image, none) !important;
     background-position: 0, 0, right top;
     background-attachment: scroll, scroll, fixed;
     background-repeat: repeat-x, repeat-x, no-repeat !important;
@@ -60,7 +60,7 @@
   @include Option("userChrome.theme.transparent.frame") {
     :root:not([lwtheme-image])#{$lwtheme} & {
       background-image: linear-gradient(transparent, transparent),
-                        linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-additional-images, none) !important;
+                        linear-gradient(var(--toolbar-bgcolor, var(--toolbar-background-color)), var(--toolbar-bgcolor, var(--toolbar-background-color))), var(--lwt-additional-images, none) !important;
 
       background-repeat: repeat-x, repeat-x, var(--lwt-background-tiling) !important;
       background-position: 0 0, 0 0, var(--lwt-background-alignment) !important;
