@@ -336,6 +336,7 @@ multiselect() {
 #== Profile Dir ================================================================
 firefoxProfileDirPaths=(
   "${HOME}/.mozilla/firefox"
+  "${HOME}/.mozilla/firefox-esr"
   "${XDG_CONFIG_HOME:-$HOME/.config}/mozilla/firefox"
   "${HOME}/.waterfox"
   "${HOME}/.librewolf"
@@ -376,11 +377,18 @@ check_profile_dir() {
 #== Profile Info ===============================================================
 PROFILEINFOFILE="profiles.ini"
 check_profile_ini() {
+  local foundDirs=()
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
-    if [ ! -f "${profileDir}/${PROFILEINFOFILE}" ]; then
-      lepton_error_message "Unable to find ${PROFILEINFOFILE} at ${profileDir}"
+    if [ -f "${profileDir}/${PROFILEINFOFILE}" ]; then
+      foundDirs+=("${profileDir}")
     fi
   done
+  firefoxProfileDirPaths=("${foundDirs[@]}")
+
+  local foundCount="${#firefoxProfileDirPaths[@]}"
+  if [ "${foundCount}" -eq 0 ]; then
+    lepton_error_message "Unable to find ${PROFILEINFOFILE}"
+  fi
 
   lepton_ok_message "Profiles info file found"
 }
