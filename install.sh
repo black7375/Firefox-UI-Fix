@@ -7,6 +7,10 @@ lepton_error_message() {
   exit 1
 }
 
+lepton_warn_message() {
+  >&2 echo "WARNING: ${@}"
+}
+
 lepton_ok_message() {
   local SIZE=50
   local FILLED=""
@@ -381,6 +385,8 @@ check_profile_ini() {
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
     if [ -f "${profileDir}/${PROFILEINFOFILE}" ]; then
       foundDirs+=("${profileDir}")
+    else
+      lepton_warn_message "Skipping ${profileDir} (no ${PROFILEINFOFILE})"
     fi
   done
   firefoxProfileDirPaths=("${foundDirs[@]}")
