@@ -393,7 +393,7 @@ check_profile_ini() {
 
   local foundCount="${#firefoxProfileDirPaths[@]}"
   if [ "${foundCount}" -eq 0 ]; then
-    lepton_error_message "Unable to find ${PROFILEINFOFILE}"
+    lepton_error_message "No profile with ${PROFILEINFOFILE} was found in any directory."
   fi
 
   lepton_ok_message "Profiles info file found"
