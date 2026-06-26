@@ -7124,6 +7124,10 @@
       box-shadow: 0 -0.01px 0 ThreeDShadow;
     }
   }
+  /* Split Tab */
+  #tabbrowser-tabs:not([orient="vertical"]) tab-split-view-wrapper {
+    margin-bottom: 0 !important;
+  }
 }
 /*= Selected Tab =============================================================*/
 /*= Selected Tab - Bold ======================================================*/
@@ -8096,10 +8100,38 @@
     ~ #tabbrowser-arrowscrollbox:not([orient="vertical"])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
     .tab-stack::before,
+  #pinned-tabs-container:not([orient="vertical"]):not(:empty):has(
+      .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected], :hover):last-of-type
+    )
+    ~ #tabbrowser-arrowscrollbox:not([orient="vertical"]):has(tab-split-view-wrapper:first-child)
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
+    .tab-stack::before,
   #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type)
+    .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    tab-split-view-wrapper
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)
     .tab-stack::before {
     opacity: var(--tab-separator-opacity);
+  }
+  #pinned-tabs-container:not([orient="vertical"]):not(:empty):has(
+      .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected], :hover):last-of-type
+    )
+    ~ #tabbrowser-arrowscrollbox:not([orient="vertical"])
+    tab-split-view-wrapper:first-child
+    .tabbrowser-tab:first-of-type
+    .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    + tab-split-view-wrapper
+    .tabbrowser-tab:first-child
+    .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    tab-split-view-wrapper:has(.tabbrowser-tab:is([visuallyselected], [multiselected], :hover))
+    + .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)
+    .tab-stack::before {
+    opacity: 0 !important;
   }
   @media -moz-pref("userChrome.tabbar.one_liner") {
     @media not -moz-pref("userChrome.tabbar.one_liner.tabbar_first") {
@@ -8215,6 +8247,10 @@
   /* Latest Tab & New tab margin */
   #tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
     margin-inline-end: 1px !important;
+  }
+  /* Split Tab */
+  #tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab:last-child {
+    border-inline-start: none !important;
   }
 }
 /*= Unselected Tab - Static Separator ========================================*/
@@ -22411,6 +22447,7 @@
   }
   /* Pinned Tab - tabbrowser-arrowscrollbox overflowing */
   /* Border top #889 */
+  /* Split Tab */
 }
 @media (-moz-bool-pref: "userChrome.tab.connect_to_window") and (not (-moz-bool-pref: "userChrome.tabbar.multi_row")) {
   #TabsToolbar:not([multibar]) {
@@ -22437,6 +22474,11 @@
 @media (-moz-bool-pref: "userChrome.tab.connect_to_window") and (-moz-gtk-csd-available) {
   :root:is(:not([lwtheme]), :not(:-moz-lwtheme)) #nav-bar {
     box-shadow: 0 -0.01px 0 ThreeDShadow;
+  }
+}
+@media (-moz-bool-pref: "userChrome.tab.connect_to_window") {
+  #tabbrowser-tabs:not([orient="vertical"]) tab-split-view-wrapper {
+    margin-bottom: 0 !important;
   }
 }
 /*= Selected Tab =============================================================*/
@@ -23476,6 +23518,7 @@
   }
   /* Animate */
   /* Latest Tab & New tab margin */
+  /* Split Tab */
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tab.newtab_button_like_tab") {
   #tabbrowser-tabs:not([orient="vertical"]) .tab-stack::before,
@@ -23554,10 +23597,40 @@
     ~ #tabbrowser-arrowscrollbox:not([orient="vertical"])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
     .tab-stack::before,
+  #pinned-tabs-container:not([orient="vertical"]):not(:empty):has(
+      .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected], :hover):last-of-type
+    )
+    ~ #tabbrowser-arrowscrollbox:not([orient="vertical"]):has(tab-split-view-wrapper:first-child)
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover):first-of-type
+    .tab-stack::before,
   #tabbrowser-tabs:not([orient="vertical"])
     .tabbrowser-tab:not([visuallyselected], [multiselected], :hover, :first-of-type)
+    .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    tab-split-view-wrapper
+    .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)
     .tab-stack::before {
     opacity: var(--tab-separator-opacity);
+  }
+}
+@media (-moz-bool-pref: "userChrome.tab.dynamic_separator") {
+  #pinned-tabs-container:not([orient="vertical"]):not(:empty):has(
+      .tabbrowser-tab[pinned]:is([visuallyselected], [multiselected], :hover):last-of-type
+    )
+    ~ #tabbrowser-arrowscrollbox:not([orient="vertical"])
+    tab-split-view-wrapper:first-child
+    .tabbrowser-tab:first-of-type
+    .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    .tabbrowser-tab:is([visuallyselected], [multiselected], :hover)
+    + tab-split-view-wrapper
+    .tabbrowser-tab:first-child
+    .tab-stack::before,
+  #tabbrowser-tabs:not([orient="vertical"])
+    tab-split-view-wrapper:has(.tabbrowser-tab:is([visuallyselected], [multiselected], :hover))
+    + .tabbrowser-tab:not([visuallyselected], [multiselected], :hover)
+    .tab-stack::before {
+    opacity: 0 !important;
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") and (-moz-bool-pref: "userChrome.tabbar.one_liner") and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.tabbar_first")) and (not (-moz-bool-pref: "userChrome.tabbar.one_liner.responsive")) {
@@ -23668,6 +23741,11 @@
 @media (-moz-bool-pref: "userChrome.tab.dynamic_separator") {
   #tabbrowser-tabs:not([orient="vertical"]) #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:last-of-type {
     margin-inline-end: 1px !important;
+  }
+}
+@media (-moz-bool-pref: "userChrome.tab.dynamic_separator") {
+  #tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab:last-child {
+    border-inline-start: none !important;
   }
 }
 /*= Unselected Tab - Static Separator ========================================*/
