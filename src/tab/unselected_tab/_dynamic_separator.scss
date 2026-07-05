@@ -49,7 +49,7 @@
     transform: translateX(var(--tab-separator-position-x)) translateY(var(--tab-separator-position-y));
   }
   #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button::before {
-    left: calc(50%  - (8px + var(--toolbarbutton-inner-padding)));
+    left: calc(50%  - (8px + #{toolbarbutton-padding.inner()}));
   }
 }
 

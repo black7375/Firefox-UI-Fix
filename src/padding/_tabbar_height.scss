@@ -58,7 +58,7 @@
   }
 
   #TabsToolbar {
-    --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important; /* Prevent overflow pinned tab bottom margin */
+    @include toolbarbutton-padding.inner(calc((var(--tab-min-height) - 18px) / 2) !important); /* Prevent overflow pinned tab bottom margin */
   }
 
   @include NotOption("userChrome.tabbar.multi_row") {
@@ -88,10 +88,10 @@
 }
 #scrollbutton-up,
 #scrollbutton-down {
-  /* Original: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 6px) = 9px */
+  /* Original: #{toolbarbutton-padding.inner()} calc(#{toolbarbutton-padding.inner()} - 6px) = 9px */
   /* https://github.com/mozilla/gecko-dev/blob/71b1259afd1cdaf41871ae675c2dadb967ea5b34/browser/themes/shared/toolbarbuttons.inc.css#L142 */
-  padding-top: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
-  padding-bottom: var(--scrollbtn-vertical-padding, var(--toolbarbutton-inner-padding)) !important;
+  padding-top: var(--scrollbtn-vertical-padding, #{toolbarbutton-padding.inner()}) !important;
+  padding-bottom: var(--scrollbtn-vertical-padding, #{toolbarbutton-padding.inner()}) !important;
 
   /* Original: 4px */
   border-top-width: var(--scrollbtn-vertical-border, 4px) !important;
