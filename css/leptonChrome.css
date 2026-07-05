@@ -10547,7 +10547,14 @@
 @media -moz-pref("userChrome.autohide.back_button") or -moz-pref("userChrome.autohide.forward_button") {
   :root {
     --uc-toolbarbutton-hide-size: calc(
-      -1 * (16px + (2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding))))
+      -1 * (16px +
+            (
+              2 *
+                (
+                  var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding)) +
+                    var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding))
+                )
+            ))
     );
   }
 }
@@ -10673,7 +10680,11 @@
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
     --uc-navbar-height: var(--uc-navbar-height-default);
     --uc-navbar-height-default: calc(
-      16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding))
+      16px + 2 *
+        (
+          var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding)) +
+            var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding))
+        )
     );
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
     --uc-bm-height: var(--uc-bm-height-default);
@@ -26201,7 +26212,14 @@
 @media (-moz-bool-pref: "userChrome.autohide.back_button"), (-moz-bool-pref: "userChrome.autohide.forward_button") {
   :root {
     --uc-toolbarbutton-hide-size: calc(
-      -1 * (16px + (2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding))))
+      -1 * (16px +
+            (
+              2 *
+                (
+                  var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding)) +
+                    var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding))
+                )
+            ))
     );
   }
 }
@@ -26329,7 +26347,11 @@
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
     --uc-navbar-height: var(--uc-navbar-height-default);
     --uc-navbar-height-default: calc(
-      16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding))
+      16px + 2 *
+        (
+          var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding)) +
+            var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding))
+        )
     );
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
     --uc-bm-height: var(--uc-bm-height-default);

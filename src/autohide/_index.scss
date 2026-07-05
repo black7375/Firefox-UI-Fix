@@ -1,6 +1,8 @@
 @include Option("userChrome.autohide.back_button", "userChrome.autohide.forward_button") {
   :root {
-    --uc-toolbarbutton-hide-size: calc(-1 * (16px + (2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding)))));
+    // Firefox 153+ renamed --toolbarbutton-inner-padding/-outer-padding to
+    // --toolbarbutton-padding-inner/-outer; fall back to the old names for older/ESR builds.
+    --uc-toolbarbutton-hide-size: calc(-1 * (16px + (2 * (var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding)) + var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding))))));
   }
 }
 
