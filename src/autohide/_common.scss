@@ -18,7 +18,9 @@
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
 
     --uc-navbar-height: var(--uc-navbar-height-default);
-    --uc-navbar-height-default: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
+    // Firefox 153+ renamed --toolbarbutton-inner-padding/-outer-padding to
+    // --toolbarbutton-padding-inner/-outer; fall back to the old names for older/ESR builds.
+    --uc-navbar-height-default: calc(16px + 2 * (var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding)) + var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding))));
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
 
     --uc-bm-height: var(--uc-bm-height-default);
