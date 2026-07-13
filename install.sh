@@ -7,6 +7,10 @@ lepton_error_message() {
   exit 1
 }
 
+lepton_warn_message() {
+  >&2 echo "WARNING: ${@}"
+}
+
 lepton_ok_message() {
   local SIZE=50
   local FILLED=""
@@ -336,6 +340,7 @@ multiselect() {
 #== Profile Dir ================================================================
 firefoxProfileDirPaths=(
   "${HOME}/.mozilla/firefox"
+  "${HOME}/.mozilla/firefox-esr"
   "${XDG_CONFIG_HOME:-$HOME/.config}/mozilla/firefox"
   "${HOME}/.waterfox"
   "${HOME}/.librewolf"
@@ -376,11 +381,20 @@ check_profile_dir() {
 #== Profile Info ===============================================================
 PROFILEINFOFILE="profiles.ini"
 check_profile_ini() {
+  local foundDirs=()
   for profileDir in "${firefoxProfileDirPaths[@]}"; do
-    if [ ! -f "${profileDir}/${PROFILEINFOFILE}" ]; then
-      lepton_error_message "Unable to find ${PROFILEINFOFILE} at ${profileDir}"
+    if [ -f "${profileDir}/${PROFILEINFOFILE}" ]; then
+      foundDirs+=("${profileDir}")
+    else
+      lepton_warn_message "Skipping ${profileDir} (no ${PROFILEINFOFILE})"
     fi
   done
+  firefoxProfileDirPaths=("${foundDirs[@]}")
+
+  local foundCount="${#firefoxProfileDirPaths[@]}"
+  if [ "${foundCount}" -eq 0 ]; then
+    lepton_error_message "No profile with ${PROFILEINFOFILE} was found in any directory."
+  fi
 
   lepton_ok_message "Profiles info file found"
 }
