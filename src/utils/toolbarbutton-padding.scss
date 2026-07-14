@@ -1,5 +1,6 @@
 @use "mode";
 
+// Firefox 153+ renamed --toolbarbutton-inner-padding/-outer-padding to
 @function outer() {
     @if mode.isESR() {
         @return var(--toolbarbutton-outer-padding);
