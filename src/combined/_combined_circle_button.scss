@@ -9,7 +9,7 @@
 
   @include Option("userChrome.padding.toolbar_button") {
     @include Option("userChrome.padding.toolbar_button.compact") {
-      --toolbarbutton-inner-padding: var(--uc-toolbarbutton-inner-padding-default);
+      @include toolbarbutton-padding.inner(var(--uc-toolbarbutton-inner-padding-default));
     }
   }
 
@@ -22,7 +22,7 @@
         padding-inline-end: 0 !important;
       }
       &[disabled="true"] {
-        padding-inline-end: calc(var(--toolbarbutton-outer-padding) + 1px) !important;
+        padding-inline-end: calc(#{toolbarbutton-padding.outer()} + 1px) !important;
       }
     }
   }

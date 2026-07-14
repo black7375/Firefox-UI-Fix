@@ -4654,7 +4654,8 @@
   }
   :root:not([uidensity="touch"]) #new-tab-button,
   #alltabs-button {
-    --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
+    --toolbarbutton-outer-padding: 1px;
+    /* Original: 2px*/
   }
   /* Tab - Max Size */
   @supports not -moz-bool-pref("userChrome.tab.photon_like_padding") {
@@ -4855,9 +4856,8 @@
       ) !important;
     }
     #TabsToolbar {
-      --toolbarbutton-inner-padding: calc(
-        (var(--tab-min-height) - 18px) / 2
-      ) !important; /* Prevent overflow pinned tab bottom margin */
+      --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 18px) / 2) !important;
+      /* Prevent overflow pinned tab bottom margin */
     }
     @supports not -moz-bool-pref("userChrome.tabbar.multi_row") {
       :root:not([uidensity="compact"]) #TabsToolbar:not([multibar]) #pinned-tabs-container,
@@ -4930,7 +4930,8 @@
 }
 @supports -moz-bool-pref("userChrome.padding.toolbar_button") {
   :root[uidensity="compact"] {
-    --toolbarbutton-outer-padding: 2px !important; /* Original: 3px, General is 2px */
+    --toolbarbutton-outer-padding: 2px !important;
+    /* Original: 3px, General is 2px */
   }
   @supports -moz-bool-pref("userChrome.padding.toolbar_button.compact") {
     :root {
@@ -5613,7 +5614,8 @@
         --uc-navbar-block: 3px;
       }
       #nav-bar {
-        --toolbarbutton-inner-padding: 6px; /* Original: 8px */
+        --toolbarbutton-inner-padding: 6px;
+        /* Original: 8px */
         border-radius: var(--uc-rounding-toolbar, var(--tab-border-radius, 4px));
       }
       #nav-bar,
@@ -5717,7 +5719,8 @@
           --uc-navbar-block: 3px;
         }
         #nav-bar {
-          --toolbarbutton-inner-padding: 6px; /* Original: 8px */
+          --toolbarbutton-inner-padding: 6px;
+          /* Original: 8px */
           border-radius: var(--uc-rounding-toolbar, var(--tab-border-radius, 4px));
         }
         #nav-bar,
@@ -8989,8 +8992,8 @@
   /* '+'Icon */
   #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button .toolbarbutton-icon {
     border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
-    padding: calc(var(--toolbarbutton-inner-padding) - var(--tab-block-margin) / 4) var(--toolbarbutton-inner-padding)
-      calc(var(--toolbarbutton-inner-padding) + var(--tab-block-margin) / 4 + var(--uc-tabs-navbar-shadow-size)) !important;
+    padding: calc(var(--toolbarbutton-inner-padding) - (var(--tab-block-margin) / 4)) var(--toolbarbutton-inner-padding)
+      calc(var(--toolbarbutton-inner-padding) + (var(--tab-block-margin) / 4) + var(--uc-tabs-navbar-shadow-size)) !important;
     -moz-context-properties: fill, fill-opacity;
     fill: var(--toolbarbutton-icon-fill);
     fill-opacity: var(--toolbarbutton-icon-fill-opacity);
@@ -9827,7 +9830,7 @@
   }
   #urlbar-container {
     top: var(--uc-urlbar-margin-top);
-    min-width: calc(var(--uc-sidebar-activate-width) - 2 * var(--toolbarbutton-inner-padding)) !important;
+    min-width: calc(var(--uc-sidebar-activate-width) - (2 * var(--toolbarbutton-inner-padding))) !important;
     margin-inline: auto !important; /* Original: var(--urlbar-margin-inline) */
     left: 50%;
     transform: translateX(-50%);
@@ -11015,14 +11018,7 @@
 @supports -moz-bool-pref("userChrome.autohide.back_button") or -moz-bool-pref("userChrome.autohide.forward_button") {
   :root {
     --uc-toolbarbutton-hide-size: calc(
-      -1 * (16px +
-            (
-              2 *
-                (
-                  var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding)) +
-                    var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding))
-                )
-            ))
+      -1 * (16px + (2 * (var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding))))
     );
   }
 }
@@ -11153,11 +11149,7 @@
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
     --uc-navbar-height: var(--uc-navbar-height-default);
     --uc-navbar-height-default: calc(
-      16px + 2 *
-        (
-          var(--toolbarbutton-padding-inner, var(--toolbarbutton-inner-padding)) +
-            var(--toolbarbutton-padding-outer, var(--toolbarbutton-outer-padding))
-        )
+      16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding))
     );
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
     --uc-bm-height: var(--uc-bm-height-default);

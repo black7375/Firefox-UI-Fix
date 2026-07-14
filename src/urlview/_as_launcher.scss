@@ -46,13 +46,13 @@ $_urlRowPadding: 2px; //.urlbarView-row
   @include _urlViewCompactInit;
   @include _urlViewTouchInit;
 
-  --uc-urlView-margin: calc(var(--uc-sidebar-activate-width, 18rem) + var(--toolbarbutton-inner-padding));
+  --uc-urlView-margin: calc(var(--uc-sidebar-activate-width, 18rem) + #{toolbarbutton-padding.inner()});
 
   position: fixed !important;
   left: 50vw;
   transform: translateX(-50%);
   top: 12vh !important;
-  width: calc(100vw - (var(--uc-urlView-margin) + var(--toolbarbutton-inner-padding))) !important;
+  width: calc(100vw - (var(--uc-urlView-margin) + #{toolbarbutton-padding.inner()})) !important;
 
   /* paddding as margin */
   @include NotOption("userChrome.urlView.full_width_padding") {

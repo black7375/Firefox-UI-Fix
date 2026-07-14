@@ -21,7 +21,7 @@
     }
 
     // Padding & Size
-    --uc-toolbarbutton-boundary: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-inner-padding));
+    --uc-toolbarbutton-boundary: calc(#{toolbarbutton-padding.outer()} + #{toolbarbutton-padding.inner()});
     --uc-toolbarbutton-padding: calc(2 * var(--uc-toolbarbutton-boundary));
     --uc-toolbarbutton-size: calc(12px + var(--uc-toolbarbutton-padding));
     --uc-toolbarbutton-halfsize: calc(6px + var(--uc-toolbarbutton-boundary));

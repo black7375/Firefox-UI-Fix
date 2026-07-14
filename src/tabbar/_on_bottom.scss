@@ -101,7 +101,7 @@ See the above repository for updates as well as full license text. */
   }
 
   #toolbar-menubar .toolbarbutton-1 {
-    --toolbarbutton-inner-padding: 3px;
+    @include toolbarbutton-padding.inner(3px);
   }
 
   :root:not([chromehidden~="menubar"], [sizemode="fullscreen"]) #toolbar-menubar:not([autohide="true"]) + #TabsToolbar > .titlebar-buttonbox-container{

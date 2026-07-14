@@ -48,7 +48,7 @@ findbar {
   border-radius: var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) 0 0 var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) !important;
 
   > .findbar-find-fast {
-    padding: var(--toolbarbutton-inner-padding) 1px;
+    padding: #{toolbarbutton-padding.inner()} 1px;
     margin: 0 !important;
   }
   > .findbar-find-status {
