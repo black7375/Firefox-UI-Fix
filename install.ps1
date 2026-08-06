@@ -386,7 +386,7 @@ function Menu {
 #** Profile ********************************************************************
 #== Profile Dir ================================================================
 # $HOME = (get-psprovider 'FileSystem').Home
-$firefoxProfileDirPaths = @(
+$global:firefoxProfileDirPaths = @(
   "${HOME}\AppData\Roaming\Mozilla\Firefox",
   "${HOME}\AppData\Roaming\Waterfox",
   "${HOME}\AppData\Roaming\librewolf",
@@ -427,7 +427,7 @@ function Check-ProfileIni() {
 }
 
 #== Profile PATH ===============================================================
-$firefoxProfilePaths = @()
+$global:firefoxProfilePaths = @()
 function Update-ProfilePaths() {
   foreach ( $profileDir in $global:firefoxProfileDirPaths ) {
     $local:iniContent = Get-IniContent "${profileDir}\${PROFILEINFOFILE}"
@@ -578,8 +578,8 @@ function Write-LeptonInfo() {
 
 #** Install ********************************************************************
 #== Install Types ==============================================================
-$updateMode   = $false
-$leptonBranch = "master"
+$global:updateMode   = $false
+$global:leptonBranch = "master"
 function Select-Distribution() {
   while ( $true ) {
     $local:selected = $false
@@ -599,7 +599,7 @@ function Select-Distribution() {
   Lepton-OkMessage "Selected ${selectedDistribution}"
 }
 
-$leptonInstallType = "Network" # Other types: Local, Release
+$global:leptonInstallType = "Network" # Other types: Local, Release
 function Check-InstallType() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
@@ -644,14 +644,14 @@ function Check-InstallTypes() {
 }
 
 #== Custom Install =============================================================
-$customFiles = @(
+$global:customFiles = @(
   "user-overrides.js",
   "userChrome-overrides.css",
   "userContent-overrides.css"
 )
-$localCustomFiles = $customFiles.Clone()
+$global:localCustomFiles = $customFiles.Clone()
 
-$customFileExist = $false
+$global:customFileExist = $false
 function Check-CustomFiles() {
   [System.Collections.Generic.List[string]]$global:localCustomFiles = Filter-Path $localCustomFiles
 
@@ -685,9 +685,9 @@ function Copy-CustomFiles() {
   }
 }
 
-$customMethod = ""
-$customReset  = $false
-$customAppend = $false
+$global:customMethod = ""
+$global:customReset  = $false
+$global:customAppend = $false
 function Set-CustomMethod() {
   $local:menuAppend="Append - Maintain changes in existing files and apply custom"
   $local:menuOverwrite="Overwrite - After initializing the change, apply only custom"
@@ -721,7 +721,7 @@ function Set-CustomMethod() {
   Lepton-OKMessage "Selected ${customMethod}"
 }
 
-$customFileApplied = $false
+$global:customFileApplied = $false
 function Apply-CustomFile() {
   Param (
     [Parameter(Mandatory=$true, Position=0)]
@@ -785,7 +785,7 @@ function Apply-CustomFiles() {
 }
 
 #== Install Helpers ============================================================
-$chromeDuplicate = $false
+$global:chromeDuplicate = $false
 function Check-ChromeExist() {
   if ( (Test-Path -Path "chrome") -and (-Not (Test-Path -Path "chrome\${LEPTONINFOFILE}")) ) {
     $global:chromeDuplicate = $true
@@ -936,7 +936,7 @@ function Update-Profile() {
           Check-ChromeExist
           Clone-Lepton
 
-          $firefoxProfilePaths = @("${Path}")
+          $global:firefoxProfilePaths = @("${Path}")
           Copy-Lepton
 
           if ( "${Branch}" -eq $null ) {
