@@ -102,9 +102,16 @@
   }
 }
 
-@include Has {
-  #navigator-toolbox:has(#toolbar-menubar[autohide="false"]) {
-    @include _remove_spacer_pre;
+@include Option("userChrome.hidden.tabbar") {
+  // The nav bar contains the actual controls, so don't reserve an additional
+  // fixed-width gap. Retain the pre-control drag space in a normal window.
+  #navigator-toolbox {
     @include _remove_spacer_post;
   }
+}
+
+// A permanently visible menu bar has no `autohide` attribute.
+#navigator-toolbox:has(#toolbar-menubar:not([autohide], [collapsed])) {
+  @include _remove_spacer_pre;
+  @include _remove_spacer_post;
 }
