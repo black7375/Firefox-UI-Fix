@@ -5956,11 +5956,14 @@
       }
     }
   }
-  @supports selector(:has(a)) {
-    #navigator-toolbox:has(#toolbar-menubar[autohide="false"]) {
-      --uc-window-drag-space-pre: 0px;
+  @supports -moz-bool-pref("userChrome.hidden.tabbar") {
+    #navigator-toolbox {
       --uc-window-control-space: 0px;
     }
+  }
+  #navigator-toolbox:has(#toolbar-menubar:not([autohide], [collapsed])) {
+    --uc-window-drag-space-pre: 0px;
+    --uc-window-control-space: 0px;
   }
 }
 @supports -moz-bool-pref("userChrome.tabbar.on_bottom") or -moz-bool-pref("userChrome.tabbar.one_liner") or -moz-bool-pref(
@@ -7292,6 +7295,37 @@
           right: unset;
         }
       }
+    }
+  }
+}
+@supports -moz-bool-pref("userChrome.hidden.tabbar") {
+  @supports not -moz-bool-pref("userChrome.hidden.titlebar_container") {
+    #nav-bar > .titlebar-buttonbox-container {
+      display: flex !important;
+    }
+    @media (-moz-os-version: windows-win7),
+      (-moz-os-version: windows-win8),
+      (-moz-os-version: windows-win10),
+      (-moz-platform: windows) {
+      :root[sizemode="normal"] #toolbar-menubar[autohide][inactive] ~ #nav-bar > .titlebar-spacer[type="post-tabs"] {
+        display: flex !important;
+        width: var(--uc-window-drag-space-pre) !important;
+      }
+    }
+    @media (-moz-gtk-csd-available) and (-moz-gtk-csd-reversed-placement: 0) {
+      :root[sizemode="normal"] #toolbar-menubar[autohide][inactive] ~ #nav-bar > .titlebar-spacer[type="post-tabs"] {
+        display: flex !important;
+        width: var(--uc-window-drag-space-pre) !important;
+      }
+    }
+    #toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+      display: none !important;
+    }
+    :root:not([chromehidden~="menubar"], [inFullscreen])
+      #toolbar-menubar:not([autohide], [collapsed])
+      ~ #nav-bar
+      > .titlebar-buttonbox-container {
+      display: none !important;
     }
   }
 }

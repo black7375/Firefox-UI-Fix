@@ -1,0 +1,34 @@
+// Firefox keeps a titlebar-control copy in the nav bar and normally enables it
+// only when native vertical tabs set `tabs-hidden`. Lepton hides the horizontal
+// tab bar with CSS, so opt into that copy directly.
+#nav-bar > .titlebar-buttonbox-container {
+  display: flex !important;
+}
+
+// Match the drag space at the start of the nav bar on the inner side of
+// right-aligned window controls. Firefox normally exposes this spacer only
+// when its native tab strip is hidden.
+@include WindowControl_Right {
+  :root[sizemode="normal"]
+    #toolbar-menubar[autohide][inactive]
+    ~ #nav-bar
+    > .titlebar-spacer[type="post-tabs"] {
+    display: flex !important;
+    width: var(--uc-window-drag-space-pre) !important;
+  }
+}
+
+// Lepton's existing hidden-tabbar rules expose the menubar copy, so suppress it
+// while the nav-bar copy is in use.
+#toolbar-menubar[inactive] > .titlebar-buttonbox-container {
+  display: none !important;
+}
+
+// A permanently visible menubar owns the controls, so hide the nav-bar copy
+// just as Firefox does for native vertical tabs.
+:root:not([chromehidden~="menubar"], [inFullscreen])
+  #toolbar-menubar:not([autohide], [collapsed])
+  ~ #nav-bar
+  > .titlebar-buttonbox-container {
+  display: none !important;
+}
