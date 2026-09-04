@@ -35,7 +35,7 @@ tabs tab.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-con
 }
 
 /* Set the hover effect */
-.tabbrowser-tab:hover:not([selected="true"], [multiselected])
+.tabbrowser-tab:hover:not([selected], [multiselected])
   > .tab-stack
   > .tab-background
   > .tab-context-line::before {
@@ -44,7 +44,7 @@ tabs tab.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-con
 }
 
 #TabsToolbar[brighttext]
-  .tabbrowser-tab:hover:not([selected="true"], [multiselected])
+  .tabbrowser-tab:hover:not([selected], [multiselected])
   > .tab-stack
   > .tab-background
   > .tab-context-line::before {
@@ -54,7 +54,7 @@ tabs tab.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-con
 
 /* Animation */
 @media (prefers-reduced-motion: no-preference) {
-  .tabbrowser-tab:hover:not([selected="true"], [multiselected])
+  .tabbrowser-tab:hover:not([selected], [multiselected])
     > .tab-stack
     > .tab-background
     > .tab-context-line::before {

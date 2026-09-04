@@ -14,11 +14,11 @@
       background-color: var(--in-content-item-hover);
       color: var(--in-content-item-hover-text);
     }
-    &[selected="true"] {
+    &[selected] {
       background-color: var(--in-content-item-selected);
       color: var(--in-content-item-selected-text);
     }
-    &:nth-child(even):not([selected="true"], :hover) {
+    &:nth-child(even):not([selected], :hover) {
       background-color: var(--in-content-box-background-odd);
     }
   }

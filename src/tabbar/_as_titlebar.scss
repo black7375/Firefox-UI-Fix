@@ -17,15 +17,15 @@
 #scrollbutton-down,
 .titlebar-spacer[type="pre-tabs"],
 spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
-.tabbrowser-tab:not([selected="true"]),
-.tabbrowser-tab[selected="true"] .tab-background,
-.tabbrowser-tab[selected="true"] .tab-stack:is(::before, ::after),
-.tabbrowser-tab[selected="true"] .tab-close-button,
+.tabbrowser-tab:not([selected]),
+.tabbrowser-tab[selected] .tab-background,
+.tabbrowser-tab[selected] .tab-stack:is(::before, ::after),
+.tabbrowser-tab[selected] .tab-close-button,
 #tabs-newtab-button {
   display: none !important;
 }
 
-.tabbrowser-tab[selected="true"] {
+.tabbrowser-tab[selected] {
   -moz-window-dragging: drag;
   --tab-max-width: 100vw;
   min-width: calc(var(--uc-tabbar-width, 100vw) - var(--uc-window-control-space)) !important;
@@ -48,8 +48,8 @@ spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
 }
 
 /* Pinned */
-#tabbrowser-tabs[positionpinnedtabs] > #pinned-tabs-container > .tabbrowser-tab[pinned][selected="true"],
-#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned][selected="true"] {
+#tabbrowser-tabs[positionpinnedtabs] > #pinned-tabs-container > .tabbrowser-tab[pinned][selected],
+#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned][selected] {
   position: relative !important;
 }
 #tabbrowser-tabs {
