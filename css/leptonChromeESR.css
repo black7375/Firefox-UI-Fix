@@ -2417,7 +2417,7 @@
     background-color: var(--button-hover-bgcolor, color-mix(in srgb, currentColor 17%, transparent)) !important;
   }
   :root:is(:-moz-lwtheme, [lwtheme]) #editBMPanel_folderTree > treechildren::-moz-tree-row(selected),
-  #editBMPanel_tagsSelector > richlistitem[selected="true"] {
+  #editBMPanel_tagsSelector > richlistitem[selected] {
     background-color: var(--button-active-bgcolor, color-mix(in srgb, currentColor 30%, transparent)) !important;
   }
   #editBookmarkPanel #editBMPanel_namePicker,
@@ -3250,8 +3250,8 @@
       color: var(--in-content-item-hover-text) !important;
       background-color: var(--in-content-item-hover) !important;
     }
-    xul|menulist > xul|menupopup > xul|menu:not([disabled="true"])[selected="true"],
-    xul|menulist > xul|menupopup > xul|menuitem:not([disabled="true"])[selected="true"] {
+    xul|menulist > xul|menupopup > xul|menu:not([disabled="true"])[selected],
+    xul|menulist > xul|menupopup > xul|menuitem:not([disabled="true"])[selected] {
       color: var(--in-content-item-selected-text) !important;
       background-color: var(--in-content-item-selected) !important;
     }
@@ -3393,7 +3393,7 @@
     }
     @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
       xul|menulist > xul|menupopup > xul|menuitem[checked="true"]::before,
-      xul|menulist > xul|menupopup > xul|menuitem[selected="true"]::before {
+      xul|menulist > xul|menupopup > xul|menuitem[selected]::before {
         display: none !important;
       }
       xul|menulist::part(dropmarker) {
@@ -3490,7 +3490,7 @@
     #viewGroup > radio:hover {
       background-color: var(--in-content-button-background-hover) !important; /* #E0E8F6; */
     }
-    #viewGroup > radio[selected="true"] {
+    #viewGroup > radio[selected] {
       color: var(--in-content-button-text-color) !important; /* SelectedItemText */
       background-color: var(--in-content-button-background-active) !important; /* #C1D2EE; */
     }
@@ -3776,12 +3776,12 @@
       #clearDownloadsButton:focus-visible {
         outline: 2px solid var(--organizer-outline-color) !important;
       }
-      richlistitem[selected="true"],
+      richlistitem[selected],
       richlistitem:hover {
         background-color: var(--organizer-hover-background) !important;
         color: var(--organizer-color) !important;
       }
-      richlistbox:where(:focus) > richlistitem[selected="true"] {
+      richlistbox:where(:focus) > richlistitem[selected] {
         background-color: var(--organizer-selected-background) !important;
       }
       /*- Tree -----------------------------------------------------------------*/
@@ -7282,26 +7282,26 @@
   #scrollbutton-down,
   .titlebar-spacer[type="pre-tabs"],
   spacer:is([part="overflow-start-indicator"], [part="overflow-end-indicator"]),
-  .tabbrowser-tab:not([selected="true"]),
-  .tabbrowser-tab[selected="true"] .tab-background,
-  .tabbrowser-tab[selected="true"] .tab-stack:is(::before, ::after),
-  .tabbrowser-tab[selected="true"] .tab-close-button,
+  .tabbrowser-tab:not([selected]),
+  .tabbrowser-tab[selected] .tab-background,
+  .tabbrowser-tab[selected] .tab-stack:is(::before, ::after),
+  .tabbrowser-tab[selected] .tab-close-button,
   #tabs-newtab-button {
     display: none !important;
   }
-  .tabbrowser-tab[selected="true"] {
+  .tabbrowser-tab[selected] {
     -moz-window-dragging: drag;
     --tab-max-width: 100vw;
     min-width: calc(var(--uc-tabbar-width, 100vw) - var(--uc-window-control-space)) !important;
     max-width: var(--tab-max-width) !important;
     margin-inline-start: calc(var(--tab-shadow-max-size) * -1) !important;
   }
-  .tabbrowser-tab[selected="true"][pinned="true"] {
+  .tabbrowser-tab[selected][pinned="true"] {
     flex: 100;
     -moz-box-flex: 100;
     max-width: var(--tab-max-width) !important;
   }
-  .tabbrowser-tab[selected="true"] .tab-label-container {
+  .tabbrowser-tab[selected] .tab-label-container {
     margin-inline: 0 !important;
   }
   .tab-content {
@@ -7309,8 +7309,8 @@
     width: 100%;
   }
   /* Pinned */
-  #tabbrowser-tabs[positionpinnedtabs] > #pinned-tabs-container > .tabbrowser-tab[pinned][selected="true"],
-  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned][selected="true"] {
+  #tabbrowser-tabs[positionpinnedtabs] > #pinned-tabs-container > .tabbrowser-tab[pinned][selected],
+  #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned][selected] {
     position: relative !important;
   }
   #tabbrowser-tabs {
@@ -8241,13 +8241,13 @@
        FF v96+ replace by var(--lwt-tab-line-color) */
     background-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255))) !important;
   }
-  .tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
+  .tabbrowser-tab:hover:not([selected], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
     background-color: rgba(0, 0, 0, 0.2) !important;
     opacity: 1 !important;
     transform: none !important;
   }
   #TabsToolbar[brighttext]
-    .tabbrowser-tab:hover:not([selected="true"], [multiselected])
+    .tabbrowser-tab:hover:not([selected], [multiselected])
     > .tab-stack
     > .tab-background
     > .tab-context-line {
@@ -8263,12 +8263,12 @@
     stroke: var(--toolbar-color) !important;
   }
   /* Animation */
-  .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
+  .tabbrowser-tab:not([selected], [multiselected]) .tab-context-line {
     opacity: 0 !important;
     transform: scaleX(0) !important;
   }
   @media (prefers-reduced-motion: no-preference) {
-    .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
+    .tabbrowser-tab:not([selected], [multiselected]) .tab-context-line {
       transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
     }
   }
@@ -8341,15 +8341,12 @@
       margin-right: 6px;
     }
     /* Set the hover effect */
-    .tabbrowser-tab:hover:not([selected="true"], [multiselected])
-      > .tab-stack
-      > .tab-background
-      > .tab-context-line::before {
+    .tabbrowser-tab:hover:not([selected], [multiselected]) > .tab-stack > .tab-background > .tab-context-line::before {
       background-color: rgba(0, 0, 0, 0.4) !important;
       opacity: 1 !important;
     }
     #TabsToolbar[brighttext]
-      .tabbrowser-tab:hover:not([selected="true"], [multiselected])
+      .tabbrowser-tab:hover:not([selected], [multiselected])
       > .tab-stack
       > .tab-background
       > .tab-context-line::before {
@@ -8357,7 +8354,7 @@
     }
     /* Animation */
     @media (prefers-reduced-motion: no-preference) {
-      .tabbrowser-tab:hover:not([selected="true"], [multiselected])
+      .tabbrowser-tab:hover:not([selected], [multiselected])
         > .tab-stack
         > .tab-background
         > .tab-context-line::before {
@@ -8995,7 +8992,7 @@
     --tab-label-mask-size: 30%;
   }
   #tabbrowser-tabs[closebuttons="activetab"]
-    .tabbrowser-tab:is([visuallyselected], [multiselected="true"])
+    .tabbrowser-tab:is([visuallyselected], [multiselected])
     .tab-label-container {
     --tab-label-mask-size: 25%;
   }

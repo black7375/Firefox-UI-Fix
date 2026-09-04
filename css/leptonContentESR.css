@@ -2262,15 +2262,15 @@
       background-color: var(--in-content-item-hover);
       color: var(--in-content-item-hover-text);
     }
-    :is(.contentPane, .main-content, #certmanagertabs) richlistbox > richlistitem[selected="true"],
-    #translations-manage-install-list > .translations-manage-language[selected="true"] {
+    :is(.contentPane, .main-content, #certmanagertabs) richlistbox > richlistitem[selected],
+    #translations-manage-install-list > .translations-manage-language[selected] {
       background-color: var(--in-content-item-selected);
       color: var(--in-content-item-selected-text);
     }
     :is(.contentPane, .main-content, #certmanagertabs)
       richlistbox
-      > richlistitem:nth-child(even):not([selected="true"], :hover),
-    #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected="true"], :hover) {
+      > richlistitem:nth-child(even):not([selected], :hover),
+    #translations-manage-install-list > .translations-manage-language:nth-child(even):not([selected], :hover) {
       background-color: var(--in-content-box-background-odd);
     }
   }
@@ -2681,12 +2681,12 @@
         #clearDownloadsButton:focus-visible {
           outline: 2px solid var(--organizer-outline-color) !important;
         }
-        richlistitem[selected="true"],
+        richlistitem[selected],
         richlistitem:hover {
           background-color: var(--organizer-hover-background) !important;
           color: var(--organizer-color) !important;
         }
-        richlistbox:where(:focus) > richlistitem[selected="true"] {
+        richlistbox:where(:focus) > richlistitem[selected] {
           background-color: var(--organizer-selected-background) !important;
         }
         /*- Tree -----------------------------------------------------------------*/

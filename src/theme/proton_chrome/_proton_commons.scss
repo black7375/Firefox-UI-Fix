@@ -337,7 +337,7 @@
       color: var(--in-content-item-hover-text) !important;
       background-color: var(--in-content-item-hover) !important;
     }
-    &:not([disabled="true"])[selected="true"] {
+    &:not([disabled="true"])[selected] {
       color: var(--in-content-item-selected-text) !important;
       background-color: var(--in-content-item-selected) !important;
     }
@@ -496,7 +496,7 @@
 
   @include OS($mac) {
     xul|menulist > xul|menupopup > xul|menuitem[checked="true"]::before,
-    xul|menulist > xul|menupopup > xul|menuitem[selected="true"]::before {
+    xul|menulist > xul|menupopup > xul|menuitem[selected]::before {
       display: none !important;
     }
 
