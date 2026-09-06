@@ -1,0 +1,34 @@
+@use "mode";
+
+// Firefox 153+ renamed --toolbarbutton-inner-padding/-outer-padding to
+@function outer() {
+    @if mode.isESR() {
+        @return var(--toolbarbutton-outer-padding);
+    } @else {
+        @return var(--toolbarbutton-padding-outer);
+    }
+}
+
+@function inner() {
+    @if mode.isESR() {
+        @return var(--toolbarbutton-inner-padding);
+    } @else {
+        @return var(--toolbarbutton-padding-inner);
+    }
+}
+
+@mixin outer($value) {
+    @if mode.isESR() {
+        --toolbarbutton-outer-padding: #{$value};
+    } @else {
+        --toolbarbutton-padding-outer: #{$value};
+    }
+}
+
+@mixin inner($value) {
+    @if mode.isESR() {
+        --toolbarbutton-inner-padding: #{$value};
+    } @else {
+        --toolbarbutton-padding-inner: #{$value};
+    }
+}

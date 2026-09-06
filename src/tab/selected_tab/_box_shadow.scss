@@ -49,7 +49,7 @@ $ucTabBackgroundShadowHard: drop-shadow(-1px 0px 0px var(--uc-tab-shadow-color, 
     //  Original: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9))
     //    Bright: 0 0 1px var(--tab-line-color, rgba(128,128,142,0.9)), 0 0 4px rgba(128,128,142,0.5) */
     // Consider 0 0 4px rgba(128,128,142,0.9) -> 0 0 4px rgba(0,0,0,.4) new default */
-    --uc-tab-shadow-color: var(--toolbar-color);
+    --uc-tab-shadow-color: var(--toolbar-color, var(--toolbar-text-color));
   }
 }
 

@@ -58,7 +58,7 @@
         "userChrome.tab.bottom_rounded_corner.chrome",
         "userChrome.tab.bottom_rounded_corner.edge"
       ) {
-        --uc-newtab-non-corner-bgwidth: calc(2 * var(--toolbarbutton-inner-padding));
+        --uc-newtab-non-corner-bgwidth: calc(2 * #{toolbarbutton-padding.inner()});
       }
     }
   }
@@ -119,8 +119,8 @@
 #tabbrowser-tabs:not([orient="vertical"]) #tabs-newtab-button .toolbarbutton-icon {
   border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important; /* Original: var(--tab-border-radius) */
 
-  padding: calc(var(--toolbarbutton-inner-padding) - (var(--tab-block-margin) / 4)) var(--toolbarbutton-inner-padding)
-    calc(var(--toolbarbutton-inner-padding) + (var(--tab-block-margin) / 4) + var(--uc-tabs-navbar-shadow-size)) !important;
+  padding: calc(#{toolbarbutton-padding.inner()} - (var(--tab-block-margin) / 4)) #{toolbarbutton-padding.inner()}
+    calc(#{toolbarbutton-padding.inner()} + (var(--tab-block-margin) / 4) + var(--uc-tabs-navbar-shadow-size)) !important;
   -moz-context-properties: fill, fill-opacity;
   fill: var(--toolbarbutton-icon-fill);
   fill-opacity: var(--toolbarbutton-icon-fill-opacity);
@@ -138,7 +138,7 @@
     margin-inline: calc(var(--uc-tab-corner-half-height) - #{math.div(15.5px, 2)}) !important;
 
     background-color: transparent !important;
-    // background-size: calc((var(--toolbarbutton-inner-padding) * 2 + 16px) - var(--uc-tab-corner-size)) 100%;
+    // background-size: calc((#{toolbarbutton-padding.inner()} * 2 + 16px) - var(--uc-tab-corner-size)) 100%;
     // background-repeat: no-repeat;
     // background-position: center;
   }

@@ -13,8 +13,8 @@
 #nav-bar,
 #PersonalToolbar {
   background-image: linear-gradient(
-    var(--toolbar-bgcolor),
-    var(--toolbar-bgcolor)
+    var(--toolbar-bgcolor, var(--toolbar-background-color)),
+    var(--toolbar-bgcolor, var(--toolbar-background-color))
   ), var(--lwt-additional-images);
   background-repeat: repeat-x, var(--lwt-background-tiling);
   background-position: 0 0, var(--lwt-background-alignment);

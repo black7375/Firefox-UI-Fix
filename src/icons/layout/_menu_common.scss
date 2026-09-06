@@ -212,9 +212,6 @@ $_initialMenus: $_initialMenus + "," +
 @mixin _layout_init_mac_width() {
   padding-inline-end: var(--context-menu-background-padding) !important;
 }
-@mixin _layout_init_mac_text() {
-  padding-inline-start: var(--context-menu-mac-padding) !important;
-}
 @mixin _layout_init_mac_others() {
   padding-inline-start: calc(var(--context-menu-background-padding) + var(--context-menu-mac-padding)) !important;
 }

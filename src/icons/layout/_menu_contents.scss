@@ -80,11 +80,6 @@ $_placesPopupSetMenus: selector.nest(
   /* context menu width */
   #{$_placesPopupSetMenus} {
     @include _layout_init_mac_width;
-
-    > .menu-text {
-      /* text position */
-      @include _layout_init_mac_text;
-    }
   }
 
   /* Checkbox menuitem, None iconic menu */

@@ -27,7 +27,7 @@
 /* Tabbar Buttons */
 :root {
   --newtab-button-minus-width-padding: 2px;
-  --newtab-button-width-padding: calc(var(--toolbarbutton-inner-padding) - var(--newtab-button-minus-width-padding));
+  --newtab-button-width-padding: calc(#{toolbarbutton-padding.inner()} - var(--newtab-button-minus-width-padding));
 }
 #widget-overflow-mainView {
   #new-tab-button,
@@ -37,7 +37,7 @@
 }
 #new-tab-button > .toolbarbutton-icon,
 #alltabs-button > .toolbarbutton-badge-stack {
-  /* Original: calc(2 * var(--toolbarbutton-inner-padding) + 16px) */
+  /* Original: calc(2 * #{toolbarbutton-padding.inner()} + 16px) */
   width: calc(2 * var(--newtab-button-width-padding) + 16px) !important;
 
   /* Original: --toolbarbutton-inner-padding */
@@ -76,7 +76,7 @@
 
 :root:not([uidensity="touch"]) #new-tab-button,
 #alltabs-button {
-  --toolbarbutton-outer-padding: 1px; /* Original: 2px*/
+  @include toolbarbutton-padding.outer(1px); /* Original: 2px*/
 }
 
 /* Tab - Max Size */

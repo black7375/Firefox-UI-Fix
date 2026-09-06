@@ -37,7 +37,7 @@ findbar {
 .findbar-closebutton {
   border-style: solid;
   border-color: var(--chrome-content-separator-color);
-  background: var(--uc-light-bkgnd-color, var(--toolbar-bgcolor)) !important;
+  background: var(--uc-light-bkgnd-color, var(--toolbar-bgcolor, var(--toolbar-background-color))) !important;
   pointer-events: auto;
   height: 33px !important;
 }
@@ -48,7 +48,7 @@ findbar {
   border-radius: var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) 0 0 var(--uc-rounding-toolbar, var(--toolbarbutton-border-radius)) !important;
 
   > .findbar-find-fast {
-    padding: var(--toolbarbutton-inner-padding) 1px;
+    padding: #{toolbarbutton-padding.inner()} 1px;
     margin: 0 !important;
   }
   > .findbar-find-status {

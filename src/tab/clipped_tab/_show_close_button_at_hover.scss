@@ -84,9 +84,9 @@
   padding: 2px !important;
   width: 16px !important;
   height: 16px !important;
-  background-image: linear-gradient(var(--close-button-extra-background)), linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor))), linear-gradient(var(--toolbox-bgcolor)) !important;
+  background-image: linear-gradient(var(--close-button-extra-background)), linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor, var(--toolbar-background-color)))), linear-gradient(var(--toolbox-bgcolor)) !important;
 
   &:-moz-window-inactive {
-    background-image: linear-gradient(var(--close-button-extra-background)), linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor))), linear-gradient(var(--toolbox-bgcolor-inactive)) !important;
+    background-image: linear-gradient(var(--close-button-extra-background)), linear-gradient(var(--tab-selected-bgcolor, var(--toolbar-bgcolor, var(--toolbar-background-color)))), linear-gradient(var(--toolbox-bgcolor-inactive)) !important;
   }
 }

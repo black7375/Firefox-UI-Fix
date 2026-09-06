@@ -37,7 +37,7 @@
 :root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::before,
 :root:not([customizing="true"]) #TabsToolbar[brighttext] tab[visuallyselected] > stack::after {
   /* As Selected Tab - Box Shadow */
-  stroke: var(--toolbar-color) !important;
+  stroke: var(--toolbar-color, var(--toolbar-text-color)) !important;
 }
 
 /* Animation */

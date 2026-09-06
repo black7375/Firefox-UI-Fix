@@ -18,7 +18,7 @@
     --uc-tabbar-hide-height: calc(-1 * var(--uc-tabbar-height));
 
     --uc-navbar-height: var(--uc-navbar-height-default);
-    --uc-navbar-height-default: calc(16px + 2 * (var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)));
+    --uc-navbar-height-default: calc(16px + 2 * (#{toolbarbutton-padding.inner()} + #{toolbarbutton-padding.outer()}));
     --uc-navbar-hide-height: calc(-1 * var(--uc-navbar-height));
 
     --uc-bm-height: var(--uc-bm-height-default);

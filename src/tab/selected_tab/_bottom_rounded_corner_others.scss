@@ -132,13 +132,13 @@
       }
       @include NotOption("userChrome.tab.color_like_toolbar") {
         /* Based on tab background
-            background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
+            background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor, var(--toolbar-background-color)), var(--toolbar-bgcolor, var(--toolbar-background-color))), var(--lwt-header-image, none);
 
             defaults
-            background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+            background-color: var(--tab-selected-bgcolor, var(--toolbar-bgcolor, var(--toolbar-background-color)));
             background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
        */
-        fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor))) !important;
+        fill: var(--lwt-selected-tab-background-color, var(--tab-selected-bgcolor, var(--toolbar-bgcolor, var(--toolbar-background-color)))) !important;
       }
     }
     &::before {
@@ -168,7 +168,7 @@
 
     &::before,
     &::after {
-      fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor));
+      fill: var(--tab-selected-bgcolor, var(--toolbar-bgcolor, var(--toolbar-background-color)));
     }
   }
   &:hover:not([visuallyselected], [multiselected]) .tab-background {

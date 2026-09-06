@@ -77,13 +77,13 @@
       position: relative;
 
       > .toolbarbutton-icon {
-        padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
+        padding-inline-end: var(--urlbar-icon-padding) !important; /* Original: #{toolbarbutton-padding.inner()} */
         padding-block: var(--urlbar-icon-padding) !important;
         height: var(--uc-urlbar-icon-size) !important;
       }
 
       @include Option("userChrome.combined.urlbar.nav_button") {
-        padding-inline-end: 0px !important; /* Original: var(--toolbarbutton-outer-padding) */
+        padding-inline-end: 0px !important; /* Original: #{toolbarbutton-padding.outer()} */
       }
       @include NotOption("userChrome.combined.urlbar.nav_button") {
         @include NotOption("userChrome.combined.sub_button.none_background") {
@@ -130,7 +130,7 @@
           @include _combined_back_button_background;
         }
         > .toolbarbutton-icon {
-          padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: var(--toolbarbutton-inner-padding) */
+          padding-inline-start: var(--urlbar-icon-padding) !important; /* Original: #{toolbarbutton-padding.inner()} */
           padding-block: var(--urlbar-icon-padding) !important;
           height: var(--uc-urlbar-icon-size) !important;
         }
