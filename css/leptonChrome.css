@@ -4058,6 +4058,17 @@
   border-radius: var(--arrowpanel-menuitem-border-radius) !important;
 }
 
+:root,
+:host {
+  --urlbar-border-radius: 8px !important;
+  --urlbar-container-padding: round(up, 1px, env(hairline)) !important;
+  --urlbar-container-border-width: max(env(hairline), round(down, 1px, env(hairline))) !important;
+  --urlbar-container-border-padding: calc(
+    var(--urlbar-container-border-width) + var(--urlbar-container-padding)
+  ) !important;
+  --urlbar-padding-block: 4px !important;
+}
+
 @media -moz-pref("userChrome.rounding.square_tab") {
   :root {
     --tab-border-radius: 0px !important; /* Original: 4px */
@@ -18994,6 +19005,17 @@
 /** Rounding ******************************************************************/
 .unified-extensions-item-menu-button.subviewbutton {
   border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+}
+
+:root,
+:host {
+  --urlbar-border-radius: 8px !important;
+  --urlbar-container-padding: round(up, 1px, env(hairline)) !important;
+  --urlbar-container-border-width: max(env(hairline), round(down, 1px, env(hairline))) !important;
+  --urlbar-container-border-padding: calc(
+    var(--urlbar-container-border-width) + var(--urlbar-container-padding)
+  ) !important;
+  --urlbar-padding-block: 4px !important;
 }
 
 @media (-moz-bool-pref: "userChrome.rounding.square_tab") {
