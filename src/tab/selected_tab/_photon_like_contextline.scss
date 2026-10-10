@@ -17,13 +17,13 @@
   background-color: var(--tab-line-color, var(--lwt-tab-line-color, rgb(10, 132, 255))) !important;
 }
 
-.tabbrowser-tab:hover:not([selected="true"], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
+.tabbrowser-tab:hover:not([selected], [multiselected]) > .tab-stack > .tab-background > .tab-context-line {
   background-color: rgba(0, 0, 0, 0.2) !important;
   opacity: 1 !important;
   transform: none !important;
 }
 #TabsToolbar[brighttext]
-  .tabbrowser-tab:hover:not([selected="true"], [multiselected])
+  .tabbrowser-tab:hover:not([selected], [multiselected])
   > .tab-stack
   > .tab-background
   > .tab-context-line {
@@ -41,12 +41,12 @@
 }
 
 /* Animation */
-.tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
+.tabbrowser-tab:not([selected], [multiselected]) .tab-context-line {
   opacity: 0 !important;
   transform: scaleX(0) !important;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .tabbrowser-tab:not([selected="true"], [multiselected]) .tab-context-line {
+  .tabbrowser-tab:not([selected], [multiselected]) .tab-context-line {
     transition: transform 250ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function) !important; /* --animation-easing-function: cubic-bezier(.07, .95, 0, 1); */
   }
 }

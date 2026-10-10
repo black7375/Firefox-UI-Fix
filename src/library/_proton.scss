@@ -189,13 +189,13 @@
   outline: 2px solid var(--organizer-outline-color) !important;
 }
 
-richlistitem[selected="true"],
+richlistitem[selected],
 richlistitem:hover {
   background-color: var(--organizer-hover-background) !important;
   color: var(--organizer-color) !important;
 }
 
-richlistbox:where(:focus) > richlistitem[selected="true"] {
+richlistbox:where(:focus) > richlistitem[selected] {
   background-color: var(--organizer-selected-background) !important;
 }
 
