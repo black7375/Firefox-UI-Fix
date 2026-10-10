@@ -39,6 +39,11 @@
 @include Option("userChrome.tabbar.on_bottom", "userChrome.tabbar.one_liner", "userChrome.hidden.tabbar") {
   @import "layout";
 }
+@include Option("userChrome.hidden.tabbar") {
+  @include NotOption("userChrome.hidden.titlebar_container") {
+    @import "layout/hidden_tabbar_window_control";
+  }
+}
 
 /*= Tab Bar - Show only current tab ==========================================*/
 @include Option("userChrome.tabbar.as_titlebar") {
