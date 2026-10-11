@@ -233,6 +233,11 @@
     --button-primary-hover-bgcolor: var(--button-background-color-primary-hover);
     --button-primary-active-bgcolor: var(--button-background-color-primary-active);
   }
+  /*= Splitter color ===========================================================*/
+  browser,
+  .browserContainer {
+    background-color: var(--in-content-border-background) !important;
+  }
 }
 /*= OS - Compatibility =======================================================*/
 @media -moz-pref("userChrome.compatibility.os") {
@@ -14868,6 +14873,7 @@
   /*= Inactive transparent #882 ================================================*/
   /*= Tabpreviw transparent #890 ===============================================*/
   /*= Design token =============================================================*/
+  /*= Splitter color ===========================================================*/
 }
 @media (-moz-bool-pref: "userChrome.compatibility.theme") and (-moz-bool-pref: "userChrome.tab.connect_to_window") {
   /* TARGET: original, photon */
@@ -15039,6 +15045,12 @@
     --button-primary-bgcolor: var(--button-background-color-primary);
     --button-primary-hover-bgcolor: var(--button-background-color-primary-hover);
     --button-primary-active-bgcolor: var(--button-background-color-primary-active);
+  }
+}
+@media (-moz-bool-pref: "userChrome.compatibility.theme") {
+  browser,
+  .browserContainer {
+    background-color: var(--in-content-border-background) !important;
   }
 }
 /*= OS - Compatibility =======================================================*/
