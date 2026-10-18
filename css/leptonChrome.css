@@ -8726,10 +8726,6 @@
   .tab-close-button {
     padding: 6px !important; /* Original: 7px */
   }
-  .tabbrowser-tab:not(:hover, [pinned]) > .tab-stack > .tab-content > .tab-close-button {
-    padding-inline-start: 1px !important; /* Original: 0px */
-    width: 19px !important; /* Original: 17px */
-  }
   /* Closed Button's padding reduce */
   #tabbrowser-tabs[closebuttons="activetab"] .tab-content > .tab-close-button {
     margin-inline-end: calc(
@@ -24296,12 +24292,6 @@
 @media (-moz-bool-pref: "userChrome.tab.close_button_at_hover") {
   .tab-close-button {
     padding: 6px !important; /* Original: 7px */
-  }
-}
-@media (-moz-bool-pref: "userChrome.tab.close_button_at_hover") {
-  .tabbrowser-tab:not(:hover, [pinned]) > .tab-stack > .tab-content > .tab-close-button {
-    padding-inline-start: 1px !important; /* Original: 0px */
-    width: 19px !important; /* Original: 17px */
   }
 }
 @media (-moz-bool-pref: "userChrome.tab.close_button_at_hover") {
